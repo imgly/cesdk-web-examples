@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Integrate CreativeEditor SDK with Vanilla JS</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      html {
+        overscroll-behavior-x: contain;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="cesdk_container" style="width: 100vw; height: 100vh"></div>
+
+    <script type="module">
+      // Serve from global CDN
+      // import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0/assets/vendor/react@17.0.2/umd/react.production.min.js';
+      // import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0/assets/vendor/react-dom@17.0.2/umd/react-dom.production.min.js';
+      // import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0/assets/cesdk.umd.js';
+
+      // Serve from local server
+      import 'http://localhost:5000/dist/vendor/react@17.0.2/umd/react.production.min.js';
+      import 'http://localhost:5000/dist/vendor/react-dom@17.0.2/umd/react-dom.production.min.js';
+      import 'http://localhost:5000/dist/cesdk.umd.js';
+
+      // let config = new CreativeEditorSDK.Configuration();
+      let config = CreativeEditorSDK.Configuration.default();
+
+      // Minimal configuratioon
+      config = config.extend({
+        locale: 'en',
+        theme: 'dark',
+        license: 'Enter license when deploying SDK in a production environment'
+      });
+
+      // Extension Config
+      config = config.extend({
+        extensions: {
+          entries: [
+            `ly.img.cesdk.filters.duotone`,
+            `ly.img.cesdk.filters.lut`,
+            `ly.img.cesdk.stickers.emoticons`,
+            `ly.img.cesdk.stickers.shapes`,
+            `ly.img.cesdk.vectorpaths`,
+            `ly.img.cesdk.fonts`,
+            `ly.img.cesdk.images.samples`,
+            `ly.img.cesdk.effects`
+          ]
+        }
+      });
+
+      // Custom Asset location
+      config = config.extend({
+        // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0/assets', // Serve from global CDN
+        baseURL: 'http://localhost:5000/dist/assets' // Serve from localhost
+      });
+
+      // I18N
+      config = config.extend({
+        i18n: {
+          en: {
+            variable: {
+              company_name: { label: 'Company Name' }
+            }
+          },
+          de: {
+            variable: {
+              company_name: { label: 'Firmenname' }
+            }
+          }
+        }
+      });
+
+      // Variables
+      config = config.extend({
+        // In order to translate variables one can add "variable.${type}.${id}" to the i18n configuration for your language
+        presets: {
+          variable: {
+            company_name: {
+              value: 'ACME Corp'
+            }
+          }
+        }
+      });
+
+      /** Presets
+       * Presets can be configured for almost any type in the framework
+       * - Colorpalettes
+       * – Document
+       **/
+
+      /** Color Prests **/
+      config = config.extend({
+        presets: {
+          color: {
+            myCustomBrandColor: {
+              value: '#FF00FF'
+            }
+          }
+        }
+      });
+
+      /** Image Presets
+       *
+       **/
+      config = config.extend({
+        presets: {
+          image: {
+            'sample.1': {
+              imageURL: '/images/imgur/M9JPPTE.jpeg',
+              width: 1024,
+              height: 768,
+              thumbnailURL: '/assets/images/imgur/M9JPPTE.jpeg',
+              levelOfDetail: {
+                1: '/assets/images/imgur/M9JPPTE@1.jpeg',
+                2: '/assets/images/imgur/M9JPPTE@2.jpeg'
+              }
+            }
+          }
+        }
+      });
+
+      /** Typeface presets **/
+      config = config.extend({
+        presets: {
+          typeface: {}
+        }
+      });
+
+      /** ColorPalette presets **/
+      config = config.extend({
+        presets: {
+          colorpalette: {
+            imgly_default: {
+              meta: {
+                default: true // last one that sets default to true becomes the default instance, when no other exists then it's per definition the default
+              },
+              entries: [
+                '#FFFFFF',
+                '#000000',
+                '#6686FF',
+                '#66CCFF',
+                '#54FFEA',
+                '#E75050',
+                '#F28855',
+                '#FFF763'
+              ]
+            }
+          }
+        }
+      });
+
+      // Scene or document
+      config = config.extend({
+        presets: {
+          scene: {
+            // how to set the default ?
+            'din-a5': {
+              meta: { default: true, categories: ['paper_sizes'] },
+              keepAspectRatio: false,
+              width: 1240,
+              height: 874,
+              unit: 1,
+              dpi: 700,
+              bleedMargin: 3
+            },
+            'din-a6': {
+              meta: { categories: ['paper_sizes'] },
+              width: 874,
+              height: 620,
+              unit: 1
+            },
+            'twitter-profile': {
+              meta: { categories: ['social-media'] },
+              width: 400,
+              height: 400,
+              unit: 0
+            },
+            'twitter-image': {
+              meta: { categories: ['social-media'] },
+              width: 1024,
+              height: 512,
+              unit: 0
+            },
+            'twitter-header': {
+              meta: { categories: ['social-media'] },
+              width: 1500,
+              height: 500,
+              unit: 0
+            }
+          }
+        }
+      });
+
+      CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
+        /** do something with the instance of CreativeEditor SDK **/
+      });
+    </script>
+  </body>
+</html>

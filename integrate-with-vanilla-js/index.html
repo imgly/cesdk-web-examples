@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Integrate CreativeEditor SDK with Vanilla JS</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      html {
+        overscroll-behavior-x: contain;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="cesdk_container" style="width: 100%; height: 100vh"></div>
+
+    <script type="module">
+      // Serve from global CDN
+      import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0-rc.1/cesdk.umd.js';
+      // Serve from local server
+      // import '/dist/cesdk.umd.js';
+      CreativeEditorSDK.init('#cesdk_container').then((instance) => {
+        /** do something with the instance of CreativeEditor SDK **/
+      });
+    </script>
+  </body>
+</html>

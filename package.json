@@ -1,0 +1,16 @@
+{
+  "name": "cesdk_web_examples",
+  "version": "1.0.0-rc.1",
+  "description": "CreativeEditor SDK for Web Examples",
+  "keywords": [
+    "editor",
+    "design",
+    "react",
+    "angular",
+    "vue",
+    "electron"
+  ],
+  "author": "img.ly GmbH <contact@img.ly>",
+  "license": "ISC",
+  "homepage": "https://img.ly"
+}
