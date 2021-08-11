@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+html {
+  overscroll-behavior-x: contain;
+}
+
+#cesdk_container {
+  height: 100vh;
+  width: 100vw;
+}
