@@ -1,8 +1,8 @@
 
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0-rc.7/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0-rc.7/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0/assets',
   presets: {
     // highlight-pageFormats
     pageFormats: {
@@ -19,7 +19,7 @@ let config = {
         height: 105,
         // highlight-height
         // highlight-unit
-        unit: 1, // Millimeter
+        unit: 'mm', // Millimeter
         // highlight-unit
         // highlight-bleedMargin
         bleedMargin: 2
@@ -28,12 +28,12 @@ let config = {
       'twitter-profile': {
         width: 400,
         height: 400,
-        unit: 0 // Pixel
+        unit: 'px' // Pixel
       },
       'american-letter': {
         width: 8.5,
         height: 11,
-        unit: 2, // Inch
+        unit: 'in', // Inch
         bleedMargin: 1
       }
       // highlight-pageFormats
