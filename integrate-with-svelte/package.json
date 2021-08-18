@@ -1,11 +1,12 @@
 {
   "name": "cesdk-integrate-with-svelte",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.6",
   "private": true,
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --no-clear",
+    "serve": "sirv public -p 8080"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -18,7 +19,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.0.0-rc.1",
+    "@cesdk/cesdk-js": "^1.0.0-rc.6",
     "sirv-cli": "^1.0.0"
   }
 }

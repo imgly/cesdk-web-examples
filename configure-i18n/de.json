@@ -1,0 +1,921 @@
+{
+  "common": {
+    "save": "Speichern",
+    "load": "Laden",
+    "download": "Download",
+    "export": "Export",
+    "close": "Schließen",
+    "back": "Zurück",
+    "lock": "Sperren",
+    "unlock": "Entsperren",
+    "replace": "Ersetzen",
+    "duplicate": "Duplizieren",
+    "edit": "Editieren",
+    "delete": "Löschen",
+    "undo": "Rückgängig",
+    "redo": "Wiederherstellen",
+    "reset": "Zurücksetzen",
+    "style": "Style",
+    "page": "Seite",
+    "formats": "Formate",
+    "select": "Auswählen",
+    "advanced": "Erweitert",
+    "mixed": "Verschiedene"
+  },
+  "presets": {
+    "scenes": {
+      "din-a0": { "label": "DIN A0" },
+      "din-a1": { "label": "DIN A1" },
+      "din-a2": { "label": "DIN A2" },
+      "din-a3": { "label": "DIN A3" },
+      "din-a4": { "label": "DIN A4" },
+      "din-a5": { "label": "DIN A5" },
+      "din-a6": { "label": "DIN A6" },
+      "din-a65": { "label": "DIN A6/5" },
+      "din-b5": { "label": "DIN B5" },
+      "square": { "label": "Quadratisch" },
+      "twitter-profile": { "label": "Twitter Profilbild" },
+      "twitter-image": { "label": "Twitter Bild" },
+      "twitter-header": { "label": "Twitter Kopfzeilenbild" },
+      "instagram-profile": { "label": "Instagram Profilbild" },
+      "instagram-photo": { "label": "Instagram Foto" },
+      "instagram-story": { "label": "Instagram Story" },
+      "american-letter": { "label": "US Letter" },
+      "american-legal": { "label": "US Legal" },
+      "business-card": { "label": "Visitenkarte" }
+    }
+  },
+  "block": {
+    "page": {
+      "title": "Seite {{number}}"
+    },
+    "inputs": {
+      "TypefaceSelect": {
+        "label": "Ausgewählte Schriftfamilie: {{fontFamily}}"
+      },
+      "FontSelect": {
+        "label": "Ausgewählte Schriftart: {{font}}",
+        "fallback": {
+          "label": "Standard"
+        }
+      },
+      "FontSize": {
+        "label": "Schriftgröße auswählen"
+      },
+      "BleedMargin": {
+        "label": "Anschnitt auswählen"
+      },
+      "PlaceholderTextInput": {
+        "label": "Platzhalter auswählen"
+      },
+      "Transform": {
+        "label": "Umformen",
+        "value": {
+          "label": "$t(block.inputs.Transform.position.label) & $t(block.inputs.Transform.dimension.label)"
+        },
+        "move": { "label": "Versetzen" },
+        "position": {
+          "label": "Position",
+          "x": {
+            "unitLabel": "X",
+            "label": "$t(block.inputs.Transform.position.x.unitLabel) $t(block.inputs.Transform.position.label)",
+            "description": "Position auf der X-Achse in {{unit}}"
+          },
+          "y": {
+            "unitLabel": "Y",
+            "label": "$t(block.inputs.Transform.position.y.unitLabel) $t(block.inputs.Transform.position.label)",
+            "description": "Position auf der Y-Achse in {{unit}}"
+          }
+        },
+        "dimension": {
+          "label": "Größe",
+          "x": {
+            "label": "Breite",
+            "innerLabel": "B",
+            "description": "Breite in {{unit}}"
+          },
+          "y": {
+            "label": "Höhe",
+            "lnnerLabel": "H",
+            "description": "Höhe in {{unit}}"
+          }
+        },
+        "rotation": {
+          "label": "Rotation",
+          "angle": {
+            "description": "Rotation in Grad"
+          }
+        }
+      },
+      "Text": {
+        "advanced": {
+          "label": "$t(common.advanced)",
+          "value": {
+            "label": "Zeilenhöhe, Abstände, Ausrichtung & Größe"
+          }
+        }
+      }
+    }
+  },
+  "typography": {
+    "weight": {
+      "100": { "label": "Fein" },
+      "200": { "label": "Extraleicht" },
+      "300": { "label": "Leicht" },
+      "400": { "label": "Normal" },
+      "500": { "label": "Medium" },
+      "600": { "label": "Halbfett" },
+      "700": { "label": "Fett" },
+      "800": { "label": "Extra fett" },
+      "900": { "label": "Schwarz" }
+    },
+    "style": {
+      "normal": { "label": "Normal" },
+      "italic": { "label": "Kursiv" }
+    }
+  },
+  "textEditing": {
+    "bold": {
+      "label": "Fett"
+    },
+    "italic": {
+      "label": "Kursiv"
+    },
+    "color": {
+      "label": "Farbe ändern"
+    },
+    "textVariable": {
+      "label": "Variable hinzufügen"
+    }
+  },
+  "scopes": {
+    "content": {
+      "replace": {
+        "label": "Erlaube Austausch vom Inhalt"
+      }
+    },
+    "design": {
+      "label": "Erlaube Adaption von Design",
+      "arrange": {
+        "label": "Erlaube Adaption der Anordnung"
+      },
+      "style": {
+        "label": "Erlaube Adaption der Gestaltung"
+      }
+    },
+    "lifecycle": {
+      "duplicate": {
+        "label": "Erlaube Duplizieren"
+      },
+      "destroy": {
+        "label": "Erlaube Löschen"
+      }
+    },
+    "editor": {
+      "select": {
+        "label": "Erlaube Selektion"
+      }
+    },
+    "exportable": {
+      "label": "Im Export anzeigen"
+    },
+    "alwaysOnTop": {
+      "label": "Immer im Vordergrund"
+    }
+  },
+  "component": {
+    "topbar": {
+      "save": { "label": "$t(common.save)" },
+      "load": { "label": "$t(common.load)" },
+      "download": { "label": "$t(common.download)" },
+      "export": { "label": "$t(common.export)" },
+      "close": { "label": "$t(common.close)" },
+      "back": { "label": "$t(common.back)" },
+      "image": { "label": "Bilder" },
+      "text": { "label": "Text" },
+      "vectorPath": { "label": "Pfad" },
+      "element": { "label": "Elemente" },
+      "call-to-action": { "more": "Weitere Optionen anzeigen" }
+    },
+    "library": {
+      "close": { "label": "$t(common.close)" },
+      "file": {
+        "add": { "label": "Hinzufügen" }
+      },
+      "element": {
+        "emoticons": { "label": "Emoticons" },
+        "openmoji": { "label": "Openmoji" },
+        "shapes": {
+          "label": "Formen"
+        }
+      },
+      "text": {
+        "title": { "label": "Titel" },
+        "headline": { "label": "Überschrift" },
+        "paragraph": { "label": "Absatz" }
+      }
+    },
+    "popover": {
+      "keyShortcut": {
+        "label": "Um den '{{popoverType}}' Dialog zu öffnen, betätigen Sie '{{keyShortcut}}'"
+      }
+    },
+    "modal": {
+      "close": { "label": "$t(common.close)" },
+      "uploadImage": {
+        "label": "Bild wird hochgeladen..."
+      }
+    },
+    "dnd": {
+      "label": "Dateien hier hinziehen",
+      "description": "Die hochgeladenen Dateien werden unter '$t(component.topbar.image.label)' gespeichert"
+    },
+    "colorPicker": {
+      "colorItem": {
+        "label": "Farbelement {{index}}",
+        "transparent": {
+          "label": "Farbelement {{index}}, Farbname: Transparent"
+        }
+      },
+      "nearestColorName": {
+        "label": "Nächstliegender Farbname"
+      },
+      "hueGradient": {
+        "label": "Farbverlaufston-Auswahl",
+        "h": { "label": "Farbwert" },
+        "s": { "label": "Farbsättigung" },
+        "v": { "label": "Hellwert" }
+      },
+      "hueSlider": { "label": "Farbton" },
+      "opacitySlider": { "label": "Deckkraft" },
+      "hexInput": { "label": "Hex" },
+      "hsl": {
+        "label": "{{componentName}}, $t(component.colorPicker.nearestColorName.label): {{nearestColorName}}; $t(property.colorValue.label): Farbwert: {{hue}}°, Farbsättigung: {{saturation}}%, Helligkeit: {{lightness}}%"
+      },
+      "rgbInput": {
+        "r": {
+          "label": "rot"
+        },
+        "g": {
+          "label": "grün"
+        },
+        "b": {
+          "label": "blau"
+        }
+      }
+    },
+    "canvas": {
+      "handle": {
+        "corner": {
+          "topleft": "Griff Ecke oben links",
+          "topright": "Griff Ecke oben rechts",
+          "bottomleft": "Griff Ecke unten links",
+          "bottomright": "Griff Ecke unten rechts"
+        },
+        "edge": {
+          "top": "Griff obere Kante",
+          "right": "Griff rechte Kante",
+          "bottom": "Griff untere Kante",
+          "left": "Griff linke Kante"
+        },
+        "rotate": "Griff zum rotieren des Elementes"
+      },
+      "label": "Editor Leinwand",
+      "state": {
+        "loading": {
+          "label": "Editor wird geladen",
+          "error": { "label": "Engine des Editors konnte nicht geladen werden" }
+        },
+        "unsupported": { "label": "Ihr Browser wird nicht unterstützt" }
+      },
+      "action": {
+        "lock": { "label": "$t(common.lock)" },
+        "unlock": { "label": "$t(common.unlock)" },
+        "replace": { "label": "$t(common.replace)" },
+        "duplicate": { "label": "$t(common.duplicate)" },
+        "edit": { "label": "$t(common.edit)" },
+        "delete": { "label": "$t(common.delete)" },
+        "mask": { "label": "Maskieren" },
+        "smartCrop": { "label": "Smartes Zuschneiden" },
+        "superResolution": { "label": "Hochskalieren" },
+        "inpainting": { "label": "Auffüllen" },
+        "move": {
+          "up": { "label": "Runter" },
+          "down": { "label": "Hoch" }
+        }
+      },
+      "undo": {
+        "undo": { "label": "$t(common.undo)" },
+        "redo": { "label": "$t(common.redo)" }
+      },
+      "zoom": {
+        "out": { "label": "Verkleinern" },
+        "in": { "label": "Vergrößern" },
+        "50": { "label": "Zoom auf 50%" },
+        "100": { "label": "Zoom auf 100%" },
+        "200": { "label": "Zoom auf 200%" },
+        "fit": { "label": "An Bildschirm anpassen" },
+        "shortcut": "oder drücke {{shortcut}}",
+        "options": "Weitere Zoom Optionen anzeigen"
+      },
+      "page": {
+        "label": "Neue Seite"
+      },
+      "settings": {
+        "label": "Editor anpassen",
+        "description": "Einstellungen öffnen um den Editor anzupassen"
+      },
+      "editText": {
+        "close": { "label": "Abbrechen" },
+        "done": { "label": "Fertig" },
+        "label": "Texteingabe",
+        "placeholder": "Etwas aufschreiben",
+        "placeholderInput": {
+          "label": "Platzhalter einfügen"
+        }
+      }
+    },
+    "SettingsPanel": {
+      "header": {
+        "label": "Editor anpassen"
+      },
+      "appearance": {
+        "label": "Aussehen"
+      },
+      "libraries": {
+        "label": "Bibliotheken",
+
+        "TemplateLibrary": {
+          "label": "Vorlagen-Bibliothek"
+        },
+        "ImageLibrary": {
+          "label": "Bilder-Bibliothek"
+        },
+        "TextLibrary": {
+          "label": "Text-Bibliothek"
+        },
+        "ElementLibrary": {
+          "label": "Element-Bibliothek"
+        }
+      },
+      "assets": {
+        "label": "Assets",
+        "opacity": {
+          "label": "$t(property.opacity.label)"
+        },
+        "transform": {
+          "label": "Transformieren"
+        },
+        "text": {
+          "advanced": {
+            "label": "Erweiterte Texteinstellung"
+          },
+          "color": {
+            "label": "Textfarbe"
+          },
+          "backgroundColor": {
+            "label": "Texthintergrundfarbe"
+          }
+        },
+        "image": {
+          "crop": {
+            "label": "Bildausschnitt"
+          },
+          "filters": {
+            "label": "Bildfilter"
+          },
+          "adjustments": {
+            "label": "Bildkorrekturen"
+          },
+          "selectiveAdjustments": {
+            "label": "Selektive Bildkorrekturen"
+          },
+          "effects": {
+            "label": "Bildeffekte"
+          },
+          "blur": {
+            "label": "Bildunschärfe"
+          }
+        }
+      },
+      "ThemeSelect": {
+        "label": "Theme",
+        "description": "Theme auswählen",
+        "options": {
+          "dark": {
+            "label": "Dunkel",
+            "description": "Dunkles theme auswählen"
+          },
+          "light": {
+            "label": "Hell",
+            "description": "Helles theme auswählen"
+          }
+        },
+        "export": {
+          "label": "CSS Custom Properties",
+          "action": {
+            "label": "Generiere CSS"
+          }
+        },
+        "dialog": { "label": "Generierte CSS Custom Properties" }
+      },
+      "InspectorPositionSelect": {
+        "label": "Inspector",
+        "description": "Position des Inspectors wählen",
+        "options": {
+          "left": {
+            "label": "Links",
+            "description": "Inspector auf der linken Seite"
+          },
+          "right": {
+            "label": "Rechts",
+            "description": "Inspector auf der rechten Seite"
+          }
+        }
+      },
+      "ScalingSelect": {
+        "label": "UI Skalierung",
+        "description": "UI Skalierung auswählen",
+        "options": {
+          "normal": {
+            "label": "Normal",
+            "description": "Normale Skalierung auswählen"
+          },
+          "large": {
+            "label": "Groß",
+            "description": "Große Skalierung auswählen"
+          }
+        }
+      },
+      "RoleSelect": {
+        "label": "Rolle",
+        "description": "Rolle auswählen"
+      },
+      "LanguageSelect": {
+        "label": "Sprache",
+        "description": "Sprache auswählen",
+        "options": {
+          "en": { "label": "Englisch" },
+          "de": { "label": "Deutsch" }
+        }
+      },
+      "ColorSchemeSelect": {
+        "background": { "label": "Hintergrundfarbe" },
+        "active": { "label": "Aktivfarbe" },
+        "accent": { "label": "Akzentfarbe" }
+      }
+    },
+    "inspector": {
+      "header": {
+        "lock": { "label": "$t(common.lock)" },
+        "unlock": { "label": "$t(common.unlock)" }
+      },
+      "documentSettings": { "label": "Dokumenteinstellungen" },
+      "setup": { "label": "Konfiguration" },
+      "style": { "label": "$t(common.style)" },
+      "character": { "label": "Schriftzeichen" },
+      "appearance": { "label": "Aussehen" },
+      "shape": { "label": "Form" },
+      "layer": { "label": "Ebene" },
+      "scope": {
+        "label": "Einschränkungen"
+      },
+      "export": {
+        "label": "Export"
+      },
+      "TemplateLibrary": {
+        "label": "Vorlagen-Bibliothek",
+        "dialog": {
+          "headline": { "label": "Vorlage wechseln" },
+          "body": {
+            "label": "Alle Änderungen an der aktuellen Vorlage gehen beim Wechsel verloren. Möchten Sie wirklich wechseln?"
+          },
+          "action": {
+            "abort": { "label": "Abbrechen" },
+            "confirm": { "label": "Ja, Änderungen verwerfen" }
+          },
+          "invalid": {
+            "label": "Diese Vorlage ist ungültig und kann leider nicht benutzt werden."
+          }
+        }
+      },
+      "canvas": {
+        "label": "Dokument",
+        "adopter": {
+          "welcome": "<p>Willkommen bei CE.SDK.</p><p>Werde kreativ und füge ein <strong>Bild</strong>, <strong>Text</strong> oder <strong>Element</strong> aus der oberen Leiste hinzu.</p>"
+        },
+        "size": {
+          "label": "Größe",
+          "description": "Seitengröße"
+        },
+        "orientation": {
+          "label": "Ausrichtung",
+          "description": "Seitenausrichtung",
+          "portrait": "Hochformat",
+          "landscape": "Querformat",
+          "square": "Quadratisch"
+        },
+        "formats": {
+          "label": "Formate"
+        }
+      },
+      "vector_path": {
+        "label": "Pfad"
+      },
+      "sticker": {
+        "label": "Sticker"
+      },
+      "text": {
+        "label": "Text",
+        "spacing": { "label": "Abstände" },
+        "scope": {
+          "content": {
+            "replace": {
+              "label": "Änderungen am Text"
+            }
+          }
+        }
+      },
+      "image": {
+        "label": "Bild",
+        "select": { "label": "$t(common.select)" },
+        "scope": {
+          "content": {
+            "replace": {
+              "label": "Austauschen des Bildes"
+            }
+          }
+        },
+        "crop": {
+          "label": "Zuschneiden",
+          "scale": {
+            "label": "Skalierung",
+            "description": "Bildabmessungen proportional skalieren"
+          },
+          "cropArea": {
+            "heading": "Zuschneidebereich",
+            "width": {
+              "label": "Breite",
+              "description": "Breite vom Zuschneidebereich in {{unit}}"
+            },
+            "height": {
+              "label": "Höhe",
+              "description": " Höhe vom Zuschneidebereich in {{unit}}"
+            }
+          },
+          "image": {
+            "heading": "Bild",
+            "x": {
+              "label": "X Versatz",
+              "description": "Versatz des Bildes auf der X-Achse in {{unit}}"
+            },
+            "y": {
+              "label": "Y Versatz",
+              "description": "Versatz des Bildes auf der Y-Achse in {{unit}}"
+            }
+          }
+        },
+        "filter": {
+          "label": "Filter"
+        },
+        "adjustments": {
+          "label": "Korrekturen",
+          "basic": {
+            "label": "Grundlagen"
+          },
+          "refinements": {
+            "label": "Feinheiten"
+          }
+        },
+        "hspSelectiveAdjustments": {
+          "label": "Selektive Korrekturen",
+          "colors": {
+            "Red": { "label": "Rot" },
+            "Orange": { "label": "Orange" },
+            "Yellow": { "label": "Gelb" },
+            "Green": { "label": "Grün" },
+            "Aqua": { "label": "Türkis" },
+            "Blue": { "label": "Blau" },
+            "Purple": { "label": "Lila" },
+            "Magenta": { "label": "Magenta" }
+          }
+        },
+        "effect": {
+          "label": "Effekt"
+        }
+      },
+      "shapes": {
+        "rect": { "label": "Rechteck" },
+        "line": { "label": "Linie" },
+        "star": { "label": "Stern" },
+        "polygon": { "label": "Mehreck" },
+        "oval": { "label": "Ellipse" }
+      },
+      "exclusion_zone": { "label": "Ausschlusszonen" }
+    },
+    "layerList": {
+      "header": "Navigator",
+      "pages": {
+        "header": "Seiten",
+        "singlePageLabel": "Seite {{number}}",
+        "addNewPage": {
+          "text": "Neue Seite",
+          "label": "Neue Seite hinzufügen"
+        },
+        "list": {
+          "collapsLabel": "Seiten-Liste einklappen",
+          "expandLabel": "Seiten-Liste ausklappen"
+        }
+      },
+      "layers": {
+        "header": "Ebenen",
+        "empty": "Keine Elemente auf dieser Seite",
+        "singleLayerLabel": "{{designElement}} Ebene",
+        "list": {
+          "collapsLabel": "Ebenen-Liste einklappen",
+          "expandLabel": "Ebenen-Liste ausklappen"
+        },
+        "hide": {
+          "label": "Ebene verstecken"
+        }
+      }
+    },
+    "error": {
+      "generic": {
+        "label": "Fehler aufgetreten",
+        "description": "Ein unbekannter Fehler ist aufgetreten. Bitte versuchen Sie die Seite neu zu starten.",
+        "reloadButton": { "label": "Seite neustarten" }
+      },
+      "upload": {
+        "label": "Fehler beim Upload",
+        "description": "Das von Ihnen gewählte Bild konnte nicht hochgeladen werden.",
+        "sizeExceeded": "Es überschreitet die maximale Größe von {{limit}}x{{limit}} Pixeln."
+      }
+    }
+  },
+  "property": {
+    "toggle": {
+      "enable": "Aktivieren",
+      "disable": "Deaktivieren",
+      "label": "{{operation}} {{property}}"
+    },
+    "layer": {
+      "label": "Ebene"
+    },
+    "typography": {
+      "typeface": { "label": "Schriftfamilie" },
+      "style": { "label": "Schriftart" },
+      "size": { "label": "Schriftgröße" }
+    },
+    "move": {
+      "label": "Versetzen",
+      "bringToFront": { "label": "In den Vordergrund" },
+      "bringForward": { "label": "Weiter nach vorne schieben" },
+      "sendToBack": { "label": "In den Hintergrund" },
+      "sendBackward": { "label": "Weiter nach hinten schieben" }
+    },
+    "flip": {
+      "label": "Spiegeln",
+      "flipX": { "label": "Horizontal spiegeln" },
+      "flipY": { "label": "Vertikal spiegeln" }
+    },
+    "horizontalAlignment": {
+      "label": "Horizontale Ausrichtung",
+      "alignTextLeft": { "label": "Text links ausrichten" },
+      "alignTextHorizontalCenter": { "label": "Text mittig ausrichten" },
+      "alignTextRight": { "label": "Text rechts ausrichten" }
+    },
+    "verticalAlignment": {
+      "label": "Vertikale Ausrichtung",
+      "alignTextTop": { "label": "Text oben ausrichten" },
+      "alignTextVerticalCenter": { "label": "Text mittig ausrichten" },
+      "alignTextBottom": { "label": "Text unten ausrichten" }
+    },
+    "autoSize": {
+      "label": "Autogröße",
+      "autoWidth": { "label": "Breite des Textfeldes automatisch skalieren" },
+      "autoHeight": { "label": "Höhe des Textfeldes automatisch skalieren" },
+      "fixedFrame": { "label": "Feste Größe des Textfeldes" }
+    },
+
+    "margin": {
+      "label": "Anschnitt"
+    },
+
+    "color": { "label": "Farbe" },
+    "colorValue": { "label": "Farbwert" },
+    "backgroundColor": { "label": "Hintergrund" },
+    "outlineColor": { "label": "Umriss" },
+
+    "points": { "label": "Spitzen" },
+    "sides": { "label": "Seiten" },
+    "innerDiameter": { "label": "Innendurchmesser" },
+
+    "outlineWidth": { "label": "Umrissbreite" },
+    "lineWidth": { "label": "Linienbreite" },
+
+    "lineHeight": { "label": "Zeilenhöhe" },
+    "letterSpacing": { "label": "Laufweite" },
+
+    "opacity": { "label": "Transparenz" },
+
+    "uniformBlur/intensity": { "label": "Unschärfe" },
+
+    "duoToneFilter/intensity": { "label": "Intensität" },
+    "crop/scale": { "label": "Skalierung" },
+    "lutFilter/intensity": { "label": "Intensität" },
+
+    "adjustments/brightness": { "label": "Helligkeit" },
+    "adjustments/contrast": { "label": "Kontrast" },
+    "adjustments/saturation": { "label": "Sättigung" },
+    "adjustments/clarity": { "label": "Klarheit" },
+    "adjustments/shadows": { "label": "Tiefen" },
+    "adjustments/highlights": { "label": "Lichter" },
+    "adjustments/exposure": { "label": "Belichtung" },
+    "adjustments/gamma": { "label": "Gamma" },
+    "adjustments/blacks": { "label": "Schwarz" },
+    "adjustments/whites": { "label": "Weiß" },
+    "adjustments/temperature": { "label": "Temperatur" },
+    "adjustments/sharpness": { "label": "Schärfe" },
+
+    "hspSelectiveAdjustments/hue": { "label": "Farbton" },
+    "hspSelectiveAdjustments/saturation": { "label": "Sättigung" },
+    "hspSelectiveAdjustments/perceivedBrightness": { "label": "Helligkeit" }
+  },
+  "notification": {
+    "upload": {
+      "invalidType": {
+        "label": "Invalider Typ",
+        "description": "Dateityp nicht erlaubt"
+      }
+    },
+    "element": {
+      "outOfPageDeletion": {
+        "label": "Element entfernt",
+        "description": "Element wird entfernt, da es aus einer Seite herausgezogen wurde. Drücken Sie '$t(common.undo)' um dies rückgängig zu machen."
+      }
+    },
+    "redo": {
+      "label": "$t(common.redo)"
+    },
+    "undo": {
+      "label": "$t(common.undo)",
+
+      "scene": {
+        "load": { "description": "Szene geladen" }
+      },
+
+      "element": {
+        "transform": {
+          "description": "Element transformiert",
+          "move": { "description": "Element bewegt" },
+          "resize": { "description": "Größe vom Element geändert" },
+          "rotate": { "description": "Element rotiert" }
+        },
+
+        "lock": { "description": "Element sperren" },
+        "unlock": { "description": "Element entsperren" },
+        "delete": { "description": "Element löschen" },
+        "replace": { "description": "Element ersetzen" },
+        "duplicate": { "description": "Element duplizieren" },
+        "toggleHidden": { "description": "Element anzeigen/verstecken" },
+        "bringToFront": { "description": "Element in den Vordergrund" },
+        "sendToBack": { "description": "Element in den Hintergrund" },
+        "dnd": { "description": "Element verschieben" },
+        "add": { "description": "Element hinzufügen" },
+        "flipX": { "description": "Element horizontal spiegeln" },
+        "flipY": { "description": "Element vertikal spiegeln" },
+
+        "text": {
+          "change": { "description": "Text ändern" },
+          "alignLeft": { "description": "Text links ausrichten" },
+          "alignRight": { "description": "Text rechts ausrichten" },
+          "alignCenter": { "description": "Text zentriert ausrichten" },
+          "autoWidth": { "description": "Automatische Breite aktivieren" },
+          "autoHeight": { "description": "Automatische Höhe aktivieren" },
+          "fixedFrame": { "description": "Feste Größe aktivieren" }
+        },
+
+        "image": {
+          "crop": { "description": "Bild beschneiden" },
+          "filter": { "description": "Filter anwenden" }
+        },
+
+        "page": {
+          "format": {
+            "change": { "description": "Seitenformat ändern" }
+          },
+          "add": { "description": "Seite hinzufügen" },
+          "move": {
+            "down": {
+              "description": "Seite nach unten verschieben"
+            },
+            "up": {
+              "description": "Seite nach oben verschieben"
+            }
+          }
+        },
+
+        "property": {
+          "update": { "description": "Eigenschaft eines Elements ändern" },
+          "reset": {
+            "description": "Eigenschaften eines Elements zurücksetzen"
+          }
+        }
+      }
+    }
+  },
+  "extensions": {
+    "ly": {
+      "img": {
+        "cesdk": {
+          "shapes": {
+            "rect": { "label": "Rechteck" },
+            "line": { "label": "Linie" },
+            "star": { "label": "Stern" },
+            "polygon": { "label": "Mehreck" },
+            "oval": { "label": "Ellipse" }
+          },
+          "vectorpaths": {
+            "arrow1": { "label": "Pfeil nach rechts" },
+            "arrow2": {
+              "label": "Pfeil nach rechts mit einem breiten Ende auf der linken Seite"
+            },
+            "arrow3": { "label": "Pfeil nach rechts mit abgerundeten Ecken" },
+            "arrow4": {
+              "label": "Pfeil nach rechts mit Befiederung am linken Ende"
+            },
+            "arrow5": {
+              "label": "Pfeil nach rechts mit einem breiten Schaft"
+            },
+            "badge": { "label": "Abzeichen" }
+          },
+          "stickers": {
+            "emoticons": {
+              "alien": { "label": "Alien" },
+              "angel": { "label": "Engel" },
+              "angry": { "label": "wütend" },
+              "anxious": { "label": "besorgt" },
+              "asleep": { "label": "schlafend" },
+              "attention": { "label": "Aufmerksamkeit" },
+              "baby_chicken": { "label": "Küken" },
+              "batman": { "label": "Batman" },
+              "beer": { "label": "Bier" },
+              "blush": { "label": "Schamröte" },
+              "boxer": { "label": "Boxer" },
+              "business": { "label": "Geschäft" },
+              "chicken": { "label": "Huhn" },
+              "cool": { "label": "Cool" },
+              "cry": { "label": "weinen" },
+              "deceased": { "label": "verstorben" },
+              "devil": { "label": "Teufel" },
+              "duckface": { "label": "Duckface" },
+              "furious": { "label": "aufgebracht" },
+              "grin": { "label": "Grinsen" },
+              "guitar": { "label": "Gitarre" },
+              "harry_potter": { "label": "Harry Potter" },
+              "hippie": { "label": "Hippie" },
+              "hitman": { "label": "Auftragsmörder" },
+              "humourous": { "label": "humorvoll" },
+              "idea": { "label": "Idee" },
+              "impatient": { "label": "ungeduldig" },
+              "kiss": { "label": "Kuss" },
+              "kisses": { "label": "Küsse" },
+              "laugh": { "label": "lachen" },
+              "loud_cry": { "label": "lautes Weinen" },
+              "loving": { "label": "liebevoll" },
+              "masked": { "label": "maskiert" },
+              "music": { "label": "Musik" },
+              "nerd": { "label": "Nerd" },
+              "ninja": { "label": "Ninja" },
+              "not_speaking_to_you": { "label": "Ich spreche nicht mit dir" },
+              "pig": { "label": "Schwein" },
+              "pumpkin": { "label": "Kürbis" },
+              "question": { "label": "Frage" },
+              "rabbit": { "label": "Kaninchen" },
+              "sad": { "label": "traurug" },
+              "sick": { "label": "krank" },
+              "skateboard": { "label": "Skateboard" },
+              "skull": { "label": "Schädel" },
+              "sleepy": { "label": "schläfrig" },
+              "smile": { "label": "Lächeln" },
+              "smoking": { "label": "rauchen" },
+              "sobbing": { "label": "Schluchzen" },
+              "star": { "label": "Stern" },
+              "steaming_furious": { "label": "wutentbrannt" },
+              "sunbathing": { "label": "Sonnenbaden" },
+              "tired": { "label": "Müde" },
+              "tongue_out_wink": {
+                "label": "Augenzwinkern mit ausgestreckter Zunge"
+              },
+              "wave": { "label": "winken" },
+              "wide_grin": { "label": "breites Grinsen" },
+              "wink": { "label": "Augenzwinkern" },
+              "wrestler": { "label": "Wrestler" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

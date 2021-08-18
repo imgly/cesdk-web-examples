@@ -1,6 +1,6 @@
 {
   "name": "integrate-with-electron",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.6",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
@@ -10,6 +10,6 @@
     "start": "electron ."
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.0.0-rc.1"
+    "@cesdk/cesdk-js": "^1.0.0-rc.6"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "name": "cesdk-integrate-with-vanilla-js",
+  "version": "1.0.0-rc.5",
+  "private": true,
+  "scripts": {
+    "build": "true",
+    "start": "npx -y -S serve",
+    "serve": "npx -y -S serve -l 8080",
+    "assets": "true",
+    "test:e2e": "yarn run cypress open --project ./tests/e2e"
+  },
+  "devDependencies": {
+    "cypress": "^8.1.0"
+  }
+}
+

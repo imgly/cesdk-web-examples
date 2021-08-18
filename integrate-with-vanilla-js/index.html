@@ -18,16 +18,25 @@
   </head>
 
   <body>
+    // highlight-2
     <div id="cesdk_container" style="width: 100%; height: 100vh"></div>
+    // highlight-2
 
     <script type="module">
-      // Serve from global CDN
-      import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0-rc.1/cesdk.umd.js';
-      // Serve from local server
-      // import '/dist/cesdk.umd.js';
-      CreativeEditorSDK.init('#cesdk_container').then((instance) => {
+      // highlight-1
+      import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0-rc.6/cesdk.umd.js';
+      // highlight-1
+
+      // highlight-3
+      let config = {
+        // Serve assets from IMG.LY cdn or locally 
+        baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0-rc.6/assets'
+      };
+
+      CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
         /** do something with the instance of CreativeEditor SDK **/
       });
+      // highlight-3
     </script>
   </body>
 </html>
