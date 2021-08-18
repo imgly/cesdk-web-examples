@@ -1,6 +1,6 @@
 {
   "name": "cesdk_web_examples",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.6",
   "description": "CreativeEditor SDK for Web Examples",
   "keywords": [
     "editor",
@@ -10,7 +10,13 @@
     "vue",
     "electron"
   ],
+  "scripts": {
+    "deploy": "codesandbox deploy"
+  },
   "author": "img.ly GmbH <contact@img.ly>",
   "license": "ISC",
-  "homepage": "https://img.ly"
+  "homepage": "https://img.ly",
+  "dependencies": {
+    "codesandbox": "^2.2.3"
+  }
 }

@@ -1,16 +1,19 @@
 {
   "name": "integrate-with-next-js",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.6",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "serve": "next start --port 8080",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.0.0-rc.1",
-    "next": "11.0.1"
+    "@cesdk/cesdk-js": "^1.0.0-rc.6",
+    "next": "11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "eslint": "7.31.0",

@@ -1,8 +1,0 @@
-{
-  "name": "cesdk-integrate-with-vanilla-js",
-  "version": "1.0.0",
-  "scripts": {
-    "start": "npx -y -S serve"
-  },
-  "private": true
-}

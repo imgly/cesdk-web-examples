@@ -1,18 +1,22 @@
 <template>
   <div id="app">
-    <CreativeEditorSDK />
+    <CreativeEditorSDK
+      :config="{
+        /* baseURL: 'assets/' */
+      }"
+    />
   </div>
 </template>
 
 <script>
-import CreativeEditorSDK from './components/CreativeEditorSDK.vue'
+import CreativeEditorSDK from './components/CreativeEditorSDK.vue';
 
 export default {
   name: 'App',
   components: {
     CreativeEditorSDK
   }
-}
+};
 </script>
 
 <style>
