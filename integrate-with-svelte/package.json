@@ -1,6 +1,6 @@
 {
   "name": "cesdk-integrate-with-svelte",
-  "version": "1.0.0-rc.6",
+  "version": "1.0.0-rc.7",
   "private": true,
   "scripts": {
     "build": "rollup -c",
@@ -19,7 +19,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.0.0-rc.6",
+    "@cesdk/cesdk-js": "^1.0.0-rc.7",
     "sirv-cli": "^1.0.0"
   }
 }
