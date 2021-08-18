@@ -1,6 +1,6 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 // docs-integrate-angular-1
-import CreativeEditorSDK from '@cesdk/cesdk-js';
+import * as CreativeEditorSDK from '@cesdk/cesdk-js';
 // docs-integrate-angular-1
 
 @Component({
@@ -18,8 +18,8 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     // docs-integrate-angular-3
     const config = {
-      // Serve assets from IMG.LY cdn or locally 
-      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0-rc.2/assets'
+      // Serve assets from IMG.LY cdn or locally
+      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0/assets'
     };
     CreativeEditorSDK.init(this.containerRef.nativeElement, config).then(
       (instance: any) => {

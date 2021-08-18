@@ -1,6 +1,6 @@
 {
-  "name": "cesdk-theming-example",
-  "version": "1.0.0-rc.5",
+  "name": "configure-ui-theming",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "true",

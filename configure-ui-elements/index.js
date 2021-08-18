@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0-rc.5/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0/cesdk.umd.js';
 
 let config = {
   ui: {

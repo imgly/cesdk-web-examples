@@ -903,10 +903,10 @@
     "@babel/helper-validator-identifier" "^7.14.8"
     "to-fast-properties" "^2.0.0"
 
-"@cesdk/cesdk-js@^1.0.0-rc.2":
+"@cesdk/cesdk-js@^1.0.0":
   "integrity" "sha512-XDL0n8rv2Sr1pw91eDt7fZscgjIi02noHp4Kf09lslysIpzvca75hGXcneHNlNR/mMwTP2o9+f4w/ZIjBoK20A=="
-  "resolved" "https://registry.npmjs.org/@cesdk/cesdk-js/-/cesdk-js-1.0.0-rc.2.tgz"
-  "version" "1.0.0-rc.2"
+  "resolved" "https://registry.npmjs.org/@cesdk/cesdk-js/-/cesdk-js-1.0.0.tgz"
+  "version" "1.0.0"
 
 "@hapi/address@2.x.x":
   "integrity" "sha512-QD1PhQk+s31P1ixsX0H0Suoupp3VMXzIVMSwobR3F3MSUO2YCV0B7xqLcUw/Bh8yuvd3LhpyqLQWTNcRmp6IdQ=="
