@@ -1,6 +1,6 @@
 {
   "name": "integrate-with-next-js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "~1.0.0",
+    "@cesdk/cesdk-js": "~1.1.0",
     "next": "11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

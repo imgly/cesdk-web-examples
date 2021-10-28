@@ -13,8 +13,9 @@ const Component = (props = {}) => {
   // docs-integrate-nextjs-4
   useEffect(() => {
     if (cesdk_container.current) {
-      // Serve assets from IMG.LY CDN or locally 
-      props.config.baseURL = 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0/assets'
+      // Serve assets from IMG.LY CDN or locally
+      props.config.baseURL =
+        'https://cdn.img.ly/packages/imgly/cesdk-js/1.1.0/assets';
 
       CreativeEditorSDK.init(cesdk_container.current, props.config).then(
         (instance) => {

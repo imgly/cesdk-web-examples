@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
     <style>
       body {
         margin: 0;
@@ -24,13 +25,13 @@
 
     <script type="module">
       // highlight-1
-      import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0/cesdk.umd.js';
+      import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.1.0/cesdk.umd.js';
       // highlight-1
 
       // highlight-3
       let config = {
-        // Serve assets from IMG.LY cdn or locally 
-        baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.0.0/assets'
+        // Serve assets from IMG.LY cdn or locally
+        baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.1.0/assets'
       };
 
       CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
