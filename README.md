@@ -10,7 +10,7 @@ Visit our [website](https://img.ly) for more tutorials on how to integrate and c
 
 ## Documentation
 The full documentation of CreativeEditor SDK can be found at
-[https://img.ly/docs/pesdk/guides/](https://img.ly/docs/pesdk/guides/).
+[https://img.ly/docs/cesdk/](https://img.ly/docs/cesdk/).
 
 ## License
 
