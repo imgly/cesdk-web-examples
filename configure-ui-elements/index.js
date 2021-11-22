@@ -1,9 +1,16 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.1.1/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.0/cesdk.umd.js';
 
-let config = {
+const config = {
   ui: {
     // docs-ui-elements
     elements: {
+      // docs-ui-adopterview
+      view: {
+        adopter: {
+          style: 'classic' // 'classic' or 'minimal'
+        }
+      },
+      // docs-ui-adopterview
       // docs-ui-navigation
       navigation: {
         position: 'top', // 'top' or 'bottom'
@@ -52,5 +59,5 @@ let config = {
 };
 
 CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
-  /** do something with the instance of CreativeEditor SDK **/
+  /** do something with the instance of CreativeEditor SDK * */
 });
