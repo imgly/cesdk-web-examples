@@ -17,13 +17,15 @@ describe('Works properly', () => {
     // so we must tell it to visit our website with the `cy.visit()` command.
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
-    cy.visit('http://localhost:8080/')
-  })
+    cy.visit('http://localhost:8080/');
+  });
 
   it('should show the editor', () => {
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
     // which are the two default items.
-    cy.get('[data-cy=canvas-scroll-container]').should('be.visible')
-  })
-})
+    cy.get('[data-cy=canvas-scroll-container]', { timeout: 30000 }).should(
+      'be.visible'
+    );
+  });
+});
