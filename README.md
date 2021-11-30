@@ -1,6 +1,6 @@
 ![Hero image showing the configuration abilities of CE.SDK](https://img.ly/static/cesdk_release_header.png)
 
-# CreativEditor SDK - Web Examples
+# CreativeEditor SDK - Web Examples
 
 The CreativeEditor SDK (**CE.SDK**) for Web is a fully customizable, simple-to-use design editor. 
 
