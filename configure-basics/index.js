@@ -1,10 +1,10 @@
 
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.1/cesdk.umd.js';
 
 // highlight-config
 let config = {
   // highlight-baseurl
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.1/assets',
   // highlight-baseurl
   // highlight-locale
   locale: 'en', // 'de'
@@ -15,9 +15,12 @@ let config = {
   // highlight-role
   role: 'Creator', // 'Adopter' 'Viewer'
   // highlight-role
-  // highlight-initialScene
-  initialScene: '' // A scene string
-  // highlight-initialScene
+  // highlight-initialSceneString
+  initialSceneString: 'UBQ1ewoiZm9ybW…', // A scene string
+  // highlight-initialSceneString
+  // highlight-initialSceneURL
+  initialSceneURL: '/example.scene' // A URL pointing at a scene file
+  // highlight-initialSceneURL
 };
 // highlight-config
 

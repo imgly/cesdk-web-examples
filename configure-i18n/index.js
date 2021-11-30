@@ -1,17 +1,15 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.1/cesdk.umd.js';
 
 // highlight-config
 const config = {
   // highlight-locale
-  locale: 'en',
+  locale: 'fr',
   // highlight-locale
   // highlight-i18n
   i18n: {
-    en: {
-      block: {
-        page: {
-          title: "Artboard {{number}}"
-        }
+    fr: {
+      common: {
+        back: "Retour"
       }
     }
     // highlight-i18n
