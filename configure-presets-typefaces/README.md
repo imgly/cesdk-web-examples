@@ -1,4 +1,4 @@
-# Configure Available Variables in CreativeEditor SDK
+# Configure Typefaces in CreativeEditor SDK
 
 
 ## Running the sample
