@@ -1,4 +1,4 @@
-# Configure Available Variables in CreativeEditor SDK
+# Configure Colorpalettes in CreativeEditor SDK
 
 
 ## Running the sample

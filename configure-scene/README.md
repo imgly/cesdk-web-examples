@@ -1,4 +1,4 @@
-# Integrate CreativeEditor SDK with Vanilla JS
+# Integrate Scene with Vanilla JS
 
 
 ## Running the sample
