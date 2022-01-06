@@ -1,22 +1,22 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.1/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.3.0/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.1/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.3.0/assets',
   presets: {
     // highlight-images
     images: {
       imgly_logo: {
         // highlight-imageURL
-        imageURL: '/logo.png',
+        imageURL: 'https://img.ly/static/ubq_samples/imgly_logo.jpg',
         // highlight-imageURL
         // highlight-thumbnailURL
-        thumbnailURL: '/logo_thumbnail.png',
+        thumbnailURL: 'https://img.ly/static/ubq_samples/thumbnails/imgly_logo.jpg',
         // highlight-thumbnailURL
         // highlight-width
-        width: 1024,
+        width: 1980,
         // highlight-width
         // highlight-height
-        height: 216
+        height: 720
         // highlight-height
       }
     }

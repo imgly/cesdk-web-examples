@@ -1,4 +1,4 @@
-# Integrate CreativeEditor SDK with Vanilla JS
+# Configure Pageformats in CreativeEditor SDK
 
 
 ## Running the sample

@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.1/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.3.0/cesdk.umd.js';
 
 const config = {
   ui: {
@@ -7,7 +7,7 @@ const config = {
       // docs-ui-adopterview
       view: {
         adopter: {
-          style: 'classic' // 'classic' or 'minimal'
+          style: 'minimal' // 'classic' or 'minimal'
         }
       },
       // docs-ui-adopterview

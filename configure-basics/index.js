@@ -1,10 +1,10 @@
 
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.1/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.3.0/cesdk.umd.js';
 
 // highlight-config
 let config = {
   // highlight-baseurl
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.2.1/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.3.0/assets',
   // highlight-baseurl
   // highlight-locale
   locale: 'en', // 'de'
@@ -19,8 +19,11 @@ let config = {
   initialSceneString: 'UBQ1ewoiZm9ybW…', // A scene string
   // highlight-initialSceneString
   // highlight-initialSceneURL
-  initialSceneURL: '/example.scene' // A URL pointing at a scene file
+  initialSceneURL: '/example.scene', // A URL pointing at a scene file
   // highlight-initialSceneURL
+  // highlight-initialImageURL
+  initialImageURL: undefined // A URL pointing to an image file
+  // highlight-initialImageURL
 };
 // highlight-config
 
