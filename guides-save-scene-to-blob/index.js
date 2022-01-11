@@ -1,5 +1,5 @@
 
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.3.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.0-alpha.0/cesdk.umd.js';
 
 CreativeEditorSDK.init('#cesdk_container').then(async (cesdk) => {
   // highlight-save
