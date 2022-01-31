@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.3.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.0-alpha.3/cesdk.umd.js';
 
 const config = {
   ui: {
@@ -7,7 +7,7 @@ const config = {
       // docs-ui-adopterview
       view: {
         adopter: {
-          style: 'minimal' // 'classic' or 'minimal'
+          style: 'default' // 'default' or 'advanced'
         }
       },
       // docs-ui-adopterview
@@ -44,13 +44,15 @@ const config = {
       // docs-ui-libraries
       // docs-ui-blocks
       blocks: {
-        opacity: true, // true  or false
-        transform: true, // true  or false
-        adjustments: true, // true  or false
-        filters: true, // true  or false
-        effects: true, // true  or false
-        blur: true, // true  or false
-        crop: true // true  or false
+        opacity: false, // true  or false
+        transform: false, // true  or false
+        '//ly.img.ubq/image': {
+          adjustments: true, // true  or false
+          filters: false, // true  or false
+          effects: false, // true  or false
+          blur: true, // true  or false
+          crop: false // true  or false
+        }
       }
       // docs-ui-blocks
     }
