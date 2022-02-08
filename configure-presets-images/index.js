@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.3.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.0-alpha.5/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.3.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.0-alpha.5/assets',
   presets: {
     // highlight-images
     images: {
