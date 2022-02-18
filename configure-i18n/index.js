@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.3.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.0/cesdk.umd.js';
 
 // highlight-config
 const config = {
@@ -8,10 +8,14 @@ const config = {
   // highlight-i18n
   i18n: {
     fr: {
-      common: {
-        back: "Retour"
-      }
-    }
+      'common.back': 'Retour',
+      // highlight-meta
+      'meta.currentLanguage': 'Français'
+    },
+    it: {
+      'common.back': 'Indietro',
+      'meta.currentLanguage': 'Italiano'
+    },
     // highlight-i18n
   }
 };
