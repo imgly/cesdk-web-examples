@@ -1,8 +1,8 @@
 // highlight-setup
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.0/cesdk-engine.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.1/cesdk-engine.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -110,10 +110,9 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-setHeightMode
   engine.block.setHeightMode(block, 'Percent');
   // highlight-getFrameWidth
-  const frameWidth = engine.block.getFrameWidth();
+  const frameWidth = engine.block.getFrameWidth(block);
   // highlight-getFrameHeight
-  const frameHeight = engine.block.getFrameHeight();
-  const { width: frameWidth, height: frameHeight } = engine.block.getFrameSize(
+  const frameHeight = engine.block.getFrameHeight(block);
 
   // highlight-getGlobalBoundingBoxX
   const globalX = engine.block.getGlobalBoundingBoxX(block);
