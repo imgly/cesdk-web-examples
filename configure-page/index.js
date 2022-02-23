@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.1/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/cesdk.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.1/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/assets',
   // highlight-page
   page: {
     title: {

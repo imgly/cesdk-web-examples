@@ -1,9 +1,9 @@
 // highlight-import
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.1/cesdk-engine.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/cesdk-engine.umd.js';
 
 // highlight-setup
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.1/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/assets'
 };
 
 CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
