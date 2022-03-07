@@ -1,13 +1,13 @@
 // highlight-setup
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/cesdk-engine.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.3/cesdk-engine.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.3/assets'
 };
 
 // Fetch scene file and store it as a string.
 const SCENE_CONTENT = await fetch(
-  'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/assets/templates/cesdk_postcard_1.scene'
+  'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.3/assets/templates/cesdk_postcard_1.scene'
 ).then((response) => {
   return response.text();
 });
@@ -31,7 +31,7 @@ CreativeEngine.init(config).then(async (engine) => {
   scene = engine.scene.loadFromString(SCENE_CONTENT);
   //  highlight-loadFromURL
   scene = await engine.scene.loadFromURL(
-    'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/assets/templates/cesdk_postcard_1.scene'
+    'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.3/assets/templates/cesdk_postcard_1.scene'
   );
   imageData = await engine.block.export(scene);
 
