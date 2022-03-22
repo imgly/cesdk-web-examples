@@ -1,8 +1,8 @@
 // highlight-setup
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.4/cesdk-engine.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0-alpha.1/cesdk-engine.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.4/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0-alpha.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -39,6 +39,8 @@ CreativeEngine.init(config).then(async (engine) => {
   const duplicate = engine.block.duplicate(block);
   // highlight-destroy
   engine.block.destroy(duplicate);
+  // highlight-isValid
+  engine.block.isValid(duplicate); // false
 
   // highlight-insertChild
   engine.block.insertChild(page, block, 0);
