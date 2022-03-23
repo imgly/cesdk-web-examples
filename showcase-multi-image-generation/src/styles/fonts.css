@@ -1,0 +1,65 @@
+@font-face {
+  font-weight: 900;
+  font-family: GT Walsheim Pro;
+  font-style: normal;
+  src: url('./fonts/GTWalsheimPro-Black.woff') format('woff'),
+    url('./fonts/GTWalsheimPro-Black.woff2') format('woff2'),
+    url('./fonts/GTWalsheimPro-Black.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: GT Walsheim Pro;
+  font-style: normal;
+  src: url('./fonts/GTWalsheimPro-Bold.woff') format('woff'),
+    url('./fonts/GTWalsheimPro-Bold.woff2') format('woff2'),
+    url('./fonts/GTWalsheimPro-Bold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 800;
+  font-family: GT Walsheim Pro;
+  font-style: normal;
+  src: url('./fonts/GTWalsheimPro-Black.woff') format('woff'),
+    url('./fonts/GTWalsheimPro-Black.woff2') format('woff2'),
+    url('./fonts/GTWalsheimPro-Black.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  src:
+    url('./fonts/IBMPlexSans-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  src:
+    url('./fonts/IBMPlexSans-Medium.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  src:
+    url('./fonts/IBMPlexSans-SemiBold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  src:
+    url('./fonts/IBMPlexSans-Bold.ttf') format('truetype');
+  font-display: swap;
+}
