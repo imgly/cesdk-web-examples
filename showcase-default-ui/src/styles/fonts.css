@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+@font-face {
+  font-weight: 900;
+  font-family: GT Walsheim Pro;
+  font-style: normal;
+  src: url('./fonts/GTWalsheimPro-Black.woff') format('woff'),
+    url('./fonts/GTWalsheimPro-Black.woff2') format('woff2'),
+    url('./fonts/GTWalsheimPro-Black.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: GT Walsheim Pro;
+  font-style: normal;
+  src: url('./fonts/GTWalsheimPro-Bold.woff') format('woff'),
+    url('./fonts/GTWalsheimPro-Bold.woff2') format('woff2'),
+    url('./fonts/GTWalsheimPro-Bold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 800;
+  font-family: GT Walsheim Pro;
+  font-style: normal;
+  src: url('./fonts/GTWalsheimPro-Black.woff') format('woff'),
+    url('./fonts/GTWalsheimPro-Black.woff2') format('woff2'),
+    url('./fonts/GTWalsheimPro-Black.ttf') format('truetype');
+  font-display: swap;
+}

@@ -9,7 +9,8 @@ const config = {
       show: true,
       // highlight-show
       // highlight-font
-      font: '//ly.img.cesdk.fonts/permanent_marker_regular',
+      // Relative path is resolved relative to `baseURL`.
+      fontFileUri: '/extensions/ly.img.cesdk.fonts/fonts/Permanent_Marker/PermanentMarker-Regular.ttf',
       // highlight-font
     }
   }

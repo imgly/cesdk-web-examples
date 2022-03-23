@@ -1,0 +1,7 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  background-color: #7b8187;
+  padding: 2rem;
+}

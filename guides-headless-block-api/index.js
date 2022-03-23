@@ -39,6 +39,8 @@ CreativeEngine.init(config).then(async (engine) => {
   const duplicate = engine.block.duplicate(block);
   // highlight-destroy
   engine.block.destroy(duplicate);
+  // highlight-isValid
+  engine.block.isValid(duplicate); // false
 
   // highlight-insertChild
   engine.block.insertChild(page, block, 0);
