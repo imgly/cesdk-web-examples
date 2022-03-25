@@ -88,7 +88,7 @@ const CaseComponent = () => {
 };
 
 const caseAssetPath = (path, caseId = 'start-with-image') =>
-  `${process.env.REACT_APP_URL_HOSTNAME}${process.env.PUBLIC_URL}/cases/${caseId}${path}`;
+  `https:${window.location.href.substring(0, -1)}/cases/${caseId}${path}`;
 // https://unsplash.com/photos/ePpaQC2c1xA
 // https://unsplash.com/photos/6qqwAsB22_M
 // https://unsplash.com/photos/y-GMWtWW_H8

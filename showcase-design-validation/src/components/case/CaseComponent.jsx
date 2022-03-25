@@ -106,7 +106,7 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: `${process.env.REACT_APP_URL_HOSTNAME}${process.env.PUBLIC_URL}/cases/design-validation/example.scene`,
+      initialSceneURL: `https:${window.location.href.substring(0, -1)}/cases/design-validation/example.scene`,
       ui: {
         elements: {
           panels: {

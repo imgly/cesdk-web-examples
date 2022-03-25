@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { hexToRgba } from './convert';
 
 const caseAssetPath = (path, caseId = 'headless-design') =>
-  `${process.env.REACT_APP_URL_HOSTNAME}${process.env.PUBLIC_URL}/cases/${caseId}${path}`;
+  `https:${window.location.href.substring(0, -1)}/cases/${caseId}${path}`;
 
 const CaseComponent = () => {
   const engineRef = useRef(null);

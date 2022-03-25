@@ -7,7 +7,7 @@ const CaseComponent = () => {
     const config = {
       role: 'Creator',
       theme: 'dark',
-      initialSceneURL: `${process.env.REACT_APP_URL_HOSTNAME}${process.env.PUBLIC_URL}/cases/advanced-ui/example.scene`,
+      initialSceneURL: `https:${window.location.href.substring(0, -1)}/cases/advanced-ui/example.scene`,
       ui: {
         elements: {
           panels: {

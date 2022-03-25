@@ -88,84 +88,84 @@ export const EMPLOYEES = [
     firstName: 'Caroline',
     lastName: 'Scheele-Bild',
     department: 'Support',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_02.png',
     firstName: 'Magnus',
     lastName: 'Prütt',
     department: 'Sales',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_03.png',
     firstName: 'Sascha',
     lastName: 'Schwabbauer',
     department: 'Mobile Development',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_04.png',
     firstName: 'Olga',
     lastName: 'Stadnicka',
     department: 'Quality Assurance',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_05.png',
     firstName: 'Dogus',
     lastName: 'Dolu',
     department: 'Web Development',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_06.png',
     firstName: 'Patrick',
     lastName: 'Schneider',
     department: 'Design',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_07.png',
     firstName: 'Syuzanna',
     lastName: 'Hovakimyan',
     department: 'Support',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_08.png',
     firstName: 'Nataliya',
     lastName: 'Chukhrai',
     department: 'Quality Assurance',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_09.png',
     firstName: 'Neslihan',
     lastName: 'Dogan',
     department: 'Marketing',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_10.png',
     firstName: 'Daniel',
     lastName: 'Hausschild',
     department: 'Co-Founder',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_11.png',
     firstName: 'Eray',
     lastName: 'Basar',
     department: 'Co-Founder',
-    team: 'imgly'
+    team: 'IMG.LY'
   },
   {
     imagePath: 'photo_imgly_12.png',
     firstName: 'Intergalactic',
     lastName: 'Igor',
     department: 'UFO Advisor',
-    team: 'imgly'
+    team: 'IMG.LY'
   }
 ];
 
@@ -182,7 +182,7 @@ export const TEAMS = [
       '/extensions/ly.img.cesdk.fonts/fonts/Poppins/Poppins-Medium.ttf'
   },
   {
-    name: 'imgly',
+    name: 'IMG.LY',
     gradientPath: 'gradient_imgly.png',
     logoBigPath: 'logo_big_imgly.svg',
     logoSmallPath: 'logo_small_imgly.svg',
