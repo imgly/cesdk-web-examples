@@ -4,7 +4,7 @@ import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 
 const ID_FROM_RESTAURANT_REGEX = /yelp\.de\/biz\/([^?]*).*?$/;
 const caseAssetPath = (path, caseId = 'multi-image-generation') =>
-  `https:${window.location.href.substring(0, -1)}/cases/${caseId}${path}`;
+  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
 
 const YELP_EXAMPLES = [
   {

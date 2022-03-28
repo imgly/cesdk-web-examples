@@ -1,4 +1,5 @@
 import { truncate } from 'lodash';
+
 // Calculates the overlap of two elements
 // Returns the overlap as percentage of the first element
 const getElementOverlap = ([aX1, aY1, aX2, aY2], [bX1, bY1, bX2, bY2]) => {
@@ -56,6 +57,31 @@ export const getOutsideBlocks = (cesdk) => {
       );
       const isOutside = overlapWithPage === 0;
       return isOutside && elementBlockId;
+    })
+    .filter((o) => !!o);
+};
+
+// Returns the BlockIds of all blocks that lay "above" the block
+export const getBlockIdsAbove = (cesdk, blockId) => {
+  const page = cesdk.engine.block.findByType('page')[0];
+  const sortedBlockIds = cesdk.engine.block.getChildren(page);
+  return sortedBlockIds.slice(sortedBlockIds.indexOf(blockId) + 1);
+};
+
+// Returns all text blocks that may obstructed by other blocks
+export const getPartiallyHiddenTexts = (cesdk) => {
+  return cesdk.engine.block
+    .findByType('text')
+    .map((elementBlockId) => {
+      const elementsLayingAbove = getBlockIdsAbove(cesdk, elementBlockId);
+      const anyElementOverlapping = elementsLayingAbove.some(
+        (blockId) =>
+          getElementOverlap(
+            getElementBoundingBox(cesdk, elementBlockId),
+            getElementBoundingBox(cesdk, blockId)
+          ) > 0
+      );
+      return anyElementOverlapping && elementBlockId;
     })
     .filter((o) => !!o);
 };
@@ -119,6 +145,7 @@ export const fetchImageResolution = (url) => {
   return new Promise((resolve, reject) => {
     if (resolutionCache[url]) {
       resolve(resolutionCache[url]);
+      return;
     }
     let img = new Image();
     img.onload = () => {

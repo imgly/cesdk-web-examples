@@ -38,7 +38,7 @@ const ImageComplianceCESDK = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: `https:${window.location.href.substring(0, -1)}/cases/content-moderation/example.scene`,
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/content-moderation/example.scene`,
       ui: {
         elements: {
           panels: {

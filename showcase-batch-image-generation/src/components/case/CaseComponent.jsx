@@ -7,7 +7,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 const caseAssetPath = (path, caseId = 'batch-image-generation') =>
-  `https:${window.location.href.substring(0, -1)}/cases/${caseId}${path}`;
+  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
 
 const replaceImage = (cesdk, imageName, newUrl) => {
   const img = cesdk.block.findByName(imageName)[0];

@@ -7,7 +7,7 @@ const CaseComponent = () => {
     const config = {
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: `https:${window.location.href.substring(0, -1)}/example-1-adopter.scene`,
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
       ui: {
         elements: {
           panels: {

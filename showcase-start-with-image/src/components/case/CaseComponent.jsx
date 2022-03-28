@@ -88,7 +88,7 @@ const CaseComponent = () => {
 };
 
 const caseAssetPath = (path, caseId = 'start-with-image') =>
-  `https:${window.location.href.substring(0, -1)}/cases/${caseId}${path}`;
+  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
 // https://unsplash.com/photos/ePpaQC2c1xA
 // https://unsplash.com/photos/6qqwAsB22_M
 // https://unsplash.com/photos/y-GMWtWW_H8

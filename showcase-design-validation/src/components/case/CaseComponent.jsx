@@ -11,6 +11,7 @@ import {
   getImageBlockQuality,
   getOutsideBlocks,
   getProtrudingBlocks,
+  getPartiallyHiddenTexts,
   getImageLayerName,
   selectAllBlocks
 } from './restrictionsUtility';
@@ -33,6 +34,19 @@ const VALIDATIONS = [
     description: 'Some elements are protruding the visible area.',
     check: (cesdk) => {
       return getProtrudingBlocks(cesdk).map((blockId) => ({
+        blockId,
+        state: 'warning',
+        blockType: cesdk.engine.block.getType(blockId),
+        blockName: getImageLayerName(cesdk, blockId)
+      }));
+    }
+  },
+  {
+    name: 'Text partially hidden ',
+    description:
+      'Some text elements are partially obstructed by other elements.',
+    check: (cesdk) => {
+      return getPartiallyHiddenTexts(cesdk).map((blockId) => ({
         blockId,
         state: 'warning',
         blockType: cesdk.engine.block.getType(blockId),
@@ -106,7 +120,7 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: `https:${window.location.href.substring(0, -1)}/cases/design-validation/example.scene`,
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/design-validation/example.scene`,
       ui: {
         elements: {
           panels: {

@@ -12,7 +12,7 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: `https:${window.location.href.substring(0, -1)}/cases/single-page-mode/example.scene`,
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/single-page-mode/example.scene`,
       featureFlags: {
         singlePageMode: true
       },

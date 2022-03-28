@@ -24,7 +24,7 @@ const ThemingCESDK = ({
     let config = {
       theme: theme,
       role: 'Adopter',
-      initialSceneURL: `https:${window.location.href.substring(0, -1)}/example-1-adopter.scene`,
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
       callbacks: {
         onExport: (blobs) => localDownload(blobs[0], `export.png`)
       },
