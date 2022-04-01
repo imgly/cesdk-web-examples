@@ -1,8 +1,8 @@
 
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.4/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.5/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.4/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.5/assets',
   // highlight-variables
   variables: {
     my_custom_variable: {
