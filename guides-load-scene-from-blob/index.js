@@ -1,9 +1,9 @@
 
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.5/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/cesdk.umd.js';
 
 CreativeEditorSDK.init('#cesdk_container').then(async (cesdk) => {
   // highlight-fetch-blob
-  const sceneUrl = 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.5/assets/templates/cesdk_postcard_1.scene';
+  const sceneUrl = 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/assets/templates/cesdk_postcard_1.scene';
   const sceneBlob = await fetch(sceneUrl)
     .then((response) => { return response.blob() });
   // highlight-fetch-blob
