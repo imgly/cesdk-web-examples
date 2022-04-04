@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.5/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/cesdk.umd.js';
 
 const config = {
   ui: {
@@ -13,13 +13,17 @@ const config = {
       // docs-ui-adopterview
       // docs-ui-navigation
       navigation: {
+        show: true, // 'false' to hide the navigation completely
         position: 'top', // 'top' or 'bottom'
         action: {
           close: true, // true  or false
           back: true, // true  or false
           load: true, // true  or false
           save: true, // true  or false
-          export: true, // true  or false
+          export: {
+            show: true,
+            format: ['application/pdf']
+          },
           download: true // true  or false
         }
       },
@@ -35,6 +39,12 @@ const config = {
         }
       },
       // docs-ui-panels
+      // docs-ui-dock
+      dock: {
+        iconSize: 'large', // 'large' or 'normal'
+        hideLabels: false // false or true
+      },
+      // docs-ui-dock
       // docs-ui-libraries
       libraries: {
         image: true, // true  or false
