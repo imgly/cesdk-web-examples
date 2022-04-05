@@ -12,7 +12,9 @@ const config = {
       // Relative path is resolved relative to `baseURL`.
       fontFileUri: '/extensions/ly.img.cesdk.fonts/fonts/Permanent_Marker/PermanentMarker-Regular.ttf',
       // highlight-font
-    }
+    },
+    // highlight-dimOutOfPageAreas
+    dimOutOfPageAreas: true
   }
   // highlight-page
 };

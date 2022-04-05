@@ -1,4 +1,4 @@
-const version = 'showcases-test';
+const version = 'showcases';
 
 export const buildDocPath = (path: string) =>
   'https://img.ly/docs/cesdk/web' + path;
