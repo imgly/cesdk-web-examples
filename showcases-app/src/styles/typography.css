@@ -1,0 +1,92 @@
+/* TYPOGRAPHY */
+.h1 {
+  font-family: var(--font-family-gt);
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 64px;
+
+  letter-spacing: -0.01em;
+
+  color: var(--ci-foreground-black-default);
+}
+.h2 {
+  font-family: var(--font-family-gt);
+  font-weight: bold;
+  font-size: 52px;
+  line-height: 56px;
+
+  letter-spacing: -0.01em;
+
+  color: var(--ci-foreground-black-default);
+}
+.h3 {
+  font-family: var(--font-family-gt);
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 32px;
+
+  color: var(--ci-foreground-black-default);
+}
+.h4 {
+  font-family: var(--font-family-gt);
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 30px;
+
+  letter-spacing: 0.01em;
+
+  color: var(--ci-foreground-black-default);
+}
+.h5 {
+  font-family: var(--font-family-gt);
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+
+  letter-spacing: 0.02em;
+
+  color: var(--text-dark-high-emphasis);
+}
+.subheader {
+  font-family: var(--font-family-ibm-sans);
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  color: var(--ci-foreground-black-default);
+}
+.paragraphBig {
+  font-family: var(--font-family-ibm-sans);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 32px;
+
+  color: var(--ci-foreground-black-default);
+}
+.paragraph {
+  font-family: var(--font-family-ibm-sans);
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 28px;
+
+  letter-spacing: 0.01em;
+
+  color: var(--ci-foreground-black-default);
+}
+.paragraphSmall {
+  font-family: var(--font-family-ibm-sans);
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  color: var(--text-dark-high-emphasis);
+
+  opacity: 0.8;
+}

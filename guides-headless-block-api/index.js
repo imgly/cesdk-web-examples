@@ -1,8 +1,8 @@
 // highlight-setup
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.5/cesdk-engine.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0-alpha.0/cesdk-engine.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.5/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0-alpha.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -30,6 +30,8 @@ CreativeEngine.init(config).then(async (engine) => {
 
   // highlight-findAll
   const allIds = engine.block.findAll();
+  // highlight-findAllPlaceholders
+  const allPlaceholderIds = engine.block.findAllPlaceholders();
   // highlight-findByType
   const allStars = engine.block.findByType('shapes/star');
   // highlight-findByName
@@ -39,6 +41,8 @@ CreativeEngine.init(config).then(async (engine) => {
   const duplicate = engine.block.duplicate(block);
   // highlight-destroy
   engine.block.destroy(duplicate);
+  // highlight-isValid
+  engine.block.isValid(duplicate); // false
 
   // highlight-insertChild
   engine.block.insertChild(page, block, 0);
@@ -62,6 +66,11 @@ CreativeEngine.init(config).then(async (engine) => {
   const isVisible = engine.block.isVisible(block);
   // highlight-setVisible
   engine.block.setVisible(block, true);
+
+  // highlight-isClipped
+  const isClipped = engine.block.isClipped(page);
+  // highlight-setClipped
+  engine.block.setClipped(page, true);
 
   // Layout
 
@@ -122,6 +131,48 @@ CreativeEngine.init(config).then(async (engine) => {
   const globalWidth = engine.block.getGlobalBoundingBoxWidth(block);
   // highlight-getGlobalBoundingBoxHeight
   const globalHeight = engine.block.getGlobalBoundingBoxHeight(block);
+
+  // highlight-hasStroke
+  const hasStroke = engine.block.hasStroke(block);
+  // highlight-setStrokeEnabled
+  engine.block.setStrokeEnabled(block, true);
+  // highlight-isStrokeEnabled
+  const strokeIsEnabled = engine.block.isStrokeEnabled(block);
+  // highlight-setStrokeColorRGBA
+  engine.block.setStrokeColorRGBA(block, 255, 192, 203, 255);
+  // highlight-getStrokeColorRGBA
+  const strokeColor = engine.block.getStrokeColorRGBA(block);
+  // highlight-setStrokeWidth
+  engine.block.setStrokeWidth(block, 5);
+  // highlight-getStrokeWidth
+  const strokeWidth = engine.block.getStrokeWidth(block);
+  // highlight-setStrokeStyle
+  engine.block.setStrokeStyle(block, 'Dashed');
+  // highlight-getStrokeStyle
+  const strokeStlye = engine.block.getStrokeStyle(block);
+  // highlight-setStrokePosition
+  engine.block.setStrokePosition(block, 'Outer');
+  // highlight-getStrokePosition
+  const strokePosition = engine.block.getStrokePosition(block);
+  // highlight-setStrokeCornerGeometry
+  engine.block.setStrokeCornerGeometry(block, 'Round');
+  // highlight-getStrokeCornerGeometry
+  const strokeCornerGeometry = engine.block.getStrokeCornerGeometry(block);
+  const member1 = engine.block.create('shapes/star');
+  const member2 = engine.block.create('shapes/rect');
+
+  // highlight-isGroupable
+  const groupable = engine.block.isGroupable([member1, member2]);
+  // highlight-group
+  const group = engine.block.group([member1, member2]);
+  engine.block.setSelected(group, true);
+  // highlight-enterGroup
+  engine.block.enterGroup(group);
+  engine.block.setSelected(member1, true);
+  // highlight-exitGroup
+  engine.block.exitGroup(member1);
+  // highlight-ungroup
+  engine.block.unroup(group);
 
   // highlight-referencesAnyVariables
   const referencesVariables = engine.block.referencesAnyVariables(block);
