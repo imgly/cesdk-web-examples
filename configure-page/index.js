@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/cesdk.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/assets',
   // highlight-page
   page: {
     title: {
@@ -9,9 +9,12 @@ const config = {
       show: true,
       // highlight-show
       // highlight-font
-      font: '//ly.img.cesdk.fonts/permanent_marker_regular',
+      // Relative path is resolved relative to `baseURL`.
+      fontFileUri: '/extensions/ly.img.cesdk.fonts/fonts/Permanent_Marker/PermanentMarker-Regular.ttf',
       // highlight-font
-    }
+    },
+    // highlight-dimOutOfPageAreas
+    dimOutOfPageAreas: true
   }
   // highlight-page
 };
