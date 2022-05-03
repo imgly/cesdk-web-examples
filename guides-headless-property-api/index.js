@@ -1,8 +1,8 @@
 // highlight-setup
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/cesdk-engine.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0-alpha.1/cesdk-engine.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0-alpha.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -71,6 +71,8 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setCropTranslationX(image, -1.0);
   // highlight-setCropTranslationY
   engine.block.setCropTranslationY(image, 1.0);
+  // highlight-setContentFillMode
+  engine.block.setContentFillMode(image, 'Contain');
   // highlight-resetCrop
   engine.block.resetCrop(image);
   // highlight-getCropScaleX
@@ -83,6 +85,8 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.getCropTranslationX(image);
   // highlight-getCropTranslationY
   engine.block.getCropTranslationY(image);
+  // highlight-getContentFillMode
+  engine.block.getContentFillMode(image);
 
   // highlight-hasOpacity
   engine.block.hasOpacity(image);

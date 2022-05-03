@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0-alpha.1/cesdk.umd.js';
 
 const config = {
   ui: {
@@ -16,10 +16,10 @@ const config = {
         show: true, // 'false' to hide the navigation completely
         position: 'top', // 'top' or 'bottom'
         action: {
-          close: true, // true  or false
-          back: true, // true  or false
-          load: true, // true  or false
-          save: true, // true  or false
+          close: true, // true or false
+          back: true, // true or false
+          load: true, // true or false
+          save: true, // true or false
           export: {
             show: true,
             format: ['application/pdf']
@@ -31,11 +31,11 @@ const config = {
       // docs-ui-panels
       panels: {
         inspector: {
-          show: true, // true  or false
+          show: true, // true or false
           position: 'right' // 'left' or 'right'
         },
         settings: {
-          show: true // true  or false
+          show: true // true or false
         }
       },
       // docs-ui-panels
@@ -47,9 +47,17 @@ const config = {
       // docs-ui-dock
       // docs-ui-libraries
       libraries: {
-        image: true, // true  or false
-        text: true, // true  or false
-        element: true // true  or false
+        image: true, // true or false
+        text: true, // true or false
+        element: true, // true or false
+        panel: {
+          insert: {
+            floating: true // true or false
+          },
+          replace: {
+            floating: true // true or false
+          }
+        }
       },
       // docs-ui-libraries
       // docs-ui-blocks

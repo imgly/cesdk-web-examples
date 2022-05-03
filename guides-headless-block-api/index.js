@@ -1,8 +1,8 @@
 // highlight-setup
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/cesdk-engine.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0-alpha.1/cesdk-engine.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0-alpha.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -30,6 +30,8 @@ CreativeEngine.init(config).then(async (engine) => {
 
   // highlight-findAll
   const allIds = engine.block.findAll();
+  // highlight-findAllPlaceholders
+  const allPlaceholderIds = engine.block.findAllPlaceholders();
   // highlight-findByType
   const allStars = engine.block.findByType('shapes/star');
   // highlight-findByName
@@ -156,9 +158,23 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setStrokeCornerGeometry(block, 'Round');
   // highlight-getStrokeCornerGeometry
   const strokeCornerGeometry = engine.block.getStrokeCornerGeometry(block);
+
+  // highlight-hasFill
+  const hasFill = engine.block.hasFill(block);
+  // highlight-setFillEnabled
+  engine.block.setFillEnabled(block, true);
+  // highlight-setFillType
+  engine.block.setFillType(block, 'Solid');
+  // highlight-setFillSolidColor
+  engine.block.setFillSolidColor(block, 255, 192, 203, 255);
+  // highlight-setFillGradientType
+  engine.block.setFillType(block, 'Gradient');
+  engine.block.setFillGradientType(block, 'Linear');
+  // highlight-addFillGradientColorStop
+  engine.block.addFillGradientColorStop(block, 0.5, 255, 192, 203, 255);
+
   const member1 = engine.block.create('shapes/star');
   const member2 = engine.block.create('shapes/rect');
-
   // highlight-isGroupable
   const groupable = engine.block.isGroupable([member1, member2]);
   // highlight-group
