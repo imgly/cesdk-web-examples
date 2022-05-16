@@ -1,4 +1,4 @@
-# Configure Templates in CreativeEditor SDK
+# Configure Templates in the CreativeEditor SDK
 
 
 ## Running the sample

@@ -1,4 +1,4 @@
-# Configure Images in CreativeEditor SDK
+# Configure Images in the CreativeEditor SDK
 
 
 ## Running the sample

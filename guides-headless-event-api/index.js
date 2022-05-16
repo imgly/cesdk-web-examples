@@ -1,8 +1,8 @@
 // highlight-setup
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/cesdk-engine.umd.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {

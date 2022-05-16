@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0/assets',
   presets: {
     // highlight-colorpalettes
     colorPalettes: {
