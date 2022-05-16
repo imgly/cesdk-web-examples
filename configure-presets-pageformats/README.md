@@ -1,4 +1,4 @@
-# Configure Pageformats in CreativeEditor SDK
+# Configure Page Formats in the CreativeEditor SDK
 
 
 ## Running the sample

@@ -1,26 +1,41 @@
 // highlight-setup
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/cesdk-engine.umd.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.5.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
   // highlight-setup
   const scene = engine.scene.create();
-  const camera = engine.block.findByType('camera')[0];
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
+  const camera = engine.block.findByType('camera')[0];
+  const image = engine.block.create('image');
+  engine.block.appendChild(page, image);
   const star = engine.block.create('shapes/star');
   engine.block.appendChild(page, star);
   const text = engine.block.create('text');
   engine.block.appendChild(page, text);
-  const image = engine.block.create('image');
+
+  // Examples
+
+  // highlight-image
+  engine.block.setString(image, 'image/imageFileURI', 'https://img.ly/static/ubq_samples/sample_4.jpg');
+  engine.block.resetCrop(image);
+
+  // highlight-text
+  engine.block.setFloat(text, 'text/fontSize', 18.0);
+  engine.block.setString(text, 'text/text', 'Greetings');
+  engine.block.setString(text, 'text/fontFileUri', '/extensions/ly.img.cesdk.fonts/fonts/Caveat/Caveat-Bold.ttf');
+  engine.block.setEnum(text, 'text/horizontalAlignment', 'Left');
 
   // Reflection
 
   // highlight-findAllProperties
-  const propertyNames = engine.block.findAllProperties(star);
+  const propertyNamesImage = engine.block.findAllProperties(image); // Array [ "image/imageFileURI", "image/previewFileURI", "image/externalReference", ... ]
+  const propertyNamesStar = engine.block.findAllProperties(star); // Array [ "shapes/star/innerDiameter", "shapes/star/points", "opacity/value", ... ]
+  const propertyNamesText = engine.block.findAllProperties(text); // Array [ "text/text", "text/fontFileUri", "text/externalReference", "text/fontSize", "text/horizontalAlignment", ... ]
 
   // highlight-getPropertyType
   const pointsType = engine.block.getPropertyType('shapes/star/points'); // "Int"
@@ -44,8 +59,10 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.getFloat(star, 'shapes/star/innerDiameter');
   // highlight-setString
   engine.block.setString(text, 'text/text', '*o*');
+  engine.block.setString(image, 'image/imageFileURI', 'https://img.ly/static/ubq_samples/sample_4.jpg');
   // highlight-getString
   engine.block.getString(text, 'text/text');
+  engine.block.getString(image, 'image/imageFileURI');
   // highlight-setColorRGBA
   engine.block.setColorRGBA(camera, 'camera/clearColor', 1, 1, 1, 1); // White
   // highlight-getColorRGBA
@@ -71,6 +88,8 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setCropTranslationX(image, -1.0);
   // highlight-setCropTranslationY
   engine.block.setCropTranslationY(image, 1.0);
+  // highlight-setContentFillMode
+  engine.block.setContentFillMode(image, 'Contain');
   // highlight-resetCrop
   engine.block.resetCrop(image);
   // highlight-getCropScaleX
@@ -83,13 +102,20 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.getCropTranslationX(image);
   // highlight-getCropTranslationY
   engine.block.getCropTranslationY(image);
+  // highlight-getContentFillMode
+  engine.block.getContentFillMode(image);
 
   // highlight-hasOpacity
   engine.block.hasOpacity(image);
   // highlight-setOpacity
   engine.block.setOpacity(image, 0.5);
   // highlight-getOpacity
-  engine.block.getOpacity(image, 0.5);
+  engine.block.getOpacity(image);
+
+  // highlight-setBlendMode
+  engine.block.setBlendMode(image, 'Multiply');
+  // highlight-getBlendMode
+  engine.block.getBlendMode(image);
 
   // highlight-hasFillColor
   if (engine.block.hasFillColor(star)) {
