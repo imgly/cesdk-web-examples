@@ -1,4 +1,4 @@
-# Searchable Assets in CreativeEditorSDK
+# Searchable Assets in the CreativeEditorSDK
 
 
 ## Running the sample

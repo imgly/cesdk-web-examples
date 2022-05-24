@@ -1,4 +1,4 @@
-import CreativeEngine from '@cesdk/cesdk-js/cesdk-engine.umd.js';
+import CreativeEngine from '@cesdk/engine';
 import React, { useEffect, useRef, useState } from 'react';
 import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 

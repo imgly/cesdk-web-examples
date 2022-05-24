@@ -1,4 +1,4 @@
-# Configure Typefaces in CreativeEditor SDK
+# Configure Typefaces in the CreativeEditor SDK
 
 
 ## Running the sample

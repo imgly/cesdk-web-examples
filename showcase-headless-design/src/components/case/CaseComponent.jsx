@@ -1,4 +1,4 @@
-import CreativeEngine from '@cesdk/cesdk-js/cesdk-engine.umd.js';
+import CreativeEngine from '@cesdk/engine';
 import classNames from 'classnames';
 import { ColorPicker } from 'components/ui/ColorPicker/ColorPicker';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -76,7 +76,7 @@ const CaseComponent = () => {
       const text = engineRef.current.block.findByType('//ly.img.ubq/text')[1];
       engineRef.current.block.setColorRGBA(
         page,
-        'background_color/value',
+        'backgroundColor/color',
         colorRGBA.r / 255,
         colorRGBA.g / 255,
         colorRGBA.b / 255,
@@ -84,7 +84,7 @@ const CaseComponent = () => {
       );
       engineRef.current.block.setColorRGBA(
         text,
-        'fill_color/value',
+        'backgroundColor/color',
         colorRGBA.r / 255,
         colorRGBA.g / 255,
         colorRGBA.b / 255,
