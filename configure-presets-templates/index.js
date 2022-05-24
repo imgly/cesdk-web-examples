@@ -1,11 +1,14 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.0/assets',
   presets: {
     // highlight-templates
     templates: {
       demo: {
+        // highlight-label
+        label: 'Template',
+        // highlight-label
         // highlight-scene
         scene: '/template.scene',
         // highlight-scene

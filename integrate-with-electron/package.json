@@ -10,6 +10,6 @@
     "start": "electron ."
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "~1.4.2"
+    "@cesdk/cesdk-js": "~1.6.0"
   }
 }

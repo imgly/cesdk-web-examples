@@ -1,4 +1,4 @@
-# Asset Source API in CreativeEditorSDK
+# Asset Source API in the CreativeEditorSDK
 
 
 ## Running the sample

@@ -1,0 +1,16 @@
+.colorButton {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 100%;
+}
+
+.colorButton:hover {
+  outline: 2px solid #9e86ff;
+  outline-offset: 2px;
+}
+
+
+.colorButton.colorButton--active, .colorButton.colorButton--active:hover, .colorButton:focus {
+  outline: 2px solid #471AFF;
+  outline-offset: 2px;
+}

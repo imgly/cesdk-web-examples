@@ -1,9 +1,13 @@
 // highlight-import
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/cesdk-engine.umd.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.0/index.js';
+// highlight-import-npm
+// Import a node module when you work with a bundler:
+// import CreativeEngine from '@cesdk/engine';
+// highlight-import-npm
 
 // highlight-setup
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.4.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.0/assets'
 };
 
 CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
