@@ -29,7 +29,7 @@ const CaseComponent = () => {
         }
       }
     };
-    if (navigator.userAgent !== 'ReactSnap' && cesdk_container.current) {
+    if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         async (instance) => {
           pageIds.current = await instance.unstable_getPages();

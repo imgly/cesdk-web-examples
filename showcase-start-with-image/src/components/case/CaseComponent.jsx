@@ -26,9 +26,8 @@ const CaseComponent = () => {
         }
       }
     };
-
     let cesdk;
-    if (navigator.userAgent !== 'ReactSnap' && cesdk_container.current) {
+    if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
           cesdk = instance;
