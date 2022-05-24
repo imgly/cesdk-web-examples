@@ -19,7 +19,7 @@ export class AppComponent implements AfterViewInit {
     // docs-integrate-angular-3
     const config = {
       // Serve assets from IMG.LY cdn or locally
-      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.1/assets'
+      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.2/assets'
     };
     CreativeEditorSDK.init(this.containerRef.nativeElement, config).then(
       (instance: any) => {
