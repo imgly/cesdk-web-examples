@@ -12,12 +12,23 @@ const CaseComponent = () => {
         elements: {
           panels: {
             settings: true
+          },
+          libraries: {
+            template: false,
+            panel: {
+              insert: {
+                floating: false
+              },
+              replace: {
+                floating: false
+              }
+            }
           }
         }
       }
     };
     let cesdkInstance;
-    if (navigator.userAgent !== 'ReactSnap' && cesdk_container.current) {
+    if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then((cesdk) => {
         cesdkInstance = cesdk;
       });

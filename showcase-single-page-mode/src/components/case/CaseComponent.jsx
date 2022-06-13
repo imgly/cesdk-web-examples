@@ -23,13 +23,16 @@ const CaseComponent = () => {
       },
       ui: {
         elements: {
+          libraries: {
+            template: false
+          },
           panels: {
             settings: true
           }
         }
       }
     };
-    if (navigator.userAgent !== 'ReactSnap' && cesdk_container.current) {
+    if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         async (instance) => {
           pageIds.current = await instance.unstable_getPages();

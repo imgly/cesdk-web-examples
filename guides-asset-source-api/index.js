@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.0/cesdk.umd.js';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
@@ -73,7 +73,7 @@ const findUnsplashAssets = async (type, queryData) => {
 };
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.0/assets',
   assetSources: {
     // highlight-unsplash-definition
     unsplash: {

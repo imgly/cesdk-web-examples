@@ -126,6 +126,9 @@ const CaseComponent = () => {
           panels: {
             settings: true
           },
+          libraries: {
+            template: false
+          },
           navigation: {
             action: {
               export: true
@@ -134,11 +137,7 @@ const CaseComponent = () => {
         }
       }
     };
-    if (
-      navigator.userAgent !== 'ReactSnap' &&
-      cesdk_container.current &&
-      !cesdkRef.current
-    ) {
+    if (cesdk_container.current && !cesdkRef.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
           cesdkRef.current = instance;
