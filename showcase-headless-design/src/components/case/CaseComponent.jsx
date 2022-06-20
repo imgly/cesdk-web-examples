@@ -1,4 +1,4 @@
-import CreativeEngine from '@cesdk/cesdk-js/cesdk-engine.umd.js';
+import CreativeEngine from '@cesdk/engine';
 import classNames from 'classnames';
 import { ColorPicker } from 'components/ui/ColorPicker/ColorPicker';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -19,6 +19,7 @@ const CaseComponent = () => {
   const colorRGBA = useMemo(() => hexToRgba(colorHex), [colorHex]);
 
   useEffect(() => {
+
     const config = {
       page: {
         title: {
@@ -27,7 +28,7 @@ const CaseComponent = () => {
       },
       variables: {
         quote: {
-          value: 'Enter Text'
+          value: '{{TextInput}}'
         }
       }
     };
@@ -76,7 +77,7 @@ const CaseComponent = () => {
       const text = engineRef.current.block.findByType('//ly.img.ubq/text')[1];
       engineRef.current.block.setColorRGBA(
         page,
-        'background_color/value',
+        'backgroundColor/color',
         colorRGBA.r / 255,
         colorRGBA.g / 255,
         colorRGBA.b / 255,
@@ -84,7 +85,7 @@ const CaseComponent = () => {
       );
       engineRef.current.block.setColorRGBA(
         text,
-        'fill_color/value',
+        'backgroundColor/color',
         colorRGBA.r / 255,
         colorRGBA.g / 255,
         colorRGBA.b / 255,
@@ -148,11 +149,18 @@ const CaseComponent = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h3 className="h4" style={headlineStyle}>
-        Select Parameters
-      </h3>
+    <div className="flex flex-grow flex-col">
+      <div className="caseHeader">
+        <h3>Automatic Design Generation</h3>
+        <p>
+          Use our API and underlying creative engine to autogenerate
+          ready-to-use designs by selecting input parameters.
+        </p>
+      </div>
       <div className="flex flex-col space-y-2" style={inputsWrapperStyle}>
+        <h4 className="h4" style={headlineStyle}>
+          Select Content
+        </h4>
         <div style={imageSelectionWrapper} className="flex space-x-2">
           {IMAGES.map((someImage) => (
             <button
@@ -208,7 +216,7 @@ const CaseComponent = () => {
             value={colorHex}
           />
         </div>
-        <div className="flex justify-center">
+        <div className="flex">
           <button
             className="button button--light-white"
             onClick={() => randomizeParameters()}
@@ -217,12 +225,17 @@ const CaseComponent = () => {
           </button>
         </div>
       </div>
-      <canvas
-        id="cesdk_canvas"
-        width="680px"
-        height="400px"
-        style={canvasStyle}
-      ></canvas>
+      <div className="space-y-2">
+        <h4 className="h4" style={headlineStyle}>
+          Generated Design
+        </h4>
+        <canvas
+          id="cesdk_canvas"
+          width="680px"
+          height="400px"
+          style={canvasStyle}
+        ></canvas>
+      </div>
     </div>
   );
 };
@@ -288,12 +301,15 @@ const QUOTES = [
   'May the Force be with you. — Obi-Wan Kenobi'
 ];
 
-const inputsWrapperStyle = { maxWidth: 'fit-content', minWidth: '340px' };
+const inputsWrapperStyle = {
+  maxWidth: 'fit-content',
+  minWidth: '340px',
+  marginBottom: '2rem'
+};
 
 const imageSelectionWrapper = {
   display: 'flex',
-  height: 50,
-  justifyContent: 'center'
+  height: 50
 };
 
 const imageStyle = {
@@ -309,17 +325,15 @@ const imageActiveState = {
 };
 
 const headlineStyle = {
-  marginBottom: '1rem',
-  color: 'white',
-  textAlign: 'center'
+  color: 'white'
 };
 
 const canvasStyle = {
   width: '640px',
   height: '400px',
+  minHeight: '400px',
   border: '1px solid gray',
-  backgroundColor: '#9CA0A5',
-  margin: '2rem auto 0 auto'
+  backgroundColor: '#9CA0A5'
 };
 
 export default CaseComponent;

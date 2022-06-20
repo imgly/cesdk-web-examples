@@ -1,0 +1,42 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem
+}
+
+.contentWrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.imageWrapper {
+  display: flex;
+  margin: 0 -8px 2rem -8px;
+  max-width: 840px;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  overflow: auto;
+  justify-content: space-between;
+  flex-grow: 1
+}
+
+.headline {
+  color: white !important;
+}
+
+.description {
+  max-width: 60ch;
+  color: white !important;
+}
+
+.templateWrapper {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background: #696E73;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  gap: 2rem
+}

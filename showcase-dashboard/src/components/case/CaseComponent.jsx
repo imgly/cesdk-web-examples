@@ -2,16 +2,27 @@ import React from 'react';
 
 const CaseComponent = () => {
   return (
-    <iframe
-      style={iframeStyle}
-      title="CE.SDK Dashboard"
-      src="https://ubique.img.ly/main/demos/dashboard/#/login?name=John+Doe&autologin=1"
-    />
+    <div className="flex h-full w-full flex-col">
+      <div className="caseHeader">
+        <h3>Dashboard – Manage your Templates</h3>
+        <p>
+          The dashboard is where you create, import and manage your designs in
+          folders and workspaces. You can invite users for collaboration and
+          also share your creation as a link.
+        </p>
+      </div>
+      <iframe
+        style={iframeStyle}
+        title="CE.SDK Dashboard"
+        src="https://ubique.img.ly/main/demos/dashboard/#/login?name=John+Doe&autologin=1"
+      />
+    </div>
   );
 };
 
 const iframeStyle = {
   width: '100%',
+  flexGrow: 1,
   overflow: 'hidden',
   borderRadius: '12px',
   boxShadow:

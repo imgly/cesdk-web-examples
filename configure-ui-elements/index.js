@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.1/cesdk.umd.js';
 
 const config = {
   ui: {
@@ -51,12 +51,15 @@ const config = {
         image: true, // true or false
         text: true, // true or false
         element: true, // true or false
+        upload: true, // true or false
         panel: {
           insert: {
-            floating: true // true or false
+            floating: true, // true or false
+            autoClose: false // true or false
           },
           replace: {
-            floating: true // true or false
+            floating: true, // true or false
+            autoClose: false // true or false
           }
         }
       },

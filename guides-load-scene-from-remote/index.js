@@ -1,9 +1,9 @@
 
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.1/cesdk.umd.js';
 
 CreativeEditorSDK.init('#cesdk_container').then(async (cesdk) => {
   // highlight-url
-  const sceneUrl = 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/assets/templates/cesdk_postcard_1.scene';
+  const sceneUrl = 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.1/assets/templates/cesdk_postcard_1.scene';
   // highlight-url
 
   // highlight-load
