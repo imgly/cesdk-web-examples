@@ -1,16 +1,16 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.2/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.2/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  // highlight-setup
   let scene = engine.scene.create();
   scene = await engine.scene.createFromImage(
     'https://img.ly/static/ubq_samples/sample_4.jpg'
   );
+  // highlight-setup
 
   // highlight-onStateChanged
   const unsubscribe = engine.editor.onStateChanged(() => console.log('Editor state has changed'));
@@ -24,7 +24,7 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.editor.getCursorType();
   engine.editor.getCursorRotation();
   // highlight-cursor
-  
+
   // highlight-textCursor
   engine.editor.getTextCursorPositionInScreenSpaceX();
   engine.editor.getTextCursorPositionInScreenSpaceY();

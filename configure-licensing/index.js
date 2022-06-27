@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.2/cesdk.umd.js';
 
 // highlight-config
 let config = {

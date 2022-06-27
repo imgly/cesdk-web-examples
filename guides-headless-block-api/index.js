@@ -1,15 +1,15 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.2/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.2/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  // highlight-setup
   const scene = engine.scene.create();
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
+  // highlight-setup
 
   // Lifecycle
 
@@ -197,5 +197,7 @@ CreativeEngine.init(config).then(async (engine) => {
   const referencesVariables = engine.block.referencesAnyVariables(block);
 
   // highlight-export
-  const blob = await engine.block.export(scene, 'image/png');
+  const blob = await engine.block.export(scene, 'image/png', {
+    pngCompressionLevel: 6
+  });
 });
