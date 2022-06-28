@@ -2,7 +2,6 @@ import { useEditor } from '../../EditorContext';
 import { ReactComponent as FiraSansIcon } from '../../icons/fonts/FiraSans.svg';
 import { ReactComponent as ParisienneIcon } from '../../icons/fonts/Parisienne.svg';
 import { ReactComponent as RobotoIcon } from '../../icons/fonts/Roboto.svg';
-import useStream from '../../lib/streams/useStream';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import AdjustmentsBarButton from '../AdjustmentsBarButton/AdjustmentsBarButton';
 
@@ -28,16 +27,9 @@ const ALL_FONTS = [
 
 const FontSelect = () => {
   const {
-    customEngine: {
-      changeTextFont,
-      selectedTextPropertiesStream,
-      getSelectedTextProperties
-    }
+    selectedTextProperties,
+    customEngine: { changeTextFont }
   } = useEditor();
-
-  const selectedTextProperties = useStream(selectedTextPropertiesStream, () =>
-    getSelectedTextProperties()
-  );
 
   return (
     <AdjustmentsBar>

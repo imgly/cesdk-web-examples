@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import classes from './CaseComponent.module.css';
-import EditInstanceCESDK from './components/EditInstanceCESDK';
-import EditTemplateCESDK from './components/EditTemplateCESDK';
-import InstanceImage from './components/InstanceImage';
-import TemplateEditButton from './components/TemplateEditButton';
-import TemplateSelectButton from './components/TemplateSelectButton';
+import EditInstanceCESDK from './components/EditInstanceCESDK/EditInstanceCESDK.jsx';
+import EditTemplateCESDK from './components/EditTemplateCESDK/EditTemplateCESDK.jsx';
+import InstanceImage from './components/InstanceImage/InstanceImage.jsx';
+import TemplateEditButton from './components/TemplateEditButton/TemplateEditButton.jsx';
+import TemplateSelectButton from './components/TemplateSelectButton/TemplateSelectButton.jsx';
 import { EMPLOYEES, TEMPLATES } from './data';
 import { caseAssetPath, replaceImages } from './util';
 
@@ -144,7 +144,7 @@ const CaseComponent = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-grow flex-col">
       <Helmet>
         {/* Preload images so they are already loaded in cache. */}
         {EMPLOYEES.map((employee) => (
@@ -157,18 +157,18 @@ const CaseComponent = () => {
           />
         ))}
       </Helmet>
+      <div className="caseHeader">
+        <h3>Batch Image Generation</h3>
+        <p>Use templates to automatically generate images from data.</p>
+      </div>
       <div className={classes.wrapper}>
-        <div>
-          <h3 className={classNames(classes.caseHeadline, 'h4')}>
-            Batch Image Generation
-          </h3>
-          <p className={classes.caseDescription}>
-            Select or edit a card template and automatically generate multiple
-            instances of it.
-          </p>
-        </div>
-        <div>
-          <h4 className={classNames('h5', classes.headline)}>Templates</h4>
+        <div className="gap-sm flex flex-col items-start">
+          <div>
+            <h4 className={classNames('h4', classes.headline)}>Templates</h4>
+            <p className={classes.description}>
+              Edit a template to change all images.
+            </p>
+          </div>
           <div className={classes.templateWrapper}>
             {Object.entries(allTemplates).map(([templateName, template]) => {
               if (templateName === currentTemplateName) {
@@ -184,7 +184,7 @@ const CaseComponent = () => {
                   <TemplateSelectButton
                     key={templateName}
                     template={template}
-                    onClick={(value) => {
+                    onClick={() => {
                       if (templateName !== currentTemplateName) {
                         setCurrentTemplateName(templateName);
                       }
@@ -196,10 +196,15 @@ const CaseComponent = () => {
           </div>
         </div>
 
-        <div>
-          <h4 className={classNames('h5', classes.headline)}>
-            Generated Cards
-          </h4>
+        <div className="gap-sm flex flex-col">
+          <div>
+            <h4 className={classNames('h4', classes.headline)}>
+              Generated Cards
+            </h4>
+            <p className={classes.description}>
+              Edit individual cards leaving all others unchanged.
+            </p>
+          </div>
           <div className={classes.contentWrapper}>
             <div className={classes.imageWrapper}>
               {teamImages.map((image, index) => (

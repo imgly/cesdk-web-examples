@@ -8,8 +8,7 @@
 .contentWrapper {
   flex-grow: 1;
   display: flex;
-  justify-content: center;
-  align-items: center
+  justify-content: flex-start;
 }
 
 .imageWrapper {
@@ -19,37 +18,25 @@
   flex-wrap: wrap;
   gap: 2.2rem;
   overflow: auto;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-grow: 1
 }
 
-.caseHeadline {
-  margin-bottom: 0.5rem;
-  color: white !important;
-  text-align: left
-}
-
-.caseDescription {
-  font-size: 18px;
-  line-height: 28px;
-  color: rgba(255, 255, 255, 0.65)
-}
-
 .headline {
-  margin-bottom: 1rem;
   color: white !important;
-  text-align: left
+}
+
+.description {
+  max-width: 60ch;
+  color: white !important;
 }
 
 .templateWrapper {
-  display: flex;
-  width: 100%;
+  display: inline-flex;
   flex-direction: row;
-  justify-content: center;
-
-  /* "flex w-full flex-row justify-center space-x-2" */
+  justify-content: flex-start;
   background: #696E73;
-  border-radius: 5px;
+  border-radius: 1.5rem;
   padding: 1rem;
   gap: 2rem
 }

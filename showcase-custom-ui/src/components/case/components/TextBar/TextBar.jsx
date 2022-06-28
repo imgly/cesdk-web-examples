@@ -45,7 +45,7 @@ const TextBar = () => {
     <div className="align-center flex flex-col">
       <div>{selectedAdjustmentId && AdjustmentComponent}</div>
 
-      <div className="flex justify-center gap-6">
+      <div className="gap-md flex justify-center">
         <div className="flex">
           {ALL_ADJUSTMENTS.map(({ label, id, Icon }) => (
             <IconButton

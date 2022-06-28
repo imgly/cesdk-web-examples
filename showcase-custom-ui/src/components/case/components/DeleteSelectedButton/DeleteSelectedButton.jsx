@@ -1,7 +1,6 @@
 import { useEditor } from '../../EditorContext';
-import IconButton from '../IconButton/IconButton';
 import { ReactComponent as TrashBinIcon } from '../../icons/TrashBin.svg';
-import useStream from '../../lib/streams/useStream';
+import IconButton from '../IconButton/IconButton';
 
 const ALLOWED_DELETION_TYPES = [
   '//ly.img.ubq/text',
@@ -12,21 +11,15 @@ const ALLOWED_DELETION_TYPES = [
 
 const DeleteSelectedButton = () => {
   const {
-    customEngine: {
-      deleteSelectedElement,
-      selectedBlocksStream,
-      getSelectedBlockWithTypes
-    }
+    selectedBlocks,
+    customEngine: { deleteSelectedElement }
   } = useEditor();
-  const selectedBlocks = useStream(selectedBlocksStream, () =>
-    getSelectedBlockWithTypes()
-  );
   const selectedBlockType =
     selectedBlocks?.length === 1 && selectedBlocks[0].type;
 
   if (
     !selectedBlocks ||
-    !ALLOWED_DELETION_TYPES.find((type) => selectedBlockType.startsWith(type))
+    !ALLOWED_DELETION_TYPES.find((type) => selectedBlockType?.startsWith(type))
   ) {
     return <></>;
   }

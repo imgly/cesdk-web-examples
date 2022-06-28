@@ -72,7 +72,8 @@ const EditInstanceCESDK = ({
                 save: true,
                 back: true
               }
-            }
+            },
+            libraries: { template: false }
           }
         }
       }}

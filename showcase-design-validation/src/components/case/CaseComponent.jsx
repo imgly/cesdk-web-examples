@@ -126,6 +126,9 @@ const CaseComponent = () => {
           panels: {
             settings: true
           },
+          libraries: {
+            template: false
+          },
           navigation: {
             action: {
               export: true
@@ -166,23 +169,17 @@ const CaseComponent = () => {
   );
 
   return (
-    <div style={wrapperStyle} className="space-y-2">
+    <div style={wrapperStyle}>
       <div style={headerStyle}>
-        <div style={{ maxWidth: 320 }}>
-          <h3 className="h4" style={{ color: 'white' }}>
-            Design Validation
-          </h3>
-          <p
-            style={{
-              fontWeight: 400,
-              fontSize: '14px',
-              lineHeight: '20px',
-              color: 'rgba(255, 255, 255, 0.65)'
-            }}
-          >
-            Define validation rules for your designs and layouts to provide user
-            feedback. For example, check whether elements protude from the page
-            or enforce a minimum image resolution.
+        <div
+          className="caseHeader caseHeader--no-margin"
+          style={caseHeaderStyle}
+        >
+          <h3>Design Validation</h3>
+          <p>
+            Set validation rules to provide design and layout feedback. For
+            example, check if elements protrude the page or enforce a minimum
+            image resolution.
           </p>
         </div>
         <ValidationBox
@@ -212,7 +209,12 @@ const CaseComponent = () => {
 const headerStyle = {
   display: 'flex',
   justifyContent: 'space-between',
+  gap: '2rem',
   color: 'white'
+};
+
+const caseHeaderStyle = {
+  maxWidth: '50%'
 };
 
 const cesdkStyle = {
@@ -234,8 +236,8 @@ const wrapperStyle = {
   flexGrow: '1',
   display: 'flex',
   flexDirection: 'column',
-  justifyItems: 'center',
-  justifyContent: 'center'
+  width: '100%',
+  gap: '1rem'
 };
 
 export default CaseComponent;

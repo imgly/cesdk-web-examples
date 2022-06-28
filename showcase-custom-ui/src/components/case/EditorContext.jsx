@@ -1,5 +1,6 @@
 import CreativeEngine from '@cesdk/engine';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { isEqual } from 'lodash';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { CustomEngine } from './CustomEngine';
 
 const EditorContext = createContext();
@@ -12,6 +13,53 @@ export const EditorProvider = ({ children }) => {
 
   const [customEngine, setCustomEngine] = useState(null);
 
+  const [canUndo, setCanUndo] = useState(false);
+  const [canRedo, setCanRedo] = useState(false);
+  const [editorState, setEditorState] = useState({
+    editMode: null,
+    cursorType: null,
+    cursorRotation: null
+  });
+  const editorUpdateCallbackRef = useRef(() => {});
+  const [selectedTextProperties, setSelectedTextProperties] = useState({
+    'text/horizontalAlignment': null,
+    'text/fontFileUri': null,
+    'fill/color': null
+  });
+  const engineEventCallbackRef = useRef(() => {});
+  const [selectedBlocks, setSelectedBlocks] = useState(null);
+  editorUpdateCallbackRef.current = () => {
+    const newEditorState = customEngine.getEditorState();
+    if (!isEqual(newEditorState, editorState)) {
+      setEditorState(newEditorState);
+    }
+  };
+  engineEventCallbackRef.current = (events) => {
+    if (events.length > 0) {
+      // Extract and store the currently selected block
+      const newSelectedBlocks = customEngine.getSelectedBlockWithTypes();
+      if (!isEqual(newSelectedBlocks, selectedBlocks)) {
+        setSelectedBlocks(newSelectedBlocks);
+      }
+      // Extract and store the currently selected text block properties
+      const newSelectedTextProperties =
+        customEngine.getSelectedTextProperties();
+      if (!isEqual(newSelectedTextProperties, selectedTextProperties)) {
+        setSelectedTextProperties(newSelectedTextProperties);
+      }
+      // Extract and store canUndo
+      const newCanUndo = customEngine.getCanUndo();
+      if (newCanUndo !== canUndo) {
+        setCanUndo(newCanUndo);
+      }
+      // Extract and store canRedo
+      const newCanRedo = customEngine.getCanRedo();
+      if (newCanRedo !== canRedo) {
+        setCanRedo(newCanRedo);
+      }
+    }
+  };
+
   useEffect(() => {
     if (canvas) {
       setShouldLoad(true);
@@ -20,6 +68,7 @@ export const EditorProvider = ({ children }) => {
 
   useEffect(() => {
     const loadEditor = async () => {
+
       if (!shouldLoad) {
         return;
       }
@@ -40,8 +89,10 @@ export const EditorProvider = ({ children }) => {
       const creativeEngine = await CreativeEngine.init(config, canvas);
       const newCustomEngine = new CustomEngine(creativeEngine);
       setCustomEngine(newCustomEngine);
+      creativeEngine.editor.onStateChanged(editorUpdateCallbackRef.current);
+      creativeEngine.event.subscribe([], engineEventCallbackRef.current);
       await newCustomEngine.loadScene(
-        `${process.env.REACT_APP_URL_HOSTNAME}${process.env.PUBLIC_URL}/cases/custom-ui/kiosk.scene`
+        `${window.location.protocol + "//" + window.location.host}/cases/custom-ui/kiosk.scene`
       );
       setIsLoaded(true);
     };
@@ -79,7 +130,12 @@ export const EditorProvider = ({ children }) => {
     viewMode,
     canvas,
     setCanvas,
-    setViewMode
+    setViewMode,
+    editorState,
+    selectedBlocks,
+    selectedTextProperties,
+    canUndo,
+    canRedo
   };
   return (
     <EditorContext.Provider value={value}>{children}</EditorContext.Provider>

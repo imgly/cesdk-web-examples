@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { useEditor } from '../../EditorContext';
-import useStream from '../../lib/streams/useStream';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import classes from './ColorSelect.module.css';
 
@@ -31,15 +30,9 @@ const RGBAArrayToObj = ([r, g, b, _a]) => ({ r, g, b });
 
 const ColorSelect = () => {
   const {
-    customEngine: {
-      changeTextColor,
-      selectedTextPropertiesStream,
-      getSelectedTextProperties
-    }
+    selectedTextProperties,
+    customEngine: { changeTextColor }
   } = useEditor();
-  const selectedTextProperties = useStream(selectedTextPropertiesStream, () =>
-    getSelectedTextProperties()
-  );
 
   return (
     <AdjustmentsBar gap="sm">

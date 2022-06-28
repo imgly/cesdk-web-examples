@@ -1,15 +1,19 @@
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+import { useIsDesktop } from 'lib/useIsDesktop';
+import { use100vh } from 'react-div-100vh';
+import classes from './CaseComponent.module.css';
 import BottomControls from './components/BottomControls/BottomControls';
 import CESDKCanvas from './components/CESDKCanvas/CESDKCanvas';
 import TopBar from './components/TopBar/TopBar';
 import { EditorProvider, useEditor } from './EditorContext';
-import classes from './CaseComponent.module.css';
-import classNames from 'classnames';
 
 const CustomUI = () => {
   const { isLoaded } = useEditor();
 
+
   return (
     <>
+      {!isLoaded && <LoadingSpinner />}
       {isLoaded && <TopBar />}
       <CESDKCanvas />
       {isLoaded && <BottomControls />}
@@ -18,13 +22,33 @@ const CustomUI = () => {
 };
 
 const CaseComponent = () => {
+  const { isDesktop } = useIsDesktop();
+  const height = use100vh();
+
+  const wrapperStyle = !isDesktop
+    ? {
+        position: 'fixed',
+        height
+      }
+    : {};
+
   return (
     <EditorProvider>
-      <div className="flex w-full flex-col">
-        <h3 className={classNames(classes.headline, 'h4')}>Custom UI</h3>
-        <div className={classes.wrapper}>
-          <div className={classes.kioskWrapper}>
-            <CustomUI />
+      {/* Use this element to fix the size in iOS Safari. */}
+      <div className={classes.fullHeightWrapper} style={wrapperStyle}>
+        <div className={classes.caseWrapper}>
+          <div className="caseHeader">
+            <h3>Custom UI</h3>
+            <p>Quickly build any UI on top of our API.</p>
+            <p>
+              Try out customizing a t-shirt design with this mobile apparel
+              editor and export a print-ready PDF.{' '}
+            </p>
+          </div>
+          <div className={classes.wrapper}>
+            <div className={classes.kioskWrapper}>
+              <CustomUI />
+            </div>
           </div>
         </div>
       </div>

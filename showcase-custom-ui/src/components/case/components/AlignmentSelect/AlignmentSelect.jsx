@@ -1,11 +1,9 @@
 import { useEditor } from '../../EditorContext';
-import { ReactComponent as TextAlignLeftIcon } from '../../icons/TextAlignLeft.svg';
 import { ReactComponent as TextAlignCenterIcon } from '../../icons/TextAlignCenter.svg';
+import { ReactComponent as TextAlignLeftIcon } from '../../icons/TextAlignLeft.svg';
 import { ReactComponent as TextAlignRightIcon } from '../../icons/TextAlignRight.svg';
-
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import AdjustmentsBarButton from '../AdjustmentsBarButton/AdjustmentsBarButton';
-import useStream from '../../lib/streams/useStream';
 
 const ALL_ALIGNMENTS = [
   {
@@ -24,16 +22,9 @@ const ALL_ALIGNMENTS = [
 
 const AlignmentSelect = () => {
   const {
-    customEngine: {
-      changeTextAlignment,
-      selectedTextPropertiesStream,
-      getSelectedTextProperties
-    }
+    selectedTextProperties,
+    customEngine: { changeTextAlignment }
   } = useEditor();
-
-  const selectedTextProperties = useStream(selectedTextPropertiesStream, () =>
-    getSelectedTextProperties()
-  );
 
   return (
     <AdjustmentsBar>

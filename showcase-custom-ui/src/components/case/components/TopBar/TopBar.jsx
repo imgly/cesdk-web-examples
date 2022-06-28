@@ -6,7 +6,6 @@ import { ReactComponent as DownloadIcon } from '../../icons/Download.svg';
 import { ReactComponent as LoadingSpinnerIcon } from '../../icons/LoadingSpinner.svg';
 import { ReactComponent as RedoIcon } from '../../icons/Redo.svg';
 import { ReactComponent as UndoIcon } from '../../icons/Undo.svg';
-import useStream from '../../lib/streams/useStream';
 import classes from './TopBar.module.css';
 
 const localDownload = (data, filename) => {
@@ -34,18 +33,11 @@ const TopBar = () => {
     viewMode,
     setViewMode,
     isLoaded,
-    customEngine: {
-      undo,
-      getCanUndo,
-      canUndoStream,
-      redo,
-      getCanRedo,
-      canRedoStream,
-      exportScene
-    }
+    canUndo,
+    canRedo,
+    editorState: { editMode },
+    customEngine: { undo, redo, exportScene }
   } = useEditor();
-  const canUndo = useStream(canUndoStream, () => getCanUndo());
-  const canRedo = useStream(canRedoStream, () => getCanRedo());
 
   const handleExport = async () => {
     setIsExporting(true);
@@ -56,7 +48,7 @@ const TopBar = () => {
     setIsExporting(false);
   };
 
-  if (!isLoaded) {
+  if (!isLoaded || editMode === 'Crop') {
     return null;
   }
 
@@ -99,13 +91,14 @@ const TopBar = () => {
           buttonStyle={{ minWidth: '75px' }}
         />
       </div>
-      <div className="flex flex-col justify-center">
+
+      <div className={classes.ctaWrapper}>
         <button
           className={classes.cta}
           onClick={() => handleExport()}
           disabled={isExporting}
         >
-          <span>Export</span>
+          <span className={classes.ctaText}>Export</span>
           {isExporting ? (
             <span className={classes.spinning}>
               <LoadingSpinnerIcon />

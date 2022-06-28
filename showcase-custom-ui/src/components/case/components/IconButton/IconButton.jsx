@@ -9,13 +9,10 @@ const IconButton = ({ icon, children, isActive, iconColor, onClick }) => {
       })}
       onClick={onClick}
     >
-      <span
-        className="flex items-center justify-center"
-        style={{ color: iconColor, maxHeight: '100%' }}
-      >
+      <span className={classes.iconWrapper} style={{ color: iconColor }}>
         {icon}
       </span>
-      <span>{children}</span>
+      {children && <span>{children}</span>}
     </button>
   );
 };

@@ -1,12 +1,10 @@
 import { useEditor } from '../../EditorContext';
 import AddBlockBar from '../AddBlockBar/AddBlockBar';
-import TextBar from '../TextBar/TextBar';
 import ImageBar from '../ImageBar/ImageBar';
 import ShapesBar from '../ShapesBar/ShapesBar';
 import StickerBar from '../StickerBar/StickerBar';
-
+import TextBar from '../TextBar/TextBar';
 import classes from './BottomControls.module.css';
-import useStream from '../../lib/streams/useStream';
 
 const BLOCK_TYPE_TO_CONTROLS = [
   { type: '//ly.img.ubq/text', component: <TextBar /> },
@@ -18,13 +16,13 @@ const BLOCK_TYPE_TO_CONTROLS = [
 const BottomControls = () => {
   const {
     isEditable,
-    customEngine: { selectedBlocksStream }
+    editorState: { editMode },
+    selectedBlocks
   } = useEditor();
-  const selectedBlocks = useStream(selectedBlocksStream);
 
   let ControlComponent = <AddBlockBar />;
 
-  if (!isEditable) {
+  if (!isEditable || editMode === 'Crop') {
     return null;
   }
   const selectedBlockType =
@@ -38,6 +36,10 @@ const BottomControls = () => {
     }
   }
 
-  return <div className={classes.wrapper}>{ControlComponent}</div>;
+  return (
+    <div className={classes.wrapper}>
+      <div className={classes.wrapperCentering}>{ControlComponent}</div>
+    </div>
+  );
 };
 export default BottomControls;

@@ -16,7 +16,7 @@ const ImagesBar = () => {
   } = useEditor();
 
   return (
-    <div className="flex justify-center gap-6">
+    <div className="gap-md inline-flex">
       <div className="flex">
         {ALL_IMAGES.map((uri) => (
           <button key={uri} onClick={() => changeImageFile(uri)}>

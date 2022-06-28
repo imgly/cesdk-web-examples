@@ -24,7 +24,8 @@ const EditTemplateCESDK = ({ templateName, sceneString, onSave, onClose }) => {
                 back: true,
                 save: true
               }
-            }
+            },
+            libraries: { template: false }
           }
         },
         page: {

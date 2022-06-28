@@ -1,5 +1,4 @@
-import isEqual from 'lodash/isEqual';
-import { fan, map, memo, pipe } from './lib/streams';
+import { getImageSize } from './lib/utils';
 
 // Here we wrap the CreativeEngine to fit our use case
 // We do not want to expose the engine to the outside world directly.
@@ -13,33 +12,17 @@ export class CustomEngine {
   // Make sure to dispose the engine.
   dispose = () => this.#engine.dispose();
 
-  #createSource(getter) {
-    // register a handler to receive all events from the engine
-    const engineSource = (handler) => this.#engine.event.subscribe([], handler);
-    return pipe(
-      engineSource,
-      // When an event occurs, retrieve a value from the engine
-      map(getter),
-      // When values are deep-equal, don't emit them multiple times
-      memo(isEqual),
-      // maintain a separate list of subscriptions for this source
-      fan
-    );
-  }
-
-  // Extract and store the currently selected block
-  selectedBlocksStream = this.#createSource(() =>
-    this.getSelectedBlockWithTypes()
-  );
-
-  // Extract and store text properties of the currently selected block
-  selectedTextPropertiesStream = this.#createSource(() =>
-    this.getSelectedTextProperties()
-  );
-
   loadScene = async (url) => {
     await this.#engine.scene.loadFromURL(url);
     this.#engine.editor.addUndoStep();
+  };
+
+  getEditorState = () => {
+    return {
+      editMode: this.#engine.editor.getEditMode(),
+      cursorType: this.#engine.editor.getCursorType(),
+      cursorRotation: this.#engine.editor.getCursorRotation()
+    };
   };
 
   getSelectedBlockWithTypes = () => {
@@ -105,16 +88,36 @@ export class CustomEngine {
     this.addBlockToPage(block);
   };
 
-  addImage = (imageURI) => {
+  addImage = async (imageURI) => {
     const block = this.#engine.block.create('image');
     this.#engine.block.setString(block, 'image/imageFileURI', imageURI);
-    this.setSize(block);
+    const { width, height } = await getImageSize(imageURI);
+    const imageAspectRatio = width / height;
+    const baseHeight = 50;
+
+    this.#engine.block.setHeightMode(block, 'Absolute');
+    this.#engine.block.setHeight(block, baseHeight);
+    this.#engine.block.setWidthMode(block, 'Absolute');
+    this.#engine.block.setWidth(block, baseHeight * imageAspectRatio);
+
     this.addBlockToPage(block);
   };
 
   addShape = (shapeBlockType) => {
     const block = this.#engine.block.create(shapeBlockType);
     this.setSize(block);
+    // Set default parameters for some shape types
+    // When we add a polygon, we add a triangle
+    if (shapeBlockType === 'shapes/polygon') {
+      this.#engine.block.setInt(block, 'shapes/polygon/sides', 3);
+    }
+    // When we add a line, we need to resize the height again
+    else if (shapeBlockType === 'shapes/line') {
+      this.#engine.block.setHeightMode(block, 'Absolute');
+      this.#engine.block.setHeight(block, 1);
+    } else if (shapeBlockType === 'shapes/star') {
+      this.#engine.block.setFloat(block, 'shapes/star/innerDiameter', 0.4);
+    }
     this.addBlockToPage(block);
   };
 
@@ -195,6 +198,7 @@ export class CustomEngine {
           'image/imageFileURI',
           value
         );
+        this.#engine.block.resetCrop(imageElementId);
       });
       this.#engine.editor.addUndoStep();
     }
@@ -220,9 +224,6 @@ export class CustomEngine {
   };
 
   // UNDO & REDO
-  // Streams react to state updates
-  canUndoStream = this.#createSource(() => this.getCanUndo());
-  canRedoStream = this.#createSource(() => this.getCanRedo());
   getCanUndo = () => this.#engine.editor.canUndo();
   getCanRedo = () => this.#engine.editor.canRedo();
   undo = () => this.#engine.editor.undo();
@@ -241,14 +242,6 @@ export class CustomEngine {
       this.#engine.block.destroy(pageId);
     });
     this.#engine.editor.addUndoStep();
-  };
-
-  allAreType = (type) => {
-    return this.#engine.block.findAllSelected().every((blockId) => {
-      return this.#engine.block
-        .getType(blockId)
-        .includes(`//ly.img.ubq/${type}`);
-    });
   };
 
   getAllSelectedElements = (elementType = '') => {
@@ -274,14 +267,24 @@ export class CustomEngine {
 
   // Sets the zoom factor so that the canvas always shows a block fully (with padding).
   // Set scale factor < 1 allows to set some padding.
-  zoomToBlock = (canvasWidth, canvasHeight, block, scaleFactor = 0.7) => {
+  zoomToBlock = (
+    canvasWidth,
+    canvasHeight,
+    block,
+    paddingVertical = 0.75,
+    paddingHorizontal = 0.9
+  ) => {
     let blockWidth = this.#engine.block.getWidth(block),
       blockHeight = this.#engine.block.getHeight(block);
     let widthRatio = canvasWidth / blockWidth,
       heightRatio = canvasHeight / blockHeight;
     let bestRatio = Math.min(widthRatio, heightRatio);
 
-    this.#engine.editor.setZoomLevel(bestRatio * scaleFactor);
+    if (bestRatio === widthRatio) {
+      this.#engine.editor.setZoomLevel(bestRatio * paddingHorizontal);
+    } else {
+      this.#engine.editor.setZoomLevel(bestRatio * paddingVertical);
+    }
 
     // Center Y Position
     this.#engine.block.setPositionY(

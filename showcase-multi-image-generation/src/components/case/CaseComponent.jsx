@@ -83,6 +83,7 @@ const CaseComponent = () => {
   const [reviewBlobs, setReviewBlobs] = useState(new Array(3).fill(null));
 
   useEffect(() => {
+
     CreativeEngine.init({
       license: process.env.REACT_APP_LICENSE
     }).then(async (instance) => {
@@ -146,72 +147,69 @@ const CaseComponent = () => {
   };
 
   return (
-    <div
-      className="flex flex-col items-center justify-center"
-      style={{ paddingTop: '2rem' }}
-    >
-      <h3 className="h4" style={headlineStyle}>
-        API-based Visuals
-      </h3>
-      <div className="flex space-x-2">
-        <input
-          type="text"
-          value={yelpUrl}
-          placeholder="Paste Yelp Restaurant URL"
-          onChange={(e) => setYelpUrl(e.target.value)}
-          style={{ minWidth: 320 }}
-        />
-        {isLoading ? (
-          <button disabled className="button button--primary">
-            Loading
-          </button>
-        ) : (
-          <button
-            onClick={() => {
-              if (!yelpUrl) {
-                setYelpUrl(YELP_EXAMPLES[0].value);
-              }
-              setYelpId(yelpIdFromUrl(yelpUrl || YELP_EXAMPLES[0].value));
-            }}
-            className="button button--primary"
-          >
-            Generate
-          </button>
-        )}
+    <div className="gap-lg flex flex-grow flex-col">
+      <div className="caseHeader caseHeader--no-margin">
+        <h3>Multi Image Generation</h3>
+        <p>
+          Generate multiple designs based on your input with the help of
+          templates. Paste a URL to autogenerate different review card designs.
+        </p>
       </div>
-      <p
-        style={{
-          color: 'rgba(255, 255, 255, 0.65)',
-          marginTop: '20px',
-          marginLeft: '10px'
-        }}
-      >
-        <span style={{ marginRight: '1rem' }}>Or try these examples:</span>
-        {YELP_EXAMPLES.map(({ label, value }) => (
-          <button
-            key={value}
-            style={{ margin: '0 5px ', color: '#471AFF' }}
-            onClick={() => {
-              setYelpUrl(value);
-              setYelpId(yelpIdFromUrl(value));
-            }}
-          >
-            {label}
-          </button>
-        ))}
-      </p>
-
-      <div
-        style={{
-          flexGrow: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
+      <div className="gap-sm flex flex-col">
+        <h3 className="h4" style={headlineStyle}>
+          Paste Yelp Restaurant URL
+        </h3>
+        <div className="gap-sm flex flex-wrap">
+          <input
+            type="text"
+            value={yelpUrl}
+            placeholder={`e.g. ${YELP_EXAMPLES[0].value}`}
+            onChange={(e) => setYelpUrl(e.target.value)}
+            style={inputStyle}
+          />
+          {isLoading ? (
+            <button disabled className="button button--primary">
+              Loading
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                if (!yelpUrl) {
+                  setYelpUrl(YELP_EXAMPLES[0].value);
+                }
+                setYelpId(yelpIdFromUrl(yelpUrl || YELP_EXAMPLES[0].value));
+              }}
+              className="button button--primary"
+            >
+              Generate
+            </button>
+          )}
+        </div>
+        <div style={paragraphStyle}>
+          <span>Or try these examples:</span>
+          <div className="gap-xs flex">
+            {YELP_EXAMPLES.map(({ label, value }) => (
+              <button
+                key={value}
+                style={exampleButtonStyle}
+                onClick={() => {
+                  setYelpUrl(value);
+                  setYelpId(yelpIdFromUrl(value));
+                }}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="gap-sm flex flex-col">
+        <h3 className="h4" style={headlineStyle}>
+          Generated Assets
+        </h3>
         <div style={imageWrapper}>
           {TEMPLATE_PATHS.map(({ width, height, placeholderPath }, index) => (
-            <div style={{ width, position: 'relative' }}>
+            <div style={{ width, position: 'relative' }} key={placeholderPath}>
               <img
                 key={index}
                 src={reviewBlobs[index]?.src || caseAssetPath(placeholderPath)}
@@ -235,20 +233,29 @@ const CaseComponent = () => {
   );
 };
 
+const inputStyle = {
+  minWidth: 320
+};
+
 const imageWrapper = {
   display: 'flex',
+  alignItems: 'center',
   flexWrap: 'wrap',
   gap: '3rem',
-  marginTop: '2rem',
-  overflow: 'auto',
-  justifyContent: 'center',
-  alignItems: 'center'
+  overflow: 'auto'
 };
 
 const headlineStyle = {
-  marginBottom: '1rem',
-  color: 'white',
-  textAlign: 'center'
+  color: 'white'
 };
+
+const paragraphStyle = {
+  color: 'rgba(255, 255, 255, 0.65)',
+  display: 'flex',
+  columnGap: '1rem',
+  flexWrap: 'wrap'
+};
+
+const exampleButtonStyle = { color: '#471AFF' };
 
 export default CaseComponent;
