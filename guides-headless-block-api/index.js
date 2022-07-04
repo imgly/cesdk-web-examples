@@ -1,15 +1,15 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.3/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.3/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  // highlight-setup
   const scene = engine.scene.create();
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
+  // highlight-setup
 
   // Lifecycle
 
@@ -144,7 +144,7 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-isStrokeEnabled
   const strokeIsEnabled = engine.block.isStrokeEnabled(block);
   // highlight-setStrokeColorRGBA
-  engine.block.setStrokeColorRGBA(block, 255, 192, 203, 255);
+  engine.block.setStrokeColorRGBA(block, 1.0, 0.75, 0.8, 1.0);
   // highlight-getStrokeColorRGBA
   const strokeColor = engine.block.getStrokeColorRGBA(block);
   // highlight-setStrokeWidth
@@ -163,6 +163,37 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setStrokeCornerGeometry(block, 'Round');
   // highlight-getStrokeCornerGeometry
   const strokeCornerGeometry = engine.block.getStrokeCornerGeometry(block);
+
+  // highlight-hasDropShadow
+  const hasDropShadow = engine.block.hasDropShadow(block);
+  // highlight-setDropShadowEnabled
+  engine.block.setDropShadowEnabled(block, true);
+  // highlight-isDropShadowEnabled
+  const dropShadowIsEnabled = engine.block.isDropShadowEnabled(block);
+  // highlight-setDropShadowColorRGBA
+  engine.block.setDropShadowColorRGBA(block, 1.0, 0.75, 0.8, 1.0);
+  // highlight-getDropShadowColorRGBA
+  const dropShadowColor = engine.block.getStrokeColorRGBA(block);
+  // highlight-setDropShadowXYOffset
+  engine.block.setDropShadowXOffset(block, -10);
+  engine.block.setDropShadowYOffset(block, 5);
+  // highlight-setDropShadowXYOffset
+  // highlight-getDropShadowXYOffset
+  const dropShadowXOffset = engine.block.getDropShadowXOffset(block);
+  const dropShadowYOffset = engine.block.getDropShadowYOffset(block);
+  // highlight-getDropShadowXYOffset
+  // highlight-setDropShadowXYBlurRadius
+  engine.block.setDropShadowXBlurRadius(block, -10);
+  engine.block.setDropShadowYBlurRadius(block, 5);
+  // highlight-setDropShadowXYBlurRadius
+  // highlight-getDropShadowXYBlurRadius
+  const dropShadowXBlurRadius = engine.block.getDropShadowXBlurRadius(block);
+  const dropShadowYBlurRadius = engine.block.getDropShadowYBlurRadius(block);
+  // highlight-getDropShadowXYBlurRadius
+  // highlight-setDropShadowClip
+  engine.block.setDropShadowClip(block, false)
+  // highlight-getDropShadowClip
+  const dropShadowClip = engine.block.getDropShadowClip(block);
 
   // highlight-hasFill
   const hasFill = engine.block.hasFill(block);
@@ -197,5 +228,7 @@ CreativeEngine.init(config).then(async (engine) => {
   const referencesVariables = engine.block.referencesAnyVariables(block);
 
   // highlight-export
-  const blob = await engine.block.export(scene, 'image/png');
+  const blob = await engine.block.export(scene, 'image/png', {
+    pngCompressionLevel: 6
+  });
 });
