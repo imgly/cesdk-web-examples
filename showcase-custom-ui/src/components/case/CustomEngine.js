@@ -53,26 +53,22 @@ export class CustomEngine {
     };
   };
 
-  enablePreviewMode = (canvasWidth, canvasHeight) => {
+  enablePreviewMode = () => {
     this.deselectAllBlocks();
     const backdropImageBlock = this.getBackdropImage();
-    this.zoomToBlock(canvasWidth, canvasHeight, backdropImageBlock);
+    this.#engine.scene.zoomToBlock(backdropImageBlock, 0, 60, 0, 20);
 
     this.#engine.editor.setSettingBool('ubq://page/dimOutOfPageAreas', false);
     this.#engine.block.setClipped(this.getPage(), true);
-    this.#engine.block.setBool(
-      this.getPage(),
-      'backgroundColor/enabled',
-      false
-    );
+    this.#engine.block.setBool(this.getPage(), 'fill/enabled', false);
   };
 
-  enableEditMode = (canvasWidth, canvasHeight) => {
-    this.zoomToBlock(canvasWidth, canvasHeight, this.getPage());
+  enableEditMode = () => {
+    this.#engine.scene.zoomToBlock(this.getPage(), 0, 50, 0, 100);
 
     this.#engine.editor.setSettingBool('ubq://page/dimOutOfPageAreas', true);
     this.#engine.block.setClipped(this.getPage(), false);
-    this.#engine.block.setBool(this.getPage(), 'backgroundColor/enabled', true);
+    this.#engine.block.setBool(this.getPage(), 'fill/enabled', true);
   };
 
   addText = () => {
@@ -263,35 +259,6 @@ export class CustomEngine {
       (block) => this.#engine.block.getType(block) === '//ly.img.ubq/image'
     );
     return imageId;
-  };
-
-  // Sets the zoom factor so that the canvas always shows a block fully (with padding).
-  // Set scale factor < 1 allows to set some padding.
-  zoomToBlock = (
-    canvasWidth,
-    canvasHeight,
-    block,
-    paddingVertical = 0.75,
-    paddingHorizontal = 0.9
-  ) => {
-    let blockWidth = this.#engine.block.getWidth(block),
-      blockHeight = this.#engine.block.getHeight(block);
-    let widthRatio = canvasWidth / blockWidth,
-      heightRatio = canvasHeight / blockHeight;
-    let bestRatio = Math.min(widthRatio, heightRatio);
-
-    if (bestRatio === widthRatio) {
-      this.#engine.editor.setZoomLevel(bestRatio * paddingHorizontal);
-    } else {
-      this.#engine.editor.setZoomLevel(bestRatio * paddingVertical);
-    }
-
-    // Center Y Position
-    this.#engine.block.setPositionY(
-      this.getCamera(),
-      this.#engine.block.getHeight(block) / 2 +
-        this.#engine.block.getPositionY(block)
-    );
   };
 
   getCamera = () => this.#engine.block.findByType('camera')[0];

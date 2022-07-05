@@ -110,13 +110,10 @@ export const EditorProvider = ({ children }) => {
     if (!isLoaded || !canvas) {
       return;
     }
-    // Use canvas width and height attributes as it this might be double the
-    // values of the bounding box due to devicePixelRatio
-    const { width, height } = canvas;
     if (viewMode === 'edit') {
-      customEngine.enableEditMode(width, height);
+      customEngine.enableEditMode();
     } else {
-      customEngine.enablePreviewMode(width, height);
+      customEngine.enablePreviewMode();
     }
     // eslint-disable-next-line
   }, [isLoaded, canvas, viewMode]);

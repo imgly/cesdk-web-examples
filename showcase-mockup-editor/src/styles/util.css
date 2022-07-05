@@ -1,0 +1,107 @@
+/* SMALL SET OF UTILITY CLASSES FOR WRAPPERS */
+/* Using Tailwind classes / sizes */
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-basis-0 {
+  flex-basis: 0;
+}
+
+.space-x-1>*+* {
+  margin-left: 0.25rem;
+}
+
+.space-x-2>*+* {
+  margin-left: 0.5rem;
+}
+
+.space-x-3>*+* {
+  margin-left: 0.75rem;
+}
+
+.space-y-1>*+* {
+  margin-top: 0.25rem;
+}
+
+.space-y-2>*+* {
+  margin-top: 0.5rem;
+}
+
+.space-y-2>*+* {
+  margin-top: 0.75rem;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.rounded {
+  border-radius: 0.75rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.gap-xs {
+  gap: 0.5rem
+}
+
+.gap-sm {
+  gap: 1rem
+}
+
+.gap-md {
+  gap: 1.5rem
+}
+
+.gap-lg {
+  gap: 2rem
+}
+
+/* HR */
+hr {
+  color: rgba(22, 22, 23, 0.15);
+}

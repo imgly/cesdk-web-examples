@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import classes from './CaseComponent.module.css';
-import EditInstanceCESDK from './components/EditInstanceCESDK/EditInstanceCESDK.jsx';
-import EditTemplateCESDK from './components/EditTemplateCESDK/EditTemplateCESDK.jsx';
-import InstanceImage from './components/InstanceImage/InstanceImage.jsx';
-import TemplateEditButton from './components/TemplateEditButton/TemplateEditButton.jsx';
-import TemplateSelectButton from './components/TemplateSelectButton/TemplateSelectButton.jsx';
+import EditInstanceCESDK from './components/EditInstanceCESDK/EditInstanceCESDK';
+import EditTemplateCESDK from './components/EditTemplateCESDK/EditTemplateCESDK';
+import InstanceImage from './components/InstanceImage/InstanceImage';
+import TemplateEditButton from './components/TemplateEditButton/TemplateEditButton';
+import TemplateSelectButton from './components/TemplateSelectButton/TemplateSelectButton';
 import { EMPLOYEES, TEMPLATES } from './data';
 import { caseAssetPath, replaceImages } from './util';
 

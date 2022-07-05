@@ -1,4 +1,4 @@
-# Usie a custom URI resolver
+# Use a custom URI resolver
 
 
 ## Running the sample

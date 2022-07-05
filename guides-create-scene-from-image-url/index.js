@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.1/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.3/cesdk.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.1/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.3/assets',
   // highlight-initialImageURL
   initialImageURL: 'https://img.ly/static/ubq_samples/sample_4.jpg'
   // highlight-initialImageURL

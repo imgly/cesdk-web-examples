@@ -77,7 +77,7 @@ const CaseComponent = () => {
       const text = engineRef.current.block.findByType('//ly.img.ubq/text')[1];
       engineRef.current.block.setColorRGBA(
         page,
-        'backgroundColor/color',
+        'fill/solid/color',
         colorRGBA.r / 255,
         colorRGBA.g / 255,
         colorRGBA.b / 255,
