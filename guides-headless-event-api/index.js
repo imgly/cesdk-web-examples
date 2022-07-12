@@ -1,15 +1,15 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.4/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.4/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  // highlight-setup
   const scene = engine.scene.create();
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
+  // highlight-setup
 
   const star = engine.block.create('shapes/star');
   engine.block.appendChild(page, star);

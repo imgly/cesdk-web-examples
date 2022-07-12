@@ -1,16 +1,14 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.4/cesdk.umd.js';
 
 const config = {
   ui: {
     // docs-ui-elements
     elements: {
-      // docs-ui-adopterview
+      // docs-ui-view
       view: {
-        adopter: {
-          style: 'default' // 'default' or 'advanced'
-        }
+        style: 'default' // 'default' or 'advanced'
       },
-      // docs-ui-adopterview
+      // docs-ui-view
       // docs-ui-navigation
       navigation: {
         show: true, // 'false' to hide the navigation completely
@@ -47,16 +45,20 @@ const config = {
       // docs-ui-dock
       // docs-ui-libraries
       libraries: {
-        template: true, // true or false
-        image: true, // true or false
-        text: true, // true or false
-        element: true, // true or false
+        insert: {
+          entries: (defaultEntries) => defaultEntries
+        },
+        replace: {
+          entries: (defaultEntries) => defaultEntries
+        },
         panel: {
           insert: {
-            floating: true // true or false
+            floating: true, // true or false
+            autoClose: false // true or false
           },
           replace: {
-            floating: true // true or false
+            floating: true, // true or false
+            autoClose: false // true or false
           }
         }
       },
