@@ -1,19 +1,19 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.5/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.5/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  // highlight-setup
   let scene = engine.scene.create();
   scene = await engine.scene.createFromImage(
     'https://img.ly/static/ubq_samples/sample_4.jpg'
   );
+  // highlight-setup
 
   // highlight-onStateChanged
-  const unsubscribe = engine.editor.onStateChanged(() => console.log('Editor state has changed'));
+  const unsubscribeState = engine.editor.onStateChanged(() => console.log('Editor state has changed'));
 
   // highlight-editMode
   engine.editor.setEditMode('Crop');
@@ -24,14 +24,11 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.editor.getCursorType();
   engine.editor.getCursorRotation();
   // highlight-cursor
-  
+
   // highlight-textCursor
   engine.editor.getTextCursorPositionInScreenSpaceX();
   engine.editor.getTextCursorPositionInScreenSpaceY();
   // highlight-textCursor
-
-  // highlight-zoom
-  engine.editor.setZoomLevel(2.0 * engine.editor.getZoomLevel());
 
   // highlight-addUndoStep
   engine.editor.addUndoStep();
@@ -47,6 +44,9 @@ CreativeEngine.init(config).then(async (engine) => {
     engine.editor.redo();
   }
   // highlight-redo
+
+  // highlight-onSettingsChanged
+  const unsubscribeSettings = engine.editor.onSettingsChanged(() => console.log('Editor settings have changed'));
 
   // highlight-setSettingBool
   engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', true);

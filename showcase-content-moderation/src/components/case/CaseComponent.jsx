@@ -53,13 +53,55 @@ const ImageComplianceCESDK = () => {
       },
       callbacks: {
         onSave
+      },
+      // Begin standard template presets
+      presets: {
+        templates: {
+          postcard_1: {
+            label: 'Postcard Design',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.png`
+          },
+          postcard_2: {
+            label: 'Postcard Tropical',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.png`
+          },
+          business_card_1: {
+            label: 'Business card',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.png`
+          },
+          instagram_photo_1: {
+            label: 'Instagram photo',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
+          },
+          instagram_story_1: {
+            label: 'Instagram story',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.png`
+          },
+          poster_1: {
+            label: 'Poster',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.png`
+          },
+          presentation_4: {
+            label: 'Presentation',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.png`
+          },
+          collage_1: {
+            label: 'Collage',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.png`
+          }
+        }
       }
+      // End standard template presets
     };
-    if (
-      navigator.userAgent !== 'ReactSnap' &&
-      cesdk_container.current &&
-      !cesdkRef.current
-    ) {
+    if (cesdk_container.current && !cesdkRef.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
           cesdkRef.current = instance;
@@ -90,32 +132,20 @@ const ImageComplianceCESDK = () => {
   );
 
   return (
-    <div style={wrapperStyle} className="space-y-2">
+    <div style={wrapperStyle}>
       <div style={headerStyle}>
         <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-around',
-            alignItems: 'start',
-            maxWidth: 320
-          }}
+          className="gap-sm flex flex-col items-start"
+          style={caseHeaderStyle}
         >
           <div>
-            <h3 className="h4" style={{ color: 'white' }}>
-              Content Moderation
-            </h3>
-            <p
-              style={{
-                fontWeight: 400,
-                fontSize: '14px',
-                lineHeight: '20px',
-                color: 'rgba(255, 255, 255, 0.65)'
-              }}
-            >
-              Check images for compliance with your content guidelines before
-              further processing and provide user feedback.
-            </p>
+            <div className="caseHeader caseHeader--no-margin">
+              <h3>Content Moderation</h3>
+              <p>
+                Check images for compliance with your content guidelines before
+                further processing and provide user feedback.
+              </p>
+            </div>
           </div>
           <button
             onClick={() => runImageModerationCheck()}
@@ -148,10 +178,17 @@ const ImageComplianceCESDK = () => {
     </div>
   );
 };
+
+const caseHeaderStyle = {
+  maxWidth: '50%',
+  marginBottom: 0
+};
+
 const headerStyle = {
   display: 'flex',
   justifyContent: 'space-between',
-  color: 'white'
+  color: 'white',
+  gap: '2rem'
 };
 
 const cesdkStyle = {
@@ -173,7 +210,7 @@ const wrapperStyle = {
   flexGrow: '1',
   display: 'flex',
   flexDirection: 'column',
-  justifyItems: 'center',
-  justifyContent: 'center'
+  gap: '1rem',
+  width: '100%'
 };
 export default ImageComplianceCESDK;
