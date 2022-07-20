@@ -1,19 +1,18 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-rc.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-rc.0/assets'
 };
 
 // Fetch scene file and store it as a string.
 const SCENE_CONTENT = await fetch(
-  'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/assets/templates/cesdk_postcard_1.scene'
+  'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-rc.0/assets/templates/cesdk_postcard_1.scene'
 ).then((response) => {
   return response.text();
 });
 
 CreativeEngine.init(config).then(async (engine) => {
-  // highlight-setup
   // Creating scenes
   // highlight-create
   let scene = engine.scene.create();
@@ -25,13 +24,14 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-createFromImage
   // Export the scene to an image
   let imageData = await engine.block.export(scene);
+  // highlight-setup
 
   // Loading scenes
   // highlight-loadFromString
   scene = engine.scene.loadFromString(SCENE_CONTENT);
   // highlight-loadFromURL
   scene = await engine.scene.loadFromURL(
-    'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/assets/templates/cesdk_postcard_1.scene'
+    'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-rc.0/assets/templates/cesdk_postcard_1.scene'
   );
   imageData = await engine.block.export(scene);
 
@@ -47,13 +47,19 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.scene.applyTemplateFromString(SCENE_CONTENT);
   // highlight-applyTemplateFromURL
   engine.scene.applyTemplateFromURL(
-    'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/assets/templates/cesdk_postcard_1.scene'
+    'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-rc.0/assets/templates/cesdk_postcard_1.scene'
   );
 
   // Get the scene id
   // highlight-get
   scene = engine.scene.get();
   // highlight-get
+
+  // highlight-zoom
+  engine.scene.setZoomLevel(1.0);
+  engine.scene.setZoomLevel(0.5 * engine.scene.getZoomLevel());
+  await engine.scene.zoomToBlock(scene, 20.0, 20.0, 20.0, 20.0);
+  // highlight-zoom
 
   engine.dispose();
 });

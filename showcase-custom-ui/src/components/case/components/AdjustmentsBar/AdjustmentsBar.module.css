@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.innerWrapper {
+  display: flex;
+  padding: 0.25rem 4px;
+  justify-content: center;
+  background: #F2F2F2;
+  border-radius: 33.2818px;
+
+}
+
+.innerWrapper--gap-sm {
+  gap: 0.5rem;
+}
+
+.innerWrapper--gap-md {
+  gap: 1.5rem;
+}

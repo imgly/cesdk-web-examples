@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-rc.0/cesdk.umd.js';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
@@ -9,7 +9,7 @@ const unsplashApi = unsplash.createApi({
 // highlight-unsplash-api-creation
 
 // highlight-unsplash-findAssets
-const findUnsplashAssets = async (type, queryData) => {
+const findUnsplashAssets = async (queryData) => {
   // highlight-unsplash-findAssets
   if (queryData.query) {
     // highlight-unsplash-query
@@ -73,7 +73,7 @@ const findUnsplashAssets = async (type, queryData) => {
 };
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-rc.0/assets',
   assetSources: {
     // highlight-unsplash-definition
     unsplash: {
@@ -105,9 +105,6 @@ function translateToAssetResult(image) {
     // highlight-result-id
     id: image.id,
     // highlight-result-id
-    // highlight-result-type
-    type: 'ly.img.image',
-    // highlight-result-type
     // highlight-result-locale
     locale: 'en',
     // highlight-result-locale
