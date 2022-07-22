@@ -1,0 +1,27 @@
+html {
+  font-size: 16px;
+  line-height: 1.45;
+
+  -webkit-font-smoothing: antialiased;
+
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  color: var(--text-dark-high-emphasis);
+  font-weight: 400;
+  font-size: var(--font-regular-size);
+  font-family: var(--font-family-ibm-sans);
+  line-height: 180%;
+
+  hyphens: auto;
+
+  background-color: var(--background-color);
+  word-break: break-word;
+
+  -webkit-font-smoothing: antialiased;
+}

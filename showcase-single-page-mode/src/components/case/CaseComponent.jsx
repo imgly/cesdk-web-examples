@@ -23,13 +23,16 @@ const CaseComponent = () => {
       },
       ui: {
         elements: {
+          libraries: {
+            template: false
+          },
           panels: {
             settings: true
           }
         }
       }
     };
-    if (navigator.userAgent !== 'ReactSnap' && cesdk_container.current) {
+    if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         async (instance) => {
           pageIds.current = await instance.unstable_getPages();
@@ -50,26 +53,37 @@ const CaseComponent = () => {
   }, [activePageId]);
 
   return (
-    <div style={wrapperStyle} className="space-y-2">
-      <div className="space-y flex flex-col items-center space-y-2">
-        <div className="flex space-x-2">
-          {pageIds.current && (
-            <SegmentedControl
-              options={[
-                { label: 'Front page', value: pageIds.current?.[0] },
-                { label: 'Back page', value: pageIds.current?.[1] }
-              ]}
-              value={activePageId}
-              name="pageId"
-              onChange={(value) => setActivePageId(value)}
-              size="md"
-            />
-          )}
-        </div>
+    <div className="flex h-full w-full flex-col">
+      <div className="caseHeader">
+        <h3>Single Page Mode</h3>
+        <p>
+          Display one page at a time and switch between the pages of your design
+          with a clear focus for multi-page use cases, e.g., various print
+          products.
+        </p>
       </div>
 
-      <div style={cesdkWrapperStyle}>
-        <div ref={cesdk_container} style={cesdkStyle}></div>
+      <div style={wrapperStyle} className="space-y-2">
+        <div className="space-y flex flex-col space-y-2">
+          <div className="flex space-x-2">
+            {pageIds.current && (
+              <SegmentedControl
+                options={[
+                  { label: 'Front', value: pageIds.current?.[0] },
+                  { label: 'Back', value: pageIds.current?.[1] }
+                ]}
+                value={activePageId}
+                name="pageId"
+                onChange={(value) => setActivePageId(value)}
+                size="md"
+              />
+            )}
+          </div>
+        </div>
+
+        <div style={cesdkWrapperStyle}>
+          <div ref={cesdk_container} style={cesdkStyle}></div>
+        </div>
       </div>
     </div>
   );

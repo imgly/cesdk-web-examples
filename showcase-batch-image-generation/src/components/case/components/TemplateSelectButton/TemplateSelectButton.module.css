@@ -1,0 +1,18 @@
+.button {
+  padding: 8px;
+  background: #7B8187;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.button:hover {
+  border: 1px solid #471AFF;
+}
+
+.image {
+  object-fit: contain;
+  width: 140px;
+  height: 140px;
+  transform: translateZ(131px);
+}

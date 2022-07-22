@@ -1,0 +1,20 @@
+import * as functions from 'firebase-functions';
+import * as proxy from 'express-http-proxy';
+import * as express from 'express';
+
+const app = express();
+
+app.use(
+  '/',
+  proxy('https://api.unsplash.com', {
+    proxyReqPathResolver: (request) => {
+      const parts = request.url.split('?');
+
+      return `${parts[0]}?client_id=${functions.config().unsplash.key}${
+        parts.length ? `&${parts[1]}` : ''
+      }`;
+    }
+  })
+);
+
+export const photos = functions.https.onRequest(app);

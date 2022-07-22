@@ -24,11 +24,56 @@ const CaseComponent = () => {
             }
           }
         }
+      },
+      // Begin standard template presets
+      presets: {
+        templates: {
+          postcard_1: {
+            label: 'Postcard Design',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.png`
+          },
+          postcard_2: {
+            label: 'Postcard Tropical',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.png`
+          },
+          business_card_1: {
+            label: 'Business card',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.png`
+          },
+          instagram_photo_1: {
+            label: 'Instagram photo',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
+          },
+          instagram_story_1: {
+            label: 'Instagram story',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.png`
+          },
+          poster_1: {
+            label: 'Poster',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.png`
+          },
+          presentation_4: {
+            label: 'Presentation',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.png`
+          },
+          collage_1: {
+            label: 'Collage',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.png`
+          }
+        }
       }
+      // End standard template presets
     };
-
     let cesdk;
-    if (navigator.userAgent !== 'ReactSnap' && cesdk_container.current) {
+    if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
           cesdk = instance;
@@ -49,40 +94,45 @@ const CaseComponent = () => {
   }, [cesdk_container, image]);
 
   return (
-    <div style={wrapperStyle}>
-      {!image && (
-        <h3 className="h4" style={imageSelectionPromptStyle}>
-          Select or upload an image
-        </h3>
-      )}
-      <div
-        style={{
-          ...imageSelectionWrapper,
-          ...((image && imageSelectionWrapperSmallStyle) || {})
-        }}
-      >
-        {IMAGE_URLS.map((someImage) => (
-          <button
-            onClick={() => setImage(someImage)}
-            style={imageButtonStyle}
-            key={someImage.full}
-          >
-            <img
-              src={someImage.thumb}
-              style={{
-                ...imageStyle,
-                ...((image === someImage && imageActiveState) || {})
-              }}
-              alt=""
-            />
-          </button>
-        ))}
+    <div className="flex h-full w-full flex-col">
+      <div className="caseHeader">
+        <h3>Start with an Image</h3>
+        <p>Selecting an image will open an editor with a matching page size.</p>
       </div>
-      {image && (
-        <div style={cesdkWrapperStyle}>
-          <div ref={cesdk_container} style={cesdkStyle}></div>
+
+      <div style={wrapperStyle}>
+        <h3 className="h4" style={imageSelectionPromptStyle}>
+          Select Image
+        </h3>
+        <div
+          style={{
+            ...imageSelectionWrapper,
+            ...((image && imageSelectionWrapperSmallStyle) || {})
+          }}
+        >
+          {IMAGE_URLS.map((someImage) => (
+            <button
+              onClick={() => setImage(someImage)}
+              style={imageButtonStyle}
+              key={someImage.full}
+            >
+              <img
+                src={someImage.thumb}
+                style={{
+                  ...imageStyle,
+                  ...((image === someImage && imageActiveState) || {})
+                }}
+                alt=""
+              />
+            </button>
+          ))}
         </div>
-      )}
+        {image && (
+          <div style={cesdkWrapperStyle}>
+            <div ref={cesdk_container} style={cesdkStyle}></div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -112,7 +162,9 @@ const cesdkStyle = {
   width: '100%',
   flexGrow: 1,
   overflow: 'hidden',
-  borderRadius: '0.75rem'
+  borderRadius: '0.75rem',
+  // For safari:
+  minWidth: '60px'
 };
 const cesdkWrapperStyle = {
   borderRadius: '0.75rem',
@@ -124,8 +176,7 @@ const wrapperStyle = {
   flexGrow: '1',
   display: 'flex',
   flexDirection: 'column',
-  justifyItems: 'center',
-  justifyContent: 'center'
+  gap: '1rem'
 };
 const imageSelectionWrapperSmallStyle = {
   height: 50
@@ -133,8 +184,7 @@ const imageSelectionWrapperSmallStyle = {
 const imageSelectionWrapper = {
   display: 'flex',
   height: 100,
-  marginBottom: '3rem',
-  justifyContent: 'center'
+  gap: '1rem'
 };
 const imageStyle = {
   height: '100%',
@@ -144,13 +194,11 @@ const imageStyle = {
   border: '2px solid transparent'
 };
 const imageButtonStyle = {
-  height: '100%',
-  margin: '1rem'
+  height: '100%'
 };
 const imageActiveState = {
-  outline: '2px solid blue',
-  border: '2px solid #7B8187'
+  border: '2px solid #471aff'
 };
-const imageSelectionPromptStyle = { color: 'white', textAlign: 'center' };
+const imageSelectionPromptStyle = { color: 'white' };
 
 export default CaseComponent;
