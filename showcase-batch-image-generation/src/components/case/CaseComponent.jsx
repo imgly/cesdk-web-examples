@@ -158,7 +158,7 @@ const CaseComponent = () => {
         ))}
       </Helmet>
       <div className="caseHeader">
-        <h3>Batch Image Generation</h3>
+        <h3>Image Set Generation</h3>
         <p>Use templates to automatically generate images from data.</p>
       </div>
       <div className={classes.wrapper}>

@@ -150,6 +150,7 @@ const CaseComponent = ({ product = 'postcard' }) => {
       license: process.env.REACT_APP_LICENSE
     };
 
+
     CreativeEngine.init(config).then(async (instance) => {
       await instance.scene.loadFromURL(
         `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
@@ -227,6 +228,8 @@ const CaseComponent = ({ product = 'postcard' }) => {
       }
       // End standard template presets
     };
+
+
     let cesdk;
     let unsubscribe;
     if (cesdkContainerRef.current) {

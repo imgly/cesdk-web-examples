@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-rc.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -173,27 +173,74 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-setDropShadowColorRGBA
   engine.block.setDropShadowColorRGBA(block, 1.0, 0.75, 0.8, 1.0);
   // highlight-getDropShadowColorRGBA
-  const dropShadowColor = engine.block.getStrokeColorRGBA(block);
-  // highlight-setDropShadowXYOffset
-  engine.block.setDropShadowXOffset(block, -10);
-  engine.block.setDropShadowYOffset(block, 5);
-  // highlight-setDropShadowXYOffset
-  // highlight-getDropShadowXYOffset
-  const dropShadowXOffset = engine.block.getDropShadowXOffset(block);
-  const dropShadowYOffset = engine.block.getDropShadowYOffset(block);
-  // highlight-getDropShadowXYOffset
-  // highlight-setDropShadowXYBlurRadius
-  engine.block.setDropShadowXBlurRadius(block, -10);
-  engine.block.setDropShadowYBlurRadius(block, 5);
-  // highlight-setDropShadowXYBlurRadius
-  // highlight-getDropShadowXYBlurRadius
-  const dropShadowXBlurRadius = engine.block.getDropShadowXBlurRadius(block);
-  const dropShadowYBlurRadius = engine.block.getDropShadowYBlurRadius(block);
-  // highlight-getDropShadowXYBlurRadius
+  const dropShadowColor = engine.block.getDropShadowColorRGBA(block);
+  // highlight-setDropShadowOffsetXY
+  engine.block.setDropShadowOffsetX(block, -10);
+  engine.block.setDropShadowOffsetY(block, 5);
+  // highlight-setDropShadowOffsetXY
+  // highlight-getDropShadowOffsetXY
+  const dropShadowOffsetX = engine.block.getDropShadowOffsetX(block);
+  const dropShadowOffsetY = engine.block.getDropShadowOffsetY(block);
+  // highlight-getDropShadowOffsetXY
+  // highlight-setDropShadowBlurRadiusXY
+  engine.block.setDropShadowBlurRadiusX(block, -10);
+  engine.block.setDropShadowBlurRadiusY(block, 5);
+  // highlight-setDropShadowBlurRadiusXY
+  // highlight-getDropShadowBlurRadiusXY
+  const dropShadowBlurRadiusX = engine.block.getDropShadowBlurRadiusX(block);
+  const dropShadowBlurRadiusY = engine.block.getDropShadowBlurRadiusY(block);
+  // highlight-getDropShadowBlurRadiusXY
   // highlight-setDropShadowClip
   engine.block.setDropShadowClip(block, false)
   // highlight-getDropShadowClip
   const dropShadowClip = engine.block.getDropShadowClip(block);
+
+  // highlight-createFill
+  const solidColor = engine.block.createFill('color');
+  // highlight-configureFill
+  engine.block.setColorRGBA(solidColor, 'color/value', 0.44, 0.76, 0.76, 1.0);
+  // highlight-getFill
+  const previousFill = engine.block.getFill(block);
+  // highlight-destroyFill
+  engine.block.destroy(previousFill);
+  // highlight-setFill
+  engine.block.setFill(block, solidColor);
+  // highlight-hasFill
+  engine.block.hasFill(block);
+  // highlight-setFillEnabled
+  engine.block.setFillEnabled(block, false);
+  // highlight-isFillEnabled
+  engine.block.isFillEnabled(block);
+
+  // highlight-createEffect
+  const pixelize = engine.block.createEffect('pixelize');
+  // highlight-configureEffect
+  engine.block.setInt(pixelize, 'pixelize/horizontalPixelSize', 5);
+  // highlight-appendEffect
+  engine.block.appendEffect(block, pixelize);
+  // highlight-hasEffects
+  engine.block.hasEffects(block);
+  // highlight-insertEffect
+  engine.block.insertEffect(block, pixelize, 0);
+  // highlight-removeEffect
+  engine.block.removeEffect(block, 1);
+  // highlight-getEffects
+  engine.block.getEffects(block);
+  // highlight-setEffectEnabled
+  engine.block.setEffectEnabled(pixelize, false);
+  // highlight-isEffectEnabled
+  engine.block.isEffectEnabled(pixelize);
+
+  // highlight-createBlur
+  const radialBlur = engine.block.createBlur('radial');
+  // highlight-configureBlur
+  engine.block.setFloat(radialBlur, 'radial/radius', 100.);
+  // highlight-setBlur
+  engine.block.setBlur(block, radialBlur);
+  engine.block.setBlurEnabled(block, true);
+  // highlight-setBlur
+  // highlight-getBlur
+  const existingBlur = engine.block.getBlur(block);
 
   // highlight-hasFill
   const hasFill = engine.block.hasFill(block);

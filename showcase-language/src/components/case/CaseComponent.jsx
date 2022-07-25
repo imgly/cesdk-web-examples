@@ -82,10 +82,6 @@ const CaseComponent = (props = { locale: 'en' }) => {
     <div className="flex h-full w-full flex-col">
       <div className="caseHeader">
         <h3>Translation & Internationalization</h3>
-        <p>
-          CE.SDK supports English and German by default and allows translations
-          for any other language.
-        </p>
       </div>
 
       <div style={wrapperStyle}>

@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-rc.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -13,7 +13,7 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-setup
 
   // highlight-onStateChanged
-  const unsubscribe = engine.editor.onStateChanged(() => console.log('Editor state has changed'));
+  const unsubscribeState = engine.editor.onStateChanged(() => console.log('Editor state has changed'));
 
   // highlight-editMode
   engine.editor.setEditMode('Crop');
@@ -44,6 +44,9 @@ CreativeEngine.init(config).then(async (engine) => {
     engine.editor.redo();
   }
   // highlight-redo
+
+  // highlight-onSettingsChanged
+  const unsubscribeSettings = engine.editor.onSettingsChanged(() => console.log('Editor settings have changed'));
 
   // highlight-setSettingBool
   engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', true);

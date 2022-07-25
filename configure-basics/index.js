@@ -1,9 +1,9 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.3/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-rc.0/cesdk.umd.js';
 
 // highlight-config
 let config = {
   // highlight-baseurl
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-alpha.3/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-rc.0/assets',
   // highlight-baseurl
   // highlight-locale
   locale: 'en', // 'de'

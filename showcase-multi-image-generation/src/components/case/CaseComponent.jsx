@@ -84,9 +84,10 @@ const CaseComponent = () => {
 
   useEffect(() => {
 
-    CreativeEngine.init({
+    const config = {
       license: process.env.REACT_APP_LICENSE
-    }).then(async (instance) => {
+    };
+    CreativeEngine.init(config).then(async (instance) => {
       engineRef.current = instance;
     });
 

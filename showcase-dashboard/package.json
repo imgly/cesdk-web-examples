@@ -2,9 +2,9 @@
   "name": "showcase-github",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {    
-    "@cesdk/cesdk-js": "1.7.0-alpha.3",
-    "@cesdk/engine": "1.7.0-alpha.3",
+  "dependencies": {
+    "@cesdk/cesdk-js": "1.7.0-rc.0",
+    "@cesdk/engine": "1.7.0-rc.0",
     "airtable": "^0.11.4",
     "chroma-js": "^2.4.2",
     "classnames": "^2.3.1",

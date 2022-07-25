@@ -5,3 +5,5 @@ dist/
 /integrate-with-svelte/public/build
 .DS_Store
 build_github/
+*/build/*
+showcase-*/yarn.lock

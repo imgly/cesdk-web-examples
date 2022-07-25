@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-rc.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-alpha.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -121,8 +121,8 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-getOpacity
   engine.block.getOpacity(image);
 
-  // highlight-hasPlaceholderContent
-  engine.block.hasPlaceholderContent(image);
+  // highlight-showsPlaceholderContent
+  engine.block.showsPlaceholderContent(image);
 
   // highlight-setBlendMode
   engine.block.setBlendMode(image, 'Multiply');
