@@ -1,0 +1,13 @@
+.wrapper {
+  position: absolute;
+  overflow: auto;
+  left: 0;
+  right: 0;
+  bottom: 1rem;
+}
+
+/* We can not use flexbox because otherwise the overflow is broken on small displays  */
+.wrapperCentering {
+  margin: auto;
+  width: fit-content
+}

@@ -1,16 +1,14 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/cesdk.umd.js';
 
 const config = {
   ui: {
     // docs-ui-elements
     elements: {
-      // docs-ui-adopterview
+      // docs-ui-view
       view: {
-        adopter: {
-          style: 'default' // 'default' or 'advanced'
-        }
+        style: 'default' // 'default' or 'advanced'
       },
-      // docs-ui-adopterview
+      // docs-ui-view
       // docs-ui-navigation
       navigation: {
         show: true, // 'false' to hide the navigation completely
@@ -42,22 +40,31 @@ const config = {
       // docs-ui-dock
       dock: {
         iconSize: 'large', // 'large' or 'normal'
-        hideLabels: false // false or true
+        hideLabels: false, // false or true
+        groups: [
+          {
+            id: 'ly.img.template', // string
+            entryIds: ['ly.img.template'] // string[]
+          },
+          {
+            id: 'ly.img.defaultGroup', // string
+            showOverview: true // true or false
+          }
+        ],
+        defaultGroupId: 'ly.img.defaultGroup' // string
       },
       // docs-ui-dock
       // docs-ui-libraries
       libraries: {
-        template: true, // true or false
-        image: true, // true or false
-        text: true, // true or false
-        element: true, // true or false
-        panel: {
-          insert: {
-            floating: true // true or false
-          },
-          replace: {
-            floating: true // true or false
-          }
+        insert: {
+          entries: (defaultEntries) => defaultEntries,
+          floating: true, // true or false
+          autoClose: false // true or false
+        },
+        replace: {
+          entries: (defaultEntries) => defaultEntries,
+          floating: true, // true or false
+          autoClose: false // true or false
         }
       },
       // docs-ui-libraries

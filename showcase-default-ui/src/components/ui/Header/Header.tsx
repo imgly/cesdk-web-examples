@@ -11,7 +11,7 @@ export const Header = () => (
       href={EXTERNAL_PATHS.logoLink}
       target="_blank"
       rel="noreferrer"
-      aria-label="img.ly - Home"
+      title="img.ly - Home"
       id="img-ly-logo"
     >
       <Logo />

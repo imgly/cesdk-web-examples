@@ -1,13 +1,11 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-width: 440px;
-  height: 150px;
+  height: 160px;
   background: #696E73;
   border-radius: 8px;
   color: white;
   flex: 1;
-  max-width: 50%;
 }
 
 .header {
@@ -33,13 +31,7 @@
 
 }
 
-.body {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0.5rem 1rem;
+.checkWrapper {
   overflow: auto;
   border-radius: 0 0 8px 8px;
 
@@ -53,13 +45,16 @@
   background-color: #696E73;
   background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
   background-attachment: local, local, scroll, scroll;
-
 }
 
-.resultRow {
-  display: flex;
-  width: 100%;
-
+.checkGrid {
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-row-gap: 0;
+  grid-template-columns: max-content 1fr max-content;
+  overflow: auto;
+  padding: 0.5rem 1rem;
+  flex-grow: 1;
 }
 
 .checkNameWrapper {
@@ -67,6 +62,10 @@
   flex-basis: 0;
   display: flex;
   align-items: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .checkStatus {

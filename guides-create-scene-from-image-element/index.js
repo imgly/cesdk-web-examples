@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/cesdk.umd.js';
 
 // highlight-element
 const element = document.getElementById("image-element");
@@ -6,7 +6,7 @@ const imageURL = element.src;
 // highlight-element
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.6.3/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/assets',
   // highlight-initialImageURL
   initialImageURL: imageURL
   // highlight-initialImageURL

@@ -3,7 +3,7 @@
   font-family: var(--font-family-gt);
   font-weight: bold;
   font-size: 60px;
-  line-height: 64px;
+  line-height: 68px;
 
   letter-spacing: -0.01em;
 
@@ -14,7 +14,7 @@
   font-family: var(--font-family-gt);
   font-weight: bold;
   font-size: 52px;
-  line-height: 56px;
+  line-height: 60px;
 
   letter-spacing: -0.01em;
 
@@ -24,8 +24,8 @@
 .h3 {
   font-family: var(--font-family-gt);
   font-weight: bold;
-  font-size: 28px;
-  line-height: 32px;
+  font-size: 36px;
+  line-height: 44px;
 
   color: var(--ci-foreground-black-default);
 }
@@ -34,7 +34,7 @@
   font-family: var(--font-family-gt);
   font-weight: bold;
   font-size: 22px;
-  line-height: 30px;
+  line-height: 32px;
 
   letter-spacing: 0.01em;
 
@@ -45,7 +45,7 @@
   font-family: var(--font-family-gt);
   font-weight: bold;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 20px;
 
   letter-spacing: 0.02em;
 
@@ -76,7 +76,7 @@
 .paragraph {
   font-family: var(--font-family-ibm-sans);
   font-weight: normal;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 28px;
 
   letter-spacing: 0.01em;
@@ -89,10 +89,6 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
-
-  display: flex;
-  align-items: center;
   letter-spacing: 0.02em;
-
   color: rgba(22, 22, 23, 0.65);
 }

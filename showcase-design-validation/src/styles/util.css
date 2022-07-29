@@ -1,6 +1,12 @@
 /* SMALL SET OF UTILITY CLASSES FOR WRAPPERS */
+/* Using Tailwind classes / sizes */
+
 .flex {
   display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
 }
 
 .flex-col {
@@ -9,6 +15,14 @@
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-basis-0 {
+  flex-basis: 0;
 }
 
 .space-x-1>*+* {
@@ -47,6 +61,10 @@
   align-items: center;
 }
 
+.items-start {
+  align-items: flex-start;
+}
+
 .rounded {
   border-radius: 0.75rem;
 }
@@ -65,6 +83,22 @@
 
 .text-center {
   text-align: center;
+}
+
+.gap-xs {
+  gap: 0.5rem
+}
+
+.gap-sm {
+  gap: 1rem
+}
+
+.gap-md {
+  gap: 1.5rem
+}
+
+.gap-lg {
+  gap: 2rem
 }
 
 /* HR */

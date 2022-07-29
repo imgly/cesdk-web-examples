@@ -1,126 +1,90 @@
-import CreativeEngine from '@cesdk/cesdk-js/cesdk-engine.umd.js';
+import CreativeEngine from '@cesdk/engine';
 import classNames from 'classnames';
-import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
-import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
-import { TEAMS, STYLES, EMPLOYEES } from './data';
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-
-const caseAssetPath = (path, caseId = 'batch-image-generation') =>
-  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
-
-const replaceImage = (cesdk, imageName, newUrl) => {
-  const img = cesdk.block.findByName(imageName)[0];
-  if (!img) {
-    return;
-  }
-  cesdk.block.setString(img, 'image/imageFileURI', newUrl);
-  cesdk.block.resetCrop(img);
-};
-
-const fillTemplate = (cesdk, team, employee) => {
-  const backgroundPlane = cesdk.block.findByName('Background')[0];
-  cesdk.block.setColorRGBA(
-    backgroundPlane,
-    'fill_color/value',
-    team.primaryColor.r,
-    team.primaryColor.g,
-    team.primaryColor.b,
-    1.0
-  );
-  replaceImage(
-    cesdk,
-    'Gradient',
-    caseAssetPath(`/images/${team.gradientPath}`)
-  );
-  replaceImage(
-    cesdk,
-    'LogoSmall',
-    caseAssetPath(`/images/${team.logoSmallPath}`)
-  );
-  replaceImage(cesdk, 'Logo', caseAssetPath(`/images/${team.logoBigPath}`));
-  replaceImage(cesdk, 'Photo', caseAssetPath(`/images/${employee.imagePath}`));
-  const { r, g, b } = team.textColor;
-  cesdk.variable.setString('Department', employee.department || '');
-  const departmentBlock = cesdk.block.findByName('Department')[0];
-  cesdk.block.setColorRGBA(departmentBlock, 'fill_color/value', r, g, b, 0.6);
-
-  cesdk.variable.setString('FirstName', employee.firstName || '');
-  const firstNameBlock = cesdk.block.findByName('FirstName')[0];
-  cesdk.block.setColorRGBA(firstNameBlock, 'fill_color/value', r, g, b, 1.0);
-
-  cesdk.variable.setString('LastName', employee.lastName || '');
-  const lastNameBlock = cesdk.block.findByName('LastName')[0];
-  cesdk.block.setColorRGBA(lastNameBlock, 'fill_color/value', r, g, b, 1.0);
-
-  cesdk.block.setString(departmentBlock, 'text/fontFileUri', team.fontMedium);
-  cesdk.block.setString(firstNameBlock, 'text/fontFileUri', team.fontMedium);
-  cesdk.block.setString(lastNameBlock, 'text/fontFileUri', team.fontBold);
-};
+import classes from './CaseComponent.module.css';
+import EditInstanceCESDK from './components/EditInstanceCESDK';
+import EditTemplateCESDK from './components/EditTemplateCESDK';
+import InstanceImage from './components/InstanceImage';
+import TemplateEditButton from './components/TemplateEditButton';
+import TemplateSelectButton from './components/TemplateSelectButton';
+import { EMPLOYEES, TEMPLATES } from './data';
+import { caseAssetPath, replaceImages } from './util';
 
 const CaseComponent = () => {
   const engineRef = useRef(null);
 
-  const [currentTeam, setCurrentTeam] = useState();
-  const [currentStyle, setCurrentStyle] = useState(STYLES[0]);
-  const [teamImages, setTeamImages] = useState(new Array(12).fill(null));
+  const [allTemplates, setAllTemplates] = useState(TEMPLATES);
+  const [currentTemplateName, setCurrentTemplateName] = useState('portrait');
+  const currentTemplate = allTemplates[currentTemplateName];
+
+  const [teamImages, setTeamImages] = useState(
+    EMPLOYEES.map((employee) => ({
+      isLoading: true,
+      src: currentTemplate.previewImagePath,
+      sceneString: null,
+      employee
+    }))
+  );
   const [initialized, setInitialized] = useState(false);
+
+  const [showInstanceModal, setShowInstanceModal] = useState(false);
+  const [modalEmployee, setModalEmployee] = useState();
+
+  const [showTemplateModal, setShowTemplateModal] = useState(false);
+  const [modalTemplate, setModalTemplate] = useState();
 
   useEffect(() => {
     const config = {
       license: process.env.REACT_APP_LICENSE,
+      initialSceneString: currentTemplate.sceneString,
       page: {
         title: {
           show: false
         }
       }
     };
-    if (navigator.userAgent !== 'ReactSnap') {
-      CreativeEngine.init(config).then(async (instance) => {
-        await instance.scene.loadFromURL(
-          caseAssetPath(`/${currentStyle.sceneFile}`)
-        );
-        engineRef.current = instance;
-        setInitialized(true);
-      });
-    }
+    CreativeEngine.init(config).then(async (instance) => {
+      engineRef.current = instance;
+      // Workaround to 'Not all extension packs have loaded yet.'
+      setTimeout(() => setInitialized(true), 500);
+    });
 
     return function shutdownCreativeEngine() {
-      engineRef?.current?.dispose();
+      engineRef.current?.dispose();
     };
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     async function renderTeam() {
-      const cesdk = engineRef?.current;
-      if (initialized && cesdk && currentTeam) {
-        if (!currentTeam) {
-          return;
-        }
+      const cesdk = engineRef.current;
+      if (initialized && cesdk) {
         // set image loading state
-        setTeamImages((oldImages) => [
-          ...oldImages.map((image) => ({ ...image, isLoading: true }))
-        ]);
+        setTeamImages(
+          EMPLOYEES.map((employee) => ({
+            isLoading: true,
+            src: currentTemplate.previewImagePath,
+            sceneString: currentTemplate.sceneString,
+            employee
+          }))
+        );
+        // let react render
+        await new Promise((resolve) => setTimeout(resolve, 0));
         // prepare scene
-        await cesdk.scene.loadFromURL(
-          caseAssetPath(`/${currentStyle.sceneFile}`)
-        );
-        // prepare data
-        const employees = EMPLOYEES.filter(
-          (employee) => employee.team === currentTeam.name
-        );
-        for (const [index, employee] of employees.entries()) {
-          fillTemplate(cesdk, currentTeam, employee);
-
-          const blob = await cesdk.block.export(
-            cesdk.block.findByType('scene')[0],
-            currentStyle.outputFormat
+        await cesdk.scene.loadFromString(currentTemplate.sceneString);
+        for (const [index, employee] of EMPLOYEES.entries()) {
+          const { blob, sceneString } = await renderInstance(
+            cesdk,
+            employee,
+            currentTemplate.outputFormat
           );
           setTeamImages((oldImages) => {
             oldImages[index] = {
               isLoading: false,
-              src: URL.createObjectURL(blob)
+              src: URL.createObjectURL(blob),
+              sceneString,
+              employee
             };
             return [...oldImages];
           });
@@ -130,11 +94,59 @@ const CaseComponent = () => {
       }
     }
     renderTeam();
-  }, [currentTeam, currentStyle, engineRef, initialized]);
+  }, [currentTemplate, engineRef, initialized]);
+
+  const onEditInstance = (image) => {
+    setModalEmployee(image);
+    setShowInstanceModal(true);
+  };
+  const onEditTemplate = (template) => {
+    setModalTemplate(template);
+    setShowTemplateModal(true);
+  };
+
+  const onUpdateImageInstance = async (sceneString, imageToUpdate) => {
+    const cesdk = engineRef.current;
+
+    // Render Scene from updated sceneString
+    await cesdk.scene.loadFromString(sceneString);
+    setInstanceVariables(cesdk, imageToUpdate.employee);
+    const blob = await cesdk.block.export(
+      cesdk.block.findByType('scene')[0],
+      currentTemplate.outputFormat
+    );
+    // Save updated scene and blob for this person
+    imageToUpdate.sceneString = sceneString;
+    imageToUpdate.src = URL.createObjectURL(blob);
+    setShowInstanceModal(false);
+  };
+
+  const handleTemplateEdit = async (sceneString) => {
+    const cesdk = engineRef.current;
+
+    // Render Scene from updated sceneString
+    await cesdk.scene.loadFromString(sceneString);
+    removeInstanceVariables(cesdk);
+    const blob = await cesdk.block.export(
+      cesdk.block.findByType('scene')[0],
+      currentTemplate.outputFormat
+    );
+    const updatedTemplate = {
+      ...currentTemplate,
+      sceneString,
+      previewImagePath: URL.createObjectURL(blob)
+    };
+    setAllTemplates({
+      ...allTemplates,
+      [currentTemplateName]: updatedTemplate
+    });
+    setShowTemplateModal(false);
+  };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-grow flex-col">
       <Helmet>
+        {/* Preload images so they are already loaded in cache. */}
         {EMPLOYEES.map((employee) => (
           <link
             rel="preload"
@@ -145,115 +157,124 @@ const CaseComponent = () => {
           />
         ))}
       </Helmet>
-      <div style={{ paddingTop: '2rem' }}>
-        <h3 className="h4" style={headlineStyle}>
-          Generate Team Cards
-        </h3>
-        <div className="flex flex-row items-center space-x-2">
-          <div className="select-wrapper flex-grow" style={{ minWidth: 190 }}>
-            <select
-              name="currentTeam"
-              id="currentTeam"
-              className={classNames(
-                'select',
-                !currentTeam?.name && 'select--placeholder'
-              )}
-              value={currentTeam?.name || 'placeholder'}
-              onChange={(e) =>
-                setCurrentTeam(
-                  TEAMS.find(
-                    (currentTeam) => currentTeam.name === e.target.value
-                  )
-                )
-              }
-            >
-              <option value="placeholder" disabled>
-                Select Company
-              </option>
-              {TEAMS.map(({ name }) => (
-                <option key={name} value={name}>
-                  {name}
-                </option>
-              ))}
-            </select>
+      <div className="caseHeader">
+        <h3>Batch Image Generation</h3>
+        <p>Use templates to automatically generate images from data.</p>
+      </div>
+      <div className={classes.wrapper}>
+        <div className="gap-sm flex flex-col items-start">
+          <div>
+            <h4 className={classNames('h4', classes.headline)}>Templates</h4>
+            <p className={classes.description}>
+              Edit a template to change all images.
+            </p>
           </div>
-          <SegmentedControl
-            options={STYLES.map(({ name }) => ({
-              value: name,
-              label: name
-            }))}
-            value={currentStyle.name}
-            name="currentStyle"
-            onChange={(value) => {
-              const style = STYLES.find((style) => style.name === value);
-              if (style.name !== currentStyle.name) {
-                setTeamImages(new Array(12).fill(null));
-                setCurrentStyle(style);
+          <div className={classes.templateWrapper}>
+            {Object.entries(allTemplates).map(([templateName, template]) => {
+              if (templateName === currentTemplateName) {
+                return (
+                  <TemplateEditButton
+                    key={templateName}
+                    template={template}
+                    onClick={() => onEditTemplate(template)}
+                  />
+                );
+              } else {
+                return (
+                  <TemplateSelectButton
+                    key={templateName}
+                    template={template}
+                    onClick={() => {
+                      if (templateName !== currentTemplateName) {
+                        setCurrentTemplateName(templateName);
+                      }
+                    }}
+                  />
+                );
               }
-            }}
-            size="md"
-          />
+            })}
+          </div>
         </div>
-      </div>
-      <div style={contentWrapper}>
-        <div style={imageWrapper}>
-          {teamImages.map((image, index) => {
-            const placeholderSrc = caseAssetPath(
-              `/images/${currentStyle.placeholderPath}`
-            );
-            const placeholderSrc2 = caseAssetPath(
-              `/images/${currentStyle.placeholder2xPath}`
-            );
-            return (
-              <div style={{ width: currentStyle.width, position: 'relative' }}>
-                <img
+
+        <div className="gap-sm flex flex-col">
+          <div>
+            <h4 className={classNames('h4', classes.headline)}>
+              Generated Cards
+            </h4>
+            <p className={classes.description}>
+              Edit individual cards leaving all others unchanged.
+            </p>
+          </div>
+          <div className={classes.contentWrapper}>
+            <div className={classes.imageWrapper}>
+              {teamImages.map((image, index) => (
+                <InstanceImage
                   key={index}
-                  alt=""
-                  src={image?.src || placeholderSrc}
-                  srcSet={`${image?.src || placeholderSrc} 1x, ${
-                    image?.src || placeholderSrc2
-                  } 2x`}
-                  style={{
-                    opacity: image?.isLoading ? 0.5 : 1,
-                    transition: 'opacity .5s',
-                    transitionTimingFunction: 'ease-in-out',
-                    maxWidth: Math.max(...STYLES.map(({ width }) => width)),
-                    maxHeight: Math.max(...STYLES.map(({ height }) => height)),
-                    objectFit: 'contain'
-                  }}
+                  image={image}
+                  currentTemplate={currentTemplate}
+                  onClick={() => onEditInstance(image)}
+                  maxWidth={Math.max(
+                    ...Object.values(allTemplates).map(({ width }) => width)
+                  )}
+                  maxHeight={Math.max(
+                    ...Object.values(allTemplates).map(({ height }) => height)
+                  )}
                 />
-                {image?.isLoading && <LoadingSpinner />}
-              </div>
-            );
-          })}
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+      {showInstanceModal && (
+        <EditInstanceCESDK
+          firstName={modalEmployee.employee.firstName}
+          lastName={modalEmployee.employee.lastName}
+          department={modalEmployee.employee.department}
+          styleName={currentTemplateName}
+          sceneString={modalEmployee.sceneString}
+          onClose={() => setShowInstanceModal(false)}
+          onSave={async (sceneString) => {
+            const updatedTeamImage = teamImages.find(
+              ({ employee }) =>
+                employee.lastName === modalEmployee.employee.lastName
+            );
+            onUpdateImageInstance(sceneString, updatedTeamImage);
+          }}
+        />
+      )}
+      {showTemplateModal && (
+        <EditTemplateCESDK
+          templateName={modalTemplate.label}
+          sceneString={modalTemplate.sceneString}
+          onSave={handleTemplateEdit}
+          onClose={() => setShowTemplateModal(false)}
+        />
+      )}
     </div>
   );
 };
 
-const contentWrapper = {
-  flexGrow: 1,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center'
+const removeInstanceVariables = (cesdk) => {
+  cesdk.variable.remove('Department');
+  cesdk.variable.remove('FirstName');
+  cesdk.variable.remove('LastName');
+};
+const setInstanceVariables = (cesdk, { department, firstName, lastName }) => {
+  cesdk.variable.setString('Department', department || '');
+  cesdk.variable.setString('FirstName', firstName || '');
+  cesdk.variable.setString('LastName', lastName || '');
 };
 
-const imageWrapper = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: '2rem',
-  marginTop: '2rem',
-  overflow: 'auto',
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexGrow: '1',
-  maxWidth: '800px'
+const renderInstance = async (cesdk, employee, outputFormat) => {
+  replaceImages(cesdk, 'Photo', caseAssetPath(`/images/${employee.imagePath}`));
+  setInstanceVariables(cesdk, employee);
+
+  const blob = await cesdk.block.export(
+    cesdk.block.findByType('page')[0],
+    outputFormat
+  );
+  const sceneString = await cesdk.scene.saveToString();
+  return { blob, sceneString };
 };
 
-const headlineStyle = {
-  marginBottom: '1rem',
-  color: 'white',
-  textAlign: 'center'
-};
 export default CaseComponent;
