@@ -1,0 +1,136 @@
+.headerStyle {
+  height: 200px;
+}
+
+.previewImageStyle {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.smokeScreenStyle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(123, 129, 135, 0.6);
+  z-index: 99;
+  transition: 0.3s;
+}
+
+.fullscreenMockupCenterStyle {
+  display: grid;
+  position: absolute;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  box-sizing: border-box;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0
+}
+
+.fullscreenMockupWrapperStyle {
+  overflow: hidden;
+  position: absolute;
+  z-index: 999999;
+  aspect-ratio: 16/10;
+  width: unset;
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12);
+  border-radius: 12px;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.button.button--primary {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 100%), #3D5CF5;
+  color: white
+}
+
+.button.button--primary:hover {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 100%), #6a82ff;
+}
+
+.button.button--solid {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%), rgba(255, 255, 255, 0.85);
+}
+
+.topBarStyle {
+  position: absolute;
+  left: 0rem;
+  right: 0;
+  top: 0rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: 0.3s;
+}
+
+.mockupWrapperStyle .topBarStyle {
+  opacity: 0.6;
+}
+
+.fullscreenMockupCenterStyle .topBarStyle {
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.mockupWrapperStyle:hover .topBarStyle {
+  opacity: 1;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.button {
+  transition: 0.3s;
+  border-radius: 6px;
+  padding: 0 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #161617;
+}
+
+.mockupWrapperStyle:hover .button {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%), rgba(255, 255, 255, 0.85);
+}
+
+.mockupWrapperStyle {
+  background: #D6DBE1;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  width: 340px;
+  min-width: 240px;
+  height: 200px
+}
+
+.cesdkStyle {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0.75rem
+}
+
+.wrapperStyle {
+  border-radius: 0.75rem;
+  flex-grow: 1;
+  min-height: 0;
+  box-shadow:
+    0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)
+}

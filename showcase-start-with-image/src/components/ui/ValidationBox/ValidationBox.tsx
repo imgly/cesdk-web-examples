@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ReactNode, useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import StyledPopover from '../StyledPopover/StyledPopover';
 import BlockLabel, { IBlockLabel } from './BlockLabel';
 import { ReactComponent as CheckIcon } from './icons/check.svg';
@@ -44,43 +44,48 @@ const ValidationBox = ({
           {unsuccessfulResults.length} results
         </span>
       </div>
-      <div className={styles.body}>
-        {unsuccessfulResults.map((result) => (
-          <div className={styles.resultRow} key={result.id}>
-            <span className={styles.checkNameWrapper + ' space-x-2'}>
-              <span
-                className={classNames(
-                  styles.checkStatus,
-                  styles['checkStatus--' + result.state]
-                )}
-              ></span>
-              <span className={styles.checkName}>{result.validationName}</span>
 
-              <StyledPopover
-                content={
-                  <ValidationPopover
-                    validationTitle={result.validationName}
-                    validationDescription={result.validationDescription}
-                  />
-                }
-              >
-                <InfoIcon style={{ cursor: 'pointer' }} />
-              </StyledPopover>
-            </span>
-            <BlockLabel
-              blockType={result.blockType}
-              blockName={result.blockName}
-            />
-            <button className={styles.checkCTA} onClick={result.onClick}>
-              Select
-            </button>
-          </div>
-        ))}
-        {checkStatus === 'pending' && results.length === 0 && emptyComponent}
-        {checkStatus === 'performed' &&
-          unsuccessfulResults.length === 0 &&
-          successComponent}
+      <div className={styles.checkWrapper}>
+        <div className={styles.checkGrid}>
+          {unsuccessfulResults.map((result) => (
+            <React.Fragment key={result.id}>
+              <span className={styles.checkNameWrapper + ' space-x-2'}>
+                <span
+                  className={classNames(
+                    styles.checkStatus,
+                    styles['checkStatus--' + result.state]
+                  )}
+                ></span>
+                <span className={styles.checkName}>
+                  {result.validationName}
+                </span>
+
+                <StyledPopover
+                  content={
+                    <ValidationPopover
+                      validationTitle={result.validationName}
+                      validationDescription={result.validationDescription}
+                    />
+                  }
+                >
+                  <InfoIcon style={{ cursor: 'pointer' }} />
+                </StyledPopover>
+              </span>
+              <BlockLabel
+                blockType={result.blockType}
+                blockName={result.blockName}
+              />
+              <button className={styles.checkCTA} onClick={result.onClick}>
+                Select
+              </button>
+            </React.Fragment>
+          ))}
+        </div>
       </div>
+      {checkStatus === 'pending' && results.length === 0 && emptyComponent}
+      {checkStatus === 'performed' &&
+        unsuccessfulResults.length === 0 &&
+        successComponent}
     </div>
   );
 };
