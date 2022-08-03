@@ -10,8 +10,9 @@ interface ISegmentedControl {
   name: string;
   label: string;
   value: string;
-  onChange: (value: string) => void;
+  buttonStyle: React.CSSProperties;
   size: 'sm' | 'md';
+  onChange: (value: string) => void;
 }
 
 const SegmentedControl = ({
@@ -19,6 +20,7 @@ const SegmentedControl = ({
   value,
   name,
   label,
+  buttonStyle,
   onChange,
   size = 'sm'
 }: ISegmentedControl) => {
@@ -33,6 +35,7 @@ const SegmentedControl = ({
           return (
             <button
               key={getId(option)}
+              style={buttonStyle}
               className={classNames(
                 styles.labelWrapper,
                 styles['labelWrapper--' + size],

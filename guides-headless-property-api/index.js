@@ -1,12 +1,11 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.6.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  // highlight-setup
   const scene = engine.scene.create();
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
@@ -17,25 +16,31 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.appendChild(page, star);
   const text = engine.block.create('text');
   engine.block.appendChild(page, text);
+  // highlight-setup
 
   // Examples
 
   // highlight-image
   engine.block.setString(image, 'image/imageFileURI', 'https://img.ly/static/ubq_samples/sample_4.jpg');
   engine.block.resetCrop(image);
+  // highlight-image
 
   // highlight-text
   engine.block.setFloat(text, 'text/fontSize', 18.0);
   engine.block.setString(text, 'text/text', 'Greetings');
   engine.block.setString(text, 'text/fontFileUri', '/extensions/ly.img.cesdk.fonts/fonts/Caveat/Caveat-Bold.ttf');
   engine.block.setEnum(text, 'text/horizontalAlignment', 'Left');
+  // highlight-text
 
   // Reflection
 
   // highlight-findAllProperties
-  const propertyNamesImage = engine.block.findAllProperties(image); // Array [ "image/imageFileURI", "image/previewFileURI", "image/externalReference", ... ]
   const propertyNamesStar = engine.block.findAllProperties(star); // Array [ "shapes/star/innerDiameter", "shapes/star/points", "opacity/value", ... ]
+  // highlight-findAllProperties-image
+  const propertyNamesImage = engine.block.findAllProperties(image); // Array [ "image/imageFileURI", "image/previewFileURI", "image/externalReference", ... ]
+  // highlight-findAllProperties-text
   const propertyNamesText = engine.block.findAllProperties(text); // Array [ "text/text", "text/fontFileUri", "text/externalReference", "text/fontSize", "text/horizontalAlignment", ... ]
+  // highlight-findAllProperties
 
   // highlight-getPropertyType
   const pointsType = engine.block.getPropertyType('shapes/star/points'); // "Int"
@@ -60,9 +65,11 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-setString
   engine.block.setString(text, 'text/text', '*o*');
   engine.block.setString(image, 'image/imageFileURI', 'https://img.ly/static/ubq_samples/sample_4.jpg');
+  // highlight-setString
   // highlight-getString
   engine.block.getString(text, 'text/text');
   engine.block.getString(image, 'image/imageFileURI');
+    // highlight-getString
   // highlight-setColorRGBA
   engine.block.setColorRGBA(camera, 'camera/clearColor', 1, 1, 1, 1); // White
   // highlight-getColorRGBA
@@ -73,6 +80,8 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-setEnum
   // highlight-getEnum
   engine.block.getEnum(text, 'text/horizontalAlignment');
+  engine.block.getEnum(text, 'text/verticalAlignment');
+  // highlight-getEnum
 
   // Common Properties
 
@@ -82,12 +91,16 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setCropScaleX(image, 2.0);
   // highlight-setCropScaleY
   engine.block.setCropScaleY(image, 1.5);
+  // highlight-setCropScaleRatio
+  engine.block.setCropScaleRatio(image, 3.0);
   // highlight-setCropRotation
   engine.block.setCropRotation(image, Math.PI);
   // highlight-setCropTranslationX
   engine.block.setCropTranslationX(image, -1.0);
   // highlight-setCropTranslationY
   engine.block.setCropTranslationY(image, 1.0);
+  // highlight-adjustCropToFillFrame
+  engine.block.adjustCropToFillFrame(image, 1.0);
   // highlight-setContentFillMode
   engine.block.setContentFillMode(image, 'Contain');
   // highlight-resetCrop
@@ -96,6 +109,8 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.getCropScaleX(image);
   // highlight-getCropScaleY
   engine.block.getCropScaleY(image);
+  // highlight-getCropScaleRatio
+  engine.block.getCropScaleRatio(image);
   // highlight-getCropRotation
   engine.block.getCropRotation(image);
   // highlight-getCropTranslationX
@@ -112,8 +127,8 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-getOpacity
   engine.block.getOpacity(image);
 
-  // highlight-hasPlaceholderContent
-  engine.block.hasPlaceholderContent(image);
+  // highlight-showsPlaceholderContent
+  engine.block.showsPlaceholderContent(image);
 
   // highlight-setBlendMode
   engine.block.setBlendMode(image, 'Multiply');

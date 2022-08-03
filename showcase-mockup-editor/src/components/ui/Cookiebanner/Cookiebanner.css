@@ -1,0 +1,245 @@
+.cke-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(160, 160, 160, .5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999
+}
+
+.cke-container {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 10px 4px rgba(0, 0, 0, .25);
+  border-radius: 10px;
+  max-width: 800px;
+  max-height: 800px;
+  margin: 1em;
+  overflow-y: auto
+}
+
+.cke-container::-webkit-scrollbar {
+  width: 10px
+}
+
+.cke-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #e5e5e5;
+  border-radius: 10px
+}
+
+.cke-container::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 10px
+}
+
+.cke-container::-webkit-scrollbar-thumb:hover {
+  background: #c5c5c5
+}
+
+.cke-box {
+  padding: 2em
+}
+
+.cke-box--settings {
+  display: none
+}
+
+.cke-box__head {
+  font-family: "GT Walsheim Pro", sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 2em
+}
+
+.cke-box__buttons {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 2em
+}
+
+.cke-box__buttons .btn,
+.cke-box__buttons .plain-link {
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+  margin-left: 1em
+}
+
+.cke-box__buttons .plain-link {
+  color: #161617;
+  text-decoration: underline;
+  opacity: .75;
+  transition: .2s ease-in-out;
+  cursor: pointer;
+  background: 0 0;
+  border: none
+}
+
+.cke-box__buttons .plain-link:hover {
+  opacity: 1
+}
+
+.cke-content-item {
+  background-color: #e5e5e5;
+  border-radius: 20px;
+  padding: .75em 2em;
+  margin: 1em 0;
+  display: flex;
+  flex-flow: column
+}
+
+.cke-content-item__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.cke-content-item__cke-info {
+  display: none;
+  font-size: .875em;
+  margin-top: 1em
+}
+
+.cke-content-item__text {
+  color: #161617;
+  text-decoration: underline;
+  cursor: pointer
+}
+
+.cke-content-item__checkbox {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  top: 2px
+}
+
+.cke-content-item__checkbox--disabled {
+  opacity: .5
+}
+
+.cke-content-item__checkbox input {
+  opacity: 0;
+  width: 0;
+  height: 0
+}
+
+.cke-content-item__checkbox .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s
+}
+
+.cke-content-item__checkbox .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  -webkit-transition: .4s;
+  transition: .4s
+}
+
+.cke-content-item__checkbox input:checked+.slider {
+  background-color: #471aff
+}
+
+.cke-content-item__checkbox input:focus+.slider {
+  box-shadow: 0 0 2px 1px #a0a0a0
+}
+
+.cke-content-item__checkbox input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px)
+}
+
+.cke-content-item__checkbox .slider.round {
+  border-radius: 34px
+}
+
+.cke-content-item__checkbox .slider.round:before {
+  border-radius: 50%
+}
+
+@media only screen and (max-width:500px) {
+  .cke-container {
+    max-height: 100%;
+    border-radius: 0;
+    margin: 0
+  }
+
+  .cke-box {
+    padding: .75em
+  }
+
+  .cke-box__buttons {
+    flex-flow: column-reverse;
+    text-align: center
+  }
+
+  .cke-box__buttons .btn,
+  .cke-box__buttons .plain-link {
+    width: 100%;
+    margin: .5em 0
+  }
+
+  .cke-box__buttons .plain-link {
+    font-size: .875em;
+    margin-top: 1em
+  }
+
+  .cke-content-item {
+    padding: 1em
+  }
+}
+
+
+/* Added */
+.cke-overlay h2 {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cke-overlay h5 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #161617;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.cke-overlay a:hover {
+  text-decoration: underline;
+}
+
+.cke-overlay a:active, .cke-overlay a:hover {
+  outline: 0;
+}
+
+.cke-overlay a {
+  background-color: transparent;
+  display: inline-block;
+  color: #471aff;
+  text-decoration: none;
+}

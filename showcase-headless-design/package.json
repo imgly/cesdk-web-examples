@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@cesdk/cesdk-js": "1.5.0",
+    "@cesdk/cesdk-js": "1.7.0-alpha.3",
+    "@cesdk/engine": "1.7.0-alpha.3",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -11,6 +12,7 @@
     "@types/node": "^16.11.22",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "airtable": "^0.11.4",
     "chroma-js": "^2.4.2",
     "classnames": "^2.3.1",
     "lodash": "^4.17.21",
@@ -22,7 +24,8 @@
     "react-router-dom": "6",
     "react-scripts": "5.0.0",
     "react-tiny-popover": "^7.0.1",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "unsplash-js": "^7.0.15"
   },
   "scripts": {
     "start": "react-scripts start",
