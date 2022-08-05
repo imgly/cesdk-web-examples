@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  height: 32px;
+  align-items: center;
+}
+
+.label {
+  min-width: 90px;
+  white-space: nowrap;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+  color: rgba(22, 22, 23, 0.65);
+}

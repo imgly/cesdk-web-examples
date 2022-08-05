@@ -3,7 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import {
   generateColorAbstractionTokensAccent,
   generateColorAbstractionTokensActive,
-  generateColorAbstractionTokensBackground
+  generateColorAbstractionTokensBackground,
+  generateStaticTokens
 } from './color';
 
 const DEFAULT_BACKGROUND_COLOR = '#121921';
@@ -132,7 +133,8 @@ const ThemingCESDK = ({
 const generateCustomTheme = (backgroundColor, activeColor, accentColor) => ({
   ...generateColorAbstractionTokensAccent(accentColor),
   ...generateColorAbstractionTokensBackground(backgroundColor),
-  ...generateColorAbstractionTokensActive(activeColor)
+  ...generateColorAbstractionTokensActive(activeColor),
+  ...generateStaticTokens()
 });
 const generateCustomThemeStyle = (customThemeProperties) => `
   .ubq-public{

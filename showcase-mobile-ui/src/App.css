@@ -1,0 +1,15 @@
+body {
+  min-height: 100vh;
+  background: #7b8187 !important;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
