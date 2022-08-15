@@ -1,0 +1,90 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 160px;
+  background: #696E73;
+  border-radius: 8px;
+  color: white;
+  flex: 1;
+}
+
+.header {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerTitle {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+}
+
+.headerInfo {
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.65);
+
+}
+
+.checkWrapper {
+  overflow: auto;
+  border-radius: 0 0 8px 8px;
+
+  /* Scroll indicators */
+  background:
+    linear-gradient(#696E73 30%, rgba(0, 0, 0, 0)),
+    linear-gradient(rgba(0, 0, 0, 0), #696E73 70%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: #696E73;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.checkGrid {
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-row-gap: 0;
+  grid-template-columns: max-content 1fr max-content;
+  overflow: auto;
+  padding: 0.5rem 1rem;
+  flex-grow: 1;
+}
+
+.checkNameWrapper {
+  flex-grow: 1;
+  flex-basis: 0;
+  display: flex;
+  align-items: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.checkStatus {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.checkStatus--warning {
+  background-color: #FFD43D;
+}
+
+.checkStatus--failed {
+  background-color: #FF458F;
+}
+
+.checkCTA {
+  font-weight: 600;
+  font-size: 14px;
+}

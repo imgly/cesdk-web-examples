@@ -12,7 +12,7 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/single-page-mode/example.scene`,
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
       featureFlags: {
         singlePageMode: true
       },
@@ -69,8 +69,8 @@ const CaseComponent = () => {
             {pageIds.current && (
               <SegmentedControl
                 options={[
-                  { label: 'Front', value: pageIds.current?.[0] },
-                  { label: 'Back', value: pageIds.current?.[1] }
+                  { label: 'Page 1', value: pageIds.current?.[0] },
+                  { label: 'Page 2', value: pageIds.current?.[1] }
                 ]}
                 value={activePageId}
                 name="pageId"

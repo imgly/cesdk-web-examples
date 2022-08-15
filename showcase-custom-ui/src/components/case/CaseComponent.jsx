@@ -38,8 +38,7 @@ const CaseComponent = () => {
       <div className={classes.fullHeightWrapper} style={wrapperStyle}>
         <div className={classes.caseWrapper}>
           <div className="caseHeader">
-            <h3>Custom UI</h3>
-            <p>Quickly build any UI on top of our API.</p>
+            <h3>Apparel UI</h3>
             <p>
               Try out customizing a t-shirt design with this mobile apparel
               editor and export a print-ready PDF.{' '}

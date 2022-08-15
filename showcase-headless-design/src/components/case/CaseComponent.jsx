@@ -35,6 +35,8 @@ const CaseComponent = () => {
 
     CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
       async (instance) => {
+        // Hotfix for a race-condition in <=1.7.0
+        await new Promise((resolve) => requestAnimationFrame(resolve));
         await instance.scene.loadFromURL(caseAssetPath('/example.scene'));
         engineRef.current = instance;
         const camera = instance.block.findByType('camera')[0];
