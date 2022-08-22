@@ -1,8 +1,7 @@
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0-alpha.1/cesdk.umd.js';
 
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/cesdk.umd.js';
-
-let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/assets',
+const config = {
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0-alpha.1/assets',
   presets: {
     // highlight-pageFormats
     pageFormats: {
@@ -22,8 +21,11 @@ let config = {
         unit: 'mm', // Millimeter
         // highlight-unit
         // highlight-bleedMargin
-        bleedMargin: 2
+        bleedMargin: 2,
         // highlight-bleedMargin
+        // highlight-fixedOrientation
+        fixedOrientation: false
+        // highlight-fixedOrientation
       },
       'twitter-profile': {
         width: 400,

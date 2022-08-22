@@ -1,0 +1,31 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.sizePreview {
+  height: 40px;
+  border: 2px solid rgba(22, 22, 23, 0.25);
+  display: inline-block;
+}
+
+.sizeTitle {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #161617;
+}
+
+.sizeDimensions {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #161617;
+
+}

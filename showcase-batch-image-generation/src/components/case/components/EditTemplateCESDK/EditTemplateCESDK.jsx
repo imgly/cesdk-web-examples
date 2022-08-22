@@ -18,6 +18,7 @@ const EditTemplateCESDK = ({ templateName, sceneString, onSave, onClose }) => {
         role: 'Creator',
         ui: {
           elements: {
+            view: 'advanced',
             navigation: {
               title: `${templateName}`,
               action: {
@@ -25,7 +26,13 @@ const EditTemplateCESDK = ({ templateName, sceneString, onSave, onClose }) => {
                 save: true
               }
             },
-            libraries: { template: false }
+            libraries: { template: false },
+            panels: {
+              inspector: {
+                show: true,
+                position: 'right'
+              }
+            }
           }
         },
         page: {

@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  padding: 0.25rem;
+  justify-content: space-between;
+}
+
+.wrapper>* {
+  display: flex;
+  gap: 0.25rem;
+  flex-direction: row;
+}
+
+.wrapper>*:first-child {
+  flex-grow: 1;
+  flex-basis: 0;
+  justify-content: flex-start;
+}
+
+.wrapper>*:last-child {
+  flex-grow: 1;
+  flex-basis: 0;
+  justify-content: flex-end;
+}
