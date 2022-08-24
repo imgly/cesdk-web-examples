@@ -1,0 +1,11 @@
+.wrapper {
+  flex-grow: 1;
+  color: rgba(255, 255, 255, 0.65);
+  flex-basis: 0;
+  display: flex;
+  align-items: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -12,9 +12,10 @@ const CaseComponent = () => {
         </p>
       </div>
       <iframe
+        data-cy="iframe"
         style={iframeStyle}
         title="CE.SDK Dashboard"
-        src="https://ubique.img.ly/develop/demos/dashboard/#/login?name=John+Doe&autologin=1"
+        src="https://ubique.img.ly/main/demos/dashboard/#/login?name=John+Doe&autologin=1"
       />
     </div>
   );

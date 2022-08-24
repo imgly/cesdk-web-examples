@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.colorPalette {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.colorButton {
+  height: 2rem;
+  width: 2rem;
+  outline-offset: 4px;
+  border-radius: 100%;
+  border: 0.666667px solid rgba(0, 0, 0, 0.25);
+}
+
+.colorButton:hover {
+  outline: 2px solid #9e86ff;
+
+}
+
+.colorButton.colorButton--active, .colorButton.colorButton--active:hover, .colorButton:focus {
+  outline: 2px solid #471AFF;
+}
+
+.wrapper :global(.react-colorful) {
+  width: 100%;
+  height: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}

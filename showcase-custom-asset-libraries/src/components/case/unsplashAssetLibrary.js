@@ -13,7 +13,7 @@ const unsplashApi = unsplash.createApi({
   apiUrl: UNSPLASH_API_URL
 });
 
-export const findUnsplashAssets = async (type, queryData) => {
+export const findUnsplashAssets = async (queryData) => {
   if (UNSPLASH_API_URL === '' && !window.unsplashWarning) {
     window.unsplashWarning = true;
     alert(
@@ -81,7 +81,6 @@ function translateToAssetResult(image) {
 
   return {
     id: image.id,
-    type: 'ly.img.image',
     locale: 'en',
     label: image.description ?? image.alt_description ?? undefined,
     tags: image.tags ? image.tags.map((tag) => tag.title) : undefined,
@@ -94,11 +93,12 @@ function translateToAssetResult(image) {
     },
 
     meta: {
+      blockType: 'ly.img.image',
       uri: image.urls.full
     },
 
     context: {
-      sourceId: 'unsplash'
+      sourceId: 'Unsplash'
     },
 
     credits: artistName

@@ -87,6 +87,8 @@ export const EditorProvider = ({ children }) => {
       };
 
       const creativeEngine = await CreativeEngine.init(config, canvas);
+      // Hotfix for a race-condition in <=1.7.0
+      await new Promise((resolve) => requestAnimationFrame(resolve));
       const newCustomEngine = new CustomEngine(creativeEngine);
       setCustomEngine(newCustomEngine);
       creativeEngine.editor.onStateChanged(editorUpdateCallbackRef.current);

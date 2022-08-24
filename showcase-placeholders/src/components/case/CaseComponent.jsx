@@ -10,6 +10,14 @@ const ROLE_OPTIONS = [
       role: 'Creator',
       ui: {
         elements: {
+          view: 'advanced',
+          panels: {
+            inspector: {
+              show: true,
+              position: 'right'
+            },
+            settings: true
+          },
           dock: {
             iconSize: 'normal',
             hideLabels: true
