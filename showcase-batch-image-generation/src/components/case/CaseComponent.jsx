@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import classes from './CaseComponent.module.css';
-import EditInstanceCESDK from './components/EditInstanceCESDK';
-import EditTemplateCESDK from './components/EditTemplateCESDK';
-import InstanceImage from './components/InstanceImage';
-import TemplateEditButton from './components/TemplateEditButton';
-import TemplateSelectButton from './components/TemplateSelectButton';
+import EditInstanceCESDK from './components/EditInstanceCESDK/EditInstanceCESDK';
+import EditTemplateCESDK from './components/EditTemplateCESDK/EditTemplateCESDK';
+import InstanceImage from './components/InstanceImage/InstanceImage';
+import TemplateEditButton from './components/TemplateEditButton/TemplateEditButton';
+import TemplateSelectButton from './components/TemplateSelectButton/TemplateSelectButton';
 import { EMPLOYEES, TEMPLATES } from './data';
 import { caseAssetPath, replaceImages } from './util';
 
@@ -158,7 +158,7 @@ const CaseComponent = () => {
         ))}
       </Helmet>
       <div className="caseHeader">
-        <h3>Batch Image Generation</h3>
+        <h3>Image Set Generation</h3>
         <p>Use templates to automatically generate images from data.</p>
       </div>
       <div className={classes.wrapper}>

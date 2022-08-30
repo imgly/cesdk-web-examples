@@ -53,7 +53,7 @@ export const queryAirtable = ({ query, page, perPage }) => {
   });
 };
 
-export const findAirtableAssets = async (type, queryData) => {
+export const findAirtableAssets = async (queryData) => {
   if (AIRTABLE_API_KEY === '' && !window.airtableWarning) {
     window.airtableWarning = true;
     alert(
@@ -85,7 +85,6 @@ export const findAirtableAssets = async (type, queryData) => {
 function translateToAssetResult({ image }) {
   return {
     id: image.id,
-    type: 'ly.img.image',
     locale: 'en',
     label: image.name ?? undefined,
 
@@ -97,11 +96,12 @@ function translateToAssetResult({ image }) {
     },
 
     meta: {
+      blockType: 'ly.img.image',
       uri: image.url
     },
 
     context: {
-      sourceId: 'airtable'
+      sourceId: 'Airtable'
     }
   };
 }
