@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { useEditor } from '../../EditorContext';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import classes from './ColorSelect.module.css';
 
@@ -28,25 +27,18 @@ const isColorEqual = (colorA, colorB) => {
 };
 const RGBAArrayToObj = ([r, g, b, _a]) => ({ r, g, b });
 
-const ColorSelect = () => {
-  const {
-    selectedTextProperties,
-    customEngine: { changeTextColor }
-  } = useEditor();
-
+const ColorSelect = ({ onClick, activeColor }) => {
   return (
-    <AdjustmentsBar gap="sm">
+    <AdjustmentsBar gap="md">
       {ALL_COLORS.map(({ r, g, b }) => (
         <button
           key={JSON.stringify({ r, g, b })}
-          onClick={() => changeTextColor(normalizeColors({ r, g, b }))}
+          onClick={() => onClick(normalizeColors({ r, g, b }))}
           style={{ backgroundColor: `rgb(${r},${g},${b})` }}
           className={classNames(classes.colorButton, {
             [classes['colorButton--active']]: isColorEqual(
               normalizeColors({ r, g, b }),
-              RGBAArrayToObj(
-                selectedTextProperties['fill/color'] ?? [0, 0, 0, 1]
-              )
+              RGBAArrayToObj(activeColor ?? [0, 0, 0, 1])
             )
           })}
         ></button>

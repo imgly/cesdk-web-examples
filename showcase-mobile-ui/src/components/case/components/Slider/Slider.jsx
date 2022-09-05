@@ -1,11 +1,7 @@
 import classes from './Slider.module.css';
 import classNames from 'classnames';
 
-// This specific import path is needed for Codesandbox to avoid th following error:
-// ModuleNotFoundError
-// Could not find module in path: 'react-slider/dist/cjs/dev/node_modules/@babel/runtime/helpers/esm/extends.js' relative to '/node_modules/react-slider/dist/cjs/dev/components/ReactSlider/ReactSlider.js
-// This is a Codesandbox Bug and can be shortend in a normal development environment
-import ReactSlider from 'react-slider/dist/es/prod/index.js';
+import ReactSlider from 'react-slider';
 
 const Slider = (props) => {
   return (

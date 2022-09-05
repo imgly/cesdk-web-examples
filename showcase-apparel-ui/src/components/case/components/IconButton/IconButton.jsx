@@ -12,7 +12,7 @@ const IconButton = ({ icon, children, isActive, iconColor, onClick }) => {
       <span className={classes.iconWrapper} style={{ color: iconColor }}>
         {icon}
       </span>
-      {children && <span>{children}</span>}
+      {children && <span className={classes.label}>{children}</span>}
     </button>
   );
 };

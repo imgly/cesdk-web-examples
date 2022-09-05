@@ -1,14 +1,22 @@
 import CreativeEngine from '@cesdk/engine';
 import { isEqual } from 'lodash';
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
 import { CustomEngine } from './CustomEngine';
+import { caseAssetPath } from './util';
 
 const EditorContext = createContext();
 
 export const EditorProvider = ({ children }) => {
   const [viewMode, setViewMode] = useState('edit');
   const [isLoaded, setIsLoaded] = useState(false);
-  const [shouldLoad, setShouldLoad] = useState(false);
   const [canvas, setCanvas] = useState(null);
 
   const [customEngine, setCustomEngine] = useState(null);
@@ -16,9 +24,7 @@ export const EditorProvider = ({ children }) => {
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
   const [editorState, setEditorState] = useState({
-    editMode: null,
-    cursorType: null,
-    cursorRotation: null
+    editMode: null
   });
   const editorUpdateCallbackRef = useRef(() => {});
   const [selectedTextProperties, setSelectedTextProperties] = useState({
@@ -26,10 +32,28 @@ export const EditorProvider = ({ children }) => {
     'text/fontFileUri': null,
     'fill/color': null
   });
+  const [selectedShapeProperties, setSelectedShapeProperties] = useState({
+    'fill/solid/color': null
+  });
   const engineEventCallbackRef = useRef(() => {});
   const [selectedBlocks, setSelectedBlocks] = useState(null);
+
+  const checkZoom = useCallback(() => {
+    const canvasBounding = canvas.getBoundingClientRect();
+    const overlapBottom =
+      canvasBounding.top + canvasBounding.height - window.visualViewport.height;
+    customEngine.zoomToSelectedText(
+      canvasBounding.height * window.devicePixelRatio,
+      Math.max(overlapBottom * window.devicePixelRatio, 0)
+    );
+  }, [canvas, customEngine]);
+
   editorUpdateCallbackRef.current = () => {
     const newEditorState = customEngine.getEditorState();
+    if (newEditorState['editMode'] === 'Text') {
+      customEngine.filterTextEmojis();
+      checkZoom();
+    }
     if (!isEqual(newEditorState, editorState)) {
       setEditorState(newEditorState);
     }
@@ -47,6 +71,12 @@ export const EditorProvider = ({ children }) => {
       if (!isEqual(newSelectedTextProperties, selectedTextProperties)) {
         setSelectedTextProperties(newSelectedTextProperties);
       }
+      // Extract and store the currently selected shape block properties
+      const newSelectedShapeProperties =
+        customEngine.getSelectedShapeProperties();
+      if (!isEqual(newSelectedShapeProperties, selectedShapeProperties)) {
+        setSelectedShapeProperties(newSelectedShapeProperties);
+      }
       // Extract and store canUndo
       const newCanUndo = customEngine.getCanUndo();
       if (newCanUndo !== canUndo) {
@@ -61,52 +91,50 @@ export const EditorProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (canvas) {
-      setShouldLoad(true);
-    }
-  }, [canvas]);
-
-  useEffect(() => {
+    let newCustomEngine;
     const loadEditor = async () => {
 
-      if (!shouldLoad) {
+      if (!canvas) {
         return;
       }
-      setShouldLoad(false);
       const config = {
-        featureFlags: {
-          preventScrolling: true
-        },
         page: {
           title: {
             show: false
           }
         },
-        defaultFont: '//ly.img.cesdk.fonts/roboto_regular',
         license: process.env.REACT_APP_LICENSE
       };
 
       const creativeEngine = await CreativeEngine.init(config, canvas);
       // Hotfix for a race-condition in <=1.7.0
       await new Promise((resolve) => requestAnimationFrame(resolve));
-      const newCustomEngine = new CustomEngine(creativeEngine);
+      newCustomEngine = new CustomEngine(creativeEngine);
       setCustomEngine(newCustomEngine);
-      creativeEngine.editor.onStateChanged(editorUpdateCallbackRef.current);
-      creativeEngine.event.subscribe([], engineEventCallbackRef.current);
-      await newCustomEngine.loadScene(
-        `${window.location.protocol + "//" + window.location.host}/cases/custom-ui/kiosk.scene`
+      creativeEngine.editor.onStateChanged(() =>
+        editorUpdateCallbackRef.current()
+      );
+      creativeEngine.event.subscribe([], (events) =>
+        engineEventCallbackRef.current(events)
+      );
+      await newCustomEngine.loadScene(caseAssetPath(`/kiosk.scene`));
+      creativeEngine.editor.setSettingBool(
+        'ubq://doubleClickToCropEnabled',
+        false
       );
       setIsLoaded(true);
     };
     loadEditor();
 
     return () => {
-      customEngine?.dispose();
+      if (newCustomEngine) {
+        newCustomEngine.dispose();
+      }
       setCustomEngine(null);
       setIsLoaded(false);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shouldLoad]);
+  }, [canvas]);
 
   useEffect(() => {
     if (!isLoaded || !canvas) {
@@ -119,6 +147,17 @@ export const EditorProvider = ({ children }) => {
     }
     // eslint-disable-next-line
   }, [isLoaded, canvas, viewMode]);
+
+  const editMode = useMemo(() => editorState['editMode'], [editorState]);
+
+  useEffect(() => {
+    if (!isLoaded || !canvas) {
+      return;
+    }
+    if (editMode === 'Transform') {
+      customEngine.zoomToPage();
+    }
+  }, [isLoaded, canvas, customEngine, editMode]);
 
   const isEditable = isLoaded && viewMode === 'edit';
 
@@ -133,6 +172,7 @@ export const EditorProvider = ({ children }) => {
     editorState,
     selectedBlocks,
     selectedTextProperties,
+    selectedShapeProperties,
     canUndo,
     canRedo
   };

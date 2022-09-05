@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@cesdk/cesdk-js": "1.7.0-rc.0",
-    "@cesdk/engine": "1.7.0-rc.0",
+    "@cesdk/cesdk-js": "1.8.0-alpha.3",
+    "@cesdk/engine": "1.8.0-alpha.3",
     "airtable": "^0.11.4",
     "chroma-js": "^2.4.2",
     "classnames": "^2.3.1",
@@ -22,6 +22,7 @@
     "unsplash-js": "^7.0.15"
   },
   "devDependencies": {
+    "@types/chroma-js": "^2.1.4",
     "@types/lodash": "^4.14.182",
     "@types/react-helmet": "^6.1.5",
     "react-snap": "^1.23.0",

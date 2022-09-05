@@ -1,6 +1,8 @@
 import { getImageSize } from './lib/utils';
 import { removeEmojis } from './util';
 
+const SHAPE_TYPES = ['shape', 'vector_path'];
+
 // Here we wrap the CreativeEngine to fit our use case
 // We do not want to expose the engine to the outside world directly.
 // Instead we add methods we need here in the engine class.
@@ -20,9 +22,7 @@ export class CustomEngine {
 
   getEditorState = () => {
     return {
-      editMode: this.#engine.editor.getEditMode(),
-      cursorType: this.#engine.editor.getCursorType(),
-      cursorRotation: this.#engine.editor.getCursorRotation()
+      editMode: this.#engine.editor.getEditMode()
     };
   };
 
@@ -54,7 +54,7 @@ export class CustomEngine {
     };
   };
   getSelectedShapeProperties = () => {
-    const shape = this.getAllSelectedElements('shape')[0];
+    const shape = this.getAllSelectedElements(...SHAPE_TYPES)[0];
     if (!shape) {
       return {
         'fill/solid/color': null
@@ -251,10 +251,9 @@ export class CustomEngine {
     }
   };
   changeShapeColor = ({ r, g, b }) => {
-    const allSelectedShapeElements = [
-      ...this.getAllSelectedElements('shape'),
-      ...this.getAllSelectedElements('vector_path')
-    ];
+    const allSelectedShapeElements = this.getAllSelectedElements(
+      ...SHAPE_TYPES
+    );
     if (allSelectedShapeElements.length > 0) {
       allSelectedShapeElements.forEach((shapeElementId) => {
         this.#engine.block.setColorRGBA(
@@ -502,8 +501,8 @@ export class CustomEngine {
   };
 
   zoomToSelectedText = async (canvasHeight, overlapBottom) => {
-    const paddingBottom = 90;
-    const paddingTop = 90;
+    const paddingBottom = 30;
+    const paddingTop = 30;
     const selectedTexts = this.#engine.block.findAllSelected();
     if (selectedTexts.length === 1) {
       const cursorPosY =
@@ -560,14 +559,16 @@ export class CustomEngine {
     this.#engine.editor.addUndoStep();
   };
 
-  getAllSelectedElements = (elementType = '') => {
+  getAllSelectedElements = (...elementTypes) => {
     const allSelected = this.#engine.block.findAllSelected();
-    if (!elementType) {
+    if (elementTypes.length === 0) {
       return allSelected;
     }
-    return allSelected.filter((elementId) => {
-      return this.#engine.block.getType(elementId).includes(elementType);
-    });
+    return allSelected.filter((elementId) =>
+      elementTypes.some((elementType) =>
+        this.#engine.block.getType(elementId).includes(elementType)
+      )
+    );
   };
 
   // Note: Backdrop Images are not officially supported yet.

@@ -9,13 +9,12 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  padding: 0.5rem;
   flex-wrap: wrap;
 }
 
 .colorButton {
-  height: 2rem;
-  width: 2rem;
+  width: calc(clamp(1rem, 6.4vw, 2rem));
+  aspect-ratio: 1 / 1;
   outline-offset: 4px;
   border-radius: 100%;
   border: 0.666667px solid rgba(0, 0, 0, 0.25);

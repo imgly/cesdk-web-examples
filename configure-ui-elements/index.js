@@ -1,18 +1,17 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0-rc.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0-alpha.3/cesdk.umd.js';
 
 const config = {
   ui: {
     // docs-ui-elements
     elements: {
       // docs-ui-view
-      view: {
-        style: 'default' // 'default' or 'advanced'
-      },
+      view: 'default', // 'default' or 'advanced'
       // docs-ui-view
       // docs-ui-navigation
       navigation: {
         show: true, // 'false' to hide the navigation completely
         position: 'top', // 'top' or 'bottom'
+        // docs-ui-actions
         action: {
           close: true, // true or false
           back: true, // true or false
@@ -22,7 +21,20 @@ const config = {
             show: true,
             format: ['application/pdf']
           },
-          download: true // true  or false
+          download: true, // true  or false
+          // docs-ui-actions
+          // docs-ui-custom-actions
+          custom: [
+            {
+              label: 'common.custom', // string or i18n key
+              iconName: 'default', // one of 'default', 'download', 'upload', or 'save'
+              callback: () => {
+                // callback signature is `() => void | Promise<void>`
+                // place custom functionality here
+              }
+            }
+          ]
+          // docs-ui-custom-actions
         }
       },
       // docs-ui-navigation
@@ -30,7 +42,11 @@ const config = {
       panels: {
         inspector: {
           show: true, // true or false
-          position: 'right' // 'left' or 'right'
+          position: 'left' // 'left' or 'right'
+        },
+        assetLibrary: {
+          show: true, // true or false
+          position: 'left' // 'left' or 'right'
         },
         settings: {
           show: true // true or false
@@ -78,7 +94,13 @@ const config = {
           effects: false, // true  or false
           blur: true, // true  or false
           crop: false // true  or false
+        },
+        // docs-ui-pages
+        '//ly.img.ubq/page': {
+          manage: true,
+          format: true
         }
+        // docs-ui-pages
       }
       // docs-ui-blocks
     }

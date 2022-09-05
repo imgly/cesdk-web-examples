@@ -4,6 +4,8 @@
 
 // Stores the Y position where the touch started
 var startY = 0;
+// Stores the X position where the touch started
+var startX = 0;
 
 // Store enabled status
 var enabled = false;
@@ -38,6 +40,16 @@ var handleTouchmove = function (evt) {
     if (!style) {
       // If we've encountered an element we can't compute the style for, get out
       break;
+    }
+
+    // if the element is a horizontally scrollable element, ignore it
+    var overflowX = style.getPropertyValue('overflow-x');
+    if (overflowX === 'scroll' || overflowX === 'auto') {
+      var curX = evt.touches ? evt.touches[0].screenX : evt.screenX;
+      // if scrolling vertically, allow it
+      if (curX !== startX) {
+        return;
+      }
     }
 
     // Ignore range input element
@@ -84,6 +96,7 @@ var handleTouchmove = function (evt) {
 var handleTouchstart = function (evt) {
   // Store the first Y position of the touch
   startY = evt.touches ? evt.touches[0].screenY : evt.screenY;
+  startX = evt.touches ? evt.touches[0].screenX : evt.screenX;
 };
 
 var enable = function () {

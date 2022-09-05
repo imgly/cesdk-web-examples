@@ -21,22 +21,3 @@ export function getImageSize(url) {
 
   return promise;
 }
-
-const getUserAgent = () => {
-  return (window && window.navigator && window.navigator.userAgent) || '';
-};
-
-export const isEdge = () => {
-  const userAgent = getUserAgent();
-  return userAgent.indexOf('Edge') !== -1;
-};
-
-export const isIE = () => {
-  const userAgent = getUserAgent();
-  return !!userAgent.match(/msie|trident/i);
-};
-
-export const isWindows = () => {
-  const userAgent = getUserAgent();
-  return !!userAgent.match(/windows/i);
-};

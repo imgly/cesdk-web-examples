@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { useEditor } from '../../EditorContext';
 // This library prevents touch gestures on mobile like pull-to-refresh on the custom UI
 import { disable, enable } from '../../lib/inobounce';
-import { CursorStyle } from '../../lib/useGlobalCursorStyle';
 import classes from './CESDKCanvas.module.css';
 
 const resizeCanvas = (wrapperNode, canvasNode) => {
@@ -56,7 +55,6 @@ const CESDKCanvas = () => {
   return (
     <div id="cesdk" className={classes.wrapper} ref={wrapperRef}>
       <canvas id="canvas" ref={setCanvas} className={classes.canvas}></canvas>
-      {isLoaded && <CursorStyle wrapperRef={wrapperRef} />}
     </div>
   );
 };

@@ -354,6 +354,7 @@ const CaseComponent = ({ product = 'postcard' }) => {
             )}
             {currentMockupUrl && (
               <img
+                data-cy="mockup-preview"
                 src={currentMockupUrl}
                 alt={`Mockup of the ${product}`}
                 className={classes.previewImageStyle}

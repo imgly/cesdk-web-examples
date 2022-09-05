@@ -1,16 +1,16 @@
 .colorButton {
-  height: 1rem;
-  width: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  outline-offset: 4px;
   border-radius: 100%;
+  border: 0.666667px solid rgba(0, 0, 0, 0.25);
 }
 
 .colorButton:hover {
   outline: 2px solid #9e86ff;
-  outline-offset: 2px;
-}
 
+}
 
 .colorButton.colorButton--active, .colorButton.colorButton--active:hover, .colorButton:focus {
   outline: 2px solid #471AFF;
-  outline-offset: 2px;
 }

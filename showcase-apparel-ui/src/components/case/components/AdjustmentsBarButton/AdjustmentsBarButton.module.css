@@ -1,7 +1,7 @@
 .wrapper {
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -11,6 +11,17 @@
   line-height: 20px;
 
   color: rgba(18, 26, 33, 0.9);
+  width: 64px;
+  height: 56px;
+  border-radius: 8px;
+  padding: 0.25rem;
+}
+
+.wrapper span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .wrapper svg {
@@ -25,4 +36,5 @@
 
 .wrapper--active {
   color: #471AFF;
+  background: rgba(71, 26, 255, 0.1);
 }

@@ -1,47 +1,59 @@
-import { useEditor } from '../../EditorContext';
-import { ReactComponent as FiraSansIcon } from '../../icons/fonts/FiraSans.svg';
-import { ReactComponent as ParisienneIcon } from '../../icons/fonts/Parisienne.svg';
-import { ReactComponent as RobotoIcon } from '../../icons/fonts/Roboto.svg';
+import { createRef, useEffect, useMemo } from 'react';
+import { caseAssetPath } from '../../util';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import AdjustmentsBarButton from '../AdjustmentsBarButton/AdjustmentsBarButton';
+import ALL_FONTS from './Fonts.json';
 
-const ALL_FONTS = [
-  {
-    fontUri: '/extensions/ly.img.cesdk.fonts/fonts/Roboto/Roboto-Regular.ttf',
-    label: 'Roboto',
-    Icon: <RobotoIcon />
-  },
-  {
-    fontUri:
-      '/extensions/ly.img.cesdk.fonts/fonts/FiraSans/FiraSans-Regular.ttf',
-    label: 'Fira Sans',
-    Icon: <FiraSansIcon />
-  },
-  {
-    fontUri:
-      '/extensions/ly.img.cesdk.fonts/fonts/Parisienne/Parisienne-Regular.ttf',
-    label: 'Parisienne',
-    Icon: <ParisienneIcon />
-  }
-];
+const fullFontPath = (fontPath) => `/extensions/ly.img.cesdk.fonts/${fontPath}`;
 
-const FontSelect = () => {
-  const {
-    selectedTextProperties,
-    customEngine: { changeTextFont }
-  } = useEditor();
+const FontSelect = ({ onSelect, activeFontUri }) => {
+  const fonts = useMemo(
+    () =>
+      ALL_FONTS.map((font) => ({
+        ...font,
+        ref: createRef(),
+        isActive: fullFontPath(font.fontPath) === activeFontUri
+      })),
+    [activeFontUri]
+  );
+  const activeFont = useMemo(
+    () => fonts.find(({ isActive }) => isActive),
+    [fonts]
+  );
+  useEffect(() => {
+    if (activeFont && activeFont.ref.current) {
+      activeFont.ref.current.scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+        inline: 'center'
+      });
+    }
+    // Only scroll into view when opening
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <AdjustmentsBar>
-      {ALL_FONTS.map(({ fontUri, Icon }) => (
-        <AdjustmentsBarButton
-          key={fontUri}
-          isActive={fontUri === selectedTextProperties?.['text/fontFileUri']}
-          onClick={() => changeTextFont(fontUri)}
-        >
-          {Icon}
-        </AdjustmentsBarButton>
-      ))}
+      {fonts.map(({ id, fontPath, fontFamily, isActive, ref }) => {
+        return (
+          <AdjustmentsBarButton
+            key={fontPath}
+            isActive={isActive}
+            onClick={() => onSelect(fullFontPath(fontPath))}
+            ref={ref}
+          >
+            <span>
+              <img
+                src={caseAssetPath(`/font-previews/${id}.png`)}
+                width={24}
+                height={24}
+                alt={fontFamily}
+              />
+            </span>
+            <span>{fontFamily}</span>
+          </AdjustmentsBarButton>
+        );
+      })}
     </AdjustmentsBar>
   );
 };

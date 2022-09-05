@@ -1,12 +1,9 @@
-import { useEditor } from '../../EditorContext';
-
-import DeleteSelectedButton from '../DeleteSelectedButton/DeleteSelectedButton';
-
-import { ReactComponent as RectIcon } from '../../icons/shapes/rect.svg';
 import { ReactComponent as LineIcon } from '../../icons/shapes/line.svg';
-import { ReactComponent as StarIcon } from '../../icons/shapes/star.svg';
 import { ReactComponent as PolygonIcon } from '../../icons/shapes/polygon.svg';
+import { ReactComponent as RectIcon } from '../../icons/shapes/rect.svg';
+import { ReactComponent as StarIcon } from '../../icons/shapes/star.svg';
 
+import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import IconButton from '../IconButton/IconButton';
 
 export const ALL_SHAPES = [
@@ -16,26 +13,17 @@ export const ALL_SHAPES = [
   { type: 'shapes/polygon', label: 'Polygon', icon: <PolygonIcon /> }
 ];
 
-const ShapesBar = () => {
-  const {
-    customEngine: { addShape }
-  } = useEditor();
-
+const ShapesBar = ({ onClick }) => {
   return (
-    <div className="gap-md inline-flex">
-      <div className="flex">
-        {ALL_SHAPES.map(({ type, icon }) => (
-          <IconButton
-            key={type}
-            onClick={() => addShape(type)}
-            icon={icon}
-          ></IconButton>
-        ))}
-      </div>
-      <div>
-        <DeleteSelectedButton />
-      </div>
-    </div>
+    <AdjustmentsBar gap="sm">
+      {ALL_SHAPES.map(({ type, icon }) => (
+        <IconButton
+          key={type}
+          onClick={() => onClick(type)}
+          icon={icon}
+        ></IconButton>
+      ))}
+    </AdjustmentsBar>
   );
 };
 export default ShapesBar;

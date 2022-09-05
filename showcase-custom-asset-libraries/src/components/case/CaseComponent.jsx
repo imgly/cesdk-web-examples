@@ -1,6 +1,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { findAirtableAssets } from './airtableAssetLibrary';
+import { findPexelsAssets } from './pexelsAssetLibrary';
 import { findUnsplashAssets } from './unsplashAssetLibrary';
 
 const availableAssetLibraries = {
@@ -58,6 +59,36 @@ const availableAssetLibraries = {
         url: 'https://unsplash.com/license'
       }
     }
+  },
+  pexels: {
+    id: 'Pexels',
+    sceneFile: 'pexels.scene',
+    title: 'Pexels',
+    DescriptionComponent: () => (
+      <p>
+        Search and browse images from{' '}
+        <a
+          href={'https://pexels.com/'}
+          style={linkStyle}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Pexels
+        </a>{' '}
+        in the editor.
+      </p>
+    ),
+    config: {
+      findAssets: findPexelsAssets,
+      credits: {
+        name: 'Pexels',
+        url: 'https://pexels.com/'
+      },
+      license: {
+        name: 'Pexels license (free)',
+        url: 'https://pexels.com/license'
+      }
+    }
   }
 };
 
@@ -88,6 +119,7 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
           },
           libraries: {
             insert: {
+              floating: false,
               entries: (defaultEntries) => {
                 const entriesWithoutDefaultImages = defaultEntries.filter(
                   (entry) => {
@@ -100,7 +132,7 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
                     sourceIds: [assetLibraryConfig.id],
                     previewLength: 3,
                     gridItemHeight: 'auto',
-                    gridBackgroundType: 'contain',
+                    gridBackgroundType: 'cover',
                     gridColumns: 2
                   },
                   ...entriesWithoutDefaultImages
@@ -108,6 +140,7 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
               }
             },
             replace: {
+              floating: false,
               entries: () => {
                 return [
                   {
@@ -115,18 +148,10 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
                     sourceIds: [assetLibraryConfig.id],
                     previewLength: 3,
                     gridItemHeight: 'auto',
-                    gridBackgroundType: 'contain',
+                    gridBackgroundType: 'cover',
                     gridColumns: 2
                   }
                 ];
-              }
-            },
-            panel: {
-              insert: {
-                floating: false
-              },
-              replace: {
-                floating: false
               }
             }
           }
@@ -136,7 +161,8 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
       i18n: {
         en: {
           'libraries.airtable.label': 'Airtable',
-          'libraries.unsplash.label': 'Unsplash'
+          'libraries.unsplash.label': 'Unsplash',
+          'libraries.pexels.label': 'Pexels'
         }
       },
 

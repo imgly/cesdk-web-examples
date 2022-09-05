@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-rc.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.3/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0-rc.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.3/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -62,6 +62,10 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setFloat(star, 'shapes/star/innerDiameter', 0.75);
   // highlight-getFloat
   engine.block.getFloat(star, 'shapes/star/innerDiameter');
+  // highlight-setDouble
+  engine.block.setDouble(scene, 'scene/playbackTime', 1.2);
+  // highlight-getDouble
+  engine.block.getDouble(scene, 'scene/playbackTime');
   // highlight-setString
   engine.block.setString(text, 'text/text', '*o*');
   engine.block.setString(image, 'image/imageFileURI', 'https://img.ly/static/ubq_samples/sample_4.jpg');
@@ -91,12 +95,16 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setCropScaleX(image, 2.0);
   // highlight-setCropScaleY
   engine.block.setCropScaleY(image, 1.5);
+  // highlight-setCropScaleRatio
+  engine.block.setCropScaleRatio(image, 3.0);
   // highlight-setCropRotation
   engine.block.setCropRotation(image, Math.PI);
   // highlight-setCropTranslationX
   engine.block.setCropTranslationX(image, -1.0);
   // highlight-setCropTranslationY
   engine.block.setCropTranslationY(image, 1.0);
+  // highlight-adjustCropToFillFrame
+  engine.block.adjustCropToFillFrame(image, 1.0);
   // highlight-setContentFillMode
   engine.block.setContentFillMode(image, 'Contain');
   // highlight-resetCrop
@@ -105,6 +113,8 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.getCropScaleX(image);
   // highlight-getCropScaleY
   engine.block.getCropScaleY(image);
+  // highlight-getCropScaleRatio
+  engine.block.getCropScaleRatio(image);
   // highlight-getCropRotation
   engine.block.getCropRotation(image);
   // highlight-getCropTranslationX
@@ -113,6 +123,10 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.getCropTranslationY(image);
   // highlight-getContentFillMode
   engine.block.getContentFillMode(image);
+  // highlight-flipCropHorizontal
+  engine.block.flipCropHorizontal(image);
+  // highlight-flipCropVertical
+  engine.block.flipCropVertical(image);
 
   // highlight-hasOpacity
   engine.block.hasOpacity(image);

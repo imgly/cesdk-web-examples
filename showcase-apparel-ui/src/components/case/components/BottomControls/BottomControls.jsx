@@ -1,28 +1,24 @@
 import { useEditor } from '../../EditorContext';
 import AddBlockBar from '../AddBlockBar/AddBlockBar';
-import ImageBar from '../ImageBar/ImageBar';
-import ShapesBar from '../ShapesBar/ShapesBar';
-import StickerBar from '../StickerBar/StickerBar';
-import TextBar from '../TextBar/TextBar';
+import ImageAdjustmentBar from '../ImageAdjustmentBar/ImageAdjustmentBar';
+import ShapesAdjustmentBar from '../ShapesAdjustmentBar/ShapesAdjustmentBar';
+import StickerAdjustmentBar from '../StickerAdjustmentBar/StickerAdjustmentBar';
+import TextAdjustmentsBar from '../TextAdjustmentsBar/TextAdjustmentsBar';
 import classes from './BottomControls.module.css';
 
 const BLOCK_TYPE_TO_CONTROLS = [
-  { type: '//ly.img.ubq/text', component: <TextBar /> },
-  { type: '//ly.img.ubq/image', component: <ImageBar /> },
-  { type: '//ly.img.ubq/shapes', component: <ShapesBar /> },
-  { type: '//ly.img.ubq/sticker', component: <StickerBar /> }
+  { type: '//ly.img.ubq/text', component: <TextAdjustmentsBar /> },
+  { type: '//ly.img.ubq/image', component: <ImageAdjustmentBar /> },
+  { type: '//ly.img.ubq/shapes', component: <ShapesAdjustmentBar /> },
+  { type: '//ly.img.ubq/sticker', component: <StickerAdjustmentBar /> }
 ];
 
 const BottomControls = () => {
-  const {
-    isEditable,
-    editorState: { editMode },
-    selectedBlocks
-  } = useEditor();
+  const { isEditable, selectedBlocks } = useEditor();
 
   let ControlComponent = <AddBlockBar />;
 
-  if (!isEditable || editMode === 'Crop') {
+  if (!isEditable) {
     return null;
   }
   const selectedBlockType =
@@ -36,10 +32,6 @@ const BottomControls = () => {
     }
   }
 
-  return (
-    <div className={classes.wrapper}>
-      <div className={classes.wrapperCentering}>{ControlComponent}</div>
-    </div>
-  );
+  return <div className={classes.wrapper}>{ControlComponent}</div>;
 };
 export default BottomControls;

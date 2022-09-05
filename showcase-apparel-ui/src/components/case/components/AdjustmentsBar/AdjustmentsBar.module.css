@@ -1,15 +1,19 @@
 .wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px 12px 0px 0px;
+  min-height: 4.5rem;
 }
 
 .innerWrapper {
   display: flex;
-  padding: 0.25rem 4px;
+  margin: 0 auto;
+  padding: 0.25rem 1rem;
   justify-content: center;
-  background: #F2F2F2;
   border-radius: 33.2818px;
-
 }
 
 .innerWrapper--gap-sm {
@@ -17,5 +21,9 @@
 }
 
 .innerWrapper--gap-md {
+  gap: 1rem;
+}
+
+.innerWrapper--gap-lg {
   gap: 1.5rem;
 }

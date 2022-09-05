@@ -1,6 +1,4 @@
 import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
-import { useIsDesktop } from 'lib/useIsDesktop';
-import { use100vh } from 'react-div-100vh';
 import classes from './CaseComponent.module.css';
 import BottomControls from './components/BottomControls/BottomControls';
 import CESDKCanvas from './components/CESDKCanvas/CESDKCanvas';
@@ -22,20 +20,10 @@ const CustomUI = () => {
 };
 
 const CaseComponent = () => {
-  const { isDesktop } = useIsDesktop();
-  const height = use100vh();
-
-  const wrapperStyle = !isDesktop
-    ? {
-        position: 'fixed',
-        height
-      }
-    : {};
-
   return (
     <EditorProvider>
       {/* Use this element to fix the size in iOS Safari. */}
-      <div className={classes.fullHeightWrapper} style={wrapperStyle}>
+      <div className={classes.fullHeightWrapper}>
         <div className={classes.caseWrapper}>
           <div className="caseHeader">
             <h3>Apparel UI</h3>

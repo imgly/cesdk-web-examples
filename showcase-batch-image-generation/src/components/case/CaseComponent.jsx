@@ -1,6 +1,6 @@
 import CreativeEngine from '@cesdk/engine';
 import classNames from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import classes from './CaseComponent.module.css';
 import EditInstanceCESDK from './components/EditInstanceCESDK/EditInstanceCESDK';
@@ -16,7 +16,10 @@ const CaseComponent = () => {
 
   const [allTemplates, setAllTemplates] = useState(TEMPLATES);
   const [currentTemplateName, setCurrentTemplateName] = useState('portrait');
-  const currentTemplate = allTemplates[currentTemplateName];
+  const currentTemplate = useMemo(
+    () => allTemplates[currentTemplateName],
+    [allTemplates, currentTemplateName]
+  );
 
   const [teamImages, setTeamImages] = useState(
     EMPLOYEES.map((employee) => ({
@@ -32,6 +35,9 @@ const CaseComponent = () => {
   const [modalEmployee, setModalEmployee] = useState();
 
   const [showTemplateModal, setShowTemplateModal] = useState(false);
+  const hideTemplateModal = useCallback(() => {
+    setShowTemplateModal(false);
+  }, []);
   const [modalTemplate, setModalTemplate] = useState();
 
   useEffect(() => {
@@ -46,8 +52,7 @@ const CaseComponent = () => {
     };
     CreativeEngine.init(config).then(async (instance) => {
       engineRef.current = instance;
-      // Workaround to 'Not all extension packs have loaded yet.'
-      setTimeout(() => setInitialized(true), 500);
+      setInitialized(true);
     });
 
     return function shutdownCreativeEngine() {
@@ -96,14 +101,14 @@ const CaseComponent = () => {
     renderTeam();
   }, [currentTemplate, engineRef, initialized]);
 
-  const onEditInstance = (image) => {
+  const onEditInstance = useCallback((image) => {
     setModalEmployee(image);
     setShowInstanceModal(true);
-  };
-  const onEditTemplate = (template) => {
+  }, []);
+  const onEditTemplate = useCallback((template) => {
     setModalTemplate(template);
     setShowTemplateModal(true);
-  };
+  }, []);
 
   const onUpdateImageInstance = async (sceneString, imageToUpdate) => {
     const cesdk = engineRef.current;
@@ -121,27 +126,30 @@ const CaseComponent = () => {
     setShowInstanceModal(false);
   };
 
-  const handleTemplateEdit = async (sceneString) => {
-    const cesdk = engineRef.current;
+  const handleTemplateEdit = useCallback(
+    async (sceneString) => {
+      const cesdk = engineRef.current;
 
-    // Render Scene from updated sceneString
-    await cesdk.scene.loadFromString(sceneString);
-    removeInstanceVariables(cesdk);
-    const blob = await cesdk.block.export(
-      cesdk.block.findByType('scene')[0],
-      currentTemplate.outputFormat
-    );
-    const updatedTemplate = {
-      ...currentTemplate,
-      sceneString,
-      previewImagePath: URL.createObjectURL(blob)
-    };
-    setAllTemplates({
-      ...allTemplates,
-      [currentTemplateName]: updatedTemplate
-    });
-    setShowTemplateModal(false);
-  };
+      // Render Scene from updated sceneString
+      await cesdk.scene.loadFromString(sceneString);
+      removeInstanceVariables(cesdk);
+      const blob = await cesdk.block.export(
+        cesdk.block.findByType('scene')[0],
+        currentTemplate.outputFormat
+      );
+      const updatedTemplate = {
+        ...currentTemplate,
+        sceneString,
+        previewImagePath: URL.createObjectURL(blob)
+      };
+      setAllTemplates((allTemplates) => ({
+        ...allTemplates,
+        [currentTemplateName]: updatedTemplate
+      }));
+      setShowTemplateModal(false);
+    },
+    [currentTemplate, currentTemplateName]
+  );
 
   return (
     <div className="flex flex-grow flex-col">
@@ -247,7 +255,7 @@ const CaseComponent = () => {
           templateName={modalTemplate.label}
           sceneString={modalTemplate.sceneString}
           onSave={handleTemplateEdit}
-          onClose={() => setShowTemplateModal(false)}
+          onClose={hideTemplateModal}
         />
       )}
     </div>

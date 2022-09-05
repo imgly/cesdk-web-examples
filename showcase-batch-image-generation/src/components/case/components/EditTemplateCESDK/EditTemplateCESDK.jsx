@@ -6,6 +6,7 @@ const EditTemplateCESDK = ({ templateName, sceneString, onSave, onClose }) => {
     <CESDKModal
       onOutsideClick={onClose}
       config={{
+        theme: 'dark',
         initialSceneString: sceneString,
         callbacks: {
           onSave: (sceneString) => {
@@ -31,7 +32,12 @@ const EditTemplateCESDK = ({ templateName, sceneString, onSave, onClose }) => {
               inspector: {
                 show: true,
                 position: 'right'
-              }
+              },
+              settings: true
+            },
+            dock: {
+              iconSize: 'normal',
+              hideLabels: true
             }
           }
         },

@@ -9,6 +9,7 @@ const CESDKModal = ({ config, onOutsideClick }) => {
   useEffect(() => {
     if (containerRef.current && !instanceRef.current) {
       CreativeEditorSDK.init(containerRef.current, config).then((instance) => {
+
         instanceRef.current = instance;
       });
       return () => {

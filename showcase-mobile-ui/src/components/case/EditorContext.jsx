@@ -16,7 +16,6 @@ const EditorContext = createContext();
 
 export const EditorProvider = ({ children }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [shouldLoad, setShouldLoad] = useState(false);
   const [canvas, setCanvas] = useState(null);
 
   const [customEngine, setCustomEngine] = useState(null);
@@ -25,9 +24,7 @@ export const EditorProvider = ({ children }) => {
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
   const [editorState, setEditorState] = useState({
-    editMode: null,
-    cursorType: null,
-    cursorRotation: null
+    editMode: null
   });
   const editorUpdateCallbackRef = useRef(() => {});
   const [selectedTextProperties, setSelectedTextProperties] = useState({
@@ -122,27 +119,18 @@ export const EditorProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (canvas) {
-      setShouldLoad(true);
-    }
-  }, [canvas]);
-
-  useEffect(() => {
+    let newCustomEngine;
     const loadEditor = async () => {
 
-      if (!shouldLoad) {
+      if (!canvas) {
         return;
       }
-      setShouldLoad(false);
       const assetSources = {
         stickers: {
           findAssets: findCustomStickerAssets
         }
       };
       const config = {
-        featureFlags: {
-          preventScrolling: true
-        },
         page: {
           title: {
             show: false
@@ -153,7 +141,7 @@ export const EditorProvider = ({ children }) => {
       };
 
       const creativeEngine = await CreativeEngine.init(config, canvas);
-      const newCustomEngine = new CustomEngine(creativeEngine);
+      newCustomEngine = new CustomEngine(creativeEngine);
       setCustomEngine(newCustomEngine);
       creativeEngine.editor.onStateChanged(() =>
         editorUpdateCallbackRef.current()
@@ -170,12 +158,14 @@ export const EditorProvider = ({ children }) => {
     loadEditor();
 
     return () => {
-      customEngine?.dispose();
+      if (newCustomEngine) {
+        newCustomEngine.dispose();
+      }
       setCustomEngine(null);
       setIsLoaded(false);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shouldLoad]);
+  }, [canvas]);
 
   const editMode = useMemo(() => editorState['editMode'], [editorState]);
 

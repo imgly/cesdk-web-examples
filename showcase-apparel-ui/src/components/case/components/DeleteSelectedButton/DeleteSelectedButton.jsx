@@ -9,7 +9,7 @@ const ALLOWED_DELETION_TYPES = [
   '//ly.img.ubq/sticker'
 ];
 
-const DeleteSelectedButton = () => {
+const DeleteSelectedButton = ({ isActive = false }) => {
   const {
     selectedBlocks,
     customEngine: { deleteSelectedElement }
@@ -28,6 +28,7 @@ const DeleteSelectedButton = () => {
       onClick={() => deleteSelectedElement()}
       icon={<TrashBinIcon />}
       iconColor="red"
+      isActive={isActive}
     >
       Delete
     </IconButton>

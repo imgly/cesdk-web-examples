@@ -1,4 +1,5 @@
 import { getImageSize } from './lib/utils';
+import { removeEmojis } from './util';
 
 // Here we wrap the CreativeEngine to fit our use case
 // We do not want to expose the engine to the outside world directly.
@@ -19,9 +20,7 @@ export class CustomEngine {
 
   getEditorState = () => {
     return {
-      editMode: this.#engine.editor.getEditMode(),
-      cursorType: this.#engine.editor.getCursorType(),
-      cursorRotation: this.#engine.editor.getCursorRotation()
+      editMode: this.#engine.editor.getEditMode()
     };
   };
 
@@ -52,32 +51,42 @@ export class CustomEngine {
       'fill/color': this.#engine.block.getFillColorRGBA(textBlock)
     };
   };
+  getSelectedShapeProperties = () => {
+    const shapeColor = this.getAllSelectedElements('shape')[0];
+    if (!shapeColor) {
+      return {
+        'fill/solid/color': null
+      };
+    }
+    return {
+      'fill/solid/color': this.#engine.block.getColorRGBA(
+        shapeColor,
+        'fill/solid/color'
+      )
+    };
+  };
 
   enablePreviewMode = () => {
+    this.#engine.editor.setEditMode('Transform');
     this.deselectAllBlocks();
-    const backdropImageBlock = this.getBackdropImage();
-    this.#engine.scene.zoomToBlock(backdropImageBlock, 0, 60, 0, 20);
-
     this.#engine.editor.setSettingBool('ubq://page/dimOutOfPageAreas', false);
     this.#engine.block.setClipped(this.getPage(), true);
     this.#engine.block.setBool(this.getPage(), 'fill/enabled', false);
+    this.zoomToBackdrop();
   };
 
   enableEditMode = () => {
-    this.#engine.scene.zoomToBlock(this.getPage(), 0, 50, 0, 100);
-
+    this.zoomToPage();
     this.#engine.editor.setSettingBool('ubq://page/dimOutOfPageAreas', true);
     this.#engine.block.setClipped(this.getPage(), false);
     this.#engine.block.setBool(this.getPage(), 'fill/enabled', true);
   };
 
-  addText = () => {
+  addText = (
+    fontFileUri = '/extensions/ly.img.cesdk.fonts/fonts/Roboto/Roboto-Regular.ttf'
+  ) => {
     const block = this.#engine.block.create('text');
-    this.#engine.block.setString(
-      block,
-      'text/fontFileUri',
-      '/extensions/ly.img.cesdk.fonts/fonts/Roboto/Roboto-Regular.ttf'
-    );
+    this.#engine.block.setString(block, 'text/fontFileUri', fontFileUri);
     this.#engine.block.setFloat(block, 'text/fontSize', 50);
     this.#engine.block.setEnum(block, 'text/horizontalAlignment', 'Center');
     this.#engine.block.setHeightMode(block, 'Auto');
@@ -115,6 +124,10 @@ export class CustomEngine {
       this.#engine.block.setFloat(block, 'shapes/star/innerDiameter', 0.4);
     }
     this.addBlockToPage(block);
+    // Workaround: To set a rotation, the block currently has to be attached to a scene
+    if (shapeBlockType === 'shapes/line') {
+      this.#engine.block.setRotation(block, -Math.PI / 4);
+    }
   };
 
   addSticker = (stickerURI) => {
@@ -213,9 +226,40 @@ export class CustomEngine {
       this.#engine.editor.addUndoStep();
     }
   };
+  changeShapeColor = ({ r, g, b }) => {
+    const allSelectedShapeElements = this.getAllSelectedElements('shape');
+    if (allSelectedShapeElements.length > 0) {
+      allSelectedShapeElements.forEach((shapeElementId) => {
+        this.#engine.block.setColorRGBA(
+          shapeElementId,
+          'fill/solid/color',
+          r,
+          g,
+          b,
+          1
+        );
+      });
+      this.#engine.editor.addUndoStep();
+    }
+  };
+  setEditMode = (mode) => this.#engine.editor.setEditMode(mode);
+  resetCurrentCrop = () => {
+    const allSelectedImageElements = this.getAllSelectedElements('image');
+    allSelectedImageElements.forEach((imageElementId) => {
+      this.#engine.block.resetCrop(imageElementId);
+    });
+  };
 
   exportScene = async () => {
-    const sceneExport = await this.#engine.block.export(this.getPage());
+    const page = this.getPage();
+    const prevPageFill = this.#engine.block.getBool(page, 'fill/enabled');
+    this.#engine.block.setBool(page, 'fill/enabled', true);
+    // We always want a background color when exporting
+    const sceneExport = await this.#engine.block.export(
+      page,
+      'application/pdf'
+    );
+    this.#engine.block.setBool(page, 'fill/enabled', prevPageFill);
     return sceneExport;
   };
 
@@ -226,6 +270,81 @@ export class CustomEngine {
   redo = () => this.#engine.editor.redo();
 
   // UTIL FUNCTIONS
+  pixelToCanvasUnit = (pixel) => {
+    const sceneUnit = this.#engine.block.getEnum(
+      this.getScene(),
+      'scene/designUnit'
+    );
+    let densityFactor = 1;
+    if (sceneUnit === 'Millimeter') {
+      densityFactor =
+        this.#engine.block.getFloat(this.getScene(), 'scene/dpi') / 25.4;
+    }
+    if (sceneUnit === 'Inch') {
+      densityFactor = this.#engine.block.getFloat(this.getScene(), 'scene/dpi');
+    }
+    return (
+      pixel /
+      (window.devicePixelRatio *
+        densityFactor *
+        this.#engine.scene.getZoomLevel())
+    );
+  };
+
+  zoomToPage = async () => {
+    return this.#engine.scene.zoomToBlock(this.getPage(), 20, 60, 20, 100);
+  };
+
+  zoomToBackdrop = async () => {
+    const backdropImageBlock = this.getBackdropImage();
+    this.#engine.scene.zoomToBlock(backdropImageBlock, 0, 60, 0, 20);
+  };
+
+  filterTextEmojis = () => {
+    const selectedTexts = this.#engine.block.findAllSelected();
+    selectedTexts.forEach((textBlockId) => {
+      const textBefore = this.#engine.block.getString(textBlockId, 'text/text');
+      const textWithoutEmojis = removeEmojis(textBefore);
+
+      if (textBefore !== textWithoutEmojis) {
+        this.#engine.block.setString(
+          textBlockId,
+          'text/text',
+          textWithoutEmojis
+        );
+      }
+    });
+  };
+
+  zoomToSelectedText = async (canvasHeight, overlapBottom) => {
+    const paddingBottom = 90;
+    const paddingTop = 90;
+    const selectedTexts = this.#engine.block.findAllSelected();
+    if (selectedTexts.length === 1) {
+      const cursorPosY =
+        this.#engine.editor.getTextCursorPositionInScreenSpaceY();
+      // The first cursorPosY is 0 if no cursor has been layouted yet. Then we ignore zoom commands.
+      const cursorPosIsValid = cursorPosY !== 0;
+      if (!cursorPosIsValid) {
+        return;
+      }
+      const visiblePageAreaY = canvasHeight - overlapBottom - paddingBottom;
+
+      const cursorPosYCanvas =
+        this.pixelToCanvasUnit(
+          this.#engine.editor.getTextCursorPositionInScreenSpaceY()
+        ) +
+        this.#engine.block.getPositionY(this.getCamera()) -
+        this.pixelToCanvasUnit(visiblePageAreaY);
+      if (
+        cursorPosY > visiblePageAreaY ||
+        cursorPosY < paddingTop * window.devicePixelRatio
+      ) {
+        this.#engine.block.setPositionY(this.getCamera(), cursorPosYCanvas);
+      }
+    }
+  };
+
   deselectAllBlocks = () => {
     this.#engine.block
       .findAllSelected()
