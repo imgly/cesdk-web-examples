@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0-alpha.4/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0-alpha.4/assets',
   presets: {
     // highlight-templates
     templates: {
@@ -10,10 +10,10 @@ let config = {
         label: 'Template',
         // highlight-label
         // highlight-scene
-        scene: '/template.scene',
+        scene: `${window.location.protocol}//${window.location.host}/template.scene`,
         // highlight-scene
         // highlight-thumbnail
-        thumbnailURL: '/template_thumb.png'
+        thumbnailURL: `${window.location.protocol}//${window.location.host}/template_thumb.png`
         // highlight-thumbnail
       }
     }

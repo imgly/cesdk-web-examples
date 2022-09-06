@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.4/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.4/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -62,6 +62,10 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setFloat(star, 'shapes/star/innerDiameter', 0.75);
   // highlight-getFloat
   engine.block.getFloat(star, 'shapes/star/innerDiameter');
+  // highlight-setDouble
+  engine.block.setDouble(scene, 'scene/playbackTime', 1.2);
+  // highlight-getDouble
+  engine.block.getDouble(scene, 'scene/playbackTime');
   // highlight-setString
   engine.block.setString(text, 'text/text', '*o*');
   engine.block.setString(image, 'image/imageFileURI', 'https://img.ly/static/ubq_samples/sample_4.jpg');

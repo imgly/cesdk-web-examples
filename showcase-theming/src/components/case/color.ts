@@ -42,13 +42,15 @@ export function generateColorAbstractionTokensBackground(color: string) {
     '--ubq-interactive-default': setLightness(color, '+0.15').css('hsl'),
     '--ubq-interactive-hover': setLightness(color, '+0.1').css('hsl'),
     '--ubq-interactive-pressed': setLightness(color, '+0.025').css('hsl'),
+    '--ubq-interactive-selected': setLightness(color, '+0.125').css('hsl'),
     '--ubq-input-default': setLightness(color, '-0.1').css('hsl'),
     '--ubq-input-hover': setLightness(color, '-0.12').css('hsl'),
     '--ubq-border-outline': setLightness(color, '+0.5').alpha(0.1).css('hsl'),
     '--ubq-border-divider': setLightness(color, '+0.5').alpha(0.08).css('hsl'),
     '--ubq-border-contrast': setLightness(color, '+0.5').alpha(0.25).css('hsl'),
     '--ubq-focus-outline': chroma(color).css('hsl'),
-    '--ubq-overlay-default': chroma(color).alpha(0.8).css('hsl')
+    '--ubq-overlay-default': chroma(color).alpha(0.8).css('hsl'),
+    '--ubq-progress': getContrastColor(color).alpha(0.7).css('hsl')
   };
 }
 
@@ -74,5 +76,27 @@ export function generateColorAbstractionTokensAccent(color: string) {
     '--ubq-notice-warning': transferCL(color, '#FFBB33').css('hsl'),
     '--ubq-notice-error': transferCL(color, '#DC608E').css('hsl'),
     '--ubq-notice-success': transferCL(color, '#09B48B').css('hsl')
+  };
+}
+
+export function generateStaticTokens() {
+  return {
+    '--ubq-static-selection-frame': ' hsl(230, 100%, 60%)',
+    '--ubq-static-contrast-white': ' hsl(0, 0%, 100%)',
+    '--ubq-static-contrast-black': ' hsl(0, 0%, 0%)',
+    '--ubq-static-snapping:': 'hsl(338, 100%, 50%)',
+    '--ubq-static-bleed:': 'hsl(334, 73%, 43%)',
+    '--ubq-static-text-variable': ' hsl(274, 97%, 60%)',
+    '--ubq-static-card-label-background': `linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 14.46%,
+      rgba(0, 0, 0, 0.6) 100%
+    )`,
+    '--ubq-static-card-background': `linear-gradient(
+        180deg,
+        hsla(0, 0%, 100%, 0.08),
+        hsla(0, 0%, 0%, 0.08)
+      ),
+      hsla(0, 0%, 67%, 0.16)`
   };
 }

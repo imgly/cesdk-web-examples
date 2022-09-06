@@ -10,7 +10,12 @@ const CaseComponent = () => {
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/advanced-ui/example.scene`,
       ui: {
         elements: {
+          view: 'advanced',
           panels: {
+            inspector: {
+              show: true,
+              position: 'right'
+            },
             settings: true
           },
           dock: {

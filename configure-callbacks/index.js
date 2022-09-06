@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0-alpha.4/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0-alpha.4/assets',
   // highlight-callbacks
   callbacks: {
     // highlight-onlog
@@ -53,8 +53,8 @@ let config = {
     onExport: (blobs, options) => {
       window.alert('Export callback!');
       console.info(options.mimeType)
-      console.info(options.quality)
-      constole.info(options.pages)
+      console.info(options.jpegQuality)
+      console.info(options.pages)
       return Promise.resolve();
     },
     // highlight-onexport

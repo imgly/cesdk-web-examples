@@ -15,7 +15,7 @@ const Component = (props = {}) => {
     if (cesdk_container.current) {
       // Serve assets from IMG.LY CDN or locally
       props.config.baseURL =
-        'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/assets';
+        'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0-alpha.4/assets';
 
       CreativeEditorSDK.init(cesdk_container.current, props.config).then(
         (instance) => {
