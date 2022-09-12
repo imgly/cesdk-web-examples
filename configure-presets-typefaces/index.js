@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0-alpha.5/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.7.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0-alpha.5/assets',
   theme: 'light',
   presets: {
     // highlight-typefaces
@@ -14,7 +14,7 @@ let config = {
         fonts: [
           {
             // highlight-fontURL
-            fontURL: '/Orbitron-Regular.ttf',
+            fontURL: `${window.location.protocol}//${window.location.host}/Orbitron-Regular.ttf`,
             // highlight-fontURL
             // highlight-weight
             weight: 'regular',
@@ -22,8 +22,9 @@ let config = {
             // highlight-style
             style: 'normal'
             // highlight-style
-          },{
-            fontURL: '/Orbitron-Bold.ttf',
+          },
+          {
+            fontURL: `${window.location.protocol}//${window.location.host}/Orbitron-Bold.ttf`,
             weight: 'bold',
             style: 'normal'
           }

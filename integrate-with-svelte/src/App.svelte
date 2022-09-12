@@ -1,9 +1,5 @@
 <script>
-	import CreativeEditorSDK from './CreativeEditorSDK.svelte';
+	import CreativeEditorSDK from './lib/CreativeEditorSDK.svelte';
 </script>
-
-
-<style>
-</style>
 
 <CreativeEditorSDK/>

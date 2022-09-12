@@ -6,6 +6,7 @@ const EditTemplateCESDK = ({ templateName, sceneString, onSave, onClose }) => {
     <CESDKModal
       onOutsideClick={onClose}
       config={{
+        theme: 'dark',
         initialSceneString: sceneString,
         callbacks: {
           onSave: (sceneString) => {
@@ -18,6 +19,7 @@ const EditTemplateCESDK = ({ templateName, sceneString, onSave, onClose }) => {
         role: 'Creator',
         ui: {
           elements: {
+            view: 'advanced',
             navigation: {
               title: `${templateName}`,
               action: {
@@ -25,7 +27,18 @@ const EditTemplateCESDK = ({ templateName, sceneString, onSave, onClose }) => {
                 save: true
               }
             },
-            libraries: { template: false }
+            libraries: { template: false },
+            panels: {
+              inspector: {
+                show: true,
+                position: 'right'
+              },
+              settings: true
+            },
+            dock: {
+              iconSize: 'normal',
+              hideLabels: true
+            }
           }
         },
         page: {

@@ -1,7 +1,7 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.5/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.5/assets'
 };
 
 CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(

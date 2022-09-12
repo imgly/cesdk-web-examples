@@ -88,3 +88,13 @@
   font-weight: 600;
   font-size: 14px;
 }
+
+.statusText {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 0rem 2rem;
+  flex: 1;
+}

@@ -1,0 +1,13 @@
+.wrapper {
+  overflow: auto;
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* We can not use flexbox because otherwise the overflow is broken on small displays  */
+.wrapperCentering {
+  margin: auto;
+  width: fit-content
+}

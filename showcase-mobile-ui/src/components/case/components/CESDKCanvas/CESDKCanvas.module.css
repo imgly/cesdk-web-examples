@@ -1,0 +1,13 @@
+.canvas {
+  flex: 1;
+  /* For Safari */
+  overflow: hidden;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 400px;
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
