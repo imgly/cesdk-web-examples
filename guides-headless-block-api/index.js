@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -249,12 +249,12 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-setFillType
   engine.block.setFillType(block, 'Solid');
   // highlight-setFillSolidColor
-  engine.block.setFillSolidColor(block, 255, 192, 203, 255);
+  engine.block.setFillSolidColor(block, 1., 0.75, 0.5, 1.);
   // highlight-setFillGradientType
   engine.block.setFillType(block, 'Gradient');
   engine.block.setFillGradientType(block, 'Linear');
   // highlight-addFillGradientColorStop
-  engine.block.addFillGradientColorStop(block, 0.5, 255, 192, 203, 255);
+  engine.block.addFillGradientColorStop(block, 0.5, 1., 0.75, 0.8, 1.);
 
   const member1 = engine.block.create('shapes/star');
   const member2 = engine.block.create('shapes/rect');
@@ -275,7 +275,14 @@ CreativeEngine.init(config).then(async (engine) => {
   const referencesVariables = engine.block.referencesAnyVariables(block);
 
   // highlight-export
+  const exportOptions = engine.block.ExportOptions();
   const blob = await engine.block.export(scene, 'image/png', {
     pngCompressionLevel: 6
   });
+  // highlight-exportWithColorMask
+  const blobArray = await engine.block.exportWithColorMask(
+    scene, 'image/png', 1.0, 0.75, 0.5, {
+      pngCompressionLevel: 6
+    });
+  // highlight-exportWithColorMask
 });

@@ -3,7 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import {
   generateColorAbstractionTokensAccent,
   generateColorAbstractionTokensActive,
-  generateColorAbstractionTokensBackground
+  generateColorAbstractionTokensBackground,
+  generateStaticTokens
 } from './color';
 
 const DEFAULT_BACKGROUND_COLOR = '#121921';
@@ -26,7 +27,7 @@ const ThemingCESDK = ({
       role: 'Adopter',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
       callbacks: {
-        onExport: (blobs) => localDownload(blobs[0], `export.png`)
+        onExport: 'download'
       },
       ui: {
         scale: scale,
@@ -36,7 +37,10 @@ const ThemingCESDK = ({
           },
           navigation: {
             action: {
-              export: true
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
             }
           }
         }
@@ -129,7 +133,8 @@ const ThemingCESDK = ({
 const generateCustomTheme = (backgroundColor, activeColor, accentColor) => ({
   ...generateColorAbstractionTokensAccent(accentColor),
   ...generateColorAbstractionTokensBackground(backgroundColor),
-  ...generateColorAbstractionTokensActive(activeColor)
+  ...generateColorAbstractionTokensActive(activeColor),
+  ...generateStaticTokens()
 });
 const generateCustomThemeStyle = (customThemeProperties) => `
   .ubq-public{
@@ -138,23 +143,6 @@ const generateCustomThemeStyle = (customThemeProperties) => `
       .join('\n')}
   }
 `;
-
-const localDownload = (data, filename) => {
-  return new Promise((resolve) => {
-    const element = document.createElement('a');
-    element.setAttribute('href', window.URL.createObjectURL(data));
-    element.setAttribute('download', filename);
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
-
-    resolve();
-  });
-};
 
 const cesdkStyle = {
   width: '100%',
