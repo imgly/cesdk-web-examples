@@ -1,11 +1,12 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.7.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
+  document.getElementById('root').append(engine.element);
   const scene = engine.scene.create();
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
@@ -21,14 +22,22 @@ CreativeEngine.init(config).then(async (engine) => {
   // Examples
 
   // highlight-image
-  engine.block.setString(image, 'image/imageFileURI', 'https://img.ly/static/ubq_samples/sample_4.jpg');
+  engine.block.setString(
+    image,
+    'image/imageFileURI',
+    'https://img.ly/static/ubq_samples/sample_4.jpg'
+  );
   engine.block.resetCrop(image);
   // highlight-image
 
   // highlight-text
   engine.block.setFloat(text, 'text/fontSize', 18.0);
   engine.block.setString(text, 'text/text', 'Greetings');
-  engine.block.setString(text, 'text/fontFileUri', '/extensions/ly.img.cesdk.fonts/fonts/Caveat/Caveat-Bold.ttf');
+  engine.block.setString(
+    text,
+    'text/fontFileUri',
+    '/extensions/ly.img.cesdk.fonts/fonts/Caveat/Caveat-Bold.ttf'
+  );
   engine.block.setEnum(text, 'text/horizontalAlignment', 'Left');
   // highlight-text
 
@@ -62,14 +71,24 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setFloat(star, 'shapes/star/innerDiameter', 0.75);
   // highlight-getFloat
   engine.block.getFloat(star, 'shapes/star/innerDiameter');
+  if (engine.block.hasPlaybackTime(scene)) {
+    // highlight-setDouble
+    engine.block.setDouble(scene, 'playback/time', 1.2);
+    // highlight-getDouble
+    engine.block.getDouble(scene, 'playback/time');
+  }
   // highlight-setString
   engine.block.setString(text, 'text/text', '*o*');
-  engine.block.setString(image, 'image/imageFileURI', 'https://img.ly/static/ubq_samples/sample_4.jpg');
+  engine.block.setString(
+    image,
+    'image/imageFileURI',
+    'https://img.ly/static/ubq_samples/sample_4.jpg'
+  );
   // highlight-setString
   // highlight-getString
   engine.block.getString(text, 'text/text');
   engine.block.getString(image, 'image/imageFileURI');
-    // highlight-getString
+  // highlight-getString
   // highlight-setColorRGBA
   engine.block.setColorRGBA(camera, 'camera/clearColor', 1, 1, 1, 1); // White
   // highlight-getColorRGBA
@@ -119,6 +138,10 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.getCropTranslationY(image);
   // highlight-getContentFillMode
   engine.block.getContentFillMode(image);
+  // highlight-flipCropHorizontal
+  engine.block.flipCropHorizontal(image);
+  // highlight-flipCropVertical
+  engine.block.flipCropVertical(image);
 
   // highlight-hasOpacity
   engine.block.hasOpacity(image);

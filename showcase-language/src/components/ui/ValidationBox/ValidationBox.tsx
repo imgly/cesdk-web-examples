@@ -82,10 +82,12 @@ const ValidationBox = ({
           ))}
         </div>
       </div>
-      {checkStatus === 'pending' && results.length === 0 && emptyComponent}
-      {checkStatus === 'performed' &&
-        unsuccessfulResults.length === 0 &&
-        successComponent}
+      {checkStatus === 'pending' && results.length === 0 && (
+        <div className={styles.statusText}>{emptyComponent}</div>
+      )}
+      {checkStatus === 'performed' && unsuccessfulResults.length === 0 && (
+        <div className={styles.statusText}>{successComponent}</div>
+      )}
     </div>
   );
 };

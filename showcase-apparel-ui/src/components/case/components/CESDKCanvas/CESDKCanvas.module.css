@@ -1,0 +1,23 @@
+.previewBlocker {
+  position: absolute;
+  top: 50px;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+}
+
+.canvas {
+  flex: 1;
+  /* For Safari */
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 400px;
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+  border-radius: 20px;
+}
