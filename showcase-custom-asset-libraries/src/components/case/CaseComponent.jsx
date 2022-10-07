@@ -1,11 +1,13 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { findAirtableAssets } from './airtableAssetLibrary';
+import { findPexelsAssets } from './pexelsAssetLibrary';
 import { findUnsplashAssets } from './unsplashAssetLibrary';
 
 const availableAssetLibraries = {
   airtable: {
-    title: 'Airtable',
+    id: 'Airtable',
+    sceneFile: 'airtable.scene',
     DescriptionComponent: () => (
       <p>
         Search and browse images from an{' '}
@@ -17,7 +19,7 @@ const availableAssetLibraries = {
         >
           Airtable
         </a>{' '}
-        spreadsheet in the editor under <b>Images</b> {'>'} <b>Airtable</b>.
+        spreadsheet in the editor.
       </p>
     ),
     config: {
@@ -29,6 +31,8 @@ const availableAssetLibraries = {
     }
   },
   unsplash: {
+    id: 'Unsplash',
+    sceneFile: 'unsplash.scene',
     title: 'Unsplash',
     DescriptionComponent: () => (
       <p>
@@ -41,7 +45,7 @@ const availableAssetLibraries = {
         >
           Unsplash
         </a>{' '}
-        in the editor under <b>Images</b> {'>'} <b>Unsplash</b>.
+        in the editor.
       </p>
     ),
     config: {
@@ -55,28 +59,54 @@ const availableAssetLibraries = {
         url: 'https://unsplash.com/license'
       }
     }
+  },
+  pexels: {
+    id: 'Pexels',
+    sceneFile: 'pexels.scene',
+    title: 'Pexels',
+    DescriptionComponent: () => (
+      <p>
+        Search and browse images from{' '}
+        <a
+          href={'https://pexels.com/'}
+          style={linkStyle}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Pexels
+        </a>{' '}
+        in the editor.
+      </p>
+    ),
+    config: {
+      findAssets: findPexelsAssets,
+      credits: {
+        name: 'Pexels',
+        url: 'https://pexels.com/'
+      },
+      license: {
+        name: 'Pexels license (free)',
+        url: 'https://pexels.com/license'
+      }
+    }
   }
 };
 
 const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
   const cesdk_container = useRef(null);
-  const assetLibraryConfig = availableAssetLibraries[asset_library];
+  const assetLibraryConfig = useMemo(
+    () => availableAssetLibraries[asset_library],
+    [asset_library]
+  );
 
   useEffect(() => {
 
-    const assetSources = {
-      ...(asset_library === 'airtable' && {
-        airtable: availableAssetLibraries['airtable'].config
-      }),
-      ...(asset_library === 'unsplash' && {
-        unsplash: availableAssetLibraries['unsplash'].config
-      })
-    };
+    const assetSources = { [assetLibraryConfig.id]: assetLibraryConfig.config };
 
     let cesdk;
     let config = {
       role: 'Adopter',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/custom-asset-libraries/${asset_library}.scene`,
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/custom-asset-libraries/${assetLibraryConfig.sceneFile}`,
       page: {
         title: {
           show: false
@@ -88,12 +118,40 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
             settings: true
           },
           libraries: {
-            panel: {
-              insert: {
-                floating: false
-              },
-              replace: {
-                floating: false
+            insert: {
+              floating: false,
+              entries: (defaultEntries) => {
+                const entriesWithoutDefaultImages = defaultEntries.filter(
+                  (entry) => {
+                    return entry.id !== 'ly.img.image';
+                  }
+                );
+                return [
+                  {
+                    id: assetLibraryConfig.id,
+                    sourceIds: [assetLibraryConfig.id],
+                    previewLength: 3,
+                    gridItemHeight: 'auto',
+                    gridBackgroundType: 'cover',
+                    gridColumns: 2
+                  },
+                  ...entriesWithoutDefaultImages
+                ];
+              }
+            },
+            replace: {
+              floating: false,
+              entries: () => {
+                return [
+                  {
+                    id: assetLibraryConfig.id,
+                    sourceIds: [assetLibraryConfig.id],
+                    previewLength: 3,
+                    gridItemHeight: 'auto',
+                    gridBackgroundType: 'cover',
+                    gridColumns: 2
+                  }
+                ];
               }
             }
           }
@@ -103,7 +161,8 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
       i18n: {
         en: {
           'libraries.airtable.label': 'Airtable',
-          'libraries.unsplash.label': 'Unsplash'
+          'libraries.unsplash.label': 'Unsplash',
+          'libraries.pexels.label': 'Pexels'
         }
       },
 
@@ -151,27 +210,9 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
             thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.png`
           }
         }
-      },
-      // End standard template presets
-      // Set extensions to defaults but exclude the local sample images
-      // to show the custom images from our asset library directly.
-      // Also remove sticker and shapes to unclutter the bar.
-      extensions: {
-        entries: [
-          'ly.img.cesdk.filters.duotone',
-          'ly.img.cesdk.filters.lut',
-          // 'ly.img.cesdk.stickers.emoticons',
-          // 'ly.img.cesdk.vectorpaths',
-          // 'ly.img.cesdk.vectorpaths.abstract',
-          'ly.img.cesdk.fonts',
-          // 'ly.img.cesdk.images.samples',
-          'ly.img.cesdk.effects'
-          // 'ly.img.cesdk.stickers.doodle',
-          // 'ly.img.cesdk.stickers.hand',
-          // 'ly.img.cesdk.stickers.emoji'
-        ]
       }
     };
+
     if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
@@ -184,7 +225,7 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
         cesdk.dispose();
       }
     };
-  }, [cesdk_container, asset_library]);
+  }, [cesdk_container, assetLibraryConfig]);
 
   return (
     <div style={caseContainerStyle}>
@@ -195,17 +236,14 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
             CE.SDK can include assets from third party libraries accessible via
             API.
           </p>
-          <p>
-            <assetLibraryConfig.DescriptionComponent />
-          </p>
+          <assetLibraryConfig.DescriptionComponent />
         </div>
-        {asset_library === 'airtable' && (
+        {assetLibraryConfig.id === 'Airtable' && (
           <div className="flex-basis-0 flex flex-grow">
             <iframe
               className="airtable-embed"
               src="https://airtable.com/embed/shr4x8s9jqaxiJxm5?backgroundColor=orange"
-              frameborder="0"
-              onmousewheel=""
+              frameBorder="0"
               width="300"
               height="220"
               title="airtable"
@@ -250,7 +288,7 @@ const linkStyle = {
 
 const airtableStyle = {
   background: 'transparent',
-  border: '1px solid #ccc;',
+  border: '1px solid #ccc',
   borderRadius: '12px',
   flexGrow: 1
 };

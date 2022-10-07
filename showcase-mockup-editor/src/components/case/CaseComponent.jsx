@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import CreativeEngine from '@cesdk/engine';
 import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import EditMockupCESDK from './Components/EditMockupCESDK';
+import EditMockupCESDK from './Components/EditMockupCESDK/EditMockupCESDK';
 import { ReactComponent as DownloadIcon } from './Download.svg';
 import { ReactComponent as FullscreenEnterIcon } from './FullscreenEnter.svg';
 import { ReactComponent as FullscreenLeaveIcon } from './FullscreenLeave.svg';
@@ -54,7 +54,7 @@ export const replaceImages = (cesdk, imageName, newUrl) => {
   });
 };
 
-const CaseComponent = (props = { product: 'postcard' }) => {
+const CaseComponent = ({ product = 'postcard' }) => {
   const cesdkContainerRef = useRef(null);
   const cesdkEngineRef = useRef(null);
   const mockupEngineRef = useRef(null);
@@ -68,12 +68,12 @@ const CaseComponent = (props = { product: 'postcard' }) => {
   const [mockupEngineLoaded, setMockupEngineLoaded] = useState(false);
   const [isDirty, setIsDirty] = useState(true);
 
-  const productConfig = useMemo(() => PRODUCTS[props.product], [props.product]);
+  const productConfig = useMemo(() => PRODUCTS[product], [product]);
 
   const downloadMockup = () => {
     var saveImg = document.createElement('a');
     saveImg.href = currentMockupUrl;
-    saveImg.download = `${props.product}.jpeg`;
+    saveImg.download = `${product}.jpeg`;
     saveImg.click();
   };
 
@@ -150,7 +150,10 @@ const CaseComponent = (props = { product: 'postcard' }) => {
       license: process.env.REACT_APP_LICENSE
     };
 
+
     CreativeEngine.init(config).then(async (instance) => {
+      // Hotfix for a race-condition in <=1.7.0
+      await new Promise((resolve) => requestAnimationFrame(resolve));
       await instance.scene.loadFromURL(
         `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
@@ -164,7 +167,7 @@ const CaseComponent = (props = { product: 'postcard' }) => {
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.product]);
+  }, [product]);
   useEffect(() => {
     let config = {
       license: process.env.REACT_APP_LICENSE,
@@ -227,6 +230,8 @@ const CaseComponent = (props = { product: 'postcard' }) => {
       }
       // End standard template presets
     };
+
+
     let cesdk;
     let unsubscribe;
     if (cesdkContainerRef.current) {
@@ -252,15 +257,15 @@ const CaseComponent = (props = { product: 'postcard' }) => {
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cesdkContainerRef, props.product]);
+  }, [cesdkContainerRef, product]);
 
   useEffect(() => {
-    if (props.product) {
+    if (product) {
       setMockupLoading(true);
       // Reset Mockup Scene
       setCurrentMockupScene();
     }
-  }, [props.product]);
+  }, [product]);
 
   return (
     <div className="gap-md flex h-full w-full flex-col">
@@ -349,8 +354,9 @@ const CaseComponent = (props = { product: 'postcard' }) => {
             )}
             {currentMockupUrl && (
               <img
+                data-cy="mockup-preview"
                 src={currentMockupUrl}
-                alt={`Mockup of the ${props.product}`}
+                alt={`Mockup of the ${product}`}
                 className={classes.previewImageStyle}
               />
             )}

@@ -158,16 +158,12 @@ const ImageComplianceCESDK = () => {
         <ValidationBox
           checkStatus={checkRan ? 'performed' : 'pending'}
           results={normalizedResults}
-          emptyComponent={
-            <div className="flex w-full flex-grow items-center justify-center text-center">
-              No check has been performed yet.
-            </div>
-          }
+          emptyComponent={<>No check has been performed yet.</>}
           successComponent={
-            <div className="flex w-full flex-grow items-center justify-center text-center">
+            <>
               No content violations found. <br />
               Add possibly offensive content and run it again.
-            </div>
+            </>
           }
         />
       </div>
