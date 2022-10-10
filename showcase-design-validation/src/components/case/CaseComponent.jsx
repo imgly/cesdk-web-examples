@@ -128,8 +128,19 @@ const CaseComponent = () => {
           },
           libraries: {
             template: false
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           }
         }
+      },
+      callbacks: {
+        onExport: 'download'
       },
       // Begin standard template presets
       presets: {

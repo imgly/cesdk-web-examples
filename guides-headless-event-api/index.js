@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -14,10 +14,10 @@ CreativeEngine.init(config).then(async (engine) => {
   const star = engine.block.create('shapes/star');
   engine.block.appendChild(page, star);
 
-  // hightlight-subscribe
   let unsubscribe = engine.event.subscribe([star], (events) => {
     for (var i = 0; i < events.length; i++) {
       let event = events[i];
+  // highlight-subscribe
       console.log('Event:', event.type, event.block);
       if (engine.block.isValid(event.block)) {
         console.log('Block type:', engine.block.getType(event.block));

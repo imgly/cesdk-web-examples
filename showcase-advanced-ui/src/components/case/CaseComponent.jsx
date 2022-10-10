@@ -21,8 +21,19 @@ const CaseComponent = () => {
           dock: {
             iconSize: 'normal',
             hideLabels: true
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           }
         }
+      },
+      callbacks: {
+        onExport: 'download'
       },
       // Begin standard template presets
       presets: {

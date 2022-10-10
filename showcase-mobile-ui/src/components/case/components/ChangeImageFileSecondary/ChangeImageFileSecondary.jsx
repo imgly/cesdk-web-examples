@@ -14,7 +14,7 @@ const ChangeImageFileSecondary = ({ onClose }) => {
   return (
     <>
       <SlideUpPanelHeader headline="Replace">
-        <UploadImageButton />
+        <UploadImageButton onUpload={(url) => changeImageFile(url)} />
       </SlideUpPanelHeader>
       <SlideUpPanelBody>
         <ImageSelect

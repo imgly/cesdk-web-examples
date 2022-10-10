@@ -48,6 +48,19 @@ export const EditorProvider = ({ children }) => {
     );
   }, [canvas, customEngine]);
 
+  const syncUndoRedoState = () => {
+    // Extract and store canUndo
+    const newCanUndo = customEngine.getCanUndo();
+    if (newCanUndo !== canUndo) {
+      setCanUndo(newCanUndo);
+    }
+    // Extract and store canRedo
+    const newCanRedo = customEngine.getCanRedo();
+    if (newCanRedo !== canRedo) {
+      setCanRedo(newCanRedo);
+    }
+  };
+
   editorUpdateCallbackRef.current = () => {
     const newEditorState = customEngine.getEditorState();
     if (newEditorState['editMode'] === 'Text') {
@@ -57,6 +70,7 @@ export const EditorProvider = ({ children }) => {
     if (!isEqual(newEditorState, editorState)) {
       setEditorState(newEditorState);
     }
+    syncUndoRedoState();
   };
   engineEventCallbackRef.current = (events) => {
     if (events.length > 0) {
@@ -77,16 +91,7 @@ export const EditorProvider = ({ children }) => {
       if (!isEqual(newSelectedShapeProperties, selectedShapeProperties)) {
         setSelectedShapeProperties(newSelectedShapeProperties);
       }
-      // Extract and store canUndo
-      const newCanUndo = customEngine.getCanUndo();
-      if (newCanUndo !== canUndo) {
-        setCanUndo(newCanUndo);
-      }
-      // Extract and store canRedo
-      const newCanRedo = customEngine.getCanRedo();
-      if (newCanRedo !== canRedo) {
-        setCanRedo(newCanRedo);
-      }
+      syncUndoRedoState();
     }
   };
 
@@ -118,10 +123,6 @@ export const EditorProvider = ({ children }) => {
         engineEventCallbackRef.current(events)
       );
       await newCustomEngine.loadScene(caseAssetPath(`/kiosk.scene`));
-      creativeEngine.editor.setSettingBool(
-        'ubq://doubleClickToCropEnabled',
-        false
-      );
       setIsLoaded(true);
     };
     loadEditor();

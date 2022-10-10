@@ -1,25 +1,20 @@
 {
-  "name": "cesdk-integrate-with-svelte",
-  "version": "1.1.1",
+  "name": "integrate-with-svelte",
   "private": true,
+  "version": "1.1.1",
+  "type": "module",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --no-clear",
-    "serve": "sirv public -p 8080"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
-    "rollup": "^2.3.4",
-    "rollup-plugin-css-only": "^3.1.0",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^7.0.0",
-    "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.0.0"
+    "@sveltejs/vite-plugin-svelte": "^1.0.1",
+    "svelte": "^3.49.0",
+    "vite": "^3.0.7"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "~1.8.0-alpha.3",
+    "@cesdk/cesdk-js": "~1.8.0",
     "sirv-cli": "^1.0.0"
   }
 }

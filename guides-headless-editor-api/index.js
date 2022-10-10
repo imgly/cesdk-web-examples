@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -61,13 +61,13 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-getSettingString
   engine.editor.getSettingString('ubq://license');
   // highlight-setSettingColorRGBA
-  engine.block.setSettingColorRGBA('ubq://highlightColor', 1, 0, 1, 1); // Pink
+  engine.editor.setSettingColorRGBA('ubq://highlightColor', 1, 0, 1, 1); // Pink
   // highlight-getSettingColorRGBA
-  engine.block.getSettingColorRGBA('ubq://highlightColor');
+  engine.editor.getSettingColorRGBA('ubq://highlightColor');
   // highlight-setSettingEnum
-  engine.block.setSettingEnum('ubq://role', 'Presenter');
+  engine.editor.setSettingEnum('ubq://role', 'Presenter');
   // highlight-getSettingEnum
-  engine.block.getSettingEnum('ubq://role');
+  engine.editor.getSettingEnum('ubq://role');
 
   // Export the scene to an image
   await engine.block.export(scene);

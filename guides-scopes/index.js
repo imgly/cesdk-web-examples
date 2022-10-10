@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.3/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0-alpha.3/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -15,7 +15,11 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.editor.setGlobalScope('design/arrange', 'Defer');
 
   /* Manipulation of layout properties of any block will fail at this point. */
-  engine.block.setPositionX(image, 100);
+  try {
+    engine.block.setPositionX(image, 100); // Not allowed
+  } catch(err) {
+    console.log(err.message);
+  }
   // highlight-setGlobalScope
 
   // highlight-getGlobalScope
@@ -26,6 +30,13 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-setScopeEnabled
   /* Allow the user to control the layout properties of the image block. */
   engine.block.setScopeEnabled(image, 'design/arrange', true);
+
+  /* Manipulation of layout properties of any block is now allowed. */
+  try {
+    engine.block.setPositionX(image, 100); // Allowed
+  } catch(err) {
+    console.log(err.message);
+  }
   // highlight-setScopeEnabled
 
   // highlight-isScopeEnabled
@@ -34,7 +45,7 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-isScopeEnabled
 
   // highlight-isAllowedByScope
-  /* This will return true as well since the global scope is set to 'Defer'. */ 
+  /* This will return true as well since the global scope is set to 'Defer'. */
   engine.block.isAllowedByScope(image, 'design/arrange');
   // highlight-isAllowedByScope
 });

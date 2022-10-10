@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.item {
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 4px;
+  color: rgba(22, 22, 23, 0.65);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+
+.item:hover,
+.item:focus {
+  color: #471aff;
+}
+
+.item--active {
+  background: rgba(71, 26, 255, 0.1);
+  color: #471aff;
+}

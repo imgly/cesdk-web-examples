@@ -28,8 +28,19 @@ const CaseComponent = () => {
           },
           panels: {
             settings: true
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           }
         }
+      },
+      callbacks: {
+        onExport: 'download'
       }
     };
     if (cesdk_container.current) {
