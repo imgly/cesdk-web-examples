@@ -30,6 +30,7 @@ const CaseComponent = () => {
           }
         }
       },
+      license: process.env.REACT_APP_LICENSE,
       // Begin standard template presets
       presets: {
         templates: {

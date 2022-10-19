@@ -64,7 +64,6 @@ export const EditorProvider = ({ children }) => {
   editorUpdateCallbackRef.current = () => {
     const newEditorState = customEngine.getEditorState();
     if (newEditorState['editMode'] === 'Text') {
-      customEngine.filterTextEmojis();
       checkZoom();
     }
     if (!isEqual(newEditorState, editorState)) {

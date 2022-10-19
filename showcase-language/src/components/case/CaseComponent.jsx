@@ -9,6 +9,7 @@ const CaseComponent = (props = { locale: 'en' }) => {
       role: 'Adopter',
       theme: 'light',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
+      license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
           panels: {

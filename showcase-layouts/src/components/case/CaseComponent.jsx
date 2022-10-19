@@ -24,9 +24,20 @@ const CaseComponent = (props = { locale: 'en' }) => {
       role: 'Adopter',
       theme: 'light',
       initialSceneURL: caseAssetPath('/custom-layouts.scene'),
-
+      license: process.env.REACT_APP_LICENSE,
+      callbacks: {
+        onExport: 'download'
+      },
       ui: {
         elements: {
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
+          },
           dock: {
             groups: [
               {

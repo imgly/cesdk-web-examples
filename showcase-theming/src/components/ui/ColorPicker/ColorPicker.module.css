@@ -42,8 +42,6 @@
 .pickerModal {
   position: absolute;
   z-index: 99;
-  top: 2rem;
-  left: 3rem;
   width: min-content;
   padding: 0.4rem;
   margin: 0 !important;
@@ -56,11 +54,11 @@
 }
 
 .pickerModal--right {
-  left: 2rem;
+  left: 0rem;
 }
 
 .pickerModal--left {
-  right: 2rem;
+  right: 0rem;
 }
 
 .pickerModal--top {
