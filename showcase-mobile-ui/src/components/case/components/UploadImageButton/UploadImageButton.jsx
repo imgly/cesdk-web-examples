@@ -10,12 +10,8 @@ const SUPPORTED_MIME_TYPES = [
   'image/gif'
 ];
 
-const UploadImageButton = () => {
-  const {
-    setLocalUploads,
-    localUploads,
-    customEngine: { addImage }
-  } = useEditor();
+const UploadImageButton = ({ onUpload }) => {
+  const { setLocalUploads, localUploads } = useEditor();
 
   return (
     <div>
@@ -28,7 +24,7 @@ const UploadImageButton = () => {
           const fileUrls = files.map((file) =>
             window.URL.createObjectURL(file)
           );
-          fileUrls.forEach((fileUrl) => addImage(fileUrl));
+          fileUrls.forEach((fileUrl) => onUpload(fileUrl));
           setLocalUploads([...localUploads, ...fileUrls]);
         }}
         icon={

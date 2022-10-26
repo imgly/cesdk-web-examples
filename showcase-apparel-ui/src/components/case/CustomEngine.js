@@ -1,5 +1,4 @@
 import { getImageSize } from './lib/utils';
-import { removeEmojis } from './util';
 
 // Here we wrap the CreativeEngine to fit our use case
 // We do not want to expose the engine to the outside world directly.
@@ -15,6 +14,8 @@ export class CustomEngine {
 
   loadScene = async (url) => {
     await this.#engine.scene.loadFromURL(url);
+    this.enableEditMode();
+    this.#engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
     this.#engine.editor.addUndoStep();
   };
 
@@ -298,22 +299,6 @@ export class CustomEngine {
   zoomToBackdrop = async () => {
     const backdropImageBlock = this.getBackdropImage();
     this.#engine.scene.zoomToBlock(backdropImageBlock, 0, 60, 0, 20);
-  };
-
-  filterTextEmojis = () => {
-    const selectedTexts = this.#engine.block.findAllSelected();
-    selectedTexts.forEach((textBlockId) => {
-      const textBefore = this.#engine.block.getString(textBlockId, 'text/text');
-      const textWithoutEmojis = removeEmojis(textBefore);
-
-      if (textBefore !== textWithoutEmojis) {
-        this.#engine.block.setString(
-          textBlockId,
-          'text/text',
-          textWithoutEmojis
-        );
-      }
-    });
   };
 
   zoomToSelectedText = async (canvasHeight, overlapBottom) => {

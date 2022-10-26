@@ -17,7 +17,7 @@ const AddImageSecondary = ({ onClose }) => {
       onExpandedChanged={(value) => !value && onClose()}
     >
       <SlideUpPanelHeader headline="Add Image">
-        <UploadImageButton />
+        <UploadImageButton onUpload={(url) => addImage(url)} />
       </SlideUpPanelHeader>
       <SlideUpPanelBody>
         <ImageSelect onSelect={(image) => addImage(image)} />

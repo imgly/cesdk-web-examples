@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.0-preview.0/cesdk.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.0-preview.0/assets'
 };
 
 CreativeEditorSDK.init("#cesdk_container", config).then(async (instance) => {

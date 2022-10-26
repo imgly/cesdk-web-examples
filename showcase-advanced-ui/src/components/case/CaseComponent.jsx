@@ -8,6 +8,7 @@ const CaseComponent = () => {
       role: 'Creator',
       theme: 'dark',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/advanced-ui/example.scene`,
+      license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
           view: 'advanced',
@@ -21,8 +22,19 @@ const CaseComponent = () => {
           dock: {
             iconSize: 'normal',
             hideLabels: true
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           }
         }
+      },
+      callbacks: {
+        onExport: 'download'
       },
       // Begin standard template presets
       presets: {
