@@ -1,10 +1,10 @@
-import { useEditor } from '../../EditorContext';
+import { useSelectedProperty } from '../../lib/UseSelectedProperty';
 import classes from './TextColorIcon.module.css';
 
 const TextColorIcon = () => {
-  const { selectedTextProperties } = useEditor();
+  const [fillColor] = useSelectedProperty('fill/solid/color');
 
-  const [r, g, b] = selectedTextProperties['fill/color'] || [0, 0, 0, 0];
+  const [r, g, b] = fillColor;
 
   return (
     <span

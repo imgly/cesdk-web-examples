@@ -73,11 +73,9 @@ export class CustomEngine {
     this.#engine.editor.setSettingBool('ubq://page/dimOutOfPageAreas', false);
     this.#engine.block.setClipped(this.getPage(), true);
     this.#engine.block.setBool(this.getPage(), 'fill/enabled', false);
-    this.zoomToBackdrop();
   };
 
   enableEditMode = () => {
-    this.zoomToPage();
     this.#engine.editor.setSettingBool('ubq://page/dimOutOfPageAreas', true);
     this.#engine.block.setClipped(this.getPage(), false);
     this.#engine.block.setBool(this.getPage(), 'fill/enabled', true);

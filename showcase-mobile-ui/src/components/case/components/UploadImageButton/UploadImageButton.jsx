@@ -10,7 +10,7 @@ const SUPPORTED_MIME_TYPES = [
   'image/gif'
 ];
 
-const UploadImageButton = ({ onUpload }) => {
+const UploadImageButton = ({ multiple, onUpload }) => {
   const { setLocalUploads, localUploads } = useEditor();
 
   return (
@@ -18,6 +18,7 @@ const UploadImageButton = ({ onUpload }) => {
       <IconButton
         onClick={async () => {
           const files = await uploadFile({
+            multiple,
             supportedMimeTypes: SUPPORTED_MIME_TYPES
           });
 

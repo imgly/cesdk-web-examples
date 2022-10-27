@@ -32,7 +32,7 @@ const CESDKCanvas = () => {
     }
     const container = wrapperRef.current;
     const canvas = creativeEngine.element;
-    // Workaround until 1.8.0 to let the custom canvas web element stretch to full size
+    // Workaround until 1.9.0 to let the custom canvas web element stretch to full size
     canvas.style.height = '100%';
     canvas.style.width = '100%';
     canvas.style.position = 'absolute';

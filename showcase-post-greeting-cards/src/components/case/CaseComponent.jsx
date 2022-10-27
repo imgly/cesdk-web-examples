@@ -8,8 +8,8 @@ const CaseComponent = () => {
     <div className={classes.fullHeightWrapper}>
       <div className={classes.caseWrapper}>
         <div className="caseHeader">
-          <h3 className="caseHeader__title--small">Postcards</h3>
-          <h3 className="caseHeader__title--large">Post- & Greeting-Cards</h3>
+          <h3 className="caseHeader__title--small">Postcard UI</h3>
+          <h3 className="caseHeader__title--large">Post- & Greeting-Card UI</h3>
           <p>
             This custom UI was implemented using the CE.SDK headless API to
             optimally guide users through adapting a post or greeting card

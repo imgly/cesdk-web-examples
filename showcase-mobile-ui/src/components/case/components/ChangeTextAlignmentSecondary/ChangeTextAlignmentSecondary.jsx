@@ -1,4 +1,4 @@
-import { useEditor } from '../../EditorContext';
+import { useSelectedProperty } from '../../lib/UseSelectedProperty';
 import AlignmentSelect from '../AlignmentSelect/AlignmentSelect';
 import {
   SlideUpPanelBody,
@@ -6,18 +6,17 @@ import {
 } from '../SlideUpPanel/SlideUpPanel';
 
 const ChangeTextAlignmentSecondary = () => {
-  const {
-    selectedTextProperties,
-    customEngine: { changeTextAlignment }
-  } = useEditor();
+  const [horizontalAlignment, setHorizontalAlignment] = useSelectedProperty(
+    'text/horizontalAlignment'
+  );
 
   return (
     <>
       <SlideUpPanelHeader headline="Align"></SlideUpPanelHeader>
       <SlideUpPanelBody>
         <AlignmentSelect
-          onClick={(value) => changeTextAlignment(value)}
-          activeAlignment={selectedTextProperties['text/horizontalAlignment']}
+          onClick={(value) => setHorizontalAlignment(value)}
+          activeAlignment={horizontalAlignment}
         />
       </SlideUpPanelBody>
     </>

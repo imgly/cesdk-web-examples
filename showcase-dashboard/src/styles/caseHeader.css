@@ -10,7 +10,7 @@
   text-align: left;
 }
 
-.caseHeader > h3 {
+.caseHeader>h3 {
   width: 100%;
   color: #ffffff;
   font-family: 'GT Walsheim Pro';
@@ -20,7 +20,7 @@
   text-align: center;
 }
 
-.caseHeader > p {
+.caseHeader>p {
   display: none;
   max-width: 60ch;
 
@@ -47,19 +47,20 @@
     margin-bottom: 0;
   }
 
-  .caseHeader > p {
+  .caseHeader>p {
     display: block;
   }
 
-  .caseHeader > h3 {
+  .caseHeader>h3 {
     text-align: left;
   }
-}
 
-.caseHeader__title--large {
-  display: block;
-}
 
-.caseHeader__title--small {
-  display: none;
+  .caseHeader__title--large {
+    display: block;
+  }
+
+  .caseHeader__title--small {
+    display: none;
+  }
 }

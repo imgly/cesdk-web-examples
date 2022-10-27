@@ -24,7 +24,7 @@ export const EditorProvider = ({ children }) => {
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
   const [editorState, setEditorState] = useState({
-    editMode: null
+    editMode: 'Transform'
   });
   const editorUpdateCallbackRef = useRef(() => {});
   const [selectedTextProperties, setSelectedTextProperties] = useState({
@@ -107,6 +107,9 @@ export const EditorProvider = ({ children }) => {
             show: false
           }
         },
+        featureFlags: {
+          preventScrolling: true
+        },
         license: process.env.REACT_APP_LICENSE
       };
 
@@ -155,9 +158,13 @@ export const EditorProvider = ({ children }) => {
       return;
     }
     if (editMode === 'Transform') {
-      customEngine.zoomToPage();
+      if (viewMode === 'edit') {
+        customEngine.zoomToPage();
+      } else {
+        customEngine.zoomToBackdrop();
+      }
     }
-  }, [isLoaded, canvas, customEngine, editMode]);
+  }, [isLoaded, canvas, viewMode, customEngine, editMode]);
 
   const isEditable = isLoaded && viewMode === 'edit';
 

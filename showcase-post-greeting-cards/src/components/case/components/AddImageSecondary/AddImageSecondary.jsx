@@ -1,6 +1,8 @@
 import { useEditor } from '../../EditorContext';
-import { autoPlaceBlockOnPage } from '../../lib/CreativeEngineUtils';
-import { getImageSize } from '../../lib/utils';
+import {
+  getImageSize,
+  autoPlaceBlockOnPage
+} from '../../lib/CreativeEngineUtils';
 import ImagesBar from '../ImageBar/ImageBar';
 
 const AddImageSecondary = () => {
