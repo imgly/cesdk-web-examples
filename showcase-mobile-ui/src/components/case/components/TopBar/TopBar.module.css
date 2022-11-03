@@ -1,28 +1,31 @@
 .topBar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-  gap: 1rem;
   min-height: 48px;
-  background: #ECECEE;
-  box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25), 0px 0px 0px -2px rgba(18, 26, 33, 0.12), 0px 0px 0px -2px rgba(18, 26, 33, 0.12), 0px 0px 0px -2px rgba(18, 26, 33, 0.12);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background: #ececee;
+  box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25),
+    0px 0px 0px -2px rgba(18, 26, 33, 0.12),
+    0px 0px 0px -2px rgba(18, 26, 33, 0.12),
+    0px 0px 0px -2px rgba(18, 26, 33, 0.12);
+  gap: 1rem;
 }
 
-.topBar>* {
+.topBar > * {
   display: flex;
 }
 
-.topBar>*:first-child {
-  justify-content: flex-start;
-  flex-grow: 1;
+.topBar > *:first-child {
   flex-basis: 0;
+  flex-grow: 1;
+  justify-content: flex-start;
 }
 
-.topBar>*:last-child {
-  justify-content: flex-end;
-  flex-grow: 1;
+.topBar > *:last-child {
   flex-basis: 0;
+  flex-grow: 1;
+  justify-content: flex-end;
 }
 
 .spinning {

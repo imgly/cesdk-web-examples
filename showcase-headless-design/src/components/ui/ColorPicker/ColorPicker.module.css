@@ -20,11 +20,11 @@
 
 .label {
   min-width: 5rem;
+
+  color: #161617;
   font-family: var(--font-family-ibm-sans);
   font-size: 14px;
   letter-spacing: 0.02em;
-
-  color: #161617;
 }
 
 .input {
@@ -32,27 +32,41 @@
 }
 
 .colorPreviewSpan {
-  border-radius: 9999px;
   width: 1rem;
   height: 1rem;
   border: 1px solid var(--colorpicker-border-color);
+  border-radius: 9999px;
   color: var(--colorpicker-arrow-color);
 }
 
 .pickerModal {
   position: absolute;
-  top: 2rem;
-  left: 3rem;
   z-index: 99;
-  background: white;
+  width: min-content;
   padding: 0.4rem;
+  margin: 0 !important;
+  background: white;
+  border-radius: 12px;
   box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25),
     0px 12px 12px -2px rgba(18, 26, 33, 0.12),
     0px 5px 5px -2px rgba(18, 26, 33, 0.12),
     0px 2.5px 2.5px -2px rgba(18, 26, 33, 0.12);
-  border-radius: 12px;
-  margin: 0 !important;
-  width: min-content;
+}
+
+.pickerModal--right {
+  left: 0rem;
+}
+
+.pickerModal--left {
+  right: 0rem;
+}
+
+.pickerModal--top {
+  bottom: 2rem;
+}
+
+.pickerModal--bottom {
+  top: 2rem;
 }
 
 .pickerModal :global(.react-colorful) {
@@ -63,45 +77,45 @@
 .pickerModal input {
   width: 100%;
   border: 1px solid rgba(22, 22, 23, 0.08);
-  box-shadow: inset 0px 2px 4px rgba(18, 26, 33, 0.16);
   border-radius: 6px;
-  font-size: 16px;
-  line-height: 28px;
-  letter-spacing: 0.01em;
+  box-shadow: inset 0px 2px 4px rgba(18, 26, 33, 0.16);
   color: #161617;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  line-height: 28px;
 }
 
 .inputWrapper {
-  cursor: pointer;
   display: flex;
+  box-sizing: border-box;
   align-items: center;
   padding: var(--colorpicker-input-padding);
-  background: var(--colorpicker-background-color);
-  color: var(--colorpicker-arrow-color);
   border: 1px solid rgba(22, 22, 23, 0.65);
-  box-sizing: border-box;
+  background: var(--colorpicker-background-color);
+  border-radius: 9999px;
   box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25),
     0px 6px 6px -2px rgba(18, 26, 33, 0.12),
     0px 2.5px 2.5px -2px rgba(18, 26, 33, 0.12),
     0px 1.25px 1.25px -2px rgba(18, 26, 33, 0.12);
-  border-radius: 9999px;
+  color: var(--colorpicker-arrow-color);
+  cursor: pointer;
 }
 
 .selectionWrapper {
+  position: relative;
   display: flex;
   align-items: center;
   background: linear-gradient(0deg, #f4f4f5, #f4f4f5);
   border-radius: 9999px;
-  position: relative;
 }
 
 .colorPreset {
-  cursor: pointer;
   width: 1rem;
   height: 1rem;
-  border-radius: 999px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   margin: 0 4px;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
 .colorPreset:hover,

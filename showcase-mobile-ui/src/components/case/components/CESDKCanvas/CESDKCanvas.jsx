@@ -4,44 +4,15 @@ import { useEditor } from '../../EditorContext';
 import { disable, enable } from '../../lib/inobounce';
 import classes from './CESDKCanvas.module.css';
 
-const resizeCanvas = (wrapperNode, canvasNode) => {
-  if (!wrapperNode || !canvasNode) return;
-  // Make canvas use up no space.
-  canvasNode.style.width = '0px';
-  canvasNode.style.height = '0px';
-  // Get available space of the wrapper
-  const { width, height } = wrapperNode.getBoundingClientRect();
-  // Set canvas dimensions
-  canvasNode.width = width * window.devicePixelRatio;
-  canvasNode.height = height * window.devicePixelRatio;
-  canvasNode.style.width = `${width}px`;
-  canvasNode.style.height = `${height}px`;
-  canvasNode.style.display = `block`;
-};
-
 const CESDKCanvas = () => {
   const wrapperRef = useRef(null);
-  const { setCanvas, canvas, isLoaded, customEngine } = useEditor();
 
-  useEffect(() => {
-    const wrapper = wrapperRef.current;
-    if (!canvas || !wrapper) {
-      return;
-    }
-    const o = new ResizeObserver(([entry]) => {
-      resizeCanvas(wrapper, canvas);
-      if (isLoaded) {
-        customEngine?.zoomToPage();
-      }
-    });
-    o.observe(wrapper);
-    return () => o.unobserve(wrapper);
-  }, [canvas, wrapperRef, isLoaded, customEngine]);
+  const { engineIsLoaded, creativeEngine } = useEditor();
 
   useEffect(() => {
     // Disable bouncing only if the canvas is really visible
     if (
-      !canvas ||
+      !engineIsLoaded ||
       !wrapperRef ||
       wrapperRef.current.getBoundingClientRect().height <= 0
     ) {
@@ -49,14 +20,28 @@ const CESDKCanvas = () => {
     } else {
       enable();
     }
-    return () => disable();
-  }, [canvas, wrapperRef]);
 
-  return (
-    <div id="cesdk" className={classes.wrapper} ref={wrapperRef}>
-      <canvas id="canvas" ref={setCanvas} className={classes.canvas}></canvas>
-    </div>
-  );
+    return () => disable();
+  }, [engineIsLoaded, wrapperRef]);
+
+  useEffect(() => {
+    if (!engineIsLoaded) {
+      return;
+    }
+    const container = wrapperRef.current;
+    const canvas = creativeEngine.element;
+    // Workaround until 1.9.0 to let the custom canvas web element stretch to full size
+    canvas.style.height = '100%';
+    canvas.style.width = '100%';
+    canvas.style.position = 'absolute';
+
+    container.append(canvas);
+    return () => {
+      container.remove(canvas);
+    };
+  }, [engineIsLoaded, creativeEngine]);
+
+  return <div id="cesdk" className={classes.wrapper} ref={wrapperRef}></div>;
 };
 
 export default CESDKCanvas;

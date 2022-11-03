@@ -16,7 +16,7 @@ const BLOCK_TYPE_TO_CONTROLS = [
 ];
 
 const BottomControls = () => {
-  const { isEditable, selectedBlocks } = useEditor();
+  const { engineIsLoaded, selectedBlocks } = useEditor();
 
   const ControlComponent = useMemo(() => {
     const selectedBlockType =
@@ -28,9 +28,15 @@ const BottomControls = () => {
     );
   }, [selectedBlocks]);
 
-  if (!isEditable) {
+  if (!engineIsLoaded) {
     return null;
   }
-  return <div className={classes.wrapper}>{ControlComponent}</div>;
+  // The key is used to force the closing of any open menus
+  // when the selected block changes
+  return (
+    <div className={classes.wrapper} key={selectedBlocks?.[0]?.id}>
+      {ControlComponent}
+    </div>
+  );
 };
 export default BottomControls;

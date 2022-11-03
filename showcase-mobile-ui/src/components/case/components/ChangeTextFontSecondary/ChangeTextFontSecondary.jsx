@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useEditor } from '../../EditorContext';
+import { useSelectedProperty } from '../../lib/UseSelectedProperty';
 import FontSelect from '../FontSelect/FontSelect';
 import FontSelectFilter from '../FontSelect/FontSelectFilter';
 import {
@@ -8,10 +8,7 @@ import {
 } from '../SlideUpPanel/SlideUpPanel';
 
 const ChangeTextFontSecondary = () => {
-  const {
-    selectedTextProperties,
-    customEngine: { changeTextFont }
-  } = useEditor();
+  const [fontFileUri, setFontFileUri] = useSelectedProperty('text/fontFileUri');
 
   const [fontFilterGroup, setFontFilterGroup] = useState();
 
@@ -25,8 +22,8 @@ const ChangeTextFontSecondary = () => {
           fontFilter={({ group }) =>
             !fontFilterGroup || fontFilterGroup === group
           }
-          onSelect={(fontUri) => changeTextFont(fontUri)}
-          activeFontUri={selectedTextProperties?.['text/fontFileUri']}
+          onSelect={(fontUri) => setFontFileUri(fontUri)}
+          activeFontUri={fontFileUri}
         />
       </SlideUpPanelBody>
     </>
