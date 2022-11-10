@@ -1,0 +1,71 @@
+/* From IMG.LY Gatsby Theme */
+:root {
+  --primary-color: #471aff;
+  --background-color: #fafafa;
+  --border-color: rgba(0, 0, 0, 0.5);
+  --divider-color: rgb(128, 128, 128);
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+  /* button */
+  --button-primary-hover-bg: #6038ff;
+  --button-primary-shadow: 0 0.25rem 0.625rem 1px rgba(47, 18, 165, 0.25);
+  --button-primary-hover-shadow: 0 0.25rem 0.625rem 1px rgba(47, 18, 165, 0.4);
+  --button-border: none;
+  --button-high-emphasis-bg: var(--primary-color);
+  --button-secondary-bg: rgba(22, 22, 23, 0.08);
+  --button-secondary-hover-bg: rgba(22, 22, 23, 0.12);
+
+  --button-dark-bg: #161617;
+  --button-dark-shadow: 0 0.25rem 0.625rem 1px rgb(22 22 23 / 12%);
+  --button-dark-hover-bg: #5c5c5c;
+
+  --button-light-bg: #fff;
+  --button-light-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.04);
+  --button-light-hover-bg: rgb(224, 224, 224);
+
+  --button-flat-opacity: 0.75;
+
+  /* breadcrumbs */
+  --breadcrumbs-opacity: 0.75;
+
+  /* block */
+  --code-bg: #fff;
+  --code-header-bg: #f4f4f4;
+  --code-border: 1px solid #c8c8c8;
+  --code-line-number-color: rgb(128, 128, 128);
+  --inline-code-border: 1px solid rgba(71, 26, 255, 0.1);
+  --inline-code-bg: #f5f2ff;
+  --code-line-highlight-color: rgba(71, 26, 255, 0.1);
+  --code-text-hover-bg: rgba(22, 22, 23, 0.12);
+  --code-max-width: 1.2;
+
+  /* text */
+  --interactive-text-indicator-hover-shadow: 0 0 0 0.125rem
+    var(--code-text-hover-bg);
+  --interactive-text-indicator-active-shadow: 0 0 0 0.125rem
+    var(--primary-color);
+  --interactive-text-indicator-border: 1px solid #c8c8c8;
+  --interactive-text-indicator-border-opacity: 0.5;
+
+  /* blockquote */
+  --blockquote-color: rgba(22, 22, 23, 0.5);
+  --blockquote-bg: #f4f4f4;
+  --blockquote-shadow: inset 2px 0 0 #c8c8c8;
+  /* text */
+  --text-light-high-emphasis: #fff;
+  --text-dark-high-emphasis: #161617;
+  /* link */
+  --link-hover-opacity: 0.5;
+  --link-active-color: #43464d;
+  /* input */
+  --input-color: #495057;
+  --input-bg: #fff;
+  --input-border: 1px solid rgba(22, 22, 23, 0.5);
+  --input-focus-shadow: 0 0 0 4px rgba(71, 26, 255, 0.5);
+  /* toggle */
+  --toggle-bg: #ccc;
+  --toggle-thumb-bg: #fff;
+
+  /* font-family */
+  --font-family-gt: GT Walsheim Pro, sans-serif;
+  --font-family-ibm-sans: IBM Plex Sans, SpockEss-Bold, sans-serif;
+}

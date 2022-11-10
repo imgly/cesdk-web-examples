@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useEditor } from '../../EditorContext';
+import { useSelectedProperty } from '../../lib/UseSelectedProperty';
 import {
   SlideUpPanelBody,
   SlideUpPanelHeader
@@ -9,9 +9,10 @@ import StickerSelectFilter from '../StickerSelect/StickerSelectFilter';
 
 const ChangeStickerFileSecondary = () => {
   const [group, setGroup] = useState();
-  const {
-    customEngine: { changeStickerFile }
-  } = useEditor();
+  // eslint-disable-next-line no-unused-vars
+  const [_imageFileURI, setImageFileURI] = useSelectedProperty(
+    'sticker/imageFileURI'
+  );
 
   return (
     <>
@@ -24,7 +25,7 @@ const ChangeStickerFileSecondary = () => {
       <SlideUpPanelBody>
         <StickerSelect
           group={group}
-          onClick={(color) => changeStickerFile(color)}
+          onClick={(stickerUri) => setImageFileURI(stickerUri)}
         />
       </SlideUpPanelBody>
     </>

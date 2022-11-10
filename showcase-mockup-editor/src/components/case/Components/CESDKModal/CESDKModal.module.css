@@ -1,23 +1,26 @@
 .modal {
-  background: #D6DBE1;
-  box-shadow: 0px 0px 2px rgba(22, 22, 23, 0.25), 0px 12px 18px -2px rgba(22, 22, 23, 0.12), 0px 6px 7.5px -2px rgba(22, 22, 23, 0.12), 0px 3px 5.25px -2px rgba(22, 22, 23, 0.12);
-  border-radius: 8px;
-  overflow: hidden;
   position: absolute;
   top: 10%;
-  left: 10%;
   right: 10%;
   bottom: 10%;
+  left: 10%;
+  overflow: hidden;
+  background: #d6dbe1;
+  border-radius: 8px;
+  box-shadow: 0px 0px 2px rgba(22, 22, 23, 0.25),
+    0px 12px 18px -2px rgba(22, 22, 23, 0.12),
+    0px 6px 7.5px -2px rgba(22, 22, 23, 0.12),
+    0px 3px 5.25px -2px rgba(22, 22, 23, 0.12);
 }
 
 .overlay {
+  position: absolute;
   z-index: 999;
-  background: rgba(123, 129, 135, 0.5);
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  position: absolute;
+  left: 0;
+  background: rgba(123, 129, 135, 0.5);
 }
 
 .cesdkContainer {

@@ -1,17 +1,17 @@
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
 }
 
-.wrapper>* {
+.wrapper > * {
   max-height: 72px;
 }
 
 .button {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .img {

@@ -1,0 +1,26 @@
+.button {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  display: block;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #161617;
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+.button:hover {
+  color: #471AFF;
+}
+
+.button--active {
+  color: #471AFF;
+  background: rgba(71, 26, 255, 0.1);
+
+}

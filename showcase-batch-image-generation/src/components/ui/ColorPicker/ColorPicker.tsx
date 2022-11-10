@@ -1,9 +1,9 @@
 import classNames from 'classnames';
+import useOnClickOutside from 'lib/useOnClickOutside';
+import { cloneElement, ReactElement, useRef, useState } from 'react';
+import { HexColorInput, HexColorPicker } from 'react-colorful';
 import { ReactComponent as CaretBottom } from './CaretBottom.svg';
 import classes from './ColorPicker.module.css';
-import { HexColorPicker, HexColorInput } from 'react-colorful';
-import { useState, useRef } from 'react';
-import useOnClickOutside from 'lib/useOnClickOutside';
 
 interface IColorPicker {
   presetColors: string[];
@@ -13,6 +13,9 @@ interface IColorPicker {
   value: string;
   theme: 'light' | 'dark';
   size: 'sm' | 'lg';
+  positionX: 'right' | 'left';
+  positionY: 'top' | 'bottom';
+  children: ReactElement;
   onChange: (value: string) => void;
 }
 
@@ -20,7 +23,10 @@ export const ColorPicker = ({
   value,
   label,
   name,
+  children,
   onChange,
+  positionX = 'right',
+  positionY = 'bottom',
   theme = 'dark',
   size = 'sm',
   defaultValue = '#000',
@@ -29,6 +35,27 @@ export const ColorPicker = ({
   const [pickerOpen, setPickerOpen] = useState(false);
   const pickerRef = useRef<HTMLDivElement | null>(null);
   useOnClickOutside(pickerRef, () => pickerOpen && setPickerOpen(false));
+
+  const TriggerComponent = children ? (
+    children
+  ) : (
+    <label
+      htmlFor={name}
+      className={classNames(
+        classes.inputWrapper,
+        'space-x-2',
+        classes['inputWrapper--' + theme]
+      )}
+    >
+      <span
+        className={classes.colorPreviewSpan}
+        style={{ backgroundColor: value }}
+      ></span>
+      <span className={classes.input} id={name} />
+      <CaretBottom />
+    </label>
+  );
+
   return (
     <div
       className={classNames(
@@ -44,28 +71,18 @@ export const ColorPicker = ({
         </label>
       )}
       <div className={classNames('space-x-2', classes.selectionWrapper)}>
-        <label
-          htmlFor={name}
-          className={classNames(
-            classes.inputWrapper,
-            'space-x-2',
-            classes['inputWrapper--' + theme]
-          )}
-          onClick={() => setPickerOpen(true)}
-        >
-          <span
-            className={classes.colorPreviewSpan}
-            style={{ backgroundColor: value }}
-          ></span>
-          <span className={classes.input} id={name} />
-          <CaretBottom />
-        </label>
+        {cloneElement(TriggerComponent, { onClick: () => setPickerOpen(true) })}
 
         <div
           style={{
             display: pickerOpen ? 'block' : 'none'
           }}
-          className={classNames(classes.pickerModal, 'space-y-1')}
+          className={classNames(
+            classes.pickerModal,
+            'space-y-1',
+            classes[`pickerModal--${positionX}`],
+            classes[`pickerModal--${positionY}`]
+          )}
           ref={pickerRef}
         >
           <HexColorPicker color={value} onChange={onChange} />

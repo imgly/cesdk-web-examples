@@ -11,12 +11,20 @@ const ALLOWED_DELETION_TYPES = [
 ];
 
 const DeleteSelectedButton = ({ isActive = false }) => {
-  const {
-    selectedBlocks,
-    customEngine: { deleteSelectedElement }
-  } = useEditor();
+  const { selectedBlocks, creativeEngine } = useEditor();
   const selectedBlockType =
     selectedBlocks?.length === 1 && selectedBlocks[0].type;
+
+  const deleteSelectedElement = () => {
+    const selectedBlocks = creativeEngine.block.findAllSelected();
+    if (creativeEngine.editor.getEditMode() === 'Crop') {
+      creativeEngine.editor.setEditMode('Transform');
+    }
+    selectedBlocks.forEach((pageId) => {
+      creativeEngine.block.destroy(pageId);
+    });
+    creativeEngine.editor.addUndoStep();
+  };
 
   if (
     !selectedBlocks ||

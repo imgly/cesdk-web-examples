@@ -1,4 +1,4 @@
-import { useEditor } from '../../EditorContext';
+import { useSelectedProperty } from '../../lib/UseSelectedProperty';
 import ColorSelect from '../ColorSelect/ColorSelect';
 import {
   SlideUpPanelBody,
@@ -6,18 +6,15 @@ import {
 } from '../SlideUpPanel/SlideUpPanel';
 
 const ChangeTextColorSecondary = () => {
-  const {
-    selectedTextProperties,
-    customEngine: { changeTextColor }
-  } = useEditor();
+  const [fillColor, setFillColor] = useSelectedProperty('fill/solid/color');
 
   return (
     <>
       <SlideUpPanelHeader headline="Color"></SlideUpPanelHeader>
       <SlideUpPanelBody>
         <ColorSelect
-          onClick={(color) => changeTextColor(color)}
-          activeColor={selectedTextProperties['fill/color']}
+          onClick={(color) => setFillColor(color.r, color.g, color.b)}
+          activeColor={fillColor}
         />
       </SlideUpPanelBody>
     </>

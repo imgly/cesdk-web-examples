@@ -1,4 +1,5 @@
 import { useEditor } from '../../EditorContext';
+import { resizeCanvas } from '../../lib/CreativeEngineUtils';
 import Modal from '../Modal/Modal';
 import classes from './CanvasSizeModal.module.css';
 
@@ -26,9 +27,7 @@ const ALL_SIZES = [
 ];
 
 const CanvasSizeModal = ({ onClose }) => {
-  const {
-    customEngine: { resizeCanvas }
-  } = useEditor();
+  const { creativeEngine, currentPageBlockId, refocus } = useEditor();
   return (
     <Modal title="Size" onClose={onClose}>
       <div className={classes.grid}>
@@ -36,8 +35,9 @@ const CanvasSizeModal = ({ onClose }) => {
           <button
             key={name}
             className={classes.sizeWrapper}
-            onClick={() => {
-              resizeCanvas(width, height);
+            onClick={async () => {
+              resizeCanvas(creativeEngine, currentPageBlockId, width, height);
+              refocus();
               onClose();
             }}
           >

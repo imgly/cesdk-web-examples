@@ -13,6 +13,7 @@ const CaseComponent = () => {
       role: 'Adopter',
       theme: 'light',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
+      license: process.env.REACT_APP_LICENSE,
       featureFlags: {
         singlePageMode: true
       },
@@ -28,8 +29,19 @@ const CaseComponent = () => {
           },
           panels: {
             settings: true
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           }
         }
+      },
+      callbacks: {
+        onExport: 'download'
       }
     };
     if (cesdk_container.current) {
