@@ -11,9 +11,9 @@
   --ubq-interactive-pressed: hsl(230.45, 52.38%, 16.47%);
   --ubq-input-default: hsl(234, 50%, 3.92%);
   --ubq-input-hover: hsl(228, 55.56%, 1.76%);
-  --ubq-border-outline: hsla(230, 52.17%, 63.92%, 0.1);
-  --ubq-border-divider: hsla(230, 52.17%, 63.92%, 0.08);
-  --ubq-border-contrast: hsla(230, 52.17%, 63.92%, 0.25);
+  --ubq-border-default: hsla(230, 52.17%, 63.92%, 0.1);
+  --ubq-stroke-contrast-1: hsla(230, 52.17%, 63.92%, 0.08);
+  --ubq-stroke-contrast-2: hsla(230, 52.17%, 63.92%, 0.25);
   --ubq-focus-outline: hsl(230.27, 52.11%, 13.92%);
   --ubq-overlay-default: hsla(230.27, 52.11%, 13.92%, 0.8);
   --ubq-foreground-active: hsla(210, 30%, 10%, 0.9);

@@ -1,0 +1,19 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+}
+
+/* Remove pointer events from all non-button components to enable resizing across the canvas */
+.wrapper--crop div {
+  pointer-events: none;
+}
+
+.wrapper--crop button {
+  pointer-events: all;
+}
+
+/* During active resizing even button should not targetable */
+.wrapper--crop.wrapper--in-resize button {
+  pointer-events: none;
+}

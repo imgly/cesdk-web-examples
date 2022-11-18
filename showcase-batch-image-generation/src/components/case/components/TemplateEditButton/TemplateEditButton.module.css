@@ -1,58 +1,63 @@
 .wrapper {
-  padding: 8px;
-  background: #7B8187;
-  border: 2px solid #471AFF;
-  box-sizing: border-box;
-  border-radius: 8px;
   position: relative;
+  box-sizing: border-box;
+  padding: 8px;
+  border: 2px solid #471aff;
+  background: #7b8187;
+  border-radius: 8px;
 }
 
 .image {
-  object-fit: contain;
   width: 140px;
   height: 140px;
+  object-fit: contain;
   transform: translateZ(131px);
 }
 
-.wrapper:hover .editOverlay {
+.wrapper:hover .editOverlay,
+.wrapper:focus .editOverlay {
   opacity: 1;
 }
 
 .editOverlay {
   position: absolute;
+  z-index: 1;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
-  background-color: rgba(236, 236, 238, 0.5);
+  left: 0;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(236, 236, 238, 0.5);
+  border-radius: 8px;
   opacity: 0;
   transition: opacity 0.1s;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
 }
 
 .editButton {
   display: flex;
-
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  align-items: center;
+  padding: 2px 8px;
 
   border: 1px solid #ffffff;
-  background: #FFFFFF;
-  box-shadow: 0px 0px 2px rgba(22, 22, 23, 0.25), 0px 0px 0px -2px rgba(22, 22, 23, 0.12), 0px 0px 0px -2px rgba(22, 22, 23, 0.12), 0px 0px 0px -2px rgba(22, 22, 23, 0.12);
+  background: #ffffff;
   border-radius: 8px;
+  box-shadow: 0px 0px 2px rgba(22, 22, 23, 0.25),
+    0px 0px 0px -2px rgba(22, 22, 23, 0.12),
+    0px 0px 0px -2px rgba(22, 22, 23, 0.12),
+    0px 0px 0px -2px rgba(22, 22, 23, 0.12);
+  color: #161617;
+  font-size: 14px;
+
+  font-weight: 500;
 
   gap: 4px;
-  padding: 2px 8px;
-  align-items: center;
-  color: #161617;
+  line-height: 20px;
 }
 
-.editButton:hover {
+.editButton:hover,
+.editButton:focus {
+  border: 1px solid #ffffff;
   background: rgba(255, 255, 255, 0.65);
-  border: 1px solid #FFFFFF;
 }

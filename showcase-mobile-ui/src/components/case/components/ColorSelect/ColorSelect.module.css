@@ -7,26 +7,27 @@
 
 .colorPalette {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
 .colorButton {
   width: calc(clamp(1rem, 6.4vw, 2rem));
-  aspect-ratio: 1 / 1;
-  outline-offset: 4px;
-  border-radius: 100%;
   border: 0.666667px solid rgba(0, 0, 0, 0.25);
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  outline-offset: 4px;
 }
 
 .colorButton:hover {
   outline: 2px solid #9e86ff;
-
 }
 
-.colorButton.colorButton--active, .colorButton.colorButton--active:hover, .colorButton:focus {
-  outline: 2px solid #471AFF;
+.colorButton.colorButton--active,
+.colorButton.colorButton--active:hover,
+.colorButton:focus {
+  outline: 2px solid #471aff;
 }
 
 .wrapper :global(.react-colorful) {

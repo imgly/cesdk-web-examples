@@ -1,10 +1,10 @@
 .wrapper {
   display: flex;
-  margin-left: -0.5rem;
   width: auto;
+  margin-left: -0.5rem;
 }
 
-.wrapper>* {
+.wrapper > * {
   width: 100%;
 }
 

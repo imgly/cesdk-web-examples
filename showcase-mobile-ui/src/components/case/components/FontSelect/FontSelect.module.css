@@ -1,40 +1,41 @@
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
   max-width: 100%;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .button {
-  overflow-x: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  gap: 0.25rem;
+  padding: 0.75rem;
 
-  font-size: 14px;
-  line-height: 20px;
+  border-radius: 8px;
 
   color: rgba(18, 26, 33, 0.9);
 
-  border-radius: 8px;
-  padding: 0.75rem;
+  font-size: 14px;
+  gap: 0.25rem;
+  line-height: 20px;
+  overflow-x: auto;
+  text-align: center;
 }
 
 .button span {
-  max-width: 100%;
   overflow: hidden;
+  max-width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   color: #957aff;
 }
 
 .button--active {
-  color: #471AFF;
   background: rgba(71, 26, 255, 0.1);
+  color: #471aff;
 }
