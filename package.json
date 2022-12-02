@@ -11,12 +11,16 @@
     "electron"
   ],
   "scripts": {
-    "deploy": "codesandbox deploy"
+    "deploy": "codesandbox deploy",
+    "test:e2e": "cypress open"
   },
   "author": "img.ly GmbH <contact@img.ly>",
   "license": "ISC",
   "homepage": "https://img.ly",
   "dependencies": {
     "codesandbox": "^2.2.3"
+  },
+  "devDependencies": {
+    "cypress": "^10.6.0"
   }
 }

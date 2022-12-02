@@ -5,15 +5,15 @@ import CESDKCanvas from '../CESDKCanvas/CESDKCanvas';
 import TopBar from '../TopBar/TopBar';
 
 const MobileUI = () => {
-  const { isLoaded } = useEditor();
+  const { engineIsLoaded } = useEditor();
 
 
   return (
     <>
-      {!isLoaded && <LoadingSpinner />}
-      {isLoaded && <TopBar />}
+      {!engineIsLoaded && <LoadingSpinner />}
+      {engineIsLoaded && <TopBar />}
       <CESDKCanvas />
-      {isLoaded && <BottomControls />}
+      {engineIsLoaded && <BottomControls />}
     </>
   );
 };

@@ -1,127 +1,152 @@
 import CreativeEngine from '@cesdk/engine';
 import classNames from 'classnames';
 import { ColorPicker } from 'components/ui/ColorPicker/ColorPicker';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { hexToRgba } from './convert';
-
-const caseAssetPath = (path, caseId = 'headless-design') =>
-  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
+import classes from './CaseComponent.module.css';
+import { caseAssetPath, useDevicePixelRatio } from './util';
 
 const CaseComponent = () => {
-  const engineRef = useRef(null);
+  /** @type {[import("@cesdk/engine").default, Function]} CreativeEngine */
+  const [engine, setEngine] = useState();
+  const [isEngineLoaded, setIsEngineLoaded] = useState(false);
+  const [isSceneLoaded, setIsSceneLoaded] = useState(false);
+  const containerRef = useRef(null);
 
   const [headline, setHeadline] = useState();
   const [image, setImage] = useState(null);
   const [font, setFont] = useState(null);
   const [colorHex, setColorHex] = useState('#C0C3C5');
-  const [initialized, setInitialized] = useState(false);
-
-  const colorRGBA = useMemo(() => hexToRgba(colorHex), [colorHex]);
+  const colorRGBA = useMemo(() => {
+    let { r, g, b } = hexToRgba(colorHex);
+    // The engine works with color values from 0 to 1 instead of 0 to 255.
+    return { r: r / 255, g: g / 255, b: b / 255 };
+  }, [colorHex]);
 
   useEffect(() => {
 
+    if (!containerRef.current || isEngineLoaded) {
+      return;
+    }
+    /** @type {import("@cesdk/engine").Configuration} */
     const config = {
       page: {
         title: {
           show: false
         }
-      },
-      variables: {
-        quote: {
-          value: '{{TextInput}}'
-        }
       }
     };
 
-    CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
-      async (instance) => {
-        // Hotfix for a race-condition in <=1.7.0
-        await new Promise((resolve) => requestAnimationFrame(resolve));
-        await instance.scene.loadFromURL(caseAssetPath('/example.scene'));
-        engineRef.current = instance;
-        const camera = instance.block.findByType('camera')[0];
-
-        let dpr = window.devicePixelRatio;
-
-        instance.block.setFloat(camera, 'camera/pixelRatio', dpr);
-        instance.block.setFloat(camera, 'camera/zoomLevel', dpr);
-
-        instance.block.setFloat(camera, 'camera/resolution/width', 640.0);
-        instance.block.setFloat(camera, 'camera/resolution/height', 400.0);
-        instance.block.setPositionX(camera, 640 / 2);
-        instance.block.setPositionY(camera, 400 / 2);
-        instance.block.setColorRGBA(
-          camera,
-          'camera/clearColor',
-          colorRGBA.r / 255,
-          colorRGBA.g / 255,
-          colorRGBA.b / 255,
-          1.0
-        );
-        setInitialized(true);
-      }
-    );
+    let engineToBeDisposed;
+    CreativeEngine.init(config).then(async (instance) => {
+      engineToBeDisposed = instance;
+      setEngine(instance);
+      setIsEngineLoaded(true);
+    });
 
     return function shutdownCreativeEngine() {
-      engineRef?.current?.dispose();
+      engineToBeDisposed?.dispose();
     };
     // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    if (
-      initialized &&
-      engineRef.current &&
-      engineRef.current.block &&
-      colorRGBA
-    ) {
-      const page = engineRef.current.block.findByType('page')[0];
-      const text = engineRef.current.block.findByType('//ly.img.ubq/text')[1];
-      engineRef.current.block.setColorRGBA(
-        page,
-        'fill/solid/color',
-        colorRGBA.r / 255,
-        colorRGBA.g / 255,
-        colorRGBA.b / 255,
-        1.0
-      );
-      engineRef.current.block.setColorRGBA(
-        text,
-        'fill/solid/color',
-        colorRGBA.r / 255,
-        colorRGBA.g / 255,
-        colorRGBA.b / 255,
-        1.0
-      );
-    }
-  }, [colorRGBA, engineRef, initialized]);
+  useEffect(
+    function initializeScene() {
+      if (!isEngineLoaded) {
+        return;
+      }
+      const container = containerRef.current;
+      const canvas = engine.element;
+      async function initializeScene() {
+        engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
+        await engine.scene.loadFromURL(caseAssetPath('/example.scene'));
+        // Let custom canvas web element stretch to full container size
+        canvas.style.height = '100%';
+        canvas.style.width = '100%';
+        canvas.style.position = 'absolute';
+        container.append(canvas);
+        await engine.scene.zoomToBlock(engine.scene.get(), 0, 0, 0, 0);
+        setIsSceneLoaded(true);
+      }
+      initializeScene();
+      return () => {
+        canvas.remove();
+      };
+    },
+    [engine, isEngineLoaded]
+  );
 
-  useEffect(() => {
-    if (initialized && engineRef.current && engineRef.current.block && font) {
-      engineRef.current.block.findByType('//ly.img.ubq/text').forEach((id) => {
-        engineRef.current.block.setString(id, 'text/fontFileUri', font.value);
-      });
-    }
-  }, [font, engineRef, initialized]);
+  // We need to refocus the scene when the DPR changes, e.g when the window is moved between monitors.
+  const [dpr] = useDevicePixelRatio();
+  useEffect(
+    function refocusAfterDPRChange() {
+      if (isSceneLoaded && dpr) {
+        engine.scene.zoomToBlock(engine.scene.get(), 0, 0, 0, 0);
+      }
+    },
+    [dpr, engine, isSceneLoaded]
+  );
 
-  useEffect(() => {
-    if (initialized && engineRef.current && engineRef.current.block && image) {
-      const img = engineRef.current.block.findByType('image')[0];
-      engineRef.current.block.setString(img, 'image/imageFileURI', image.full);
-      engineRef.current.block.resetCrop(img);
-    }
-  }, [image, engineRef, initialized]);
+  // We need to refocus the scene when the canvas size changes.
+  useEffect(
+    function refocusAfterCanvasSizeChange() {
+      if (isSceneLoaded) {
+        const resizeObserver = new ResizeObserver(async () => {
+          await engine.scene.zoomToBlock(engine.scene.get(), 0, 0, 0, 0);
+        });
+        resizeObserver.observe(engine.element);
+        return () => {
+          resizeObserver.disconnect();
+        };
+      }
+    },
+    [engine, isSceneLoaded]
+  );
 
-  useEffect(() => {
-    if (
-      initialized &&
-      headline &&
-      engineRef.current &&
-      engineRef.current.block
-    ) {
-      engineRef.current.variable.setString('quote', headline);
-    }
-  }, [headline, engineRef, initialized]);
+  useEffect(
+    function updateSceneColors() {
+      if (isSceneLoaded && colorRGBA) {
+        const page = engine.block.findByType('page')[0];
+        const text = engine.block.findByType('//ly.img.ubq/text')[0];
+        let { r, g, b } = colorRGBA;
+        engine.block.setColorRGBA(page, 'fill/solid/color', r, g, b, 1.0);
+        engine.block.setColorRGBA(text, 'fill/solid/color', r, g, b, 1.0);
+      }
+    },
+    [colorRGBA, engine, isSceneLoaded]
+  );
+
+  useEffect(
+    function updateFontFamily() {
+      if (isSceneLoaded && font) {
+        const textBlock = engine.block.findByType('//ly.img.ubq/text')[0];
+        engine.block.setString(textBlock, 'text/fontFileUri', font.value);
+      }
+    },
+    [font, engine, isSceneLoaded]
+  );
+
+  useEffect(
+    function updateImageFile() {
+      if (isSceneLoaded && image) {
+        const imageBlock = engine.block.findByType('image')[0];
+        engine.block.setString(imageBlock, 'image/imageFileURI', image.full);
+        // We need to reset the crop after changing an image file to ensure that it is shown in full.
+        engine.block.resetCrop(imageBlock);
+      }
+    },
+    [image, engine, isSceneLoaded]
+  );
+
+  useEffect(
+    function updateText() {
+      if (isSceneLoaded && headline) {
+        engine.variable.setString('quote', headline);
+      }
+    },
+    [headline, engine, isSceneLoaded]
+  );
 
   const randomizeParameters = () => {
     setFont(FONTS[Math.floor(Math.random() * FONTS.length)]);
@@ -130,28 +155,8 @@ const CaseComponent = () => {
     setColorHex(COLORS[Math.floor(Math.random() * COLORS.length)]);
   };
 
-  useEffect(() => {
-    // Make sure to adapt the canvas resolution to high-dpi displays
-    const canvas = document.getElementById('cesdk_canvas');
-    const updatePixelRatio = () => {
-      let dpr = window.devicePixelRatio;
-      canvas.width = `${dpr * canvas.getBoundingClientRect().width}`;
-      canvas.height = `${dpr * canvas.getBoundingClientRect().height}`;
-
-      const camera = engineRef.current?.block.findByType('camera')[0];
-      engineRef.current?.block.setFloat(camera, 'camera/pixelRatio', dpr);
-      engineRef.current?.block.setFloat(camera, 'camera/zoomLevel', dpr);
-      matchMedia(`(resolution: ${dpr}dppx)`).addEventListener(
-        'change',
-        updatePixelRatio,
-        { once: true }
-      );
-    };
-    updatePixelRatio();
-  }, []);
-
   return (
-    <div className="flex w-full flex-grow flex-col">
+    <div className={classes.wrapper}>
       <div className="caseHeader">
         <h3>Automatic Design Generation</h3>
         <p>
@@ -159,31 +164,24 @@ const CaseComponent = () => {
           ready-to-use designs by selecting input parameters.
         </p>
       </div>
-      <div className="flex flex-col space-y-2" style={inputsWrapperStyle}>
-        <h4 className="h4" style={headlineStyle}>
-          Select Content
-        </h4>
-        <div style={imageSelectionWrapper} className="flex space-x-2">
-          {IMAGES.map((someImage) => (
-            <button
-              onClick={() => setImage(someImage)}
-              className="h-full"
-              key={someImage.thumb}
-            >
+      <div className={classes.inputsWrapper}>
+        <h4 className={classes.headline}>Select Content</h4>
+        <div className={classes.imageSelectionWrapper}>
+          {IMAGES.map((someImage, i) => (
+            <button onClick={() => setImage(someImage)} key={someImage.thumb}>
               <img
                 src={someImage.thumb}
-                style={{
-                  ...imageStyle,
-                  ...(someImage.thumb === image?.thumb ? imageActiveState : {})
-                }}
-                alt=""
+                className={classNames(classes.image, {
+                  [classes.imageActiveState]: someImage.thumb === image?.thumb
+                })}
+                alt={`Example ${i + 1}`}
               />
             </button>
           ))}
         </div>
         <input
           type="text"
-          value={headline}
+          value={headline ?? ''}
           placeholder="Enter Text"
           onChange={(e) => setHeadline(e.target.value)}
         />
@@ -212,13 +210,15 @@ const CaseComponent = () => {
             </select>
           </div>
           <ColorPicker
+            positionX="left"
+            positionY="bottom"
             theme="light"
             size="lg"
             onChange={(hex) => setColorHex(hex)}
             value={colorHex}
           />
         </div>
-        <div className="flex">
+        <div>
           <button
             className="button button--light-white"
             onClick={() => randomizeParameters()}
@@ -228,15 +228,10 @@ const CaseComponent = () => {
         </div>
       </div>
       <div className="space-y-2">
-        <h4 className="h4" style={headlineStyle}>
-          Generated Design
-        </h4>
-        <canvas
-          id="cesdk_canvas"
-          width="680px"
-          height="400px"
-          style={canvasStyle}
-        ></canvas>
+        <h4 className={classes.headline}>Generated Design</h4>
+        <div ref={containerRef} className={classes.canvas}>
+          {!isSceneLoaded && <LoadingSpinner />}
+        </div>
       </div>
     </div>
   );
@@ -302,41 +297,4 @@ const QUOTES = [
   'Time you enjoy wasting, was not wasted. — John Lennon',
   'May the Force be with you. — Obi-Wan Kenobi'
 ];
-
-const inputsWrapperStyle = {
-  maxWidth: 'fit-content',
-  minWidth: '340px',
-  marginBottom: '2rem'
-};
-
-const imageSelectionWrapper = {
-  display: 'flex',
-  height: 50
-};
-
-const imageStyle = {
-  height: '100%',
-  borderRadius: '6px',
-  objectFit: 'cover',
-  cursor: 'pointer',
-  border: '2px solid transparent',
-  // For safari:
-  minWidth: '50px'
-};
-const imageActiveState = {
-  border: '2px solid #471aff'
-};
-
-const headlineStyle = {
-  color: 'white'
-};
-
-const canvasStyle = {
-  width: '640px',
-  height: '400px',
-  minHeight: '400px',
-  border: '1px solid gray',
-  backgroundColor: '#9CA0A5'
-};
-
 export default CaseComponent;

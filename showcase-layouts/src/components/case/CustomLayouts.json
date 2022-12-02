@@ -1,0 +1,254 @@
+[
+  {
+    "id": "layout-0",
+    "locale": "en",
+    "label": "layout with 5 images",
+    "thumbUri": "thumbnail-0.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-0.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-1",
+    "locale": "en",
+    "label": "layout with 2 images",
+    "thumbUri": "thumbnail-1.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-1.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-2",
+    "locale": "en",
+    "label": "layout with 5 images",
+    "thumbUri": "thumbnail-2.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-2.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-3",
+    "locale": "en",
+    "label": "layout with 1 images",
+    "thumbUri": "thumbnail-3.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-3.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-4",
+    "locale": "en",
+    "label": "layout with 5 images",
+    "thumbUri": "thumbnail-4.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-4.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-5",
+    "locale": "en",
+    "label": "layout with 4 images",
+    "thumbUri": "thumbnail-5.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-5.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-6",
+    "locale": "en",
+    "label": "layout with 6 images",
+    "thumbUri": "thumbnail-6.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-6.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-7",
+    "locale": "en",
+    "label": "layout with 3 images",
+    "thumbUri": "thumbnail-7.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-7.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-8",
+    "locale": "en",
+    "label": "layout with 3 images",
+    "thumbUri": "thumbnail-8.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-8.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-9",
+    "locale": "en",
+    "label": "layout with 2 images",
+    "thumbUri": "thumbnail-9.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-9.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-10",
+    "locale": "en",
+    "label": "layout with 6 images",
+    "thumbUri": "thumbnail-10.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-10.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  },
+  {
+    "id": "layout-11",
+    "locale": "en",
+    "label": "layout with 9 images",
+    "thumbUri": "thumbnail-11.png",
+    "size": {
+      "width": 0,
+      "height": 0
+    },
+    "meta": {
+      "blockType": "acme.layouts",
+      "sceneUri": "template-11.scene"
+    },
+    "context": {
+      "sourceId": "customLayouts"
+    },
+    "utm": {
+      "source": "CE.SDK Demo",
+      "medium": "referral"
+    }
+  }
+]

@@ -24,7 +24,7 @@ export const EditorProvider = ({ children }) => {
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
   const [editorState, setEditorState] = useState({
-    editMode: null
+    editMode: 'Transform'
   });
   const editorUpdateCallbackRef = useRef(() => {});
   const [selectedTextProperties, setSelectedTextProperties] = useState({
@@ -48,15 +48,28 @@ export const EditorProvider = ({ children }) => {
     );
   }, [canvas, customEngine]);
 
+  const syncUndoRedoState = () => {
+    // Extract and store canUndo
+    const newCanUndo = customEngine.getCanUndo();
+    if (newCanUndo !== canUndo) {
+      setCanUndo(newCanUndo);
+    }
+    // Extract and store canRedo
+    const newCanRedo = customEngine.getCanRedo();
+    if (newCanRedo !== canRedo) {
+      setCanRedo(newCanRedo);
+    }
+  };
+
   editorUpdateCallbackRef.current = () => {
     const newEditorState = customEngine.getEditorState();
     if (newEditorState['editMode'] === 'Text') {
-      customEngine.filterTextEmojis();
       checkZoom();
     }
     if (!isEqual(newEditorState, editorState)) {
       setEditorState(newEditorState);
     }
+    syncUndoRedoState();
   };
   engineEventCallbackRef.current = (events) => {
     if (events.length > 0) {
@@ -77,16 +90,7 @@ export const EditorProvider = ({ children }) => {
       if (!isEqual(newSelectedShapeProperties, selectedShapeProperties)) {
         setSelectedShapeProperties(newSelectedShapeProperties);
       }
-      // Extract and store canUndo
-      const newCanUndo = customEngine.getCanUndo();
-      if (newCanUndo !== canUndo) {
-        setCanUndo(newCanUndo);
-      }
-      // Extract and store canRedo
-      const newCanRedo = customEngine.getCanRedo();
-      if (newCanRedo !== canRedo) {
-        setCanRedo(newCanRedo);
-      }
+      syncUndoRedoState();
     }
   };
 
@@ -103,6 +107,9 @@ export const EditorProvider = ({ children }) => {
             show: false
           }
         },
+        featureFlags: {
+          preventScrolling: true
+        },
         license: process.env.REACT_APP_LICENSE
       };
 
@@ -118,10 +125,6 @@ export const EditorProvider = ({ children }) => {
         engineEventCallbackRef.current(events)
       );
       await newCustomEngine.loadScene(caseAssetPath(`/kiosk.scene`));
-      creativeEngine.editor.setSettingBool(
-        'ubq://doubleClickToCropEnabled',
-        false
-      );
       setIsLoaded(true);
     };
     loadEditor();
@@ -155,9 +158,13 @@ export const EditorProvider = ({ children }) => {
       return;
     }
     if (editMode === 'Transform') {
-      customEngine.zoomToPage();
+      if (viewMode === 'edit') {
+        customEngine.zoomToPage();
+      } else {
+        customEngine.zoomToBackdrop();
+      }
     }
-  }, [isLoaded, canvas, customEngine, editMode]);
+  }, [isLoaded, canvas, viewMode, customEngine, editMode]);
 
   const isEditable = isLoaded && viewMode === 'edit';
 

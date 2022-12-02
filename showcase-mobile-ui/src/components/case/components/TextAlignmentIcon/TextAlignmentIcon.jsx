@@ -1,7 +1,7 @@
-import { useEditor } from '../../EditorContext';
 import { ReactComponent as TextAlignCenterIcon } from '../../icons/TextAlignCenter.svg';
 import { ReactComponent as TextAlignLeftIcon } from '../../icons/TextAlignLeft.svg';
 import { ReactComponent as TextAlignRightIcon } from '../../icons/TextAlignRight.svg';
+import { useSelectedProperty } from '../../lib/UseSelectedProperty';
 
 const ALL_ALIGNMENTS = [
   {
@@ -19,13 +19,12 @@ const ALL_ALIGNMENTS = [
 ];
 
 const TextAlignmentIcon = () => {
-  const { selectedTextProperties } = useEditor();
+  const [horizontalAlignment] = useSelectedProperty('text/horizontalAlignment');
 
   return (
-    ALL_ALIGNMENTS.find(
-      ({ value }) =>
-        value === selectedTextProperties['text/horizontalAlignment']
-    )?.Icon || <TextAlignCenterIcon />
+    ALL_ALIGNMENTS.find(({ value }) => value === horizontalAlignment)?.Icon || (
+      <TextAlignCenterIcon />
+    )
   );
 };
 export default TextAlignmentIcon;
