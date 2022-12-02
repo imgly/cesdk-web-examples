@@ -1,0 +1,14 @@
+.wrapper {
+  position: relative;
+  flex-grow: 1;
+  border-radius: 20px;
+  visibility: hidden;
+}
+
+.wrapper--hidden {
+  display: none;
+}
+
+.wrapper--visible {
+  visibility: visible;
+}

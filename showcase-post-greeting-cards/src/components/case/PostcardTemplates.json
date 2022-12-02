@@ -1,0 +1,30 @@
+{
+  "thank_you": {
+    "name": "Thank you",
+    "colors": ["#E09F96", "#FFFFFF", "#761E40", "#7471A3", "#20121F"],
+    "preview": "/templates/thank_you.png",
+    "scene": "/templates/thank_you.scene",
+    "keyword": "Thank you flowers"
+  },
+  "merry_christmas": {
+    "name": "Merry Christmas",
+    "colors": ["#536F1A", "#FFFFFF", "#6B2923", "#F3AE2B", "#051111"],
+    "preview": "/templates/merry_christmas.png",
+    "scene": "/templates/merry_christmas.scene",
+    "keyword": "Merry Christmas"
+  },
+  "bonjour_paris": {
+    "name": "Bonjour Paris",
+    "colors": ["#000000", "#FFFFFF", "#4932D1", "#FE6755", "#606060"],
+    "preview": "/templates/bonjour_paris.png",
+    "scene": "/templates/bonjour_paris.scene",
+    "keyword": "Holidays in Paris"
+  },
+  "wish_you_were_here": {
+    "name": "Wish you were here",
+    "colors": ["#E75050", "#FFFFFF", "#111111", "#282929", "#619888"],
+    "preview": "/templates/wish_you_were_here.png",
+    "scene": "/templates/wish_you_were_here.scene",
+    "keyword": "Beach holidays"
+  }
+}

@@ -11,7 +11,8 @@ const CaseComponent = () => {
       theme: 'light',
       initialImageURL: image?.full,
       callbacks: {
-        onBack: () => setImage()
+        onBack: () => setImage(),
+        onExport: 'download'
       },
       ui: {
         elements: {
@@ -20,11 +21,16 @@ const CaseComponent = () => {
           },
           navigation: {
             action: {
-              back: true
+              back: true,
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
             }
           }
         }
       },
+      license: process.env.REACT_APP_LICENSE,
       // Begin standard template presets
       presets: {
         templates: {

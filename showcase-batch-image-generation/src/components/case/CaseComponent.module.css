@@ -1,25 +1,25 @@
 .wrapper {
-  width: 100%;
   display: flex;
+  width: 100%;
   flex-direction: column;
-  gap: 2.5rem
+  gap: 2.5rem;
 }
 
 .contentWrapper {
-  flex-grow: 1;
   display: flex;
+  flex-grow: 1;
   justify-content: flex-start;
 }
 
 .imageWrapper {
   display: flex;
-  margin: 0 -8px 2rem -8px;
-  max-width: 840px;
-  flex-wrap: wrap;
-  gap: 2.2rem;
   overflow: auto;
+  max-width: 840px;
+  flex-grow: 1;
+  flex-wrap: wrap;
   justify-content: flex-start;
-  flex-grow: 1
+  margin: 0 -8px 2rem -8px;
+  gap: 2.2rem;
 }
 
 .headline {
@@ -35,8 +35,8 @@
   display: inline-flex;
   flex-direction: row;
   justify-content: flex-start;
-  background: #696E73;
-  border-radius: 1.5rem;
   padding: 1rem;
-  gap: 2rem
+  background: #696e73;
+  border-radius: 1.5rem;
+  gap: 2rem;
 }

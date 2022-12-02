@@ -1,41 +1,40 @@
 .caseWrapper {
   display: flex;
-  flex-direction: column;
   width: 100%;
-  padding: 1rem;
+  flex-direction: column;
   flex-grow: 1;
+  padding: 1rem;
 }
 
 .kioskWrapper {
-  display: flex;
-  flex-direction: column;
   position: relative;
-  flex-grow: 1;
-  border-radius: 24px;
-  background: #D6DBE1;
-  border: 4px solid #FFFFFF;
-  box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12);
-  max-width: 400px;
-  max-height: 700px;
-  height: 100%;
+  display: flex;
   overflow: hidden;
+  max-width: 400px;
+  height: 100%;
+  max-height: 700px;
+  flex-direction: column;
+  flex-grow: 1;
+  border: 4px solid #ffffff;
+  background: #d6dbe1;
+  border-radius: 24px;
+  box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25),
+    0px 18px 18px -2px rgba(18, 26, 33, 0.12),
+    0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12),
+    0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12);
 
   /* Disabling selection as it triggers when moving blocks via touch on ios safari  */
-  user-select: none;
-  /* supported by Chrome and Opera */
   -webkit-user-select: none;
-  /* Safari */
-  -moz-user-select: none;
-  /* Firefox */
   -ms-user-select: none;
-  /* Internet Explorer/Edge */
+  -moz-user-select: none;
+  user-select: none;
 }
 
 .wrapper {
-  flex-grow: 1;
   display: flex;
-  justify-content: center;
+  flex-grow: 1;
   align-items: center;
+  justify-content: center;
   padding: 10px 10px 10px 10px;
 }
 
@@ -52,10 +51,10 @@
 
 .fullHeightWrapper {
   display: flex;
+  width: 100%;
   flex-direction: column;
   flex-grow: 1;
   background-color: #7b8187;
-  width: 100%;
 }
 
 @media only screen and (min-width: 650px) {

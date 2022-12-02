@@ -1,0 +1,9 @@
+.text {
+  display: none;
+}
+
+@media (min-width: 650px) {
+  .text {
+    display: block;
+  }
+}

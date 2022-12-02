@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.0/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.0/assets',
   // highlight-i18n-label
   i18n: {
     en: {
@@ -24,6 +24,31 @@ let config = {
   ui: {
     elements: {
       libraries: {
+        // highlight-custom-replace-entries
+        replace: {
+          entries: (defaultEntries, context) => {
+            if (context.selectedBlocks.length !== 1) {
+              return [];
+            }
+
+            const [selectedBlock] = context.selectedBlocks;
+            if (selectedBlock.blockType === 'ly.img.image') {
+              return [
+                ...defaultEntries,
+                {
+                  id: 'empty-custom-asset-source-for-replace',
+                  sourceIds: ['emptySource'],
+                  previewLength: 3,
+                  gridColumns: 3,
+                  gridItemHeight: 'square'
+                }
+              ];
+            }
+
+            return [];
+          }
+        },
+        // highlight-custom-replace-entries
         insert: {
           entries: (defaultEntries) => {
             // highlight-change-default-entries

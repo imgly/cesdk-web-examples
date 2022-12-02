@@ -43,16 +43,8 @@ const ImageComplianceCESDK = () => {
         elements: {
           panels: {
             settings: true
-          },
-          navigation: {
-            action: {
-              save: true
-            }
           }
         }
-      },
-      callbacks: {
-        onSave
       },
       // Begin standard template presets
       presets: {

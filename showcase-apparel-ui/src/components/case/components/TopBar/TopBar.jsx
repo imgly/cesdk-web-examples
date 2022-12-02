@@ -60,7 +60,7 @@ const TopBar = () => {
             <button
               onClick={() => undo()}
               className={classNames(classes.undoRedoButton, {
-                'undoRedoButton--disabled': !canUndo
+                [classes['undoRedoButton--disabled']]: !canUndo
               })}
               disabled={!canUndo}
             >

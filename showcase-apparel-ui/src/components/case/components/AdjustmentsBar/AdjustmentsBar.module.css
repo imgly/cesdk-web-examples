@@ -1,18 +1,18 @@
 .wrapper {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   overflow: auto;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: flex-start;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 12px 12px 0px 0px;
-  min-height: 4.5rem;
 }
 
 .innerWrapper {
   display: flex;
-  margin: 0 auto;
-  padding: 0.25rem 1rem;
   justify-content: center;
+  padding: 0.25rem 1rem;
+  margin: 0 auto;
   border-radius: 33.2818px;
 }
 
