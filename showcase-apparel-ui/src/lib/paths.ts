@@ -1,7 +1,7 @@
 const version = 'showcases';
 
 export const buildDocPath = (path: string) =>
-  'https://img.ly/docs/cesdk/web' + path;
+  'https://img.ly/docs/cesdk' + path;
 export const buildCodesandboxUrl = (
   showcase: string,
   componentFile = 'CaseComponent.jsx'

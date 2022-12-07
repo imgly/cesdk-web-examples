@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useEffect, useRef } from 'react';
+import { useEditor } from '../../EditorContext';
 import { ReactComponent as CaretDownIcon } from '../../icons/CaretDown.svg';
 import IconButton from '../IconButton/IconButton';
 import classes from './SlideUpPanel.module.css';
@@ -21,6 +22,31 @@ const SlideUpPanel = ({
   defaultHeadline,
   InspectorBar = null
 }) => {
+  const containerRef = useRef();
+  const { creativeEngine, setZoomPaddingBottom } = useEditor();
+  useEffect(() => {
+    const containerNode = containerRef.current;
+    const defaultZoomPaddingBottom = 8;
+
+    var ro = new ResizeObserver((entries) => {
+      const containerBB = containerNode.getBoundingClientRect();
+      const canvasBB = creativeEngine.element.getBoundingClientRect();
+      const paddingNeeded = canvasBB.height - (containerBB.top - canvasBB.top);
+      if (isExpanded) {
+        setZoomPaddingBottom(paddingNeeded + defaultZoomPaddingBottom);
+      } else {
+        setZoomPaddingBottom(defaultZoomPaddingBottom);
+      }
+    });
+
+    ro.observe(containerNode);
+
+    return () => {
+      ro.unobserve(containerNode);
+      setZoomPaddingBottom(defaultZoomPaddingBottom);
+    };
+  }, [isExpanded, creativeEngine.element, setZoomPaddingBottom]);
+
   return (
     <SlideUpContext.Provider
       value={{
@@ -32,7 +58,7 @@ const SlideUpPanel = ({
       }}
     >
       <div
-        id="slideUpPanel"
+        ref={containerRef}
         className={classNames(classes.wrapper, {
           [classes['wrapper--expanded']]: isExpanded
         })}

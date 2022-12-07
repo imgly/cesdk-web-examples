@@ -45,9 +45,13 @@ export function generateColorAbstractionTokensBackground(color: string) {
     '--ubq-interactive-selected': setLightness(color, '+0.125').css('hsl'),
     '--ubq-input-default': setLightness(color, '-0.1').css('hsl'),
     '--ubq-input-hover': setLightness(color, '-0.12').css('hsl'),
-    '--ubq-border-outline': setLightness(color, '+0.5').alpha(0.1).css('hsl'),
-    '--ubq-border-divider': setLightness(color, '+0.5').alpha(0.08).css('hsl'),
-    '--ubq-border-contrast': setLightness(color, '+0.5').alpha(0.25).css('hsl'),
+    '--ubq-border-default': setLightness(color, '+0.5').alpha(0.1).css('hsl'),
+    '--ubq-stroke-contrast-1': setLightness(color, '+0.5')
+      .alpha(0.08)
+      .css('hsl'),
+    '--ubq-stroke-contrast-2': setLightness(color, '+0.5')
+      .alpha(0.25)
+      .css('hsl'),
     '--ubq-focus-outline': chroma(color).css('hsl'),
     '--ubq-overlay-default': chroma(color).alpha(0.8).css('hsl'),
     '--ubq-progress': getContrastColor(color).alpha(0.7).css('hsl')

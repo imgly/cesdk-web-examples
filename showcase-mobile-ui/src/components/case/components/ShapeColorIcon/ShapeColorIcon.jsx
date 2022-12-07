@@ -1,10 +1,9 @@
-import { useEditor } from '../../EditorContext';
+import { useSelectedProperty } from '../../lib/UseSelectedProperty';
 import classes from './ShapeColorIcon.module.css';
 
 const ShapeColorIcon = () => {
-  const { selectedShapeProperties } = useEditor();
-
-  const [r, g, b] = selectedShapeProperties['fill/solid/color'] || [0, 0, 0, 0];
+  const [fillColor] = useSelectedProperty('fill/solid/color');
+  const [r, g, b] = fillColor;
 
   return (
     <span

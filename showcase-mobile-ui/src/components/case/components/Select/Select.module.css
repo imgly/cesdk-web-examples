@@ -1,22 +1,22 @@
 .select {
-  background-color: transparent;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.02em;
-  color: #1C1B1B;
-  padding: 1px 6px 1px 8px;
-  gap: 4px;
-  border: 1px solid rgba(22, 22, 23, 0.3);
-  border-radius: 8px;
   max-width: 120px;
+  padding: 1px 6px 1px 8px;
+  border: 1px solid rgba(22, 22, 23, 0.3);
 
   /* Caret down */
   -webkit-appearance: none;
   -moz-appearance: none;
   background: transparent;
+  background-color: transparent;
   background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-  background-repeat: no-repeat;
   background-position-x: 100%;
   background-position-y: 0px;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  color: #1c1b1b;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 4px;
+  letter-spacing: 0.02em;
+  line-height: 20px;
 }

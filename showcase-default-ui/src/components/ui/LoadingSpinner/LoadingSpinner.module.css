@@ -1,18 +1,18 @@
 .spinner {
   position: absolute;
-  left: calc(50% - 15px);
   top: calc(50% - 15px);
-  height: 30px;
+  left: calc(50% - 15px);
   width: 30px;
-  margin: 0px auto;
-  -webkit-animation: rotation .6s infinite linear;
-  -moz-animation: rotation .6s infinite linear;
-  -o-animation: rotation .6s infinite linear;
-  animation: rotation .6s infinite linear;
-  border-left: 3px solid rgba(70, 70, 70, 1);
+  height: 30px;
+  border-top: 3px solid rgba(160, 160, 160, 1);
   border-right: 3px solid rgba(70, 70, 70, 1);
   border-bottom: 3px solid rgba(70, 70, 70, 1);
-  border-top: 3px solid rgba(160, 160, 160, 1);
+  border-left: 3px solid rgba(70, 70, 70, 1);
+  margin: 0px auto;
+  -webkit-animation: rotation 0.6s infinite linear;
+  -moz-animation: rotation 0.6s infinite linear;
+  -o-animation: rotation 0.6s infinite linear;
+  animation: rotation 0.6s infinite linear;
   border-radius: 100%;
 }
 
