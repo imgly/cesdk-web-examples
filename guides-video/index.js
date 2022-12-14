@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.1/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.8.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -51,9 +51,9 @@ CreativeEngine.init(config).then(async (engine) => {
   /* Make sure that the video is loaded before calling the trim APIs. */
   await engine.block.forceLoadAVResource(videoFill);
   engine.block.setTrimOffset(videoFill, 1);
-  engine.block.setTrimOffset(videoFill, 10);
+  engine.block.setTrimDuration(videoFill, 10);
   // highlight-trim
-  
+
   // highlight-mute-audio
   engine.block.setBool(videoFill, 'fill/video/muted', true);
   // highlight-mute-audio
@@ -67,9 +67,40 @@ CreativeEngine.init(config).then(async (engine) => {
     'https://example.com/audio.mp3'
   );
   // highlight-audio
-  
+
   // highlight-timeOffset
   /* Start the audio after two seconds of playback. */
   engine.block.setTimeOffset(audio, 2);
   // highlight-timeOffset
+
+  // highlight-audioDuration
+  /* Give the Audio block a duration of 7 seconds. */
+  engine.block.setDuration(audio, 7);
+  // highlight-audioDuration
+
+  // highlight-exportVideo
+  /* Export scene as mp4 video. */
+  const mimeType = 'video/mp4';
+  const resolutionWidth = engine.block.getFloat(scene, 'scene/pageDimensions/width');
+  const resolutionHeight = engine.block.getFloat(scene, 'scene/pageDimensions/height');
+  const frameRate = 30.0;
+  const blob = await engine.block.exportVideo(
+    scene,
+    0.0, /* timeOffset in seconds */
+    engine.block.getTotalSceneDuration(scene),
+    mimeType,
+    resolutionWidth,
+    resolutionHeight,
+    frameRate,
+    (renderedFrames, encodedFrames, totalFrames) => { /* progressCallback */
+      console.log('Rendered', renderedFrames, 'frames and encoded', encodedFrames, 'frames out of', totalFrames);
+    }
+  );
+
+  /* Download blob. */
+  const anchor = document.createElement('a');
+  anchor.href = URL.createObjectURL(blob);
+  anchor.download = 'exported-video.mp4';
+  anchor.click();
+  // highlight-exportVideo
 });

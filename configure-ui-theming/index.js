@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.1/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.1/assets',
   // docs-theming-theme
   theme: 'light', // 'light' or 'dark'
   ui: {
