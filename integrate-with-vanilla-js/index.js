@@ -1,5 +1,5 @@
 // highlight-1
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.1/cesdk.umd.js';
 // Import a node module when you work with a bundler:
 // import CreativeEngine from '@cesdk/engine';
 // highlight-1
@@ -7,7 +7,7 @@ import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0/cesdk.umd.js';
 // highlight-3
 let config = {
   // Serve assets from IMG.LY cdn or locally
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.8.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.1/assets'
 };
 
 CreativeEditorSDK.init('#cesdk_container', config).then(async (editor) => {
