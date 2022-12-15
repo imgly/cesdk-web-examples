@@ -127,6 +127,7 @@ export const copyAssets = (engine, fromPageId, toPageId) => {
       'image/imageFileURI'
     );
     engine.block.setString(toBlock, 'image/imageFileURI', fromImageFileUri);
+    engine.block.setBool(toBlock, 'image/showsPlaceholderButton', false);
     engine.block.setBool(toBlock, 'image/showsPlaceholderOverlay', false);
     engine.block.resetCrop(toBlock);
   }

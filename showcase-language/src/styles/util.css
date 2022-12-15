@@ -101,3 +101,7 @@
 hr {
   color: rgba(22, 22, 23, 0.15);
 }
+
+.mb-4 {
+  margin-bottom: 1rem;
+}

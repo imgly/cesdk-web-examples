@@ -9,7 +9,7 @@ import {
 } from 'react';
 import { useSinglePageFocus } from './lib/UseSinglePageFocus';
 import { getImageSize } from './lib/utils';
-import { caseAssetPath, useTimeout } from './util';
+import { caseAssetPath } from './util';
 
 const EditorContext = createContext();
 
@@ -49,27 +49,6 @@ export const EditorProvider = ({ children }) => {
   });
 
   const editorUpdateCallbackRef = useRef(() => {});
-  const engineEventCallbackRef = useRef(() => {});
-  const { resetTimer } = useTimeout(() => {
-    refocus();
-    setCanRecenter(false);
-  }, 400);
-
-  engineEventCallbackRef.current = (events) => {
-    if (events.length > 0) {
-      const hasPageEvent = events.some((event) =>
-        creativeEngine.block.getType(events[0].block).includes('page')
-      );
-      if (
-        enableAutoRecenter &&
-        creativeEngine.editor.getEditMode() === 'Crop' &&
-        hasPageEvent
-      ) {
-        setCanRecenter(true);
-        resetTimer();
-      }
-    }
-  };
   editorUpdateCallbackRef.current = () => {
     const newEditMode = creativeEngine.editor.getEditMode();
     if (editMode !== newEditMode) {
@@ -141,9 +120,6 @@ export const EditorProvider = ({ children }) => {
         creativeEngine.editor.onStateChanged(() =>
           editorUpdateCallbackRef.current()
         );
-        creativeEngine.event.subscribe([], (events) =>
-          engineEventCallbackRef.current(events)
-        );
         const initialImageUrl = caseAssetPath(INITIAL_IMAGE_PATH);
         await setupPhotoScene(creativeEngine, initialImageUrl);
         setFocusEngine(creativeEngine);
@@ -162,6 +138,7 @@ export const EditorProvider = ({ children }) => {
     sceneIsLoaded,
     enableAutoRecenter,
     canRecenter,
+    setCanRecenter,
     editMode,
     changeImage,
     creativeEngine,

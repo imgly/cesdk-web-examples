@@ -12,3 +12,8 @@
 .wrapper--crop button {
   pointer-events: all;
 }
+
+/* During active resizing even button should not targetable */
+.wrapper--crop.wrapper--in-resize button {
+  pointer-events: none;
+}

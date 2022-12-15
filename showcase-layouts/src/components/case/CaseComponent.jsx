@@ -15,29 +15,17 @@ const qualifyAssetUris = ({ meta, thumbUri, ...rest }) => ({
   thumbUri: caseAssetPath(`/${thumbUri}`)
 });
 
-const CaseComponent = (props = { locale: 'en' }) => {
+const CaseComponent = () => {
   const cesdk_container = useRef(null);
   const engine = useRef(null);
   useEffect(() => {
     let config = {
-      locale: props.locale,
       role: 'Adopter',
       theme: 'light',
       initialSceneURL: caseAssetPath('/custom-layouts.scene'),
       license: process.env.REACT_APP_LICENSE,
-      callbacks: {
-        onExport: 'download'
-      },
       ui: {
         elements: {
-          navigation: {
-            action: {
-              export: {
-                show: true,
-                format: ['image/png', 'application/pdf']
-              }
-            }
-          },
           dock: {
             groups: [
               {
@@ -141,7 +129,7 @@ const CaseComponent = (props = { locale: 'en' }) => {
         cesdk.dispose();
       }
     };
-  }, [props.locale, cesdk_container]);
+  }, [cesdk_container]);
 
   return (
     <div style={caseContainerStyle}>

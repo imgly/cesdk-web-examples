@@ -102,6 +102,7 @@ export const replaceImage = (
 ) => {
   engine.block.setString(block, 'image/imageFileURI', imageFileURI);
   engine.block.resetCrop(block);
+  engine.block.setBool(block, 'image/showsPlaceholderButton', false);
   engine.block.setBool(block, 'image/showsPlaceholderOverlay', false);
   if (addUndoStep) {
     engine.editor.addUndoStep();
@@ -111,6 +112,7 @@ export const replaceImage = (
 export const addImage = async (engine, parentId, imageURI, baseSize = 0.5) => {
   const block = engine.block.create('image');
   engine.block.setString(block, 'image/imageFileURI', imageURI);
+  engine.block.setBool(block, 'image/showsPlaceholderButton', false);
   engine.block.setBool(block, 'image/showsPlaceholderOverlay', false);
 
   const { width, height } = await getImageSize(imageURI);
@@ -197,6 +199,24 @@ const isFullSizeBlock = (engine, pageBlockId, blockId) => {
   );
 };
 
+const getFramePositionX = (engine, blockId) => {
+  const blockX = engine.block.getGlobalBoundingBoxX(blockId);
+  const parent = engine.block.getParent(blockId);
+  const parentX = engine.block.getGlobalBoundingBoxX(parent);
+
+  return blockX - parentX;
+};
+
+const getFramePositionY = (engine, blockId) => {
+  const blockY = engine.block.getGlobalBoundingBoxY(blockId);
+  const parent = engine.block.getParent(blockId);
+  const parentY = engine.block.getGlobalBoundingBoxY(parent);
+
+  return blockY - parentY;
+};
+
+const TRANSPARENT_BLOCK_SIZE = 0.000001;
+
 /**
  *
  * @param {import("@cesdk/engine").default} engine
@@ -226,8 +246,8 @@ export const resizeCanvas = (
   const transformGroupId = engine.block.group(otherBlocks);
   engine.block.setRotation(transformGroupId, 0);
 
-  const groupX1 = engine.block.getGlobalBoundingBoxX(transformGroupId);
-  const groupY1 = engine.block.getGlobalBoundingBoxY(transformGroupId);
+  const groupX1 = getFramePositionX(engine, transformGroupId);
+  const groupY1 = getFramePositionY(engine, transformGroupId);
   const groupX2 =
     engine.block.getGlobalBoundingBoxWidth(transformGroupId) + groupX1;
   const groupY2 =
@@ -261,11 +281,17 @@ export const resizeCanvas = (
   engine.block.setInt(transparentBlock, 'shapes/polygon/sides', 4);
 
   engine.block.setPositionXMode(transparentBlock, 'Absolute');
-  engine.block.setPositionX(transparentBlock, mirroredPoint[0]);
+  engine.block.setPositionX(
+    transparentBlock,
+    mirroredPoint[0] > pageCenterX ? mirroredPoint[0] - TRANSPARENT_BLOCK_SIZE : mirroredPoint[0]
+  );
   engine.block.setPositionYMode(transparentBlock, 'Absolute');
-  engine.block.setPositionY(transparentBlock, mirroredPoint[1]);
-  engine.block.setWidth(transparentBlock, 10);
-  engine.block.setHeight(transparentBlock, 10);
+  engine.block.setPositionY(
+    transparentBlock,
+    mirroredPoint[1] > pageCenterY ? mirroredPoint[1] - TRANSPARENT_BLOCK_SIZE : mirroredPoint[1]
+  );
+  engine.block.setWidth(transparentBlock, TRANSPARENT_BLOCK_SIZE);
+  engine.block.setHeight(transparentBlock, TRANSPARENT_BLOCK_SIZE);
   engine.block.appendChild(transformGroupId, transparentBlock);
 
   engine.block.setWidth(pageBlockId, width);
@@ -276,8 +302,8 @@ export const resizeCanvas = (
   engine.block.setPositionX(transformGroupId, 0);
   engine.block.setPositionY(transformGroupId, 0);
   // Scale
-  const groupWidth = engine.block.getGlobalBoundingBoxWidth(transformGroupId);
-  const groupHeight = engine.block.getGlobalBoundingBoxHeight(transformGroupId);
+  const groupWidth = engine.block.getFrameWidth(transformGroupId);
+  const groupHeight = engine.block.getFrameHeight(transformGroupId);
   const newAspectRatio = width / height;
   const currentRatio = groupWidth / groupHeight;
 

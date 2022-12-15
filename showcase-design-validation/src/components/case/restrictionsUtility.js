@@ -1,4 +1,4 @@
-import { truncate } from 'lodash';
+import truncate from 'lodash/truncate';
 
 // Calculates the overlap of two elements
 // Returns the overlap as percentage of the first element
