@@ -85,16 +85,12 @@ function translateToAssetResult(image) {
     label: image.description ?? image.alt_description ?? undefined,
     tags: image.tags ? image.tags.map((tag) => tag.title) : undefined,
 
-    thumbUri: image.urls.thumb,
-
-    size: {
+    meta: {
+      blockType: '//ly.img.ubq/image',
+      uri: image.urls.full,
+      thumbUri: image.urls.thumb,
       width: image.width,
       height: image.height
-    },
-
-    meta: {
-      blockType: 'ly.img.image',
-      uri: image.urls.full
     },
 
     context: {

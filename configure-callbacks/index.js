@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0-preview.0/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0-preview.0/assets',
   // highlight-callbacks
   callbacks: {
     // highlight-onlog
@@ -63,8 +63,10 @@ let config = {
       window.alert('Upload callback!');
       let newImage = {
         id: 'exampleImageIdentifier',
-        uri: 'https://YOURSERVER/images/file.jpg',
-        thumbUri: 'https://YOURSERVER/images/thumb.jpg',
+        meta: {
+          uri: 'https://YOURSERVER/images/file.jpg',
+          thumbUri: 'https://YOURSERVER/images/thumb.jpg'
+        }
       }
       return Promise.resolve(newImage);
     }

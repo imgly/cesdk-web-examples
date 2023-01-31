@@ -32,8 +32,11 @@ const UploadButton = ({
         urls.forEach((url) => onUpload(url));
         // We mimic the behavior of a custom asset library entry
         const localUploadLibraryItems = urls.map((url) => ({
-          thumbUri: url,
-          meta: { uri: url }
+          meta: { 
+            blockType: '//ly.img.ubq/image',
+            uri: url,
+            thumbUri: url
+          }
         }));
         setLocalUploads((uploads) => [...localUploadLibraryItems, ...uploads]);
       }}

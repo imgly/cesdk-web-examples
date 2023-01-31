@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/latest/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0-preview.0/cesdk.umd.js';
 
 window.onload = async () => {
   // highlight-mock-asset-db
@@ -12,7 +12,7 @@ window.onload = async () => {
 
   const config = {
     theme: 'light',
-    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets',
+    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0-preview.0/assets',
     // highlight-initial-scene-mode
     initialSceneMode: 'Video',
     // highlight-initial-scene-mode
@@ -32,8 +32,6 @@ window.onload = async () => {
           videoUploads.set(asset.id, {
             id: asset.id,
             label: asset.meta?.filename,
-            thumbUri: asset.thumbUri,
-            size: asset.size,
             meta: asset.meta,
             context: {
               sourceId: 'ly.img.video.upload'
@@ -62,9 +60,10 @@ window.onload = async () => {
           audioUploads.set(asset.id, {
             id: asset.id,
             label: asset.meta?.filename,
-            thumbUri: 'https://img.ly/static/cesdk/audio-wave.svg',
-            size: asset.size,
-            meta: asset.meta,
+            meta: {
+              ...asset.meta,
+              thumbUri: 'https://img.ly/static/cesdk/audio-wave.svg'
+            },
             context: {
               sourceId: 'ly.img.audio.upload'
             }
@@ -77,7 +76,11 @@ window.onload = async () => {
           const api = cesdk.engine;
           const sceneId = api.scene.get();
 
-          if (sceneId && asset.meta?.uri) {
+          if (
+            sceneId != null &&
+            api.block.isValid(sceneId) &&
+            asset.meta?.uri
+          ) {
             // create an audio block
             const audioBlock = api.block.create('//ly.img.ubq/audio');
 
@@ -104,15 +107,17 @@ window.onload = async () => {
             const rectShapes = api.block.findByType('//ly.img.ubq/shapes/rect');
             rectShapes.forEach((shape) => {
               const videoFill = api.block.getFill(shape);
-              api.block.setBool(videoFill, 'fill/video/muted', true);
+              api.block.setBool(videoFill, 'playback/muted', true);
             });
 
             // unmute the audio block
-            api.block.setBool(audioBlock, 'audio/muted', false);
+            api.block.setBool(audioBlock, 'playback/muted', false);
 
             // add an undo step
             api.editor.addUndoStep();
+            return audioBlock;
           }
+          return undefined;
         },
         // highlight-audio-duration
         canManageAssets: true,
@@ -236,7 +241,8 @@ window.onload = async () => {
 
   // highlight-default-page-duration
   // Change the default page duration to 10 seconds
-  cesdk.engine.block.setFloat('scene/defaultPageDuration', 10)
+  const scene = cesdk.engine.scene.get();
+  cesdk.engine.block.setFloat(scene, 'scene/defaultPageDuration', 10)
   // highlight-default-page-duration
 };
 

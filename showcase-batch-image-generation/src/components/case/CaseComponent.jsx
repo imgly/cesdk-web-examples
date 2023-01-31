@@ -214,7 +214,10 @@ const CaseComponent = () => {
             </p>
           </div>
           <div className={classes.contentWrapper}>
-            <div className={classes.imageWrapper}>
+            <div
+              className={classes.imageWrapper}
+              style={{ maxWidth: (currentTemplate.width + 40) * 3 }}
+            >
               {teamImages.map((image, index) => (
                 <InstanceImage
                   key={index}

@@ -41,14 +41,13 @@ const CropModeSecondary = () => {
     () => radiansToDegree(cropRotation),
     [cropRotation]
   );
-  const straightenDegrees = useMemo(
-    () => cropRotationDegrees % 90,
-    [cropRotationDegrees]
-  );
-  const rotationDegrees = useMemo(
-    () => cropRotationDegrees - (cropRotationDegrees % 90),
-    [cropRotationDegrees]
-  );
+
+  // We need to divide the cropRotationDegrees into rotation degrees (90degree increments) and straighten degrees (-44 to 45)
+  const [rotationDegrees, straightenDegrees] = useMemo(() => {
+    const rotationsCounts = Math.trunc((cropRotationDegrees - 45) / 90);
+    const rotationDegrees = rotationsCounts * 90;
+    return [rotationDegrees, cropRotationDegrees - rotationDegrees];
+  }, [cropRotationDegrees]);
 
   const [activeCropModeId, setActiveCropModeId] = useState(
     ALL_CROP_MODES[0].id
@@ -64,11 +63,10 @@ const CropModeSecondary = () => {
   const initialCropScale = useRef();
 
   const flip = () => {
-    const currentFlip =
-      creativeEngine.block.getFlipHorizontal(currentPageBlockId);
-    creativeEngine.block.setFlipHorizontal(currentPageBlockId, !currentFlip);
+    creativeEngine.block.flipCropHorizontal(currentPageBlockId);
     creativeEngine.editor.addUndoStep();
   };
+
   const scaleImage = (value) => {
     creativeEngine.block.setCropScaleRatio(currentPageBlockId, value);
     const currentRatio =
@@ -144,7 +142,7 @@ const CropModeSecondary = () => {
                       initialCropScale.current
                     );
                   }}
-                  min={-45}
+                  min={-44}
                   onStart={() => {
                     initialCropScale.current = cropScaleRatio;
                     disableCanvasInteraction();

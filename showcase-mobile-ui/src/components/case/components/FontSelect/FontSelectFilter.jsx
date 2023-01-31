@@ -1,4 +1,4 @@
-import { capitalize } from 'lodash';
+import capitalize from 'lodash/capitalize';
 import Select from '../Select/Select';
 import ALL_FONTS from './Fonts.json';
 

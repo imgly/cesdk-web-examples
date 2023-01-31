@@ -80,20 +80,17 @@ function translateToAssetResult(image) {
     name: artistName,
     url: artistUrl
   };
-  const size = {
-    width: image.width,
-    height: image.height
-  };
 
   return {
     id,
     locale: 'en',
     label,
-    thumbUri,
-    size,
     meta: {
-      blockType: 'ly.img.image',
-      uri: image.src.original
+      blockType: '//ly.img.ubq/image',
+      uri: image.src.original,
+      thumbUri,
+      width: image.width,
+      height: image.height
     },
     context: {
       sourceId: 'Pexels'

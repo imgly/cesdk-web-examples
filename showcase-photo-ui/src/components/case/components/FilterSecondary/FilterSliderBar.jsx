@@ -52,7 +52,7 @@ const FilterSliderBar = ({ lutFilterConfig }) => {
   return (
     <SliderBar
       key={name}
-      min={-100}
+      min={0}
       max={100}
       dead
       onReset={() => setFilterProperties(fromPercent(LUT_FILTER_DEFAULT_VALUE))}

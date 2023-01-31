@@ -88,16 +88,12 @@ function translateToAssetResult({ image }) {
     locale: 'en',
     label: image.name ?? undefined,
 
-    thumbUri: image.thumbnails.large.url,
-
-    size: {
+    meta: {
+      blockType: '//ly.img.ubq/image',
+      uri: image.url,
+      thumbUri: image.thumbnails.large.url,
       width: image.width,
       height: image.height
-    },
-
-    meta: {
-      blockType: 'ly.img.image',
-      uri: image.url
     },
 
     context: {
