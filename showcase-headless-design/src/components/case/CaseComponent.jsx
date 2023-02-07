@@ -61,10 +61,6 @@ const CaseComponent = () => {
       async function initializeScene() {
         engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
         await engine.scene.loadFromURL(caseAssetPath('/example.scene'));
-        // Let custom canvas web element stretch to full container size
-        canvas.style.height = '100%';
-        canvas.style.width = '100%';
-        canvas.style.position = 'absolute';
         container.append(canvas);
         await engine.scene.zoomToBlock(engine.scene.get(), 0, 0, 0, 0);
         setIsSceneLoaded(true);

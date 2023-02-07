@@ -1,0 +1,84 @@
+/* BUTTON */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 0.75rem;
+  border-radius: 8px;
+  font-family: var(--font-family-ibm-sans);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 24px;
+  text-align: center;
+
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.button--primary {
+  background-color: var(--button-high-emphasis-bg);
+  color: var(--text-light-high-emphasis);
+}
+
+.button--primary:hover,
+.button--primary:focus {
+  background-color: var(--button-primary-hover-bg);
+  box-shadow: var(--button-primary-hover-shadow);
+}
+
+.button--primary:focus-visible {
+  outline: 3px solid var(--primary-color);
+}
+
+.button--white {
+  border: 1px solid transparent;
+  background-color: white;
+  color: #161617;
+}
+
+.button--white:hover,
+.button--white:focus {
+  border: 1px solid #161617;
+}
+
+.button--white:focus-visible {
+  outline: 3px solid var(--primary-color);
+}
+
+.button--ghost {
+  color: var(--primary-color);
+}
+
+.button--ghost:hover,
+.button--ghost:focus {
+  text-decoration: underline;
+}
+
+.button--ghost:focus-visible {
+  outline: 3px solid var(--primary-color);
+}
+
+.button--light {
+  border: 1px solid rgba(71, 26, 255, 0.3);
+  color: var(--primary-color);
+}
+
+.button--light:hover,
+.button--light:focus {
+  border: 1px solid var(--primary-color);
+}
+
+.button--light:focus-visible {
+  outline: 3px solid var(--primary-color);
+}
+
+.button--light-white {
+  border: 1px solid white;
+  color: white;
+  opacity: 0.8;
+}
+
+.button--light-white:focus,
+.button--light-white:hover {
+  opacity: 1;
+}

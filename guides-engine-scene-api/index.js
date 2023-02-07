@@ -1,13 +1,13 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.0-preview.1/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.0-preview.1/assets'
 };
 
 // Fetch scene file and store it as a string.
 const SCENE_CONTENT = await fetch(
-  'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets/templates/cesdk_postcard_1.scene'
+  'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0-preview.1/assets/templates/cesdk_postcard_1.scene'
 ).then((response) => {
   return response.text();
 });
@@ -31,7 +31,7 @@ CreativeEngine.init(config).then(async (engine) => {
   scene = engine.scene.loadFromString(SCENE_CONTENT);
   // highlight-loadFromURL
   scene = await engine.scene.loadFromURL(
-    'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets/templates/cesdk_postcard_1.scene'
+    'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0-preview.1/assets/templates/cesdk_postcard_1.scene'
   );
   imageData = await engine.block.export(scene);
 
@@ -47,7 +47,7 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.scene.applyTemplateFromString(SCENE_CONTENT);
   // highlight-applyTemplateFromURL
   engine.scene.applyTemplateFromURL(
-    'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets/templates/cesdk_postcard_1.scene'
+    'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0-preview.1/assets/templates/cesdk_postcard_1.scene'
   );
 
   // Get the scene id

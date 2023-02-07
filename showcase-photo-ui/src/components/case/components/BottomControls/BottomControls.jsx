@@ -33,7 +33,8 @@ const SECONDARY_BARS = {
 };
 
 const BottomControls = () => {
-  const { setZoomPaddingBottom, editMode, creativeEngine } = useEditor();
+  const { setZoomPaddingBottom, editMode, creativeEngine, currentPageBlockId } =
+    useEditor();
   const [selectedMenuId, setSelectedMenuId] = useState();
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const BottomControls = () => {
       }
     };
     creativeEngine.element.addEventListener('click', handler);
-    return () => creativeEngine.element.removeEventListener('click', handler);
+    return () => creativeEngine.element?.removeEventListener('click', handler);
   }, [creativeEngine]);
 
   const calculatedMenuId = useMemo(
@@ -79,6 +80,7 @@ const BottomControls = () => {
                 } else {
                   if (key === 'Crop') {
                     setSelectedMenuId(null);
+                    creativeEngine.block.setSelected(currentPageBlockId, true);
                     creativeEngine.editor.setEditMode('Crop');
                   } else {
                     setSelectedMenuId(key);
