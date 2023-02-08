@@ -1,0 +1,20 @@
+{
+  "milli-surf-school": {
+    "path": "/templates/milli-surf-school.scene",
+    "id": "milli-surf-school",
+    "label": "Surf School · Portrait Example",
+    "thumbnailPath": "/templates/milli-surf-school.png"
+  },
+  "motion": {
+    "path": "/templates/motion.scene",
+    "id": "motion",
+    "label": "Motion · Landscape Example",
+    "thumbnailPath": "/templates/motion.png"
+  },
+  "yoga.scene": {
+    "path": "/templates/yoga.scene",
+    "id": "yoga",
+    "label": "Tystnad Yoga · Square Example",
+    "thumbnailPath": "/templates/yoga.png"
+  }
+}

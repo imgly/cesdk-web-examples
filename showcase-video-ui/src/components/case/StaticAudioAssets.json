@@ -1,0 +1,51 @@
+{
+  "Cody_Martin_Lemon_Drop_instrumental_4_19": {
+    "audioPath": "/Cody_Martin_Lemon_Drop_instrumental_4_19.mp3",
+    "id": "Cody_Martin_Lemon_Drop_instrumental_4_19",
+    "label": "Cody Martin Lemon Drop Instrumental",
+    "thumbnailPath": "/audio/thumbnails/cody-martin.jpeg",
+    "duration": 259
+  },
+  "Daniele_Musto_Hiphoppin_instrumental_2_08": {
+    "audioPath": "/Daniele_Musto_Hiphoppin_instrumental_2_08.mp3",
+    "id": "Daniele_Musto_Hiphoppin_instrumental_2_08",
+    "label": "Daniele Musto Hiphoppin Instrumental",
+    "thumbnailPath": "/audio/thumbnails/daniele-musto.jpeg",
+    "duration": 128
+  },
+  "Daniele_Musto_Not_Scurred_background_vocals_2_37": {
+    "audioPath": "/Daniele_Musto_Not_Scurred_background_vocals_2_37.mp3",
+    "id": "Daniele_Musto_Not_Scurred_background_vocals_2_37",
+    "label": "Daniele Musto Not Scurred Background Vocals",
+    "thumbnailPath": "/audio/thumbnails/daniele-musto.jpeg",
+    "duration": 158
+  },
+  "PALA_Cabo_Cantina_background_vocals_3_25": {
+    "audioPath": "/PALA_Cabo_Cantina_background_vocals_3_25.mp3",
+    "id": "PALA_Cabo_Cantina_background_vocals_3_25",
+    "label": "Pala Cabo Cantina Background Vocals",
+    "thumbnailPath": "/audio/thumbnails/pala-cabo.png",
+    "duration": 205
+  },
+  "Sam_Barsh_That_Corner_In_Harlem_instrumental_3_14": {
+    "audioPath": "/Sam_Barsh_That_Corner_In_Harlem_instrumental_3_14.mp3",
+    "id": "Sam_Barsh_That_Corner_In_Harlem_instrumental_3_14",
+    "label": "Sam Barsh That Corner In Harlem Instrumental",
+    "thumbnailPath": "/audio/thumbnails/sam-barsh.png",
+    "duration": 194
+  },
+  "TAYME_Then_Now_instrumental_3_28": {
+    "audioPath": "/TAYME_Then_Now_instrumental_3_28.mp3",
+    "id": "TAYME_Then_Now_instrumental_3_28",
+    "label": "Tayme Then Now Instrumental",
+    "thumbnailPath": "/audio/thumbnails/Tayme.png",
+    "duration": 208
+  },
+  "Tiger_Gang_The_Goat_instrumental_2_56": {
+    "audioPath": "/Tiger_Gang_The_Goat_instrumental_2_56.mp3",
+    "id": "Tiger_Gang_The_Goat_instrumental_2_56",
+    "label": "Tiger Gang The Goat Instrumental",
+    "thumbnailPath": "/audio/thumbnails/tiger-gang.jpeg",
+    "duration": 177
+  }
+}

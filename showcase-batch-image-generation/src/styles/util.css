@@ -25,27 +25,27 @@
   flex-basis: 0;
 }
 
-.space-x-1 > * + * {
+.space-x-1>*+* {
   margin-left: 0.25rem;
 }
 
-.space-x-2 > * + * {
+.space-x-2>*+* {
   margin-left: 0.5rem;
 }
 
-.space-x-3 > * + * {
+.space-x-3>*+* {
   margin-left: 0.75rem;
 }
 
-.space-y-1 > * + * {
+.space-y-1>*+* {
   margin-top: 0.25rem;
 }
 
-.space-y-2 > * + * {
+.space-y-2>*+* {
   margin-top: 0.5rem;
 }
 
-.space-y-2 > * + * {
+.space-y-2>*+* {
   margin-top: 0.75rem;
 }
 

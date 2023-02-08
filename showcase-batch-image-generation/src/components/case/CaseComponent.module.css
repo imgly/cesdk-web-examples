@@ -14,7 +14,6 @@
 .imageWrapper {
   display: flex;
   overflow: auto;
-  max-width: 840px;
   flex-grow: 1;
   flex-wrap: wrap;
   justify-content: flex-start;

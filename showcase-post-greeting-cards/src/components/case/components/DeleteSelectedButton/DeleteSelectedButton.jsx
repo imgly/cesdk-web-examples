@@ -13,6 +13,9 @@ const DeleteSelectedButton = ({ isActive = false }) => {
   const { selectedBlocks, creativeEngine } = useEditor();
 
   const deleteSelectedElement = () => {
+    if (creativeEngine.editor.getEditMode() === 'Crop') {
+      creativeEngine.editor.setEditMode('Transform');
+    }
     const selectedBlocks = creativeEngine.block.findAllSelected();
     selectedBlocks.forEach((pageId) => {
       creativeEngine.block.destroy(pageId);
