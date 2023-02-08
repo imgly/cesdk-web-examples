@@ -1,5 +1,5 @@
 import CreativeEngine from '@cesdk/engine';
-import { isEqual } from 'lodash';
+import isEqual from 'lodash/isEqual';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { findCustomStickerAssets } from './components/StickerSelect/CustomStickerAssetLibrary';
 import { useSinglePageFocus } from './lib/UseSinglePageFocus';

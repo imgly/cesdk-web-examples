@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { useEditor } from '../../EditorContext';
-// This library prevents touch gestures on mobile like pull-to-refresh on the custom UI
-import { disable, enable } from '../../lib/inobounce';
 import classes from './CESDKCanvas.module.css';
 
 const resizeCanvas = (wrapperNode, canvasNode) => {
@@ -27,21 +25,6 @@ const CESDKCanvas = () => {
     });
     o.observe(wrapperRef.current);
   }, [canvas, wrapperRef, isLoaded]);
-
-  useEffect(() => {
-    // Disable bouncing only if the canvas is really visible
-    if (
-      !canvas ||
-      !wrapperRef ||
-      wrapperRef.current.getBoundingClientRect().height <= 0
-    ) {
-      disable();
-    } else {
-      enable();
-    }
-
-    return () => disable();
-  }, [canvas, wrapperRef]);
 
   return (
     <div id="cesdk" className={classes.wrapper} ref={wrapperRef}>

@@ -22,52 +22,10 @@ export const TEMPLATES = {
 
 export const EMPLOYEES = [
   {
-    imagePath: 'photo_imgly_01.png',
-    firstName: 'Caroline',
-    lastName: 'Scheele-Bild',
-    department: 'Support'
-  },
-  {
-    imagePath: 'photo_imgly_02.png',
-    firstName: 'Magnus',
-    lastName: 'Prütt',
-    department: 'Sales'
-  },
-  {
-    imagePath: 'photo_imgly_03.png',
-    firstName: 'Sascha',
-    lastName: 'Schwabbauer',
-    department: 'Mobile Development'
-  },
-  {
-    imagePath: 'photo_imgly_04.png',
-    firstName: 'Olga',
-    lastName: 'Stadnicka',
-    department: 'Quality Assurance'
-  },
-  {
-    imagePath: 'photo_imgly_05.png',
-    firstName: 'Dogus',
-    lastName: 'Dolu',
-    department: 'Web Development'
-  },
-  {
-    imagePath: 'photo_imgly_06.png',
-    firstName: 'Patrick',
-    lastName: 'Schneider',
-    department: 'Design'
-  },
-  {
-    imagePath: 'photo_imgly_07.png',
-    firstName: 'Syuzanna',
-    lastName: 'Hovakimyan',
-    department: 'Support'
-  },
-  {
-    imagePath: 'photo_imgly_08.png',
-    firstName: 'Nataliya',
-    lastName: 'Chukhrai',
-    department: 'Quality Assurance'
+    imagePath: 'photo_imgly_11.png',
+    firstName: 'Eray',
+    lastName: 'Basar',
+    department: 'Co-Founder'
   },
   {
     imagePath: 'photo_imgly_09.png',
@@ -78,19 +36,43 @@ export const EMPLOYEES = [
   {
     imagePath: 'photo_imgly_10.png',
     firstName: 'Daniel',
-    lastName: 'Hausschild',
+    lastName: 'Hauschildt',
     department: 'Co-Founder'
   },
   {
-    imagePath: 'photo_imgly_11.png',
-    firstName: 'Eray',
-    lastName: 'Basar',
-    department: 'Co-Founder'
+    imagePath: 'photo_imgly_08.png',
+    firstName: 'Nataliya',
+    lastName: 'Chukhrai',
+    department: 'Quality Assurance'
   },
   {
-    imagePath: 'photo_imgly_12.png',
-    firstName: 'Intergalactic',
-    lastName: 'Igor',
-    department: 'UFO Advisor'
+    imagePath: 'photo_imgly_06.png',
+    firstName: 'Patrick',
+    lastName: 'Schneider',
+    department: 'Design'
+  },
+  {
+    imagePath: 'photo_imgly_04.png',
+    firstName: 'Olga',
+    lastName: 'Stadnicka',
+    department: 'Quality Assurance'
+  },
+  {
+    imagePath: 'photo_imgly_03.png',
+    firstName: 'Sascha',
+    lastName: 'Schwabbauer',
+    department: 'Mobile Development'
+  },
+  {
+    imagePath: 'photo_imgly_01.png',
+    firstName: 'Caroline',
+    lastName: 'Scheele-Bild',
+    department: 'Support'
+  },
+  {
+    imagePath: 'photo_imgly_05.png',
+    firstName: 'Dogus',
+    lastName: 'Dolu',
+    department: 'Web Development'
   }
 ];

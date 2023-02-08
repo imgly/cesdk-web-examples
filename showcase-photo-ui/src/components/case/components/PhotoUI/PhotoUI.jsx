@@ -14,6 +14,7 @@ const PhotoUI = () => {
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
+    const DRAGGING_CURSORS = ['Resize', 'Move'];
     if (!sceneIsLoaded || editMode !== 'Crop') {
       return;
     }
@@ -34,7 +35,10 @@ const PhotoUI = () => {
     };
 
     const onMouseDown = (e) => {
-      if (e.target === creativeEngine.element) {
+      if (
+        e.target === creativeEngine.element &&
+        DRAGGING_CURSORS.includes(creativeEngine.editor.getCursorType())
+      ) {
         setIsDragging(true);
       }
     };
