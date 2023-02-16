@@ -4,6 +4,7 @@ import { cloneElement, ReactElement, useRef, useState } from 'react';
 import { HexColorInput, HexColorPicker } from 'react-colorful';
 import { ReactComponent as CaretBottom } from './CaretBottom.svg';
 import classes from './ColorPicker.module.css';
+import useDebounceCallback from './UseDebounceCallback';
 
 interface IColorPicker {
   presetColors: string[];
@@ -17,6 +18,7 @@ interface IColorPicker {
   positionY: 'top' | 'bottom';
   children: ReactElement;
   onChange: (value: string) => void;
+  onChangeDebounced?: () => void;
 }
 
 export const ColorPicker = ({
@@ -25,6 +27,7 @@ export const ColorPicker = ({
   name,
   children,
   onChange,
+  onChangeDebounced = () => {},
   positionX = 'right',
   positionY = 'bottom',
   theme = 'dark',
@@ -56,6 +59,12 @@ export const ColorPicker = ({
     </label>
   );
 
+  const debouncedChangeHandler = useDebounceCallback(onChangeDebounced, 500);
+  const handleChange = (color: string) => {
+    onChange(color);
+    debouncedChangeHandler();
+  };
+
   return (
     <div
       className={classNames(
@@ -85,10 +94,10 @@ export const ColorPicker = ({
           )}
           ref={pickerRef}
         >
-          <HexColorPicker color={value} onChange={onChange} />
+          <HexColorPicker color={value} onChange={handleChange} />
           <div className={'flex space-x-2'}>
             <span>#</span>
-            <HexColorInput color={value} onChange={onChange} />
+            <HexColorInput color={value} onChange={handleChange} />
           </div>
         </div>
         {presetColors.length > 0 && (
@@ -98,7 +107,7 @@ export const ColorPicker = ({
                 key={color + i}
                 style={{ backgroundColor: color }}
                 onClick={() => {
-                  onChange(color);
+                  handleChange(color);
                 }}
                 className={classes.colorPreset}
               ></button>
