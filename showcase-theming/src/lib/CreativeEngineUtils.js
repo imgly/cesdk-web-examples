@@ -283,16 +283,12 @@ export const resizeCanvas = (
   engine.block.setPositionXMode(transparentBlock, 'Absolute');
   engine.block.setPositionX(
     transparentBlock,
-    mirroredPoint[0] > pageCenterX
-      ? mirroredPoint[0] - TRANSPARENT_BLOCK_SIZE
-      : mirroredPoint[0]
+    mirroredPoint[0] > pageCenterX ? mirroredPoint[0] - TRANSPARENT_BLOCK_SIZE : mirroredPoint[0]
   );
   engine.block.setPositionYMode(transparentBlock, 'Absolute');
   engine.block.setPositionY(
     transparentBlock,
-    mirroredPoint[1] > pageCenterY
-      ? mirroredPoint[1] - TRANSPARENT_BLOCK_SIZE
-      : mirroredPoint[1]
+    mirroredPoint[1] > pageCenterY ? mirroredPoint[1] - TRANSPARENT_BLOCK_SIZE : mirroredPoint[1]
   );
   engine.block.setWidth(transparentBlock, TRANSPARENT_BLOCK_SIZE);
   engine.block.setHeight(transparentBlock, TRANSPARENT_BLOCK_SIZE);
@@ -360,10 +356,3 @@ export function getImageSize(url) {
 
   return promise;
 }
-
-export const getSortedPageIds = (engine) => {
-  const [page] = engine.block.findByType('page');
-  const parent = engine.block.getParent(page);
-  const sortedPageIds = engine.block.getChildren(parent);
-  return sortedPageIds;
-};

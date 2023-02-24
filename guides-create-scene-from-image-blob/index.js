@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0-preview.2/cesdk.umd.js';
 
 // highlight-blob
 const blob = await fetch('https://img.ly/static/ubq_samples/sample_4.jpg').then((response) => response.blob());
@@ -8,7 +8,7 @@ const objectURL = URL.createObjectURL(blob);
 // highlight-objectURL
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0-preview.2/assets',
   // highlight-initialImageURL
   initialImageURL: objectURL
   // highlight-initialImageURL

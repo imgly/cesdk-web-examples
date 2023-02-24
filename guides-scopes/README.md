@@ -1,4 +1,4 @@
-# Manage scopes
+# Manage Scopes in the CreativeEditor SDK
 
 
 ## Running the sample

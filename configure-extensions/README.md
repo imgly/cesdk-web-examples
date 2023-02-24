@@ -1,4 +1,4 @@
-# Configure the Available Variables in the CreativeEditor SDK
+# Configure Extensions in the CreativeEditor SDK
 
 
 ## Running the sample

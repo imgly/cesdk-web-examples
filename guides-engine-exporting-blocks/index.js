@@ -1,14 +1,14 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.0-preview.2/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.0-preview.2/assets'
 };
 
 const exportButton = document.getElementById('export_button');
 
 CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
   async (instance) => {
-    await instance.scene.loadFromURL('https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets/templates/cesdk_postcard_1.scene');
+    await instance.scene.loadFromURL('https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0-preview.2/assets/templates/cesdk_postcard_1.scene');
     exportButton.removeAttribute('disabled');
 
     exportButton.onclick = async () => {
