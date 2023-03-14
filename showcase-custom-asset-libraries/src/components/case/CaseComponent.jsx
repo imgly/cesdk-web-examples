@@ -112,10 +112,22 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
           show: false
         }
       },
+      callbacks: {
+        onExport: 'download',
+        onUpload: 'local'
+      },
       ui: {
         elements: {
           panels: {
             settings: true
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           },
           libraries: {
             insert: {
@@ -216,6 +228,8 @@ const CustomAssetLibrariesCESDK = ({ asset_library = 'airtable' }) => {
     if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdk = instance;
         }
       );

@@ -12,7 +12,8 @@ const CaseComponent = () => {
       initialImageURL: image?.full,
       callbacks: {
         onBack: () => setImage(),
-        onExport: 'download'
+        onExport: 'download',
+        onUpload: 'local'
       },
       ui: {
         elements: {
@@ -82,6 +83,8 @@ const CaseComponent = () => {
     if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdk = instance;
 
           // Preselect the loaded Image

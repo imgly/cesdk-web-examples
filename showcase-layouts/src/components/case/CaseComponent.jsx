@@ -6,13 +6,13 @@ import { copyAssets, getPageInView } from './EngineUtilities';
 const caseAssetPath = (path, caseId = 'layouts') =>
   `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
 
-const qualifyAssetUris = ({ meta, thumbUri, ...rest }) => ({
+const qualifyAssetUris = ({ meta, ...rest }) => ({
   ...rest,
   meta: {
     ...meta,
-    sceneUri: caseAssetPath(`/${meta.sceneUri}`)
-  },
-  thumbUri: caseAssetPath(`/${thumbUri}`)
+    sceneUri: caseAssetPath(`/${meta.sceneUri}`),
+    thumbUri: caseAssetPath(`/${meta.thumbUri}`)
+  }
 });
 
 const CaseComponent = () => {
@@ -24,8 +24,20 @@ const CaseComponent = () => {
       theme: 'light',
       initialSceneURL: caseAssetPath('/custom-layouts.scene'),
       license: process.env.REACT_APP_LICENSE,
+      callbacks: {
+        onExport: 'download',
+        onUpload: 'local'
+      },
       ui: {
         elements: {
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
+          },
           dock: {
             groups: [
               {
@@ -94,12 +106,14 @@ const CaseComponent = () => {
             const blocks = await engine.current.block.loadFromString(
               sceneString
             );
+            const newPage = blocks[0];
             const stack = engine.current.block.findByType('stack')[0];
-            engine.current.block.insertChild(stack, blocks[0], 0);
+            engine.current.block.insertChild(stack, newPage, 0);
             // Workaround: We need to force layouting to be able to get the global coordinates from the new template.
-            engine.current.block.setRotation(blocks[0], 0);
-            copyAssets(engine.current, pageToApplyLayoutTo, blocks[0]);
+            engine.current.block.setRotation(newPage, 0);
+            copyAssets(engine.current, pageToApplyLayoutTo, newPage);
             engine.current.block.destroy(pageToApplyLayoutTo);
+            return newPage;
           },
           findAssets: () => ({
             assets: ALL_CUSTOM_LAYOUTS.map(qualifyAssetUris),
@@ -119,6 +133,8 @@ const CaseComponent = () => {
     if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdk = instance;
           engine.current = instance.engine;
         }

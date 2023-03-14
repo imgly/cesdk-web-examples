@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0/cesdk.umd.js';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
@@ -73,7 +73,7 @@ const findUnsplashAssets = async (queryData) => {
 };
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0/assets',
   assetSources: {
     // highlight-unsplash-definition
     unsplash: {
@@ -116,22 +116,21 @@ function translateToAssetResult(image) {
     tags: image.tags ? image.tags.map((tag) => tag.title) : undefined,
     // highlight-result-tags
 
-    // highlight-result-thumbUri
-    thumbUri: image.urls.thumb,
-    // highlight-result-thumbUri
-
-    // highlight-result-size
-    size: {
+    meta: {
+      // highlight-result-uri
+      uri: image.urls.full,
+      // highlight-result-uri
+      // highlight-result-thumbUri
+      thumbUri: image.urls.thumb,
+      // highlight-result-thumbUri
+      // highlight-result-blockType
+      blockTypes: '//ly.img.ubq/image',
+      // highlight-result-blockType
+      // highlight-result-size
       width: image.width,
       height: image.height
+      // highlight-result-size
     },
-    // highlight-result-size
-
-    // highlight-result-uri
-    meta: {
-      uri: image.urls.full
-    },
-    // highlight-result-uri
 
     // highlight-result-context
     context: {

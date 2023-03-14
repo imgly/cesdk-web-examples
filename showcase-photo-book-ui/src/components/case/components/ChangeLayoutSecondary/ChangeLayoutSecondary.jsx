@@ -31,14 +31,15 @@ const ChangeLayoutSecondary = () => {
       {layouts.map((layoutAsset) => {
         return (
           <AdjustmentsBarButton
-            key={layoutAsset.thumbUri}
+            key={layoutAsset.meta.thumbUri}
             onClick={async () => {
               setEnabled(false);
               const currentPageFillColor = engine.block.getColorRGBA(
                 currentPageBlockId,
                 'fill/solid/color'
               );
-              const newPageId = await engine.asset.getApplyAsset('layouts')(
+              const newPageId = await engine.asset.apply(
+                'layouts',
                 layoutAsset
               );
               engine.block.setColorRGBA(
@@ -50,7 +51,7 @@ const ChangeLayoutSecondary = () => {
               setEnabled(true);
             }}
           >
-            <img src={layoutAsset.thumbUri} alt="Layout Preview" />
+            <img src={layoutAsset.meta.thumbUri} alt="Layout Preview" />
           </AdjustmentsBarButton>
         );
       })}

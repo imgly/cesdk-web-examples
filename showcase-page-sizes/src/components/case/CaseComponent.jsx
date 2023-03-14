@@ -6,14 +6,14 @@ import ALL_PAGE_SIZES from './PageSizes.json';
 const caseAssetPath = (path, caseId = 'page-sizes') =>
   `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
 
-const qualifyAssetUris = ({ meta, thumbUri, label, ...rest }) => ({
+const qualifyAssetUris = ({ meta, label, ...rest }) => ({
   ...rest,
   meta: {
-    ...meta
+    ...meta,
+    thumbUri: caseAssetPath(`/${meta.thumbUri}`)
   },
   label,
-  cardLabel: label,
-  thumbUri: caseAssetPath(`/${thumbUri}`)
+  cardLabel: label
 });
 
 const CaseComponent = () => {
@@ -29,7 +29,8 @@ const CaseComponent = () => {
       initialSceneURL: caseAssetPath('/page-sizes.scene'),
       license: process.env.REACT_APP_LICENSE,
       callbacks: {
-        onExport: 'download'
+        onExport: 'download',
+        onUpload: 'local'
       },
       ui: {
         elements: {
@@ -89,19 +90,19 @@ const CaseComponent = () => {
                       padding: '0',
                       background: 'transparent',
                       overflow: 'hidden',
-                      'text-overflow': 'unset',
-                      'white-space': 'unset',
-                      'font-size': '10px',
-                      'line-height': '12px',
-                      'letter-spacing': '0.02em',
-                      'text-align': 'center',
-                      'pointer-events': 'none',
+                      textOverflow: 'unset',
+                      whiteSpace: 'unset',
+                      fontSize: '10px',
+                      lineHeight: '12px',
+                      letterSpacing: '0.02em',
+                      textAlign: 'center',
+                      pointerEvents: 'none',
                       pointer: 'default'
                     }),
                     cardStyle: () => ({
                       height: '80px',
                       width: '80px',
-                      'margin-bottom': '40px',
+                      marginBottom: '40px',
                       overflow: 'visible'
                     }),
                     icon: () => caseAssetPath('/page-sizes-large.svg'),
@@ -152,8 +153,8 @@ const CaseComponent = () => {
                 resizeCanvas(
                   engine.current,
                   pageId,
-                  parseInt(asset.meta.width, 10),
-                  parseInt(asset.meta.height, 10)
+                  parseInt(asset.meta.formatWidth, 10),
+                  parseInt(asset.meta.formatHeight, 10)
                 );
               });
 
@@ -173,6 +174,8 @@ const CaseComponent = () => {
     if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdk.current = instance;
           engine.current = instance.engine;
         }

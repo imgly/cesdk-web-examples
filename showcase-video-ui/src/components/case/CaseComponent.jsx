@@ -1,99 +1,37 @@
 import CreativeEditorSDK, { UserInterfaceElements } from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
+import { createApplyFormatAsset } from './createApplyFormatAsset';
+import { createDefaultApplyAssetScene } from './defaultApplyAssetScene';
+import loadAssetSourceFromContentJSON from './loadAssetSourceFromContentJSON';
 import {
-  addLocalAudioUploadEntry,
-  createLocalAudioUploadAssetLibrary
-} from './LocalAudioUploadAssetSource';
-import {
-  addLocalVideoUploadEntry,
-  createLocalVideoUploadAssetLibrary
-} from './LocalVideoUploadAssetSource';
-import { createPageFormatAssetSource } from './PageFormatAssetLibrary';
+  formatAssetsToPresets,
+  pageFormatI18n,
+  PAGE_FORMATS_INSERT_ENTRY
+} from './PageFormatAssetLibrary';
 import PAGE_FORMAT_ASSETS from './PageFormatAssets.json';
-import { createStaticAudioSource } from './StaticAudioAssetLibrary';
 import AUDIO_ASSETS from './StaticAudioAssets.json';
 import VIDEO_SCENES_ASSETS from './StaticVideoScenesAssets.json';
-import { createStaticVideoScenesSource } from './StaticVideoScenesAssetLibrary';
 import { caseAssetPath } from './util';
-
-const AudioAssets = Object.entries(AUDIO_ASSETS).map(
-  ([id, { label, audioPath, thumbnailPath, duration }]) => ({
-    id,
-    label,
-    thumbUri: caseAssetPath(`${thumbnailPath}`),
-    meta: {
-      uri: caseAssetPath(`/audio/${audioPath}`),
-      blockType: '//ly.img.ubq/audio',
-      mimeType: 'audio/mp3',
-      duration
-    },
-    size: {
-      width: 0,
-      height: 0
-    },
-    context: {
-      sourceId: 'ly.img.audio'
-    }
-  })
-);
-const VideoSceneAssets = Object.entries(VIDEO_SCENES_ASSETS).map(
-  ([id, { label, path, thumbnailPath }]) => ({
-    id,
-    label,
-    thumbUri: caseAssetPath(thumbnailPath),
-    meta: {
-      uri: caseAssetPath(path)
-    },
-    size: {
-      width: 0,
-      height: 0
-    },
-    context: {
-      sourceId: 'exampleVideoScenes'
-    }
-  })
-);
 
 const CaseComponent = () => {
   const cesdk_container = useRef(null);
   const cesdkRef = useRef(null);
 
   useEffect(() => {
-    const pageFormatConfig = createPageFormatAssetSource(
-      cesdkRef,
-      PAGE_FORMAT_ASSETS
-    );
-    const localAudioUploadConfig = createLocalAudioUploadAssetLibrary(cesdkRef);
-    const localVideoUploadConfig = createLocalVideoUploadAssetLibrary(cesdkRef);
-    const staticVideoScenesSource = createStaticVideoScenesSource(
-      cesdkRef,
-      VideoSceneAssets
-    );
     /** @type {import("@cesdk/engine").Configuration} */
     const config = {
       theme: 'light',
       initialSceneMode: 'Video',
       initialSceneURL: caseAssetPath('/templates/motion.scene'),
-      assetSources: {
-        'ly.img.video.upload': localVideoUploadConfig.assetSource,
-        'ly.img.audio.upload': localAudioUploadConfig.assetSource,
-        pageFormats: pageFormatConfig.assetSource,
-        exampleVideoScenes: staticVideoScenesSource
-      },
       i18n: {
         en: {
-          'libraries.ly.img.upload.ly.img.upload.label': 'Image Uploads',
           'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
-          ...pageFormatConfig.i18nEntries,
-          ...localAudioUploadConfig.i18nEntries,
-          ...localVideoUploadConfig.i18nEntries,
-          'libraries.exampleVideoScenes.label': 'Example Videos'
+          ...pageFormatI18n(PAGE_FORMAT_ASSETS.assets),
+          'libraries.ly.img.video.templates.label': 'Example Videos'
         }
       },
       presets: {
-        pageFormats: {
-          ...pageFormatConfig.presetEntries
-        }
+        pageFormats: formatAssetsToPresets(PAGE_FORMAT_ASSETS)
       },
       ui: {
         elements: {
@@ -109,7 +47,7 @@ const CaseComponent = () => {
               },
               {
                 id: 'examples',
-                entryIds: ['exampleVideoScenes']
+                entryIds: ['ly.img.video.templates']
               },
               {
                 id: 'ly.img.defaultGroup',
@@ -120,46 +58,15 @@ const CaseComponent = () => {
           libraries: {
             insert: {
               entries: (defaultEntries) => {
-                addLocalAudioUploadEntry(defaultEntries);
-                addLocalVideoUploadEntry(defaultEntries);
-                const uploadEntry = defaultEntries.find((entry) => {
-                  return entry.id === 'ly.img.upload';
-                });
-                if (uploadEntry) {
-                  uploadEntry.previewLength = 3;
-                  uploadEntry.gridColumns = 3;
-                  uploadEntry.gridItemHeight = 'square';
-
-                  uploadEntry.previewBackgroundType = 'cover';
-                  uploadEntry.gridBackgroundType = 'cover';
-                }
                 return [
                   ...defaultEntries,
-                  pageFormatConfig.insertEntry,
+                  PAGE_FORMATS_INSERT_ENTRY,
                   {
-                    id: 'exampleVideoScenes',
-                    sourceIds: ['exampleVideoScenes'],
+                    id: 'ly.img.video.templates',
+                    sourceIds: ['ly.img.video.templates'],
                     icon: () => caseAssetPath('/static-video-scenes-icon.svg')
                   }
                 ];
-              }
-            },
-            replace: {
-              entries: (defaultEntries) => {
-                addLocalAudioUploadEntry(defaultEntries);
-                addLocalVideoUploadEntry(defaultEntries);
-                const uploadEntry = defaultEntries.find((entry) => {
-                  return entry.id === 'ly.img.upload';
-                });
-                if (uploadEntry) {
-                  uploadEntry.previewLength = 3;
-                  uploadEntry.gridColumns = 3;
-                  uploadEntry.gridItemHeight = 'square';
-
-                  uploadEntry.previewBackgroundType = 'cover';
-                  uploadEntry.gridBackgroundType = 'cover';
-                }
-                return [...defaultEntries];
               }
             }
           },
@@ -183,15 +90,34 @@ const CaseComponent = () => {
     let cesdk;
     if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
-        (instance) => {
+        async (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources({
+            // We want to replace the demo audio assets with our own
+            excludeAssetSourceIds: ['ly.img.audio']
+          });
           cesdk = instance;
           cesdkRef.current = instance;
           cesdk.engine.editor.setSettingBool('page/title/show', false);
 
-          // Replace the sample audio library with a custom static audio library
-          cesdk.engine.asset.removeSource('ly.img.audio');
-          cesdk.engine.asset.addSource(
-            createStaticAudioSource(cesdk.engine, AudioAssets)
+          loadAssetSourceFromContentJSON(
+            cesdk.engine,
+            VIDEO_SCENES_ASSETS,
+            caseAssetPath('/templates'),
+            createDefaultApplyAssetScene(cesdk.engine)
+          );
+
+          loadAssetSourceFromContentJSON(
+            cesdk.engine,
+            AUDIO_ASSETS,
+            caseAssetPath('/audio')
+          );
+
+          loadAssetSourceFromContentJSON(
+            cesdk.engine,
+            PAGE_FORMAT_ASSETS,
+            caseAssetPath('/page-formats'),
+            createApplyFormatAsset(cesdk.engine)
           );
 
           cesdk.engine.editor.addUndoStep();

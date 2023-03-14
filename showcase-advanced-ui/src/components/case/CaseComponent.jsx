@@ -34,7 +34,8 @@ const CaseComponent = () => {
         }
       },
       callbacks: {
-        onExport: 'download'
+        onExport: 'download',
+        onUpload: 'local'
       },
       // Begin standard template presets
       presets: {
@@ -89,6 +90,8 @@ const CaseComponent = () => {
     if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdk = instance;
         }
       );

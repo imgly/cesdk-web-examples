@@ -17,6 +17,6 @@ const AddStickerSecondary = () => {
     autoPlaceBlockOnPage(creativeEngine, currentPageBlockId, block);
   };
 
-  return <StickerBar onClick={(type) => addSticker(type)} />;
+  return <StickerBar onClick={(asset) => addSticker(asset.meta.uri)} />;
 };
 export default AddStickerSecondary;

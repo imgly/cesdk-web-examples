@@ -81,22 +81,17 @@ export const findAirtableAssets = async (queryData) => {
     nextPage: undefined
   };
 };
-
 function translateToAssetResult({ image }) {
-  return {
+  /** @type {import('@cesdk/cesdk-js').AssetDefinition} */
+  const asset = {
     id: image.id,
-    locale: 'en',
-    label: image.name ?? undefined,
-
-    thumbUri: image.thumbnails.large.url,
-
-    size: {
-      width: image.width,
-      height: image.height
-    },
-
+    // TODO: Check why labels do not work
+    // label: image.name ?? undefined,
     meta: {
-      blockType: 'ly.img.image',
+      width: image.width,
+      height: image.height,
+      thumbUri: image.thumbnails.large.url,
+      blockType: '//ly.img.ubq/image',
       uri: image.url
     },
 
@@ -104,4 +99,5 @@ function translateToAssetResult({ image }) {
       sourceId: 'Airtable'
     }
   };
+  return asset;
 }

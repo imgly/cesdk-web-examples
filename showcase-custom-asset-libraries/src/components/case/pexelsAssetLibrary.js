@@ -75,24 +75,22 @@ function translateToAssetResult(image) {
   const artistUrl = image.photographer_url;
   const thumbUri = image.src.medium;
   const id = image.id.toString();
-  const label = !!image.alt ? image.alt : undefined;
+  // const label = !!image.alt ? image.alt : undefined;
   const credits = {
     name: artistName,
     url: artistUrl
-  };
-  const size = {
-    width: image.width,
-    height: image.height
   };
 
   return {
     id,
     locale: 'en',
-    label,
-    thumbUri,
-    size,
+    // TODO: Check why labels do not work
+    // label: { 'en': label },
     meta: {
-      blockType: 'ly.img.image',
+      thumbUri,
+      width: image.width,
+      height: image.height,
+      blockType: '//ly.img.ubq/image',
       uri: image.src.original
     },
     context: {

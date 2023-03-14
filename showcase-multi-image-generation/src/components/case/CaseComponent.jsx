@@ -88,6 +88,8 @@ const CaseComponent = () => {
       license: process.env.REACT_APP_LICENSE
     };
     CreativeEngine.init(config).then(async (instance) => {
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
       engineRef.current = instance;
     });
 

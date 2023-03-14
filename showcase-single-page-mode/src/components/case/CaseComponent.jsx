@@ -41,12 +41,15 @@ const CaseComponent = () => {
         }
       },
       callbacks: {
-        onExport: 'download'
+        onExport: 'download',
+        onUpload: 'local'
       }
     };
     if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         async (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           pageIds.current = await instance.unstable_getPages();
           cesdkRef.current = instance;
           setActivePageId(pageIds.current[0]);

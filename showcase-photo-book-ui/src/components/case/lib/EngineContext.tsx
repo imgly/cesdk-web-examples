@@ -26,6 +26,7 @@ export const EngineProvider = ({
     const loadEngine = async () => {
 
       localEngine = await CreativeEngine.init(config);
+      localEngine.addDefaultAssetSources();
       setEngine(localEngine);
       setIsLoaded(true);
     };

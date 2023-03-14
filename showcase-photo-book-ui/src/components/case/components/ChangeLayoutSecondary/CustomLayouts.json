@@ -3,12 +3,8 @@
     "id": "layout-1",
     "locale": "en",
     "label": "layout 1",
-    "thumbUri": "thumbnail-0.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
     "meta": {
+      "thumbUri": "thumbnail-0.png",
       "blockType": "acme.layouts",
       "sceneUri": "template-0.scene"
     },
@@ -24,12 +20,8 @@
     "id": "layout-2",
     "locale": "en",
     "label": "layout 2",
-    "thumbUri": "thumbnail-1.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
     "meta": {
+      "thumbUri": "thumbnail-1.png",
       "blockType": "acme.layouts",
       "sceneUri": "template-1.scene"
     },
@@ -45,12 +37,8 @@
     "id": "layout-3",
     "locale": "en",
     "label": "layout 3",
-    "thumbUri": "thumbnail-2.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
     "meta": {
+      "thumbUri": "thumbnail-2.png",
       "blockType": "acme.layouts",
       "sceneUri": "template-2.scene"
     },
@@ -66,12 +54,8 @@
     "id": "layout-4",
     "locale": "en",
     "label": "layout 4",
-    "thumbUri": "thumbnail-3.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
     "meta": {
+      "thumbUri": "thumbnail-3.png",
       "blockType": "acme.layouts",
       "sceneUri": "template-3.scene"
     },

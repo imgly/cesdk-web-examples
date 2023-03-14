@@ -152,8 +152,8 @@ const CaseComponent = ({ product = 'postcard' }) => {
 
 
     CreativeEngine.init(config).then(async (instance) => {
-      // Hotfix for a race-condition in <=1.7.0
-      await new Promise((resolve) => requestAnimationFrame(resolve));
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
       await instance.scene.loadFromURL(
         `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
@@ -173,10 +173,20 @@ const CaseComponent = ({ product = 'postcard' }) => {
       license: process.env.REACT_APP_LICENSE,
       role: 'Adopter',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.scenePath}`,
+      callbacks: {
+        onExport: 'download',
+        onUpload: 'local'
+      },
       ui: {
         elements: {
           navigation: {
-            title: productConfig.sceneTitle
+            title: productConfig.sceneTitle,
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           },
           panels: {
             settings: true
@@ -237,6 +247,8 @@ const CaseComponent = ({ product = 'postcard' }) => {
     if (cesdkContainerRef.current) {
       CreativeEditorSDK.init(cesdkContainerRef.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdk = instance;
           cesdkEngineRef.current = instance;
           unsubscribe = instance.engine.event.subscribe([], (events) => {

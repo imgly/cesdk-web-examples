@@ -8,6 +8,10 @@ const ROLE_OPTIONS = [
     cesdkConfig: {
       theme: 'dark',
       role: 'Creator',
+      callbacks: {
+        onExport: 'download',
+        onUpload: 'local'
+      },
       ui: {
         elements: {
           view: 'advanced',
@@ -21,6 +25,14 @@ const ROLE_OPTIONS = [
           dock: {
             iconSize: 'normal',
             hideLabels: true
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           }
         }
       }
@@ -31,10 +43,22 @@ const ROLE_OPTIONS = [
     cesdkConfig: {
       theme: 'light',
       role: 'Adopter',
+      callbacks: {
+        onExport: 'download',
+        onUpload: 'local'
+      },
       ui: {
         elements: {
           panels: {
             settings: true
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           }
         }
       }
@@ -49,6 +73,8 @@ const CaseComponent = () => {
   const [currentScene, setCurrentScene] = useState(null);
 
   useEffect(() => {
+    let disposed = false;
+    let _cesdk;
     const config = {
       ...ROLE_OPTIONS.find(({ name }) => name === currentRole).cesdkConfig,
       // Begin standard template presets
@@ -104,14 +130,23 @@ const CaseComponent = () => {
       config.initialSceneURL = `${window.location.protocol + "//" + window.location.host}/cases/placeholders/example.scene`;
     }
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then((cesdk) => {
-        cesdkRef.current = cesdk;
-      });
+      CreativeEditorSDK.init(cesdkContainer.current, config).then(
+        (instance) => {
+          if (disposed) {
+            instance.dispose()
+            return
+          }
+          _cesdk = instance
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
+          cesdkRef.current = instance;
+        }
+      );
     }
     return () => {
-      if (cesdkRef.current) {
-        cesdkRef.current.dispose();
-      }
+      disposed = true;
+      _cesdk?.dispose();
+      cesdkRef.current = null;
     };
   }, [currentRole, currentScene, cesdkContainer]);
 

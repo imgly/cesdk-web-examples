@@ -21,16 +21,14 @@ function translateToAssetResult({ url }) {
     locale: 'en',
     label: fileName,
 
-    thumbUri: caseAssetPath(url),
-
-    size: {
-      width: 100,
-      height: 100
-    },
-
     meta: {
-      blockType: 'ly.img.sticker',
-      uri: caseAssetPath(url)
+      thumbUri: caseAssetPath(url),
+      blockType: '//ly.img.ubq/sticker',
+      uri: caseAssetPath(url),
+      size: {
+        width: 100,
+        height: 100
+      }
     },
 
     context: {

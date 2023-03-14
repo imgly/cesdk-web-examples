@@ -40,6 +40,8 @@ const CaseComponent = () => {
 
     let engineToBeDisposed;
     CreativeEngine.init(config).then(async (instance) => {
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
       engineToBeDisposed = instance;
       setEngine(instance);
       setIsEngineLoaded(true);

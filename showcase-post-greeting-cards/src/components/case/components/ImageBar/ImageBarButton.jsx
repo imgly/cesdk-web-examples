@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import classes from './ImageBar.module.css';
 
-const ImageBarButton = ({ thumbUri, meta: { uri }, onSelect }) => {
+const ImageBarButton = ({ meta: { uri, thumbUri }, onSelect }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {

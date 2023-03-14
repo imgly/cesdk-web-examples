@@ -8,13 +8,13 @@ import { usePagePreview } from './lib/PagePreviewContext';
 import { useSinglePageMode } from './lib/SinglePageModeContext';
 import { caseAssetPath } from './util';
 
-const qualifyAssetUris = ({ meta, thumbUri, ...rest }) => ({
+const qualifyAssetUris = ({ meta, ...rest }) => ({
   ...rest,
   meta: {
     ...meta,
-    sceneUri: caseAssetPath(`/${meta.sceneUri}`)
-  },
-  thumbUri: caseAssetPath(`/${thumbUri}`)
+    sceneUri: caseAssetPath(`/${meta.sceneUri}`),
+    thumbUri: caseAssetPath(`/${meta.thumbUri}`)
+  }
 });
 
 const EditorContext = createContext();

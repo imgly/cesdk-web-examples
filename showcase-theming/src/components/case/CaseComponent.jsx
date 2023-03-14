@@ -27,7 +27,8 @@ const ThemingCESDK = ({
       role: 'Adopter',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
       callbacks: {
-        onExport: 'download'
+        onExport: 'download',
+        onUpload: 'local'
       },
       ui: {
         scale: scale,
@@ -95,6 +96,8 @@ const ThemingCESDK = ({
     if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdk = instance;
         }
       );

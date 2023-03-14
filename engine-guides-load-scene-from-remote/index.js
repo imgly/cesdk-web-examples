@@ -1,13 +1,13 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
   // highlight-url
   const sceneUrl =
-    'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets/templates/cesdk_postcard_1.scene';
+    'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.0/assets/templates/cesdk_postcard_1.scene';
   // highlight-url
 
   // highlight-load

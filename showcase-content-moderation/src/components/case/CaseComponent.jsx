@@ -43,8 +43,20 @@ const ImageComplianceCESDK = () => {
         elements: {
           panels: {
             settings: true
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           }
         }
+      },
+      callbacks: {
+        onExport: 'download',
+        onUpload: 'local'
       },
       // Begin standard template presets
       presets: {
@@ -96,6 +108,8 @@ const ImageComplianceCESDK = () => {
     if (cesdk_container.current && !cesdkRef.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdkRef.current = instance;
         }
       );

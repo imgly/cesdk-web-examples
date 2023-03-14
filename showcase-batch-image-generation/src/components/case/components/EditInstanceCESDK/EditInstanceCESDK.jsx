@@ -41,7 +41,8 @@ const EditInstanceCESDK = ({
           },
           onBack: () => {
             onClose();
-          }
+          },
+          onUpload: 'local'
         },
         role: 'Adopter',
         variables: {

@@ -48,9 +48,14 @@ const CaseComponent = () => {
         title: {
           show: false
         }
+      },
+      callbacks: {
+        onUpload: 'local'
       }
     };
     CreativeEngine.init(config).then(async (instance) => {
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
       engineRef.current = instance;
       setInitialized(true);
     });
