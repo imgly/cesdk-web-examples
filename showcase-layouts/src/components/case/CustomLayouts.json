@@ -1,254 +1,125 @@
-[
-  {
-    "id": "layout-0",
-    "locale": "en",
-    "label": "layout with 5 images",
-    "thumbUri": "thumbnail-0.png",
-    "size": {
-      "width": 0,
-      "height": 0
+{
+  "version": "1.0.0",
+  "id": "ly.img.layouts",
+  "assets": [
+    {
+      "id": "layout-0",
+      "label": { "en": "layout with 5 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-0.png",
+        "uri": "{{base_url}}/template-0.scene"
+      }
     },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-0.scene"
+    {
+      "id": "layout-1",
+      "locale": "en",
+      "label": { "en": "layout with 2 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-1.png",
+        "uri": "{{base_url}}/template-1.scene"
+      }
     },
-    "context": {
-      "sourceId": "customLayouts"
+    {
+      "id": "layout-2",
+      "locale": "en",
+      "label": { "en": "layout with 5 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-2.png",
+        "uri": "{{base_url}}/template-2.scene"
+      }
     },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
+    {
+      "id": "layout-3",
+      "locale": "en",
+      "label": { "en": "layout with 1 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-3.png",
+        "uri": "{{base_url}}/template-3.scene"
+      }
+    },
+    {
+      "id": "layout-4",
+      "locale": "en",
+      "label": { "en": "layout with 5 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-4.png",
+        "uri": "{{base_url}}/template-4.scene"
+      }
+    },
+    {
+      "id": "layout-5",
+      "locale": "en",
+      "label": { "en": "layout with 4 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-5.png",
+        "uri": "{{base_url}}/template-5.scene"
+      }
+    },
+    {
+      "id": "layout-6",
+      "locale": "en",
+      "label": { "en": "layout with 6 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-6.png",
+        "uri": "{{base_url}}/template-6.scene"
+      }
+    },
+    {
+      "id": "layout-7",
+      "locale": "en",
+      "label": { "en": "layout with 3 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-7.png",
+        "uri": "{{base_url}}/template-7.scene"
+      }
+    },
+    {
+      "id": "layout-8",
+      "locale": "en",
+      "label": { "en": "layout with 3 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-8.png",
+        "uri": "{{base_url}}/template-8.scene"
+      }
+    },
+    {
+      "id": "layout-9",
+      "locale": "en",
+      "label": { "en": "layout with 2 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-9.png",
+        "uri": "{{base_url}}/template-9.scene"
+      }
+    },
+    {
+      "id": "layout-10",
+      "locale": "en",
+      "label": { "en": "layout with 6 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-10.png",
+        "uri": "{{base_url}}/template-10.scene"
+      }
+    },
+    {
+      "id": "layout-11",
+      "locale": "en",
+      "label": { "en": "layout with 9 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-11.png",
+        "uri": "{{base_url}}/template-11.scene"
+      }
     }
-  },
-  {
-    "id": "layout-1",
-    "locale": "en",
-    "label": "layout with 2 images",
-    "thumbUri": "thumbnail-1.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-1.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  },
-  {
-    "id": "layout-2",
-    "locale": "en",
-    "label": "layout with 5 images",
-    "thumbUri": "thumbnail-2.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-2.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  },
-  {
-    "id": "layout-3",
-    "locale": "en",
-    "label": "layout with 1 images",
-    "thumbUri": "thumbnail-3.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-3.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  },
-  {
-    "id": "layout-4",
-    "locale": "en",
-    "label": "layout with 5 images",
-    "thumbUri": "thumbnail-4.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-4.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  },
-  {
-    "id": "layout-5",
-    "locale": "en",
-    "label": "layout with 4 images",
-    "thumbUri": "thumbnail-5.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-5.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  },
-  {
-    "id": "layout-6",
-    "locale": "en",
-    "label": "layout with 6 images",
-    "thumbUri": "thumbnail-6.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-6.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  },
-  {
-    "id": "layout-7",
-    "locale": "en",
-    "label": "layout with 3 images",
-    "thumbUri": "thumbnail-7.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-7.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  },
-  {
-    "id": "layout-8",
-    "locale": "en",
-    "label": "layout with 3 images",
-    "thumbUri": "thumbnail-8.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-8.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  },
-  {
-    "id": "layout-9",
-    "locale": "en",
-    "label": "layout with 2 images",
-    "thumbUri": "thumbnail-9.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-9.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  },
-  {
-    "id": "layout-10",
-    "locale": "en",
-    "label": "layout with 6 images",
-    "thumbUri": "thumbnail-10.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-10.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  },
-  {
-    "id": "layout-11",
-    "locale": "en",
-    "label": "layout with 9 images",
-    "thumbUri": "thumbnail-11.png",
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "meta": {
-      "blockType": "acme.layouts",
-      "sceneUri": "template-11.scene"
-    },
-    "context": {
-      "sourceId": "customLayouts"
-    },
-    "utm": {
-      "source": "CE.SDK Demo",
-      "medium": "referral"
-    }
-  }
-]
+  ]
+}

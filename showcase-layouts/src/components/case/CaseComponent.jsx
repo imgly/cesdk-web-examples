@@ -1,22 +1,14 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import { createApplyLayoutAsset } from 'lib/createApplyLayoutAsset';
+import loadAssetSourceFromContentJSON from 'lib/loadAssetSourceFromContentJSON';
+import LAYOUT_ASSETS from './CustomLayouts.json';
 import { useEffect, useRef } from 'react';
-import ALL_CUSTOM_LAYOUTS from './CustomLayouts.json';
-import { copyAssets, getPageInView } from './EngineUtilities';
 
 const caseAssetPath = (path, caseId = 'layouts') =>
   `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
 
-const qualifyAssetUris = ({ meta, thumbUri, ...rest }) => ({
-  ...rest,
-  meta: {
-    ...meta,
-    sceneUri: caseAssetPath(`/${meta.sceneUri}`)
-  },
-  thumbUri: caseAssetPath(`/${thumbUri}`)
-});
-
 const CaseComponent = () => {
-  const cesdk_container = useRef(null);
+  const cesdkContainer = useRef(null);
   const engine = useRef(null);
   useEffect(() => {
     let config = {
@@ -24,13 +16,16 @@ const CaseComponent = () => {
       theme: 'light',
       initialSceneURL: caseAssetPath('/custom-layouts.scene'),
       license: process.env.REACT_APP_LICENSE,
+      callbacks: {
+        onUpload: 'local'
+      },
       ui: {
         elements: {
           dock: {
             groups: [
               {
-                id: 'customLayouts',
-                entryIds: ['customLayouts']
+                id: 'ly.img.layouts',
+                entryIds: ['ly.img.layouts']
               },
               {
                 id: 'ly.img.defaultGroup',
@@ -53,8 +48,8 @@ const CaseComponent = () => {
               entries: (defaultEntries) => {
                 return [
                   {
-                    id: 'customLayouts',
-                    sourceIds: ['customLayouts'],
+                    id: 'ly.img.layouts',
+                    sourceIds: ['ly.img.layouts'],
                     previewLength: 2,
                     gridColumns: 2,
                     gridItemHeight: 'square',
@@ -74,51 +69,25 @@ const CaseComponent = () => {
           }
         }
       },
-      assetSources: {
-        customLayouts: {
-          applyAsset: async (asset) => {
-            let pageToApplyLayoutTo = getPageInView(engine.current);
-            const selectedBlocks = engine.current.block.findAllSelected();
-            if (
-              selectedBlocks.length === 1 &&
-              engine.current.block.getType(selectedBlocks[0]).includes('page')
-            ) {
-              pageToApplyLayoutTo = selectedBlocks[0];
-            }
-            selectedBlocks.forEach((block) =>
-              engine.current.block.setSelected(block, false)
-            );
-            const sceneString = await fetch(asset.meta.sceneUri).then(
-              (response) => response.text()
-            );
-            const blocks = await engine.current.block.loadFromString(
-              sceneString
-            );
-            const stack = engine.current.block.findByType('stack')[0];
-            engine.current.block.insertChild(stack, blocks[0], 0);
-            // Workaround: We need to force layouting to be able to get the global coordinates from the new template.
-            engine.current.block.setRotation(blocks[0], 0);
-            copyAssets(engine.current, pageToApplyLayoutTo, blocks[0]);
-            engine.current.block.destroy(pageToApplyLayoutTo);
-          },
-          findAssets: () => ({
-            assets: ALL_CUSTOM_LAYOUTS.map(qualifyAssetUris),
-            total: ALL_CUSTOM_LAYOUTS.length,
-            nextPage: undefined,
-            currentPage: 0
-          })
-        }
-      },
       i18n: {
         en: {
-          'libraries.customLayouts.label': 'Layouts'
+          'libraries.ly.img.layouts.label': 'Layouts'
         }
       }
     };
     let cesdk;
-    if (cesdk_container.current) {
-      CreativeEditorSDK.init(cesdk_container.current, config).then(
+    if (cesdkContainer.current) {
+      CreativeEditorSDK.init(cesdkContainer.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
+
+          loadAssetSourceFromContentJSON(
+            instance.engine,
+            LAYOUT_ASSETS,
+            caseAssetPath(''),
+            createApplyLayoutAsset(instance.engine)
+          );
           cesdk = instance;
           engine.current = instance.engine;
         }
@@ -129,47 +98,29 @@ const CaseComponent = () => {
         cesdk.dispose();
       }
     };
-  }, [cesdk_container]);
+  }, [cesdkContainer]);
 
   return (
-    <div style={caseContainerStyle}>
-      <div className="caseHeader">
-        <h3>Layouts</h3>
-        <p>
-          Add “Layouts” as custom asset type to allow users to choose from a
-          library of ready made layouts while keeping their current edits
-          unchanged.
-        </p>
-        <p>Ideal for photo book, collage, or postcard editing use cases.</p>
-      </div>
-
-      <div style={wrapperStyle}>
-        <div ref={cesdk_container} style={cesdkStyle}></div>
-      </div>
+    <div style={cesdkWrapperStyle}>
+      <div ref={cesdkContainer} style={cesdkStyle}></div>
     </div>
   );
 };
 
-const caseContainerStyle = {
-  gap: '2.5rem',
-  maxHeight: '100%',
-  display: 'flex',
-  flexGrow: '1',
-  flexDirection: 'column',
-  minWidth: 0
-};
-
 const cesdkStyle = {
-  width: '100%',
-  height: '100%',
-  overflow: 'hidden',
-  borderRadius: '0.75rem'
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0
 };
-
-const wrapperStyle = {
+const cesdkWrapperStyle = {
+  position: 'relative',
+  minHeight: '640px',
+  overflow: 'hidden',
+  flexGrow: 1,
+  display: 'flex',
   borderRadius: '0.75rem',
-  flexGrow: '1',
-  minHeight: '450px',
   boxShadow:
     '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
 };

@@ -11,7 +11,7 @@ import { ReactComponent as RefreshIcon } from './refresh.svg';
 import { checkImageContent, selectAllBlocks } from './restrictionsUtility';
 
 const ImageComplianceCESDK = () => {
-  const cesdk_container = useRef(null);
+  const cesdkContainer = useRef(null);
   const cesdkRef = useRef(null);
 
   const [validationResults, setValidationResults] = useState([]);
@@ -43,8 +43,20 @@ const ImageComplianceCESDK = () => {
         elements: {
           panels: {
             settings: true
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           }
         }
+      },
+      callbacks: {
+        onExport: 'download',
+        onUpload: 'local'
       },
       // Begin standard template presets
       presets: {
@@ -69,11 +81,6 @@ const ImageComplianceCESDK = () => {
             scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
             thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
           },
-          instagram_story_1: {
-            label: 'Instagram story',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.png`
-          },
           poster_1: {
             label: 'Poster',
             scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
@@ -93,9 +100,11 @@ const ImageComplianceCESDK = () => {
       }
       // End standard template presets
     };
-    if (cesdk_container.current && !cesdkRef.current) {
-      CreativeEditorSDK.init(cesdk_container.current, config).then(
+    if (cesdkContainer.current && !cesdkRef.current) {
+      CreativeEditorSDK.init(cesdkContainer.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdkRef.current = instance;
         }
       );
@@ -105,7 +114,7 @@ const ImageComplianceCESDK = () => {
         cesdkRef.current.dispose();
       }
     };
-  }, [cesdk_container, onSave]);
+  }, [cesdkContainer, onSave]);
 
   const normalizedResults = useMemo(
     () =>
@@ -125,32 +134,23 @@ const ImageComplianceCESDK = () => {
 
   return (
     <div style={wrapperStyle}>
-      <div style={headerStyle}>
-        <div
-          className="gap-sm flex flex-col items-start"
-          style={caseHeaderStyle}
-        >
-          <div>
-            <div className="caseHeader caseHeader--no-margin">
-              <h3>Content Moderation</h3>
-              <p>
-                Check images for compliance with your content guidelines before
-                further processing and provide user feedback.
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={() => runImageModerationCheck()}
-            className={'button button--white space-x-2'}
-          >
-            <span>Validate Image Content</span>
-            <RefreshIcon />
-          </button>
-        </div>
+      <div style={cesdkWrapperStyle}>
+        <div ref={cesdkContainer} style={cesdkStyle}></div>
+      </div>
+      <div style={sidebarStyle}>
         <ValidationBox
           checkStatus={checkRan ? 'performed' : 'pending'}
           results={normalizedResults}
           emptyComponent={<>No check has been performed yet.</>}
+          headerComponent={
+            <button
+              onClick={() => runImageModerationCheck()}
+              className={'button button--primary space-x-2'}
+            >
+              <span>Validate Content</span>
+              <RefreshIcon />
+            </button>
+          }
           successComponent={
             <>
               No content violations found. <br />
@@ -159,46 +159,38 @@ const ImageComplianceCESDK = () => {
           }
         />
       </div>
-
-      <div style={cesdkWrapperStyle}>
-        <div ref={cesdk_container} style={cesdkStyle}></div>
-      </div>
     </div>
   );
 };
 
-const caseHeaderStyle = {
-  maxWidth: '50%',
-  marginBottom: 0
-};
-
-const headerStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  color: 'white',
-  gap: '2rem'
-};
-
 const cesdkStyle = {
-  height: '100%',
-  width: '100%',
-  flexGrow: 1,
-  overflow: 'hidden',
-  borderRadius: '0.75rem'
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0
 };
 const cesdkWrapperStyle = {
-  borderRadius: '0.75rem',
-  flexGrow: '1',
+  position: 'relative',
+  minHeight: '640px',
+  overflow: 'hidden',
+  flexGrow: 1,
   display: 'flex',
+  borderRadius: '0.75rem',
   boxShadow:
     '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
 };
 
 const wrapperStyle = {
-  flexGrow: '1',
+  flex: '1',
+  maxWidth: '100%',
   display: 'flex',
-  flexDirection: 'column',
-  gap: '1rem',
-  width: '100%'
+  flexDirection: 'row',
+  gap: '1rem'
 };
+const sidebarStyle = {
+  flexBasis: '280px',
+  flexShrink: 0
+};
+
 export default ImageComplianceCESDK;

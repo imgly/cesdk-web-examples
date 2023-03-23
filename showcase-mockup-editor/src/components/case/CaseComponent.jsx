@@ -9,33 +9,39 @@ import { ReactComponent as FullscreenEnterIcon } from './FullscreenEnter.svg';
 import { ReactComponent as FullscreenLeaveIcon } from './FullscreenLeave.svg';
 import { ReactComponent as EditIcon } from './Edit.svg';
 import classes from './CaseComponent.module.css';
+import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
 
 const PRODUCTS = {
   businesscard: {
+    label: 'Business Card',
     scenePath: 'business-card.scene',
     sceneTitle: 'Business Card Design',
     mockupScenePath: 'business-card-mockup.scene',
     previewDPI: 300
   },
   poster: {
+    label: 'Poster',
     scenePath: 'poster.scene',
     sceneTitle: 'Poster Design',
     mockupScenePath: 'poster-mockup.scene',
     previewDPI: 72
   },
   socialmedia: {
+    label: 'Social Media',
     scenePath: 'social-media.scene',
     sceneTitle: 'Social Media Post',
     mockupScenePath: 'social-media-mockup.scene',
     previewDPI: 300
   },
   postcard: {
+    label: 'Post Card',
     scenePath: 'postcard.scene',
     sceneTitle: 'Postcard Design',
     mockupScenePath: 'postcard-mockup.scene',
     previewDPI: 300
   },
   apparel: {
+    label: 'Apparel',
     scenePath: 'apparel.scene',
     sceneTitle: 'T-Shirt Design',
     mockupScenePath: 'apparel-mockup.scene',
@@ -54,7 +60,7 @@ export const replaceImages = (cesdk, imageName, newUrl) => {
   });
 };
 
-const CaseComponent = ({ product = 'postcard' }) => {
+const CaseComponent = () => {
   const cesdkContainerRef = useRef(null);
   const cesdkEngineRef = useRef(null);
   const mockupEngineRef = useRef(null);
@@ -68,6 +74,17 @@ const CaseComponent = ({ product = 'postcard' }) => {
   const [mockupEngineLoaded, setMockupEngineLoaded] = useState(false);
   const [isDirty, setIsDirty] = useState(true);
 
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+  const productParam = params.get('c_product') || 'postcard';
+  const [product, setProduct] = useState(productParam);
+  // Syncs the selected product with the URL for demonstration purposes
+  useEffect(() => {
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    params.set('c_product', product);
+    window.history.pushState({}, '', `${window.location.pathname}?${params}`);
+  }, [product]);
   const productConfig = useMemo(() => PRODUCTS[product], [product]);
 
   const downloadMockup = () => {
@@ -152,8 +169,8 @@ const CaseComponent = ({ product = 'postcard' }) => {
 
 
     CreativeEngine.init(config).then(async (instance) => {
-      // Hotfix for a race-condition in <=1.7.0
-      await new Promise((resolve) => requestAnimationFrame(resolve));
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
       await instance.scene.loadFromURL(
         `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
@@ -173,10 +190,20 @@ const CaseComponent = ({ product = 'postcard' }) => {
       license: process.env.REACT_APP_LICENSE,
       role: 'Adopter',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.scenePath}`,
+      callbacks: {
+        onExport: 'download',
+        onUpload: 'local'
+      },
       ui: {
         elements: {
           navigation: {
-            title: productConfig.sceneTitle
+            title: productConfig.sceneTitle,
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
           },
           panels: {
             settings: true
@@ -206,11 +233,6 @@ const CaseComponent = ({ product = 'postcard' }) => {
             scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
             thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
           },
-          instagram_story_1: {
-            label: 'Instagram story',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.png`
-          },
           poster_1: {
             label: 'Poster',
             scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
@@ -237,6 +259,8 @@ const CaseComponent = ({ product = 'postcard' }) => {
     if (cesdkContainerRef.current) {
       CreativeEditorSDK.init(cesdkContainerRef.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdk = instance;
           cesdkEngineRef.current = instance;
           unsubscribe = instance.engine.event.subscribe([], (events) => {
@@ -268,55 +292,56 @@ const CaseComponent = ({ product = 'postcard' }) => {
   }, [product]);
 
   return (
-    <div className="gap-md flex h-full w-full flex-col">
-      {mockupEditorVisible && (
-        <EditMockupCESDK
-          onClose={() => setMockupEditorVisible(false)}
-          onSave={async (sceneString) => {
-            setCurrentMockupScene(sceneString);
-            setMockupEditorVisible(false);
-            setIsDirty(true);
-            setMockupLoading(true);
-          }}
-          templateName={`${productConfig.sceneTitle} Mockup`}
-          sceneString={currentMockupScene}
-          sceneUrl={`${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`}
+    <div className={classes.outerWrapper}>
+      <div className={classes.productsWrapper}>
+        <SegmentedControl
+          options={Object.entries(PRODUCTS).map(([value, { label }]) => ({
+            label,
+            value
+          }))}
+          value={product}
+          name="product"
+          onChange={(value) => setProduct(value)}
+          size="md"
         />
-      )}
-      <div
-        className={classes.smokeScreenStyle}
-        style={{
-          visibility: mockupFullscreen ? 'visible' : 'hidden',
-          opacity: mockupFullscreen ? '1' : '0'
-        }}
-      ></div>
-      <div
-        className={classNames(
-          'gap-sm flex flex-row justify-between',
-          classes.headerStyle
+      </div>
+
+      <div className={classes.wrapper}>
+        {mockupEditorVisible && (
+          <EditMockupCESDK
+            onClose={() => setMockupEditorVisible(false)}
+            onSave={async (sceneString) => {
+              setCurrentMockupScene(sceneString);
+              setMockupEditorVisible(false);
+              setIsDirty(true);
+              setMockupLoading(true);
+            }}
+            templateName={`${productConfig.sceneTitle} Mockup`}
+            sceneString={currentMockupScene}
+            sceneUrl={`${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`}
+          />
         )}
-      >
-        <div className="caseHeader">
-          <h3>Mockup Editor</h3>
-          <p>
-            Choose a product on the left bar and showcase your design in mockup
-            scenes.
-          </p>
-        </div>
+        <div
+          className={classes.smokeScreen}
+          style={{
+            visibility: mockupFullscreen ? 'visible' : 'hidden',
+            opacity: mockupFullscreen ? '1' : '0'
+          }}
+        ></div>
         <div
           className={classNames({
-            [classes.fullscreenMockupCenterStyle]: mockupFullscreen
+            [classes.fullscreenMockupCenter]: mockupFullscreen
           })}
         >
           <div
             className={classNames({
-              [classes.fullscreenMockupWrapperStyle]: mockupFullscreen,
-              [classes.mockupWrapperStyle]: !mockupFullscreen
+              [classes.fullscreenMockupWrapper]: mockupFullscreen,
+              [classes.mockupWrapper]: !mockupFullscreen
             })}
           >
             {mockupLoading && <LoadingSpinner />}
             {currentMockupUrl && (
-              <div className={classes.topBarStyle}>
+              <div className={classes.topBar}>
                 <button
                   className={classes.button}
                   onClick={() => setMockupFullscreen((prev) => !prev)}
@@ -357,15 +382,15 @@ const CaseComponent = ({ product = 'postcard' }) => {
                 data-cy="mockup-preview"
                 src={currentMockupUrl}
                 alt={`Mockup of the ${product}`}
-                className={classes.previewImageStyle}
+                className={classes.previewImage}
               />
             )}
           </div>
         </div>
-      </div>
 
-      <div className={classes.wrapperStyle}>
-        <div ref={cesdkContainerRef} className={classes.cesdkStyle}></div>
+        <div className={classes.cesdkWrapper}>
+          <div ref={cesdkContainerRef} className={classes.cesdk}></div>
+        </div>
       </div>
     </div>
   );

@@ -3,31 +3,29 @@
   width: 100%;
   flex-direction: column;
   flex-grow: 1;
-  padding: 1rem;
 }
 
 .kioskWrapper {
   position: relative;
+  background: #D6DBE1;
   display: flex;
   overflow: hidden;
-  max-width: 400px;
   height: 100%;
-  max-height: 700px;
   flex-direction: column;
   flex-grow: 1;
-  border: 4px solid #ffffff;
-  background: #d6dbe1;
-  border-radius: 24px;
-  box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25),
-    0px 18px 18px -2px rgba(18, 26, 33, 0.12),
-    0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12),
-    0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12);
-
-  /* Disabling selection as it triggers when moving blocks via touch on ios safari  */
   -webkit-user-select: none;
   -ms-user-select: none;
   -moz-user-select: none;
   user-select: none;
+}
+
+@media (min-width: 650px) {
+  .kioskWrapper {
+    max-width: 350px;
+    height: 640px;
+    border-radius: 14px;
+    box-shadow: 0px 0px 2px rgba(22, 22, 23, 0.25), 0px 4px 6px -2px rgba(22, 22, 23, 0.12), 0px 2px 2.5px -2px rgba(22, 22, 23, 0.12), 0px 1px 1.75px -2px rgba(22, 22, 23, 0.12);
+  }
 }
 
 .wrapper {
@@ -35,13 +33,6 @@
   flex-grow: 1;
   align-items: center;
   justify-content: center;
-  padding: 10px 10px 10px 10px;
-}
-
-@media (min-width: 1300px) {
-  .wrapper {
-    padding: 0 0 3rem 0;
-  }
 }
 
 .headline {
@@ -54,11 +45,4 @@
   width: 100%;
   flex-direction: column;
   flex-grow: 1;
-  background-color: #7b8187;
-}
-
-@media only screen and (min-width: 650px) {
-  .caseWrapper {
-    padding: 0;
-  }
 }

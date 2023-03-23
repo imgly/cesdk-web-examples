@@ -19,6 +19,7 @@ const EditMockupCESDK = ({
       onOutsideClick={onClose}
       config={{
         callbacks: {
+          onUpload: 'local',
           onSave: (sceneString) => {
             onSave(sceneString);
           },

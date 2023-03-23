@@ -40,6 +40,8 @@ const CaseComponent = () => {
 
     let engineToBeDisposed;
     CreativeEngine.init(config).then(async (instance) => {
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
       engineToBeDisposed = instance;
       setEngine(instance);
       setIsEngineLoaded(true);
@@ -153,15 +155,8 @@ const CaseComponent = () => {
 
   return (
     <div className={classes.wrapper}>
-      <div className="caseHeader">
-        <h3>Automatic Design Generation</h3>
-        <p>
-          Use our API and underlying creative engine to autogenerate
-          ready-to-use designs by selecting input parameters.
-        </p>
-      </div>
       <div className={classes.inputsWrapper}>
-        <h4 className={classes.headline}>Select Content</h4>
+        <h4 className={'h4'}>Select Content</h4>
         <div className={classes.imageSelectionWrapper}>
           {IMAGES.map((someImage, i) => (
             <button onClick={() => setImage(someImage)} key={someImage.thumb}>
@@ -216,15 +211,15 @@ const CaseComponent = () => {
         </div>
         <div>
           <button
-            className="button button--light-white"
+            className="button button--primary"
             onClick={() => randomizeParameters()}
           >
             Shuffle
           </button>
         </div>
       </div>
-      <div className="space-y-2">
-        <h4 className={classes.headline}>Generated Design</h4>
+      <div className="flex-grow space-y-2">
+        <h4 className="h4">Generated Design</h4>
         <div ref={containerRef} className={classes.canvas}>
           {!isSceneLoaded && <LoadingSpinner />}
         </div>

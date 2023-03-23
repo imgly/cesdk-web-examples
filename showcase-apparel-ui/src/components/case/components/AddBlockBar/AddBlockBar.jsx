@@ -8,7 +8,7 @@ import { ReactComponent as UploadIcon } from '../../icons/Upload.svg';
 import { uploadFile } from '../../lib/upload';
 import AddImageSecondary from '../AddImageSecondary/AddImageSecondary';
 import AddShapeSecondary from '../AddShapeSecondary/AddShapeSecondary';
-import AddStickerSecondary from '../AddStickerSecondary/AddStickeSecondary';
+import AddStickerSecondary from '../AddStickerSecondary/AddStickerSecondary';
 import AddTextSecondary from '../AddTextSecondary/AddTextSecondary';
 import IconButton from '../IconButton/IconButton';
 

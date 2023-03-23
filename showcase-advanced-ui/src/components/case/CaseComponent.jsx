@@ -2,7 +2,7 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import React, { useEffect, useRef } from 'react';
 
 const CaseComponent = () => {
-  const cesdk_container = useRef(null);
+  const cesdkContainer = useRef(null);
   useEffect(() => {
     const config = {
       role: 'Creator',
@@ -34,7 +34,8 @@ const CaseComponent = () => {
         }
       },
       callbacks: {
-        onExport: 'download'
+        onExport: 'download',
+        onUpload: 'local'
       },
       // Begin standard template presets
       presets: {
@@ -59,11 +60,6 @@ const CaseComponent = () => {
             scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
             thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
           },
-          instagram_story_1: {
-            label: 'Instagram story',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.png`
-          },
           poster_1: {
             label: 'Poster',
             scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
@@ -86,9 +82,11 @@ const CaseComponent = () => {
 
 
     let cesdk;
-    if (cesdk_container.current) {
-      CreativeEditorSDK.init(cesdk_container.current, config).then(
+    if (cesdkContainer.current) {
+      CreativeEditorSDK.init(cesdkContainer.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdk = instance;
         }
       );
@@ -98,31 +96,30 @@ const CaseComponent = () => {
         cesdk.dispose();
       }
     };
-  }, [cesdk_container]);
+  }, [cesdkContainer]);
 
   return (
-    <div className="flex h-full w-full flex-col">
-      <div className="caseHeader">
-        <h3>Advanced UI – Create Templates</h3>
-      </div>
-      <div style={wrapperStyle}>
-        <div ref={cesdk_container} style={cesdkStyle}></div>
-      </div>
+    <div style={cesdkWrapperStyle}>
+      <div ref={cesdkContainer} style={cesdkStyle}></div>
     </div>
   );
 };
 
 const cesdkStyle = {
-  width: '100%',
-  height: '100%',
-  overflow: 'hidden',
-  borderRadius: '0.75rem'
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0
 };
 
-const wrapperStyle = {
+const cesdkWrapperStyle = {
+  position: 'relative',
+  minHeight: '640px',
+  overflow: 'hidden',
+  flexGrow: 1,
+  display: 'flex',
   borderRadius: '0.75rem',
-  minHeight: '0', // stops editor from growing when opening a panel
-  flexGrow: '1',
   boxShadow:
     '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
 };

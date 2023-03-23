@@ -15,13 +15,6 @@ const CaseComponent = () => {
       <div className={classes.fullHeightWrapper} id="scroll-container">
         <div className={classes.caseWrapper}>
           <div className={classes.headerBar}>
-            <div className="caseHeader">
-              <h3>Photo UI</h3>
-              <p>
-                Implement an optimal photo editing use case by focusing the UI
-                on filters, adjustments and crop.
-              </p>
-            </div>
             <ImageSelection
               images={['woman', 'mountains', 'dog']}
               onShowModal={(imageUrl) => setConfirmModalImage(imageUrl)}

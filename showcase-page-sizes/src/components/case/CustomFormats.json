@@ -1,0 +1,201 @@
+{
+  "version": "1.0.0",
+  "id": "ly.img.formats",
+  "assets": [
+    {
+      "id": "page-sizes-ig-story",
+      "label": { "en": "Instagram Story" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-ig-story.svg",
+        "formatWidth": 1080,
+        "formatHeight": 1920,
+        "designUnit": "Pixel"
+      },
+      "groups": ["social"]
+    },
+    {
+      "id": "page-sizes-ig-feed",
+      "label": { "en": "Instagram Feed" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-ig-feed.svg",
+        "formatWidth": 1080,
+        "formatHeight": 1080,
+        "designUnit": "Pixel"
+      },
+      "groups": ["social"]
+    },
+    {
+      "id": "page-sizes-ig-portrait",
+      "label": { "en": "Instagram Portrait" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-ig-portrait.svg",
+        "formatWidth": 1080,
+        "formatHeight": 1350,
+        "designUnit": "Pixel"
+      },
+      "groups": ["social"]
+    },
+    {
+      "id": "page-sizes-ig-profile",
+      "label": { "en": "Instagram Profile" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-ig-profile.svg",
+        "formatWidth": 320,
+        "formatHeight": 320,
+        "designUnit": "Pixel"
+      },
+      "groups": ["social"]
+    },
+    {
+      "id": "page-sizes-fb-photo-post",
+      "label": { "en": "Facebook Photo Post" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-fb-photo-post.svg",
+        "formatWidth": 1200,
+        "formatHeight": 630,
+        "designUnit": "Pixel"
+      },
+      "groups": ["social"]
+    },
+    {
+      "id": "page-sizes-fb-profile",
+      "label": { "en": "Facebook Profile" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-fb-profile.svg",
+        "formatWidth": 400,
+        "formatHeight": 400,
+        "designUnit": "Pixel"
+      },
+      "groups": ["social"]
+    },
+    {
+      "id": "page-sizes-fb-story",
+      "label": { "en": "Facebook Story" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-fb-story.svg",
+        "formatWidth": 1080,
+        "formatHeight": 1920,
+        "designUnit": "Pixel"
+      },
+      "groups": ["social"]
+    },
+    {
+      "id": "page-sizes-tw-header",
+      "label": { "en": "Twitter Header" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-tw-header.svg",
+        "formatWidth": 1500,
+        "formatHeight": 500,
+        "designUnit": "Pixel"
+      },
+      "groups": ["social"]
+    },
+    {
+      "id": "page-sizes-tw-in-stream-photo",
+      "label": { "en": "Twitter In-Stream Photo" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-tw-in-stream-photo.svg",
+        "formatWidth": 1600,
+        "formatHeight": 1900,
+        "designUnit": "Pixel"
+      },
+      "groups": ["social"]
+    },
+    {
+      "id": "page-sizes-tw-profile",
+      "label": { "en": "Twitter Profile" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-tw-profile.svg",
+        "formatWidth": 400,
+        "formatHeight": 400,
+        "designUnit": "Pixel"
+      },
+      "groups": ["social"]
+    },
+    {
+      "id": "page-sizes-print-postcard",
+      "label": { "en": "Postcard" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-postcard.svg",
+        "formatWidth": 235,
+        "formatHeight": 125,
+        "designUnit": "Millimeter"
+      },
+      "groups": ["print"]
+    },
+    {
+      "id": "page-sizes-print-business-card",
+      "label": { "en": "Business Card" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-business-card.svg",
+        "formatWidth": 85,
+        "formatHeight": 55,
+        "designUnit": "Millimeter"
+      },
+      "groups": ["print"]
+    },
+    {
+      "id": "page-sizes-print-poster",
+      "label": { "en": "Poster" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-poster.svg",
+        "formatWidth": 1000,
+        "formatHeight": 1400,
+        "designUnit": "Millimeter"
+      },
+      "groups": ["print"]
+    },
+    {
+      "id": "page-sizes-print-flyer",
+      "label": { "en": "Flyer" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-flyer.svg",
+        "formatWidth": 130,
+        "formatHeight": 150,
+        "designUnit": "Millimeter"
+      },
+      "groups": ["print"]
+    },
+    {
+      "id": "page-sizes-print-brochure",
+      "label": { "en": "Brochure" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnail-brochure.svg",
+        "formatWidth": 315,
+        "formatHeight": 148,
+        "designUnit": "Millimeter"
+      },
+      "groups": ["print"]
+    }
+  ]
+}
