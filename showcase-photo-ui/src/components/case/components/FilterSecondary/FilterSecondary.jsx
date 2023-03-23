@@ -37,7 +37,11 @@ const FilterSecondary = () => {
   );
   useEffect(() => {
     const element = document.getElementById(activeFilterId);
-    element?.scrollIntoView({ inline: 'center' });
+    element?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center'
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

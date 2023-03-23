@@ -102,8 +102,8 @@ export const replaceImage = (
 ) => {
   engine.block.setString(block, 'image/imageFileURI', imageFileURI);
   engine.block.resetCrop(block);
-  engine.block.setBool(block, 'image/showsPlaceholderButton', false);
-  engine.block.setBool(block, 'image/showsPlaceholderOverlay', false);
+  engine.block.setBool(block, 'placeholderControls/showButton', false);
+  engine.block.setBool(block, 'placeholderControls/showOverlay', false);
   if (addUndoStep) {
     engine.editor.addUndoStep();
   }
@@ -112,8 +112,8 @@ export const replaceImage = (
 export const addImage = async (engine, parentId, imageURI, baseSize = 0.5) => {
   const block = engine.block.create('image');
   engine.block.setString(block, 'image/imageFileURI', imageURI);
-  engine.block.setBool(block, 'image/showsPlaceholderButton', false);
-  engine.block.setBool(block, 'image/showsPlaceholderOverlay', false);
+  engine.block.setBool(block, 'placeholderControls/showButton', false);
+  engine.block.setBool(block, 'placeholderControls/showOverlay', false);
 
   const { width, height } = await getImageSize(imageURI);
   const [parentWidth, parentHeight] = [

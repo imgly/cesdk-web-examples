@@ -26,15 +26,14 @@ function translateToAssetResult({ url }) {
     locale: 'en',
     label: fileName,
 
-    thumbUri: url,
-
     size: {
+      thumbUri: url,
       width: 100,
       height: 100
     },
 
     meta: {
-      blockType: 'ly.img.image',
+      blockType: '//ly.img.image',
       uri: url
     },
 

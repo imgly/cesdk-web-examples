@@ -22,7 +22,7 @@ const ImageAdjustmentBar = () => {
   const [selectedAdjustmentId, setSelectedAdjustmentId] = useState();
   const { editMode, creativeEngine } = useEditor();
   const [showsPlaceholderOverlay] = useSelectedProperty(
-    'image/showsPlaceholderOverlay'
+    'placeholderControls/showOverlay'
   );
   const calculatedAdjustmentId = useMemo(
     () => (editMode === 'Crop' ? 'crop' : selectedAdjustmentId),

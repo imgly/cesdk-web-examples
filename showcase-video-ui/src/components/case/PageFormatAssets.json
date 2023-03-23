@@ -1,52 +1,91 @@
 {
-  "social-feed": {
-    "label": "Social Feed",
-    "width": 1080,
-    "height": 1080,
-    "unit": "px",
-    "thumbUri": "square.svg"
-  },
-  "social-story": {
-    "label": "Story / Reel",
-    "width": 1080,
-    "height": 1920,
-    "unit": "px",
-    "thumbUri": "portrait.svg"
-  },
-  "hd": {
-    "label": "HD 720p 16:9",
-    "width": 1280,
-    "height": 720,
-    "unit": "px",
-    "thumbUri": "landscape.svg"
-  },
-  "fullhd": {
-    "label": "Full HD 1080p 16:9",
-    "width": 1920,
-    "height": 1080,
-    "meta": { "default": true },
-    "unit": "px",
-    "thumbUri": "landscape.svg"
-  },
-  "qhd": {
-    "label": "Quad HD 1440p 16:9",
-    "width": 2560,
-    "height": 1440,
-    "unit": "px",
-    "thumbUri": "landscape.svg"
-  },
-  "format2k": {
-    "label": "2K Video 1080p 1:1.77",
-    "width": 2048,
-    "height": 1080,
-    "unit": "px",
-    "thumbUri": "landscape.svg"
-  },
-  "format4k": {
-    "label": "Ultra HD 2160p 16:9",
-    "width": 3840,
-    "height": 2160,
-    "unit": "px",
-    "thumbUri": "landscape.svg"
-  }
+  "version": "1.0.0",
+  "id": "pageFormats",
+  "assets": [
+    {
+      "id": "social-feed",
+      "label": { "en": "Social Feed" },
+      "meta": {
+        "formatWidth": 1080,
+        "formatHeight": 1080,
+        "height": 120,
+        "width": 80,
+        "unit": "px",
+        "thumbUri": "{{base_url}}/square.svg"
+      }
+    },
+    {
+      "id": "social-story",
+      "label": { "en": "Story / Reel" },
+      "meta": {
+        "formatWidth": 1080,
+        "formatHeight": 1920,
+        "height": 120,
+        "width": 80,
+        "unit": "px",
+        "thumbUri": "{{base_url}}/portrait.svg"
+      }
+    },
+    {
+      "id": "hd",
+      "label": { "en": "HD 720p 16:9" },
+      "meta": {
+        "formatWidth": 1280,
+        "formatHeight": 720,
+        "height": 120,
+        "width": 80,
+        "unit": "px",
+        "thumbUri": "{{base_url}}/landscape.svg"
+      }
+    },
+    {
+      "id": "fullhd",
+      "label": { "en": "Full HD 1080p 16:9" },
+      "meta": {
+        "default": true,
+        "formatWidth": 1920,
+        "formatHeight": 1080,
+        "height": 120,
+        "width": 80,
+        "unit": "px",
+        "thumbUri": "{{base_url}}/landscape.svg"
+      }
+    },
+    {
+      "id": "qhd",
+      "label": { "en": "Quad HD 1440p 16:9" },
+      "meta": {
+        "formatWidth": 2560,
+        "formatHeight": 1440,
+        "height": 120,
+        "width": 80,
+        "unit": "px",
+        "thumbUri": "{{base_url}}/landscape.svg"
+      }
+    },
+    {
+      "id": "format2k",
+      "label": { "en": "2K Video 1080p 1:1.77" },
+      "meta": {
+        "formatWidth": 2048,
+        "formatHeight": 1080,
+        "height": 120,
+        "width": 80,
+        "unit": "px",
+        "thumbUri": "{{base_url}}/landscape.svg"
+      }
+    },
+    {
+      "id": "format4k",
+      "label": { "en": "Ultra HD 2160p 16:9" },
+      "meta": {
+        "formatWidth": 3840,
+        "formatHeight": 2160,
+        "height": 120,
+        "width": 80,
+        "unit": "px",
+        "thumbUri": "{{base_url}}/landscape.svg"
+      }
+    }
+  ]
 }

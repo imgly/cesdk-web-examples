@@ -20,13 +20,15 @@ interface IValidationBox {
   results: IValidationResult[];
   emptyComponent: ReactNode;
   successComponent: ReactNode;
+  headerComponent: ReactNode;
 }
 
 const ValidationBox = ({
   checkStatus,
   results,
   emptyComponent,
-  successComponent
+  successComponent,
+  headerComponent
 }: IValidationBox) => {
   const unsuccessfulResults = useMemo(
     () => results.filter((result) => result.state !== 'success'),
@@ -36,49 +38,55 @@ const ValidationBox = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <span className={styles.headerTitle + ' space-x-2'}>
-          <span>Check {checkStatus}</span>
-          <StatusIcon />
-        </span>
+        {headerComponent ? (
+          headerComponent
+        ) : (
+          <span className={styles.headerTitle + ' space-x-2'}>
+            <span>Check {checkStatus}</span>
+            <StatusIcon />
+          </span>
+        )}
         <span className={styles.headerInfo}>
           {unsuccessfulResults.length} results
         </span>
       </div>
 
-      <div className={styles.checkWrapper}>
-        <div className={styles.checkGrid}>
+      <div className={styles.checksOverflowWrapper}>
+        <div className={styles.checkCollectionWrapper}>
           {unsuccessfulResults.map((result) => (
-            <React.Fragment key={result.id}>
-              <span className={styles.checkNameWrapper + ' space-x-2'}>
-                <span
-                  className={classNames(
-                    styles.checkStatus,
-                    styles['checkStatus--' + result.state]
-                  )}
-                ></span>
-                <span className={styles.checkName}>
-                  {result.validationName}
-                </span>
+            <div key={result.id} className={styles.checkItemWrapper}>
+              <div className={styles.checkItemHeader}>
+                <span className={styles.checkNameWrapper + ' space-x-2'}>
+                  <span
+                    className={classNames(
+                      styles.checkStatus,
+                      styles['checkStatus--' + result.state]
+                    )}
+                  ></span>
+                  <span className={styles.checkName}>
+                    {result.validationName}
+                  </span>
 
-                <StyledPopover
-                  content={
-                    <ValidationPopover
-                      validationTitle={result.validationName}
-                      validationDescription={result.validationDescription}
-                    />
-                  }
-                >
-                  <InfoIcon style={{ cursor: 'pointer' }} />
-                </StyledPopover>
-              </span>
+                  <StyledPopover
+                    content={
+                      <ValidationPopover
+                        validationTitle={result.validationName}
+                        validationDescription={result.validationDescription}
+                      />
+                    }
+                  >
+                    <InfoIcon style={{ cursor: 'pointer' }} />
+                  </StyledPopover>
+                </span>
+                <button className={styles.checkCTA} onClick={result.onClick}>
+                  Select
+                </button>
+              </div>
               <BlockLabel
                 blockType={result.blockType}
                 blockName={result.blockName}
               />
-              <button className={styles.checkCTA} onClick={result.onClick}>
-                Select
-              </button>
-            </React.Fragment>
+            </div>
           ))}
         </div>
       </div>

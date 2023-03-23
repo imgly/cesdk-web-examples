@@ -35,11 +35,21 @@ const TopBar = () => {
     setIsExporting(true);
     // Let react rerender
     await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const allPages = creativeEngine.block.findByType('page');
+    const currentPage = allPages.find((page) =>
+      creativeEngine.block.isVisible(page)
+    );
+    // Show all pages so they are included in the export
+    allPages.map((page) => creativeEngine.block.setVisible(page, true));
     const blob = await creativeEngine.block.export(
       creativeEngine.scene.get(),
       'application/pdf'
     );
     localDownload(blob, 'my-postcard');
+    allPages.map((page) =>
+      creativeEngine.block.setVisible(page, page === currentPage)
+    );
     setIsExporting(false);
   };
 

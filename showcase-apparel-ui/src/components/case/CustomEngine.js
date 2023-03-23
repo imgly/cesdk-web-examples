@@ -49,7 +49,7 @@ export class CustomEngine {
         textBlock,
         'text/fontFileUri'
       ),
-      'fill/color': this.#engine.block.getFillColorRGBA(textBlock)
+      'fill/color': this.#engine.block.getFillSolidColor(textBlock)
     };
   };
   getSelectedShapeProperties = () => {

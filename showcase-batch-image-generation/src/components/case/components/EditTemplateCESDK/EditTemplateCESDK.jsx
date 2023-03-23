@@ -14,7 +14,8 @@ const EditTemplateCESDK = ({ templateName, sceneString, onSave, onClose }) => {
           },
           onBack: () => {
             onClose();
-          }
+          },
+          onUpload: 'local'
         },
         role: 'Creator',
         ui: {

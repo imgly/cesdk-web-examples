@@ -3,12 +3,14 @@ import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
 import React, { useEffect, useRef, useState } from 'react';
 
 const CaseComponent = () => {
-  const cesdk_container = useRef(null);
-  const cesdkRef = useRef(null);
+  const cesdkContainer = useRef(null);
+  /** @type {[import("@cesdk/cesdk-js").default, Function]} cesdk */
+  const [cesdk, setCesdk] = useState();
   const pageIds = useRef(null);
   const [activePageId, setActivePageId] = useState(null);
 
   useEffect(() => {
+    let cesdk;
     let config = {
       role: 'Adopter',
       theme: 'light',
@@ -41,77 +43,72 @@ const CaseComponent = () => {
         }
       },
       callbacks: {
-        onExport: 'download'
+        onExport: 'download',
+        onUpload: 'local'
       }
     };
-    if (cesdk_container.current) {
-      CreativeEditorSDK.init(cesdk_container.current, config).then(
+    if (cesdkContainer.current) {
+      CreativeEditorSDK.init(cesdkContainer.current, config).then(
         async (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
+          cesdk = instance;
+          setCesdk(instance);
           pageIds.current = await instance.unstable_getPages();
-          cesdkRef.current = instance;
           setActivePageId(pageIds.current[0]);
         }
       );
     }
     return () => {
-      if (cesdkRef.current) {
-        cesdkRef.current.dispose();
+      if (cesdk) {
+        cesdk.dispose();
       }
     };
-  }, [cesdk_container]);
+  }, [cesdkContainer]);
 
   useEffect(() => {
-    activePageId && cesdkRef.current?.unstable_switchPage(activePageId);
-  }, [activePageId]);
+    activePageId && cesdk && cesdk.unstable_switchPage(activePageId);
+  }, [cesdk, activePageId]);
 
   return (
-    <div className="flex h-full w-full flex-col">
-      <div className="caseHeader">
-        <h3>Single Page Mode</h3>
-        <p>
-          Display one page at a time and switch between the pages of your design
-          with a clear focus for multi-page use cases, e.g., various print
-          products.
-        </p>
+    <div style={wrapperStyle} className="space-y-2">
+      <div className="flex flex-col items-center">
+        {pageIds.current && (
+          <SegmentedControl
+            options={pageIds.current.map((id, index) => ({
+              label: cesdk.engine.block.getName(id) || `Page ${index + 1}`,
+              value: id
+            }))}
+            value={activePageId}
+            name="pageId"
+            onChange={(value) => setActivePageId(value)}
+            size="md"
+          />
+        )}
       </div>
 
-      <div style={wrapperStyle} className="space-y-2">
-        <div className="space-y flex flex-col space-y-2">
-          <div className="flex space-x-2">
-            {pageIds.current && (
-              <SegmentedControl
-                options={[
-                  { label: 'Page 1', value: pageIds.current?.[0] },
-                  { label: 'Page 2', value: pageIds.current?.[1] }
-                ]}
-                value={activePageId}
-                name="pageId"
-                onChange={(value) => setActivePageId(value)}
-                size="md"
-              />
-            )}
-          </div>
-        </div>
-
-        <div style={cesdkWrapperStyle}>
-          <div ref={cesdk_container} style={cesdkStyle}></div>
-        </div>
+      <div style={cesdkWrapperStyle}>
+        <div ref={cesdkContainer} style={cesdkStyle}></div>
       </div>
     </div>
   );
 };
 
 const cesdkStyle = {
-  height: '100%',
-  width: '100%',
-  flexGrow: 1,
-  overflow: 'hidden',
-  borderRadius: '0.75rem'
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0
 };
+
 const cesdkWrapperStyle = {
-  borderRadius: '0.75rem',
-  flexGrow: '1',
+  position: 'relative',
+  minHeight: '640px',
+  overflow: 'hidden',
+  flexGrow: 1,
   display: 'flex',
+  borderRadius: '0.75rem',
   boxShadow:
     '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
 };

@@ -6,6 +6,7 @@ import StickerAdjustmentBar from '../StickerAdjustmentBar/StickerAdjustmentBar';
 import TextAdjustmentsBar from '../TextAdjustmentsBar/TextAdjustmentsBar';
 import classes from './BottomControls.module.css';
 import classNames from 'classnames';
+import { useEffect } from 'react';
 
 const BLOCK_TYPE_TO_CONTROLS = [
   { type: '//ly.img.ubq/text', component: TextAdjustmentsBar },
@@ -15,7 +16,7 @@ const BLOCK_TYPE_TO_CONTROLS = [
 ];
 
 const BottomControls = ({ visible = true }) => {
-  const { sceneIsLoaded, selectedBlocks } = useEditor();
+  const { sceneIsLoaded, selectedBlocks, creativeEngine } = useEditor();
 
   let ControlComponent = null;
 
@@ -32,6 +33,18 @@ const BottomControls = ({ visible = true }) => {
       ControlComponent = blockControl.component;
     }
   }
+  // HOTFIX: Fixes initial rendering, 1.10.1 will solve this issue
+  useEffect(() => {
+    if (!creativeEngine) return;
+    const page = creativeEngine.block.findByType('page')[0];
+    if (page) {
+      Array.from(Array(10).keys()).forEach((i) => {
+        setTimeout(() => {
+          creativeEngine.block.setRotation(page, 0);
+        }, i * 100);
+      });
+    }
+  }, [creativeEngine, selectedBlocks]);
 
   return (
     // They key is used to force a rerender when ever a different block is selected.

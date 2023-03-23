@@ -11,8 +11,16 @@ const AddImageSecondary = () => {
   const addImage = async (imageURI) => {
     const block = creativeEngine.block.create('image');
     creativeEngine.block.setString(block, 'image/imageFileURI', imageURI);
-    creativeEngine.block.setBool(block, 'image/showsPlaceholderButton', false);
-    creativeEngine.block.setBool(block, 'image/showsPlaceholderOverlay', false);
+    creativeEngine.block.setBool(
+      block,
+      'placeholderControls/showButton',
+      false
+    );
+    creativeEngine.block.setBool(
+      block,
+      'placeholderControls/showOverlay',
+      false
+    );
 
     const { width, height } = await getImageSize(imageURI);
     const imageAspectRatio = width / height;

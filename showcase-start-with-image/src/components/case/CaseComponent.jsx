@@ -2,7 +2,8 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import React, { useEffect, useRef, useState } from 'react';
 
 const CaseComponent = () => {
-  const cesdk_container = useRef(null);
+  const cesdkContainer = useRef(null);
+  /** @type {[import("@cesdk/cesdk-js").default, Function]} cesdk */
   const [image, setImage] = useState();
 
   useEffect(() => {
@@ -12,7 +13,8 @@ const CaseComponent = () => {
       initialImageURL: image?.full,
       callbacks: {
         onBack: () => setImage(),
-        onExport: 'download'
+        onExport: 'download',
+        onUpload: 'local'
       },
       ui: {
         elements: {
@@ -54,11 +56,6 @@ const CaseComponent = () => {
             scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
             thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
           },
-          instagram_story_1: {
-            label: 'Instagram story',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.png`
-          },
           poster_1: {
             label: 'Poster',
             scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
@@ -79,11 +76,12 @@ const CaseComponent = () => {
       // End standard template presets
     };
     let cesdk;
-    if (cesdk_container.current) {
-      CreativeEditorSDK.init(cesdk_container.current, config).then(
+    if (image && cesdkContainer.current) {
+      CreativeEditorSDK.init(cesdkContainer.current, config).then(
         (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
           cesdk = instance;
-
           // Preselect the loaded Image
           const blocks = cesdk.engine.block.findByType('image');
           if (blocks.length > 0) {
@@ -97,23 +95,16 @@ const CaseComponent = () => {
         cesdk.dispose();
       }
     };
-  }, [cesdk_container, image]);
+  }, [cesdkContainer, image]);
 
   return (
-    <div className="flex h-full w-full flex-col">
-      <div className="caseHeader">
-        <h3>Start with an Image</h3>
-        <p>Selecting an image will open an editor with a matching page size.</p>
-      </div>
-
-      <div style={wrapperStyle}>
-        <h3 className="h4" style={imageSelectionPromptStyle}>
-          Select Image
-        </h3>
+    <div className="gap-sm flex h-full w-full flex-row">
+      <div style={parameterStyle}>
+        <h3 className="h4">Select Image</h3>
         <div
           style={{
             ...imageSelectionWrapper,
-            ...((image && imageSelectionWrapperSmallStyle) || {})
+            ...(image || {})
           }}
         >
           {IMAGE_URLS.map((someImage) => (
@@ -128,16 +119,15 @@ const CaseComponent = () => {
                   ...imageStyle,
                   ...((image === someImage && imageActiveState) || {})
                 }}
-                alt=""
+                alt={someImage.alt}
               />
             </button>
           ))}
         </div>
-        {image && (
-          <div style={cesdkWrapperStyle}>
-            <div ref={cesdk_container} style={cesdkStyle}></div>
-          </div>
-        )}
+      </div>
+
+      <div style={cesdkWrapperStyle}>
+        <div ref={cesdkContainer} style={cesdkStyle}></div>
       </div>
     </div>
   );
@@ -151,60 +141,62 @@ const caseAssetPath = (path, caseId = 'start-with-image') =>
 const IMAGE_URLS = [
   {
     full: caseAssetPath('/images/mountain-1200.jpg'),
-    thumb: caseAssetPath('/images/mountain-300.jpg')
+    thumb: caseAssetPath('/images/mountain-300.jpg'),
+    alt: 'mountain'
   },
   {
     full: caseAssetPath('/images/sea-1200.jpg'),
-    thumb: caseAssetPath('/images/sea-300.jpg')
+    thumb: caseAssetPath('/images/sea-300.jpg'),
+    alt: 'sea'
   },
   {
     full: caseAssetPath('/images/surf-1200.jpg'),
-    thumb: caseAssetPath('/images/surf-300.jpg')
+    thumb: caseAssetPath('/images/surf-300.jpg'),
+    alt: 'surf'
   }
 ];
 
 const cesdkStyle = {
-  height: '100%',
-  width: '100%',
-  flexGrow: 1,
-  overflow: 'hidden',
-  borderRadius: '0.75rem',
-  // For safari:
-  minWidth: '60px'
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0
 };
+
 const cesdkWrapperStyle = {
+  position: 'relative',
+  minHeight: '640px',
+  overflow: 'hidden',
+  flexGrow: 1,
+  display: 'flex',
   borderRadius: '0.75rem',
-  flexGrow: '1',
   boxShadow:
     '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
 };
-const wrapperStyle = {
-  flexGrow: '1',
+
+const parameterStyle = {
+  width: '150px'
+};
+const imageSelectionWrapper = {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem'
 };
-const imageSelectionWrapperSmallStyle = {
-  height: 50
-};
-const imageSelectionWrapper = {
-  display: 'flex',
-  height: 100,
-  gap: '1rem'
-};
 const imageStyle = {
-  height: '100%',
+  width: '100%',
   borderRadius: '6px',
   objectFit: 'cover',
-  cursor: 'pointer',
-  border: '2px solid transparent'
+  cursor: 'pointer'
 };
 const imageButtonStyle = {
-  height: '100%'
+  height: '100%',
+  boxShadow:
+    '0px 4px 6px -2px rgba(22, 22, 23, 0.12), 0px 2px 2.5px -2px rgba(22, 22, 23, 0.12), 0px 1px 1.75px -2px rgba(22, 22, 23, 0.12)',
+  filter: 'drop-shadow(0px 0px 2px rgba(22, 22, 23, 0.25))'
 };
 const imageActiveState = {
-  border: '2px solid #471aff'
+  outline: '2px solid #471aff'
 };
-const imageSelectionPromptStyle = { color: 'white' };
 
 export default CaseComponent;

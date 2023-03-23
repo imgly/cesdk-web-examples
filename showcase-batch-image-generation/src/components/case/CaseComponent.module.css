@@ -8,7 +8,7 @@
 .contentWrapper {
   display: flex;
   flex-grow: 1;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .imageWrapper {
@@ -21,13 +21,8 @@
   gap: 2.2rem;
 }
 
-.headline {
-  color: white !important;
-}
-
 .description {
   max-width: 60ch;
-  color: white !important;
 }
 
 .templateWrapper {
@@ -35,7 +30,6 @@
   flex-direction: row;
   justify-content: flex-start;
   padding: 1rem;
-  background: #696e73;
   border-radius: 1.5rem;
   gap: 2rem;
 }
