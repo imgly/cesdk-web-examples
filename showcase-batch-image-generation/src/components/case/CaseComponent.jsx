@@ -1,4 +1,5 @@
 import CreativeEngine from '@cesdk/engine';
+import classNames from 'classnames';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import classes from './CaseComponent.module.css';
@@ -169,10 +170,14 @@ const CaseComponent = () => {
           />
         ))}
       </Helmet>
+      <div className="caseHeader">
+        <h3>Image Set Generation</h3>
+        <p>Use templates to automatically generate images from data.</p>
+      </div>
       <div className={classes.wrapper}>
-        <div className="gap-sm flex flex-col items-center">
-          <div className="flex flex-col items-center">
-            <h4 className={'h4'}>Select a Template</h4>
+        <div className="gap-sm flex flex-col items-start">
+          <div>
+            <h4 className={classNames('h4', classes.headline)}>Templates</h4>
             <p className={classes.description}>
               Edit a template to change all images.
             </p>
@@ -205,8 +210,10 @@ const CaseComponent = () => {
         </div>
 
         <div className="gap-sm flex flex-col">
-          <div className="flex flex-col items-center">
-            <h4 className={'h4'}>Generated Cards</h4>
+          <div>
+            <h4 className={classNames('h4', classes.headline)}>
+              Generated Cards
+            </h4>
             <p className={classes.description}>
               Edit individual cards leaving all others unchanged.
             </p>

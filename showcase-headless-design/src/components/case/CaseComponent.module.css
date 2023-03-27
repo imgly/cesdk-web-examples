@@ -1,11 +1,9 @@
 .wrapper {
   display: flex;
   width: 100%;
-  flex-direction: row;
+  flex-direction: column;
   flex-grow: 1;
-  flex-wrap: wrap;
   padding: 1rem;
-  gap: 4rem;
 }
 
 .inputsWrapper {
@@ -28,11 +26,20 @@
   max-height: 50px;
   border: 2px solid transparent;
   border-radius: 6px;
+  cursor: pointer;
   object-fit: cover;
 }
 
 .imageActiveState {
   border: 2px solid #471aff;
+}
+
+.headline {
+  color: white;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  line-height: 32px;
+  font-weight: 700;
 }
 
 .canvas {

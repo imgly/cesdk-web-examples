@@ -2,7 +2,7 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import React, { useEffect, useRef } from 'react';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
+  const cesdk_container = useRef(null);
   useEffect(() => {
     const config = {
       role: 'Adopter',
@@ -51,6 +51,11 @@ const CaseComponent = () => {
             scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
             thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
           },
+          instagram_story_1: {
+            label: 'Instagram story',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.png`
+          },
           poster_1: {
             label: 'Poster',
             scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
@@ -71,8 +76,8 @@ const CaseComponent = () => {
       // End standard template presets
     };
     let cesdk;
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
+    if (cesdk_container.current) {
+      CreativeEditorSDK.init(cesdk_container.current, config).then(
         (instance) => {
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources();
@@ -85,30 +90,32 @@ const CaseComponent = () => {
         cesdk.dispose();
       }
     };
-  }, [cesdkContainer]);
+  }, [cesdk_container]);
 
   return (
-    <div style={cesdkWrapperStyle}>
-      <div ref={cesdkContainer} style={cesdkStyle}></div>
+    <div className="flex h-full w-full flex-col">
+      <div className="caseHeader">
+        <h3>Default UI – Edit Templates</h3>
+      </div>
+      <div style={wrapperStyle}>
+        <div ref={cesdk_container} style={cesdkStyle}></div>
+      </div>
     </div>
   );
 };
 
 const cesdkStyle = {
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0
-};
-const cesdkWrapperStyle = {
-  position: 'relative',
-  minHeight: '640px',
+  width: '100%',
+  height: '100%',
   overflow: 'hidden',
-  flexGrow: 1,
-  display: 'flex',
+  borderRadius: '0.75rem'
+};
+
+const wrapperStyle = {
   borderRadius: '0.75rem',
+  flexGrow: '1',
   boxShadow:
     '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
 };
+
 export default CaseComponent;

@@ -1,4 +1,4 @@
-# Manage scopes
+# Using Fills in the CreativeEditor SDK
 
 
 ## Running the sample

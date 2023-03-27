@@ -19,12 +19,6 @@ export const ROUTE_PREFIX =
 export const buildInternalRoute = (id: string) => `${ROUTE_PREFIX}/${id}`;
 export const buildUrl = (path: string) => `${HOSTNAME}${ROUTE_PREFIX}/${path}`;
 
-export const SEO_REDIRECTS = {
-  [buildInternalRoute('custom-asset-libraries')]: buildInternalRoute(
-    'unsplash-image-assets'
-  ),
-  [buildInternalRoute('postcard-ui')]: buildInternalRoute('post-greeting-card')
-};
 export const EXTERNAL_PATHS = {
   logoLink: 'https://img.ly/',
   freeTrial: 'https://img.ly/free-trial',
