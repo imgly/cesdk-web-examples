@@ -150,9 +150,18 @@ const CaseComponent = () => {
   };
 
   return (
-    <div className="gap-lg flex flex-grow flex-col items-center">
-      <div className="gap-sm flex flex-col items-center">
-        <h3 className="h4">Paste Yelp Restaurant URL</h3>
+    <div className="gap-lg flex flex-grow flex-col">
+      <div className="caseHeader caseHeader--no-margin">
+        <h3>Multi Image Generation</h3>
+        <p>
+          Generate multiple designs based on your input with the help of
+          templates. Paste a URL to autogenerate different review card designs.
+        </p>
+      </div>
+      <div className="gap-sm flex flex-col">
+        <h3 className="h4" style={headlineStyle}>
+          Paste Yelp Restaurant URL
+        </h3>
         <div className="gap-sm flex flex-wrap">
           <input
             type="text"
@@ -179,7 +188,7 @@ const CaseComponent = () => {
             </button>
           )}
         </div>
-        <div className="paragraphSmall" style={paragraphStyle}>
+        <div style={paragraphStyle}>
           <span>Or try these examples:</span>
           <div className="gap-xs flex">
             {YELP_EXAMPLES.map(({ label, value }) => (
@@ -197,8 +206,10 @@ const CaseComponent = () => {
           </div>
         </div>
       </div>
-      <div className="gap-sm flex flex-col items-center">
-        <h3 className="h4">Generated Assets</h3>
+      <div className="gap-sm flex flex-col">
+        <h3 className="h4" style={headlineStyle}>
+          Generated Assets
+        </h3>
         <div style={imageWrapper}>
           {TEMPLATE_PATHS.map(({ width, height, placeholderPath }, index) => (
             <div style={{ width, position: 'relative' }} key={placeholderPath}>
@@ -237,7 +248,12 @@ const imageWrapper = {
   overflow: 'auto'
 };
 
+const headlineStyle = {
+  color: 'white'
+};
+
 const paragraphStyle = {
+  color: 'rgba(255, 255, 255, 0.65)',
   display: 'flex',
   columnGap: '1rem',
   flexWrap: 'wrap'

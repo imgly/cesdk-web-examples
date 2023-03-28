@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.1/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -54,9 +54,11 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setTrimDuration(videoFill, 10);
   // highlight-trim
 
+  // highlight-looping
+  engine.block.setLooping(videoFill, true);
+
   // highlight-mute-audio
-  engine.block.setBool(videoFill, 'fill/video/muted', true);
-  // highlight-mute-audio
+  engine.block.setMuted(videoFill, true);
 
   // highlight-audio
   const audio = engine.block.create('audio');
@@ -67,6 +69,11 @@ CreativeEngine.init(config).then(async (engine) => {
     'https://example.com/audio.mp3'
   );
   // highlight-audio
+
+  // highlight-audio-volume
+  /* Set the volume level to 70%. */
+  engine.block.setVolume(audio, 0.7);
+  // highlight-audio-volume
 
   // highlight-timeOffset
   /* Start the audio after two seconds of playback. */

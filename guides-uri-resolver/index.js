@@ -1,12 +1,12 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.1/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.1/assets',
 };
 
 CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
   // highlight-get-absolute-base-path
-  /** This will return 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets/banana.jpg'. */
+  /** This will return 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.1/assets/banana.jpg'. */
   instance.engine.editor.getAbsoluteURI('/banana.jpg')
   // highlight-get-absolute-base-path
 
@@ -39,7 +39,7 @@ CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
   /** Removes the previously set resolver. */
   instance.engine.editor.setURIResolver(null)
 
-  /** Since we've removed the custom resolver, this will return 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets/banana.jpg' like before. */
+  /** Since we've removed the custom resolver, this will return 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.1/assets/banana.jpg' like before. */
   instance.engine.editor.getAbsoluteURI('/banana.jpg')
   // highlight-remove-resolver
 });

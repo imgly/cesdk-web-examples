@@ -8,7 +8,6 @@ const folders = [
   'configure-licensing',
   'configure-page',
   'configure-presets-colorpalettes',
-  'configure-presets-images',
   'configure-presets-pageformats',
   'configure-presets-templates',
   'configure-presets-typefaces',
@@ -38,7 +37,6 @@ const folders = [
   'guides-save-scene-to-blob',
   'guides-save-scene-to-string',
   'guides-scopes',
-  'guides-searchable-assets',
   'guides-store-metadata',
   'guides-uri-resolver'
   // The integration examples require more custom setups

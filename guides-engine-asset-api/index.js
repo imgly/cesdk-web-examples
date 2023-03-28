@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.1/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -21,14 +21,12 @@ CreativeEngine.init(config).then(async (engine) => {
         assets: [
           {
             id: 'logo',
-            thumbUri: 'https://img.ly/static/ubq_samples/thumbnails/imgly_logo.jpg',
-            size: {
-              width: 320,
-              height: 116
-            },
             meta: {
               uri: 'https://img.ly/static/ubq_samples/imgly_logo.jpg',
-              blockType: 'ly.img.image'
+              thumbUri: 'https://img.ly/static/ubq_samples/thumbnails/imgly_logo.jpg',
+              blockType: '//ly.img.ubq/image',
+              width: 320,
+              height: 116
             },
             context: {
               sourceId: 'foobar'
@@ -45,12 +43,12 @@ CreativeEngine.init(config).then(async (engine) => {
     async applyAsset(assetResult) {
       const image = engine.block.create('image');
       engine.block.setString(image, 'image/imageFileURI', assetResult.meta.uri);
-      engine.block.setWidth(image, assetResult.size.width);
-      engine.block.setHeight(image, assetResult.size.height);
+      engine.block.setWidth(image, assetResult.meta.width);
+      engine.block.setHeight(image, assetResult.meta.height);
       const firstPage = engine.block.findByType('page')[0];
       engine.block.appendChild(firstPage, image);
-      engine.block.setWidth(firstPage, assetResult.size.width);
-      engine.block.setHeight(firstPage, assetResult.size.height);
+      engine.block.setWidth(firstPage, assetResult.meta.width);
+      engine.block.setHeight(firstPage, assetResult.meta.height);
       engine.scene.zoomToBlock(firstPage, 0, 0, 0, 0);
       engine.editor.addUndoStep();
     },

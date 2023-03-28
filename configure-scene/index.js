@@ -1,8 +1,8 @@
 
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.1/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.1/assets',
   // highlight-scene
   scene: {
     // highlight-dpi
