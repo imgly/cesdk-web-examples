@@ -1,4 +1,4 @@
-# Create and Edit Videos
+# Create and Edit Videos in the CreativeEditor SDK
 
 
 ## Running the sample

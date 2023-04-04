@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.11.0-preview.2/cesdk.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.11.0-preview.2/assets',
   presets: {
     // highlight-pageFormats
     pageFormats: {
@@ -20,9 +20,6 @@ const config = {
         // highlight-unit
         unit: 'mm', // Millimeter
         // highlight-unit
-        // highlight-bleedMargin
-        bleedMargin: 2,
-        // highlight-bleedMargin
         // highlight-fixedOrientation
         fixedOrientation: false
         // highlight-fixedOrientation
@@ -35,8 +32,7 @@ const config = {
       'american-letter': {
         width: 8.5,
         height: 11,
-        unit: 'in', // Inch
-        bleedMargin: 1
+        unit: 'in' // Inch
       }
       // highlight-pageFormats
     }

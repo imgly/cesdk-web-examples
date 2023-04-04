@@ -101,13 +101,6 @@ export const EditorProvider = ({ children }) => {
       setFocusEnabled(true);
       setCreativeEngine(creativeEngine);
       setEngineIsLoaded(true);
-      // HOTFIX: Fixes initial rendering, 1.10.1 will solve this issue
-      Array.from(Array(20).keys()).forEach((i) => {
-        setTimeout(() => {
-          const page = creativeEngine.block.findByType('page')[0];
-          creativeEngine.block.setRotation(page, 0);
-        }, i * 100);
-      });
     };
     loadEditor();
 

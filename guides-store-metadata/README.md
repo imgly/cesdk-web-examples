@@ -1,4 +1,4 @@
-# Store custom metadata
+# Store Custom Metadata in the CreativeEditor SDK
 
 
 ## Running the sample

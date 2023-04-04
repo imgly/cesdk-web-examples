@@ -1,4 +1,4 @@
-# Integrate the CreativeEditor SDK with Vanilla JS
+# Configure Callbacks in the CreativeEditor SDK
 
 
 ## Running the sample

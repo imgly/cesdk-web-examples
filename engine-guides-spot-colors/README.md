@@ -1,4 +1,4 @@
-# Using spot colors
+# Using Spot Colors in the CreativeEditor SDK
 
 
 ## Running the sample
