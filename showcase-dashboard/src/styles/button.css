@@ -82,17 +82,3 @@
 .button--light-white:hover {
   opacity: 1;
 }
-
-.smallButton {
-  padding: 0 0.5rem !important;
-}
-
-.smallButton>* {
-  margin: 0 0.25rem !important;
-}
-
-.smallButton svg {
-  width: 1rem !important;
-  height: 1rem !important;
-  margin: 0 !important;
-}

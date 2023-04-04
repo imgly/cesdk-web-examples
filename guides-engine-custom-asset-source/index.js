@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.11.0-preview.1/index.js';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
@@ -90,7 +90,7 @@ const getUnsplashUrl = async (unsplashResult) => {
 };
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.11.0-preview.1/assets'
 };
 
 CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(async (instance) => {
@@ -122,6 +122,36 @@ CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(async 
   const asset = result.assets[0];
 
   await instance.asset.apply(customSource.id, asset);
+
+  // highlight-add-local-source
+  const localSourceId = 'background-videos';
+  instance.asset.addLocalSource(localSourceId);
+  // highlight-add-local-source
+
+  // highlight-add-asset-to-source
+  instance.asset.addAssetToSource(localSourceId, {
+    id: 'ocean-waves-1',
+    label: {
+      en: 'relaxing ocean waves',
+      es: 'olas del mar relajantes'
+    },
+    tags: {
+      en: ['ocean', 'waves', 'soothing', 'slow'],
+      es: ['mar', 'olas', 'calmante', 'lento']
+    },
+    meta: {
+      uri: `https://example.com/ocean-waves-1.mp4`,
+      thumbUri: `https://example.com/thumbnails/ocean-waves-1.jpg`,
+      mimeType: 'video/mp4',
+      width: 1920,
+      height: 1080
+    },
+    credits: {
+      name: 'John Doe',
+      url: 'https://example.com/johndoe'
+    }
+  });
+  // highlight-add-asset-to-source
 });
 
 // highlight-translateToAssetResult
@@ -140,22 +170,19 @@ async function translateToAssetResult(image) {
     // highlight-result-tags
     tags: image.tags ? image.tags.map((tag) => tag.title) : undefined,
 
-    // highlight-result-thumbUri
-    thumbUri: image.urls.thumb,
-
-    // highlight-result-size
-    size: {
+    // highlight-result-meta
+    meta: {
+      // highlight-result-uri
+      uri: await getUnsplashUrl(image),
+      // highlight-result-thumbUri
+      thumbUri: image.urls.thumb,
+      // highlight-result-blockType
+      blockType: '//ly.img.ubq/image',
+      // highlight-result-size
       width: image.width,
       height: image.height
+      // highlight-result-size
     },
-    // highlight-result-size
-
-    // highlight-result-uri
-    meta: {
-      uri: await getUnsplashUrl(image),
-      blockType: 'ly.img.image'
-    },
-    // highlight-result-uri
 
     // highlight-result-context
     context: {

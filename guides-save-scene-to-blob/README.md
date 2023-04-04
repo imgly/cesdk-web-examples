@@ -1,4 +1,4 @@
-# Save scene file to a blob
+# Save a Scene File to a Blob in the CreativeEditor SDK
 
 
 ## Running the sample
