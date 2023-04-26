@@ -85,6 +85,12 @@
   line-height: 20px;
 }
 
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .prose {
   display: flex;
   flex-direction: column;
