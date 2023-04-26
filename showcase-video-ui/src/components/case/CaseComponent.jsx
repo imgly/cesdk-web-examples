@@ -23,6 +23,7 @@ const CaseComponent = () => {
       theme: 'light',
       initialSceneMode: 'Video',
       initialSceneURL: caseAssetPath('/templates/motion.scene'),
+      license: process.env.REACT_APP_LICENSE,
       i18n: {
         en: {
           'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',

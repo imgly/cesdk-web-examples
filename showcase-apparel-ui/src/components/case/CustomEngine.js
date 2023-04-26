@@ -53,16 +53,35 @@ export class CustomEngine {
     };
   };
   getSelectedShapeProperties = () => {
-    const shapeColor = this.getAllSelectedElements('shape')[0];
-    if (!shapeColor) {
+    const shape = this.getAllSelectedElements('shape')[0];
+    if (!shape) {
       return {
         'fill/solid/color': null
       };
     }
     return {
       'fill/solid/color': this.#engine.block.getColorRGBA(
-        shapeColor,
+        shape,
         'fill/solid/color'
+      )
+    };
+  };
+  getSelectedImageProperties = () => {
+    const image = this.getAllSelectedElements('image')[0];
+    if (!image) {
+      return {
+        placeholderControlsButtonEnabled: false,
+        placeholderControlsOverlayEnabled: false
+      };
+    }
+    return {
+      placeholderControlsButtonEnabled: this.#engine.block.getBool(
+        image,
+        'placeholderControls/showButton'
+      ),
+      placeholderControlsOverlayEnabled: this.#engine.block.getBool(
+        image,
+        'placeholderControls/showOverlay'
       )
     };
   };
@@ -207,6 +226,14 @@ export class CustomEngine {
           value
         );
         this.#engine.block.resetCrop(imageElementId);
+        this.#engine.block.setPlaceholderControlsButtonEnabled(
+          imageElementId,
+          false
+        );
+        this.#engine.block.setPlaceholderControlsOverlayEnabled(
+          imageElementId,
+          false
+        );
       });
       this.#engine.editor.addUndoStep();
     }

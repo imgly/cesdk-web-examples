@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { useEffect } from 'react';
 import { useEngine } from '../../lib/EngineContext';
 import { useSelection } from '../../lib/useSelection';
 import AddBlockBar from '../AddBlockBar/AddBlockBar';
@@ -30,18 +29,6 @@ const BottomControls = ({ visible = true }) => {
       ControlComponent = blockControl.component;
     }
   }
-  // HOTFIX: Forces rerendering, 1.10.1 will solve this issue
-  useEffect(() => {
-    if (!engine) return;
-    const page = engine.block.findByType('page')[0];
-    if (page) {
-      Array.from(Array(10).keys()).forEach((i) => {
-        setTimeout(() => {
-          engine.block.setRotation(page, 0);
-        }, i * 100);
-      });
-    }
-  }, [engine, selection]);
 
   return (
     // They key is used to force a rerender when ever a different block is selected.

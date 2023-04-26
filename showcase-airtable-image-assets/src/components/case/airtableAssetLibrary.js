@@ -10,13 +10,14 @@ import { buildGithubUrl } from 'lib/paths';
 // Insert a readonly api key:
 // See: https://support.airtable.com/hc/en-us/articles/360056249614-Creating-a-read-only-API-key
 let AIRTABLE_API_KEY = '';
+const AIRTABLE_DATABASE_ID = 'appHAZoD6Qj3teOmr';
 
 
 let base;
 if (AIRTABLE_API_KEY !== '') {
   base = new Airtable({
     apiKey: AIRTABLE_API_KEY
-  }).base('appHAZoD6Qj3teOmr');
+  }).base(AIRTABLE_DATABASE_ID);
 }
 
 export const queryAirtable = ({ query, page, perPage }) => {
@@ -26,7 +27,7 @@ export const queryAirtable = ({ query, page, perPage }) => {
       .select({
         maxRecords: perPage || 100,
         view: 'Grid view',
-        // Poor mans search via airtable formula
+        // A simple search formula that searches for the query in the Name field
         filterByFormula: query
           ? "AND({Name} != '', SEARCH(LOWER('" + query + "'), LOWER({Name})))"
           : "{Name} != ''"
@@ -58,7 +59,7 @@ export const findAirtableAssets = async (queryData) => {
     window.airtableWarning = true;
     alert(
       `Please provide your airtable api key. For more information see ${buildGithubUrl(
-        'custom-asset-libraries',
+        'airtable-image-assets',
         'airtableAssetLibrary.js'
       )}.`
     );
@@ -85,8 +86,6 @@ function translateToAssetResult({ image }) {
   /** @type {import('@cesdk/cesdk-js').AssetDefinition} */
   const asset = {
     id: image.id,
-    // TODO: Check why labels do not work
-    // label: image.name ?? undefined,
     meta: {
       width: image.width,
       height: image.height,

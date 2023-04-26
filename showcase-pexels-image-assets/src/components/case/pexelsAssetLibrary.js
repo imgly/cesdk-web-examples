@@ -11,7 +11,7 @@ export async function findPexelsAssets(queryData) {
     window.pexelsWarning = true;
     alert(
       `Please provide your Pexels api key. For more information see ${buildGithubUrl(
-        'custom-asset-libraries',
+        'pexels-image-assets',
         'pexelsAssetLibrary.js'
       )}.`
     );
