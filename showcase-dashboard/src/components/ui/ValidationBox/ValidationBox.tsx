@@ -1,12 +1,12 @@
 import classNames from 'classnames';
-import { ReactNode, useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import StyledPopover from '../StyledPopover/StyledPopover';
 import BlockLabel, { IBlockLabel } from './BlockLabel';
-import styles from './ValidationBox.module.css';
-import ValidationPopover from './ValidationPopover';
 import { ReactComponent as CheckIcon } from './icons/check.svg';
 import { ReactComponent as ClockIcon } from './icons/clock.svg';
 import { ReactComponent as InfoIcon } from './icons/info.svg';
+import styles from './ValidationBox.module.css';
+import ValidationPopover from './ValidationPopover';
 interface IValidationResult extends IBlockLabel {
   id: string;
   state: 'failed' | 'warning' | 'success';
@@ -74,7 +74,6 @@ const ValidationBox = ({
                         validationDescription={result.validationDescription}
                       />
                     }
-                    size="md"
                   >
                     <InfoIcon style={{ cursor: 'pointer' }} />
                   </StyledPopover>

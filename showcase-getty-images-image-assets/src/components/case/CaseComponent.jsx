@@ -12,7 +12,6 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/getty-images-image-assets/getty-images.scene`,
-      license: process.env.REACT_APP_LICENSE,
       page: {
         title: {
           show: false
