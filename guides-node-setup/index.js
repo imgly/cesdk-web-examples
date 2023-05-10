@@ -10,10 +10,11 @@ const config = {
   // license: "YOUR_LICENSE_KEY"
 };
 
-CreativeEngine.init(config).then((engine) => {
+CreativeEngine.init(config).then(async (engine) => {
+  await engine.addDefaultAssetSources();
   engine.scene
     .loadFromURL(
-      'https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene'
+      'https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene'
     )
     .then(() => {
       const [page] = engine.block.findByType(DesignBlockType.Page);

@@ -18,7 +18,7 @@
     "@angular/platform-browser": "~12.1.2",
     "@angular/platform-browser-dynamic": "~12.1.2",
     "@angular/router": "~12.1.2",
-    "@cesdk/cesdk-js": "~1.9.2",
+    "@cesdk/cesdk-js": "~1.11.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

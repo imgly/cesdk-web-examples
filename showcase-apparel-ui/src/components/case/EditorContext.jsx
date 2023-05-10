@@ -35,10 +35,6 @@ export const EditorProvider = ({ children }) => {
   const [selectedShapeProperties, setSelectedShapeProperties] = useState({
     'fill/solid/color': null
   });
-  const [selectedImageProperties, setSelectedImageProperties] = useState({
-    placeholderControlsButtonEnabled: false,
-    placeholderControlsOverlayEnabled: false
-  });
   const engineEventCallbackRef = useRef(() => {});
   const [selectedBlocks, setSelectedBlocks] = useState(null);
 
@@ -93,12 +89,6 @@ export const EditorProvider = ({ children }) => {
         customEngine.getSelectedShapeProperties();
       if (!isEqual(newSelectedShapeProperties, selectedShapeProperties)) {
         setSelectedShapeProperties(newSelectedShapeProperties);
-      }
-      // Extract and store the currently selected image block properties
-      const newSelectedImageProperties =
-        customEngine.getSelectedImageProperties();
-      if (!isEqual(newSelectedImageProperties, selectedImageProperties)) {
-        setSelectedImageProperties(newSelectedImageProperties);
       }
       syncUndoRedoState();
     }
@@ -190,7 +180,6 @@ export const EditorProvider = ({ children }) => {
     selectedBlocks,
     selectedTextProperties,
     selectedShapeProperties,
-    selectedImageProperties,
     canUndo,
     canRedo
   };
