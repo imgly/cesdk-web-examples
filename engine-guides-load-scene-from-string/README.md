@@ -1,5 +1,4 @@
-# Load scene file from a string
-
+# Load a Scene File from a String in the CreativeEditor SDK
 
 ## Running the sample
 

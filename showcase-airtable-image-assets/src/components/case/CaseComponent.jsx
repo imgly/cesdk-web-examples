@@ -21,7 +21,6 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/airtable-image-assets/airtable.scene`,
-      license: process.env.REACT_APP_LICENSE,
       page: {
         title: {
           show: false
@@ -180,7 +179,7 @@ const cesdkWrapperStyle = {
   display: 'flex',
   borderRadius: '0.75rem',
   boxShadow:
-    '0px 0px 2px rgba(22, 22, 23, 0.25), 0px 4px 6px -2px rgba(22, 22, 23, 0.12), 0px 2px 2.5px -2px rgba(22, 22, 23, 0.12), 0px 1px 1.75px -2px rgba(22, 22, 23, 0.12)'
+    '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
 };
 
 const wrapperStyle = {
@@ -190,13 +189,9 @@ const wrapperStyle = {
   flexDirection: 'row',
   gap: '1rem'
 };
-
 const sidebarStyle = {
   flexBasis: '280px',
-  flexShrink: 0,
-  boxShadow:
-    '0px 0px 2px rgba(18, 26, 33, 0.25), 0px 6px 6px -2px rgba(18, 26, 33, 0.12), 0px 2.5px 2.5px -2px rgba(18, 26, 33, 0.12), 0px 1.25px 1.25px -2px rgba(18, 26, 33, 0.12)',
-  borderRadius: '12px'
+  flexShrink: 0
 };
 const airtableStyle = {
   background: 'transparent',

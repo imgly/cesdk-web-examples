@@ -1,4 +1,4 @@
-# Load scene file from a remote location
+# Load a Scene File to a Remote Location in the CreativeEditor SDK
 
 
 ## Running the sample

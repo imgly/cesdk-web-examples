@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.11.1/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.11.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -37,26 +37,28 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setString(
     videoFill,
     'fill/video/fileURI',
-    'https://example.com/video.mp4'
+    'https://cdn.img.ly/assets/demo/v1/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barrelling-a-wave-12715991.mp4'
   );
 
   engine.block.appendChild(page2, rectShape);
   engine.block.setPositionX(rectShape, 0);
   engine.block.setPositionY(rectShape, 0);
-  engine.block.setWidth(engine.block.getWidth(page2));
-  engine.block.setHeight(engine.block.getHeight(page2));
+  engine.block.setWidth(rectShape, engine.block.getWidth(page2));
+  engine.block.setHeight(rectShape, engine.block.getHeight(page2));
   // highlight-assignVideoFill
 
   // highlight-trim
   /* Make sure that the video is loaded before calling the trim APIs. */
   await engine.block.forceLoadAVResource(videoFill);
   engine.block.setTrimOffset(videoFill, 1);
-  engine.block.setTrimDuration(videoFill, 10);
+  engine.block.setTrimLength(videoFill, 10);
   // highlight-trim
 
+  // highlight-looping
+  engine.block.setLooping(videoFill, true);
+
   // highlight-mute-audio
-  engine.block.setBool(videoFill, 'fill/video/muted', true);
-  // highlight-mute-audio
+  engine.block.setMuted(videoFill, true);
 
   // highlight-audio
   const audio = engine.block.create('audio');
@@ -64,9 +66,14 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setString(
     audio,
     'audio/fileURI',
-    'https://example.com/audio.mp3'
+    'https://cdn.img.ly/assets/demo/v1/ly.img.audio/audios/far_from_home.m4a'
   );
   // highlight-audio
+
+  // highlight-audio-volume
+  /* Set the volume level to 70%. */
+  engine.block.setVolume(audio, 0.7);
+  // highlight-audio-volume
 
   // highlight-timeOffset
   /* Start the audio after two seconds of playback. */
@@ -81,21 +88,10 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-exportVideo
   /* Export scene as mp4 video. */
   const mimeType = 'video/mp4';
-  const resolutionWidth = engine.block.getFloat(scene, 'scene/pageDimensions/width');
-  const resolutionHeight = engine.block.getFloat(scene, 'scene/pageDimensions/height');
-  const frameRate = 30.0;
-  const blob = await engine.block.exportVideo(
-    scene,
-    0.0, /* timeOffset in seconds */
-    engine.block.getTotalSceneDuration(scene),
-    mimeType,
-    resolutionWidth,
-    resolutionHeight,
-    frameRate,
-    (renderedFrames, encodedFrames, totalFrames) => { /* progressCallback */
-      console.log('Rendered', renderedFrames, 'frames and encoded', encodedFrames, 'frames out of', totalFrames);
-    }
-  );
+  const progressCallback = (renderedFrames, encodedFrames, totalFrames) => {
+    console.log('Rendered', renderedFrames, 'frames and encoded', encodedFrames, 'frames out of', totalFrames);
+  };
+  const blob = await engine.block.exportVideo(scene, mimeType, progressCallback, {});
 
   /* Download blob. */
   const anchor = document.createElement('a');
