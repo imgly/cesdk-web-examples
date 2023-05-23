@@ -11,7 +11,7 @@ export const createApplyFormatAssetAdvanced = (engine) => {
     const pages = engine.block.getChildren(engine.block.findByType('stack')[0]);
 
     if (pages && pages.length) {
-      engine.scene.unstable_setDesignUnit(asset.meta.designUnit);
+      engine.scene.setDesignUnit(asset.meta.designUnit);
 
       pages.forEach((pageId) => {
         resizeCanvas(

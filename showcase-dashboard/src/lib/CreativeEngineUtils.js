@@ -181,7 +181,7 @@ const isFullSizeBlock = (engine, pageBlockId, blockId) => {
     Math.max(
       engine.block.getWidth(pageBlockId),
       engine.block.getHeight(pageBlockId)
-    ) * 0.1;
+    ) * 0.001;
   const isInTolerance = (numberToCheck, expectedNumber) =>
     Math.abs(numberToCheck - expectedNumber) < tolerance;
 
@@ -326,6 +326,9 @@ export const resizeCanvas = (
   );
   // Scale full sized blocks
   fullSizeBlocks.forEach((blockId) => {
+    if (engine.block.getType(blockId).includes('image')) {
+      engine.block.resetCrop(blockId, 0);
+    }
     engine.block.setWidth(blockId, width);
     engine.block.setHeight(blockId, height);
     engine.block.setPositionX(blockId, 0);
