@@ -1,4 +1,4 @@
-# Integrate Scene with Vanilla JS
+# Text with Emojis in the CreativeEditor SDK
 
 
 ## Running the sample

@@ -1,4 +1,4 @@
-# Configure the Available Variables in the CreativeEditor SDK
+# Create a Scene from an Image URL in the CreativeEditor SDK
 
 
 ## Running the sample

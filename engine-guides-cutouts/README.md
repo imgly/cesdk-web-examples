@@ -1,5 +1,4 @@
-# Configure Images in the CreativeEditor SDK
-
+# Using Cutouts in the CreativeEditor SDK
 
 ## Running the sample
 

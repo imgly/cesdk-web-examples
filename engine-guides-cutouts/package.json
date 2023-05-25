@@ -1,6 +1,6 @@
 {
-  "name": "configure-scene",
-  "version": "1.1.1",
+  "name": "guides-cutouts",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "build": "true",

@@ -1,4 +1,4 @@
-# Use a custom URI resolver
+# Use a Custom URI Resolver in the CreativeEditor SDK
 
 
 ## Running the sample
