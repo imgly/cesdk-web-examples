@@ -1,6 +1,5 @@
 import CreativeEngine from '@cesdk/engine';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Helmet } from 'react-helmet';
 import classes from './CaseComponent.module.css';
 import EditInstanceCESDK from './components/EditInstanceCESDK/EditInstanceCESDK';
 import EditTemplateCESDK from './components/EditTemplateCESDK/EditTemplateCESDK';
@@ -157,18 +156,6 @@ const CaseComponent = () => {
 
   return (
     <div className="flex flex-grow flex-col">
-      <Helmet>
-        {/* Preload images so they are already loaded in cache. */}
-        {EMPLOYEES.map((employee) => (
-          <link
-            rel="preload"
-            href={caseAssetPath(`/images/${employee.imagePath}`)}
-            as="image"
-            key={employee.imagePath}
-            type="image/png"
-          />
-        ))}
-      </Helmet>
       <div className={classes.wrapper}>
         <div className="gap-sm flex flex-col items-center">
           <div className="flex flex-col items-center">
