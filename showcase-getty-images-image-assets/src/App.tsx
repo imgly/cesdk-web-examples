@@ -1,4 +1,4 @@
-import CaseComponent from 'components/case/CaseComponent';
+import CaseComponent from './components/case/CaseComponent';
 import React from 'react';
 import './App.css';
 

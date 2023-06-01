@@ -94,7 +94,12 @@ export const ColorPicker = ({
             ))}
           </div>
         )}
-        {cloneElement(TriggerComponent, { onClick: () => setPickerOpen(true) })}
+        {cloneElement(TriggerComponent, {
+          onClick: (e: Event) => {
+            setPickerOpen(true);
+            e.stopPropagation();
+          }
+        })}
 
         <div
           style={{

@@ -6,6 +6,7 @@ import classes from './HelperText.module.css';
 interface Props {
   error?: boolean;
   className?: string;
+  children: React.ReactNode;
 }
 
 export const HelperText: React.FC<Props> = ({ error, className, children }) => {

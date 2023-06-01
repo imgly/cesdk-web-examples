@@ -14,7 +14,6 @@
     "react-div-100vh": "^0.7.0",
     "react-dom": "^17.0.2",
     "react-draggable": "^4.4.5",
-    "react-helmet": "^6.1.0",
     "react-masonry-css": "^1.0.16",
     "react-router-dom": "6",
     "react-scripts": "5.0.0",
@@ -25,7 +24,6 @@
   "devDependencies": {
     "@types/chroma-js": "^2.1.4",
     "@types/lodash": "^4.14.182",
-    "@types/react-helmet": "^6.1.5",
     "react-snap": "^1.23.0",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.22",
