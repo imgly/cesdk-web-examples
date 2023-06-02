@@ -1,12 +1,12 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.12.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.12.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
   // highlight-setup
-  document.getElementById('root').append(engine.element);
+  document.getElementById('cesdk_container').append(engine.element);
 
   const scene = engine.scene.create();
 
@@ -60,6 +60,6 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-change
 
   // highlight-undefine
-  editor.removeSpotColor('Yellow')
+  engine.editor.removeSpotColor('Yellow')
   // highlight-undefine
 });

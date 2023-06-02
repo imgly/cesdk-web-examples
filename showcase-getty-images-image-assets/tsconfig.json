@@ -21,10 +21,6 @@
     "jsx": "react-jsx",
     "baseUrl": "src"
   },
-  "exclude": [
-    "node_modules",
-    "src/components/case/*-server"
-  ],
   "include": [
     "src"
   ]

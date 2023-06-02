@@ -5,7 +5,6 @@ import classes from './StyledPopover.module.css';
 
 interface Props {
   content: ReactElement;
-  children: ReactElement;
   size?: 'sm' | 'md' | 'lg';
 }
 

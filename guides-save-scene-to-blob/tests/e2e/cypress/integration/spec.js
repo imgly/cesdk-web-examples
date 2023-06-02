@@ -24,8 +24,8 @@ describe('Works properly', () => {
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
     // which are the two default items.
-    cy.get('[data-cy=canvas-scroll-container]', { timeout: 30000 }).should(
-      'be.visible'
-    );
+    cy.get('[data-ubq-canvas="ubq-canvas-container"]', {
+      timeout: 30000
+    }).should('be.visible');
   });
 });

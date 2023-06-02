@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.12.0/cesdk.umd.js';
 
 // Draw the text 'img.ly' to the demo canvas
 const canvas = document.getElementById("my-canvas");
@@ -11,7 +11,7 @@ const dataURL = canvas.toDataURL();
 // highlight-dataURL
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.12.0/assets',
   // highlight-initialImageURL
   initialImageURL: dataURL
   // highlight-initialImageURL
