@@ -1,4 +1,4 @@
-# Load scene file from a blob
+# Load a Scene File from a Blob in the CreativeEditor SDK
 
 
 ## Running the sample

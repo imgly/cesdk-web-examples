@@ -32,7 +32,7 @@ export default {
 
   beforeDestroy: function beforeDestroy() {
     if (this._cesdk) {
-      this._cesdk.dipose();
+      this._cesdk.dispose();
       this._cesdk = null;
     }
   }

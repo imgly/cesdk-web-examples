@@ -1,5 +1,5 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { ExportModal } from './ExportModal/ExportModal';
+import { ExportModal } from 'components/show-cases/export-options/ExportModal/ExportModal';
 import { useEffect, useRef, useState } from 'react';
 
 const ExportOptionsCESDK = () => {

@@ -94,7 +94,6 @@ const CaseComponent = () => {
         async (instance) => {
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({
-            sceneMode: 'Video',
             // We want to replace the demo audio assets with our own
             excludeAssetSourceIds: ['ly.img.audio']
           });

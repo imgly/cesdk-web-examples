@@ -64,7 +64,7 @@ const ColorDropdown = ({ label, onClick, activeColor, colorPalette = [] }) => {
                 denormalizedActiveColor.b
               )}
             >
-              <button className={classNames(classes.colorButton)}>
+              <button className={classNames(classes.colorButton, {})}>
                 <img
                   src={caseAssetPath('/ColorPicker.png')}
                   alt={'Pick color'}
