@@ -169,7 +169,7 @@ export const SinglePageModeProvider = ({
     sortedPageIds?.[0]
   );
   const setCurrentPageBlockId = useCallback(
-    (newPageBlockId: number) => {
+    (newPageBlockId) => {
       // We need to deselect all blocks before changing the page block
       engine.block
         .findAllSelected()

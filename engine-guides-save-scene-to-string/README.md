@@ -1,4 +1,4 @@
-# Save scene file to a string
+# Save a Scene File to a String in the CreativeEditor SDK
 
 
 ## Running the sample

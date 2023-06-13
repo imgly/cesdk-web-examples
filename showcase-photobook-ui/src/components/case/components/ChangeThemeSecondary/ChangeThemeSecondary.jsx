@@ -1,8 +1,5 @@
-import {
-  hexToRgb,
-  normalizeColors,
-  replaceImage
-} from '../../lib/CreativeEngineUtils';
+import { hexToRgb, normalizeColors } from 'lib/CreativeEngineUtils';
+import { replaceImage } from '../../lib/CreativeEngineUtils';
 import { useEngine } from '../../lib/EngineContext';
 import { useSinglePageMode } from '../../lib/SinglePageModeContext';
 import ThemeBar from '../ThemeBar/ThemeBar';

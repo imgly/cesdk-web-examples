@@ -1,15 +1,18 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.12.1/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.9.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.12.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
+  // Load default assets referenced in the scene
+  engine.addDefaultAssetSources();
+
   // highlight-fetch-string
+  const sceneUrl =
+    'https://cdn.img.ly/packages/imgly/cesdk-js/1.12.1/assets/templates/cesdk_postcard_1.scene';
   const sceneString = await fetch(sceneUrl)
     .then((response) => { return response.text() });
-  const sceneUrl =
-    'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets/templates/cesdk_postcard_1.scene';
   // highlight-fetch-string
 
   // highlight-load
@@ -17,11 +20,14 @@ CreativeEngine.init(config).then(async (engine) => {
     console.log('Load succeeded')
 
     // highlight-set-text-dropshadow
-    let text = cesdk.engine.block.findByType("text")[0];
-    cesdk.engine.block.setDropShadowEnabled(text, true);
+    let text = engine.block.findByType("text")[0];
+    engine.block.setDropShadowEnabled(text, true);
     // highlight-set-text-dropshadow
   }).catch((error) => {
     console.error('Load failed', error)
   });
   // highlight-load
+
+  // Attach engine canvas to DOM
+  document.getElementById('cesdk_container').append(engine.element);
 });
