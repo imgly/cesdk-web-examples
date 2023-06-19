@@ -1,21 +1,11 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
-import { findAirtableAssets } from './airtableAssetLibrary';
+import { airtableAssetLibrary } from './airtableAssetLibrary';
 
 const CaseComponent = () => {
   const cesdkContainer = useRef(null);
 
   useEffect(() => {
-
-    const assetSources = {
-      airtable: {
-        findAssets: findAirtableAssets,
-        credits: {
-          name: 'Airtable',
-          url: 'https://airtable.com/shr4x8s9jqaxiJxm5/tblSLR9GBwiVwFS8z?backgroundColor=orange'
-        }
-      }
-    };
 
     let cesdk;
     let config = {
@@ -84,49 +74,9 @@ const CaseComponent = () => {
           }
         }
       },
-      assetSources,
       i18n: {
         en: {
           'libraries.airtable.label': 'Airtable'
-        }
-      },
-      presets: {
-        templates: {
-          postcard_1: {
-            label: 'Postcard Design',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.png`
-          },
-          postcard_2: {
-            label: 'Postcard Tropical',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.png`
-          },
-          business_card_1: {
-            label: 'Business card',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.png`
-          },
-          instagram_photo_1: {
-            label: 'Instagram photo',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
-          },
-          poster_1: {
-            label: 'Poster',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.png`
-          },
-          presentation_4: {
-            label: 'Presentation',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.png`
-          },
-          collage_1: {
-            label: 'Collage',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.png`
-          }
         }
       }
     };
@@ -135,6 +85,7 @@ const CaseComponent = () => {
         (instance) => {
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources();
+          instance.engine.asset.addSource(airtableAssetLibrary);
           cesdk = instance;
         }
       );

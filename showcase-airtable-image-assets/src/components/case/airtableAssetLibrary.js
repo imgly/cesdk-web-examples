@@ -100,3 +100,11 @@ function translateToAssetResult({ image }) {
   };
   return asset;
 }
+export const airtableAssetLibrary = {
+  id: 'airtable',
+  findAssets: findAirtableAssets,
+  credits: {
+    name: 'Airtable',
+    url: 'https://airtable.com/shr4x8s9jqaxiJxm5/tblSLR9GBwiVwFS8z?backgroundColor=orange'
+  }
+};

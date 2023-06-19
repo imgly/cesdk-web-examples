@@ -6,7 +6,7 @@ const CaseComponent = () => {
   const cesdkContainer = useRef(null);
   /** @type {[import("@cesdk/cesdk-js").default, Function]} cesdk */
   const [cesdk, setCesdk] = useState();
-  const pageIds = useRef(null);
+  const [pageIds, setPageIds] = useState([]);
   const [activePageId, setActivePageId] = useState(null);
 
   useEffect(() => {
@@ -45,48 +45,7 @@ const CaseComponent = () => {
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
-      },
-      // Begin standard template presets
-      presets: {
-        templates: {
-          postcard_1: {
-            label: 'Postcard Design',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.png`
-          },
-          postcard_2: {
-            label: 'Postcard Tropical',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.png`
-          },
-          business_card_1: {
-            label: 'Business card',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.png`
-          },
-          instagram_photo_1: {
-            label: 'Instagram photo',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
-          },
-          poster_1: {
-            label: 'Poster',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.png`
-          },
-          presentation_4: {
-            label: 'Presentation',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.png`
-          },
-          collage_1: {
-            label: 'Collage',
-            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.scene`,
-            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.png`
-          }
-        }
       }
-      // End standard template presets
     };
     if (cesdkContainer.current) {
       CreativeEditorSDK.init(cesdkContainer.current, config).then(
@@ -95,8 +54,18 @@ const CaseComponent = () => {
           instance.addDemoAssetSources();
           cesdk = instance;
           setCesdk(instance);
-          pageIds.current = await instance.unstable_getPages();
-          setActivePageId(pageIds.current[0]);
+          const newPageIds = await instance.unstable_getPages();
+          setPageIds(newPageIds);
+          setActivePageId(newPageIds[0]);
+          instance.engine.event.subscribe([instance.engine.scene.get()], () => {
+            const getPages = async () => {
+              const newPageIds = await instance.unstable_getPages();
+              const newActivePageId = await instance.unstable_getActivePage();
+              setPageIds(newPageIds);
+              setActivePageId(newActivePageId);
+            };
+            getPages();
+          });
         }
       );
     }
@@ -114,9 +83,9 @@ const CaseComponent = () => {
   return (
     <div style={wrapperStyle} className="space-y-2">
       <div className="flex flex-col items-center">
-        {pageIds.current && (
+        {pageIds && (
           <SegmentedControl
-            options={pageIds.current.map((id, index) => ({
+            options={pageIds.map((id, index) => ({
               label: cesdk.engine.block.getName(id) || `Page ${index + 1}`,
               value: id
             }))}

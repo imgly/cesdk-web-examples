@@ -8,7 +8,7 @@ import {
   useRef,
   useState
 } from 'react';
-import { findUnsplashAssets } from './components/ImageBar/UnsplashAssetLibrary';
+import { unsplashImageAssetSource } from './components/ImageBar/UnsplashAssetLibrary';
 import { useSinglePageFocus } from './lib/UseSinglePageFocus';
 import POSTCARD_TEMPLATES from './PostcardTemplates.json';
 import { caseAssetPath } from './util';
@@ -141,11 +141,6 @@ export const EditorProvider = ({ children }) => {
         featureFlags: {
           preventScrolling: true
         },
-        assetSources: {
-          unsplash: {
-            findAssets: findUnsplashAssets
-          }
-        },
         page: {
           title: {
             show: false
@@ -155,6 +150,7 @@ export const EditorProvider = ({ children }) => {
       };
       const creativeEngine = await CreativeEngine.init(config);
       setCreativeEngine(creativeEngine);
+      creativeEngine.asset.addSource(unsplashImageAssetSource);
       creativeEngine.editor.onStateChanged(() =>
         editorUpdateCallbackRef.current()
       );

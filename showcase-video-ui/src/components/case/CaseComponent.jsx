@@ -28,7 +28,7 @@ const CaseComponent = () => {
         en: {
           'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
           ...pageFormatI18n(PAGE_FORMAT_ASSETS.assets),
-          'libraries.ly.img.video.templates.label': 'Example Videos'
+          'libraries.ly.img.video.templates.label': 'Example Templates'
         }
       },
       presets: {

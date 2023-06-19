@@ -7,7 +7,7 @@ import {
   useEffect,
   useState
 } from 'react';
-import { getSortedPageIds, zoomToSelectedText } from './CreativeEngineUtils';
+import { zoomToSelectedText } from './CreativeEngineUtils';
 import { useEngine } from './EngineContext';
 import { useEditMode } from './useEditMode';
 
@@ -117,7 +117,7 @@ export const SinglePageModeProvider = ({
         return;
       }
       const updateSortedPageIds = () => {
-        const sortedPageIds = getSortedPageIds(engine);
+        const sortedPageIds = engine.scene.getPages();
         setSortedPageIds((prevState) => {
           if (isEqual(prevState, sortedPageIds)) {
             return prevState; // Do not rerender

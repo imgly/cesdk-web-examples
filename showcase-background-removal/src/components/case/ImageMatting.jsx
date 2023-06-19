@@ -8,18 +8,33 @@ import { ReactComponent as UploadIcon } from './icons/Upload.svg';
 import { useImageMatting } from './utils/matting';
 
 const IMAGE_URLS = [
-  'https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=good-faces-xmSWVeGEnJw-unsplash.jpg',
-  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=dom-hill-nimElTcTNyY-unsplash.jpg',
-  'https://images.unsplash.com/photo-1628035514544-ebd32b766089?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=kristian-angelo-KW-jwdSgOw4-unsplash.jpg',
-  'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=pauline-loroy-U3aF7hgUSrk-unsplash.jpg',
-  'https://images.unsplash.com/photo-1540492649367-c8565a571e4b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=andreas-m-p40QuGwGCcw-unsplash.jpg'
+  {
+    url: 'https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=good-faces-xmSWVeGEnJw-unsplash.jpg&w=1920',
+    alt: 'a woman with an afro is looking at the camera by Good Faces'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=dom-hill-nimElTcTNyY-unsplash.jpg&w=1920',
+    alt: 'woman in yellow tracksuit standing on basketball court side by Dom Hill'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1628035514544-ebd32b766089?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=kristian-angelo-KW-jwdSgOw4-unsplash.jpg&w=1920',
+    alt: 'man in black leather jacket riding black motorcycle by Kristian Angelo'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=pauline-loroy-U3aF7hgUSrk-unsplash.jpg&w=1920',
+    alt: 'white and brown long coat large dog by Pauline Loroy'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1540492649367-c8565a571e4b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=andreas-m-p40QuGwGCcw-unsplash.jpg&w=1920',
+    alt: 'green plant on yellow ceramic pot by Andreas M'
+  }
 ];
 
 function ImageMatting({ openEditor }) {
   const {
     handleImageUpload,
     imageUrl,
-    processedImage,
+    hasProcessedImage,
     isProcessing,
     processMessage,
     resetState,
@@ -50,7 +65,7 @@ function ImageMatting({ openEditor }) {
 
   return (
     <div className={classes.block}>
-      {processedImage && (
+      {hasProcessedImage && (
         <div>
           <button className={classes.ghost} onClick={() => resetState()}>
             <ChevronLeftIcon /> <span>New Image</span>
@@ -59,7 +74,7 @@ function ImageMatting({ openEditor }) {
       )}
 
       <div className={classNames(classes.preview)}>
-        {(isProcessing || processedImage) && (
+        {(isProcessing || hasProcessedImage) && (
           <img
             className={classNames(classes.imagePreview, {
               [classes.blurred]: isProcessing
@@ -68,16 +83,17 @@ function ImageMatting({ openEditor }) {
               opacity: imageUrl && imageUrl !== '' ? 1 : 0
             }}
             src={imageUrl}
+            alt={hasProcessedImage ? 'Processed Image' : 'Uploaded Image'}
           />
         )}
 
-        {processedImage && (
+        {hasProcessedImage && (
           <button className={classes.primary} onClick={() => openEditor()}>
             <EditIcon /> Edit in CE.SDK
           </button>
         )}
 
-        {!isProcessing && !processedImage && (
+        {!isProcessing && !hasProcessedImage && (
           <div className={classes.uploadControls}>
             <UploadIcon />
             <label className={classes.upload}>
@@ -111,12 +127,12 @@ function ImageMatting({ openEditor }) {
           </div>
         )}
       </div>
-      {!isProcessing && !processedImage && (
+      {!isProcessing && !hasProcessedImage && (
         <div className={classes.sampleImagesWrapper}>
           <span>Or try these examples:</span>
 
           <div className={classes.sampleImages}>
-            {IMAGE_URLS.map((url) => (
+            {IMAGE_URLS.map(({ url, alt }) => (
               <button
                 key={url}
                 className={classes.sampleImage}
@@ -124,7 +140,7 @@ function ImageMatting({ openEditor }) {
                   handleImageUpload(url);
                 }}
               >
-                <img src={url} />
+                <img src={url} alt={alt} />
               </button>
             ))}
           </div>

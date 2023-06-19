@@ -21,11 +21,12 @@
     "jsx": "react-jsx",
     "baseUrl": "src"
   },
-  "exclude": [
-    "node_modules",
-    "src/components/case/*-server"
-  ],
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/components/case/**/image-matting-lib-dist.js/",
+    "src/components/case/**/image-matting-lib/"
   ]
 }

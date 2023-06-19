@@ -1,5 +1,4 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import useOnClickOutside from 'lib/useOnClickOutside';
 import { useEffect, useRef } from 'react';
 import { useImageMatting } from './utils/matting';
 
@@ -7,21 +6,15 @@ import classes from './CreativeEditor.module.css';
 
 const CreativeEditor = ({ closeEditor }) => {
   const cesdkContainer = useRef(null);
+  const overlayContainer = useRef(null);
 
-  const { processedImage, resetState } = useImageMatting();
-
-  function close() {
-    resetState();
-    closeEditor();
-  }
+  const { imageUrl, hasProcessedImage } = useImageMatting();
 
   useEffect(() => {
     const config = {
       role: 'Adopter',
       theme: 'light',
-      initialImageURL: processedImage
-        ? URL.createObjectURL(processedImage)
-        : undefined,
+      initialImageURL: imageUrl,
       license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
@@ -40,7 +33,7 @@ const CreativeEditor = ({ closeEditor }) => {
         }
       },
       callbacks: {
-        onBack: () => close(),
+        onBack: () => closeEditor(),
         onExport: 'download',
         onUpload: 'local'
       }
@@ -50,6 +43,7 @@ const CreativeEditor = ({ closeEditor }) => {
       CreativeEditorSDK.init(cesdkContainer.current, config).then(
         (instance) => {
           const [page] = instance.engine.block.findByType('page');
+          instance.engine.editor.setSettingBool('page/title/show', false);
           instance.engine.block.setFillEnabled(page, false);
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources();
@@ -62,13 +56,22 @@ const CreativeEditor = ({ closeEditor }) => {
         cesdk.dispose();
       }
     };
-  }, [cesdkContainer, processedImage]);
+  }, [cesdkContainer, hasProcessedImage, closeEditor, imageUrl]);
 
-  useOnClickOutside(cesdkContainer, close);
-
-  if (processedImage) {
+  if (hasProcessedImage) {
     return (
-      <div className={classes.overlay}>
+      <div
+        className={classes.overlay}
+        ref={overlayContainer}
+        onClick={(event) => {
+          if (
+            overlayContainer.current &&
+            overlayContainer.current === event.target
+          ) {
+            closeEditor();
+          }
+        }}
+      >
         <div ref={cesdkContainer} className={classes.cesdk}></div>
       </div>
     );

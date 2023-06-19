@@ -67,11 +67,6 @@ export const EditorProvider = ({ children }) => {
 
   useEffect(() => {
     const loadEditor = async () => {
-      const assetSources = {
-        stickers: {
-          findAssets: findCustomStickerAssets
-        }
-      };
       const config = {
         page: {
           title: {
@@ -81,11 +76,14 @@ export const EditorProvider = ({ children }) => {
         featureFlags: {
           preventScrolling: true
         },
-        assetSources,
         license: process.env.REACT_APP_LICENSE
       };
 
       const creativeEngine = await CreativeEngine.init(config);
+      creativeEngine.asset.addSource({
+        id: 'stickers',
+        findAssets: findCustomStickerAssets
+      });
       creativeEngine.editor.onStateChanged(() =>
         editorUpdateCallbackRef.current()
       );
