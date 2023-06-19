@@ -3,7 +3,6 @@ import { findUnsplashAssets } from './components/ImageBar/UnsplashAssetLibrary';
 import { CustomStickerAssetLibrary } from './components/StickerBar/CustomStickerAssetLibrary';
 import LAYOUT_ASSETS from './CustomLayouts.json';
 import { createApplyLayoutAsset } from './lib/createApplyLayoutAsset';
-import { getSortedPageIds } from './lib/CreativeEngineUtils';
 import { useEngine } from './lib/EngineContext';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { usePagePreview } from './lib/PagePreviewContext';
@@ -60,7 +59,7 @@ export const EditorProvider = ({ children }) => {
       if (engineIsLoaded && template) {
         setSceneIsLoaded(false);
         await creativeEngine.scene.loadFromURL(caseAssetPath(template.scene));
-        await setCurrentPageBlockId(getSortedPageIds(creativeEngine)[0]);
+        await setCurrentPageBlockId(creativeEngine.scene.getPages()[0]);
         setFocusEnabled(true);
         setPagePreviewsEnabled(true);
         setSceneIsLoaded(true);

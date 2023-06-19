@@ -113,3 +113,8 @@ function translateToAssetResult(image) {
     }
   };
 }
+
+export const unsplashImageAssetSource = {
+  id: 'unsplash',
+  findAssets: findUnsplashAssets
+};

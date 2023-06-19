@@ -103,3 +103,16 @@ function translateToAssetResult(image) {
     credits
   };
 }
+
+export const pexelsAssetLibrary = {
+  id: 'pexels',
+  findAssets: findPexelsAssets,
+  credits: {
+    name: 'pexels',
+    url: 'https://pexels.com/'
+  },
+  license: {
+    name: 'Pexels license (free)',
+    url: 'https://pexels.com/license'
+  }
+};

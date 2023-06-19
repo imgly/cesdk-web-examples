@@ -1,24 +1,8 @@
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import removeBackground, { utils } from './image-matting-lib-dist';
+import { caseAssetPath } from './util';
 
-// IMPORTANT: Our hosted image matting server code and the code shown
-// in this repository are not production ready and for demo purposes only!
-const IMAGE_MATTING_SERVER_SERVER_ORIGIN =
-  process.env.REACT_APP_IMAGE_MATTING_SERVER_URL;
-
-// NOTE: The origin wildcard is being used in this case for demo purposes only.
-// In a real world application, this should be set to a proper origin for
-// security reasons, e.g. preventing cross site scripting attacks.
-// See https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage for more
-// information on this.
-function postIframeParentContextMessage(element, type, payload) {
-  element.contentWindow.postMessage(
-    {
-      type,
-      payload
-    },
-    '*'
-  );
-}
+const WASM_PATH = caseAssetPath('') + '/';
 
 const ImageMattingContext = createContext({
   quality: 'high',
@@ -27,25 +11,26 @@ const ImageMattingContext = createContext({
   setIsProcessing: () => {},
   processMessage: '',
   setProcessMessage: () => {},
-  processedImage: null,
-  setProcessedImage: () => {},
+  hasProcessedImage: false,
+  setHasProcessedImage: () => {},
   imageUrl: '',
   setImageUrl: () => {},
   resetState: () => {},
-  iframeElement: null,
   inferenceTime: 0
 });
 
 const useImageMatting = () => {
   const {
-    iframeElement,
     setImageUrl,
     quality,
     setQuality,
     imageUrl,
-    processedImage,
+    hasProcessedImage,
     isProcessing,
+    setIsProcessing,
     processMessage,
+    setProcessMessage,
+    setHasProcessedImage,
     resetState,
     inferenceTime
   } = useContext(ImageMattingContext);
@@ -55,8 +40,25 @@ const useImageMatting = () => {
 
     const response = await fetch(path);
     const blob = await response.blob();
+    const imageBitmap = await createImageBitmap(blob);
+    const inputImageData = utils.imageBitmapToImageData(imageBitmap);
 
-    postIframeParentContextMessage(iframeElement, 'imgly-set_image', blob);
+    setIsProcessing(true);
+    // NOTE: Since the image-matting-lib does not provide a way to determine
+    // if its the one-time initialization phase or the processing image phase,
+    // we just set the static string below for now.
+    setProcessMessage('Processing Image');
+
+    const imageData = await removeBackground(inputImageData, {
+      debug: true,
+      wasmPath: WASM_PATH,
+      proxyToWorker: true
+    });
+    const url = utils.imageDataToDataUrl(imageData);
+
+    setHasProcessedImage(true);
+    setImageUrl(url);
+    setIsProcessing(false);
   }
 
   return {
@@ -64,7 +66,7 @@ const useImageMatting = () => {
     quality,
     setQuality,
     imageUrl,
-    processedImage,
+    hasProcessedImage,
     isProcessing,
     processMessage,
     resetState,
@@ -73,73 +75,21 @@ const useImageMatting = () => {
 };
 
 const ImageMattingContextProvider = ({ children }) => {
-  const iframeRef = useRef(null);
   const startTimeReference = useRef(null);
 
   const [quality, setQuality] = useState('high');
   const [isProcessing, setIsProcessing] = useState(false);
   const [processMessage, setProcessMessage] = useState('');
-  const [processedImage, setProcessedImage] = useState(null);
+  const [hasProcessedImage, setHasProcessedImage] = useState(false);
   const [imageUrl, setImageUrl] = useState('');
   const [inferenceTime, setInferenceTime] = useState(0);
 
   function resetState() {
     setQuality('high');
     setIsProcessing(false);
-    setProcessedImage(null);
+    setHasProcessedImage(false);
     setImageUrl('');
   }
-
-  function handleIframeMessage(event) {
-    // NOTE: We are accepting messages from any origin in this case for demo purposes only.
-    // In a real world application, this should be set up to check for the proper
-    // origin trying to send a message to the iframe.
-    // This can look something like this:
-    // if (event.origin !== IMAGE_MATTING_SERVER_APP_ORIGIN) {
-    //   return;
-    // }
-
-    const { payload, type } = event.data;
-    switch (type) {
-      case 'imgly-process_status':
-        setIsProcessing(payload);
-        break;
-      case 'imgly-process_message':
-        setProcessMessage(payload);
-        break;
-      case 'imgly-processed_image':
-        setProcessedImage(payload);
-        break;
-      default:
-        console.log('Unknown message type');
-        break;
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('message', handleIframeMessage);
-
-    return () => {
-      window.removeEventListener('message', handleIframeMessage);
-    };
-  }, []);
-
-  useEffect(() => {
-    postIframeParentContextMessage(
-      iframeRef.current,
-      'imgly-set_quality',
-      quality
-    );
-  }, [quality]);
-
-  useEffect(() => {
-    if (!processedImage) {
-      setImageUrl('');
-    } else {
-      const path = URL.createObjectURL(processedImage);
-      setImageUrl(path);
-    }
-  }, [processedImage]);
 
   useEffect(() => {
     if (isProcessing && startTimeReference.current === null) {
@@ -164,30 +114,14 @@ const ImageMattingContextProvider = ({ children }) => {
         setIsProcessing,
         processMessage,
         setProcessMessage,
-        processedImage,
-        setProcessedImage,
+        hasProcessedImage,
+        setHasProcessedImage,
         imageUrl,
         setImageUrl,
         resetState,
-        iframeElement: iframeRef.current,
         inferenceTime
       }}
     >
-      <iframe
-        ref={iframeRef}
-        style={{
-          position: 'absolute',
-          width: '1px',
-          height: '1px',
-          padding: '0',
-          margin: '-1px',
-          overflow: 'hidden',
-          clip: 'rect(0,0,0,0)',
-          whiteSpace: 'nowrap',
-          border: '0'
-        }}
-        src={IMAGE_MATTING_SERVER_SERVER_ORIGIN}
-      />
       {children}
     </ImageMattingContext.Provider>
   );

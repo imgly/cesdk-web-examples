@@ -1,5 +1,4 @@
 import { useEditor } from '../../EditorContext';
-import { resizeCanvas } from '../../lib/CreativeEngineUtils';
 import Modal from '../Modal/Modal';
 import classes from './CanvasSizeModal.module.css';
 
@@ -36,7 +35,8 @@ const CanvasSizeModal = ({ onClose }) => {
             key={name}
             className={classes.sizeWrapper}
             onClick={async () => {
-              resizeCanvas(creativeEngine, currentPageBlockId, width, height);
+              const pages = creativeEngine.scene.getPages();
+              creativeEngine.block.resizeContentAware(pages, width, height);
               refocus();
               onClose();
             }}
