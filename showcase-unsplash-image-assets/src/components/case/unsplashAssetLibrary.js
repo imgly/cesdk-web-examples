@@ -111,16 +111,3 @@ function translateToAssetResult(image) {
     }
   };
 }
-
-export const unsplashAssetLibrary = {
-  id: 'unsplash',
-  findAssets: findUnsplashAssets,
-  credits: {
-    name: 'Unsplash',
-    url: 'https://unsplash.com/'
-  },
-  license: {
-    name: 'Unsplash license (free)',
-    url: 'https://unsplash.com/license'
-  }
-};

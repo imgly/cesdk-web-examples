@@ -218,7 +218,7 @@ const CaseComponent = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col flex-grow space-y-2 w-full items-center">
+      <div className="flex-grow space-y-2">
         <h4 className="h4">Generated Design</h4>
         <div ref={containerRef} className={classes.canvas}>
           {!isSceneLoaded && <LoadingSpinner />}

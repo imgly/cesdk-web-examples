@@ -1,8 +1,9 @@
 .modal {
   position: absolute;
-  max-width: 1300px;
-  inset: 0;
-  margin: 10%;
+  top: 10%;
+  right: 10%;
+  bottom: 10%;
+  left: 10%;
   overflow: hidden;
   background: #d6dbe1;
   border-radius: 8px;
@@ -12,14 +13,8 @@
     0px 3px 5.25px -2px rgba(22, 22, 23, 0.12);
 }
 
-@media only screen and (min-width: 1400px) {
-  .modal {
-    margin: 200px auto;
-  }
-}
-
 .overlay {
-  position: fixed;
+  position: absolute;
   z-index: 999;
   top: 0;
   right: 0;

@@ -6,7 +6,7 @@ const CaseComponent = () => {
   const cesdkContainer = useRef(null);
   /** @type {[import("@cesdk/cesdk-js").default, Function]} cesdk */
   const [cesdk, setCesdk] = useState();
-  const [pageIds, setPageIds] = useState([]);
+  const pageIds = useRef(null);
   const [activePageId, setActivePageId] = useState(null);
 
   useEffect(() => {
@@ -54,18 +54,8 @@ const CaseComponent = () => {
           instance.addDemoAssetSources();
           cesdk = instance;
           setCesdk(instance);
-          const newPageIds = await instance.unstable_getPages();
-          setPageIds(newPageIds);
-          setActivePageId(newPageIds[0]);
-          instance.engine.event.subscribe([instance.engine.scene.get()], () => {
-            const getPages = async () => {
-              const newPageIds = await instance.unstable_getPages();
-              const newActivePageId = await instance.unstable_getActivePage();
-              setPageIds(newPageIds);
-              setActivePageId(newActivePageId);
-            };
-            getPages();
-          });
+          pageIds.current = await instance.unstable_getPages();
+          setActivePageId(pageIds.current[0]);
         }
       );
     }
@@ -83,9 +73,9 @@ const CaseComponent = () => {
   return (
     <div style={wrapperStyle} className="space-y-2">
       <div className="flex flex-col items-center">
-        {pageIds && (
+        {pageIds.current && (
           <SegmentedControl
-            options={pageIds.map((id, index) => ({
+            options={pageIds.current.map((id, index) => ({
               label: cesdk.engine.block.getName(id) || `Page ${index + 1}`,
               value: id
             }))}

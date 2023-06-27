@@ -1,6 +1,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import loadAssetSourceFromContentJSON from 'lib/loadAssetSourceFromContentJSON';
 import { useEffect, useRef } from 'react';
+import { createApplyFormatAssetAdvanced } from './createApplyFormatAdvanced';
 import FORMAT_ASSETS from './CustomFormats.json';
 
 const caseAssetPath = (path, caseId = 'page-sizes') =>
@@ -121,7 +122,48 @@ const CaseComponent = () => {
           'libraries.ly.img.formats.social.label': 'Social',
           'libraries.ly.img.formats.print.label': 'Print'
         }
+      },
+      // Begin standard template presets
+      presets: {
+        templates: {
+          postcard_1: {
+            label: 'Postcard Design',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.png`
+          },
+          postcard_2: {
+            label: 'Postcard Tropical',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.png`
+          },
+          business_card_1: {
+            label: 'Business card',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.png`
+          },
+          instagram_photo_1: {
+            label: 'Instagram photo',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
+          },
+          poster_1: {
+            label: 'Poster',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.png`
+          },
+          presentation_4: {
+            label: 'Presentation',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.png`
+          },
+          collage_1: {
+            label: 'Collage',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.png`
+          }
+        }
       }
+      // End standard template presets
     };
     if (cesdk_container.current) {
       CreativeEditorSDK.init(cesdk_container.current, config).then(
@@ -132,15 +174,7 @@ const CaseComponent = () => {
             instance.engine,
             FORMAT_ASSETS,
             caseAssetPath(''),
-            async (asset) => {
-              const pages = instance.engine.scene.getPages();
-              instance.engine.scene.setDesignUnit(asset.meta.designUnit);
-              instance.engine.block.resizeContentAware(
-                pages,
-                parseInt(asset.meta.formatWidth, 10),
-                parseInt(asset.meta.formatHeight, 10)
-              );
-            }
+            createApplyFormatAssetAdvanced(instance.engine)
           );
           cesdk.current = instance;
           engine.current = instance.engine;

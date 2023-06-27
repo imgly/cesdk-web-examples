@@ -1,4 +1,4 @@
-# Configure the page appearance in CESDK
+# Configure the Page Appearance in the CreativeEditor SDK
 
 
 ## Running the sample
