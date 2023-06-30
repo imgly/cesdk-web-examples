@@ -28,7 +28,7 @@ const CaseComponent = () => {
         en: {
           'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
           ...pageFormatI18n(PAGE_FORMAT_ASSETS.assets),
-          'libraries.ly.img.video.templates.label': 'Example Templates'
+          'libraries.ly.img.video.templates.label': 'Example Videos'
         }
       },
       presets: {
@@ -94,7 +94,6 @@ const CaseComponent = () => {
         async (instance) => {
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({
-            sceneMode: 'Video',
             // We want to replace the demo audio assets with our own
             excludeAssetSourceIds: ['ly.img.audio']
           });

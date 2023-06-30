@@ -150,7 +150,7 @@ const CaseComponent = () => {
   };
 
   return (
-    <div className="gap-lg flex flex-grow flex-col items-center justify-center">
+    <div className="gap-lg flex flex-grow flex-col items-center">
       <div className="gap-sm flex flex-col items-center">
         <h3 className="h4">Paste Yelp Restaurant URL</h3>
         <div className="gap-sm flex flex-wrap">

@@ -7,7 +7,7 @@ import {
   useEffect,
   useState
 } from 'react';
-import { zoomToSelectedText } from './CreativeEngineUtils';
+import { getSortedPageIds, zoomToSelectedText } from './CreativeEngineUtils';
 import { useEngine } from './EngineContext';
 import { useEditMode } from './useEditMode';
 
@@ -117,7 +117,7 @@ export const SinglePageModeProvider = ({
         return;
       }
       const updateSortedPageIds = () => {
-        const sortedPageIds = engine.scene.getPages();
+        const sortedPageIds = getSortedPageIds(engine);
         setSortedPageIds((prevState) => {
           if (isEqual(prevState, sortedPageIds)) {
             return prevState; // Do not rerender
@@ -169,7 +169,7 @@ export const SinglePageModeProvider = ({
     sortedPageIds?.[0]
   );
   const setCurrentPageBlockId = useCallback(
-    (newPageBlockId: number) => {
+    (newPageBlockId) => {
       // We need to deselect all blocks before changing the page block
       engine.block
         .findAllSelected()

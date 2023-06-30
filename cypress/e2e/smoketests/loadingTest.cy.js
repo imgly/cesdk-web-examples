@@ -8,11 +8,9 @@ const folders = [
   'configure-licensing',
   'configure-page',
   'configure-presets-colorpalettes',
-  'configure-presets-images',
   'configure-presets-pageformats',
   'configure-presets-templates',
   'configure-presets-typefaces',
-  'configure-scene',
   'configure-ui-elements',
   'configure-ui-theming',
   'configure-variables',
@@ -37,10 +35,9 @@ const folders = [
   'guides-load-scene-from-string',
   'guides-save-scene-to-blob',
   'guides-save-scene-to-string',
-  'guides-scopes',
-  'guides-searchable-assets',
-  'guides-store-metadata',
-  'guides-uri-resolver'
+  'engine-guides-scopes',
+  'engine-guides-store-metadata',
+  'engine-guides-uri-resolver'
   // The integration examples require more custom setups
   // 'integrate-with-angular',
   // 'integrate-with-electron',

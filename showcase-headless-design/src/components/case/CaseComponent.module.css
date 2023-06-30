@@ -1,9 +1,8 @@
 .wrapper {
   display: flex;
   width: 100%;
-  flex-direction: column;
+  flex-direction: row;
   flex-grow: 1;
-  align-items: center;
   flex-wrap: wrap;
   padding: 1rem;
   gap: 4rem;
@@ -40,6 +39,5 @@
   position: relative;
   max-width: 640px;
   max-height: 400px;
-  flex-grow: 1;
   aspect-ratio: 640 / 400;
 }

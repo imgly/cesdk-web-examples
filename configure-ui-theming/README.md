@@ -1,4 +1,4 @@
-# CESDK Theming Example
+# Theming Example in the CreativeEditor SDK
 
 ## Running the sample
 
