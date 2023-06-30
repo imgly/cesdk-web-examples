@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import { useEditor } from '../../EditorContext';
-import { ReactComponent as ImageIcon } from '../../icons/Image.svg';
-import { ReactComponent as ShapeIcon } from '../../icons/Shape.svg';
-import { ReactComponent as StickerIcon } from '../../icons/Sticker.svg';
-import { ReactComponent as TextIcon } from '../../icons/Text.svg';
-import { ReactComponent as UploadIcon } from '../../icons/Upload.svg';
+import ImageIcon from '../../icons/Image.svg';
+import ShapeIcon from '../../icons/Shape.svg';
+import StickerIcon from '../../icons/Sticker.svg';
+import TextIcon from '../../icons/Text.svg';
+import UploadIcon from '../../icons/Upload.svg';
 import { uploadFile } from '../../lib/upload';
 import AddImageSecondary from '../AddImageSecondary/AddImageSecondary';
 import AddShapeSecondary from '../AddShapeSecondary/AddShapeSecondary';

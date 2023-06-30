@@ -2,7 +2,7 @@
   <div id="app">
     <CreativeEditorSDK
       :config="{
-        /* baseURL: 'assets/' */
+        callbacks: { onUpload: 'local' } // Enables local uploads in Asset Library. 
       }"
     />
   </div>

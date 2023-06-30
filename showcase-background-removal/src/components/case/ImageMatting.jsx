@@ -1,31 +1,31 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import classes from './ImageMatting.module.css';
-import { ReactComponent as ChevronLeftIcon } from './icons/ChevronLeft.svg';
-import { ReactComponent as EditIcon } from './icons/Edit.svg';
-import { ReactComponent as SpinnerIcon } from './icons/Spinner.svg';
-import { ReactComponent as UploadIcon } from './icons/Upload.svg';
+import ChevronLeftIcon from './icons/ChevronLeft.svg';
+import EditIcon from './icons/Edit.svg';
+import SpinnerIcon from './icons/Spinner.svg';
+import UploadIcon from './icons/Upload.svg';
 import { useImageMatting } from './utils/matting';
 
 const IMAGE_URLS = [
   {
-    url: 'https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=good-faces-xmSWVeGEnJw-unsplash.jpg&w=1920',
+    url: 'https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=good-faces-xmSWVeGEnJw-unsplash.jpg',
     alt: 'a woman with an afro is looking at the camera by Good Faces'
   },
   {
-    url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=dom-hill-nimElTcTNyY-unsplash.jpg&w=1920',
+    url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=dom-hill-nimElTcTNyY-unsplash.jpg',
     alt: 'woman in yellow tracksuit standing on basketball court side by Dom Hill'
   },
   {
-    url: 'https://images.unsplash.com/photo-1628035514544-ebd32b766089?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=kristian-angelo-KW-jwdSgOw4-unsplash.jpg&w=1920',
+    url: 'https://images.unsplash.com/photo-1628035514544-ebd32b766089?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=kristian-angelo-KW-jwdSgOw4-unsplash.jpg',
     alt: 'man in black leather jacket riding black motorcycle by Kristian Angelo'
   },
   {
-    url: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=pauline-loroy-U3aF7hgUSrk-unsplash.jpg&w=1920',
+    url: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=pauline-loroy-U3aF7hgUSrk-unsplash.jpg',
     alt: 'white and brown long coat large dog by Pauline Loroy'
   },
   {
-    url: 'https://images.unsplash.com/photo-1540492649367-c8565a571e4b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=andreas-m-p40QuGwGCcw-unsplash.jpg&w=1920',
+    url: 'https://images.unsplash.com/photo-1540492649367-c8565a571e4b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=andreas-m-p40QuGwGCcw-unsplash.jpg',
     alt: 'green plant on yellow ceramic pot by Andreas M'
   }
 ];

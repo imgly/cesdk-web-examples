@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/assets',
   // highlight-i18n-label
   i18n: {
     en: {
@@ -9,18 +9,6 @@ let config = {
     }
   },
   // highlight-i18n-label
-  assetSources: {
-    emptySource: {
-      findAssets: () => {
-        return Promise.resolve({
-          assets: [],
-          total: 0,
-          currentPage: 1,
-          nextPage: undefined
-        });
-      }
-    }
-  },
   ui: {
     elements: {
       libraries: {
@@ -102,9 +90,27 @@ let config = {
         }
       }
     }
-  }
+  },
+  callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
 };
 
-CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
-  /** do something with the instance of CreativeEditor SDK **/
+CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
+  // Do something with the instance of CreativeEditor SDK, for example:
+  // Populate the asset library with default / demo asset sources.
+  instance.addDefaultAssetSources();
+  instance.addDemoAssetSources({ sceneMode: 'Design' });
+
+  instance.engine.asset.addSource({
+    id: 'emptySource',
+    findAssets: () => {
+      return Promise.resolve({
+        assets: [],
+        total: 0,
+        currentPage: 1,
+        nextPage: undefined
+      });
+    }
+  });
+
+  await instance.createDesignScene();
 });

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
-import { ReactComponent as AppearanceIcon } from '../../icons/Appearance.svg';
-import { ReactComponent as TextIcon } from '../../icons/Text.svg';
-import { ReactComponent as TextAlignMiddleIcon } from '../../icons/TextAlignCenter.svg';
+import AppearanceIcon from '../../icons/Appearance.svg';
+import TextIcon from '../../icons/Text.svg';
+import TextAlignMiddleIcon from '../../icons/TextAlignCenter.svg';
 import AlignmentSelect from '../AlignmentSelect/AlignmentSelect';
 import ChangeFontSecondary from '../ChangeFontSecondary/ChangeFontSecondary';
 import ChangeTextColorSecondary from '../ChangeTextColorSecondary/ChangeTextColorSecondary';

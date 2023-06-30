@@ -1,4 +1,4 @@
-# Integrate the CreativeEditor SDK with Vanilla JS
+# Create a Scene from an Image Element in the CreativeEditor SDK
 
 
 ## Running the sample

@@ -1,4 +1,5 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import useOnClickOutside from 'lib/useOnClickOutside';
 import { useEffect, useRef } from 'react';
 import { useImageMatting } from './utils/matting';
 
@@ -6,9 +7,13 @@ import classes from './CreativeEditor.module.css';
 
 const CreativeEditor = ({ closeEditor }) => {
   const cesdkContainer = useRef(null);
-  const overlayContainer = useRef(null);
 
-  const { imageUrl, hasProcessedImage } = useImageMatting();
+  const { imageUrl, hasProcessedImage, resetState } = useImageMatting();
+
+  function close() {
+    resetState();
+    closeEditor();
+  }
 
   useEffect(() => {
     const config = {
@@ -33,7 +38,7 @@ const CreativeEditor = ({ closeEditor }) => {
         }
       },
       callbacks: {
-        onBack: () => closeEditor(),
+        onBack: () => close(),
         onExport: 'download',
         onUpload: 'local'
       }
@@ -43,7 +48,6 @@ const CreativeEditor = ({ closeEditor }) => {
       CreativeEditorSDK.init(cesdkContainer.current, config).then(
         (instance) => {
           const [page] = instance.engine.block.findByType('page');
-          instance.engine.editor.setSettingBool('page/title/show', false);
           instance.engine.block.setFillEnabled(page, false);
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources();
@@ -56,22 +60,13 @@ const CreativeEditor = ({ closeEditor }) => {
         cesdk.dispose();
       }
     };
-  }, [cesdkContainer, hasProcessedImage, closeEditor, imageUrl]);
+  }, [cesdkContainer, hasProcessedImage, close, imageUrl]);
+
+  useOnClickOutside(cesdkContainer, close);
 
   if (hasProcessedImage) {
     return (
-      <div
-        className={classes.overlay}
-        ref={overlayContainer}
-        onClick={(event) => {
-          if (
-            overlayContainer.current &&
-            overlayContainer.current === event.target
-          ) {
-            closeEditor();
-          }
-        }}
-      >
+      <div className={classes.overlay}>
         <div ref={cesdkContainer} className={classes.cesdk}></div>
       </div>
     );

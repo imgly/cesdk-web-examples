@@ -1,4 +1,4 @@
-# Integrate the CreativeEditor SDK with Vanilla JS
+# Configure the Internationalization
 
 
 ## Running the sample

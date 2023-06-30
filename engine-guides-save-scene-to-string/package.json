@@ -1,5 +1,5 @@
 {
-  "name": "guides-save-scene-to-string",
+  "name": "save-scene-to-string",
   "version": "1.2.0",
   "private": true,
   "scripts": {

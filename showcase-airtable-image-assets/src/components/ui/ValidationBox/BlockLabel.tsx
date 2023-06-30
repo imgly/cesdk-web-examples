@@ -1,9 +1,9 @@
 import styles from './BlockLabel.module.css';
 
-import { ReactComponent as ImageIcon } from './icons/image.svg';
-import { ReactComponent as TextIcon } from './icons/text.svg';
-import { ReactComponent as ShapeIcon } from './icons/shape.svg';
-import { ReactComponent as StickerIcon } from './icons/sticker.svg';
+import ImageIcon from './icons/image.svg';
+import TextIcon from './icons/text.svg';
+import ShapeIcon from './icons/shape.svg';
+import StickerIcon from './icons/sticker.svg';
 
 export interface IBlockLabel {
   blockType:
