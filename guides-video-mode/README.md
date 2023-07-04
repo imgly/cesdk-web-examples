@@ -1,4 +1,4 @@
-# Create and Edit Videos
+# Video Modes in the CreativeEditor SDK
 
 
 ## Running the sample

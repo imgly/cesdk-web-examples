@@ -1,9 +1,9 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.14.0-rc.0/cesdk.umd.js';
 
 // highlight-config
-let config = {
+const config = {
   // highlight-baseurl
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.14.0-rc.0/assets',
   // highlight-baseurl
   // highlight-locale
   locale: 'en', // 'de'
@@ -14,21 +14,18 @@ let config = {
   // highlight-role
   role: 'Creator', // 'Adopter' 'Viewer'
   // highlight-role
-  // highlight-initialSceneMode
-  initialSceneMode: 'Design' // 'Video'
-  // highlight-initialSceneMode
-  // highlight-initialSceneString
-  initialSceneString: 'UBQ1ewoiZm9ybW…', // A scene string
-  // highlight-initialSceneString
-  // highlight-initialSceneURL
-  initialSceneURL: `${window.location.protocol}//${window.location.host}/example.scene`, // A URL pointing at a scene file
-  // highlight-initialSceneURL
-  // highlight-initialImageURL
-  initialImageURL: undefined, // A URL pointing to an image file
-  // highlight-initialImageURL
+  callbacks: { onUpload: 'local' }, // Enable local uploads in Asset Library.
+  // highlight-logger
+  logger: (message, logLevel) => {
+    console.log(`${logLevel}: ${message}}`);
+  }
+  // highlight-logger
 };
 // highlight-config
 
-CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
-  /** do something with the instance of CreativeEditor SDK **/
+CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
+  // Populate the asset library with default / demo asset sources.
+  instance.addDefaultAssetSources();
+  instance.addDemoAssetSources({ sceneMode: 'Design' });
+  await instance.createDesignScene();
 });

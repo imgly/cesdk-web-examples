@@ -1,8 +1,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
-import { useImageMatting } from './utils/matting';
-
 import classes from './CreativeEditor.module.css';
+import { useImageMatting } from './ImageMattingContext';
 
 const CreativeEditor = ({ closeEditor }) => {
   const cesdkContainer = useRef(null);
@@ -15,7 +14,7 @@ const CreativeEditor = ({ closeEditor }) => {
       role: 'Adopter',
       theme: 'light',
       initialImageURL: imageUrl,
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
           panels: {
@@ -58,26 +57,28 @@ const CreativeEditor = ({ closeEditor }) => {
     };
   }, [cesdkContainer, hasProcessedImage, closeEditor, imageUrl]);
 
-  if (hasProcessedImage) {
-    return (
-      <div
-        className={classes.overlay}
-        ref={overlayContainer}
-        onClick={(event) => {
-          if (
-            overlayContainer.current &&
-            overlayContainer.current === event.target
-          ) {
-            closeEditor();
-          }
-        }}
-      >
-        <div ref={cesdkContainer} className={classes.cesdk}></div>
-      </div>
-    );
-  } else {
+  if (!hasProcessedImage) {
     return null;
   }
+
+  return (
+    <div
+      className={classes.overlay}
+      ref={overlayContainer}
+      onClick={(event) => {
+        if (
+          overlayContainer.current &&
+          overlayContainer.current === event.target
+        ) {
+          closeEditor();
+        }
+      }}
+    >
+      <div className={classes.modal}>
+        <div ref={cesdkContainer} className={classes.cesdkContainer}></div>
+      </div>
+    </div>
+  );
 };
 
 export default CreativeEditor;

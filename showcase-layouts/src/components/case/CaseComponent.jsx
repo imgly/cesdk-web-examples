@@ -15,7 +15,7 @@ const CaseComponent = () => {
       role: 'Adopter',
       theme: 'light',
       initialSceneURL: caseAssetPath('/custom-layouts.scene'),
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onUpload: 'local'
       },

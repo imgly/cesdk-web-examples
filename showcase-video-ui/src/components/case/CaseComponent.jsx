@@ -23,7 +23,7 @@ const CaseComponent = () => {
       theme: 'light',
       initialSceneMode: 'Video',
       initialSceneURL: caseAssetPath('/templates/motion.scene'),
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       i18n: {
         en: {
           'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
@@ -121,8 +121,6 @@ const CaseComponent = () => {
             caseAssetPath('/page-formats'),
             createApplyFormatAsset(cesdk.engine)
           );
-
-          cesdk.engine.editor.addUndoStep();
         }
       );
     }

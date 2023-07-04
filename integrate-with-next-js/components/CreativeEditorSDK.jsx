@@ -1,10 +1,8 @@
-import React from 'react';
-
 // docs-integrate-nextjs-1
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 // docs-integrate-nextjs-1
 
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 // docs-integrate-nextjs-3
 const Component = (props = {}) => {
@@ -15,11 +13,17 @@ const Component = (props = {}) => {
     if (cesdk_container.current) {
       // Serve assets from IMG.LY CDN or locally
       props.config.baseURL =
-        'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets';
+        'https://cdn.img.ly/packages/imgly/cesdk-js/1.14.0-rc.0/assets';
+      // Enable local uploads in Asset Library
+      props.config.callbacks = { onUpload: 'local' };
 
-      CreativeEditorSDK.init(cesdk_container.current, props.config).then(
-        (instance) => {
-          /** do something with the instance of CreativeEditor SDK **/
+      CreativeEditorSDK.create(cesdk_container.current, props.config).then(
+        async (instance) => {
+          // Do something with the instance of CreativeEditor SDK, for example:
+          // Populate the asset library with default / demo asset sources.
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          await instance.createDesignScene();
         }
       );
     }

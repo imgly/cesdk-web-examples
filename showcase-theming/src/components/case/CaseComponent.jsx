@@ -48,7 +48,7 @@ const ThemingCESDK = () => {
       theme: chosenTheme,
       role: 'Adopter',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'

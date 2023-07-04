@@ -1,24 +1,30 @@
 // highlight-1
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.14.0-rc.0/cesdk.umd.js';
 // Import a node module when you work with a bundler:
-// import CreativeEngine from '@cesdk/engine';
+// import CreativeEditorSDK from '@cesdk/cesdk-js';
 // highlight-1
 
 // highlight-3
-let config = {
+const config = {
   // Serve assets from IMG.LY cdn or locally
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.9.2/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.14.0-rc.0/assets',
+  // Enable local uploads in Asset Library
+  callbacks: { onUpload: 'local' }
 };
 
-CreativeEditorSDK.init('#cesdk_container', config).then(async (editor) => {
-  /** do something with the instance of CreativeEditor SDK **/
+CreativeEditorSDK.create('#cesdk_container', config).then(async (editor) => {
+  // Do something with the instance of CreativeEditor SDK, for example:
+  // Populate the asset library with default / demo asset sources.
+  editor.addDefaultAssetSources();
+  editor.addDemoAssetSources({ sceneMode: 'Design' });
+  await editor.createDesignScene();
   // highlight-engine
-  let engine = editor.engine; // Access the engine directly if required
+  const engine = editor.engine; // Access the engine directly if required
   // highlight-engine
 
   // highlight-dispose
   // Dispose the Editor when done to cleanup all memories and dangling references
-  // editor.dispose(); 
+  // editor.dispose();
   // highlight-dispose
 });
- // highlight-3
+// highlight-3

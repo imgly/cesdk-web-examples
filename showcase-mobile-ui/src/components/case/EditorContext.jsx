@@ -76,7 +76,7 @@ export const EditorProvider = ({ children }) => {
         featureFlags: {
           preventScrolling: true
         },
-        license: process.env.REACT_APP_LICENSE
+        license: process.env.NEXT_PUBLIC_LICENSE
       };
 
       const creativeEngine = await CreativeEngine.init(config);
@@ -93,7 +93,6 @@ export const EditorProvider = ({ children }) => {
       await creativeEngine.scene.loadFromURL(
         caseAssetPath('/social-media.scene')
       );
-      creativeEngine.editor.addUndoStep();
 
       setFocusEngine(creativeEngine);
       setFocusEnabled(true);

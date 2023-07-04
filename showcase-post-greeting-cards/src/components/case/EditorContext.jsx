@@ -93,7 +93,6 @@ export const EditorProvider = ({ children }) => {
         await new Promise((resolve) => requestAnimationFrame(resolve));
         setCurrentPageIndex(0);
         setSceneIsLoaded(true);
-        creativeEngine.editor.addUndoStep();
       }
     };
     loadPostcardTemplate();
@@ -146,7 +145,7 @@ export const EditorProvider = ({ children }) => {
             show: false
           }
         },
-        license: process.env.REACT_APP_LICENSE
+        license: process.env.NEXT_PUBLIC_LICENSE
       };
       const creativeEngine = await CreativeEngine.init(config);
       setCreativeEngine(creativeEngine);

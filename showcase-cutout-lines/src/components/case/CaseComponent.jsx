@@ -12,7 +12,7 @@ const CaseComponent = () => {
       role: 'Creator',
       theme: 'light',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/cutout-lines/example.scene`,
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
           panels: {

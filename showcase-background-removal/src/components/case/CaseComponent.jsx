@@ -1,9 +1,8 @@
 import { useState } from 'react';
+import classes from './CaseComponent.module.css';
 import CreativeEditor from './CreativeEditor';
 import ImageMatting from './ImageMatting';
-import { ImageMattingContextProvider } from './utils/matting';
-
-import classes from './CaseComponent.module.css';
+import { ImageMattingContextProvider } from './ImageMattingContext';
 
 const CaseComponent = () => {
   const [isEditorOpen, setEditorOpen] = useState(false);

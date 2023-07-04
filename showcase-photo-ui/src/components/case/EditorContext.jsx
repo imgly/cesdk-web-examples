@@ -99,7 +99,7 @@ export const EditorProvider = ({ children }) => {
             show: false
           }
         },
-        license: process.env.REACT_APP_LICENSE
+        license: process.env.NEXT_PUBLIC_LICENSE
       };
 
       engine = await CreativeEngine.init(config);
@@ -192,7 +192,6 @@ async function setupPhotoScene(engine, src) {
   await engine.block.setClipped(page, false);
 
   engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
-  engine.editor.addUndoStep();
 }
 
 /**
