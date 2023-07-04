@@ -93,7 +93,6 @@ export const EditorProvider = ({ children }) => {
       await creativeEngine.scene.loadFromURL(
         caseAssetPath('/social-media.scene')
       );
-      creativeEngine.editor.addUndoStep();
 
       setFocusEngine(creativeEngine);
       setFocusEnabled(true);

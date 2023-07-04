@@ -1,17 +1,10 @@
-import { buildGithubUrl } from 'lib/paths';
-
 let GETTY_API_URL = ''; // INSERT YOUR GETTY PROXY URL HERE
 
 
 export const findGettyAssets = async (queryData) => {
   if (GETTY_API_URL === '' && !window.gettyWarning) {
     window.gettyWarning = true;
-    alert(
-      `Please provide your Getty Images proxy api url. For more information see ${buildGithubUrl(
-        'getty-images-image-assets',
-        'gettyAssetLibrary.js'
-      )}.`
-    );
+    alert(`Please provide your Getty Images proxy api url.`);
     return;
   }
 

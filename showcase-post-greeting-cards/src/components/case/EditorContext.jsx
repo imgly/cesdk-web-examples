@@ -93,7 +93,6 @@ export const EditorProvider = ({ children }) => {
         await new Promise((resolve) => requestAnimationFrame(resolve));
         setCurrentPageIndex(0);
         setSceneIsLoaded(true);
-        creativeEngine.editor.addUndoStep();
       }
     };
     loadPostcardTemplate();

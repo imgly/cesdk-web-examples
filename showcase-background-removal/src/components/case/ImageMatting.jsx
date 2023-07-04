@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import classes from './ImageMatting.module.css';
+import { useMemo, useEffect, useState } from 'react';
 import { ReactComponent as ChevronLeftIcon } from './icons/ChevronLeft.svg';
 import { ReactComponent as EditIcon } from './icons/Edit.svg';
 import { ReactComponent as SpinnerIcon } from './icons/Spinner.svg';
 import { ReactComponent as UploadIcon } from './icons/Upload.svg';
-import { useImageMatting } from './utils/matting';
+import classes from './ImageMatting.module.css';
+import { useImageMatting } from './ImageMattingContext';
 
 const IMAGE_URLS = [
   {
@@ -32,26 +32,26 @@ const IMAGE_URLS = [
 
 function ImageMatting({ openEditor }) {
   const {
-    handleImageUpload,
     imageUrl,
     hasProcessedImage,
     isProcessing,
     processMessage,
     resetState,
+    processImage,
     inferenceTime
   } = useImageMatting();
-  // NOTE: Checking for the process message string is quiet brittle and might
-  // need a better solution in the future, especially if we are going to use
-  // the image matting feature in the future for other showcases and might need
-  // to change that string.
-  const isProcessingImage =
-    isProcessing && processMessage === 'Processing Image';
+
   const [stopwatch, setStopwatch] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const showUploadScreen = useMemo(() => {
+    return !isProcessing && !hasProcessedImage;
+  }, [isProcessing, hasProcessedImage]);
 
   useEffect(() => {
     let timerInstance;
 
-    if (isProcessingImage) {
+    if (isProcessing) {
       timerInstance = setInterval(() => {
         setStopwatch((time) => time + 0.01);
       }, 10);
@@ -61,7 +61,7 @@ function ImageMatting({ openEditor }) {
     }
 
     return () => clearInterval(timerInstance);
-  }, [isProcessing, processMessage, isProcessingImage]);
+  }, [isProcessing, processMessage, isProcessing]);
 
   return (
     <div className={classes.block}>
@@ -73,7 +73,44 @@ function ImageMatting({ openEditor }) {
         </div>
       )}
 
-      <div className={classNames(classes.preview)}>
+      <div
+        className={classNames(classes.preview, {
+          [classes.dragging]: isDragging
+        })}
+        onDragLeave={(e) => {
+          if (!showUploadScreen) return;
+
+          e.preventDefault();
+          e.stopPropagation();
+          setIsDragging(false);
+        }}
+        onDragEnter={(e) => {
+          if (!showUploadScreen) return;
+
+          e.preventDefault();
+          e.stopPropagation();
+          setIsDragging(true);
+        }}
+        onDragOver={(e) => {
+          if (!showUploadScreen) return;
+
+          e.preventDefault();
+          e.stopPropagation();
+          setIsDragging(true);
+        }}
+        onDrop={(e) => {
+          if (!showUploadScreen) return;
+
+          e.preventDefault();
+          e.stopPropagation();
+          setIsDragging(false);
+          let draggedData = e.dataTransfer;
+          let [file] = draggedData.files;
+          const objectURL = URL.createObjectURL(file);
+
+          processImage(objectURL);
+        }}
+      >
         {(isProcessing || hasProcessedImage) && (
           <img
             className={classNames(classes.imagePreview, {
@@ -105,7 +142,7 @@ function ImageMatting({ openEditor }) {
                   const [file] = event.target.files;
                   const objectURL = URL.createObjectURL(file);
 
-                  handleImageUpload(objectURL);
+                  processImage(objectURL);
                 }}
                 accept="image/png, image/jpeg"
               />
@@ -118,7 +155,7 @@ function ImageMatting({ openEditor }) {
           <div className={classes.processingOverlay}>
             <SpinnerIcon />
             <p className={classes.processMessage}>{processMessage}</p>
-            {isProcessingImage && (
+            {isProcessing && (
               <p className={classes.processStatus}>
                 {stopwatch.toFixed(2) + 's'}
                 {inferenceTime !== 0 && '/' + inferenceTime.toFixed(2) + 's'}
@@ -127,7 +164,7 @@ function ImageMatting({ openEditor }) {
           </div>
         )}
       </div>
-      {!isProcessing && !hasProcessedImage && (
+      {showUploadScreen && (
         <div className={classes.sampleImagesWrapper}>
           <span>Or try these examples:</span>
 
@@ -137,7 +174,7 @@ function ImageMatting({ openEditor }) {
                 key={url}
                 className={classes.sampleImage}
                 onClick={() => {
-                  handleImageUpload(url);
+                  processImage(url);
                 }}
               >
                 <img src={url} alt={alt} />

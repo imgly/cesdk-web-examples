@@ -121,8 +121,6 @@ const CaseComponent = () => {
             caseAssetPath('/page-formats'),
             createApplyFormatAsset(cesdk.engine)
           );
-
-          cesdk.engine.editor.addUndoStep();
         }
       );
     }
