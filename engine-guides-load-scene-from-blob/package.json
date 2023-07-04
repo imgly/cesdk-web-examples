@@ -1,5 +1,5 @@
 {
-  "name": "guides-load-scene-from-blob",
+  "name": "load-scene-from-blob",
   "version": "1.2.0",
   "private": true,
   "scripts": {

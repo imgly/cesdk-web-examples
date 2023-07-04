@@ -1,4 +1,3 @@
-import { buildGithubUrl } from 'lib/paths';
 import { createPexelsApi } from './pexelsApiWrapper';
 
 let PEXELS_API_KEY = ''; // INSERT YOUR PEXELS API KEY HERE
@@ -9,12 +8,7 @@ const PexelsApi = createPexelsApi(PEXELS_API_KEY);
 export async function findPexelsAssets(queryData) {
   if (PEXELS_API_KEY === '' && !window.pexelsWarning) {
     window.pexelsWarning = true;
-    alert(
-      `Please provide your Pexels api key. For more information see ${buildGithubUrl(
-        'pexels-image-assets',
-        'pexelsAssetLibrary.js'
-      )}.`
-    );
+    alert(`Please provide your Pexels api key.`);
   }
   if (queryData.query) {
     return await getSearchResults(queryData);

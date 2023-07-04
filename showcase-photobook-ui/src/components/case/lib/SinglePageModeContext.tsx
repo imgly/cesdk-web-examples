@@ -332,7 +332,6 @@ export const SinglePageModeProvider = ({
       if (currentPageBlockId) {
         let oldHistory = engine.editor.getActiveHistory();
         let newHistory = engine.editor.createHistory();
-        engine.editor.addUndoStep();
         engine.editor.setActiveHistory(newHistory);
         engine.editor.destroyHistory(oldHistory);
       }

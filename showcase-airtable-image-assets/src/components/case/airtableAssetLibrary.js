@@ -1,5 +1,4 @@
 import Airtable from 'airtable';
-import { buildGithubUrl } from 'lib/paths';
 
 // This custom asset library demonstrates how to use an arbitrary API as asset source.
 // Airtable is a SaaS product that provides extensible spreadsheets.
@@ -8,7 +7,7 @@ import { buildGithubUrl } from 'lib/paths';
 // in our asset library.
 
 // Insert a readonly api key:
-// See: https://support.airtable.com/hc/en-us/articles/360056249614-Creating-a-read-only-API-key
+// See: https://support.airtab∏le.com/hc/en-us/articles/360056249614-Creating-a-read-only-API-key
 let AIRTABLE_API_KEY = '';
 const AIRTABLE_DATABASE_ID = 'appHAZoD6Qj3teOmr';
 
@@ -57,12 +56,7 @@ export const queryAirtable = ({ query, page, perPage }) => {
 export const findAirtableAssets = async (queryData) => {
   if (AIRTABLE_API_KEY === '' && !window.airtableWarning) {
     window.airtableWarning = true;
-    alert(
-      `Please provide your airtable api key. For more information see ${buildGithubUrl(
-        'airtable-image-assets',
-        'airtableAssetLibrary.js'
-      )}.`
-    );
+    alert(`Please provide your airtable api key.`);
     return;
   }
 

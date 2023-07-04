@@ -1,4 +1,4 @@
-# CESDK Theming Example
+# Configure UI Elements in the CreativeEditor SDK
 
 ## Running the sample
 

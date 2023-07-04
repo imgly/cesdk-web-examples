@@ -192,7 +192,6 @@ async function setupPhotoScene(engine, src) {
   await engine.block.setClipped(page, false);
 
   engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
-  engine.editor.addUndoStep();
 }
 
 /**

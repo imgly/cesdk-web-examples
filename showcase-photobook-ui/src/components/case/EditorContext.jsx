@@ -63,7 +63,6 @@ export const EditorProvider = ({ children }) => {
         setFocusEnabled(true);
         setPagePreviewsEnabled(true);
         setSceneIsLoaded(true);
-        creativeEngine.editor.addUndoStep();
       }
     };
     loadTemplate();
