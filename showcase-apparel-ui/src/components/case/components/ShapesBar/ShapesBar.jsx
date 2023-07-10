@@ -1,7 +1,7 @@
-import { ReactComponent as LineIcon } from '../../icons/shapes/line.svg';
-import { ReactComponent as PolygonIcon } from '../../icons/shapes/polygon.svg';
-import { ReactComponent as RectIcon } from '../../icons/shapes/rect.svg';
-import { ReactComponent as StarIcon } from '../../icons/shapes/star.svg';
+import LineIcon from '../../icons/shapes/line.svg';
+import PolygonIcon from '../../icons/shapes/polygon.svg';
+import RectIcon from '../../icons/shapes/rect.svg';
+import StarIcon from '../../icons/shapes/star.svg';
 
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import IconButton from '../IconButton/IconButton';

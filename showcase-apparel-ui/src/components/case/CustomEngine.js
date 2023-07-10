@@ -16,6 +16,7 @@ export class CustomEngine {
     await this.#engine.scene.loadFromURL(url);
     this.enableEditMode();
     this.#engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
+    this.#engine.editor.addUndoStep();
   };
 
   getEditorState = () => {

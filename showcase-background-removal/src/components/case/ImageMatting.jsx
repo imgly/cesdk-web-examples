@@ -1,57 +1,57 @@
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { useMemo, useEffect, useState } from 'react';
-import { ReactComponent as ChevronLeftIcon } from './icons/ChevronLeft.svg';
-import { ReactComponent as EditIcon } from './icons/Edit.svg';
-import { ReactComponent as SpinnerIcon } from './icons/Spinner.svg';
-import { ReactComponent as UploadIcon } from './icons/Upload.svg';
 import classes from './ImageMatting.module.css';
-import { useImageMatting } from './ImageMattingContext';
+import ChevronLeftIcon from './icons/ChevronLeft.svg';
+import EditIcon from './icons/Edit.svg';
+import SpinnerIcon from './icons/Spinner.svg';
+import UploadIcon from './icons/Upload.svg';
+import { useImageMatting } from './utils/matting';
 
 const IMAGE_URLS = [
   {
-    url: 'https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=good-faces-xmSWVeGEnJw-unsplash.jpg&w=1920',
+    url: 'https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=good-faces-xmSWVeGEnJw-unsplash.jpg',
     alt: 'a woman with an afro is looking at the camera by Good Faces'
   },
   {
-    url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=dom-hill-nimElTcTNyY-unsplash.jpg&w=1920',
+    url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=dom-hill-nimElTcTNyY-unsplash.jpg',
     alt: 'woman in yellow tracksuit standing on basketball court side by Dom Hill'
   },
   {
-    url: 'https://images.unsplash.com/photo-1628035514544-ebd32b766089?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=kristian-angelo-KW-jwdSgOw4-unsplash.jpg&w=1920',
+    url: 'https://images.unsplash.com/photo-1628035514544-ebd32b766089?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=kristian-angelo-KW-jwdSgOw4-unsplash.jpg',
     alt: 'man in black leather jacket riding black motorcycle by Kristian Angelo'
   },
   {
-    url: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=pauline-loroy-U3aF7hgUSrk-unsplash.jpg&w=1920',
+    url: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=pauline-loroy-U3aF7hgUSrk-unsplash.jpg',
     alt: 'white and brown long coat large dog by Pauline Loroy'
   },
   {
-    url: 'https://images.unsplash.com/photo-1540492649367-c8565a571e4b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=andreas-m-p40QuGwGCcw-unsplash.jpg&w=1920',
+    url: 'https://images.unsplash.com/photo-1540492649367-c8565a571e4b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=andreas-m-p40QuGwGCcw-unsplash.jpg',
     alt: 'green plant on yellow ceramic pot by Andreas M'
   }
 ];
 
 function ImageMatting({ openEditor }) {
   const {
+    handleImageUpload,
     imageUrl,
     hasProcessedImage,
     isProcessing,
     processMessage,
     resetState,
-    processImage,
     inferenceTime
   } = useImageMatting();
-
+  // NOTE: Checking for the process message string is quiet brittle and might
+  // need a better solution in the future, especially if we are going to use
+  // the image matting feature in the future for other showcases and might need
+  // to change that string.
+  const isProcessingImage =
+    isProcessing && processMessage === 'Processing Image';
   const [stopwatch, setStopwatch] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-
-  const showUploadScreen = useMemo(() => {
-    return !isProcessing && !hasProcessedImage;
-  }, [isProcessing, hasProcessedImage]);
 
   useEffect(() => {
     let timerInstance;
 
-    if (isProcessing) {
+    if (isProcessingImage) {
       timerInstance = setInterval(() => {
         setStopwatch((time) => time + 0.01);
       }, 10);
@@ -61,7 +61,7 @@ function ImageMatting({ openEditor }) {
     }
 
     return () => clearInterval(timerInstance);
-  }, [isProcessing, processMessage, isProcessing]);
+  }, [isProcessing, processMessage, isProcessingImage]);
 
   return (
     <div className={classes.block}>
@@ -73,44 +73,7 @@ function ImageMatting({ openEditor }) {
         </div>
       )}
 
-      <div
-        className={classNames(classes.preview, {
-          [classes.dragging]: isDragging
-        })}
-        onDragLeave={(e) => {
-          if (!showUploadScreen) return;
-
-          e.preventDefault();
-          e.stopPropagation();
-          setIsDragging(false);
-        }}
-        onDragEnter={(e) => {
-          if (!showUploadScreen) return;
-
-          e.preventDefault();
-          e.stopPropagation();
-          setIsDragging(true);
-        }}
-        onDragOver={(e) => {
-          if (!showUploadScreen) return;
-
-          e.preventDefault();
-          e.stopPropagation();
-          setIsDragging(true);
-        }}
-        onDrop={(e) => {
-          if (!showUploadScreen) return;
-
-          e.preventDefault();
-          e.stopPropagation();
-          setIsDragging(false);
-          let draggedData = e.dataTransfer;
-          let [file] = draggedData.files;
-          const objectURL = URL.createObjectURL(file);
-
-          processImage(objectURL);
-        }}
-      >
+      <div className={classNames(classes.preview)}>
         {(isProcessing || hasProcessedImage) && (
           <img
             className={classNames(classes.imagePreview, {
@@ -142,7 +105,7 @@ function ImageMatting({ openEditor }) {
                   const [file] = event.target.files;
                   const objectURL = URL.createObjectURL(file);
 
-                  processImage(objectURL);
+                  handleImageUpload(objectURL);
                 }}
                 accept="image/png, image/jpeg"
               />
@@ -155,7 +118,7 @@ function ImageMatting({ openEditor }) {
           <div className={classes.processingOverlay}>
             <SpinnerIcon />
             <p className={classes.processMessage}>{processMessage}</p>
-            {isProcessing && (
+            {isProcessingImage && (
               <p className={classes.processStatus}>
                 {stopwatch.toFixed(2) + 's'}
                 {inferenceTime !== 0 && '/' + inferenceTime.toFixed(2) + 's'}
@@ -164,7 +127,7 @@ function ImageMatting({ openEditor }) {
           </div>
         )}
       </div>
-      {showUploadScreen && (
+      {!isProcessing && !hasProcessedImage && (
         <div className={classes.sampleImagesWrapper}>
           <span>Or try these examples:</span>
 
@@ -174,7 +137,7 @@ function ImageMatting({ openEditor }) {
                 key={url}
                 className={classes.sampleImage}
                 onClick={() => {
-                  processImage(url);
+                  handleImageUpload(url);
                 }}
               >
                 <img src={url} alt={alt} />

@@ -3,8 +3,8 @@ import { useEditor } from '../../EditorContext';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import AdjustmentsBarButton from '../AdjustmentsBarButton/AdjustmentsBarButton';
 
-import { ReactComponent as CheckmarkIcon } from '../../icons/Checkmark.svg';
-import { ReactComponent as ResetIcon } from '../../icons/Reset.svg';
+import CheckmarkIcon from '../../icons/Checkmark.svg';
+import ResetIcon from '../../icons/Reset.svg';
 
 const CropModeSecondary = () => {
   const {

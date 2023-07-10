@@ -25,6 +25,8 @@
     "src"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/components/case/**/image-matting-lib-dist.js/",
+    "src/components/case/**/image-matting-lib/"
   ]
 }

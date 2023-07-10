@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { caseAssetPath } from '../../util';
 import ChangeImageFileSecondary from '../ChangeImageFileSecondary/ChangeImageFileSecondary';
 
-import { ReactComponent as ReplaceIcon } from '../../icons/Replace.svg';
+import ReplaceIcon from '../../icons/Replace.svg';
 import DeleteSelectedButton from '../DeleteSelectedButton/DeleteSelectedButton';
 import IconButton from '../IconButton/IconButton';
 import { useEditor } from '../../EditorContext';
