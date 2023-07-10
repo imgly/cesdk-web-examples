@@ -31,7 +31,7 @@
         // docs-integrate-electron-3
         let config = {
           // Serve assets from IMG.LY cdn or locally
-          baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/assets',
+          baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.1/assets',
           // Enable local uploads in Asset Library
           callbacks: { onUpload: 'local' }
         };
@@ -39,6 +39,7 @@
         CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
           // Do something with the instance of CreativeEditor SDK, for example:
           // Populate the asset library with default / demo asset sources.
+          console.log('after init')
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({ sceneMode: 'Design' });
           await instance.createDesignScene();

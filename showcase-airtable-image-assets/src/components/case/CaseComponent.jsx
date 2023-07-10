@@ -1,17 +1,27 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
-import { airtableAssetLibrary } from './airtableAssetLibrary';
+import { findAirtableAssets } from './airtableAssetLibrary';
 
 const CaseComponent = () => {
   const cesdkContainer = useRef(null);
 
   useEffect(() => {
 
+    const assetSources = {
+      airtable: {
+        findAssets: findAirtableAssets,
+        credits: {
+          name: 'Airtable',
+          url: 'https://airtable.com/shr4x8s9jqaxiJxm5/tblSLR9GBwiVwFS8z?backgroundColor=orange'
+        }
+      }
+    };
+
     let cesdk;
     let config = {
       role: 'Adopter',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/airtable-image-assets/airtable.scene`,
-      license: process.env.REACT_APP_LICENSE,
+      initialSceneURL: `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/airtable-image-assets/airtable.scene`,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       page: {
         title: {
           show: false
@@ -74,6 +84,7 @@ const CaseComponent = () => {
           }
         }
       },
+      assetSources,
       i18n: {
         en: {
           'libraries.airtable.label': 'Airtable'
@@ -85,7 +96,6 @@ const CaseComponent = () => {
         (instance) => {
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources();
-          instance.engine.asset.addSource(airtableAssetLibrary);
           cesdk = instance;
         }
       );

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import useOnClickOutside from 'lib/useOnClickOutside';
 import { cloneElement, ReactElement, useRef, useState } from 'react';
 import { HexColorInput, HexColorPicker } from 'react-colorful';
-import { ReactComponent as CaretBottom } from './CaretBottom.svg';
+import CaretBottom from './CaretBottom.svg';
 import classes from './ColorPicker.module.css';
 import useDebounceCallback from './UseDebounceCallback';
 

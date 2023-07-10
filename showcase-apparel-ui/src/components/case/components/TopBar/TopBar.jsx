@@ -2,10 +2,10 @@ import classNames from 'classnames';
 import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
 import { useState } from 'react';
 import { useEditor } from '../../EditorContext';
-import { ReactComponent as DownloadIcon } from '../../icons/Download.svg';
-import { ReactComponent as LoadingSpinnerIcon } from '../../icons/LoadingSpinner.svg';
-import { ReactComponent as RedoIcon } from '../../icons/Redo.svg';
-import { ReactComponent as UndoIcon } from '../../icons/Undo.svg';
+import DownloadIcon from '../../icons/Download.svg';
+import LoadingSpinnerIcon from '../../icons/LoadingSpinner.svg';
+import RedoIcon from '../../icons/Redo.svg';
+import UndoIcon from '../../icons/Undo.svg';
 import classes from './TopBar.module.css';
 
 const localDownload = (data, filename) => {

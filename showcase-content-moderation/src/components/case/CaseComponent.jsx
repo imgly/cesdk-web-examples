@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState
 } from 'react';
-import { ReactComponent as RefreshIcon } from './refresh.svg';
+import RefreshIcon from './refresh.svg';
 import { checkImageContent, selectAllBlocks } from './restrictionsUtility';
 
 const ImageComplianceCESDK = () => {
@@ -37,9 +37,9 @@ const ImageComplianceCESDK = () => {
   useEffect(() => {
     let config = {
       role: 'Adopter',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       theme: 'light',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/content-moderation/example.scene`,
+      initialSceneURL: `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/content-moderation/example.scene`,
       ui: {
         elements: {
           panels: {

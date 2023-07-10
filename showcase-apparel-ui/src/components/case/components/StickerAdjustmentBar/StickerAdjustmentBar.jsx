@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import ChangeStickerFileSecondary from '../ChangeStickerFileSecondary/ChangeStickerFileSecondary';
 
-import { ReactComponent as ReplaceIcon } from '../../icons/Replace.svg';
+import ReplaceIcon from '../../icons/Replace.svg';
 import DeleteSelectedButton from '../DeleteSelectedButton/DeleteSelectedButton';
 import IconButton from '../IconButton/IconButton';
 
