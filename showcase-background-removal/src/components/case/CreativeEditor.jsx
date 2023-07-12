@@ -14,7 +14,7 @@ const CreativeEditor = ({ closeEditor }) => {
       role: 'Adopter',
       theme: 'light',
       initialImageURL: imageUrl,
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
           panels: {

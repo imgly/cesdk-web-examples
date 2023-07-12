@@ -44,7 +44,7 @@ const CaseComponent = () => {
       role: 'Adopter',
       theme: 'light',
       initialSceneURL: caseAssetPath('/page-sizes.scene'),
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'

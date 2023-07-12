@@ -23,7 +23,7 @@ const CaseComponent = () => {
                   show: false
                 }
               },
-              license: process.env.REACT_APP_LICENSE
+              license: process.env.NEXT_PUBLIC_LICENSE
             }}
           >
             <SinglePageModeProvider

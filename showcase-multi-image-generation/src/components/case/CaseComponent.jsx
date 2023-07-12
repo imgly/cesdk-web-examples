@@ -85,7 +85,7 @@ const CaseComponent = () => {
   useEffect(() => {
 
     const config = {
-      license: process.env.REACT_APP_LICENSE
+      license: process.env.NEXT_PUBLIC_LICENSE
     };
     CreativeEngine.init(config).then(async (instance) => {
       instance.addDefaultAssetSources();
