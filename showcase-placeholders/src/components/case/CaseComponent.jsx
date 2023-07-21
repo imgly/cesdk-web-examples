@@ -77,7 +77,7 @@ const CaseComponent = () => {
     let _cesdk;
     const config = {
       ...ROLE_OPTIONS.find(({ name }) => name === currentRole).cesdkConfig,
-      license: process.env.REACT_APP_LICENSE
+      license: process.env.NEXT_PUBLIC_LICENSE
     };
     if (currentScene) {
       config.initialSceneString = currentScene;

@@ -1,3 +1,4 @@
+import { buildGithubUrl } from 'lib/paths';
 import * as unsplash from 'unsplash-js';
 
 // We use the official javascript client to communicate with unsplash https://github.com/unsplash/unsplash-js
@@ -15,7 +16,12 @@ const unsplashApi = unsplash.createApi({
 export const findUnsplashAssets = async (queryData) => {
   if (UNSPLASH_API_URL === '' && !window.unsplashWarning) {
     window.unsplashWarning = true;
-    alert(`Please provide your unsplash api url.`);
+    alert(
+      `Please provide your unsplash api url. For more information see ${buildGithubUrl(
+        'custom-asset-libraries',
+        'unsplashAssetLibrary.js'
+      )}.`
+    );
   }
 
   if (queryData.query) {

@@ -168,7 +168,7 @@ const CaseComponent = () => {
   useEffect(() => {
 
     const config = {
-      license: process.env.REACT_APP_LICENSE
+      license: process.env.NEXT_PUBLIC_LICENSE
     };
 
 
@@ -191,7 +191,7 @@ const CaseComponent = () => {
   }, [product]);
   useEffect(() => {
     let config = {
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       role: 'Adopter',
       initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.scenePath}`,
       callbacks: {
