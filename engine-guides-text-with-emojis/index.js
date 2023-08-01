@@ -1,9 +1,9 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.1-rc.0-republish-android/index.js';
 
 const config = {
   baseURL:
-    'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/assets'
+    'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.1-rc.0-republish-android/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {

@@ -201,10 +201,6 @@ button.ghost {
   height: 120px;
 }
 
-.dragging {
-  border: 2px dashed var(--imgly-black-light-color);
-}
-
 @keyframes rotate {
   from {
     transform: rotate(0deg);

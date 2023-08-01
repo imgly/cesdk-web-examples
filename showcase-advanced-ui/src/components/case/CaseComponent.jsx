@@ -7,8 +7,8 @@ const CaseComponent = () => {
     const config = {
       role: 'Creator',
       theme: 'dark',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/advanced-ui/example.scene`,
-      license: process.env.REACT_APP_LICENSE,
+      initialSceneURL: `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/advanced-ui/example.scene`,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
           view: 'advanced',

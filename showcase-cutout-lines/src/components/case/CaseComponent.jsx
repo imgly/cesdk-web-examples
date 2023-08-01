@@ -11,8 +11,8 @@ const CaseComponent = () => {
     const config = {
       role: 'Creator',
       theme: 'light',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/cutout-lines/example.scene`,
-      license: process.env.REACT_APP_LICENSE,
+      initialSceneURL: `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/cutout-lines/example.scene`,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
           panels: {
