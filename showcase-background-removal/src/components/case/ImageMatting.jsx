@@ -33,6 +33,7 @@ const IMAGE_URLS = [
 function ImageMatting({ openEditor }) {
   const {
     imageUrl,
+    originalImageUrl,
     hasProcessedImage,
     isProcessing,
     processMessage,
@@ -111,23 +112,33 @@ function ImageMatting({ openEditor }) {
           processImage(objectURL);
         }}
       >
-        {(isProcessing || hasProcessedImage) && (
+        {isProcessing && (
           <img
-            className={classNames(classes.imagePreview, {
-              [classes.blurred]: isProcessing
-            })}
+            className={classNames(classes.imagePreview, classes.blurred)}
             style={{
-              opacity: imageUrl && imageUrl !== '' ? 1 : 0
+              opacity: 1
             }}
-            src={imageUrl}
-            alt={hasProcessedImage ? 'Processed Image' : 'Uploaded Image'}
+            src={originalImageUrl}
+            alt={'Uploaded Image'}
           />
         )}
 
         {hasProcessedImage && (
-          <button className={classes.primary} onClick={() => openEditor()}>
-            <EditIcon /> Edit in CE.SDK
-          </button>
+          <>
+            <img
+              className={classNames(classes.imagePreview, {
+                [classes.blurred]: isProcessing
+              })}
+              style={{
+                opacity: 1
+              }}
+              src={imageUrl}
+              alt={'Processed Image'}
+            />
+            <button className={classes.primary} onClick={() => openEditor()}>
+              <EditIcon /> Edit in CE.SDK
+            </button>
+          </>
         )}
 
         {!isProcessing && !hasProcessedImage && (

@@ -41,19 +41,15 @@ const CaseComponent = () => {
   useEffect(() => {
     const config = {
       license: process.env.REACT_APP_LICENSE,
-      initialSceneString: currentTemplate.sceneString,
-      page: {
-        title: {
-          show: false
-        }
-      },
       callbacks: {
         onUpload: 'local'
       }
     };
     CreativeEngine.init(config).then(async (instance) => {
       instance.addDefaultAssetSources();
-      instance.addDemoAssetSources();
+      instance.addDemoAssetSources({ sceneMode: 'Design' });
+      instance.editor.setSettingBool('page/title/show', false);
+      await instance.scene.loadFromString(currentTemplate.sceneString);
       engineRef.current = instance;
       setInitialized(true);
     });

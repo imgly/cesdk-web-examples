@@ -18,12 +18,10 @@ const CaseComponent = () => {
               featureFlags: {
                 preventScrolling: true
               },
-              page: {
-                title: {
-                  show: false
-                }
-              },
               license: process.env.REACT_APP_LICENSE
+            }}
+            configure={(engine) => {
+              engine.editor.setSettingBool('page/title/show', false);
             }}
           >
             <SinglePageModeProvider

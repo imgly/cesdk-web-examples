@@ -6,17 +6,10 @@ const CaseComponent = () => {
   const cesdkContainer = useRef(null);
 
   useEffect(() => {
-
     let cesdk;
     let config = {
       role: 'Adopter',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/unsplash-image-assets/unsplash.scene`,
       license: process.env.REACT_APP_LICENSE,
-      page: {
-        title: {
-          show: false
-        }
-      },
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -82,12 +75,16 @@ const CaseComponent = () => {
     };
 
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
           instance.engine.asset.addSource(unsplashAssetLibrary);
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          instance.engine.editor.setSettingBool('page/title/show', false);
           cesdk = instance;
+          await cesdk.loadFromURL(
+            `${window.location.protocol + "//" + window.location.host}/cases/unsplash-image-assets/unsplash.scene`
+          );
         }
       );
     }

@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.15.0-rc.0/index.js';
 
 // Draw the text 'img.ly' to the demo canvas
 const canvas = document.getElementById("my-canvas");
@@ -11,7 +11,7 @@ const dataURL = canvas.toDataURL();
 // highlight-dataURL
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.15.0-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {

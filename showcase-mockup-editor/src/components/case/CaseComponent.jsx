@@ -166,7 +166,6 @@ const CaseComponent = () => {
 
   // Use engine to render mockup
   useEffect(() => {
-
     const config = {
       license: process.env.REACT_APP_LICENSE
     };
@@ -174,7 +173,7 @@ const CaseComponent = () => {
 
     CreativeEngine.init(config).then(async (instance) => {
       instance.addDefaultAssetSources();
-      instance.addDemoAssetSources();
+      instance.addDemoAssetSources({sceneMode: 'Design'});
       await instance.scene.loadFromURL(
         `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
@@ -193,7 +192,6 @@ const CaseComponent = () => {
     let config = {
       license: process.env.REACT_APP_LICENSE,
       role: 'Adopter',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.scenePath}`,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -220,10 +218,10 @@ const CaseComponent = () => {
     let cesdk;
     let unsubscribe;
     if (cesdkContainerRef.current) {
-      CreativeEditorSDK.init(cesdkContainerRef.current, config).then(
+      CreativeEditorSDK.create(cesdkContainerRef.current, config).then(
         (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({sceneMode: 'Design'});
           cesdk = instance;
           cesdkEngineRef.current = instance;
           unsubscribe = instance.engine.event.subscribe([], (events) => {
@@ -231,6 +229,7 @@ const CaseComponent = () => {
               setIsDirty(true);
             }
           });
+          instance.loadFromURL(`${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.scenePath}`);
           setCesdkEngineLoaded(true);
         }
       );

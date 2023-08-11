@@ -43,7 +43,6 @@ const CaseComponent = () => {
       locale: 'en',
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: caseAssetPath('/page-sizes.scene'),
       license: process.env.REACT_APP_LICENSE,
       callbacks: {
         onExport: 'download',
@@ -124,10 +123,10 @@ const CaseComponent = () => {
       }
     };
     if (cesdk_container.current) {
-      CreativeEditorSDK.init(cesdk_container.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdk_container.current, config).then(
+        async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({sceneMode: 'Design'});
           loadAssetSourceFromContentJSON(
             instance.engine,
             FORMAT_ASSETS,
@@ -144,6 +143,7 @@ const CaseComponent = () => {
           );
           cesdk.current = instance;
           engine.current = instance.engine;
+          await instance.loadFromURL(caseAssetPath('/page-sizes.scene'));
         }
       );
     }

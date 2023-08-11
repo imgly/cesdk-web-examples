@@ -10,7 +10,6 @@ const CaseComponent = () => {
     const config = {
       role: 'Adopter',
       theme: 'light',
-      initialImageURL: image?.full,
       callbacks: {
         onBack: () => setImage(),
         onExport: 'download',
@@ -36,12 +35,13 @@ const CaseComponent = () => {
     };
     let cesdk;
     if (image && cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({sceneMode: 'Design'});
           cesdk = instance;
           // Preselect the loaded Image
+          await cesdk.createFromImage(image.full);
           const blocks = cesdk.engine.block.findByType('image');
           if (blocks.length > 0) {
             cesdk.engine.block.setSelected(blocks[0], true);

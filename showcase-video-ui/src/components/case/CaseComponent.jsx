@@ -21,8 +21,6 @@ const CaseComponent = () => {
     /** @type {import("@cesdk/engine").Configuration} */
     const config = {
       theme: 'light',
-      initialSceneMode: 'Video',
-      initialSceneURL: caseAssetPath('/templates/motion.scene'),
       license: process.env.REACT_APP_LICENSE,
       i18n: {
         en: {
@@ -31,10 +29,8 @@ const CaseComponent = () => {
           'libraries.ly.img.video.templates.label': 'Example Templates'
         }
       },
-      presets: {
-        pageFormats: formatAssetsToPresets(PAGE_FORMAT_ASSETS)
-      },
       ui: {
+        pageFormats: formatAssetsToPresets(PAGE_FORMAT_ASSETS),
         elements: {
           view: 'default',
           panels: {
@@ -90,7 +86,7 @@ const CaseComponent = () => {
 
     let cesdk;
     if (cesdk_container.current) {
-      CreativeEditorSDK.init(cesdk_container.current, config).then(
+      CreativeEditorSDK.create(cesdk_container.current, config).then(
         async (instance) => {
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({
@@ -121,6 +117,7 @@ const CaseComponent = () => {
             caseAssetPath('/page-formats'),
             createApplyFormatAsset(cesdk.engine)
           );
+          cesdk.loadFromURL(caseAssetPath('/templates/motion.scene'));
         }
       );
     }

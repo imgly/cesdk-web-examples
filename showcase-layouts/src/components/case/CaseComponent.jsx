@@ -14,13 +14,21 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: caseAssetPath('/custom-layouts.scene'),
       license: process.env.REACT_APP_LICENSE,
       callbacks: {
+        onExport: 'download',
         onUpload: 'local'
       },
       ui: {
         elements: {
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
+          },
           dock: {
             groups: [
               {
@@ -77,10 +85,10 @@ const CaseComponent = () => {
     };
     let cesdk;
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({sceneMode: 'Design'});
 
           loadAssetSourceFromContentJSON(
             instance.engine,
@@ -90,6 +98,7 @@ const CaseComponent = () => {
           );
           cesdk = instance;
           engine.current = instance.engine;
+          await cesdk.loadFromURL(caseAssetPath('/custom-layouts.scene'));
         }
       );
     }
