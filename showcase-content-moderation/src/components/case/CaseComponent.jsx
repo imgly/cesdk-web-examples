@@ -39,7 +39,6 @@ const ImageComplianceCESDK = () => {
       role: 'Adopter',
       license: process.env.REACT_APP_LICENSE,
       theme: 'light',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/content-moderation/example.scene`,
       ui: {
         elements: {
           panels: {
@@ -61,11 +60,14 @@ const ImageComplianceCESDK = () => {
       }
     };
     if (cesdkContainer.current && !cesdkRef.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdkRef.current = instance;
+          await instance.loadFromURL(
+            `${window.location.protocol + "//" + window.location.host}/cases/content-moderation/example.scene`
+          );
         }
       );
     }
@@ -105,10 +107,10 @@ const ImageComplianceCESDK = () => {
           headerComponent={
             <button
               onClick={() => runImageModerationCheck()}
-              className={'button button--primary space-x-2'}
+              className={'button button--primary button--small'}
             >
-              <span>Validate Content</span>
               <RefreshIcon />
+              <span>Validate Content</span>
             </button>
           }
           successComponent={

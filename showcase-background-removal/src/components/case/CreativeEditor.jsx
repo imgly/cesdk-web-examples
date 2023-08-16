@@ -7,13 +7,12 @@ const CreativeEditor = ({ closeEditor }) => {
   const cesdkContainer = useRef(null);
   const overlayContainer = useRef(null);
 
-  const { imageUrl, hasProcessedImage } = useImageMatting();
+  const { imageUrl, hasProcessedImage, originalImageUrl } = useImageMatting();
 
   useEffect(() => {
     const config = {
       role: 'Adopter',
       theme: 'light',
-      initialImageURL: imageUrl,
       license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
@@ -39,13 +38,14 @@ const CreativeEditor = ({ closeEditor }) => {
     };
     let cesdk;
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          await instance.createFromImage(imageUrl);
           const [page] = instance.engine.block.findByType('page');
           instance.engine.editor.setSettingBool('page/title/show', false);
           instance.engine.block.setFillEnabled(page, false);
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
           cesdk = instance;
         }
       );

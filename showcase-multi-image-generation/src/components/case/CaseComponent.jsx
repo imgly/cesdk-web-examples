@@ -83,13 +83,12 @@ const CaseComponent = () => {
   const [reviewBlobs, setReviewBlobs] = useState(new Array(3).fill(null));
 
   useEffect(() => {
-
     const config = {
       license: process.env.REACT_APP_LICENSE
     };
     CreativeEngine.init(config).then(async (instance) => {
       instance.addDefaultAssetSources();
-      instance.addDemoAssetSources();
+      instance.addDemoAssetSources({sceneMode: 'Design'});
       engineRef.current = instance;
     });
 

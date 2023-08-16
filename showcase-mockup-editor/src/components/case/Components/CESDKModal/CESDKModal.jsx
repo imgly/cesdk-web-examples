@@ -1,26 +1,30 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import useOnClickOutside from 'lib/useOnClickOutside';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './CESDKModal.module.css';
 
-const CESDKModal = ({ config, onOutsideClick }) => {
+const CESDKModal = ({ config, configure, onOutsideClick }) => {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
   useEffect(() => {
     if (containerRef.current && !instanceRef.current) {
-      CreativeEditorSDK.init(containerRef.current, config).then((instance) => {
-        instance.addDefaultAssetSources();
-        instance.addDemoAssetSources();
-        instanceRef.current = instance;
-      });
+      CreativeEditorSDK.create(containerRef.current, config).then(
+        async (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          if (configure) {
+            await configure(instance);
+          }
+          instanceRef.current = instance;
+        }
+      );
       return () => {
         if (instanceRef.current) {
           instanceRef.current.dispose();
         }
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef]);
+  }, [config, containerRef]);
 
   useOnClickOutside(containerRef, onOutsideClick);
 

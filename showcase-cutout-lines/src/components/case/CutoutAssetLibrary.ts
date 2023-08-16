@@ -4,7 +4,6 @@ import _ from 'lodash';
 export const addCutoutAssetLibraryDemoConfiguration = (
   config: Partial<Configuration>
 ) => {
-  _.set(config, 'featureFlags.cutoutEnabled', true);
   _.set(config, "i18n.en['libraries.cutout-entry.label']", 'Cutout');
   const oldEntriesFunction = _.get(
     config,

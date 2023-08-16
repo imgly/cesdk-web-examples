@@ -35,9 +35,12 @@
   position: relative;
   z-index: 100;
   overflow: hidden;
-  width: unset;
   max-width: calc(min(80%, 1300px));
-  height: auto;
+  width: 100%;
+  height: 100%;
+  max-height: calc(min(80%, 1300px));
+  background: #d6dbe1;
+
   margin: 20px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   aspect-ratio: 16/10;
@@ -75,6 +78,7 @@
 }
 
 .topBar {
+  z-index: 99;
   position: absolute;
   top: 0rem;
   right: 0;
@@ -124,6 +128,7 @@
 .mockupWrapper {
   position: relative;
   overflow: hidden;
+  flex-grow: 1;
   width: 340px;
   min-width: 240px;
   height: 200px;

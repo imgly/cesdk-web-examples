@@ -15,14 +15,14 @@ const DEFAULT_ACCENT_COLOR = '#4B64E2';
 
 const themeColors = {
   light: {
-    backgroundColor: 'hsla(0, 50%, 100%, 0.6)',
-    activeColor: 'hsla(210, 60%, 5%, 0.85)',
-    accentColor: 'rgba(61, 92, 245, 0.8)'
+    backgroundColor: '#D6DBE1',
+    activeColor: '#4E545A',
+    accentColor: '#4260F5'
   },
   dark: {
-    backgroundColor: 'hsla(0, 0%, 100%, 0.1)',
-    activeColor: 'hsla(0, 0%, 100%, 0.88)',
-    accentColor: 'rgba(61, 92, 245, 0.8)'
+    backgroundColor: '#121A21',
+    activeColor: '#F5F5F5',
+    accentColor: '#415AD3'
   }
 };
 
@@ -47,7 +47,6 @@ const ThemingCESDK = () => {
     let config = {
       theme: chosenTheme,
       role: 'Adopter',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
       license: process.env.REACT_APP_LICENSE,
       callbacks: {
         onExport: 'download',
@@ -71,11 +70,12 @@ const ThemingCESDK = () => {
       }
     };
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({sceneMode: 'Design'});
           cesdk = instance;
+          await cesdk.loadFromURL(`${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`);
         }
       );
     }

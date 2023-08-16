@@ -6,18 +6,11 @@ const CaseComponent = () => {
   const cesdkContainer = useRef(null);
 
   useEffect(() => {
-
     let cesdk;
     /** @type {import('@cesdk/cesdk-js').Configuration} */
     let config = {
       role: 'Adopter',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/getty-images-image-assets/getty-images.scene`,
       license: process.env.REACT_APP_LICENSE,
-      page: {
-        title: {
-          show: false
-        }
-      },
       ui: {
         elements: {
           panels: {
@@ -74,14 +67,19 @@ const CaseComponent = () => {
     };
 
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           cesdk = instance;
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({
+            sceneMode: 'Design',
             excludeAssetSourceIds: ['ly.img.image']
           });
           instance.engine.asset.addSource(gettyImagesImageAssets);
+          instance.engine.editor.setSettingBool('page/title/show', false);
+          await instance.loadFromURL(
+            `${window.location.protocol + "//" + window.location.host}/cases/getty-images-image-assets/getty-images.scene`
+          );
         }
       );
     }

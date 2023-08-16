@@ -14,15 +14,9 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
       license: process.env.REACT_APP_LICENSE,
       featureFlags: {
         singlePageMode: true
-      },
-      page: {
-        title: {
-          show: false
-        }
       },
       ui: {
         elements: {
@@ -48,11 +42,15 @@ const CaseComponent = () => {
       }
     };
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdk = instance;
+          instance.engine.editor.setSettingBool('page/title/show', false);
+          instance.loadFromURL(
+            `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`
+          );
           setCesdk(instance);
           const newPageIds = await instance.unstable_getPages();
           setPageIds(newPageIds);

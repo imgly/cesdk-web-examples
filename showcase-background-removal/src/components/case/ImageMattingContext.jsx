@@ -13,6 +13,7 @@ const ImageMattingContext = createContext({
   hasProcessedImage: false,
   processImage: (path) => {},
   imageUrl: '',
+  originalImageUrl: '',
   resetState: () => {},
   inferenceTime: 0
 });
@@ -32,6 +33,7 @@ const ImageMattingContextProvider = ({ children }) => {
   const processMessage = useMemo(() => STATUS_MESSAGES[status], [status]);
   const [hasProcessedImage, setHasProcessedImage] = useState(false);
   const [imageUrl, setImageUrl] = useState('');
+  const [originalImageUrl, setOriginalImageUrl] = useState();
   const [inferenceTime, setInferenceTime] = useState(0);
 
   function resetState() {
@@ -41,7 +43,7 @@ const ImageMattingContextProvider = ({ children }) => {
   }
 
   const processImage = useCallback(async (path) => {
-    setImageUrl(path);
+    setOriginalImageUrl(path);
 
     const response = await fetch(path);
     const blob = await response.blob();
@@ -79,6 +81,7 @@ const ImageMattingContextProvider = ({ children }) => {
         processMessage,
         hasProcessedImage,
         imageUrl,
+        originalImageUrl,
         processImage,
         resetState,
         inferenceTime

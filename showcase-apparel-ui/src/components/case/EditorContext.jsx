@@ -112,11 +112,6 @@ export const EditorProvider = ({ children }) => {
         return;
       }
       const config = {
-        page: {
-          title: {
-            show: false
-          }
-        },
         featureFlags: {
           preventScrolling: true
         },
@@ -124,8 +119,7 @@ export const EditorProvider = ({ children }) => {
       };
 
       const creativeEngine = await CreativeEngine.init(config, canvas);
-      // Hotfix for a race-condition in <=1.7.0
-      await new Promise((resolve) => requestAnimationFrame(resolve));
+      creativeEngine.editor.setSettingBool('page/title/show', false);
       newCustomEngine = new CustomEngine(creativeEngine);
       setCustomEngine(newCustomEngine);
       creativeEngine.editor.onStateChanged(() =>

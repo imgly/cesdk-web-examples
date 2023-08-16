@@ -140,14 +140,10 @@ export const EditorProvider = ({ children }) => {
         featureFlags: {
           preventScrolling: true
         },
-        page: {
-          title: {
-            show: false
-          }
-        },
         license: process.env.REACT_APP_LICENSE
       };
       const creativeEngine = await CreativeEngine.init(config);
+      creativeEngine.editor.setSettingBool('page/title/show', false);
       setCreativeEngine(creativeEngine);
       creativeEngine.asset.addSource(unsplashImageAssetSource);
       creativeEngine.editor.onStateChanged(() =>

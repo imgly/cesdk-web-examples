@@ -79,22 +79,22 @@ const CaseComponent = () => {
       ...ROLE_OPTIONS.find(({ name }) => name === currentRole).cesdkConfig,
       license: process.env.REACT_APP_LICENSE
     };
-    if (currentScene) {
-      config.initialSceneString = currentScene;
-    } else {
-      config.initialSceneURL = `${window.location.protocol + "//" + window.location.host}/cases/placeholders/example.scene`;
-    }
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           if (disposed) {
             instance.dispose();
             return;
           }
           _cesdk = instance;
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({sceneMode: 'Design'});
           cesdkRef.current = instance;
+          if (currentScene) {
+            await instance.loadFromString(currentScene)
+          } else {
+            await instance.loadFromURL(`${window.location.protocol + "//" + window.location.host}/cases/placeholders/example.scene`);
+          }
         }
       );
     }

@@ -7,7 +7,6 @@ const CaseComponent = () => {
     const config = {
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
       license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
@@ -31,11 +30,12 @@ const CaseComponent = () => {
     };
     let cesdk;
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({sceneMode: 'Design'});
           cesdk = instance;
+          await instance.loadFromURL(`${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`)
         }
       );
     }
