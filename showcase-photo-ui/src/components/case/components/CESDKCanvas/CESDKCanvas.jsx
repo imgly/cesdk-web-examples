@@ -13,7 +13,6 @@ const CESDKCanvas = () => {
     }
     const container = wrapperRef.current;
     const canvas = creativeEngine.element;
-
     container.append(canvas);
     return () => {
       container.remove(canvas);

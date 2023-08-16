@@ -1,10 +1,11 @@
+import React from 'react';
 import './index.css';
 
 // docs-integrate-react-1
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 // docs-integrate-react-1
 
-import { useEffect, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 // docs-integrate-react-3
 const Component = (props = {}) => {
@@ -13,13 +14,9 @@ const Component = (props = {}) => {
   // docs-integrate-react-4
   useEffect(() => {
     if (cesdk_container.current) {
-      CreativeEditorSDK.create(cesdk_container.current, props.config).then(
-        async (instance) => {
-          // Do something with the instance of CreativeEditor SDK, for example:
-          // Populate the asset library with default / demo asset sources.
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          await instance.createDesignScene();
+      CreativeEditorSDK.init(cesdk_container.current, props.config).then(
+        (instance) => {
+          /** do something with the instance of CreativeEditor SDK **/
         }
       );
     }

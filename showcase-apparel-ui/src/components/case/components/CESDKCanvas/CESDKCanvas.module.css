@@ -10,6 +10,7 @@
   /* For Safari */
   overflow: hidden;
   flex: 1;
+  border-radius: 20px;
 }
 
 .wrapper {
@@ -18,14 +19,5 @@
   width: 100%;
   min-height: 400px;
   flex-grow: 1;
-}
-
-@media only screen and (min-width: 650px) {
-  .canvas {
-    border-radius: 20px;
-  }
-
-  .wrapper {
-    border-radius: 20px;
-  }
+  border-radius: 20px;
 }

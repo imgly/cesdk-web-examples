@@ -9,17 +9,10 @@ export default {
   _cesdk: null,
   mounted: async function mounted() {
     if (process.client) {
-      const CreativeEditorSDK = await import('@cesdk/cesdk-js');
-      const myConfig = {
-        ...this.config,
-        callbacks: {onUpload: 'local'}
-      }
-      CreativeEditorSDK.default.create('#cesdk_container', myConfig).then((instance) => {
-        // Do something with the instance of CreativeEditor SDK, for example:
-        // Populate the asset library with default / demo asset sources.
-        instance.addDefaultAssetSources();
-        instance.addDemoAssetSources({sceneMode: 'Design'});
-        instance.createDesignScene();
+      const CreativeEditorSDK = await import('@cesdk/cesdk-js')
+      CreativeEditorSDK.default.init('#cesdk_container', this.config).then((instance) => {
+        /** do something with the instance of CreativeEditor SDK **/
+        this._cesdk = instance;
       });
     }
 

@@ -1,5 +1,5 @@
 {
-  "name": "load-scene-from-string",
+  "name": "guides-load-scene-from-string",
   "version": "1.2.0",
   "private": true,
   "scripts": {

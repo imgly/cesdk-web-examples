@@ -6,12 +6,15 @@ const folders = [
   'configure-extensions',
   'configure-i18n',
   'configure-licensing',
+  'configure-page',
   'configure-presets-colorpalettes',
   'configure-presets-pageformats',
   'configure-presets-templates',
   'configure-presets-typefaces',
+  'configure-scene',
   'configure-ui-elements',
   'configure-ui-theming',
+  'configure-variables',
   'guides-asset-source-api',
   'guides-create-scene-from-image-blob',
   'guides-create-scene-from-image-canvas',
@@ -33,9 +36,9 @@ const folders = [
   'guides-load-scene-from-string',
   'guides-save-scene-to-blob',
   'guides-save-scene-to-string',
-  'engine-guides-scopes',
-  'engine-guides-store-metadata',
-  'engine-guides-uri-resolver'
+  'guides-scopes',
+  'guides-store-metadata',
+  'guides-uri-resolver'
   // The integration examples require more custom setups
   // 'integrate-with-angular',
   // 'integrate-with-electron',

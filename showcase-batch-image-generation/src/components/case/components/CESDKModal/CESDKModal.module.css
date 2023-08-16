@@ -1,9 +1,9 @@
 .modal {
   position: absolute;
-  max-width: min(1264px, 80vw);
-  max-height: 80vh;
-  inset: 0;
-  margin: auto;
+  top: 10%;
+  right: 10%;
+  bottom: 10%;
+  left: 10%;
   overflow: hidden;
   background: #d6dbe1;
   border-radius: 8px;

@@ -7,7 +7,7 @@ export const replaceImages = (cesdk, imageName, newUrl) => {
   images.forEach((image) => {
     cesdk.block.setString(image, 'image/imageFileURI', newUrl);
     cesdk.block.resetCrop(image);
-    cesdk.block.setBool(image, 'placeholderControls/showButton', false);
-    cesdk.block.setBool(image, 'placeholderControls/showOverlay', false);
+    cesdk.block.setBool(image, 'image/showsPlaceholderButton', false);
+    cesdk.block.setBool(image, 'image/showsPlaceholderOverlay', false);
   });
 };

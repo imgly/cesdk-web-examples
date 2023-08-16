@@ -16,6 +16,7 @@ export class CustomEngine {
     await this.#engine.scene.loadFromURL(url);
     this.enableEditMode();
     this.#engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
+    this.#engine.editor.addUndoStep();
   };
 
   getEditorState = () => {
@@ -52,35 +53,16 @@ export class CustomEngine {
     };
   };
   getSelectedShapeProperties = () => {
-    const shape = this.getAllSelectedElements('shape')[0];
-    if (!shape) {
+    const shapeColor = this.getAllSelectedElements('shape')[0];
+    if (!shapeColor) {
       return {
         'fill/solid/color': null
       };
     }
     return {
       'fill/solid/color': this.#engine.block.getColorRGBA(
-        shape,
+        shapeColor,
         'fill/solid/color'
-      )
-    };
-  };
-  getSelectedImageProperties = () => {
-    const image = this.getAllSelectedElements('image')[0];
-    if (!image) {
-      return {
-        placeholderControlsButtonEnabled: false,
-        placeholderControlsOverlayEnabled: false
-      };
-    }
-    return {
-      placeholderControlsButtonEnabled: this.#engine.block.getBool(
-        image,
-        'placeholderControls/showButton'
-      ),
-      placeholderControlsOverlayEnabled: this.#engine.block.getBool(
-        image,
-        'placeholderControls/showOverlay'
       )
     };
   };
@@ -225,14 +207,6 @@ export class CustomEngine {
           value
         );
         this.#engine.block.resetCrop(imageElementId);
-        this.#engine.block.setPlaceholderControlsButtonEnabled(
-          imageElementId,
-          false
-        );
-        this.#engine.block.setPlaceholderControlsOverlayEnabled(
-          imageElementId,
-          false
-        );
       });
       this.#engine.editor.addUndoStep();
     }

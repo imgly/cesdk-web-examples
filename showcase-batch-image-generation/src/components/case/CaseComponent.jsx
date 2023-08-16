@@ -1,5 +1,7 @@
 import CreativeEngine from '@cesdk/engine';
+import classNames from 'classnames';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import classes from './CaseComponent.module.css';
 import EditInstanceCESDK from './components/EditInstanceCESDK/EditInstanceCESDK';
 import EditTemplateCESDK from './components/EditTemplateCESDK/EditTemplateCESDK';
@@ -41,15 +43,19 @@ const CaseComponent = () => {
   useEffect(() => {
     const config = {
       license: process.env.REACT_APP_LICENSE,
+      initialSceneString: currentTemplate.sceneString,
+      page: {
+        title: {
+          show: false
+        }
+      },
       callbacks: {
         onUpload: 'local'
       }
     };
     CreativeEngine.init(config).then(async (instance) => {
       instance.addDefaultAssetSources();
-      instance.addDemoAssetSources({ sceneMode: 'Design' });
-      instance.editor.setSettingBool('page/title/show', false);
-      await instance.scene.loadFromString(currentTemplate.sceneString);
+      instance.addDemoAssetSources();
       engineRef.current = instance;
       setInitialized(true);
     });
@@ -152,10 +158,26 @@ const CaseComponent = () => {
 
   return (
     <div className="flex flex-grow flex-col">
+      <Helmet>
+        {/* Preload images so they are already loaded in cache. */}
+        {EMPLOYEES.map((employee) => (
+          <link
+            rel="preload"
+            href={caseAssetPath(`/images/${employee.imagePath}`)}
+            as="image"
+            key={employee.imagePath}
+            type="image/png"
+          />
+        ))}
+      </Helmet>
+      <div className="caseHeader">
+        <h3>Image Set Generation</h3>
+        <p>Use templates to automatically generate images from data.</p>
+      </div>
       <div className={classes.wrapper}>
-        <div className="gap-sm flex flex-col items-center">
-          <div className="flex flex-col items-center">
-            <h4 className={'h4'}>Select a Template</h4>
+        <div className="gap-sm flex flex-col items-start">
+          <div>
+            <h4 className={classNames('h4', classes.headline)}>Templates</h4>
             <p className={classes.description}>
               Edit a template to change all images.
             </p>
@@ -188,8 +210,10 @@ const CaseComponent = () => {
         </div>
 
         <div className="gap-sm flex flex-col">
-          <div className="flex flex-col items-center">
-            <h4 className={'h4'}>Generated Cards</h4>
+          <div>
+            <h4 className={classNames('h4', classes.headline)}>
+              Generated Cards
+            </h4>
             <p className={classes.description}>
               Edit individual cards leaving all others unchanged.
             </p>

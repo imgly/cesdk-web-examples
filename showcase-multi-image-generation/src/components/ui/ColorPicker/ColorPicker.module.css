@@ -105,7 +105,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  background: linear-gradient(0deg, #FAFAFA, #FAFAFA);
+  background: linear-gradient(0deg, #f4f4f5, #f4f4f5);
   border-radius: 9999px;
 }
 

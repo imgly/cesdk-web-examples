@@ -8,7 +8,7 @@ import {
   useRef,
   useState
 } from 'react';
-import { unsplashImageAssetSource } from './components/ImageBar/UnsplashAssetLibrary';
+import { findUnsplashAssets } from './components/ImageBar/UnsplashAssetLibrary';
 import { useSinglePageFocus } from './lib/UseSinglePageFocus';
 import POSTCARD_TEMPLATES from './PostcardTemplates.json';
 import { caseAssetPath } from './util';
@@ -93,6 +93,7 @@ export const EditorProvider = ({ children }) => {
         await new Promise((resolve) => requestAnimationFrame(resolve));
         setCurrentPageIndex(0);
         setSceneIsLoaded(true);
+        creativeEngine.editor.addUndoStep();
       }
     };
     loadPostcardTemplate();
@@ -140,12 +141,20 @@ export const EditorProvider = ({ children }) => {
         featureFlags: {
           preventScrolling: true
         },
+        assetSources: {
+          unsplash: {
+            findAssets: findUnsplashAssets
+          }
+        },
+        page: {
+          title: {
+            show: false
+          }
+        },
         license: process.env.REACT_APP_LICENSE
       };
       const creativeEngine = await CreativeEngine.init(config);
-      creativeEngine.editor.setSettingBool('page/title/show', false);
       setCreativeEngine(creativeEngine);
-      creativeEngine.asset.addSource(unsplashImageAssetSource);
       creativeEngine.editor.onStateChanged(() =>
         editorUpdateCallbackRef.current()
       );

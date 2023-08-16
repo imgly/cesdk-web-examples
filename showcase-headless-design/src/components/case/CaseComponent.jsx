@@ -25,17 +25,25 @@ const CaseComponent = () => {
   }, [colorHex]);
 
   useEffect(() => {
+
     if (!containerRef.current || isEngineLoaded) {
       return;
     }
+    /** @type {import("@cesdk/engine").Configuration} */
+    const config = {
+      page: {
+        title: {
+          show: false
+        }
+      }
+    };
 
     let engineToBeDisposed;
-    CreativeEngine.init().then(async (engine) => {
-      engine.addDefaultAssetSources();
-      engine.addDemoAssetSources({ sceneMode: 'Design' });
-      engine.editor.setSettingBool('page/title/show', false);
-      engineToBeDisposed = engine;
-      setEngine(engine);
+    CreativeEngine.init(config).then(async (instance) => {
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
+      engineToBeDisposed = instance;
+      setEngine(instance);
       setIsEngineLoaded(true);
     });
 
@@ -147,8 +155,15 @@ const CaseComponent = () => {
 
   return (
     <div className={classes.wrapper}>
+      <div className="caseHeader">
+        <h3>Automatic Design Generation</h3>
+        <p>
+          Use our API and underlying creative engine to autogenerate
+          ready-to-use designs by selecting input parameters.
+        </p>
+      </div>
       <div className={classes.inputsWrapper}>
-        <h4 className={'h4'}>Select Content</h4>
+        <h4 className={classes.headline}>Select Content</h4>
         <div className={classes.imageSelectionWrapper}>
           {IMAGES.map((someImage, i) => (
             <button onClick={() => setImage(someImage)} key={someImage.thumb}>
@@ -203,15 +218,15 @@ const CaseComponent = () => {
         </div>
         <div>
           <button
-            className="button button--primary"
+            className="button button--light-white"
             onClick={() => randomizeParameters()}
           >
             Shuffle
           </button>
         </div>
       </div>
-      <div className="flex flex-col flex-grow space-y-2 w-full items-center">
-        <h4 className="h4">Generated Design</h4>
+      <div className="space-y-2">
+        <h4 className={classes.headline}>Generated Design</h4>
         <div ref={containerRef} className={classes.canvas}>
           {!isSceneLoaded && <LoadingSpinner />}
         </div>

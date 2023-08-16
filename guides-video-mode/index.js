@@ -1,13 +1,17 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.2/cesdk.umd.js';
 
 window.onload = async () => {
+
   const container = document.getElementById('cesdk');
 
   if (!container) return;
 
   const config = {
     theme: 'light',
-    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/assets',
+    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.2/assets',
+    // highlight-initial-scene-mode
+    initialSceneMode: 'Video',
+    // highlight-initial-scene-mode
     ui: {
       elements: {
         view: 'default',
@@ -52,16 +56,51 @@ window.onload = async () => {
     }
   };
 
-  const cesdk = await CreativeEditorSDK.create('#cesdk', config);
+  const cesdk = await CreativeEditorSDK.init('#cesdk', config);
   cesdk.addDefaultAssetSources();
-  // highlight-demo-asset-sources
-  cesdk.addDemoAssetSources({ sceneMode: 'Video' });
-  // highlight-demo-asset-sources
-  // highlight-create-video-scene
-  const scene = await cesdk.createVideoScene();
-  // highlight-create-video-scene
+  cesdk.addDemoAssetSources();
+
+  window.cyGlobals = {
+    cesdk
+  };
+
   // highlight-default-page-duration
   // Change the default page duration to 10 seconds
-  cesdk.engine.block.setFloat(scene, 'scene/defaultPageDuration', 10);
+  const scene = cesdk.engine.scene.get();
+  cesdk.engine.block.setFloat(scene, 'scene/defaultPageDuration', 10)
   // highlight-default-page-duration
 };
+
+function paginateAssetResult(
+  array,
+  { page, perPage } = {
+    page: 1,
+    perPage: 10
+  }
+) {
+  const pageOffset = (page ?? 0) * perPage;
+  const assetsInCurrentPage = array.slice(pageOffset, pageOffset + perPage);
+  const total = array.length;
+  const currentPage = page;
+
+  const totalFetched = page * perPage + assetsInCurrentPage.length;
+  const nextPage = totalFetched < total ? currentPage + 1 : undefined;
+
+  return {
+    assets: assetsInCurrentPage,
+
+    total,
+    currentPage,
+    nextPage
+  };
+}
+
+function applyQuerySearch(assets, querySearch) {
+  return querySearch
+    ? assets.filter((asset) => {
+        return (asset.label || '')
+          .toLowerCase()
+          .includes(querySearch.toLowerCase());
+      })
+    : assets;
+}

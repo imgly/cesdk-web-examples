@@ -3,6 +3,8 @@ html {
 
   -webkit-font-smoothing: antialiased;
   line-height: 1.45;
+
+  scroll-behavior: smooth;
 }
 
 body {
