@@ -7,16 +7,17 @@ const EditMockupCESDK = ({
   onSave,
   onClose
 }) => {
-  const sceneLoadingConfig = sceneString
-    ? {
-        initialSceneString: sceneString
-      }
-    : {
-        initialSceneURL: sceneUrl
-      };
   return (
     <CESDKModal
       onOutsideClick={onClose}
+      configure={async (instance) => {
+        instance.engine.editor.setSettingBool('page/title/show', false);
+        if (sceneString) {
+          await instance.engine.scene.loadFromString(sceneString);
+        } else {
+          await instance.engine.scene.loadFromUrl(sceneUrl);
+        }
+      }}
       config={{
         callbacks: {
           onUpload: 'local',
@@ -39,13 +40,7 @@ const EditMockupCESDK = ({
             },
             libraries: { template: false }
           }
-        },
-        page: {
-          title: {
-            show: false
-          }
-        },
-        ...sceneLoadingConfig
+        }
       }}
     />
   );

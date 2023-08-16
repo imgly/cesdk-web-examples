@@ -10,12 +10,14 @@ const EngineContext = createContext<EngineContextType | undefined>(undefined);
 interface EngineProviderProps {
   children: React.ReactNode;
   config: Partial<Configuration>;
+  configure?: (engine: CreativeEngine) => Promise<void>;
   LoadingComponent: React.ReactNode;
 }
 
 export const EngineProvider = ({
   children,
   config,
+  configure,
   LoadingComponent = null
 }: EngineProviderProps): React.ReactNode => {
   const [engine, setEngine] = useState<CreativeEngine | null>(null);
@@ -27,6 +29,9 @@ export const EngineProvider = ({
 
       localEngine = await CreativeEngine.init(config);
       localEngine.addDefaultAssetSources();
+      if (configure) {
+        await configure(localEngine);
+      }
       setEngine(localEngine);
       setIsLoaded(true);
     };

@@ -68,11 +68,6 @@ export const EditorProvider = ({ children }) => {
   useEffect(() => {
     const loadEditor = async () => {
       const config = {
-        page: {
-          title: {
-            show: false
-          }
-        },
         featureFlags: {
           preventScrolling: true
         },
@@ -80,6 +75,7 @@ export const EditorProvider = ({ children }) => {
       };
 
       const creativeEngine = await CreativeEngine.init(config);
+      creativeEngine.editor.setSettingBool('page/title/show', false);
       creativeEngine.asset.addSource({
         id: 'stickers',
         findAssets: findCustomStickerAssets

@@ -1,11 +1,16 @@
-import { AssetDefinition, AssetResult, Configuration } from '@cesdk/cesdk-js';
+import {
+  AssetDefinition,
+  AssetResult,
+  DesignUnit,
+  _RequiredConfiguration
+} from '@cesdk/cesdk-js';
 import { ContentJSON } from './loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
 
 export const pageFormatI18n = (formats: PageFormatAsset[]) => {
   return Object.fromEntries([
     ['libraries.pageFormats.label', 'Formats'],
-    ...formats.map((format) => [`preset.document.${format.id}`, format.label])
+    ...formats.map((format) => [`document.${format.id}`, format.label])
   ]);
 };
 
@@ -65,7 +70,7 @@ export const formatAssetsToPresets = (
         width,
         height,
         unit,
-        meta: { default: !!asset.meta!.default }
+        default: !!asset.meta!.default
       };
       return [id, pageFormat];
     }
@@ -79,10 +84,10 @@ interface PageFormatAsset extends AssetDefinition {
     formatHeight: number;
     height: number;
     width: number;
-    unit: 'px' | 'mm' | 'in';
+    unit: DesignUnit;
     thumbUri: string;
   };
 }
 type PageFormatsDefinition = NonNullable<
-  NonNullable<Configuration['presets']>['pageFormats']
+  _RequiredConfiguration['ui']['pageFormats']
 >;

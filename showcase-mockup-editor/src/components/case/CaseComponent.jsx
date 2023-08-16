@@ -48,7 +48,6 @@ const PRODUCTS = {
     previewDPI: 72
   }
 };
-const MOCKUP_ENGINE_TIMEOUT = 1500;
 const WHITE_1_PX_IMAGE_PATH = `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/1x1-ffffffff.png`;
 
 export const replaceImages = (cesdk, imageName, newUrl) => {
@@ -166,7 +165,6 @@ const CaseComponent = () => {
 
   // Use engine to render mockup
   useEffect(() => {
-
     const config = {
       license: process.env.REACT_APP_LICENSE
     };
@@ -174,13 +172,12 @@ const CaseComponent = () => {
 
     CreativeEngine.init(config).then(async (instance) => {
       instance.addDefaultAssetSources();
-      instance.addDemoAssetSources();
+      instance.addDemoAssetSources({ sceneMode: 'Design' });
       await instance.scene.loadFromURL(
         `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
       mockupEngineRef.current = instance;
-      // Give engine time to load assets.
-      setTimeout(() => setMockupEngineLoaded(true), MOCKUP_ENGINE_TIMEOUT);
+      setMockupEngineLoaded(true);
     });
     return () => {
       if (mockupEngineRef.current) {
@@ -193,7 +190,6 @@ const CaseComponent = () => {
     let config = {
       license: process.env.REACT_APP_LICENSE,
       role: 'Adopter',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.scenePath}`,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -220,17 +216,18 @@ const CaseComponent = () => {
     let cesdk;
     let unsubscribe;
     if (cesdkContainerRef.current) {
-      CreativeEditorSDK.init(cesdkContainerRef.current, config).then(
+      CreativeEditorSDK.create(cesdkContainerRef.current, config).then(
         (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdk = instance;
           cesdkEngineRef.current = instance;
-          unsubscribe = instance.engine.event.subscribe([], (events) => {
-            if (events.length > 0) {
-              setIsDirty(true);
-            }
+          unsubscribe = instance.engine.editor.onHistoryUpdated(() => {
+            setIsDirty(true);
           });
+          instance.loadFromURL(
+            `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.scenePath}`
+          );
           setCesdkEngineLoaded(true);
         }
       );

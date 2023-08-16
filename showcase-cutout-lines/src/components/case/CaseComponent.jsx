@@ -11,7 +11,6 @@ const CaseComponent = () => {
     const config = {
       role: 'Creator',
       theme: 'light',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/cutout-lines/example.scene`,
       license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
@@ -46,11 +45,14 @@ const CaseComponent = () => {
     addCutoutAssetLibraryDemoConfiguration(config);
     let cesdk;
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
           addLocalCutoutAssetLibrary(instance.engine);
+          await instance.engine.scene.loadFromURL(
+            `${window.location.protocol + "//" + window.location.host}/cases/cutout-lines/example.scene`
+          );
           cesdk = instance;
         }
       );

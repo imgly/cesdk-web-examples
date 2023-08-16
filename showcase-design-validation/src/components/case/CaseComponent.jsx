@@ -120,7 +120,6 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/design-validation/example.scene`,
       license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
@@ -146,11 +145,12 @@ const CaseComponent = () => {
       }
     };
     if (cesdkContainer.current && !cesdkRef.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
+          instance.addDemoAssetSources({sceneMode: 'Design'});
           cesdkRef.current = instance;
+          await instance.loadFromURL(`${window.location.protocol + "//" + window.location.host}/cases/design-validation/example.scene`);
           setIsInitialized(true);
         }
       );

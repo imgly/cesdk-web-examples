@@ -6,17 +6,10 @@ const CaseComponent = () => {
   const cesdkContainer = useRef(null);
 
   useEffect(() => {
-
     let cesdk;
     let config = {
       role: 'Adopter',
-      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/pexels-image-assets/pexels.scene`,
       license: process.env.REACT_APP_LICENSE,
-      page: {
-        title: {
-          show: false
-        }
-      },
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -81,12 +74,16 @@ const CaseComponent = () => {
       }
     };
     if (cesdkContainer.current) {
-      CreativeEditorSDK.init(cesdkContainer.current, config).then(
-        (instance) => {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources();
           instance.engine.asset.addSource(pexelsAssetLibrary);
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          instance.engine.editor.setSettingBool('page/title/show', false);
           cesdk = instance;
+          await instance.loadFromURL(
+            `${window.location.protocol + "//" + window.location.host}/cases/pexels-image-assets/pexels.scene`
+          );
         }
       );
     }

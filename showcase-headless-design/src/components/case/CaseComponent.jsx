@@ -25,25 +25,17 @@ const CaseComponent = () => {
   }, [colorHex]);
 
   useEffect(() => {
-
     if (!containerRef.current || isEngineLoaded) {
       return;
     }
-    /** @type {import("@cesdk/engine").Configuration} */
-    const config = {
-      page: {
-        title: {
-          show: false
-        }
-      }
-    };
 
     let engineToBeDisposed;
-    CreativeEngine.init(config).then(async (instance) => {
-      instance.addDefaultAssetSources();
-      instance.addDemoAssetSources();
-      engineToBeDisposed = instance;
-      setEngine(instance);
+    CreativeEngine.init().then(async (engine) => {
+      engine.addDefaultAssetSources();
+      engine.addDemoAssetSources({ sceneMode: 'Design' });
+      engine.editor.setSettingBool('page/title/show', false);
+      engineToBeDisposed = engine;
+      setEngine(engine);
       setIsEngineLoaded(true);
     });
 

@@ -10,7 +10,7 @@
         "formatHeight": 1080,
         "height": 120,
         "width": 80,
-        "unit": "px",
+        "unit": "Pixel",
         "thumbUri": "{{base_url}}/square.svg"
       }
     },
@@ -22,7 +22,7 @@
         "formatHeight": 1920,
         "height": 120,
         "width": 80,
-        "unit": "px",
+        "unit": "Pixel",
         "thumbUri": "{{base_url}}/portrait.svg"
       }
     },
@@ -34,7 +34,7 @@
         "formatHeight": 720,
         "height": 120,
         "width": 80,
-        "unit": "px",
+        "unit": "Pixel",
         "thumbUri": "{{base_url}}/landscape.svg"
       }
     },
@@ -47,7 +47,7 @@
         "formatHeight": 1080,
         "height": 120,
         "width": 80,
-        "unit": "px",
+        "unit": "Pixel",
         "thumbUri": "{{base_url}}/landscape.svg"
       }
     },
@@ -59,7 +59,7 @@
         "formatHeight": 1440,
         "height": 120,
         "width": 80,
-        "unit": "px",
+        "unit": "Pixel",
         "thumbUri": "{{base_url}}/landscape.svg"
       }
     },
@@ -71,7 +71,7 @@
         "formatHeight": 1080,
         "height": 120,
         "width": 80,
-        "unit": "px",
+        "unit": "Pixel",
         "thumbUri": "{{base_url}}/landscape.svg"
       }
     },
@@ -83,7 +83,7 @@
         "formatHeight": 2160,
         "height": 120,
         "width": 80,
-        "unit": "px",
+        "unit": "Pixel",
         "thumbUri": "{{base_url}}/landscape.svg"
       }
     }
