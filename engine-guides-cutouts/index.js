@@ -1,7 +1,7 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.15.0-rc.1/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.15.0-rc.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -20,13 +20,13 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-create-cutouts
   var circle = engine.block.createCutoutFromPath('M 0,25 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0 Z');
   engine.block.appendChild(page, circle);
-  engine.block.setCutoutOffset(circle, 3.0);
-  engine.block.setCutoutType(circle, 'Dashed');
+  engine.block.setFloat(circle, 'cutout/offset', 3.0);
+  engine.block.setEnum(circle, 'cutout/type', 'Dashed');
 
   var square = engine.block.createCutoutFromPath('M 0,0 H 50 V 50 H 0 Z');
   engine.block.appendChild(page, square);
   engine.block.setPositionX(square, 50);
-  engine.block.setCutoutOffset(square, 6.0);
+  engine.block.setFloat(square, 'cutout/offset', 6.0);
   // highlight-create-cutouts
 
   // highlight-cutout-union

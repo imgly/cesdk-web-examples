@@ -1,17 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 
 import CreativeEditorSDK from './CreativeEditorSDK';
 
-let config = {
-  // Enable local uploads in Asset Library
-  callbacks: { onUpload: 'local' }
-};
+const reactRoot = createRoot(document.getElementById('root'));
 
-ReactDOM.render(
+reactRoot.render(
   <React.StrictMode>
-    <CreativeEditorSDK config={config} />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <CreativeEditorSDK />
+  </React.StrictMode>
 );
