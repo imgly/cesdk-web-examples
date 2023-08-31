@@ -107,10 +107,10 @@ const ImageComplianceCESDK = () => {
           headerComponent={
             <button
               onClick={() => runImageModerationCheck()}
-              className={'button button--primary button--small'}
+              className={'button button--primary space-x-2'}
             >
-              <RefreshIcon />
               <span>Validate Content</span>
+              <RefreshIcon />
             </button>
           }
           successComponent={

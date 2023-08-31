@@ -1,7 +1,7 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.15.0/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.15.0/assets',
   theme: 'light',
   presets: {
     // highlight-typefaces

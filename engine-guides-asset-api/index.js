@@ -1,8 +1,8 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.15.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.15.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -64,13 +64,29 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.asset.addSource(customSource);
 
   // highlight-findAllSources
-  engine.asset.findAllSources()
+  engine.asset.findAllSources();
+
+  // highlight-AssetAPI.getSupportedMimeTypes
+  const mimeTypes = engine.asset.getSupportedMimeTypes("ly.img.asset.source.unsplash")
+
+  // highlight-AssetAPI.getCredits
+  const credits = engine.asset.getCredits(customSource.id);
+  // highlight-AssetAPI.getCredits
+  // highlight-AssetAPI.getLicense
+  const license = engine.asset.getLicense(customSource.id);
+  // highlight-AssetAPI.getLicense
+  // highlight-AssetAPI.getGroups
+  const groups = engine.asset.getGroups(customSource.id);
+  // highlight-AssetAPI.getGroups
 
   // highlight-findAssets
-  const result = await engine.asset.findAssets(customSource.id, {page: 0, perPage: 100});
+  const result = await engine.asset.findAssets(customSource.id, {
+    page: 0,
+    perPage: 100
+  });
   const asset = result.assets[0];
   // highlight-findAssets
-  
+
   // highlight-apply
   await engine.asset.apply(customSource.id, asset);
 
