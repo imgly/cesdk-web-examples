@@ -48,16 +48,16 @@ const CaseComponent = () => {
           instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdk = instance;
           instance.engine.editor.setSettingBool('page/title/show', false);
-          instance.loadFromURL(
+          await instance.loadFromURL(
             `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`
           );
           setCesdk(instance);
-          const newPageIds = await instance.unstable_getPages();
+          const newPageIds = instance.engine.scene.getPages();
           setPageIds(newPageIds);
           setActivePageId(newPageIds[0]);
           instance.engine.event.subscribe([instance.engine.scene.get()], () => {
             const getPages = async () => {
-              const newPageIds = await instance.unstable_getPages();
+              const newPageIds = instance.engine.scene.getPages();
               const newActivePageId = await instance.unstable_getActivePage();
               setPageIds(newPageIds);
               setActivePageId(newActivePageId);

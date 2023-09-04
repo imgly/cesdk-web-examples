@@ -40,7 +40,13 @@ const CaseComponent = () => {
             },
             replace: {
               floating: false,
-              entries: () => {
+              entries: (defaultEntries, context) => {
+                if (
+                  context.selectedBlocks.length !== 1 ||
+                  context.selectedBlocks[0].blockType !== '//ly.img.ubq/image'
+                ) {
+                  return [];
+                }
                 return [
                   {
                     id: gettyImagesImageAssets.id,
