@@ -1,4 +1,4 @@
-import Slider from '../Slider/Slider';
+import classNames from 'classnames';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   CANVAS_COLOR,
@@ -13,9 +13,9 @@ import { getImageSize } from '../../lib/utils';
 import AdjustmentButton from '../AdjustmentButton/AdjustmentButton';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import ResetButton from '../ResetButton/ResetButton';
+import Slider from '../Slider/Slider';
 import SmallButton from '../SmallButton/SmallButton';
 import classes from './CropModeSecondary.module.css';
-import classNames from 'classnames';
 
 export const ALL_CROP_MODES = [
   { id: 'straighten', label: 'Straighten' },
@@ -90,13 +90,12 @@ const CropModeSecondary = () => {
   useEffect(function setupCropHandles() {
     const { r, g, b } = DEFAULT_HIGHLIGHT_COLOR;
 
-    creativeEngine.editor.setSettingColorRGBA(
-      'ubq://highlightColor',
-      r / 255,
-      g / 255,
-      b / 255,
-      1
-    );
+    creativeEngine.editor.setSettingColor('ubq://highlightColor', {
+      r: r / 255,
+      g: g / 255,
+      b: b / 255,
+      a: 1
+    });
     creativeEngine.block.setSelected(currentPageBlockId, true);
     creativeEngine.editor.setGlobalScope('design/arrange', 'Allow');
     creativeEngine.editor.setEditMode('Crop');
@@ -104,13 +103,12 @@ const CropModeSecondary = () => {
     forceRerender(creativeEngine);
     return () => {
       const { r, g, b } = CANVAS_COLOR;
-      creativeEngine.editor.setSettingColorRGBA(
-        'ubq://highlightColor',
-        r / 255,
-        g / 255,
-        b / 255,
-        1
-      );
+      creativeEngine.editor.setSettingColor('ubq://highlightColor', {
+        r: r / 255,
+        g: g / 255,
+        b: b / 255,
+        a: 1
+      });
       creativeEngine.editor.setGlobalScope('design/arrange', 'Deny');
       creativeEngine.editor.setEditMode('Transform');
     };

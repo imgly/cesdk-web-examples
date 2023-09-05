@@ -11,7 +11,6 @@ const CaseComponent = () => {
       role: 'Adopter',
       theme: 'light',
       callbacks: {
-        onBack: () => setImage(),
         onExport: 'download',
         onUpload: 'local'
       },
@@ -22,7 +21,6 @@ const CaseComponent = () => {
           },
           navigation: {
             action: {
-              back: true,
               export: {
                 show: true,
                 format: ['image/png', 'application/pdf']
@@ -38,7 +36,7 @@ const CaseComponent = () => {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({sceneMode: 'Design'});
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdk = instance;
           // Preselect the loaded Image
           await cesdk.createFromImage(image.full);
@@ -58,7 +56,7 @@ const CaseComponent = () => {
 
   return (
     <div className="gap-sm flex h-full w-full flex-row">
-      <div style={parameterStyle}>
+      <div style={selectImageWrapper}>
         <h3 className="h4">Select Image</h3>
         <div
           style={{
@@ -66,11 +64,12 @@ const CaseComponent = () => {
             ...(image || {})
           }}
         >
-          {IMAGE_URLS.map((someImage) => (
+          {IMAGE_URLS.map((someImage, index) => (
             <button
               onClick={() => setImage(someImage)}
               style={imageButtonStyle}
               key={someImage.full}
+              data-cy={`start-with-image-${index}`}
             >
               <img
                 src={someImage.thumb}
@@ -134,8 +133,11 @@ const cesdkWrapperStyle = {
     '0px 0px 2px rgba(22, 22, 23, 0.25), 0px 4px 6px -2px rgba(22, 22, 23, 0.12), 0px 2px 2.5px -2px rgba(22, 22, 23, 0.12), 0px 1px 1.75px -2px rgba(22, 22, 23, 0.12)'
 };
 
-const parameterStyle = {
-  width: '150px'
+const selectImageWrapper = {
+  width: '150px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem'
 };
 const imageSelectionWrapper = {
   display: 'flex',

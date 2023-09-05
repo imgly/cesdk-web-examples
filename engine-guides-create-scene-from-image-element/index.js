@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.16.0-rc.1/index.js';
 
 // highlight-element
 const element = document.getElementById("image-element");
@@ -6,7 +6,7 @@ const imageURL = element.src;
 // highlight-element
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.16.0-rc.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
