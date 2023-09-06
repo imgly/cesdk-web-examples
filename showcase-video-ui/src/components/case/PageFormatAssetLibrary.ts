@@ -64,11 +64,12 @@ export const formatAssetsToPresets = (
   const formatPresets = Object.entries(contentJSON.assets).map(
     ([_key, asset]) => {
       const { id } = asset;
-      const { width, height, unit } = (asset as PageFormatAsset).meta;
+      const { unit, formatWidth, formatHeight } = (asset as PageFormatAsset)
+        .meta;
 
       const pageFormat: PageFormatsDefinition[string] = {
-        width,
-        height,
+        width: formatWidth,
+        height: formatHeight,
         unit,
         default: !!asset.meta!.default
       };

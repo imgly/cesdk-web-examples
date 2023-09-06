@@ -1,0 +1,15 @@
+.root {
+  width: 235px;
+  margin-top: 8px;
+  color: rgba(22, 22, 23, 0.65);
+  font-family: var(--font-family-ibm-sans);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+
+.error {
+  color: #d2326c;
+}

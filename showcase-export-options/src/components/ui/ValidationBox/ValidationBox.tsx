@@ -76,7 +76,9 @@ const ValidationBox = ({
                     }
                     size="md"
                   >
-                    <InfoIcon style={{ cursor: 'pointer' }} />
+                    <span>
+                      <InfoIcon style={{ cursor: 'pointer' }} />
+                    </span>
                   </StyledPopover>
                 </span>
                 <button className={styles.checkCTA} onClick={result.onClick}>
