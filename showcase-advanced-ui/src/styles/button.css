@@ -29,13 +29,11 @@
 .button.button--small>svg {
   width: 1rem;
   height: 1rem;
-  fill: var(--text-light-high-emphasis);
 }
 
 .button>svg {
   width: 1.5rem;
   height: 1.5rem;
-  fill: var(--text-light-high-emphasis);
 }
 
 .button--primary {
@@ -44,11 +42,16 @@
   background: var(--ci-button-primary, linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.00) 100%), #471AFF);
 }
 
-.button--primary:hover,
-.button--primary:focus {
+.button--primary:hover:not(:disabled),
+.button--primary:focus:not(:disabled) {
   border-radius: 0.5rem;
   border: 1px solid var(--ci-border-black, rgba(22, 22, 23, 0.30));
   background: var(--ci-button-primary-hover, linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.00) 100%), #471AFF);
+}
+
+.button--primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .button--primary:focus-visible {

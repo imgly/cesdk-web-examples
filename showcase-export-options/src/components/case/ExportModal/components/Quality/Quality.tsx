@@ -50,7 +50,9 @@ export const Quality = ({ name, value, onChange, className }: Props) => {
             </span>
           }
         >
-          <InfoIcon className={classes.icon} />
+          <span>
+            <InfoIcon className={classes.icon} />
+          </span>
         </StyledPopover>
       </div>
       <Select<QualityType>
