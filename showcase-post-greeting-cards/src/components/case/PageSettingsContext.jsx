@@ -32,7 +32,7 @@ export const PageSettingsProvider = ({ children }) => {
       const { r, g, b } = color;
       creativeEngine.block.findByName(blockName).forEach((blockId) => {
         if (creativeEngine.block.hasStroke(blockId)) {
-          creativeEngine.block.setStrokeColor(blockId, {r, g, b, a: 1.0});
+          creativeEngine.block.setStrokeColorRGBA(blockId, r, g, b);
         }
         creativeEngine.block.setColorRGBA(
           blockId,
