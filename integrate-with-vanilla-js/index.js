@@ -1,5 +1,5 @@
 // highlight-1
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.16.0/cesdk.umd.js';
 // Import a node module when you work with a bundler:
 // import CreativeEditorSDK from '@cesdk/cesdk-js';
 // highlight-1
@@ -7,7 +7,7 @@ import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/cesdk.umd.js';
 // highlight-3
 const config = {
   // Serve assets from IMG.LY cdn or locally
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.16.0/assets',
   // Enable local uploads in Asset Library
   callbacks: { onUpload: 'local' }
 };
