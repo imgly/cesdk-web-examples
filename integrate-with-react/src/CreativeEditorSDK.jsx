@@ -1,39 +1,62 @@
 import './index.css';
 
-// docs-integrate-react-1
+// highlight-import
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-// docs-integrate-react-1
+// highlight-import
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-// docs-integrate-react-3
-const Component = (props = {}) => {
-  // docs-integrate-react-4
+// highlight-component
+const config = {
+  // Enable local uploads in Asset Library
+  callbacks: { onUpload: 'local' }
+};
+
+export default function CreativeEditorSDKComponent() {
+  // highlight-state
   const cesdk_container = useRef(null);
-  // docs-integrate-react-4
+  const [cesdk, setCesdk] = useState(null);
+  // highlight-state
+  // highlight-effect
   useEffect(() => {
-    if (cesdk_container.current) {
-      CreativeEditorSDK.create(cesdk_container.current, props.config).then(
-        async (instance) => {
-          // Do something with the instance of CreativeEditor SDK, for example:
-          // Populate the asset library with default / demo asset sources.
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          await instance.createDesignScene();
-        }
-      );
-    }
-  }, [props, cesdk_container]);
+    if (!cesdk_container.current) return;
 
+    let cleanedUp = false;
+    let instance;
+    CreativeEditorSDK.create(cesdk_container.current, config).then(
+      async (_instance) => {
+        instance = _instance;
+        if (cleanedUp) {
+          instance.dispose();
+          return;
+        }
+
+        // Do something with the instance of CreativeEditor SDK, for example:
+        // Populate the asset library with default / demo asset sources.
+        await Promise.all([
+          instance.addDefaultAssetSources(),
+          instance.addDemoAssetSources({ sceneMode: 'Design' })
+        ]);
+        await instance.createDesignScene();
+
+        setCesdk(instance);
+      }
+    );
+    const cleanup = () => {
+      cleanedUp = true;
+      instance?.dispose();
+      setCesdk(null);
+    };
+    return cleanup;
+  }, [cesdk_container]);
+  //highlight-effect
   return (
-    // docs-integrate-react-2
+    // highlight-container
     <div
       ref={cesdk_container}
       style={{ width: '100vw', height: '100vh' }}
     ></div>
-    // docs-integrate-react-2
+    // highlight-container
   );
-};
-// docs-integrate-react-3
-
-export default Component;
+}
+// highlight-component

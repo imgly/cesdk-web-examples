@@ -164,8 +164,18 @@ export const useEditor = () => {
  */
 async function setupPhotoScene(engine, src) {
   engine.editor.setSettingBool('ubq://page/dimOutOfPageAreas', false);
-  engine.editor.setSettingColorRGBA('ubq://highlightColor', 1, 1, 1, 1);
-  engine.editor.setSettingColorRGBA('ubq://cropOverlayColor', 1, 1, 1, 0.55);
+  engine.editor.setSettingColor('ubq://highlightColor', {
+    r: 1,
+    g: 1,
+    b: 1,
+    a: 1
+  });
+  engine.editor.setSettingColor('ubq://cropOverlayColor', {
+    r: 1,
+    g: 1,
+    b: 1,
+    a: 0.55
+  });
   engine.editor.setGlobalScope('design/arrange', 'Allow');
 
   // We recreate the scene to discard all changes
