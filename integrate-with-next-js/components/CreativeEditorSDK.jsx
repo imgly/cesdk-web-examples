@@ -13,7 +13,7 @@ const Component = (props = {}) => {
     if (cesdk_container.current) {
       // Serve assets from IMG.LY CDN or locally
       props.config.baseURL =
-        'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/assets';
+        'https://cdn.img.ly/packages/imgly/cesdk-js/1.16.1-rc.0/assets';
       // Enable local uploads in Asset Library
       props.config.callbacks = { onUpload: 'local' };
 

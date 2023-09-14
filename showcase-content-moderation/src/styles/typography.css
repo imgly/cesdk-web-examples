@@ -63,7 +63,6 @@
   font-family: var(--font-family-ibm-sans);
   font-size: 22px;
   font-weight: 500;
-  hyphens: none;
   line-height: 32px;
 }
 
@@ -72,7 +71,7 @@
   font-family: var(--font-family-ibm-sans);
   font-size: 18px;
   font-weight: normal;
-  hyphens: none;
+
   letter-spacing: 0.01em;
   line-height: 28px;
 }
@@ -82,7 +81,6 @@
   font-family: var(--font-family-ibm-sans);
   font-size: 14px;
   font-weight: normal;
-  hyphens: none;
   letter-spacing: 0.02em;
   line-height: 20px;
 }

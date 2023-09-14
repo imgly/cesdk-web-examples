@@ -2,19 +2,14 @@ import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.12.0/cesdk.umd.js';
 
 const config = {
   ui: {
-    // highlight-colorpalette
-    colorPalette: [
-      // highlight-hex
-      '#FF0000',
-      // highlight-hex
-      // highlight-rgb
-      { r: 0.0, g: 1.0, b: 0.0 },
-      // highlight-rgb
-      // highlight-rgba
-      { r: 0.0, g: 0.0, b: 1.0, a: 1.0 }
-      // highlight-rgba
-    ],
-    // highlight-colorpalette
+    // highlight-colorlibraries-config
+    colorLibraries: ['myDefaultPalette'],
+    i18n: {
+      en: {
+        'libraries.myDefaultPalette.label': 'My Default Palette'
+      }
+    },
+    // highlight-colorlibraries-config
     // highlight-pageformats
     pageFormats: {
       'din-a6': {
@@ -66,5 +61,22 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
   instance.addDemoAssetSources({ sceneMode: 'Design' });
+  // highlight-colorlibraries-source
+  // Add an asset source with your own colors:
+  instance.engine.asset.addLocalSource('myDefaultPalette');
+  instance.engine.asset.addAssetToSource('myDefaultPalette', {
+    id: 'red',
+    label: { en: 'red' },
+    tags: { en: ['red'] },
+    payload: {
+      color: {
+        colorSpace: 'sRGB',
+        r: 1,
+        g: 0,
+        b: 0
+      }
+    }
+  });
+  // highlight-colorlibraries-source
   await instance.createDesignScene();
 });
