@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0-rc.0/cesdk.umd.js';
 
 // highlight-config
 let config = {
@@ -7,5 +7,5 @@ let config = {
 // highlight-config
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
-  await instance.createEmptyScene();
+  await instance.createDesignScene();
 });

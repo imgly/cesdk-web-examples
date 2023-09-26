@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 // docs-integrate-angular-1
-import CreativeEditorSDK from '@cesdk/cesdk-js';
+import CreativeEditorSDK, { Configuration } from '@cesdk/cesdk-js';
 // docs-integrate-angular-1
 
 @Component({
@@ -17,9 +17,9 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     // docs-integrate-angular-3
-    const config = {
+    const config: Configuration = {
       // Serve assets from IMG.LY cdn or locally
-      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/assets',
+      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0-rc.0/assets',
       // Enable local uploads in Asset Library
       callbacks: { onUpload: 'local' }
     };
