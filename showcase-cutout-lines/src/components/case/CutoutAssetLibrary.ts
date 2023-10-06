@@ -4,7 +4,7 @@ import _ from 'lodash';
 export const addCutoutAssetLibraryDemoConfiguration = (
   config: Partial<Configuration>
 ) => {
-  _.set(config, "i18n.en['libraries.cutout-entry.label']", 'Cutout');
+  _.set(config, "i18n.en['libraries.cutout-entry.label']", 'Cutouts');
   const oldEntriesFunction = _.get(
     config,
     'ui.elements.libraries.insert.entries',
@@ -52,7 +52,7 @@ export const addLocalCutoutAssetLibrary = async (engine: CreativeEngine) => {
     id: 'cutout-rect',
     meta: {
       thumbUri: cutoutRectThumbUri,
-      path: 'M0 0 H50 V50 H0 Z',
+      vectorPath: 'M0 0 H50 V50 H0 Z',
       blockType: '//ly.img.ubq/cutout',
       width: 50,
       height: 50
@@ -62,8 +62,7 @@ export const addLocalCutoutAssetLibrary = async (engine: CreativeEngine) => {
     id: 'cutout-circle',
     meta: {
       thumbUri: cutoutCircleThumbUri,
-      path: 'M 0,25 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0 Z',
-
+      vectorPath: 'M 0,25 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0 Z',
       blockType: '//ly.img.ubq/cutout',
       width: 48,
       height: 48
