@@ -1,11 +1,17 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
   // docs-theming-theme
   theme: 'light', // 'light' or 'dark'
   ui: {
-    scale: 'normal', // 'normal' or 'large'
+    scale: ({ containerWidth, isTouch }) => {
+      if (containerWidth < 600 || isTouch) {
+        return "large"
+      } else {
+        return "normal"
+      }
+    }, // or 'normal' or 'large'
     // docs-theming-theme
     // docs-theming-generator
     elements: {
