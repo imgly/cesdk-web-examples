@@ -1,33 +1,50 @@
 /**
  * Creates a function that can be used to apply a layout asset to the current page
  * @param {import('@cesdk/cesdk-js').CreativeEngine} engine
+ * @param {Object} config
  * @returns a function that can be used to apply a layout asset to the current page
  */
-export const createApplyLayoutAsset = (engine) => {
+export const createApplyLayoutAsset = (
+  engine,
+  config = { addUndoStep: true }
+) => {
   return async (asset) => {
-    let pageToApplyLayoutTo = getPageInView(engine);
+    let page = getPageInView(engine);
     const selectedBlocks = engine.block.findAllSelected();
     if (
       selectedBlocks.length === 1 &&
       engine.block.getType(selectedBlocks[0]).includes('page')
     ) {
-      pageToApplyLayoutTo = selectedBlocks[0];
+      page = selectedBlocks[0];
     }
     selectedBlocks.forEach((block) => engine.block.setSelected(block, false));
     const sceneString = await fetch(asset.meta.uri).then((response) =>
       response.text()
     );
+    // Load the layout page from the scene string
     const blocks = await engine.block.loadFromString(sceneString);
-    const parent = engine.block.getParent(pageToApplyLayoutTo);
-    const sortedChildren = engine.block.getChildren(parent);
-    engine.block.insertChild(
-      parent,
-      blocks[0],
-      sortedChildren.indexOf(pageToApplyLayoutTo)
-    );
-    copyAssets(engine, pageToApplyLayoutTo, blocks[0]);
-    engine.block.destroy(pageToApplyLayoutTo);
-    return blocks[0];
+    const layoutPage = blocks[0];
+    const oldPage = engine.block.duplicate(page);
+    // Delete all children from pageToApplyLayout
+    engine.block.getChildren(page).forEach((child) => {
+      engine.block.destroy(child);
+    });
+    // Copy all children from layoutPage to pageToApplyLayout
+    engine.block.getChildren(layoutPage).forEach((child) => {
+      engine.block.insertChild(
+        page,
+        child,
+        engine.block.getChildren(page).length
+      );
+    });
+    // Copy all asset (images/ text) content from the old page to the new layout page
+    copyAssets(engine, oldPage, page);
+    engine.block.destroy(oldPage);
+    engine.block.destroy(layoutPage);
+    if (config.addUndoStep) {
+      engine.editor.addUndoStep();
+    }
+    return page;
   };
 };
 

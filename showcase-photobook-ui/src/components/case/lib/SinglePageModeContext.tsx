@@ -333,6 +333,7 @@ export const SinglePageModeProvider = ({
         let oldHistory = engine.editor.getActiveHistory();
         let newHistory = engine.editor.createHistory();
         engine.editor.setActiveHistory(newHistory);
+        engine.editor.addUndoStep();
         engine.editor.destroyHistory(oldHistory);
       }
     },

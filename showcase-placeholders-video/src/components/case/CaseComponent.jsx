@@ -29,8 +29,7 @@ const ROLE_OPTIONS = [
           navigation: {
             action: {
               export: {
-                show: true,
-                format: ['image/png', 'application/pdf']
+                show: true
               }
             }
           }
@@ -55,8 +54,7 @@ const ROLE_OPTIONS = [
           navigation: {
             action: {
               export: {
-                show: true,
-                format: ['image/png', 'application/pdf']
+                show: true
               }
             }
           }
@@ -88,12 +86,14 @@ const CaseComponent = () => {
           }
           _cesdk = instance;
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({sceneMode: 'Video'});
+          instance.addDemoAssetSources({ sceneMode: 'Video' });
           cesdkRef.current = instance;
           if (currentScene) {
-            await instance.loadFromString(currentScene)
+            await instance.loadFromString(currentScene);
           } else {
-            await instance.loadFromURL(`${window.location.protocol + "//" + window.location.host}/cases/placeholders-video/example.scene`);
+            await instance.loadFromURL(
+              `${window.location.protocol + "//" + window.location.host}/cases/placeholders-video/example.scene`
+            );
           }
         }
       );

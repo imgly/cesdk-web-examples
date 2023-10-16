@@ -17,12 +17,13 @@ const SIZE_MAP = {
 
 const StyledPopover: React.FC<Props> = ({ content, size = 'sm', children }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isPopoverActive, setIsPopoverActive] = useState(false);
   if (!children) {
     return <div></div>;
   }
   return (
     <Popover
-      isOpen={isPopoverOpen}
+      isOpen={isPopoverActive || isPopoverOpen}
       positions={['top', 'bottom', 'left', 'right']}
       content={({ position, childRect, popoverRect }) => (
         <ArrowContainer
@@ -40,13 +41,17 @@ const StyledPopover: React.FC<Props> = ({ content, size = 'sm', children }) => {
           </div>
         </ArrowContainer>
       )}
-      onClickOutside={() => setIsPopoverOpen(false)}
+      onClickOutside={() => {
+        setIsPopoverOpen(false);
+        setIsPopoverActive(false);
+      }}
       containerClassName={classes.root}
     >
       {/* @ts-ignore */}
       {React.cloneElement(children, {
-        onMouseEnter: () => setIsPopoverOpen(true),
-        onMouseLeave: () => setIsPopoverOpen(false)
+        onClick: () => setIsPopoverActive(!isPopoverActive),
+        onMouseEnter: () => !isPopoverActive && setIsPopoverOpen(true),
+        onMouseLeave: () => !isPopoverActive && setIsPopoverOpen(false)
       })}
     </Popover>
   );

@@ -35,22 +35,7 @@ const ChangeLayoutSecondary = () => {
           <AdjustmentsBarButton
             key={layoutAsset.meta.thumbUri}
             onClick={async () => {
-              setEnabled(false);
-              const currentPageFillColor = engine.block.getColorRGBA(
-                currentPageBlockId,
-                'fill/solid/color'
-              );
-              const newPageId = await engine.asset.apply(
-                LAYOUT_LIBRARY_ID,
-                layoutAsset
-              );
-              engine.block.setColorRGBA(
-                newPageId,
-                'fill/solid/color',
-                ...currentPageFillColor
-              );
-              await setCurrentPageBlockId(newPageId);
-              setEnabled(true);
+              await engine.asset.apply(LAYOUT_LIBRARY_ID, layoutAsset);
             }}
           >
             <img src={layoutAsset.meta.thumbUri} alt="Layout Preview" />
