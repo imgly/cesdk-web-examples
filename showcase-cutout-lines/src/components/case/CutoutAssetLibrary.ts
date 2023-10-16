@@ -1,10 +1,11 @@
-import CreativeEngine, { Configuration } from '@cesdk/engine';
+import { type AssetResult, DesignBlockType } from '@cesdk/cesdk-js';
+import CreativeEngine, { type Configuration } from '@cesdk/engine';
 import _ from 'lodash';
 
 export const addCutoutAssetLibraryDemoConfiguration = (
   config: Partial<Configuration>
 ) => {
-  _.set(config, "i18n.en['libraries.cutout-entry.label']", 'Cutout');
+  _.set(config, "i18n.en['libraries.cutout-entry.label']", 'Cutouts');
   const oldEntriesFunction = _.get(
     config,
     'ui.elements.libraries.insert.entries',
@@ -20,7 +21,29 @@ export const addCutoutAssetLibraryDemoConfiguration = (
           sourceIds: ['ly.img.cutout'],
           icon: getLibraryIcon,
           gridColumns: 2,
-          cardStyle: (asset: any) => {
+          cardLabel: (asset: AssetResult) => {
+            if (asset.id === 'cutout-selection') {
+              return 'Generate from Selection';
+            }
+            return undefined;
+          },
+          cardLabelStyle: (asset: AssetResult) => {
+            if (asset.id === 'cutout-selection') {
+              return {
+                lineHeight: 'var(--ubq-typography-label-m-line_height)',
+                letterSpacing: 'var(--ubq-typography-label-m-letter_spacing)',
+                fontFamily: 'var(--ubq-typography-label-m-font_family)',
+                fontWeight: 'var(--ubq-typography-label-m-weight)',
+                WebkitLineClamp: '2',
+                fontSize: '12px'
+              };
+            }
+            return {};
+          },
+          cardStyle: (asset: AssetResult) => {
+            if (asset.id === 'cutout-selection') {
+              return {};
+            }
             return {
               padding: '4px'
             };
@@ -45,14 +68,60 @@ export const addCutoutAssetLibraryDemoConfiguration = (
 
 export const addLocalCutoutAssetLibrary = async (engine: CreativeEngine) => {
   engine.asset.addLocalSource('ly.img.cutout', [], async (asset) => {
-    const blockId = await engine.asset.defaultApplyAsset(asset);
+    if (asset.id !== 'cutout-selection') {
+      const blockId = await engine.asset.defaultApplyAsset(asset);
+      return blockId;
+    }
+    const selectedBlockIds = engine.block.findAllSelected();
+    if (selectedBlockIds.length === 0) {
+      alert('No selected blocks available to cutout from selection');
+      return undefined;
+    }
+    const CUTOUT_DISABLED_BLOCK_TYPES = [DesignBlockType.Page];
+    if (
+      selectedBlockIds.some((blockId) =>
+        CUTOUT_DISABLED_BLOCK_TYPES.includes(engine.block.getType(blockId))
+      )
+    ) {
+      alert('Cutout selection can not be performed on pages');
+      return undefined;
+    }
+
+    const blockParents = selectedBlockIds
+      .map((block) => engine.block.getParent(block))
+      .filter((parentId) => parentId !== null) as number[];
+    const uniqueParents = [...new Set(blockParents)];
+
+    if (uniqueParents.length !== 1) {
+      alert(
+        'Cutout selection can only be performed on blocks with the same parent'
+      );
+      return undefined;
+    }
+
+    const blockId = engine.block.createCutoutFromBlocks(selectedBlockIds);
+    engine.block.appendChild(uniqueParents[0], blockId);
+    engine.block.setAlwaysOnTop(blockId, true);
+    engine.block.select(blockId);
+    engine.editor.addUndoStep();
     return blockId;
+  });
+
+  engine.asset.addAssetToSource('ly.img.cutout', {
+    id: 'cutout-selection',
+    label: { en: 'Cutout from selection' },
+    meta: {
+      blockType: '//ly.img.ubq/cutout',
+      width: 48,
+      height: 48
+    }
   });
   engine.asset.addAssetToSource('ly.img.cutout', {
     id: 'cutout-rect',
+    label: { en: 'Cutout rectangle' },
     meta: {
       thumbUri: cutoutRectThumbUri,
-      path: 'M0 0 H50 V50 H0 Z',
+      vectorPath: 'M0 0 H50 V50 H0 Z',
       blockType: '//ly.img.ubq/cutout',
       width: 50,
       height: 50
@@ -60,10 +129,10 @@ export const addLocalCutoutAssetLibrary = async (engine: CreativeEngine) => {
   });
   engine.asset.addAssetToSource('ly.img.cutout', {
     id: 'cutout-circle',
+    label: { en: 'Cutout circle' },
     meta: {
       thumbUri: cutoutCircleThumbUri,
-      path: 'M 0,25 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0 Z',
-
+      vectorPath: 'M 0,25 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0 Z',
       blockType: '//ly.img.ubq/cutout',
       width: 48,
       height: 48
