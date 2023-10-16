@@ -7,12 +7,13 @@ import {
   useState
 } from 'react';
 import { ExampleFile } from './ExampleFileContainer';
-import IDMLParser from './lib/idml-parser';
+import { IDMLParser, LogMessage, Logger } from '@imgly/idml-importer';
 
 interface ProcessResult {
   imageUrl: string;
   sceneUrl: string;
   sceneArchiveUrl: string;
+  messages: LogMessage[];
 }
 
 interface FileProcessingContextValue {
@@ -79,14 +80,21 @@ const FileProcessingContextProvider = ({
     let imageBlob;
     let sceneString;
     let sceneArchive;
+    let logger: Logger;
     try {
       const engine = await CreativeEngine.init({
         license: process.env.REACT_APP_LICENSE
       });
       setStatus('processing');
-      const parser = await IDMLParser.fromFile(engine as any, blob);
+      const parser = await IDMLParser.fromFile(
+        engine as any,
+        blob,
+        (content: string) =>
+          new DOMParser().parseFromString(content, 'text/xml')
+      );
 
-      await parser.parse();
+      const result = await parser.parse();
+      logger = result.logger;
       imageBlob = await engine.block.export(
         engine.scene.getPages()[0],
         'image/png' as any,
@@ -105,6 +113,7 @@ const FileProcessingContextProvider = ({
     const timeDiffInSeconds = (Date.now() - startTime) / 1000;
     setInferenceTime(timeDiffInSeconds);
     setResult({
+      messages: logger.getMessages(),
       imageUrl: URL.createObjectURL(imageBlob),
       sceneUrl: URL.createObjectURL(
         new Blob([sceneString], { type: 'text/plain;charset=UTF-8' })

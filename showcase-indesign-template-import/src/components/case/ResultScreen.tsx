@@ -6,6 +6,7 @@ import { ReactComponent as ChevronLeftIcon } from './icons/ChevronLeft.svg';
 import { ReactComponent as DownloadIcon } from './icons/Download.svg';
 import { ReactComponent as EditIcon } from './icons/Edit.svg';
 import { ReactComponent as IndesignFileIcon } from './icons/IndesignFile.svg';
+import { InfoButton } from './InfoButton/InfoButton';
 
 function ResultScreen() {
   const { result, currentFile, resetState } = useFileProcessing();
@@ -14,15 +15,27 @@ function ResultScreen() {
 
   if (!result) return null;
 
+  const { messages } = result;
+  const warnings = messages
+    .filter((m) => m.type === 'warning')
+    .map((m) => m.message);
+  const errors = messages
+    .filter((m) => m.type === 'error')
+    .map((m) => m.message);
+
   return (
     <>
-      <div>
+      <div className={classes.header}>
         <button
           className={'button button--secondary-plain button--small'}
           onClick={() => resetState()}
         >
           <ChevronLeftIcon /> <span>New File</span>
         </button>
+        <div className={classes.infoButtons}>
+          <InfoButton messages={warnings} type="warning" />
+          <InfoButton messages={errors} type="error" />
+        </div>
       </div>
       <div className={classes.comparisonWrapper}>
         <div>
