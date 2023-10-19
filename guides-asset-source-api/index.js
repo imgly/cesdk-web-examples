@@ -1,4 +1,4 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.18.0-rc.0/cesdk.umd.js';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
@@ -73,7 +73,7 @@ const findUnsplashAssets = async (queryData) => {
 };
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.13.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.18.0-rc.0/assets',
   assetSources: {
     // highlight-unsplash-definition
     unsplash: {
@@ -94,7 +94,7 @@ const config = {
 };
 
 const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);
-await cesdk.createEmptyScene();
+await cesdk.createDesignScene();
 
 // highlight-translateToAssetResult
 function translateToAssetResult(image) {

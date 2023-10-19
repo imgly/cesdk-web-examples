@@ -100,10 +100,10 @@
   --ubq-typography-input-m-letter_spacing: 0.02em;
   --ubq-typography-input-m-font_family: var(
     --ubq-typography-font_family,
-    'Overpass Mono',
-    monospace
+    'Inter',
+    sans-serif
   );
-  --ubq-typography-input-m-weight: 500;
+  --ubq-typography-input-m-weight: unset;
 
   --ubq-typography-button-m-size: 12px;
   --ubq-typography-button-m-line_height: 16px;

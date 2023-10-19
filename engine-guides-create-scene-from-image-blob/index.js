@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.18.0-rc.0/index.js';
 
 // highlight-blob
 const blob = await fetch('https://img.ly/static/ubq_samples/sample_4.jpg').then((response) => response.blob());
@@ -8,7 +8,7 @@ const objectURL = URL.createObjectURL(blob);
 // highlight-objectURL
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.13.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.18.0-rc.0/assets',
 };
 
 CreativeEngine.init(config).then(async (engine) => {
