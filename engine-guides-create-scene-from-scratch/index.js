@@ -1,7 +1,7 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.3/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.3/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -18,7 +18,4 @@ CreativeEngine.init(config).then(async (engine) => {
   let star = engine.block.create("shapes/star");
   engine.block.appendChild(page, star);
   // highlight-add-star
-
-  // Attach engine canvas to DOM
-  document.getElementById('cesdk_container').append(engine.element);
 });

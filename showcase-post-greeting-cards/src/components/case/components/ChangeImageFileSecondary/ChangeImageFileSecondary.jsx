@@ -20,12 +20,12 @@ const ChangeImageFileSecondary = () => {
         creativeEngine.block.resetCrop(imageElementId);
         creativeEngine.block.setBool(
           imageElementId,
-          'placeholderControls/showButton',
+          'image/showsPlaceholderButton',
           false
         );
         creativeEngine.block.setBool(
           imageElementId,
-          'placeholderControls/showOverlay',
+          'image/showsPlaceholderOverlay',
           false
         );
       });

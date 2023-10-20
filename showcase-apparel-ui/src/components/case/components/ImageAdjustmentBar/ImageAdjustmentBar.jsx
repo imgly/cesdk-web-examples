@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { caseAssetPath } from '../../util';
 import ChangeImageFileSecondary from '../ChangeImageFileSecondary/ChangeImageFileSecondary';
 
 import { ReactComponent as ReplaceIcon } from '../../icons/Replace.svg';
 import DeleteSelectedButton from '../DeleteSelectedButton/DeleteSelectedButton';
 import IconButton from '../IconButton/IconButton';
-import { useEditor } from '../../EditorContext';
 
 export const ALL_IMAGES = [
   caseAssetPath('/images/image2.svg'),
@@ -23,22 +22,12 @@ const ALL_ADJUSTMENTS = {
   }
 };
 const ImageAdjustmentBar = () => {
-  const { selectedImageProperties } = useEditor();
   const [selectedAdjustmentId, setSelectedAdjustmentId] = useState();
 
   const AdjustmentComponent = useMemo(
     () => ALL_ADJUSTMENTS[selectedAdjustmentId]?.component || null,
     [selectedAdjustmentId]
   );
-
-  useEffect(() => {
-    if (
-      selectedImageProperties['placeholderControlsButtonEnabled'] ||
-      selectedImageProperties['placeholderControlsOverlayEnabled']
-    ) {
-      setSelectedAdjustmentId('replace');
-    }
-  }, [selectedImageProperties]);
 
   return (
     <div className="align-center gap-sm flex flex-col">

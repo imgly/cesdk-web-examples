@@ -1,23 +1,20 @@
 .caseWrapper {
   display: flex;
   width: 100%;
-  flex-direction: row-reverse;
+  flex-direction: column;
   flex-grow: 1;
-  gap: 1.5rem;
+  padding: 1rem;
 }
 
 .headerBar {
-  display: none;
-  flex-basis: 140px;
-  flex-direction: column;
-  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
 @media (min-width: 650px) {
   .headerBar {
-    display: flex;
     justify-content: space-between;
   }
 }
@@ -27,6 +24,13 @@
   display: flex;
   overflow: hidden;
   flex-grow: 1;
+  border: 4px solid #ffffff;
+  border-radius: 24px;
+  box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25),
+    0px 18px 18px -2px rgba(18, 26, 33, 0.12),
+    0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12),
+    0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12);
+
   /* Disabling selection as it triggers when moving blocks via touch on ios safari  */
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -38,6 +42,17 @@
   display: flex;
   flex-grow: 1;
   justify-content: center;
+  padding: 10px 10px 10px 10px;
+}
+
+:global(.sidebarLayout) .wrapper {
+  padding: 10px 10px 70px 10px;
+}
+
+@media (min-width: 1300px) {
+  .wrapper {
+    padding: 0 0 3rem 0;
+  }
 }
 
 .headline {
@@ -50,19 +65,11 @@
   width: 100%;
   flex-direction: column;
   flex-grow: 1;
+  background-color: #7b8187;
 }
 
 @media only screen and (min-width: 650px) {
   .caseWrapper {
     padding: 0;
-  }
-
-  .kioskWrapper {
-    border: 4px solid #ffffff;
-    border-radius: 24px;
-    box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25),
-      0px 18px 18px -2px rgba(18, 26, 33, 0.12),
-      0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12),
-      0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12);
   }
 }

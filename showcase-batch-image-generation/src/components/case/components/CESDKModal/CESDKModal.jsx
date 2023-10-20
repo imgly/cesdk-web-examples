@@ -3,21 +3,17 @@ import useOnClickOutside from 'lib/useOnClickOutside';
 import React, { useEffect, useRef } from 'react';
 import classes from './CESDKModal.module.css';
 
-const CESDKModal = ({ config, configure, onOutsideClick }) => {
+const CESDKModal = ({ config, onOutsideClick }) => {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
   useEffect(() => {
     if (containerRef.current && !instanceRef.current) {
-      CreativeEditorSDK.create(containerRef.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          if (configure) {
-            await configure(instance);
-          }
-          instanceRef.current = instance;
-        }
-      );
+      CreativeEditorSDK.init(containerRef.current, config).then((instance) => {
+        instance.addDefaultAssetSources();
+        instance.addDemoAssetSources();
+
+        instanceRef.current = instance;
+      });
       return () => {
         if (instanceRef.current) {
           instanceRef.current.dispose();

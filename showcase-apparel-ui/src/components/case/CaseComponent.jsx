@@ -24,9 +24,18 @@ const CaseComponent = () => {
     <EditorProvider>
       {/* Use this element to fix the size in iOS Safari. */}
       <div className={classes.fullHeightWrapper}>
-        <div className={classes.wrapper}>
-          <div className={classes.kioskWrapper}>
-            <CustomUI />
+        <div className={classes.caseWrapper}>
+          <div className="caseHeader">
+            <h3>Apparel UI</h3>
+            <p>
+              Try out customizing a t-shirt design with this mobile apparel
+              editor and export a print-ready PDF.{' '}
+            </p>
+          </div>
+          <div className={classes.wrapper}>
+            <div className={classes.kioskWrapper}>
+              <CustomUI />
+            </div>
           </div>
         </div>
       </div>

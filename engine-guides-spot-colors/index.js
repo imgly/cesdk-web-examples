@@ -1,12 +1,12 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.3/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.10.3/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
   // highlight-setup
-  document.getElementById('cesdk_container').append(engine.element);
+  document.getElementById('root').append(engine.element);
 
   const scene = engine.scene.create();
 
@@ -32,7 +32,6 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.editor.setSpotColorRGB('Crayola-Pink-Flamingo', 0.988, 0.455, 0.992);
   engine.editor.setSpotColorRGB('Pantone-ColorOfTheYear-2022', 0.4, 0.404, 0.671);
   engine.editor.setSpotColorRGB('Yellow', 1, 1, 0);
-  engine.editor.getSpotColorRGBA('Yellow') // (r: 1, g: 1, b: 0, a: 1)
   engine.editor.findAllSpotColors();  // ['Crayola-Pink-Flamingo', 'Pantone-ColorOfTheYear-2022', 'Yellow']
   // highlight-create
 
@@ -61,6 +60,6 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-change
 
   // highlight-undefine
-  engine.editor.removeSpotColor('Yellow')
+  editor.removeSpotColor('Yellow')
   // highlight-undefine
 });

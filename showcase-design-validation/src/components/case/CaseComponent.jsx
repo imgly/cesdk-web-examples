@@ -86,7 +86,7 @@ const VALIDATIONS = [
 ];
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
+  const cesdk_container = useRef(null);
   const cesdkRef = useRef(null);
 
   const [validationResults, setValidationResults] = useState([]);
@@ -120,6 +120,7 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/design-validation/example.scene`,
       license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
@@ -142,15 +143,60 @@ const CaseComponent = () => {
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
+      },
+      // Begin standard template presets
+      presets: {
+        templates: {
+          postcard_1: {
+            label: 'Postcard Design',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.png`
+          },
+          postcard_2: {
+            label: 'Postcard Tropical',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.png`
+          },
+          business_card_1: {
+            label: 'Business card',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.png`
+          },
+          instagram_photo_1: {
+            label: 'Instagram photo',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
+          },
+          instagram_story_1: {
+            label: 'Instagram story',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.png`
+          },
+          poster_1: {
+            label: 'Poster',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.png`
+          },
+          presentation_4: {
+            label: 'Presentation',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.png`
+          },
+          collage_1: {
+            label: 'Collage',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.png`
+          }
+        }
       }
+      // End standard template presets
     };
-    if (cesdkContainer.current && !cesdkRef.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
+    if (cesdk_container.current && !cesdkRef.current) {
+      CreativeEditorSDK.init(cesdk_container.current, config).then(
+        (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({sceneMode: 'Design'});
+          instance.addDemoAssetSources();
           cesdkRef.current = instance;
-          await instance.loadFromURL(`${window.location.protocol + "//" + window.location.host}/cases/design-validation/example.scene`);
           setIsInitialized(true);
         }
       );
@@ -160,7 +206,7 @@ const CaseComponent = () => {
         cesdkRef.current.dispose();
       }
     };
-  }, [cesdkContainer]);
+  }, [cesdk_container]);
 
   const normalizedResults = useMemo(
     () =>
@@ -180,10 +226,18 @@ const CaseComponent = () => {
 
   return (
     <div style={wrapperStyle}>
-      <div style={cesdkWrapperStyle}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
-      </div>
-      <div style={sidebarStyle}>
+      <div style={headerStyle}>
+        <div
+          className="caseHeader caseHeader--no-margin"
+          style={caseHeaderStyle}
+        >
+          <h3>Design Validation</h3>
+          <p>
+            Set validation rules to provide design and layout feedback. For
+            example, check if elements protrude the page or enforce a minimum
+            image resolution.
+          </p>
+        </div>
         <ValidationBox
           checkStatus={checkRan ? 'performed' : 'pending'}
           results={normalizedResults}
@@ -196,38 +250,46 @@ const CaseComponent = () => {
           }
         />
       </div>
+
+      <div style={cesdkWrapperStyle}>
+        <div ref={cesdk_container} style={cesdkStyle}></div>
+      </div>
     </div>
   );
 };
 
+const headerStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  gap: '2rem',
+  color: 'white'
+};
+
+const caseHeaderStyle = {
+  maxWidth: '50%'
+};
+
 const cesdkStyle = {
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0
+  height: '100%',
+  width: '100%',
+  flexGrow: 1,
+  overflow: 'hidden',
+  borderRadius: '0.75rem'
 };
 const cesdkWrapperStyle = {
-  position: 'relative',
-  minHeight: '640px',
-  overflow: 'hidden',
-  flexGrow: 1,
-  display: 'flex',
   borderRadius: '0.75rem',
+  flexGrow: '1',
+  display: 'flex',
   boxShadow:
-    '0px 0px 2px rgba(22, 22, 23, 0.25), 0px 4px 6px -2px rgba(22, 22, 23, 0.12), 0px 2px 2.5px -2px rgba(22, 22, 23, 0.12), 0px 1px 1.75px -2px rgba(22, 22, 23, 0.12)'
+    '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
 };
 
 const wrapperStyle = {
-  flex: '1',
-  maxWidth: '100%',
+  flexGrow: '1',
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
+  width: '100%',
   gap: '1rem'
-};
-const sidebarStyle = {
-  flexBasis: '280px',
-  flexShrink: 0
 };
 
 export default CaseComponent;

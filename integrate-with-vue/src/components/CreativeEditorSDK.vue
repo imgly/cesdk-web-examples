@@ -19,13 +19,9 @@ export default {
 
   // docs-integrate-vue-4
   mounted: function mounted() {
-    CreativeEditorSDK.create('#cesdk_container', this.config).then(async (instance) => {
+    CreativeEditorSDK.init('#cesdk_container', this.config).then((instance) => {
+      /** do something with the instance of CreativeEditor SDK **/
       this._cesdk = instance;
-      // Do something with the instance of CreativeEditor SDK, for example:
-      // Populate the asset library with default / demo asset sources.
-      instance.addDefaultAssetSources();
-      instance.addDemoAssetSources({ sceneMode: 'Design' });
-      await instance.createDesignScene();
     });
   },
   // docs-integrate-vue-4

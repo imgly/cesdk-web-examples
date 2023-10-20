@@ -93,11 +93,16 @@ export const EditorProvider = ({ children }) => {
         featureFlags: {
           preventScrolling: true
         },
+
+        page: {
+          title: {
+            show: false
+          }
+        },
         license: process.env.REACT_APP_LICENSE
       };
 
       engine = await CreativeEngine.init(config);
-      engine.editor.setSettingBool('page/title/show', false);
       setCreativeEngine(engine);
     };
     loadEditor();
@@ -187,6 +192,7 @@ async function setupPhotoScene(engine, src) {
   await engine.block.setClipped(page, false);
 
   engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
+  engine.editor.addUndoStep();
 }
 
 /**

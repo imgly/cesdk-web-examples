@@ -1,9 +1,26 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.3/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.3/assets',
   // highlight-callbacks
   callbacks: {
+    // highlight-onlog
+    log: (message, logLevel) => {
+      switch (logLevel) {
+        case 'Info':
+          console.info(message);
+          break;
+        case 'Warning':
+          console.warn(message);
+          break;
+        case 'Error':
+          console.error(message);
+          break;
+        default:
+          console.log(message);
+      }
+    },
+    // highlight-onlog
     // highlight-onunsupportedbrowser
     onUnsupportedBrowser: () => {
       /* This is the default window alert which will be shown in case an unsupported
@@ -32,7 +49,7 @@ let config = {
     // highlight-onload
     onLoad: () => {
       window.alert('Load callback!');
-      const scene = '...'; // Fill with sene
+      let scene = '...'; // Fill with sene
       return Promise.resolve(scene);
     },
     // highlight-onload
@@ -59,7 +76,6 @@ let config = {
     }
     // highlight-onupload
   },
-  // highlight-callbacks
   ui: {
     elements: {
       // highlight-navigation
@@ -76,11 +92,8 @@ let config = {
     }
   }
 };
+// highlight-callbacks
 
-CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
-  // Do something with the instance of CreativeEditor SDK, for example:
-  // Populate the asset library with default / demo asset sources.
-  instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design' });
-  await instance.createDesignScene();
+CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
+  /** do something with the instance of CreativeEditor SDK **/
 });

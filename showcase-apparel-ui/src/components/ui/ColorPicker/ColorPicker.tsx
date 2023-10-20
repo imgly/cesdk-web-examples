@@ -68,7 +68,7 @@ export const ColorPicker = ({
   return (
     <div
       className={classNames(
-        'gap-xs flex items-center justify-between',
+        'flex items-center justify-between',
         classes.wrapper,
         classes['wrapper--' + theme],
         classes['wrapper--' + size]
@@ -80,26 +80,7 @@ export const ColorPicker = ({
         </label>
       )}
       <div className={classNames('space-x-2', classes.selectionWrapper)}>
-        {presetColors.length > 0 && (
-          <div className="flex space-x-1">
-            {presetColors.map((color, i) => (
-              <button
-                key={color + i}
-                style={{ backgroundColor: color }}
-                onClick={() => {
-                  handleChange(color);
-                }}
-                className={classes.colorPreset}
-              ></button>
-            ))}
-          </div>
-        )}
-        {cloneElement(TriggerComponent, {
-          onClick: (e: Event) => {
-            setPickerOpen(true);
-            e.stopPropagation();
-          }
-        })}
+        {cloneElement(TriggerComponent, { onClick: () => setPickerOpen(true) })}
 
         <div
           style={{
@@ -119,6 +100,20 @@ export const ColorPicker = ({
             <HexColorInput color={value} onChange={handleChange} />
           </div>
         </div>
+        {presetColors.length > 0 && (
+          <div className="flex space-x-1">
+            {presetColors.map((color, i) => (
+              <button
+                key={color + i}
+                style={{ backgroundColor: color }}
+                onClick={() => {
+                  handleChange(color);
+                }}
+                className={classes.colorPreset}
+              ></button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
