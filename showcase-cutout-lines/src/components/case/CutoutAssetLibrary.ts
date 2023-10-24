@@ -1,4 +1,4 @@
-import { type AssetResult, DesignBlockType } from '@cesdk/cesdk-js';
+import { DesignBlockType, type AssetResult } from '@cesdk/cesdk-js';
 import CreativeEngine, { type Configuration } from '@cesdk/engine';
 import _ from 'lodash';
 
@@ -101,7 +101,6 @@ export const addLocalCutoutAssetLibrary = async (engine: CreativeEngine) => {
 
     const blockId = engine.block.createCutoutFromBlocks(selectedBlockIds);
     engine.block.appendChild(uniqueParents[0], blockId);
-    engine.block.setAlwaysOnTop(blockId, true);
     engine.block.select(blockId);
     engine.editor.addUndoStep();
     return blockId;
