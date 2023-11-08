@@ -80,8 +80,6 @@ export const addLocalCutoutAssetLibrary = async (engine: CreativeEngine) => {
     const CUTOUT_DISABLED_BLOCK_TYPES = [DesignBlockType.Page];
     if (
       selectedBlockIds.some((blockId) =>
-        // TODO: Remove after block unification
-        // @ts-ignore
         CUTOUT_DISABLED_BLOCK_TYPES.includes(engine.block.getType(blockId))
       )
     ) {
