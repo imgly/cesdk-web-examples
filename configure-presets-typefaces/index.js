@@ -1,8 +1,15 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.18.1-rc.1/cesdk.umd.js';
 
 let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.18.1-rc.1/assets',
   theme: 'light',
+  // highlight-remove-default-typefaces
+  extensions: {
+    baseURL: '/extensions/',
+    // This will remove our default typefaces from the editor
+    entries: []
+  },
+  // highlight-remove-default-typefaces
   presets: {
     // highlight-typefaces
     typefaces: {
