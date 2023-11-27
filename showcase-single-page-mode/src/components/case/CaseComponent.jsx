@@ -49,7 +49,7 @@ const CaseComponent = () => {
           cesdk = instance;
           instance.engine.editor.setSettingBool('page/title/show', false);
           await instance.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`
+            `${window.location.protocol + "//" + window.location.host}/example-1.scene`
           );
           setCesdk(instance);
           const newPageIds = instance.engine.scene.getPages();
@@ -58,7 +58,7 @@ const CaseComponent = () => {
           instance.engine.event.subscribe([instance.engine.scene.get()], () => {
             const getPages = async () => {
               const newPageIds = instance.engine.scene.getPages();
-              const newActivePageId = await instance.unstable_getActivePage();
+              const newActivePageId = instance.engine.scene.getCurrentPage();
               setPageIds(newPageIds);
               setActivePageId(newActivePageId);
             };
