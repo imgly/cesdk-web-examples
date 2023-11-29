@@ -19,7 +19,7 @@ export class AppComponent implements AfterViewInit {
     // docs-integrate-angular-3
     const config: Configuration = {
       // Serve assets from IMG.LY cdn or locally
-      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
+      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.18.1/assets',
       // Enable local uploads in Asset Library
       callbacks: { onUpload: 'local' }
     };

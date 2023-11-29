@@ -1,7 +1,7 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.18.1/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.18.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {

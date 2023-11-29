@@ -1,4 +1,4 @@
-import StyledPopover from 'components/ui/StyledPopover/StyledPopover';
+import StyledPopover from '@/components/ui/StyledPopover/StyledPopover';
 import classNames from 'classnames';
 import React, { useMemo, useState } from 'react';
 import { ReactComponent as ErrorIcon } from './Error.svg';

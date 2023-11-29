@@ -27,12 +27,10 @@ const ExportOptionsCESDK = () => {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          instance.addDemoAssetSources({sceneMode: 'Design'});
           localCesdk = instance;
           cesdk.current = localCesdk;
-          await localCesdk.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/example-1.scene`
-          );
+          await localCesdk.loadFromURL(`${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`) ;
           setIsLoaded(true);
         }
       );

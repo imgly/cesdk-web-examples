@@ -33,11 +33,9 @@ const CaseComponent = () => {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          instance.addDemoAssetSources({sceneMode: 'Design'});
           cesdk = instance;
-          await instance.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/example-1.scene`
-          );
+          await instance.loadFromURL(`${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`)
         }
       );
     }
