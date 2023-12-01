@@ -1,9 +1,15 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.18.0/cesdk.umd.js';
 
 // highlight-config
 const config = {
+  // highlight-license
+  license: 'YOUR_API_KEY',
+  // highlight-license
+  // highlight-userid
+  userId: 'USER_ID',
+  // highlight-userid
   // highlight-baseurl
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.18.0/assets',
   // highlight-baseurl
   // highlight-locale
   locale: 'en', // 'de'

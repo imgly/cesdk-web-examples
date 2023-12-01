@@ -1,10 +1,12 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.18.0/cesdk.umd.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL:  'https://cdn.img.ly/packages/imgly/cesdk-js/1.18.0/assets'
 };
 
-CreativeEditorSDK.create("#cesdk_container", config).then(async (instance) => {
+CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   var engine = instance.engine;
   const scene = engine.scene.create();
   const page = engine.block.create('page');
@@ -18,7 +20,9 @@ CreativeEditorSDK.create("#cesdk_container", config).then(async (instance) => {
   const c = { x: page_size.width / 2, y: page_size.height / 2 };
   engine.block.setPositionX(camera, c.x);
   engine.block.setPositionY(camera, c.y);
-  let line = engine.block.create('shapes/line');
+  const line = engine.block.create('graphic');
+  engine.block.setShape(block, engine.block.createShape('line'));
+  engine.block.setFill(block, engine.block.createFill('color'));
   engine.block.appendChild(page, line);
   let lines = [line];
 

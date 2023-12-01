@@ -1,7 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.18.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.18.0/assets'
 };
 
 CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
@@ -23,22 +25,25 @@ CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
     // highlight-page-get-create
 
     // highlight-create-image
-    /* Create an image block and add it to the scene's page. */
-    const image = instance.block.create('image');
+    /* Create an graphic block with an image fill and add it to the scene's page. */
+    const block = instance.block.create('graphic');
+    instance.block.setShape(block, instance.block.createShape('rect'));
+    instance.block.setFill(block, instance.block.createFill('image'));
     // highlight-create-image
 
     // highlight-image-properties
     instance.block.setString(
-      image,
-      'image/imageFileURI',
+      imageFill,
+      'fill/image/imageFileURI',
       'https://img.ly/static/ubq_samples/imgly_logo.jpg'
     );
     /* The content fill mode 'Contain' ensures the entire image is visible. */
-    instance.block.setEnum(image, 'contentFill/mode', 'Contain');
+    instance.block.setEnum(block, 'contentFill/mode', 'Contain');
     // highlight-image-properties
 
     // highlight-image-append
-    instance.block.appendChild(page, image);
+    instance.block.appendChild(page, block);
+    // highlight-image-append
 
     // highlight-zoom-page
     /* Zoom the scene's camera on our page. */

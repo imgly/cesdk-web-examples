@@ -1,8 +1,10 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.18.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.18.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -24,7 +26,8 @@ CreativeEngine.init(config).then(async (engine) => {
             meta: {
               uri: 'https://img.ly/static/ubq_samples/imgly_logo.jpg',
               thumbUri: 'https://img.ly/static/ubq_samples/thumbnails/imgly_logo.jpg',
-              blockType: '//ly.img.ubq/image',
+              blockType: '//ly.img.ubq/graphic',
+              fillType: '//ly.img.ubq/fill/image',
               width: 320,
               height: 116
             },
@@ -41,12 +44,15 @@ CreativeEngine.init(config).then(async (engine) => {
     // highlight-customSourceFindAssets
     // highlight-customSourceApplyAsset
     async applyAsset(assetResult) {
-      const image = engine.block.create('image');
-      engine.block.setString(image, 'image/imageFileURI', assetResult.meta.uri);
-      engine.block.setWidth(image, assetResult.meta.width);
-      engine.block.setHeight(image, assetResult.meta.height);
+      const block = engine.block.create('graphic');
+      engine.block.setShape(block, engine.block.createShape('rect'));
+      const imageFill = engine.block.createFill('image');
+      engine.block.setString(imageFill, 'fill/image/imageFileURI', assetResult.meta.uri);
+      engine.block.setFill(block, imageFill);
+      engine.block.setWidth(block, assetResult.meta.width);
+      engine.block.setHeight(block, assetResult.meta.height);
       const firstPage = engine.block.findByType('page')[0];
-      engine.block.appendChild(firstPage, image);
+      engine.block.appendChild(firstPage, block);
       engine.block.setWidth(firstPage, assetResult.meta.width);
       engine.block.setHeight(firstPage, assetResult.meta.height);
       engine.scene.zoomToBlock(firstPage, 0, 0, 0, 0);

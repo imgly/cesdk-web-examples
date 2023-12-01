@@ -1,6 +1,8 @@
 import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.12.0/cesdk.umd.js';
 
 const config = {
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
   ui: {
     // highlight-colorlibraries-config
     colorLibraries: ['myDefaultPalette'],
