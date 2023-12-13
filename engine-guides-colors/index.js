@@ -17,13 +17,15 @@ CreativeEngine.init(config).then(async (engine) => {
 
   engine.scene.zoomToBlock(page, 40, 40, 40, 40);
 
-  const star = engine.block.create('shapes/star');
-  engine.block.setPositionX(star, 350);
-  engine.block.setPositionY(star, 400);
-  engine.block.setWidth(star, 100);
-  engine.block.setHeight(star, 100);
+  const block = engine.block.create('graphic');
+  engine.block.setShape(block, engine.block.createShape('rect'));
+  engine.block.setFill(block, engine.block.createFill('color'));
+  engine.block.setPositionX(block, 350);
+  engine.block.setPositionY(block, 400);
+  engine.block.setWidth(block, 100);
+  engine.block.setHeight(block, 100);
 
-  const fill = engine.block.getFill(star);
+  const fill = engine.block.getFill(block);
   // highlight-setup
 
   // highlight-create-colors
@@ -40,9 +42,9 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-apply-colors
   engine.block.setColor(fill, `fill/color/value`, rgbaBlue);
   engine.block.setColor(fill, `fill/color/value`, cmykRed);
-  engine.block.setColor(star, `stroke/color`, cmykPartialRed);
+  engine.block.setColor(block, `stroke/color`, cmykPartialRed);
   engine.block.setColor(fill, `fill/color/value`, spotPinkFlamingo);
-  engine.block.setColor(star, `dropShadow/color`, spotPartialYellow);
+  engine.block.setColor(block, `dropShadow/color`, spotPartialYellow);
   // highlight-apply-colors
 
   // highlight-convert-color

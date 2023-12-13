@@ -1,14 +1,18 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.19.0/index.js';
 
 // highlight-blob
-const blob = await fetch('https://img.ly/static/ubq_samples/sample_4.jpg').then((response) => response.blob());
+const blob = await fetch('https://img.ly/static/ubq_samples/sample_4.jpg').then(
+  (response) => response.blob()
+);
 // highlight-blob
 // highlight-objectURL
 const objectURL = URL.createObjectURL(blob);
 // highlight-objectURL
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets',
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.19.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -16,14 +20,14 @@ CreativeEngine.init(config).then(async (engine) => {
   let scene = await engine.scene.createFromImage(objectURL);
   // highlight-initialImageURL
 
-  // highlight-find-image
-  // Find the automatically added image element in the scene.
-  const image = engine.block.findByType('image')[0];
-  // highlight-find-image
+  // highlight-find-findByType
+  // Find the automatically added graphic block in the scene that contains the image fill.
+  const block = engine.block.findByType('graphic')[0];
+  // highlight-find-findByType
 
   // highlight-set-opacity
   // Change its opacity.
-  engine.block.setOpacity(image, 0.5);
+  engine.block.setOpacity(block, 0.5);
   // highlight-set-opacity
 
   // Attach engine canvas to DOM

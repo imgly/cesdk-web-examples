@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.19.0/index.js';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
@@ -90,69 +90,76 @@ const getUnsplashUrl = async (unsplashResult) => {
 };
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.19.0/assets'
 };
 
-CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(async (instance) => {
-  const scene = instance.scene.create();
-  const page = instance.block.create('page');
-  instance.block.appendChild(scene, page);
-  instance.scene.zoomToBlock(page);
+CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
+  async (instance) => {
+    const scene = instance.scene.create();
+    const page = instance.block.create('page');
+    instance.block.appendChild(scene, page);
+    instance.scene.zoomToBlock(page);
 
-  // highlight-unsplash-definition
-  const customSource = {
-    id: 'unsplash',
-    findAssets: findUnsplashAssets,
-    // highlight-unsplash-credits-license
-    credits: {
-      name: 'Unsplash',
-      url: 'https://unsplash.com/'
-    },
-    license: {
-      name: 'Unsplash license (free)',
-      url: 'https://unsplash.com/license'
-    }
-    // highlight-unsplash-credits-license
-  };
-  // highlight-unsplash-definition
+    // highlight-unsplash-definition
+    const customSource = {
+      id: 'unsplash',
+      findAssets: findUnsplashAssets,
+      // highlight-unsplash-credits-license
+      credits: {
+        name: 'Unsplash',
+        url: 'https://unsplash.com/'
+      },
+      license: {
+        name: 'Unsplash license (free)',
+        url: 'https://unsplash.com/license'
+      }
+      // highlight-unsplash-credits-license
+    };
+    // highlight-unsplash-definition
 
-  instance.asset.addSource(customSource);
+    instance.asset.addSource(customSource);
 
-  const result = await instance.asset.findAssets(customSource.id, {page: 0, perPage: 3});
-  const asset = result.assets[0];
+    const result = await instance.asset.findAssets(customSource.id, {
+      page: 0,
+      perPage: 3
+    });
+    const asset = result.assets[0];
 
-  await instance.asset.apply(customSource.id, asset);
+    await instance.asset.apply(customSource.id, asset);
 
-  // highlight-add-local-source
-  const localSourceId = 'background-videos';
-  instance.asset.addLocalSource(localSourceId);
-  // highlight-add-local-source
+    // highlight-add-local-source
+    const localSourceId = 'background-videos';
+    instance.asset.addLocalSource(localSourceId);
+    // highlight-add-local-source
 
-  // highlight-add-asset-to-source
-  instance.asset.addAssetToSource(localSourceId, {
-    id: 'ocean-waves-1',
-    label: {
-      en: 'relaxing ocean waves',
-      es: 'olas del mar relajantes'
-    },
-    tags: {
-      en: ['ocean', 'waves', 'soothing', 'slow'],
-      es: ['mar', 'olas', 'calmante', 'lento']
-    },
-    meta: {
-      uri: `https://example.com/ocean-waves-1.mp4`,
-      thumbUri: `https://example.com/thumbnails/ocean-waves-1.jpg`,
-      mimeType: 'video/mp4',
-      width: 1920,
-      height: 1080
-    },
-    credits: {
-      name: 'John Doe',
-      url: 'https://example.com/johndoe'
-    }
-  });
-  // highlight-add-asset-to-source
-});
+    // highlight-add-asset-to-source
+    instance.asset.addAssetToSource(localSourceId, {
+      id: 'ocean-waves-1',
+      label: {
+        en: 'relaxing ocean waves',
+        es: 'olas del mar relajantes'
+      },
+      tags: {
+        en: ['ocean', 'waves', 'soothing', 'slow'],
+        es: ['mar', 'olas', 'calmante', 'lento']
+      },
+      meta: {
+        uri: `https://example.com/ocean-waves-1.mp4`,
+        thumbUri: `https://example.com/thumbnails/ocean-waves-1.jpg`,
+        mimeType: 'video/mp4',
+        width: 1920,
+        height: 1080
+      },
+      credits: {
+        name: 'John Doe',
+        url: 'https://example.com/johndoe'
+      }
+    });
+    // highlight-add-asset-to-source
+  }
+);
 
 // highlight-translateToAssetResult
 async function translateToAssetResult(image) {
@@ -177,7 +184,14 @@ async function translateToAssetResult(image) {
       // highlight-result-thumbUri
       thumbUri: image.urls.thumb,
       // highlight-result-blockType
-      blockType: '//ly.img.ubq/image',
+      blockType: '//ly.img.ubq/graphic',
+      // highlight-result-fillType
+      fillType: '//ly.img.ubq/fill/image',
+      // highlight-result-shapeType
+      shapeType: '//ly.img.ubq/shape/rect',
+      // highlight-result-kind
+      kind: 'image',
+      // highlight-result-kind
       // highlight-result-size
       width: image.width,
       height: image.height

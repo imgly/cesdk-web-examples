@@ -1,8 +1,10 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.19.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.19.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -31,22 +33,21 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-setPageDuration
 
   // highlight-assignVideoFill
-  const rectShape = engine.block.create('shapes/rect');
-  engine.block.destroy(engine.block.getFill(rectShape));
+  const block = engine.block.create('graphic');
+  engine.block.setShape(block, engine.block.createShape('rect'));
   const videoFill = engine.block.createFill('video');
-  engine.block.setFill(rectShape, videoFill);
-
   engine.block.setString(
     videoFill,
     'fill/video/fileURI',
     'https://cdn.img.ly/assets/demo/v1/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barrelling-a-wave-12715991.mp4'
   );
+  engine.block.setFill(block, videoFill);
 
-  engine.block.appendChild(page2, rectShape);
-  engine.block.setPositionX(rectShape, 0);
-  engine.block.setPositionY(rectShape, 0);
-  engine.block.setWidth(rectShape, engine.block.getWidth(page2));
-  engine.block.setHeight(rectShape, engine.block.getHeight(page2));
+  engine.block.appendChild(page2, block);
+  engine.block.setPositionX(block, 0);
+  engine.block.setPositionY(block, 0);
+  engine.block.setWidth(block, engine.block.getWidth(page2));
+  engine.block.setHeight(block, engine.block.getHeight(page2));
   // highlight-assignVideoFill
 
   // highlight-trim
@@ -91,9 +92,21 @@ CreativeEngine.init(config).then(async (engine) => {
   /* Export scene as mp4 video. */
   const mimeType = 'video/mp4';
   const progressCallback = (renderedFrames, encodedFrames, totalFrames) => {
-    console.log('Rendered', renderedFrames, 'frames and encoded', encodedFrames, 'frames out of', totalFrames);
+    console.log(
+      'Rendered',
+      renderedFrames,
+      'frames and encoded',
+      encodedFrames,
+      'frames out of',
+      totalFrames
+    );
   };
-  const blob = await engine.block.exportVideo(scene, mimeType, progressCallback, {});
+  const blob = await engine.block.exportVideo(
+    scene,
+    mimeType,
+    progressCallback,
+    {}
+  );
 
   /* Download blob. */
   const anchor = document.createElement('a');

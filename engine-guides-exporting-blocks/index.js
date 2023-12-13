@@ -1,7 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.19.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.19.0/assets'
 };
 
 const exportButton = document.getElementById('export_button');
@@ -26,6 +28,6 @@ CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
       anchor.href = URL.createObjectURL(blob);
       anchor.download = 'export.png';
       anchor.click();
-    }
+    };
   }
 );
