@@ -1,15 +1,17 @@
-export const checkImageContent = async (cesdk) => {
-  const imageBlocksData = cesdk.engine.block
-    .findByType('image')
-    .map((blockId) => ({
-      blockId,
-      url: cesdk.engine.block.getString(blockId, 'image/imageFileURI'),
-      blockType: cesdk.engine.block.getType(blockId),
-      blockName: cesdk.engine.block.getName(blockId)
-    }));
+export const checkImageContent = async (engine) => {
+  const imageBlocksData = engine.block.findByKind('image').map((blockId) => ({
+    blockId,
+    url: engine.block.getString(
+      engine.block.getFill(blockId),
+      'fill/image/imageFileURI'
+    ),
+    blockType: engine.block.getType(blockId),
+    blockName: engine.block.getName(blockId)
+  }));
 
   const imagesWithValidity = await Promise.all(
     imageBlocksData.flatMap(async (imageBlockData) => {
+      console.log('Checking image content for', imageBlockData.url);
       const imageContentCategories = await checkImageContentAPI(
         imageBlockData.url
       );
@@ -23,18 +25,12 @@ export const checkImageContent = async (cesdk) => {
   return imagesWithValidity.flat();
 };
 
-export const selectAllBlocks = (cesdk, blockIds) => {
-  cesdk.engine.block
+export const selectAllBlocks = (engine, blockIds) => {
+  engine.block
     .findAllSelected()
-    .forEach((block) => cesdk.engine.block.setSelected(block, false));
-  blockIds.forEach((block) => cesdk.engine.block.setSelected(block, true));
+    .forEach((block) => engine.block.setSelected(block, false));
+  blockIds.forEach((block) => engine.block.setSelected(block, true));
   return blockIds;
-};
-
-export const getAllImageUrls = (cesdk) => {
-  return cesdk.engine.block
-    .findByType('image')
-    .map((id) => cesdk.engine.block.getString(id, 'image/imageFileURI'));
 };
 
 const percentageToState = (percentage) => {

@@ -1,17 +1,8 @@
 import { useMemo, useState } from 'react';
-import ChangeStickerFileSecondary from '../ChangeStickerFileSecondary/ChangeStickerFileSecondary';
-
-import { ReactComponent as ReplaceIcon } from '../../icons/Replace.svg';
-import SlideUpPanel from '../SlideUpPanel/SlideUpPanel';
 import InspectorBar from '../InspectorBar/InspectorBar';
+import SlideUpPanel from '../SlideUpPanel/SlideUpPanel';
 
-const ALL_ADJUSTMENTS = [
-  {
-    Body: ChangeStickerFileSecondary,
-    Icon: ReplaceIcon,
-    id: 'replace'
-  }
-];
+const ALL_ADJUSTMENTS = [];
 const StickerAdjustmentBar = () => {
   const [selectedAdjustmentId, setSelectedAdjustmentId] = useState();
 

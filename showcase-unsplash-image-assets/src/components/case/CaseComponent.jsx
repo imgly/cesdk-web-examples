@@ -54,7 +54,8 @@ const CaseComponent = () => {
               entries: (defaultEntries, context) => {
                 if (
                   context.selectedBlocks.length !== 1 ||
-                  context.selectedBlocks[0].blockType !== '//ly.img.ubq/image'
+                  context.selectedBlocks[0].fillType !==
+                    '//ly.img.ubq/fill/image'
                 ) {
                   return [];
                 }
@@ -84,8 +85,8 @@ const CaseComponent = () => {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
           instance.addDefaultAssetSources();
-          instance.engine.asset.addSource(unsplashAssetLibrary);
           instance.addDemoAssetSources({ sceneMode: 'Design' });
+          instance.engine.asset.addSource(unsplashAssetLibrary);
           instance.engine.editor.setSettingBool('page/title/show', false);
           cesdk = instance;
           await cesdk.loadFromURL(

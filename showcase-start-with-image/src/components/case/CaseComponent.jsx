@@ -40,7 +40,7 @@ const CaseComponent = () => {
           cesdk = instance;
           // Preselect the loaded Image
           await cesdk.createFromImage(image.full);
-          const blocks = cesdk.engine.block.findByType('image');
+          const blocks = cesdk.engine.block.findByKind('image');
           if (blocks.length > 0) {
             cesdk.engine.block.setSelected(blocks[0], true);
           }

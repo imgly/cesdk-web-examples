@@ -74,10 +74,10 @@ const CaseComponent = () => {
     };
 
 
-    CreativeEngine.init(config).then(async (instance) => {
-      instance.addDefaultAssetSources();
-      instance.addDemoAssetSources();
-      mockupEngineRef.current = instance;
+    CreativeEngine.init(config).then(async (engine) => {
+      engine.addDefaultAssetSources();
+      engine.addDemoAssetSources();
+      mockupEngineRef.current = engine;
       setMockupEngineLoaded(true);
     });
     return () => {
@@ -132,7 +132,7 @@ const CaseComponent = () => {
         URL.createObjectURL(blob)
       );
     });
-    const scene = mockupCesdk.block.findByType('scene')[0];
+    const scene = mockupCesdk.scene.get();
     const mockupScene = await mockupCesdk.scene.saveToString();
     const mockupBlob = await mockupCesdk.block.export(scene, 'image/jpeg');
     setMockupLoading(false);
@@ -317,13 +317,14 @@ const CaseComponent = () => {
   );
 };
 
-function replaceImages(cesdk, imageName, newUrl) {
-  const images = cesdk.block.findByName(imageName);
+const replaceImages = (engine, imageName, newUrl) => {
+  const images = engine.block.findByName(imageName);
 
   images.forEach((image) => {
-    cesdk.block.setString(image, 'image/imageFileURI', newUrl);
-    cesdk.block.resetCrop(image);
+    const fill = engine.block.getFill(image);
+    engine.block.setString(fill, 'fill/image/imageFileURI', newUrl);
+    engine.block.resetCrop(image);
   });
-}
+};
 
 export default CaseComponent;

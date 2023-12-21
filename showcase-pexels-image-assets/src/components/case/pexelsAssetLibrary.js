@@ -69,7 +69,6 @@ function translateToAssetResult(image) {
   const artistUrl = image.photographer_url;
   const thumbUri = image.src.medium;
   const id = image.id.toString();
-  // const label = !!image.alt ? image.alt : undefined;
   const credits = {
     name: artistName,
     url: artistUrl
@@ -78,13 +77,12 @@ function translateToAssetResult(image) {
   return {
     id,
     locale: 'en',
-    // TODO: Check why labels do not work
-    // label: { 'en': label },
+
     meta: {
       thumbUri,
       width: image.width,
       height: image.height,
-      blockType: '//ly.img.ubq/image',
+      mimeType: 'image/jpeg',
       uri: image.src.original
     },
     context: {

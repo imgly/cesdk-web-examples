@@ -14,16 +14,15 @@ const lutFilterUriToId = (filterUri) =>
   ALL_FILTERS.find(({ lutImage }) => filterUri.includes(lutImage))?.id;
 
 const FilterSecondary = () => {
-  const { currentPageBlockId, creativeEngine } = useEditor();
+  const { currentPageBlockId, engine } = useEditor();
 
   const [activeFilterId, setActiveFilterId] = useState(() => {
-    const effects = creativeEngine.block.getEffects(currentPageBlockId);
+    const effects = engine.block.getEffects(currentPageBlockId);
     let lutFilterEffect = effects.find(
-      (effect) =>
-        creativeEngine.block.getString(effect, 'type') === LUT_FILTER_TYPE
+      (effect) => engine.block.getString(effect, 'type') === LUT_FILTER_TYPE
     );
     if (!lutFilterEffect) return 'none';
-    let lutUri = creativeEngine.block.getString(
+    let lutUri = engine.block.getString(
       lutFilterEffect,
       'effect/lut_filter/lutFileURI'
     );
@@ -57,13 +56,12 @@ const FilterSecondary = () => {
           label="None"
           thumbUrl={caseAssetPath('/images/none-filter-thumb.png')}
           onClick={() => {
-            const effects = creativeEngine.block.getEffects(currentPageBlockId);
+            const effects = engine.block.getEffects(currentPageBlockId);
             let adjustmentEffect = effects.find(
               (effect) =>
-                creativeEngine.block.getString(effect, 'type') ===
-                LUT_FILTER_TYPE
+                engine.block.getString(effect, 'type') === LUT_FILTER_TYPE
             );
-            creativeEngine.block.destroy(adjustmentEffect);
+            engine.block.destroy(adjustmentEffect);
             setActiveFilterId('none');
           }}
           isActive={activeFilterId === 'none'}
@@ -72,7 +70,7 @@ const FilterSecondary = () => {
           <FilterButton
             id={filter.id}
             key={filter.id}
-            thumbUrl={creativeEngine.editor.defaultURIResolver(
+            thumbUrl={engine.editor.defaultURIResolver(
               `extensions/ly.img.cesdk.filters.lut/${filter.thumbPath}`
             )}
             onClick={() => {

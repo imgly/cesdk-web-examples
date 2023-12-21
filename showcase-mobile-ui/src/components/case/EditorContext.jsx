@@ -1,7 +1,6 @@
 import CreativeEngine from '@cesdk/engine';
 import isEqual from 'lodash/isEqual';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { findCustomStickerAssets } from './components/StickerSelect/CustomStickerAssetLibrary';
 import { useSinglePageFocus } from './lib/UseSinglePageFocus';
 import { caseAssetPath } from './util';
 
@@ -10,7 +9,7 @@ const EditorContext = createContext();
 export const EditorProvider = ({ children }) => {
   const [engineIsLoaded, setEngineIsLoaded] = useState(false);
 
-  const [creativeEngine, setCreativeEngine] = useState(null);
+  const [engine, setEngine] = useState(null);
 
   const [localUploads, setLocalUploads] = useState([]);
   const [canUndo, setCanUndo] = useState(false);
@@ -34,31 +33,29 @@ export const EditorProvider = ({ children }) => {
   });
 
   editorUpdateCallbackRef.current = () => {
-    const newEditMode = creativeEngine.editor.getEditMode();
+    const newEditMode = engine.editor.getEditMode();
     if (!isEqual(newEditMode, editMode)) {
       setEditMode(newEditMode);
     }
   };
   engineEventCallbackRef.current = (events) => {
-    if (creativeEngine && events.length > 0) {
+    if (engine && events.length > 0) {
       // Extract and store the currently selected block
-      const newSelectedBlocks = creativeEngine.block
-        .findAllSelected()
-        .map((id) => ({
-          id,
-          type: creativeEngine.block.getType(id)
-        }));
+      const newSelectedBlocks = engine.block.findAllSelected().map((id) => ({
+        id,
+        type: engine.block.getKind(id)
+      }));
       if (!isEqual(newSelectedBlocks, selectedBlocks)) {
         setSelectedBlocks(newSelectedBlocks);
       }
 
       // Extract and store canUndo
-      const newCanUndo = creativeEngine.editor.canUndo();
+      const newCanUndo = engine.editor.canUndo();
       if (newCanUndo !== canUndo) {
         setCanUndo(newCanUndo);
       }
       // Extract and store canRedo
-      const newCanRedo = creativeEngine.editor.canRedo();
+      const newCanRedo = engine.editor.canRedo();
       if (newCanRedo !== canRedo) {
         setCanRedo(newCanRedo);
       }
@@ -71,35 +68,38 @@ export const EditorProvider = ({ children }) => {
         featureFlags: {
           preventScrolling: true
         },
+        role: 'Adopter',
         license: process.env.REACT_APP_LICENSE
       };
 
-      const creativeEngine = await CreativeEngine.init(config);
-      creativeEngine.editor.setSettingBool('page/title/show', false);
-      creativeEngine.asset.addSource({
-        id: 'stickers',
-        findAssets: findCustomStickerAssets
+      const engine = await CreativeEngine.init(config);
+      engine.editor.setSettingBool('mouse/enableScroll', false);
+      engine.editor.setSettingBool('mouse/enableZoom', false);
+
+      engine.addDefaultAssetSources({
+        baseURL: 'https://cdn.img.ly/assets/v2'
       });
-      creativeEngine.editor.onStateChanged(() =>
-        editorUpdateCallbackRef.current()
-      );
-      creativeEngine.event.subscribe([], (events) =>
+      engine.addDemoAssetSources({
+        baseURL: 'https://cdn.img.ly/assets/demo/v2',
+        sceneMode: 'Design'
+      });
+      engine.editor.setSettingBool('page/title/show', false);
+      engine.editor.onStateChanged(() => editorUpdateCallbackRef.current());
+      engine.event.subscribe([], (events) =>
         engineEventCallbackRef.current(events)
       );
-      await creativeEngine.scene.loadFromURL(
-        caseAssetPath('/social-media.scene')
-      );
+      await engine.scene.loadFromURL(caseAssetPath('/social-media.scene'));
 
-      setFocusEngine(creativeEngine);
+      setFocusEngine(engine);
       setFocusEnabled(true);
-      setCreativeEngine(creativeEngine);
+      setEngine(engine);
       setEngineIsLoaded(true);
     };
     loadEditor();
 
     return () => {
-      if (creativeEngine) {
-        creativeEngine.dispose();
+      if (engine) {
+        engine.dispose();
       }
       setEngineIsLoaded(false);
     };
@@ -107,7 +107,7 @@ export const EditorProvider = ({ children }) => {
   }, []);
 
   const value = {
-    creativeEngine,
+    engine,
     engineIsLoaded,
     editMode,
     localUploads,

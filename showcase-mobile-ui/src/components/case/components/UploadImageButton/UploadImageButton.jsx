@@ -1,4 +1,5 @@
 import { useEditor } from '../../EditorContext';
+import { getImageDimensions } from './getImageDimensions';
 import { ReactComponent as UploadIcon } from '../../icons/Upload.svg';
 import { uploadFile } from '../../lib/upload';
 import IconButton from '../IconButton/IconButton';
@@ -10,8 +11,25 @@ const SUPPORTED_MIME_TYPES = [
   'image/gif'
 ];
 
+async function fileUploadToAsset(file) {
+  const url = window.URL.createObjectURL(file);
+  const { width, height } = await getImageDimensions(url);
+
+  return {
+    id: url,
+    meta: {
+      uri: url,
+      thumbUri: url,
+      kind: 'image',
+      fillType: '//ly.img.ubq/fill/image',
+      width,
+      height
+    }
+  };
+}
+
 const UploadImageButton = ({ multiple, onUpload }) => {
-  const { setLocalUploads, localUploads } = useEditor();
+  const { engine } = useEditor();
 
   return (
     <div>
@@ -22,11 +40,16 @@ const UploadImageButton = ({ multiple, onUpload }) => {
             supportedMimeTypes: SUPPORTED_MIME_TYPES
           });
 
-          const fileUrls = files.map((file) =>
-            window.URL.createObjectURL(file)
+          const uploadedAssets = await Promise.all(
+            files.map(async (file) => fileUploadToAsset)
           );
-          fileUrls.forEach((fileUrl) => onUpload(fileUrl));
-          setLocalUploads([...localUploads, ...fileUrls]);
+
+          uploadedAssets.forEach((asset) =>
+            engine.asset.addAssetToSource('ly.img.image', asset)
+          );
+          uploadedAssets.forEach((asset) =>
+            onUpload({ ...asset, context: { sourceId: 'ly.img.image' } })
+          );
         }}
         icon={
           <>
@@ -38,4 +61,5 @@ const UploadImageButton = ({ multiple, onUpload }) => {
     </div>
   );
 };
+
 export default UploadImageButton;

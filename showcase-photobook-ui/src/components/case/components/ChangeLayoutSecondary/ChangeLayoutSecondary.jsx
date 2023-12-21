@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useEngine } from '../../lib/EngineContext';
 import { useSinglePageMode } from '../../lib/SinglePageModeContext';
-import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
-import AdjustmentsBarButton from '../AdjustmentsBarButton/AdjustmentsBarButton';
+import AdjustmentsBar from '../../ui/AdjustmentsBar/AdjustmentsBar';
+import AdjustmentsBarButton from '../../ui/AdjustmentsBarButton/AdjustmentsBarButton';
 
 const LAYOUT_LIBRARY_ID = 'ly.img.layouts';
 
 const ChangeLayoutSecondary = () => {
   const { engine } = useEngine();
-  const { currentPageBlockId, setCurrentPageBlockId, setEnabled } =
-    useSinglePageMode();
 
   const [layouts, setLayouts] = useState([]);
 

@@ -5,7 +5,11 @@ import classes from './BackgroundColorIcon.module.css';
 const BackgroundColorIcon = () => {
   const { currentPageBlockId } = useSinglePageMode();
   const [shapeColor] = useProperty(currentPageBlockId, 'fill/solid/color');
-  const [r, g, b] = shapeColor ?? [0, 0, 0];
+  const { r, g, b } = shapeColor ?? {
+    r: 0,
+    g: 0,
+    b: 0
+  };
   return (
     <span
       className={classes.icon}

@@ -39,6 +39,7 @@ const EditInstanceCESDK = memo(
           await instance.engine.scene.loadFromString(sceneString);
         }}
         config={{
+          license: process.env.REACT_APP_LICENSE,
           callbacks: {
             onExport: (blobs) => {
               localDownload(

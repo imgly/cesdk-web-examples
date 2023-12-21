@@ -76,22 +76,16 @@ function translateToAssetResult(image) {
   return {
     id: image.id,
     locale: 'en',
-    // TODO: Check why labels do not work
-    // label: image.description ?? image.alt_description ?? undefined,
+    label: image.description ?? image.alt_description ?? undefined,
     tags: image.tags ? image.tags.map((tag) => tag.title) : undefined,
 
     meta: {
-      blockType: '//ly.img.ubq/image',
+      mimeType: 'image/jpeg',
       uri: image.urls.full,
       thumbUri: image.urls.thumb,
       width: image.width,
       height: image.height
     },
-
-    context: {
-      sourceId: 'unsplash'
-    },
-
     credits: artistName
       ? {
           name: artistName,

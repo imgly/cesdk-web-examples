@@ -1,8 +1,5 @@
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-}
-
-.wrapper > * {
-  max-height: 72px;
+  grid-gap: 0.5rem;
 }

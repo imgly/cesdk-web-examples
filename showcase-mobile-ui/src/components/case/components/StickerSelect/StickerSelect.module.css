@@ -3,17 +3,3 @@
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
 }
-
-.wrapper > * {
-  max-height: 72px;
-}
-
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.img {
-  height: 100%;
-}

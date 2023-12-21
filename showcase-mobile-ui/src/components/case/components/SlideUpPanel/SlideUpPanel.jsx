@@ -23,14 +23,14 @@ const SlideUpPanel = ({
   InspectorBar = null
 }) => {
   const containerRef = useRef();
-  const { creativeEngine, setZoomPaddingBottom } = useEditor();
+  const { engine, setZoomPaddingBottom } = useEditor();
   useEffect(() => {
     const containerNode = containerRef.current;
     const defaultZoomPaddingBottom = 8;
 
     var ro = new ResizeObserver((entries) => {
       const containerBB = containerNode.getBoundingClientRect();
-      const canvasBB = creativeEngine.element.getBoundingClientRect();
+      const canvasBB = engine.element.getBoundingClientRect();
       const paddingNeeded = canvasBB.height - (containerBB.top - canvasBB.top);
       if (isExpanded) {
         setZoomPaddingBottom(paddingNeeded + defaultZoomPaddingBottom);
@@ -45,7 +45,7 @@ const SlideUpPanel = ({
       ro.unobserve(containerNode);
       setZoomPaddingBottom(defaultZoomPaddingBottom);
     };
-  }, [isExpanded, creativeEngine.element, setZoomPaddingBottom]);
+  }, [isExpanded, engine.element, setZoomPaddingBottom]);
 
   return (
     <SlideUpContext.Provider

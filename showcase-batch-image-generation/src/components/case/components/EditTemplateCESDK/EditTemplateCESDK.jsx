@@ -11,6 +11,7 @@ const EditTemplateCESDK = memo(
           await instance.engine.scene.loadFromString(sceneString);
         }}
         config={{
+          license: process.env.REACT_APP_LICENSE,
           theme: 'dark',
           callbacks: {
             onSave: (sceneString) => {
@@ -44,11 +45,6 @@ const EditTemplateCESDK = memo(
                 iconSize: 'normal',
                 hideLabels: true
               }
-            }
-          },
-          page: {
-            title: {
-              show: false
             }
           }
         }}

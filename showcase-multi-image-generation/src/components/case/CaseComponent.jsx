@@ -43,11 +43,12 @@ const TEMPLATE_PATHS = [
 ];
 
 const replaceImage = (cesdk, imageName, newUrl) => {
-  const img = cesdk.block.findByName(imageName)[0];
-  if (!img) {
+  const imgBlock = cesdk.block.findByName(imageName)[0];
+  if (!imgBlock) {
     return;
   }
-  cesdk.block.setString(img, 'image/imageFileURI', newUrl);
+  const img = cesdk.block.getFill(imgBlock);
+  cesdk.block.setString(img, 'fill/image/imageFileURI', newUrl);
   cesdk.block.resetCrop(img);
 };
 
@@ -86,10 +87,10 @@ const CaseComponent = () => {
     const config = {
       license: process.env.REACT_APP_LICENSE
     };
-    CreativeEngine.init(config).then(async (instance) => {
-      instance.addDefaultAssetSources();
-      instance.addDemoAssetSources({sceneMode: 'Design'});
-      engineRef.current = instance;
+    CreativeEngine.init(config).then(async (engine) => {
+      engine.addDefaultAssetSources();
+      engine.addDemoAssetSources({ sceneMode: 'Design' });
+      engineRef.current = engine;
     });
 
     return function shutdownCreativeEngine() {
@@ -105,18 +106,17 @@ const CaseComponent = () => {
   }, [yelpId]);
 
   useEffect(() => {
-    if (!engineRef?.current || !yelpData) {
+    const engine = engineRef?.current;
+    if (!engine || !yelpData) {
       return;
     }
     async function renderTemplates() {
       // This can not be done in parallel.
       for (const [index, sceneUrl] of TEMPLATE_PATHS.entries()) {
-        await engineRef?.current.scene.loadFromURL(
-          caseAssetPath(sceneUrl.scenePath)
-        );
+        await engine.scene.loadFromURL(caseAssetPath(sceneUrl.scenePath));
         fillTemplate(engineRef.current, yelpData);
-        const blob = await engineRef?.current.block.export(
-          engineRef?.current.block.findByType('scene')[0],
+        const blob = await engine.block.export(
+          engine.scene.get(),
           'image/jpeg'
         );
         setReviewBlobs((oldBlobs) => {

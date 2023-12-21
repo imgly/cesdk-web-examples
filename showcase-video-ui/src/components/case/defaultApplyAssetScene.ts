@@ -12,7 +12,7 @@ export const createDefaultApplyAssetScene =
     const scene = await engine.scene.loadFromURL(asset.meta.uri);
     // Currently we need to set page dimensions manually by getting the dimension of one page.
     // Note: Assumes that all pages have the same dimensions.
-    const somePage = engine.block.findByType(DesignBlockType.Page)[0];
+    const somePage = engine.block.findByType('page')[0];
     const width = engine.block.getWidth(somePage);
     const height = engine.block.getHeight(somePage);
     engine.block.setFloat(scene, 'scene/pageDimensions/height', height);

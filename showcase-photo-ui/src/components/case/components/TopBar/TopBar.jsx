@@ -8,15 +8,15 @@ import classes from './TopBar.module.css';
 const TopBar = () => {
   const [isExporting, setIsExporting] = useState(false);
 
-  const { creativeEngine, editMode, refocus, canRecenter, enableAutoRecenter } =
+  const { engine, editMode, refocus, canRecenter, enableAutoRecenter } =
     useEditor();
 
   const handleExport = async () => {
     setIsExporting(true);
     // Let react rerender
     await new Promise((resolve) => setTimeout(resolve, 0));
-    const blob = await creativeEngine.block.export(
-      creativeEngine.scene.get(),
+    const blob = await engine.block.export(
+      engine.scene.get(),
       'image/jpeg',
       {}
     );

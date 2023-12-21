@@ -4,6 +4,8 @@ import { useSinglePageMode } from './SinglePageModeContext';
 
 interface PagePreviewContextType {
   pagePreviews: PagePreviews;
+  enabled: boolean;
+  setEnabled: (enabled: boolean) => void;
 }
 
 const PagePreviewContext = createContext<PagePreviewContextType | undefined>(

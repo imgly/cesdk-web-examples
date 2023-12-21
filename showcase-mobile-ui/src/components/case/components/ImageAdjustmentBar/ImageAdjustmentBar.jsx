@@ -24,7 +24,7 @@ const ALL_ADJUSTMENTS = [
 
 const ImageAdjustmentBar = () => {
   const [selectedAdjustmentId, setSelectedAdjustmentId] = useState();
-  const { editMode, creativeEngine } = useEditor();
+  const { editMode, engine } = useEditor();
 
   const calculatedAdjustmentId = useMemo(
     () => (editMode === 'Crop' ? 'crop' : selectedAdjustmentId),
@@ -47,7 +47,7 @@ const ImageAdjustmentBar = () => {
       isExpanded={!!calculatedAdjustmentId}
       onExpandedChanged={(value) => {
         if (!value) {
-          creativeEngine.editor.setEditMode('Transform');
+          engine.editor.setEditMode('Transform');
           setSelectedAdjustmentId();
         }
       }}
@@ -57,10 +57,10 @@ const ImageAdjustmentBar = () => {
           onAdjustmentChange={(newAdjustmentId) => {
             if (newAdjustmentId === 'crop') {
               setSelectedAdjustmentId();
-              creativeEngine.editor.setEditMode('Crop');
+              engine.editor.setEditMode('Crop');
             } else {
               setSelectedAdjustmentId(newAdjustmentId);
-              creativeEngine.editor.setEditMode('Transform');
+              engine.editor.setEditMode('Transform');
             }
           }}
           adjustments={ALL_ADJUSTMENTS}

@@ -1,6 +1,6 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { createApplyLayoutAsset } from 'lib/createApplyLayoutAsset';
-import loadAssetSourceFromContentJSON from 'lib/loadAssetSourceFromContentJSON';
+import { createApplyLayoutAsset } from './lib/createApplyLayoutAsset';
+import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import LAYOUT_ASSETS from './CustomLayouts.json';
 import { useEffect, useRef } from 'react';
 
@@ -87,9 +87,9 @@ const CaseComponent = () => {
     if (cesdkContainer.current) {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({sceneMode: 'Design'});
-
+          const engine = instance.engine;
+          await instance.addDefaultAssetSources();
+          await instance.addDemoAssetSources({ sceneMode: 'Design' });
           loadAssetSourceFromContentJSON(
             instance.engine,
             LAYOUT_ASSETS,
@@ -99,6 +99,15 @@ const CaseComponent = () => {
           cesdk = instance;
           engine.current = instance.engine;
           await cesdk.loadFromURL(caseAssetPath('/custom-layouts.scene'));
+          // Simulate that a user has replaced the placeholder images
+          return engine.block
+            .findByKind('image')
+            .filter((image) => {
+              return !engine.block.isPlaceholderControlsOverlayEnabled(image);
+            })
+            .forEach((image) => {
+              engine.block.setPlaceholderEnabled(image, false);
+            });
         }
       );
     }

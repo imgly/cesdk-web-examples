@@ -1,5 +1,8 @@
 import { DesignBlockType, type AssetResult } from '@cesdk/cesdk-js';
-import CreativeEngine, { type Configuration } from '@cesdk/engine';
+import CreativeEngine, {
+  DesignBlockTypeShorthand,
+  type Configuration
+} from '@cesdk/engine';
 import _ from 'lodash';
 
 export const addCutoutAssetLibraryDemoConfiguration = (
@@ -77,7 +80,7 @@ export const addLocalCutoutAssetLibrary = async (engine: CreativeEngine) => {
       alert('No selected blocks available to cutout from selection');
       return undefined;
     }
-    const CUTOUT_DISABLED_BLOCK_TYPES = [DesignBlockType.Page];
+    const CUTOUT_DISABLED_BLOCK_TYPES: DesignBlockTypeShorthand[] = ['page'];
     if (
       selectedBlockIds.some((blockId) =>
         // TODO: Remove after block unification

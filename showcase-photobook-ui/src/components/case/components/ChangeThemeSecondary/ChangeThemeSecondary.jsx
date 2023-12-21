@@ -1,8 +1,4 @@
-import {
-  hexToRgb,
-  normalizeColors,
-  replaceImage
-} from '../../lib/CreativeEngineUtils';
+import { hexToRgba } from '../../lib/ColorUtilities';
 import { useEngine } from '../../lib/EngineContext';
 import { useSinglePageMode } from '../../lib/SinglePageModeContext';
 import ThemeBar from '../ThemeBar/ThemeBar';
@@ -16,14 +12,10 @@ const ChangeThemeSecondary = () => {
       engine.block
         .findByName(name)
         .find((block) => engine.block.getParent(block) === currentPageBlockId);
-    const { r, g, b } = normalizeColors(hexToRgb(asset.defaultBGColor));
-    engine.block.setColorRGBA(
+    engine.block.setColor(
       currentPageBlockId,
       'fill/solid/color',
-      r,
-      g,
-      b,
-      1
+      hexToRgba(asset.defaultBGColor)
     );
     engine.block
       .findByType('text')
@@ -36,8 +28,21 @@ const ChangeThemeSecondary = () => {
         )
       );
 
-    replaceImage(engine, findByNameOnCurrentPage('BG Dark'), asset.dark);
-    replaceImage(engine, findByNameOnCurrentPage('BG Light'), asset.light);
+    const bgDarkBlock = findByNameOnCurrentPage('BG Dark');
+    const bgDarkBlockFill = engine.block.getFill(bgDarkBlock);
+    engine.block.setString(
+      bgDarkBlockFill,
+      'fill/image/imageFileURI',
+      asset.dark
+    );
+    const bgLightBlock = findByNameOnCurrentPage('BG Light');
+    const bgLightBlockFill = engine.block.getFill(bgLightBlock);
+    engine.block.setString(
+      bgLightBlockFill,
+      'fill/image/imageFileURI',
+      asset.light
+    );
+    engine.editor.addUndoStep();
   };
 
   return <ThemeBar onClick={(asset) => changeTheme(asset)} />;

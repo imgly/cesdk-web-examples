@@ -2,7 +2,7 @@ import CreativeEditorSDK, { UserInterfaceElements } from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import { createApplyFormatAsset } from './createApplyFormatAsset';
 import { createDefaultApplyAssetScene } from './defaultApplyAssetScene';
-import loadAssetSourceFromContentJSON from './loadAssetSourceFromContentJSON';
+import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import {
   formatAssetsToPresets,
   pageFormatI18n,

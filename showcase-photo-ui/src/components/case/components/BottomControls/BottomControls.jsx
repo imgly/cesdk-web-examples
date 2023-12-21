@@ -33,19 +33,19 @@ const SECONDARY_BARS = {
 };
 
 const BottomControls = () => {
-  const { setZoomPaddingBottom, editMode, creativeEngine, currentPageBlockId } =
+  const { setZoomPaddingBottom, editMode, engine, currentPageBlockId } =
     useEditor();
   const [selectedMenuId, setSelectedMenuId] = useState();
 
   useEffect(() => {
     const handler = function (event) {
-      if (creativeEngine.editor.getEditMode() === 'Transform') {
+      if (engine.editor.getEditMode() === 'Transform') {
         setSelectedMenuId(null);
       }
     };
-    creativeEngine.element.addEventListener('click', handler);
-    return () => creativeEngine.element?.removeEventListener('click', handler);
-  }, [creativeEngine]);
+    engine.element.addEventListener('click', handler);
+    return () => engine.element?.removeEventListener('click', handler);
+  }, [engine]);
 
   const calculatedMenuId = useMemo(
     () => (editMode === 'Crop' ? 'Crop' : selectedMenuId),
@@ -75,16 +75,16 @@ const BottomControls = () => {
               isActive={calculatedMenuId === key}
               onClick={() => {
                 if (calculatedMenuId === key) {
-                  creativeEngine.editor.setEditMode('Transform');
+                  engine.editor.setEditMode('Transform');
                   setSelectedMenuId(null);
                 } else {
                   if (key === 'Crop') {
                     setSelectedMenuId(null);
-                    creativeEngine.block.setSelected(currentPageBlockId, true);
-                    creativeEngine.editor.setEditMode('Crop');
+                    engine.block.setSelected(currentPageBlockId, true);
+                    engine.editor.setEditMode('Crop');
                   } else {
                     setSelectedMenuId(key);
-                    creativeEngine.editor.setEditMode('Transform');
+                    engine.editor.setEditMode('Transform');
                   }
                 }
               }}

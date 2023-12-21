@@ -9,17 +9,17 @@ import SlideUpPanel, {
 } from '../SlideUpPanel/SlideUpPanel';
 
 const AddTextSecondary = ({ onClose }) => {
-  const { creativeEngine, currentPageBlockId } = useEditor();
+  const { engine, currentPageBlockId } = useEditor();
 
   const addText = (fontFileUri) => {
-    const block = creativeEngine.block.create('text');
-    creativeEngine.block.setString(block, 'text/fontFileUri', fontFileUri);
-    creativeEngine.block.setFloat(block, 'text/fontSize', 40);
-    creativeEngine.block.setEnum(block, 'text/horizontalAlignment', 'Center');
-    creativeEngine.block.setHeightMode(block, 'Auto');
-    const pageWidth = creativeEngine.block.getWidth(currentPageBlockId);
-    creativeEngine.block.setWidth(block, pageWidth * 0.5);
-    autoPlaceBlockOnPage(creativeEngine, currentPageBlockId, block);
+    const block = engine.block.create('text');
+    engine.block.setString(block, 'text/fontFileUri', fontFileUri);
+    engine.block.setFloat(block, 'text/fontSize', 40);
+    engine.block.setEnum(block, 'text/horizontalAlignment', 'Center');
+    engine.block.setHeightMode(block, 'Auto');
+    const pageWidth = engine.block.getWidth(currentPageBlockId);
+    engine.block.setWidth(block, pageWidth * 0.5);
+    autoPlaceBlockOnPage(engine, currentPageBlockId, block);
   };
 
   const [fontFilterGroup, setFontFilterGroup] = useState();

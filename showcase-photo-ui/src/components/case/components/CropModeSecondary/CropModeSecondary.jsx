@@ -23,8 +23,7 @@ export const ALL_CROP_MODES = [
 ];
 
 const CropModeSecondary = () => {
-  const { creativeEngine, refocus, selectedImageUrl, currentPageBlockId } =
-    useEditor();
+  const { engine, refocus, selectedImageUrl, currentPageBlockId } = useEditor();
 
   const [cropScaleRatio] = useProperty(currentPageBlockId, 'crop/scaleRatio');
   const cropZoomPercentage = useMemo(
@@ -54,65 +53,59 @@ const CropModeSecondary = () => {
   );
 
   const disableCanvasInteraction = () => {
-    creativeEngine.element.style.pointerEvents = 'none';
+    engine.element.style.pointerEvents = 'none';
   };
   const enableCanvasInteraction = () => {
-    creativeEngine.element.style.pointerEvents = 'auto';
+    engine.element.style.pointerEvents = 'auto';
   };
 
   const initialCropScale = useRef();
 
   const flip = () => {
-    creativeEngine.block.flipCropHorizontal(currentPageBlockId);
-    creativeEngine.editor.addUndoStep();
+    engine.block.flipCropHorizontal(currentPageBlockId);
+    engine.editor.addUndoStep();
   };
 
   const scaleImage = (value) => {
-    creativeEngine.block.setCropScaleRatio(currentPageBlockId, value);
-    const currentRatio =
-      creativeEngine.block.getCropScaleRatio(currentPageBlockId);
-    creativeEngine.block.adjustCropToFillFrame(
-      currentPageBlockId,
-      currentRatio
-    );
+    engine.block.setCropScaleRatio(currentPageBlockId, value);
+    const currentRatio = engine.block.getCropScaleRatio(currentPageBlockId);
+    engine.block.adjustCropToFillFrame(currentPageBlockId, currentRatio);
   };
 
   const resetCrop = useCallback(async () => {
     const { height, width } = await getImageSize(selectedImageUrl);
-    creativeEngine.block.setWidth(currentPageBlockId, width);
-    creativeEngine.block.setHeight(currentPageBlockId, height);
-    creativeEngine.block.resetCrop(currentPageBlockId);
+    engine.block.setWidth(currentPageBlockId, width);
+    engine.block.setHeight(currentPageBlockId, height);
+    engine.block.resetCrop(currentPageBlockId);
     // Force layout
-    creativeEngine.block.setRotation(currentPageBlockId, 0);
+    engine.block.setRotation(currentPageBlockId, 0);
     refocus();
-  }, [creativeEngine, currentPageBlockId, refocus, selectedImageUrl]);
+  }, [engine, currentPageBlockId, refocus, selectedImageUrl]);
 
   useEffect(function setupCropHandles() {
     const { r, g, b } = DEFAULT_HIGHLIGHT_COLOR;
 
-    creativeEngine.editor.setSettingColorRGBA(
-      'ubq://highlightColor',
+    engine.editor.setSettingColorRGBA(
+      'highlightColor',
       r / 255,
       g / 255,
       b / 255,
       1
     );
-    creativeEngine.block.setSelected(currentPageBlockId, true);
-    creativeEngine.editor.setGlobalScope('design/arrange', 'Allow');
-    creativeEngine.editor.setEditMode('Crop');
-    // Workaround a bug where setGlobalScope does not force a rerender.
-    forceRerender(creativeEngine);
+    engine.block.setSelected(currentPageBlockId, true);
+    engine.editor.setGlobalScope('design/arrange', 'Allow');
+    engine.editor.setEditMode('Crop');
     return () => {
       const { r, g, b } = CANVAS_COLOR;
-      creativeEngine.editor.setSettingColorRGBA(
-        'ubq://highlightColor',
+      engine.editor?.setSettingColorRGBA(
+        'highlightColor',
         r / 255,
         g / 255,
         b / 255,
         1
       );
-      creativeEngine.editor.setGlobalScope('design/arrange', 'Deny');
-      creativeEngine.editor.setEditMode('Transform');
+      engine.editor?.setGlobalScope('design/arrange', 'Deny');
+      engine.editor?.setEditMode('Transform');
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -137,7 +130,7 @@ const CropModeSecondary = () => {
                   current={straightenDegrees}
                   onChange={(value) => {
                     setCropRotation(degreesToRadians(rotationDegrees + value));
-                    creativeEngine.block.adjustCropToFillFrame(
+                    engine.block.adjustCropToFillFrame(
                       currentPageBlockId,
                       initialCropScale.current
                     );
@@ -148,7 +141,7 @@ const CropModeSecondary = () => {
                     disableCanvasInteraction();
                   }}
                   onStop={() => {
-                    creativeEngine.editor.addUndoStep();
+                    engine.editor.addUndoStep();
                     enableCanvasInteraction();
                   }}
                   max={45}
@@ -165,7 +158,7 @@ const CropModeSecondary = () => {
                     disableCanvasInteraction();
                   }}
                   onStop={() => {
-                    creativeEngine.editor.addUndoStep();
+                    engine.editor.addUndoStep();
                     enableCanvasInteraction();
                   }}
                   min={0}
@@ -190,8 +183,8 @@ const CropModeSecondary = () => {
                     degreesToRadians((cropRotationDegrees - 90) % 360)
                   );
                   const currentRatio =
-                    creativeEngine.block.getCropScaleRatio(currentPageBlockId);
-                  creativeEngine.block.adjustCropToFillFrame(
+                    engine.block.getCropScaleRatio(currentPageBlockId);
+                  engine.block.adjustCropToFillFrame(
                     currentPageBlockId,
                     currentRatio
                   );

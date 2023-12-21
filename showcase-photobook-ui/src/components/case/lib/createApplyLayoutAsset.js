@@ -9,15 +9,13 @@ export const createApplyLayoutAsset = (
   config = { addUndoStep: true }
 ) => {
   return async (asset) => {
-    let page = getPageInView(engine);
-    const selectedBlocks = engine.block.findAllSelected();
-    if (
-      selectedBlocks.length === 1 &&
-      engine.block.getType(selectedBlocks[0]).includes('page')
-    ) {
-      page = selectedBlocks[0];
-    }
-    selectedBlocks.forEach((block) => engine.block.setSelected(block, false));
+    const scopeBefore = engine.editor.getGlobalScope('lifecycle/destroy');
+    engine.editor.setGlobalScope('lifecycle/destroy', 'Allow');
+
+    const page = engine.scene.getCurrentPage();
+    engine.block
+      .findAllSelected()
+      .forEach((block) => engine.block.setSelected(block, false));
     const sceneString = await fetch(asset.meta.uri).then((response) =>
       response.text()
     );
@@ -39,8 +37,10 @@ export const createApplyLayoutAsset = (
     });
     // Copy all asset (images/ text) content from the old page to the new layout page
     copyAssets(engine, oldPage, page);
+
     engine.block.destroy(oldPage);
     engine.block.destroy(layoutPage);
+    engine.editor.setGlobalScope('lifecycle/destroy', scopeBefore);
     if (config.addUndoStep) {
       engine.editor.addUndoStep();
     }
@@ -64,11 +64,8 @@ const copyAssets = (engine, fromPageId, toPageId) => {
   );
 
   const imagesOnFromPage = fromChildren
-    .filter((childId) => engine.block.getType(childId).includes('image'))
-    .filter(
-      (imageBlock) =>
-        !engine.block.getBool(imageBlock, 'placeholderControls/showOverlay')
-    );
+    .filter((childId) => engine.block.getKind(childId) === 'image')
+    .filter((imageBlock) => !engine.block.isPlaceholderEnabled(imageBlock));
 
   const toChildren = visuallySortBlocks(
     engine,
@@ -77,8 +74,8 @@ const copyAssets = (engine, fromPageId, toPageId) => {
   const textsOnToPage = toChildren.filter((childId) =>
     engine.block.getType(childId).includes('text')
   );
-  const imagesOnToPage = toChildren.filter((childId) =>
-    engine.block.getType(childId).includes('image')
+  const imagesOnToPage = toChildren.filter(
+    (childId) => engine.block.getKind(childId) === 'image'
   );
   for (
     let index = 0;
@@ -92,17 +89,13 @@ const copyAssets = (engine, fromPageId, toPageId) => {
       fromBlock,
       'text/fontFileUri'
     );
-    const fromTextFillColor = engine.block.getColorRGBA(
+    const fromTextFillColor = engine.block.getColor(
       fromBlock,
       'fill/solid/color'
     );
     engine.block.setString(toBlock, 'text/text', fromText);
     engine.block.setString(toBlock, 'text/fontFileUri', fromFontFileUri);
-    engine.block.setColorRGBA(
-      toBlock,
-      'fill/solid/color',
-      ...fromTextFillColor
-    );
+    engine.block.setColor(toBlock, 'fill/solid/color', fromTextFillColor);
   }
   for (
     let index = 0;
@@ -111,66 +104,25 @@ const copyAssets = (engine, fromPageId, toPageId) => {
   ) {
     const fromBlock = imagesOnFromPage[index];
     const toBlock = imagesOnToPage[index];
+    const fromImageFill = engine.block.getFill(fromBlock);
+    const toImageFill = engine.block.getFill(toBlock);
     const fromImageFileUri = engine.block.getString(
-      fromBlock,
-      'image/imageFileURI'
+      fromImageFill,
+      'fill/image/imageFileURI'
     );
-    engine.block.setString(toBlock, 'image/imageFileURI', fromImageFileUri);
-    if (engine.block.getBool(fromBlock, 'placeholderControls/showOverlay')) {
-      engine.block.setBool(
-        toBlock,
-        'placeholderControls/showOverlay',
-        engine.block.getBool(fromBlock, 'placeholderControls/showOverlay')
-      );
-      engine.block.setBool(
-        toBlock,
-        'placeholderControls/showButton',
-        engine.block.getBool(fromBlock, 'placeholderControls/showButton')
-      );
-    } else {
-      engine.block.setBool(toBlock, 'placeholderControls/showOverlay', false);
-      engine.block.setBool(toBlock, 'placeholderControls/showButton', false);
-    }
+    engine.block.setString(
+      toImageFill,
+      'fill/image/imageFileURI',
+      fromImageFileUri
+    );
+    // engine.block.isPlaceholderEnabled(imageBlock)
+    engine.block.setPlaceholderEnabled(
+      toBlock,
+      engine.block.isPlaceholderEnabled(fromBlock)
+    );
 
     engine.block.resetCrop(toBlock);
   }
-};
-
-/**
- * Calculates which page is currently in view based on the current camera position
- * @param {import('@cesdk/cesdk-js').CreativeEngine} engine
- * @returns The ID of the PageBlock that is currently in view
- */
-const getPageInView = (engine) => {
-  const pages = engine.block.findByType('page');
-  const visiblePages = pages.filter((page) => engine.block.isVisible(page));
-  if (visiblePages.length === 1) {
-    return visiblePages[0];
-  }
-
-  const camera = engine.block.findByType('camera')[0];
-
-  const getReferenceCoordinates = (block) => [
-    engine.block.getGlobalBoundingBoxX(block) +
-      engine.block.getGlobalBoundingBoxWidth(block) / 2,
-    engine.block.getGlobalBoundingBoxY(block) +
-      engine.block.getGlobalBoundingBoxHeight(block) / 2
-  ];
-  const distanceBetweenPoints = ([X1, Y1], [X2, Y2]) =>
-    Math.hypot(X2 - X1, Y2 - Y1);
-  const pagesWithDistance = pages
-    .map((page) => ({
-      page,
-      distance: distanceBetweenPoints(
-        getReferenceCoordinates(page),
-        getReferenceCoordinates(camera)
-      )
-    }))
-    .sort(
-      ({ distance: distanceA }, { distance: distanceB }) =>
-        distanceA - distanceB
-    );
-  return pagesWithDistance[0].page;
 };
 
 const getChildrenTree = (engine, block) => {

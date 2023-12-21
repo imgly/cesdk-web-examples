@@ -12,10 +12,7 @@ const ChangeShapeColorSecondary = () => {
     <>
       <SlideUpPanelHeader headline="Color"></SlideUpPanelHeader>
       <SlideUpPanelBody>
-        <ColorSelect
-          onClick={({ r, g, b }) => setFillColor(r, g, b)}
-          activeColor={fillColor}
-        />
+        <ColorSelect onClick={setFillColor} activeColor={fillColor} />
       </SlideUpPanelBody>
     </>
   );

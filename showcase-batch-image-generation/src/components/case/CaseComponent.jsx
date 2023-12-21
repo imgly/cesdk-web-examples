@@ -45,12 +45,12 @@ const CaseComponent = () => {
         onUpload: 'local'
       }
     };
-    CreativeEngine.init(config).then(async (instance) => {
-      instance.addDefaultAssetSources();
-      instance.addDemoAssetSources({ sceneMode: 'Design' });
-      instance.editor.setSettingBool('page/title/show', false);
-      await instance.scene.loadFromString(currentTemplate.sceneString);
-      engineRef.current = instance;
+    CreativeEngine.init(config).then(async (engine) => {
+      engine.addDefaultAssetSources();
+      engine.addDemoAssetSources({ sceneMode: 'Design' });
+      engine.editor.setSettingBool('page/title/show', false);
+      await engine.scene.loadFromString(currentTemplate.sceneString);
+      engineRef.current = engine;
       setInitialized(true);
     });
 
