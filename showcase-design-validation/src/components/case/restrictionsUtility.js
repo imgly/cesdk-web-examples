@@ -23,13 +23,7 @@ const getElementBoundingBox = (cesdk, blockId) => {
 const getRelevantBlocks = (cesdk) => {
   return [
     ...cesdk.engine.block.findByType('text'),
-    ...cesdk.engine.block.findByType('image'),
-    ...cesdk.engine.block.findByType('sticker'),
-    ...cesdk.engine.block.findByType('shapes/rect'),
-    ...cesdk.engine.block.findByType('shapes/line'),
-    ...cesdk.engine.block.findByType('shapes/star'),
-    ...cesdk.engine.block.findByType('shapes/polygon'),
-    ...cesdk.engine.block.findByType('shapes/ellipse')
+    ...cesdk.engine.block.findByType('graphic')
   ];
 };
 
@@ -107,25 +101,26 @@ export const transformToPixel = (fromUnit, fromValue, dpi) => {
 export const millimeterToPx = (mm, dpi) => (mm * dpi) / 25.4;
 export const inchToPx = (inches, dpi) => inches * dpi;
 
-export const getImageBlockQuality = async (cesdk, imageId) => {
+export const getImageBlockQuality = async (engine, imageId) => {
   const [frameWidthDesignUnit, frameHeightDesignUnit] = [
-    cesdk.engine.block.getFrameWidth(imageId),
-    cesdk.engine.block.getFrameHeight(imageId)
+    engine.block.getFrameWidth(imageId),
+    engine.block.getFrameHeight(imageId)
   ];
-  const scene = cesdk.engine.block.findByType('scene')[0];
+  const scene = engine.scene.get();
   const [pageUnit, pageDPI] = [
-    cesdk.engine.block.getEnum(scene, 'scene/designUnit'),
-    cesdk.engine.block.getFloat(scene, 'scene/dpi')
+    engine.block.getEnum(scene, 'scene/designUnit'),
+    engine.block.getFloat(scene, 'scene/dpi')
   ];
   const [frameWidth, frameHeight] = [
     transformToPixel(pageUnit, frameWidthDesignUnit, pageDPI),
     transformToPixel(pageUnit, frameHeightDesignUnit, pageDPI)
   ];
+  const fill = engine.block.getFill(imageId);
   const { width, height } = await fetchImageResolution(
-    cesdk.engine.block.getString(imageId, 'image/imageFileURI')
+    engine.block.getString(fill, 'fill/image/imageFileURI')
   );
   // Currently scaleX and scaleY are the same
-  const scaleY = cesdk.engine.block.getCropScaleY(imageId) || 1;
+  const scaleY = engine.block.getCropScaleY(imageId) || 1;
   const imageQuality = getImageQuality(
     width,
     height,
@@ -180,35 +175,27 @@ export const getImageQuality = (
   return 1 / coverRatio;
 };
 
-export const getImageLayerName = (cesdk, blockId) => {
+export const getLayerName = (cesdk, blockId) => {
   const layerName = cesdk.engine.block.getName(blockId);
   if (layerName && !['Text'].includes(layerName)) {
     return layerName;
   }
-  const type = cesdk.engine.block.getType(blockId);
-  switch (type) {
-    case '//ly.img.ubq/text':
+  const kind = cesdk.engine.block.getKind(blockId);
+  switch (kind) {
+    case 'text':
       const textContent = cesdk.engine.block.getString(blockId, 'text/text');
       const truncatedTextContent = truncate(textContent, { length: 25 });
       if (truncatedTextContent) {
         return truncatedTextContent;
       }
       return 'Text';
-    case '//ly.img.ubq/image':
+    case 'image':
       return 'Image';
-    case '//ly.img.ubq/sticker':
+    case 'sticker':
       return 'Sticker';
-    case '//ly.img.ubq/shapes/rect':
-      return 'Shape: rect';
-    case '//ly.img.ubq/shapes/line':
-      return 'Shape: line';
-    case '//ly.img.ubq/shapes/star':
-      return 'Shape: star';
-    case '//ly.img.ubq/shapes/polygon':
-      return 'Shape: polygon';
-    case '//ly.img.ubq/shapes/ellipse':
-      return 'Shape: ellipse';
+    case 'shapes':
+      return 'Shape';
     default:
-      return type;
+      return kind;
   }
 };

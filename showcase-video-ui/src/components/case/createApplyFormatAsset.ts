@@ -12,7 +12,7 @@ export const createApplyFormatAsset =
     }
     const height = parseInt(meta.formatHeight as string, 10);
     const width = parseInt(meta.formatWidth as string, 10);
-    const pageIds = engine.block.findByType(DesignBlockType.Page);
+    const pageIds = engine.block.findByType('page');
     engine.block.resizeContentAware(pageIds, width, height);
     const scene = engine.scene.get()!;
     engine.block.setString(scene, 'scene/pageFormatId', id);

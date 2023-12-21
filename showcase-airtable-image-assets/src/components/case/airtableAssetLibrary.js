@@ -84,12 +84,8 @@ function translateToAssetResult({ image }) {
       width: image.width,
       height: image.height,
       thumbUri: image.thumbnails.large.url,
-      blockType: '//ly.img.ubq/image',
+      mimeType: 'image/jpeg',
       uri: image.url
-    },
-
-    context: {
-      sourceId: 'airtable'
     }
   };
   return asset;

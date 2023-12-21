@@ -43,7 +43,8 @@ const CaseComponent = () => {
               entries: (defaultEntries, context) => {
                 if (
                   context.selectedBlocks.length !== 1 ||
-                  context.selectedBlocks[0].blockType !== '//ly.img.ubq/image'
+                  context.selectedBlocks[0].fillType !==
+                    '//ly.img.ubq/fill/image'
                 ) {
                   return [];
                 }

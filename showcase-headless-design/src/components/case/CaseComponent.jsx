@@ -3,9 +3,9 @@ import classNames from 'classnames';
 import { ColorPicker } from 'components/ui/ColorPicker/ColorPicker';
 import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { hexToRgba } from './convert';
 import classes from './CaseComponent.module.css';
-import { caseAssetPath, useDevicePixelRatio } from './util';
+import { hexToRgba } from './convert';
+import { caseAssetPath } from './util';
 
 const CaseComponent = () => {
   /** @type {[import("@cesdk/engine").default, Function]} CreativeEngine */
@@ -30,10 +30,14 @@ const CaseComponent = () => {
     }
 
     let engineToBeDisposed;
-    CreativeEngine.init().then(async (engine) => {
+    CreativeEngine.init({
+      license: process.env.REACT_APP_LICENSE
+    }).then(async (engine) => {
       engine.addDefaultAssetSources();
       engine.addDemoAssetSources({ sceneMode: 'Design' });
       engine.editor.setSettingBool('page/title/show', false);
+      engine.editor.setSettingBool('mouse/enableScroll', false);
+      engine.editor.setSettingBool('mouse/enableZoom', false);
       engineToBeDisposed = engine;
       setEngine(engine);
       setIsEngineLoaded(true);
@@ -53,10 +57,14 @@ const CaseComponent = () => {
       const container = containerRef.current;
       const canvas = engine.element;
       async function initializeScene() {
-        engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
-        await engine.scene.loadFromURL(caseAssetPath('/example.scene'));
+        engine.editor.setSettingBool('doubleClickToCropEnabled', false);
+        const scene = await engine.scene.loadFromURL(
+          caseAssetPath('/example.scene')
+        );
+        const page = engine.block.findByKind('page')[0];
+        // Leave some extra space bottom for the gizmo
+        engine.scene.enableZoomAutoFit(page, 'Both', 10, 10, 10, 50);
         container.append(canvas);
-        await engine.scene.zoomToBlock(engine.scene.get(), 0, 0, 0, 0);
         setIsSceneLoaded(true);
       }
       initializeScene();
@@ -66,42 +74,14 @@ const CaseComponent = () => {
     },
     [engine, isEngineLoaded]
   );
-
-  // We need to refocus the scene when the DPR changes, e.g when the window is moved between monitors.
-  const [dpr] = useDevicePixelRatio();
-  useEffect(
-    function refocusAfterDPRChange() {
-      if (isSceneLoaded && dpr) {
-        engine.scene.zoomToBlock(engine.scene.get(), 0, 0, 0, 0);
-      }
-    },
-    [dpr, engine, isSceneLoaded]
-  );
-
-  // We need to refocus the scene when the canvas size changes.
-  useEffect(
-    function refocusAfterCanvasSizeChange() {
-      if (isSceneLoaded) {
-        const resizeObserver = new ResizeObserver(async () => {
-          await engine.scene.zoomToBlock(engine.scene.get(), 0, 0, 0, 0);
-        });
-        resizeObserver.observe(engine.element);
-        return () => {
-          resizeObserver.disconnect();
-        };
-      }
-    },
-    [engine, isSceneLoaded]
-  );
-
   useEffect(
     function updateSceneColors() {
       if (isSceneLoaded && colorRGBA) {
-        const page = engine.block.findByType('page')[0];
-        const text = engine.block.findByType('//ly.img.ubq/text')[0];
+        const page = engine.block.findByKind('page')[0];
+        const text = engine.block.findByKind('text')[0];
         let { r, g, b } = colorRGBA;
-        engine.block.setColorRGBA(page, 'fill/solid/color', r, g, b, 1.0);
-        engine.block.setColorRGBA(text, 'fill/solid/color', r, g, b, 1.0);
+        engine.block.setColor(page, 'fill/solid/color', { r, g, b, a: 1 });
+        engine.block.setColor(text, 'fill/solid/color', { r, g, b, a: 1 });
       }
     },
     [colorRGBA, engine, isSceneLoaded]
@@ -110,7 +90,7 @@ const CaseComponent = () => {
   useEffect(
     function updateFontFamily() {
       if (isSceneLoaded && font) {
-        const textBlock = engine.block.findByType('//ly.img.ubq/text')[0];
+        const textBlock = engine.block.findByKind('text')[0];
         engine.block.setString(textBlock, 'text/fontFileUri', font.value);
       }
     },
@@ -120,8 +100,9 @@ const CaseComponent = () => {
   useEffect(
     function updateImageFile() {
       if (isSceneLoaded && image) {
-        const imageBlock = engine.block.findByType('image')[0];
-        engine.block.setString(imageBlock, 'image/imageFileURI', image.full);
+        const imageBlock = engine.block.findByKind('image')[0];
+        const fill = engine.block.getFill(imageBlock);
+        engine.block.setString(fill, 'fill/image/imageFileURI', image.full);
         // We need to reset the crop after changing an image file to ensure that it is shown in full.
         engine.block.resetCrop(imageBlock);
       }

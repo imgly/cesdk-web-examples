@@ -26,7 +26,7 @@ const ALL_SIZES = [
 ];
 
 const CanvasSizeModal = ({ onClose }) => {
-  const { creativeEngine, currentPageBlockId, refocus } = useEditor();
+  const { engine, refocus } = useEditor();
   return (
     <Modal title="Size" onClose={onClose}>
       <div className={classes.grid}>
@@ -35,8 +35,8 @@ const CanvasSizeModal = ({ onClose }) => {
             key={name}
             className={classes.sizeWrapper}
             onClick={async () => {
-              const pages = creativeEngine.scene.getPages();
-              creativeEngine.block.resizeContentAware(pages, width, height);
+              const pages = engine.scene.getPages();
+              engine.block.resizeContentAware(pages, width, height);
               refocus();
               onClose();
             }}

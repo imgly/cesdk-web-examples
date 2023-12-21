@@ -1,13 +1,13 @@
+import { useEffect } from 'react';
 import { useEditor } from '../../EditorContext';
-import { hexToRgb } from '../../lib/CreativeEngineUtils';
 import { useEngine } from '../../lib/EngineContext';
 import { useSinglePageMode } from '../../lib/SinglePageModeContext';
 import { useProperty } from '../../lib/UseSelectedProperty';
-import ColorSelect from '../ColorSelect/ColorSelect';
+import ColorSelect from '../../ui/ColorSelect/ColorSelect';
 
 const ChangeBackgroundColorSecondary = () => {
   const { engine } = useEngine();
-  const { template } = useEditor();
+  const { getColorPalette } = useEditor();
   const { currentPageBlockId } = useSinglePageMode();
   const [backgroundColor, setBackgroundColor] = useProperty(
     currentPageBlockId,
@@ -15,12 +15,21 @@ const ChangeBackgroundColorSecondary = () => {
     { shouldAddUndoStep: false }
   );
 
+  // Add undo step when component dismounts:
+  useEffect(() => {
+    return () => {
+      if (engine) {
+        engine.editor.addUndoStep();
+      }
+    };
+  }, []);
+
   return (
     <ColorSelect
-      onClick={({ r, g, b, a }) => setBackgroundColor(r, g, b, a)}
+      onClick={(color) => setBackgroundColor(color)}
       onClickDebounced={() => engine.editor.addUndoStep()}
       activeColor={backgroundColor}
-      colorPalette={template.colors.map((color) => hexToRgb(color))}
+      colorPalette={getColorPalette()}
     />
   );
 };

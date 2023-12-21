@@ -1,87 +1,89 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useEditor } from '../EditorContext';
+import { useSelection } from './UseSelection';
 
-export const useSelectedProperty = (
+export const useProperty = (
+  block,
   propertyName,
   options = { shouldAddUndoStep: true }
 ) => {
-  const { creativeEngine } = useEditor();
-  // Store the initially selected block and stop getting updating properties when the block changed
-  const [initialSelectedBlocks] = useState(
-    creativeEngine.block.findAllSelected()
-  );
-  // We currently only support a single block selection
-  const firstSelectedBlock = initialSelectedBlocks[0];
+  const { engine } = useEditor();
 
   const getSelectedProperty = useCallback(() => {
+    if (!block) return;
     try {
-      return getProperty(creativeEngine, firstSelectedBlock, propertyName);
+      return getProperty(engine, block, propertyName);
     } catch (error) {
       console.log(error);
     }
-  }, [firstSelectedBlock, creativeEngine, propertyName]);
+  }, [block, engine, propertyName]);
 
   const [propertyValue, setPropertyValue] = useState(getSelectedProperty());
 
+  useEffect(() => {
+    setPropertyValue(getSelectedProperty());
+  }, [getSelectedProperty]);
+
   const setEnginePropertyValue = useCallback(
     (...value) => {
+      if (!block) return;
       try {
         if (Array.isArray(value)) {
-          setProperty(
-            creativeEngine,
-            firstSelectedBlock,
-            propertyName,
-            ...value
-          );
+          setProperty(engine, block, propertyName, ...value);
         } else {
-          setProperty(creativeEngine, firstSelectedBlock, propertyName, value);
-        }
-        // TODO: This is a workaround for a bug where updating fill colors do not create an updated event.
-        // Setting the rotation creates an event for this block
-        if (propertyName === 'fill/solid/color') {
-          creativeEngine.block.setRotation(
-            firstSelectedBlock,
-            creativeEngine.block.getRotation(firstSelectedBlock)
-          );
+          setProperty(engine, block, propertyName, value);
         }
         if (options.shouldAddUndoStep) {
-          creativeEngine.editor.addUndoStep();
+          engine.editor.addUndoStep();
         }
       } catch (error) {
         console.log(error);
       }
     },
-    [firstSelectedBlock, creativeEngine, propertyName, options]
+    [block, engine, propertyName, options]
   );
 
   useEffect(() => {
-    let stillMounted = true;
-    let unsubscribe = creativeEngine.event.subscribe(
-      [firstSelectedBlock],
-      (events) => {
-        if (
-          stillMounted &&
-          events.length > 0 &&
-          // Block might have been destroyed
-          creativeEngine.block.isValid(firstSelectedBlock)
-        ) {
-          const newProperty = getSelectedProperty();
-          if (newProperty !== undefined) {
-            setPropertyValue(newProperty);
-          }
+    if (!block) return;
+    const blockToSubscribeTo = propertyName.startsWith('fill/')
+      ? engine.block.getFill(block)
+      : block;
+    let unsubscribe = engine.event.subscribe([blockToSubscribeTo], (events) => {
+      if (
+        events.length > 0 &&
+        !events.find(({ type }) => type === 'Destroyed')
+      ) {
+        const newProperty = getSelectedProperty();
+        if (newProperty !== undefined) {
+          setPropertyValue(newProperty);
         }
       }
-    );
-    return () => {
-      stillMounted = false;
-      unsubscribe();
-    };
-  }, [creativeEngine, firstSelectedBlock, getSelectedProperty]);
+    });
+    return () => unsubscribe();
+  }, [engine, propertyName, block, getSelectedProperty]);
+
+  if (!block) {
+    return [null, () => {}];
+  }
 
   return [propertyValue, setEnginePropertyValue];
 };
 
-const BLOCK_PROPERTY_METHODS = (engine) => ({
+export const useSelectedProperty = (
+  propertyName,
+  options = { shouldAddUndoStep: true }
+) => {
+  const { engine } = useEditor();
+  const { selection } = useSelection({ engine });
+  const [propertyValue, setEnginePropertyValue] = useProperty(
+    selection[0],
+    propertyName,
+    options
+  );
+  return [propertyValue, setEnginePropertyValue];
+};
+
+const BLOCK_PROPERTY_METHODS = {
   Float: {
     get: 'getFloat',
     set: 'setFloat'
@@ -95,18 +97,26 @@ const BLOCK_PROPERTY_METHODS = (engine) => ({
     set: 'setString'
   },
   Color: {
-    get: 'getColorRGBA',
-    set: 'setColorRGBA'
+    get: 'getColor',
+    set: 'setColor'
   },
   Enum: {
     get: 'getEnum',
     set: 'setEnum'
+  },
+  Int: {
+    get: 'getInt',
+    set: 'setInt'
+  },
+  Double: {
+    get: 'getDouble',
+    set: 'setDouble'
   }
-});
+};
 
 export function setProperty(engine, blockId, propertyName, ...values) {
   const blockType = engine.block.getPropertyType(propertyName);
-  const typeDependentMethodName = BLOCK_PROPERTY_METHODS(engine)[blockType];
+  const typeDependentMethodName = BLOCK_PROPERTY_METHODS[blockType];
   if (typeDependentMethodName.set) {
     if (Array.isArray(values)) {
       return engine.block[typeDependentMethodName.set](
@@ -125,7 +135,7 @@ export function setProperty(engine, blockId, propertyName, ...values) {
 }
 export function getProperty(engine, blockId, propertyName) {
   const blockType = engine.block.getPropertyType(propertyName);
-  const typeDependentMethodName = BLOCK_PROPERTY_METHODS(engine)[blockType];
+  const typeDependentMethodName = BLOCK_PROPERTY_METHODS[blockType];
   if (typeDependentMethodName.get) {
     return engine.block[typeDependentMethodName.get](blockId, propertyName);
   }

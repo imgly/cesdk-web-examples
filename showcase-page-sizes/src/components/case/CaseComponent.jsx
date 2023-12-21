@@ -1,5 +1,5 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import loadAssetSourceFromContentJSON from 'lib/loadAssetSourceFromContentJSON';
+import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { useEffect, useRef } from 'react';
 import FORMAT_ASSETS from './CustomFormats.json';
 
@@ -126,7 +126,7 @@ const CaseComponent = () => {
       CreativeEditorSDK.create(cesdk_container.current, config).then(
         async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({sceneMode: 'Design'});
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
           loadAssetSourceFromContentJSON(
             instance.engine,
             FORMAT_ASSETS,

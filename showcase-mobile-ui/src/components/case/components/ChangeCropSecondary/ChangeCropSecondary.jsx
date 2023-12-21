@@ -13,7 +13,7 @@ import {
 import classes from './ChangeCropSecondary.module.css';
 
 const ChangeCropSecondary = () => {
-  const { creativeEngine, selectedBlocks } = useEditor();
+  const { engine, selectedBlocks } = useEditor();
   const selectedImage = useMemo(() => selectedBlocks[0], [selectedBlocks]);
   const [cropScaleRatio] = useSelectedProperty('crop/scaleRatio');
   const [cropRotation] = useSelectedProperty('crop/rotation');
@@ -25,27 +25,24 @@ const ChangeCropSecondary = () => {
 
   const resetCurrentCrop = () => {
     selectedBlocks.forEach(({ id }) => {
-      creativeEngine.block.resetCrop(id);
+      engine.block.resetCrop(id);
     });
   };
 
   const scale = (newScale) => {
     selectedBlocks.forEach(({ id }) => {
-      creativeEngine.block.setCropScaleRatio(id, newScale);
-      const currentRatio = creativeEngine.block.getCropScaleRatio(id);
-      creativeEngine.block.adjustCropToFillFrame(id, currentRatio);
+      engine.block.setCropScaleRatio(id, newScale);
+      const currentRatio = engine.block.getCropScaleRatio(id);
+      engine.block.adjustCropToFillFrame(id, currentRatio);
     });
   };
 
   const straighten = (degree) => {
     selectedBlocks.forEach(({ id }) => {
       const rotationInRadians = (degree * Math.PI) / 180;
-      creativeEngine.block.setCropRotation(id, rotationInRadians);
+      engine.block.setCropRotation(id, rotationInRadians);
       // Scale crop back to the cropScaleRatio before we started straightening
-      creativeEngine.block.adjustCropToFillFrame(
-        id,
-        initialCropScaleRatio.current
-      );
+      engine.block.adjustCropToFillFrame(id, initialCropScaleRatio.current);
     });
   };
 
@@ -72,12 +69,13 @@ const ChangeCropSecondary = () => {
               trackStartValue={0}
               max={45}
               onAfterChange={() => {
-                creativeEngine.element.style['pointer-events'] = 'initial';
+                engine.element.style['pointer-events'] = 'initial';
               }}
               onBeforeChange={() => {
-                creativeEngine.element.style['pointer-events'] = 'none';
-                initialCropScaleRatio.current =
-                  creativeEngine.block.getCropScaleRatio(selectedImage.id);
+                engine.element.style['pointer-events'] = 'none';
+                initialCropScaleRatio.current = engine.block.getCropScaleRatio(
+                  selectedImage.id
+                );
               }}
               onChange={(value) => straighten(value)}
             />

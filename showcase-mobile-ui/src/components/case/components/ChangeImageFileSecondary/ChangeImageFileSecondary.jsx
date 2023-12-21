@@ -8,22 +8,31 @@ import {
 import UploadImageButton from '../UploadImageButton/UploadImageButton';
 
 const ChangeImageFileSecondary = ({ onClose }) => {
-  const { creativeEngine, selectedBlocks } = useEditor();
+  const { engine, selectedBlocks } = useEditor();
 
   return (
     <>
       <SlideUpPanelHeader headline="Replace">
         <UploadImageButton
           multiple={false}
-          onUpload={(imageURL) =>
-            replaceImage(creativeEngine, selectedBlocks[0].id, imageURL)
+          onUpload={(asset) =>
+            engine.asset.applyToBlock(
+              asset.context.sourceId,
+              asset,
+              selectedBlocks[0].id
+            )
           }
         />
       </SlideUpPanelHeader>
       <SlideUpPanelBody>
         <ImageSelect
-          onSelect={(imageURL) => {
-            replaceImage(creativeEngine, selectedBlocks[0].id, imageURL);
+          onSelect={(asset) => {
+            engine.asset.applyToBlock(
+              asset.context.sourceId,
+              asset,
+              selectedBlocks[0].id
+            );
+            engine.block.resetCrop(selectedBlocks[0].id);
             onClose();
           }}
         />

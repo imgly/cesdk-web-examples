@@ -16,46 +16,41 @@ const PRODUCTS = {
     label: 'Business Card',
     scenePath: 'business-card.scene',
     sceneTitle: 'Business Card Design',
-    mockupScenePath: 'business-card-mockup.scene',
-    previewDPI: 300
+    mockupScenePath: 'business-card-mockup.scene'
   },
   poster: {
     label: 'Poster',
     scenePath: 'poster.scene',
     sceneTitle: 'Poster Design',
-    mockupScenePath: 'poster-mockup.scene',
-    previewDPI: 72
+    mockupScenePath: 'poster-mockup.scene'
   },
   socialmedia: {
     label: 'Social Media',
     scenePath: 'social-media.scene',
     sceneTitle: 'Social Media Post',
-    mockupScenePath: 'social-media-mockup.scene',
-    previewDPI: 300
+    mockupScenePath: 'social-media-mockup.scene'
   },
   postcard: {
     label: 'Post Card',
     scenePath: 'postcard.scene',
     sceneTitle: 'Postcard Design',
-    mockupScenePath: 'postcard-mockup.scene',
-    previewDPI: 300
+    mockupScenePath: 'postcard-mockup.scene'
   },
   apparel: {
     label: 'Apparel',
     scenePath: 'apparel.scene',
     sceneTitle: 'T-Shirt Design',
-    mockupScenePath: 'apparel-mockup.scene',
-    previewDPI: 72
+    mockupScenePath: 'apparel-mockup.scene'
   }
 };
 const WHITE_1_PX_IMAGE_PATH = `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/1x1-ffffffff.png`;
 
-export const replaceImages = (cesdk, imageName, newUrl) => {
-  const images = cesdk.block.findByName(imageName);
+export const replaceImages = (engine, imageName, newUrl) => {
+  const images = engine.block.findByName(imageName);
 
   images.forEach((image) => {
-    cesdk.block.setString(image, 'image/imageFileURI', newUrl);
-    cesdk.block.resetCrop(image);
+    const fill = engine.block.getFill(image);
+    engine.block.setString(fill, 'fill/image/imageFileURI', newUrl);
   });
 };
 
@@ -102,19 +97,11 @@ const CaseComponent = () => {
     // let react render
     await new Promise((resolve) => setTimeout(resolve, 0));
     const cesdkEngine = cesdkEngineRef.current.engine;
-    const cesdkScene = cesdkEngine.block.findByType('scene')[0];
-    const mockupCesdk = mockupEngineRef.current;
-    const originalDPI = cesdkEngine.block.getFloat(cesdkScene, 'scene/dpi');
+    const mockupEngine = mockupEngineRef.current;
 
     let pageBlobs = [];
-    // Reduce DPI for faster previews
-    cesdkEngine.block.setFloat(
-      cesdkScene,
-      'scene/dpi',
-      productConfig.previewDPI
-    );
     // Render pages in sequence
-    for (const blockId of cesdkEngine.block.findByType('page')) {
+    for (const blockId of cesdkEngine.block.findByKind('page')) {
       const pageBlob = await cesdkEngine.block.export(blockId, 'image/png', {
         // Reduce size for faster previews
         targetWidth: 512,
@@ -122,30 +109,29 @@ const CaseComponent = () => {
       });
       pageBlobs = [...pageBlobs, pageBlob];
     }
-    cesdkEngine.block.setFloat(cesdkScene, 'scene/dpi', originalDPI);
 
     if (currentMockupScene) {
-      await mockupCesdk.scene.loadFromString(currentMockupScene);
+      await mockupEngine.scene.loadFromString(currentMockupScene);
     } else {
-      await mockupCesdk.scene.loadFromURL(
+      await mockupEngine.scene.loadFromURL(
         `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
     }
     // Fill unused pages in the mockup with white.
     for (let index = pageBlobs.length; index <= 10; index++) {
-      replaceImages(mockupCesdk, `Image ${index + 1}`, WHITE_1_PX_IMAGE_PATH);
+      replaceImages(mockupEngine, `Image ${index + 1}`, WHITE_1_PX_IMAGE_PATH);
     }
     pageBlobs.forEach((blob, index) => {
       replaceImages(
-        mockupCesdk,
+        mockupEngine,
         `Image ${index + 1}`,
         URL.createObjectURL(blob)
       );
     });
-    const scene = mockupCesdk.block.findByType('scene')[0];
-    const mockupScene = await mockupCesdk.scene.saveToString();
+    const scene = mockupEngine.scene.get();
+    const mockupScene = await mockupEngine.scene.saveToString();
     setCurrentMockupScene(mockupScene);
-    const mockupBlob = await mockupCesdk.block.export(scene, 'image/jpeg');
+    const mockupBlob = await mockupEngine.block.export(scene, 'image/jpeg');
     setCurrentMockupUrl(URL.createObjectURL(mockupBlob));
     setIsDirty(false);
     setMockupLoading(false);
@@ -170,13 +156,13 @@ const CaseComponent = () => {
     };
 
 
-    CreativeEngine.init(config).then(async (instance) => {
-      instance.addDefaultAssetSources();
-      instance.addDemoAssetSources({ sceneMode: 'Design' });
-      await instance.scene.loadFromURL(
+    CreativeEngine.init(config).then(async (engine) => {
+      engine.addDefaultAssetSources();
+      engine.addDemoAssetSources({ sceneMode: 'Design' });
+      await engine.scene.loadFromURL(
         `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
-      mockupEngineRef.current = instance;
+      mockupEngineRef.current = engine;
       setMockupEngineLoaded(true);
     });
     return () => {

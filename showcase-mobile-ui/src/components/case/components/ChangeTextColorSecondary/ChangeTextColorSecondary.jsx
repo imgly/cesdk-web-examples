@@ -12,10 +12,7 @@ const ChangeTextColorSecondary = () => {
     <>
       <SlideUpPanelHeader headline="Color"></SlideUpPanelHeader>
       <SlideUpPanelBody>
-        <ColorSelect
-          onClick={(color) => setFillColor(color.r, color.g, color.b)}
-          activeColor={fillColor}
-        />
+        <ColorSelect onClick={setFillColor} activeColor={fillColor} />
       </SlideUpPanelBody>
     </>
   );

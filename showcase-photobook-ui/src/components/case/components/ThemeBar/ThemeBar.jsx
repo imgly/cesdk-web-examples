@@ -1,6 +1,5 @@
+import AdjustmentsBar from '../../ui/AdjustmentsBar/AdjustmentsBar';
 import { caseAssetPath } from '../../util';
-
-import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import classes from './ThemeBar.module.css';
 
 export const ALL_THEMES = [

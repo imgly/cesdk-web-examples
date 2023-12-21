@@ -88,12 +88,14 @@ const CaseComponent = () => {
           }
           _cesdk = instance;
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({sceneMode: 'Design'});
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdkRef.current = instance;
           if (currentScene) {
-            await instance.loadFromString(currentScene)
+            await instance.loadFromString(currentScene);
           } else {
-            await instance.loadFromURL(`${window.location.protocol + "//" + window.location.host}/cases/placeholders/example.scene`);
+            await instance.loadFromURL(
+              `${window.location.protocol + "//" + window.location.host}/cases/placeholders/example.scene`
+            );
           }
         }
       );

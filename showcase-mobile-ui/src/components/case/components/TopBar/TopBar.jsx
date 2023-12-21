@@ -36,7 +36,7 @@ const TopBar = () => {
     canRedo,
     editMode,
     currentPageBlockId,
-    creativeEngine,
+    engine,
     refocus
   } = useEditor();
 
@@ -44,10 +44,7 @@ const TopBar = () => {
     setIsExporting(true);
     // Let react rerender
     await new Promise((resolve) => setTimeout(resolve, 0));
-    const blob = await creativeEngine.block.export(
-      currentPageBlockId,
-      'image/png'
-    );
+    const blob = await engine.block.export(currentPageBlockId, 'image/png');
     localDownload(blob, 'my-design');
     setIsExporting(false);
   };
@@ -74,7 +71,7 @@ const TopBar = () => {
       <div>
         <IconButton
           onClick={() => {
-            creativeEngine.editor.undo();
+            engine.editor.undo();
             refocus();
           }}
           disabled={!canUndo || !buttonsEnabled}
@@ -82,7 +79,7 @@ const TopBar = () => {
         ></IconButton>
         <IconButton
           onClick={() => {
-            creativeEngine.editor.redo();
+            engine.editor.redo();
             refocus();
           }}
           disabled={!canRedo || !buttonsEnabled}

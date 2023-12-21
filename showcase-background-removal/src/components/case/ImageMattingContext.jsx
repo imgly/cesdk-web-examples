@@ -53,6 +53,9 @@ const ImageMattingContextProvider = ({ children }) => {
     let imageBlob;
     try {
       imageBlob = await removeBackground(blob, {
+        publicPath:
+          process.env.REACT_APP_BACKGROUND_REMOVAL_ASSET_HOST +
+          '${PACKAGE_NAME}/${PACKAGE_VERSION}/dist/',
         progress: (key, current, total) => {
           if (key.startsWith('fetch:')) {
             setStatus('fetching');

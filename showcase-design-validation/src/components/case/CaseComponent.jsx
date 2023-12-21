@@ -12,7 +12,7 @@ import {
   getOutsideBlocks,
   getProtrudingBlocks,
   getPartiallyHiddenTexts,
-  getImageLayerName,
+  getLayerName,
   selectAllBlocks
 } from './restrictionsUtility';
 
@@ -24,8 +24,8 @@ const VALIDATIONS = [
       return getOutsideBlocks(cesdk).map((blockId) => ({
         blockId,
         state: 'failed',
-        blockType: cesdk.engine.block.getType(blockId),
-        blockName: getImageLayerName(cesdk, blockId)
+        blockType: cesdk.engine.block.getKind(blockId),
+        blockName: getLayerName(cesdk, blockId)
       }));
     }
   },
@@ -36,8 +36,8 @@ const VALIDATIONS = [
       return getProtrudingBlocks(cesdk).map((blockId) => ({
         blockId,
         state: 'warning',
-        blockType: cesdk.engine.block.getType(blockId),
-        blockName: getImageLayerName(cesdk, blockId)
+        blockType: cesdk.engine.block.getKind(blockId),
+        blockName: getLayerName(cesdk, blockId)
       }));
     }
   },
@@ -49,8 +49,8 @@ const VALIDATIONS = [
       return getPartiallyHiddenTexts(cesdk).map((blockId) => ({
         blockId,
         state: 'warning',
-        blockType: cesdk.engine.block.getType(blockId),
-        blockName: getImageLayerName(cesdk, blockId)
+        blockType: cesdk.engine.block.getKind(blockId),
+        blockName: getLayerName(cesdk, blockId)
       }));
     }
   },
@@ -59,10 +59,10 @@ const VALIDATIONS = [
     description:
       'Some elements are having a low resolution. This will lead to suboptimal results.',
     check: async (cesdk) => {
-      const allImageBlocks = cesdk.engine.block.findByType('image');
+      const allImageBlocks = cesdk.engine.block.findByKind('image');
       const results = await Promise.all(
         allImageBlocks.map(async (blockId) => {
-          const quality = await getImageBlockQuality(cesdk, blockId);
+          const quality = await getImageBlockQuality(cesdk.engine, blockId);
           let state;
           if (quality < 0.7) {
             state = 'failed';
@@ -75,8 +75,8 @@ const VALIDATIONS = [
             blockId,
             state,
             quality,
-            blockType: cesdk.engine.block.getType(blockId),
-            blockName: getImageLayerName(cesdk, blockId)
+            blockType: cesdk.engine.block.getKind(blockId),
+            blockName: getLayerName(cesdk, blockId)
           };
         })
       );
@@ -148,9 +148,11 @@ const CaseComponent = () => {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({sceneMode: 'Design'});
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdkRef.current = instance;
-          await instance.loadFromURL(`${window.location.protocol + "//" + window.location.host}/cases/design-validation/example.scene`);
+          await instance.loadFromURL(
+            `${window.location.protocol + "//" + window.location.host}/cases/design-validation/example.scene`
+          );
           setIsInitialized(true);
         }
       );

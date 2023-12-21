@@ -8,7 +8,7 @@ import TopBar from '../TopBar/TopBar';
 import classes from './PhotoUI.module.css';
 
 const PhotoUI = () => {
-  const { sceneIsLoaded, creativeEngine, editMode, refocus, setCanRecenter } =
+  const { sceneIsLoaded, engine, editMode, refocus, setCanRecenter } =
     useEditor();
 
   const [isDragging, setIsDragging] = useState(false);
@@ -20,7 +20,7 @@ const PhotoUI = () => {
     }
     let previousTimeout;
     const onMouseUp = (e) => {
-      if (e.target !== creativeEngine.element) {
+      if (e.target !== engine.element) {
         return;
       }
       setCanRecenter(true);
@@ -36,28 +36,27 @@ const PhotoUI = () => {
 
     const onMouseDown = (e) => {
       if (
-        e.target === creativeEngine.element &&
-        DRAGGING_CURSORS.includes(creativeEngine.editor.getCursorType())
+        e.target === engine.element &&
+        DRAGGING_CURSORS.includes(engine.editor.getCursorType())
       ) {
         setIsDragging(true);
       }
     };
-    creativeEngine.element.addEventListener('mousedown', onMouseDown);
-    creativeEngine.element.addEventListener('touchstart', onMouseDown);
+    engine.element.addEventListener('mousedown', onMouseDown);
+    engine.element.addEventListener('touchstart', onMouseDown);
 
     window.addEventListener('mouseup', onMouseUp);
     window.addEventListener('touchend', onMouseUp);
     window.addEventListener('touchcancel', onMouseUp);
     return () => {
-      creativeEngine.element.removeEventListener('mousedown', onMouseDown);
-      creativeEngine.element.removeEventListener('touchstart', onMouseDown);
+      engine.element?.removeEventListener('mousedown', onMouseDown);
+      engine.element?.removeEventListener('touchstart', onMouseDown);
 
       window.removeEventListener('mouseup', onMouseUp);
       window.removeEventListener('touchend', onMouseUp);
       window.removeEventListener('touchcancel', onMouseUp);
     };
-  }, [creativeEngine, editMode, refocus, sceneIsLoaded, setCanRecenter]);
-
+  }, [engine, editMode, refocus, sceneIsLoaded, setCanRecenter]);
 
   return (
     <div

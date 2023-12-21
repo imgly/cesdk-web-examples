@@ -6,15 +6,15 @@ export const useProperty = (
   propertyName,
   options = { shouldAddUndoStep: true }
 ) => {
-  const { creativeEngine } = useEditor();
+  const { engine } = useEditor();
 
   const getSelectedProperty = useCallback(() => {
     try {
-      return getProperty(creativeEngine, block, propertyName);
+      return getProperty(engine, block, propertyName);
     } catch (error) {
       console.log(error);
     }
-  }, [block, creativeEngine, propertyName]);
+  }, [block, engine, propertyName]);
 
   const [propertyValue, setPropertyValue] = useState(getSelectedProperty());
 
@@ -22,22 +22,22 @@ export const useProperty = (
     (...value) => {
       try {
         if (Array.isArray(value)) {
-          setProperty(creativeEngine, block, propertyName, ...value);
+          setProperty(engine, block, propertyName, ...value);
         } else {
-          setProperty(creativeEngine, block, propertyName, value);
+          setProperty(engine, block, propertyName, value);
         }
         if (options.shouldAddUndoStep) {
-          creativeEngine.editor.addUndoStep();
+          engine.editor.addUndoStep();
         }
       } catch (error) {
         console.log(error);
       }
     },
-    [block, creativeEngine, propertyName, options]
+    [block, engine, propertyName, options]
   );
 
   useEffect(() => {
-    let unsubscribe = creativeEngine.event.subscribe([block], (events) => {
+    let unsubscribe = engine.event.subscribe([block], (events) => {
       if (
         events.length > 0 &&
         !events.find(({ type }) => type === 'Destroyed')
@@ -49,7 +49,7 @@ export const useProperty = (
       }
     });
     return () => unsubscribe();
-  }, [creativeEngine, block, getSelectedProperty]);
+  }, [engine, block, getSelectedProperty]);
 
   return [propertyValue, setEnginePropertyValue];
 };
@@ -58,11 +58,9 @@ export const useSelectedProperty = (
   propertyName,
   options = { shouldAddUndoStep: true }
 ) => {
-  const { creativeEngine } = useEditor();
+  const { engine } = useEditor();
   // Store the initially selected block and stop getting updating properties when the block changed
-  const [initialSelectedBlocks] = useState(
-    creativeEngine.block.findAllSelected()
-  );
+  const [initialSelectedBlocks] = useState(engine.block.findAllSelected());
   const [propertyValue, setEnginePropertyValue] = useProperty(
     initialSelectedBlocks[0],
     propertyName,

@@ -22,18 +22,11 @@ const ImageComplianceCESDK = () => {
       return;
     }
     setCheckRan(false);
-    const validationResults = await checkImageContent(cesdkRef.current);
+    const validationResults = await checkImageContent(cesdkRef.current.engine);
     setValidationResults(validationResults);
     setCheckRan(true);
   }, [setValidationResults]);
 
-  const onSave = useCallback(
-    (blobs, options) => {
-      runImageModerationCheck();
-      return Promise.resolve();
-    },
-    [runImageModerationCheck]
-  );
   useEffect(() => {
     let config = {
       role: 'Adopter',
@@ -55,8 +48,7 @@ const ImageComplianceCESDK = () => {
         }
       },
       callbacks: {
-        onExport: 'download',
-        onUpload: 'local'
+        onExport: 'download'
       }
     };
     if (cesdkContainer.current && !cesdkRef.current) {
@@ -76,7 +68,7 @@ const ImageComplianceCESDK = () => {
         cesdkRef.current.dispose();
       }
     };
-  }, [cesdkContainer, onSave]);
+  }, [cesdkContainer]);
 
   const normalizedResults = useMemo(
     () =>
@@ -88,7 +80,7 @@ const ImageComplianceCESDK = () => {
           validationName: name,
           validationDescription: description,
           id: blockId + name,
-          onClick: () => selectAllBlocks(cesdkRef.current, [blockId])
+          onClick: () => selectAllBlocks(cesdkRef.current.engine, [blockId])
         })
       ),
     [validationResults]

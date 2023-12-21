@@ -1,29 +1,34 @@
 import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 import { useEditor } from '../../EditorContext';
-import { useEngine } from '../../lib/EngineContext';
+import BottomControls from '../../ui/BottomControls/BottomControls';
+import CESDKCanvas from '../../ui/CESDKCanvas/CESDKCanvas';
+import TopBar from '../../ui/TopBar/TopBar';
+import AddBlockBar from '../AddBlockBar/AddBlockBar';
 import BookPreviewBar from '../BookPreviewBar/BookPreviewBar';
-import BottomControls from '../BottomControls/BottomControls';
-import CESDKCanvas from '../CESDKCanvas/CESDKCanvas';
-import TopBar from '../TopBar/TopBar';
-import classes from './PhotobookUI.module.css';
+import classes from './PhotoBookUI.module.css';
 
-const PhotobookUI = () => {
-  const { isLoaded: engineIsLoaded } = useEngine();
+const PhotoBookUI = () => {
   const { sceneIsLoaded } = useEditor();
 
   return (
     <div className={classes.wrapper}>
       <BookPreviewBar />
       <div className={classes.contentWrapper}>
-        {!sceneIsLoaded && <LoadingSpinner />}
-        {sceneIsLoaded && <TopBar />}
         {/* Setting the node key allows react to leave the canvas in the dom without rerendering */}
-        <CESDKCanvas key="canvas" />
+        <CESDKCanvas isVisible={sceneIsLoaded} key="canvas" />
+        {!sceneIsLoaded && <LoadingSpinner />}
+        {sceneIsLoaded && (
+          <TopBar exportFileName="my-photo-book">
+            <h3 className={classes.headline}>Design</h3>
+          </TopBar>
+        )}
         {/* We want hide the bottom controls in the last step */}
-        {engineIsLoaded && <BottomControls visible={sceneIsLoaded} />}
+        {sceneIsLoaded && (
+          <BottomControls visible DefaultComponent={AddBlockBar} />
+        )}
       </div>
     </div>
   );
 };
 
-export default PhotobookUI;
+export default PhotoBookUI;

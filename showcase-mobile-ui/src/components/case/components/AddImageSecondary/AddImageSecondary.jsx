@@ -8,7 +8,7 @@ import SlideUpPanel, {
 import UploadImageButton from '../UploadImageButton/UploadImageButton';
 
 const AddImageSecondary = ({ onClose }) => {
-  const { creativeEngine, currentPageBlockId } = useEditor();
+  const { engine } = useEditor();
 
   return (
     <SlideUpPanel
@@ -17,16 +17,16 @@ const AddImageSecondary = ({ onClose }) => {
     >
       <SlideUpPanelHeader headline="Add Image">
         <UploadImageButton
-          onUpload={(url) =>
-            addImage(creativeEngine, currentPageBlockId, url, 1)
-          }
+          onUpload={(asset) => {
+            engine.asset.apply(asset.context.sourceId, asset);
+          }}
         />
       </SlideUpPanelHeader>
       <SlideUpPanelBody>
         <ImageSelect
-          onSelect={(image) =>
-            addImage(creativeEngine, currentPageBlockId, image)
-          }
+          onSelect={(asset) => {
+            engine.asset.apply(asset.context.sourceId, asset);
+          }}
         />
       </SlideUpPanelBody>
     </SlideUpPanel>

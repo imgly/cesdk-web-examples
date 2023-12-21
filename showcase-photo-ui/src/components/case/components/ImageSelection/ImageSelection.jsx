@@ -4,11 +4,10 @@ import { caseAssetPath } from '../../util';
 import classes from './ImageSelection.module.css';
 
 export default function ImageSelection({ onShowModal, images }) {
-  const { engineIsLoaded, changeImage, selectedImageUrl, creativeEngine } =
-    useEditor();
+  const { engineIsLoaded, changeImage, selectedImageUrl, engine } = useEditor();
 
   const onClick = (imageUrl) => {
-    if (creativeEngine.editor.canUndo()) {
+    if (engine.editor.canUndo()) {
       onShowModal(imageUrl);
     } else {
       changeImage(imageUrl, true);

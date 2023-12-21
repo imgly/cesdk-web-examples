@@ -2,7 +2,8 @@ import React from 'react';
 
 const useOnClickOutside = (ref: any, callback: any) => {
   const handleClick = (e: any) => {
-    if (ref.current && !ref.current.contains(e.target)) {
+    // Use isTrusted to check if the event is coming from a real user, or is coming from a script.
+    if (ref.current && !ref.current.contains(e.target) && e.isTrusted) {
       callback();
     }
   };

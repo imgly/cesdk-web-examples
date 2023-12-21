@@ -7,7 +7,6 @@ import TopBar from '../TopBar/TopBar';
 const MobileUI = () => {
   const { engineIsLoaded } = useEditor();
 
-
   return (
     <>
       {!engineIsLoaded && <LoadingSpinner />}

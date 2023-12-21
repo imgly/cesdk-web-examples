@@ -1,13 +1,11 @@
 export const caseAssetPath = (path, caseId = 'batch-image-generation') =>
   `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
 
-export const replaceImages = (cesdk, imageName, newUrl) => {
-  const images = cesdk.block.findByName(imageName);
+export const replaceImages = (engine, imageName, newUrl) => {
+  const images = engine.block.findByName(imageName);
 
   images.forEach((image) => {
-    cesdk.block.setString(image, 'image/imageFileURI', newUrl);
-    cesdk.block.resetCrop(image);
-    cesdk.block.setBool(image, 'placeholderControls/showButton', false);
-    cesdk.block.setBool(image, 'placeholderControls/showOverlay', false);
+    const fill = engine.block.getFill(image);
+    engine.block.setString(fill, 'fill/image/imageFileURI', newUrl);
   });
 };
