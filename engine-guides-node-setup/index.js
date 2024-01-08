@@ -2,7 +2,7 @@ const fs = require('fs/promises');
 // highlight-require
 const CreativeEngine = require('@cesdk/node');
 
-const { DesignBlockType, MimeType } = CreativeEngine;
+const { MimeType } = CreativeEngine;
 // highlight-require
 
 // highlight-use
@@ -17,7 +17,7 @@ CreativeEngine.init(config).then(async (engine) => {
       'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_instagram_photo_1.scene'
     )
     .then(() => {
-      const [page] = engine.block.findByType(DesignBlockType.Page);
+      const [page] = engine.block.findByType('page');
       return engine.block.export(page, MimeType.Png);
     })
     .then((blob) => blob.arrayBuffer())

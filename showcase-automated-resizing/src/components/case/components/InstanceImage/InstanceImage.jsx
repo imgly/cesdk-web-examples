@@ -32,6 +32,7 @@ const InstanceImage = ({
       >
         {src && (
           <img
+            data-cy={!isLoading ? 'export-image' : ''}
             alt={headline}
             src={src}
             className={classNames(classes.image, {

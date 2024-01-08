@@ -239,6 +239,7 @@ const CaseComponent = () => {
           </div>
           <div className="flex flex-col items-center">
             <button
+              data-cy="generate-button"
               className="button button--primary"
               onClick={() => renderSize()}
             >
