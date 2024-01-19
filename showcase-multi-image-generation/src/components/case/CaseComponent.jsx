@@ -202,6 +202,7 @@ const CaseComponent = () => {
           {TEMPLATE_PATHS.map(({ width, height, placeholderPath }, index) => (
             <div style={{ width, position: 'relative' }} key={placeholderPath}>
               <img
+                data-cy={!reviewBlobs[index]?.isLoading ? 'export-image' : ''}
                 key={index}
                 src={reviewBlobs[index]?.src || caseAssetPath(placeholderPath)}
                 style={{
