@@ -1,0 +1,41 @@
+.wrapper {
+  display: grid;
+  max-width: 100%;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+
+  border-radius: 8px;
+
+  color: rgba(18, 26, 33, 0.9);
+
+  font-size: 14px;
+  gap: 0.25rem;
+  line-height: 20px;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.button span {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button:hover,
+.button:focus {
+  color: #957aff;
+}
+
+.button--active {
+  background: rgba(71, 26, 255, 0.1);
+  color: #471aff;
+}

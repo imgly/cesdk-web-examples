@@ -1,0 +1,89 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  height: 32px;
+  align-items: center;
+  color: rgba(22, 22, 23, 0.65);
+  cursor: pointer;
+  font-family: var(--font-family-ibm-sans);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+
+.radio {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(18, 26, 33, 0.25);
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(255, 255, 255, 0.85);
+  box-shadow: unset;
+  cursor: pointer;
+}
+
+.radio:checked {
+  border: 1px solid rgba(18, 26, 33, 0.9);
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(5, 13, 20, 0.75);
+}
+
+.radio:checked:hover,
+.radio:checked:focus {
+  border: 1px solid rgba(18, 26, 33, 0.9);
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(5, 13, 20, 0.65);
+}
+
+.radio::before {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  content: '';
+}
+
+.radio:not(:checked):hover::before,
+.radio:not(:checked):focus::before {
+  background: rgba(18, 26, 33, 0.7);
+}
+
+.radio:checked + span {
+  color: #161617;
+}
+
+.labelContainer {
+  display: flex;
+  width: 100%;
+  margin-left: 14px;
+}
+
+.label {
+  min-width: 80px;
+}
+
+.description {
+  margin-left: 8px;
+  font-weight: 400;
+}

@@ -1,0 +1,177 @@
+.header {
+  height: 200px;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.smokeScreen {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(123, 129, 135, 0.6);
+  transition: 0.3s;
+}
+
+.fullscreenMockupCenter {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  flex: 1;
+  place-items: center;
+}
+
+.fullscreenMockupWrapper {
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
+  max-width: calc(min(80%, 1300px));
+  width: 100%;
+  height: 100%;
+  max-height: calc(min(80%, 1300px));
+  background: #d6dbe1;
+
+  margin: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  aspect-ratio: 16/10;
+  border-radius: 12px;
+  box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25), 0px 6px 6px -2px rgba(18, 26, 33, 0.12), 0px 2.5px 2.5px -2px rgba(18, 26, 33, 0.12), 0px 1.25px 1.25px -2px rgba(18, 26, 33, 0.12);
+}
+
+@media only screen and (min-width: 1400px) {
+  .modal {
+    margin: 200px auto;
+  }
+}
+
+.button.button--primary {
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0) 100%),
+    #3d5cf5;
+  color: white;
+}
+
+.button.button--primary:hover,
+.button.button--primary:focus {
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0) 100%),
+    #6a82ff;
+}
+
+.button.button--solid {
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0) 100%),
+    rgba(255, 255, 255, 0.85);
+}
+
+.topBar {
+  z-index: 99;
+  position: absolute;
+  top: 0rem;
+  right: 0;
+  left: 0rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  gap: 1rem;
+  transition: 0.3s;
+}
+
+.mockupWrapper .topBar {
+  opacity: 0.6;
+}
+
+.fullscreenMockupCenter .topBar {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.mockupWrapper:hover .topBar,
+.mockupWrapper:focus .topBar {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  opacity: 1;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 0 0.25rem;
+  border-radius: 6px;
+  color: #161617;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 0.25rem;
+  line-height: 20px;
+  transition: 0.3s;
+}
+
+.mockupWrapper:hover .button,
+.mockupWrapper:focus .button {
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0) 100%),
+    rgba(255, 255, 255, 0.85);
+}
+
+.mockupWrapper {
+  position: relative;
+  overflow: hidden;
+  flex-grow: 1;
+  width: 340px;
+  min-width: 240px;
+  height: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: #d6dbe1;
+  border-radius: 12px;
+  box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25), 0px 6px 6px -2px rgba(18, 26, 33, 0.12), 0px 2.5px 2.5px -2px rgba(18, 26, 33, 0.12), 0px 1.25px 1.25px -2px rgba(18, 26, 33, 0.12);
+}
+
+.cesdk {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+}
+
+.cesdkWrapper {
+  display: flex;
+  overflow: hidden;
+  min-height: 600px;
+  flex-grow: 1;
+  border-radius: 0.75rem;
+  box-shadow: 0px 0px 2px rgba(22, 22, 23, 0.25), 0px 4px 6px -2px rgba(22, 22, 23, 0.12), 0px 2px 2.5px -2px rgba(22, 22, 23, 0.12), 0px 1px 1.75px -2px rgba(22, 22, 23, 0.12);
+}
+
+.productsWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.outerWrapper {
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 600px;
+  flex-direction: row-reverse;
+  flex-grow: 1;
+  border-radius: 0.75rem;
+  gap: 1rem;
+}

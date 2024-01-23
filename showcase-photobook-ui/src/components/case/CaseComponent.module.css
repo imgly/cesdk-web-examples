@@ -1,0 +1,40 @@
+.innerWrapper {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  max-width: 100%;
+  min-height: 600px;
+  flex-direction: column;
+  flex-grow: 1;
+  border: 4px solid #ffffff;
+  background: #efefef;
+  border-radius: 24px;
+  box-shadow: 0px 0px 2px rgba(18, 26, 33, 0.25),
+    0px 18px 18px -2px rgba(18, 26, 33, 0.12),
+    0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12),
+    0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12);
+  gap: 0.5rem;
+  /* Disabling selection as it triggers when moving blocks via touch on ios safari  */
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.headline {
+  color: white !important;
+  text-align: center;
+}
+
+.fullHeightWrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+}

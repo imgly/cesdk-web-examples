@@ -1,0 +1,14 @@
+.canvas {
+  /* For Safari */
+  overflow: hidden;
+  flex: 1;
+}
+
+.wrapper {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  min-height: 400px;
+  flex-grow: 1;
+  position: relative;
+}

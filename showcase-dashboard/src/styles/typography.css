@@ -1,0 +1,145 @@
+/* TYPOGRAPHY */
+.h1 {
+  color: var(--ci-foreground-black-default);
+  font-family: var(--font-family-gt);
+  font-size: 60px;
+  font-weight: bold;
+
+  letter-spacing: -0.01em;
+  line-height: 68px;
+}
+
+.h2 {
+  color: var(--ci-foreground-black-default);
+  font-family: var(--font-family-gt);
+  font-size: 2.75rem;
+  font-weight: bold;
+  letter-spacing: -0.0275rem;
+  line-height: 3.25rem;
+}
+
+.h3 {
+  color: var(--ci-foreground-black-default);
+  font-family: var(--font-family-gt);
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 2.75rem;
+}
+
+.h4 {
+  color: var(--ci-foreground-black-default);
+  font-family: var(--font-family-gt);
+  font-size: 22px;
+  font-weight: bold;
+
+  letter-spacing: 0.01em;
+  line-height: 32px;
+}
+
+.h5 {
+  color: var(--text-dark-high-emphasis);
+  font-family: var(--font-family-gt);
+  font-size: 18px;
+  font-weight: 700;
+
+  letter-spacing: 0.02em;
+  line-height: 24px;
+}
+
+.subheader {
+  color: var(--ci-foreground-black-default);
+  font-family: var(--font-family-ibm-sans);
+  font-size: 16px;
+  font-weight: normal;
+
+  letter-spacing: 0.03em;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.paragraphBig {
+  color: var(--ci-foreground-black-default);
+  font-family: var(--font-family-ibm-sans);
+  font-size: 22px;
+  font-weight: 500;
+  hyphens: none;
+  line-height: 32px;
+}
+
+.paragraph {
+  color: var(--ci-foreground-black-default);
+  font-family: var(--font-family-ibm-sans);
+  font-size: 18px;
+  font-weight: normal;
+  hyphens: none;
+  letter-spacing: 0.01em;
+  line-height: 28px;
+}
+
+.paragraphSmall {
+  color: rgba(22, 22, 23, 0.65);
+  font-family: var(--font-family-ibm-sans);
+  font-size: 14px;
+  font-weight: normal;
+  hyphens: none;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+
+.paragraphSmall--black {
+  color: #161617;
+  font-family: var(--font-family-ibm-sans);
+  font-size: 14px;
+  font-weight: normal;
+  hyphens: none;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  margin-top: 2.5rem;
+}
+
+.prose h1:first-child, .prose h2:first-child, .prose h3:first-child {
+  margin-top: 0;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  font-family: var(--font-family-gt);
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.prose ol, .prose ul {
+  margin-left: 1rem;
+  list-style-position: outside;
+}
+
+.prose a {
+  color: #471AFF;
+}
+
+.prose a:hover {
+  opacity: 0.8;
+}
+
+.prose b {
+  font-weight: bold;
+}
+
+.prose i {
+  font-style: italic;
+}
