@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.imageWrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+.description {
+  max-width: 60ch;
+}
+
+.templateWrapper {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  gap: 2rem;
+}
+
+.button {
+  background-color: #ffffff;
+}

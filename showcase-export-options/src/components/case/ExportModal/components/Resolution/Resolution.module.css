@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: calc(100% - 28px);
+  margin-left: 28px;
+}

@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  width: auto;
+  margin-left: -0.5rem;
+}
+
+.wrapper > * {
+  width: 100%;
+}
+
+.gridColumn {
+  padding-left: 0.5rem;
+  background-clip: padding-box;
+}
+
+.imageButton {
+  overflow: hidden;
+  border-radius: 8px;
+}

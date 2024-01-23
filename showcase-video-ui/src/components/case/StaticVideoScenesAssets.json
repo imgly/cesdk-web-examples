@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "id": "ly.img.video.templates",
+  "assets": [
+    {
+      "id": "milli-surf-school",
+      "label": {
+        "en": "Surf School · Portrait Example"
+      },
+      "meta": {
+        "uri": "{{base_url}}/milli-surf-school.scene",
+        "thumbUri": "{{base_url}}/milli-surf-school.png",
+        "blockType": "//ly.img.ubq/scene"
+      }
+    },
+    {
+      "id": "motion",
+      "label": {
+        "en": "Motion · Landscape Example"
+      },
+      "meta": {
+        "uri": "{{base_url}}/motion.scene",
+        "thumbUri": "{{base_url}}/motion.png",
+        "blockType": "//ly.img.ubq/scene"
+      }
+    },
+    {
+      "id": "yoga",
+      "label": {
+        "en": "Tystnad Yoga · Square Example"
+      },
+      "meta": {
+        "uri": "{{base_url}}/yoga.scene",
+        "thumbUri": "{{base_url}}/yoga.png",
+        "blockType": "//ly.img.ubq/scene"
+      }
+    }
+  ]
+}

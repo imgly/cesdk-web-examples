@@ -1,0 +1,19 @@
+.button {
+  box-sizing: border-box;
+  padding: 8px;
+  border: 1px solid transparent;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.button:hover,
+.button:focus {
+  border: 1px solid #471aff;
+}
+
+.image {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  transform: translateZ(131px);
+}

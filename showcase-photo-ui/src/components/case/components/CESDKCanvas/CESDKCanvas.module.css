@@ -1,0 +1,17 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  min-height: 400px;
+  flex-grow: 1;
+  pointer-events: all;
+}
+
+.wrapper * {
+  pointer-events: all;
+}
+
+.wrapper cesdk-canvas {
+  border-radius: 20px;
+}

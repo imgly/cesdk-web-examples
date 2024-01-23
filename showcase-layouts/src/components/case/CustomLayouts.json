@@ -1,0 +1,125 @@
+{
+  "version": "1.0.0",
+  "id": "ly.img.layouts",
+  "assets": [
+    {
+      "id": "layout-0",
+      "label": { "en": "layout with 5 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-0.png",
+        "uri": "{{base_url}}/template-0.scene"
+      }
+    },
+    {
+      "id": "layout-1",
+      "locale": "en",
+      "label": { "en": "layout with 2 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-1.png",
+        "uri": "{{base_url}}/template-1.scene"
+      }
+    },
+    {
+      "id": "layout-2",
+      "locale": "en",
+      "label": { "en": "layout with 5 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-2.png",
+        "uri": "{{base_url}}/template-2.scene"
+      }
+    },
+    {
+      "id": "layout-3",
+      "locale": "en",
+      "label": { "en": "layout with 1 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-3.png",
+        "uri": "{{base_url}}/template-3.scene"
+      }
+    },
+    {
+      "id": "layout-4",
+      "locale": "en",
+      "label": { "en": "layout with 5 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-4.png",
+        "uri": "{{base_url}}/template-4.scene"
+      }
+    },
+    {
+      "id": "layout-5",
+      "locale": "en",
+      "label": { "en": "layout with 4 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-5.png",
+        "uri": "{{base_url}}/template-5.scene"
+      }
+    },
+    {
+      "id": "layout-6",
+      "locale": "en",
+      "label": { "en": "layout with 6 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-6.png",
+        "uri": "{{base_url}}/template-6.scene"
+      }
+    },
+    {
+      "id": "layout-7",
+      "locale": "en",
+      "label": { "en": "layout with 3 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-7.png",
+        "uri": "{{base_url}}/template-7.scene"
+      }
+    },
+    {
+      "id": "layout-8",
+      "locale": "en",
+      "label": { "en": "layout with 3 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-8.png",
+        "uri": "{{base_url}}/template-8.scene"
+      }
+    },
+    {
+      "id": "layout-9",
+      "locale": "en",
+      "label": { "en": "layout with 2 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-9.png",
+        "uri": "{{base_url}}/template-9.scene"
+      }
+    },
+    {
+      "id": "layout-10",
+      "locale": "en",
+      "label": { "en": "layout with 6 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-10.png",
+        "uri": "{{base_url}}/template-10.scene"
+      }
+    },
+    {
+      "id": "layout-11",
+      "locale": "en",
+      "label": { "en": "layout with 9 images" },
+      "meta": {
+        "blockType": "acme.layouts",
+        "thumbUri": "{{base_url}}/thumbnail-11.png",
+        "uri": "{{base_url}}/template-11.scene"
+      }
+    }
+  ]
+}

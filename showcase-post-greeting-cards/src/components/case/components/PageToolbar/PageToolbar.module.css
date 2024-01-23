@@ -1,0 +1,12 @@
+.outerWrapper {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.innerWrapper {
+  display: flex;
+  margin: auto;
+  gap: 1rem;
+}

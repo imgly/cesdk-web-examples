@@ -1,0 +1,38 @@
+[
+  {
+    "id": "caveat_regular",
+    "fontFamily": "Caveat",
+    "fontWeight": "400",
+    "fontPath": "extensions/ly.img.cesdk.fonts/fonts/Caveat/Caveat-Regular.ttf"
+  },
+  {
+    "id": "amaticsc_regular",
+    "fontFamily": "AmaticSC",
+    "fontWeight": "normal",
+    "fontPath": "extensions/ly.img.cesdk.fonts/fonts/AmaticSC/imgly_font_amaticsc_regular.ttf"
+  },
+  {
+    "id": "courierprime_regular",
+    "fontFamily": "Courier Prime",
+    "fontWeight": "400",
+    "fontPath": "extensions/ly.img.cesdk.fonts/fonts/CourierPrime/CourierPrime-Regular.ttf"
+  },
+  {
+    "id": "archivo_regular",
+    "fontFamily": "Archivo",
+    "fontWeight": "400",
+    "fontPath": "extensions/ly.img.cesdk.fonts/fonts/Archivo/static/Archivo/Archivo-Regular.ttf"
+  },
+  {
+    "id": "roboto_regular",
+    "fontFamily": "Roboto",
+    "fontWeight": "400",
+    "fontPath": "extensions/ly.img.cesdk.fonts/fonts/Roboto/Roboto-Regular.ttf"
+  },
+  {
+    "id": "parisienne_regular",
+    "fontFamily": "Parisienne",
+    "fontWeight": "400",
+    "fontPath": "extensions/ly.img.cesdk.fonts/fonts/Parisienne/Parisienne-Regular.ttf"
+  }
+]
