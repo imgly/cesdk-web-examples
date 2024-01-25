@@ -1,4 +1,4 @@
-import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
 import classes from './CaseComponent.module.css';
 import { EditorProvider } from './EditorContext';
 import createUnsplashSource from './lib/UnsplashSource';

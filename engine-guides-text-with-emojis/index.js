@@ -1,9 +1,10 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.20.0/index.js';
 
 const config = {
-  baseURL:
-    'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.20.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -19,7 +20,7 @@ CreativeEngine.init(config).then(async (engine) => {
   // From a URL
   engine.editor.setSettingString(
     'ubq://defaultEmojiFontFileUri',
-    'https://cdn.img.ly/assets/v1/emoji/NotoColorEmoji.ttf'
+    'https://cdn.img.ly/assets/v2/emoji/NotoColorEmoji.ttf'
   );
   // highlight-change-default-emoji-font
 
@@ -39,6 +40,4 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setHeightMode(text, 'Auto');
   engine.block.appendChild(page, text);
   // highlight-add-text-with-emoji
-
-  
 });

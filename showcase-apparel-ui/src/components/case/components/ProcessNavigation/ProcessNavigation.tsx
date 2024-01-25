@@ -1,6 +1,6 @@
 import { useEditor } from '../../EditorContext';
 
-import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
+import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
 import classes from './ProcessNavigation.module.css';
 
 interface ProcessNavigationProps {

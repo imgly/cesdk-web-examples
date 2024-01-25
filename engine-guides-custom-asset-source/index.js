@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.20.0/index.js';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
@@ -90,14 +90,18 @@ const getUnsplashUrl = async (unsplashResult) => {
 };
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.20.0/assets'
 };
 
-CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(async (instance) => {
-  const scene = instance.scene.create();
-  const page = instance.block.create('page');
-  instance.block.appendChild(scene, page);
-  instance.scene.zoomToBlock(page);
+CreativeEngine.init(config).then(async (engine) => {
+  document.getElementById('cesdk_container').append(engine.element);
+
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.appendChild(scene, page);
+  engine.scene.zoomToBlock(page);
 
   // highlight-unsplash-definition
   const customSource = {
@@ -116,20 +120,23 @@ CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(async 
   };
   // highlight-unsplash-definition
 
-  instance.asset.addSource(customSource);
+  engine.asset.addSource(customSource);
 
-  const result = await instance.asset.findAssets(customSource.id, {page: 0, perPage: 3});
+  const result = await engine.asset.findAssets(customSource.id, {
+    page: 0,
+    perPage: 3
+  });
   const asset = result.assets[0];
 
-  await instance.asset.apply(customSource.id, asset);
+  await engine.asset.apply(customSource.id, asset);
 
   // highlight-add-local-source
   const localSourceId = 'background-videos';
-  instance.asset.addLocalSource(localSourceId);
+  engine.asset.addLocalSource(localSourceId);
   // highlight-add-local-source
 
   // highlight-add-asset-to-source
-  instance.asset.addAssetToSource(localSourceId, {
+  engine.asset.addAssetToSource(localSourceId, {
     id: 'ocean-waves-1',
     label: {
       en: 'relaxing ocean waves',
@@ -177,7 +184,14 @@ async function translateToAssetResult(image) {
       // highlight-result-thumbUri
       thumbUri: image.urls.thumb,
       // highlight-result-blockType
-      blockType: '//ly.img.ubq/image',
+      blockType: '//ly.img.ubq/graphic',
+      // highlight-result-fillType
+      fillType: '//ly.img.ubq/fill/image',
+      // highlight-result-shapeType
+      shapeType: '//ly.img.ubq/shape/rect',
+      // highlight-result-kind
+      kind: 'image',
+      // highlight-result-kind
       // highlight-result-size
       width: image.width,
       height: image.height
