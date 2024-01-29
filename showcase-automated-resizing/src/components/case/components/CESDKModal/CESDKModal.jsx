@@ -12,7 +12,11 @@ const CESDKModal = ({ config, configure, onOutsideClick }) => {
       CreativeEditorSDK.create(containerRef.current, config).then(
         async (instance) => {
           instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          instance.addDemoAssetSources({
+            sceneMode: 'Design',
+            excludeAssetSourceIds: ['ly.img.template']
+          });
+
           if (configure) {
             await configure(instance);
           }

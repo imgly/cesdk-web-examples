@@ -34,7 +34,21 @@ const EditInstanceCESDK = memo(({ sceneString, onClose, onSave }) => {
                 download: true
               }
             },
-            libraries: { template: false }
+            dock: {
+              groups: [
+                {
+                  id: 'ly.img.defaultGroup',
+                  showOverview: true
+                }
+              ]
+            },
+
+            libraries: {
+              insert: {
+                entries: (defaultEntries) =>
+                  defaultEntries.filter((e) => e.id !== 'ly.img.template')
+              }
+            }
           }
         }
       }}

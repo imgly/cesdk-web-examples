@@ -33,7 +33,6 @@ const EditTemplateCESDK = memo(
                   save: true
                 }
               },
-              libraries: { template: false },
               panels: {
                 inspector: {
                   show: true,

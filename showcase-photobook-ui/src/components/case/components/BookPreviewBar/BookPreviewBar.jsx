@@ -16,6 +16,11 @@ const BookPreviewBar = () => {
   const { setCurrentPageBlockId, refocus } = useSinglePageMode();
   const { pagePreviews } = usePagePreview();
 
+  const canDeleteCurrentPage =
+    currentPageBlockId &&
+    sortedPageIds?.length > 1 &&
+    engine.block.isScopeEnabled(currentPageBlockId, 'lifecycle/destroy');
+
   const addPageFromTemplate = async () => {
     setEnabled(false);
     const pagesParent = engine.block.getParent(
@@ -108,7 +113,7 @@ const BookPreviewBar = () => {
           </button>
         </div>
         <div>
-          {sortedPageIds?.length > 1 && (
+          {canDeleteCurrentPage && (
             <button onClick={deletePage}>
               <TrashBinIcon />
             </button>

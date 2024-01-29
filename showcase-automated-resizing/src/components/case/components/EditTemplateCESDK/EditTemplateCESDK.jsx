@@ -40,7 +40,6 @@ const EditTemplateCESDK = memo(
                   load: true
                 }
               },
-              libraries: { template: false },
               panels: {
                 inspector: {
                   show: true,
@@ -50,7 +49,19 @@ const EditTemplateCESDK = memo(
               },
               dock: {
                 iconSize: 'normal',
-                hideLabels: true
+                hideLabels: true,
+                groups: [
+                  {
+                    id: 'ly.img.defaultGroup',
+                    showOverview: true
+                  }
+                ]
+              },
+              libraries: {
+                insert: {
+                  entries: (defaultEntries) =>
+                    defaultEntries.filter((e) => e.id !== 'ly.img.template')
+                }
               }
             }
           }
