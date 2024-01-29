@@ -38,8 +38,7 @@ const EditMockupCESDK = ({
                 back: true,
                 save: true
               }
-            },
-            libraries: { template: false }
+            }
           }
         }
       }}

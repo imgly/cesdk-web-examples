@@ -7,7 +7,6 @@ import InstanceImage from './components/InstanceImage/InstanceImage';
 import TemplateEditButton from './components/TemplateEditButton/TemplateEditButton';
 import TemplateSelectButton from './components/TemplateSelectButton/TemplateSelectButton';
 import { caseAssetPath } from './util';
-import classNames from 'classnames';
 
 const SIZES = [
   {
@@ -134,8 +133,8 @@ const CaseComponent = () => {
       // set image loading state
       setSizeImages(
         SIZES.map((size) => ({
+          src: null,
           isLoading: true,
-          src: template.previewImagePath,
           sceneString: template.sceneString,
           size
         }))

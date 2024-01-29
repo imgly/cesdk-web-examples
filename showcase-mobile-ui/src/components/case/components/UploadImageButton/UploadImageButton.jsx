@@ -41,7 +41,7 @@ const UploadImageButton = ({ multiple, onUpload }) => {
           });
 
           const uploadedAssets = await Promise.all(
-            files.map(async (file) => fileUploadToAsset)
+            files.map(fileUploadToAsset)
           );
 
           uploadedAssets.forEach((asset) =>

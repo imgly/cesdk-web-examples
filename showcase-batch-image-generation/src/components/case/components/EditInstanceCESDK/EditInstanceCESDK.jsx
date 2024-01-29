@@ -68,8 +68,7 @@ const EditInstanceCESDK = memo(
                   save: true,
                   back: true
                 }
-              },
-              libraries: { template: false }
+              }
             }
           }
         }}
