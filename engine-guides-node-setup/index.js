@@ -2,12 +2,14 @@ const fs = require('fs/promises');
 // highlight-require
 const CreativeEngine = require('@cesdk/node');
 
-const { DesignBlockType, MimeType } = CreativeEngine;
+const { MimeType } = CreativeEngine;
 // highlight-require
 
 // highlight-use
 const config = {
-  // license: "YOUR_LICENSE_KEY"
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.21.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -17,7 +19,7 @@ CreativeEngine.init(config).then(async (engine) => {
       'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_instagram_photo_1.scene'
     )
     .then(() => {
-      const [page] = engine.block.findByType(DesignBlockType.Page);
+      const [page] = engine.block.findByType('page');
       return engine.block.export(page, MimeType.Png);
     })
     .then((blob) => blob.arrayBuffer())
