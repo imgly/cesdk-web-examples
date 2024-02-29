@@ -1,16 +1,15 @@
 import CreativeEditorSDK, { UserInterfaceElements } from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
-import { createApplyFormatAsset } from './createApplyFormatAsset';
-import { createDefaultApplyAssetScene } from './defaultApplyAssetScene';
-import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import {
+  PAGE_FORMATS_INSERT_ENTRY,
   formatAssetsToPresets,
-  pageFormatI18n,
-  PAGE_FORMATS_INSERT_ENTRY
+  pageFormatI18n
 } from './PageFormatAssetLibrary';
 import PAGE_FORMAT_ASSETS from './PageFormatAssets.json';
 import AUDIO_ASSETS from './StaticAudioAssets.json';
 import VIDEO_SCENES_ASSETS from './StaticVideoScenesAssets.json';
+import { createApplyFormatAsset } from './createApplyFormatAsset';
+import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
 
 const CaseComponent = () => {
@@ -20,6 +19,7 @@ const CaseComponent = () => {
   useEffect(() => {
     /** @type {import("@cesdk/engine").Configuration} */
     const config = {
+      role: 'Adopter',
       theme: 'light',
       license: process.env.REACT_APP_LICENSE,
       i18n: {
@@ -96,13 +96,19 @@ const CaseComponent = () => {
           });
           cesdk = instance;
           cesdkRef.current = instance;
+          const engine = instance.engine;
           cesdk.engine.editor.setSettingBool('page/title/show', false);
 
           loadAssetSourceFromContentJSON(
             cesdk.engine,
             VIDEO_SCENES_ASSETS,
             caseAssetPath('/templates'),
-            createDefaultApplyAssetScene(cesdk.engine)
+            async (asset) => {
+              if (!asset.meta || !asset.meta.uri)
+                throw new Error('Asset does not have a uri');
+              await engine.scene.loadFromURL(asset.meta.uri);
+              persistSelectedTemplateToURL(asset.id);
+            }
           );
 
           loadAssetSourceFromContentJSON(
@@ -117,7 +123,15 @@ const CaseComponent = () => {
             caseAssetPath('/page-formats'),
             createApplyFormatAsset(cesdk.engine)
           );
-          cesdk.loadFromURL(caseAssetPath('/templates/motion.scene'));
+
+          cesdk
+            .loadFromURL(
+              caseAssetPath(`/templates/${loadSelectedTemplateFromURL()}.scene`)
+            )
+            .catch((e) => {
+              // Fallback to motion template if the selected template fails to load, e.g due to 404
+              cesdk.loadFromURL(caseAssetPath(`/templates/motion.scene`));
+            });
         }
       );
     }
@@ -134,6 +148,16 @@ const CaseComponent = () => {
     </div>
   );
 };
+
+function persistSelectedTemplateToURL(templateName) {
+  const url = new URL(window.location.href);
+  url.searchParams.set('template', templateName);
+  window.history.pushState({}, '', url);
+}
+function loadSelectedTemplateFromURL() {
+  const url = new URL(window.location.href);
+  return url.searchParams.get('template') || 'motion';
+}
 
 const cesdkStyle = {
   position: 'absolute',

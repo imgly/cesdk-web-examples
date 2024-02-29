@@ -64,18 +64,56 @@ export const getBlockIdsAbove = (cesdk, blockId) => {
 
 // Returns all text blocks that may obstructed by other blocks
 export const getPartiallyHiddenTexts = (cesdk) => {
-  return cesdk.engine.block
+  const engine = cesdk.engine;
+  return engine.block
     .findByType('text')
     .map((elementBlockId) => {
       const elementsLayingAbove = getBlockIdsAbove(cesdk, elementBlockId);
-      const anyElementOverlapping = elementsLayingAbove.some(
+      const elementBBOverlapping = elementsLayingAbove.filter(
         (blockId) =>
           getElementOverlap(
             getElementBoundingBox(cesdk, elementBlockId),
             getElementBoundingBox(cesdk, blockId)
           ) > 0
       );
-      return anyElementOverlapping && elementBlockId;
+      // now check if they are really overlapping:
+      // duplicate all
+      const elementsTrulyOverlapping = elementBBOverlapping.some((blockId) => {
+        // duplicate both elements:
+        const duplicatedText = engine.block.duplicate(elementBlockId);
+        const duplicatedBlockId = engine.block.duplicate(blockId);
+        // Workaround until 1.21: Force layouting using setRotation:
+        engine.block.setRotation(
+          duplicatedText,
+          engine.block.getRotation(duplicatedText)
+        );
+        let union;
+        let hasIntersection = false;
+        try {
+          union = engine.block.combine(
+            [duplicatedText, duplicatedBlockId],
+            'Intersection'
+          );
+        } catch (e) {
+          const message = e.message;
+          if (!message.includes('Result is an empty shape.')) {
+            throw e;
+          }
+        }
+        if (union && engine.block.isValid(union)) {
+          hasIntersection = true;
+          engine.block.destroy(union);
+        }
+        if (engine.block.isValid(duplicatedBlockId)) {
+          engine.block.destroy(duplicatedBlockId);
+        }
+        if (engine.block.isValid(duplicatedText)) {
+          engine.block.destroy(duplicatedText);
+        }
+        return hasIntersection;
+      });
+
+      return elementsTrulyOverlapping && elementBlockId;
     })
     .filter((o) => !!o);
 };

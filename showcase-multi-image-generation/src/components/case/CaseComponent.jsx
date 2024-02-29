@@ -60,8 +60,10 @@ const fillTemplate = (cesdk, yelpData) => {
   cesdk.variable.setString('Name', yelpData.name || '');
   cesdk.variable.setString('$$', yelpData.price || '');
   cesdk.variable.setString('Count', yelpData.review_count.toString() || '');
+  const rating = yelpData.rating;
+  const ratingRoundedToHalf = Math.round(rating * 2) / 2;
   const ratingImageUrl = caseAssetPath(
-    `/images/${yelpData.rating.toString().replace('.', '_')}.png`
+    `/images/${ratingRoundedToHalf.toString().replace('.', '_')}.png`
   );
   replaceImage(cesdk, 'ReviewStars', ratingImageUrl);
 };
