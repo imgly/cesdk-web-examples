@@ -87,34 +87,43 @@ const VALIDATIONS = [
 
 const CaseComponent = () => {
   const cesdkContainer = useRef(null);
-  const cesdkRef = useRef(null);
-
+  const [cesdk, setCesdk] = useState(null);
   const [validationResults, setValidationResults] = useState([]);
   const [checkRan, setCheckRan] = useState(false);
   const [isDirty, setIsDirty] = useState(true);
-  const [isInitialized, setIsInitialized] = useState(false);
 
   const runChecks = useCallback(async () => {
     const validationResults = await Promise.all(
       VALIDATIONS.map(async ({ check, name, description }) => ({
         name,
         description,
-        results: await check(cesdkRef.current)
+        results: await check(cesdk)
       }))
     );
     setValidationResults(validationResults);
     setIsDirty(false);
     setCheckRan(true);
-  }, [setValidationResults]);
+  }, [cesdk, setValidationResults]);
 
   useEffect(() => {
-    setInterval(() => setIsDirty(true), 2000);
-  }, [setIsDirty]);
+    let unsubscribe;
+    if (cesdk) {
+      unsubscribe = cesdk.engine.editor.onHistoryUpdated(() => {
+        setIsDirty(true);
+      });
+    }
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, [cesdk, setIsDirty]);
+
   useEffect(() => {
-    if (isDirty && isInitialized) {
+    if (isDirty && cesdk) {
       runChecks();
     }
-  }, [isDirty, isInitialized, runChecks]);
+  }, [isDirty, cesdk, runChecks]);
 
   useEffect(() => {
     let config = {
@@ -144,22 +153,23 @@ const CaseComponent = () => {
         onUpload: 'local'
       }
     };
-    if (cesdkContainer.current && !cesdkRef.current) {
+    let cesdk;
+    if (cesdkContainer.current) {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
+          cesdk = instance;
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({ sceneMode: 'Design' });
-          cesdkRef.current = instance;
           await instance.loadFromURL(
             `${window.location.protocol + "//" + window.location.host}/cases/design-validation/example.scene`
           );
-          setIsInitialized(true);
+          setCesdk(instance);
         }
       );
     }
     return () => {
-      if (cesdkRef.current) {
-        cesdkRef.current.dispose();
+      if (cesdk) {
+        cesdk.dispose();
       }
     };
   }, [cesdkContainer]);
@@ -174,10 +184,10 @@ const CaseComponent = () => {
           validationName: name,
           validationDescription: description,
           id: blockId + name,
-          onClick: () => selectAllBlocks(cesdkRef.current, [blockId])
+          onClick: () => selectAllBlocks(cesdk, [blockId])
         }))
       ),
-    [validationResults]
+    [cesdk, validationResults]
   );
 
   return (

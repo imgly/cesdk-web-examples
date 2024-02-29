@@ -39,18 +39,6 @@ const CaseComponent = () => {
           cesdk = instance;
           const engine = cesdk.engine;
           await engine.scene.createFromVideo(video.full);
-
-          const [page] = engine.scene.getPages();
-          const [videoBlock] = engine.block.getChildren(page);
-          const videoFill = engine.block.getFill(videoBlock);
-
-          // Set scene duration to video duration
-          await engine.block.forceLoadAVResource(videoFill);
-          const videoDuration =
-            engine.block.getAVResourceTotalDuration(videoFill);
-          engine.block.setDuration(page, videoDuration);
-          // Select Video
-          engine.block.select(videoBlock, true);
         }
       );
     }

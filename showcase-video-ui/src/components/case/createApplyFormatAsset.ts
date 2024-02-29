@@ -1,8 +1,4 @@
-import {
-  AssetDefinition,
-  CreativeEngine,
-  DesignBlockType
-} from '@cesdk/cesdk-js';
+import { AssetDefinition, CreativeEngine } from '@cesdk/cesdk-js';
 
 export const createApplyFormatAsset =
   (engine: CreativeEngine) => async (asset: AssetDefinition) => {
@@ -19,4 +15,10 @@ export const createApplyFormatAsset =
     // We currently need to update pageDimensions manually.
     engine.block.setFloat(scene, 'scene/pageDimensions/height', height);
     engine.block.setFloat(scene, 'scene/pageDimensions/width', width);
+
+    // update all track:
+    const trackIds = engine.block.findByType('track');
+    trackIds.forEach((id) => {
+      engine.block.fillParent(id);
+    });
   };

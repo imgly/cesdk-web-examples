@@ -64,17 +64,13 @@ const ALL_RESOLUTIONS = {
 };
 
 const getResolution = (engine: CreativeEngine) => {
-  const scene = engine.scene.get();
-  if (!scene) {
+  const page = engine.scene.getCurrentPage();
+  if (!page) {
     return { width: 0, height: 0 };
   }
-  const pageWidth = engine.block.getFloat(scene, 'scene/pageDimensions/width');
-  const pageHeight = engine.block.getFloat(
-    scene,
-    'scene/pageDimensions/height'
-  );
-
-  return { width: pageWidth, height: pageHeight };
+  const width = engine.block.getWidth(page);
+  const height = engine.block.getHeight(page);
+  return { width, height };
 };
 
 export const ExportModal: React.FC<Props> = ({ engine }) => {
@@ -86,14 +82,14 @@ export const ExportModal: React.FC<Props> = ({ engine }) => {
   const fpsString = fps.toString();
   const [progress, setProgress] = useState(0);
   const handleVideoExport = useCallback(async () => {
-    const scene = engine.scene.get();
-    if (!scene) {
+    const page = engine.scene.getCurrentPage();
+    if (!page) {
       return;
     }
 
     setProgress(0);
     const blob = await engine.block.exportVideo(
-      scene,
+      page,
       MimeType.Mp4,
       (numberOfRenderedFrames, numberOfEncodedFrames, totalNumberOfFrames) => {
         setProgress(numberOfEncodedFrames / totalNumberOfFrames);
