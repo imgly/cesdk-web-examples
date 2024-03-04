@@ -1,8 +1,9 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.22.0-rc.0/index.js';
 
 // highlight-config
 let config = {
-  license: 'eyJhbGciOiJSUzI1NiIsInR5…' // Replace with private license 
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user' // Replace with your license key.
 };
 // highlight-config
 

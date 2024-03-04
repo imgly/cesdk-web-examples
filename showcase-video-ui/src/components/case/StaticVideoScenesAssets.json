@@ -78,17 +78,6 @@
         "thumbUri": "{{base_url}}/ecommerce.png",
         "blockType": "//ly.img.ubq/scene"
       }
-    },
-    {
-      "id": "sales",
-      "label": {
-        "en": "IMG.LY · Sales Example"
-      },
-      "meta": {
-        "uri": "{{base_url}}/sales.scene",
-        "thumbUri": "{{base_url}}/sales.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
     }
   ]
 }
