@@ -1,15 +1,17 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.22.0-rc.2/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.22.0-rc.2/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  document.getElementById('root').append(engine.element);
+  document.getElementById('cesdk_container').append(engine.element);
 
   const scene = engine.scene.create();
-  
+
   const page = engine.block.create('page');
   engine.block.setWidth(page, 800);
   engine.block.setHeight(page, 600);
@@ -17,58 +19,66 @@ CreativeEngine.init(config).then(async (engine) => {
 
   engine.scene.zoomToBlock(page, 40, 40, 40, 40);
 
-  const rect = engine.block.create('shapes/rect');
-  engine.block.setWidth(rect, 100);
-  engine.block.setHeight(rect, 100);
-  engine.block.appendChild(page, rect);
-
-  const circle = engine.block.create('shapes/ellipse');
-  engine.block.setPositionX(circle, 100);
-  engine.block.setPositionY(circle, 50);
-  engine.block.setWidth(circle, 300);
-  engine.block.setHeight(circle, 300);
-  engine.block.appendChild(page, circle);
+  const block = engine.block.create('graphic');
+  engine.block.setShape(block, engine.block.createShape('rect'));
+  engine.block.setFill(block, engine.block.createFill('color'));
+  engine.block.setWidth(block, 100);
+  engine.block.setHeight(block, 100);
+  engine.block.appendChild(page, block);
   // highlight-setup
 
   // highlight-hasFill
   engine.block.hasFill(scene); // Returns false
-  engine.block.hasFill(rect); // Returns true
+  engine.block.hasFill(block); // Returns true
   // highlight-hasFill
 
   // highlight-getFill
-  const rectFill = engine.block.getFill(rect);
-  const defaultRectFillType = engine.block.getType(rectFill);
+  const colorFill = engine.block.getFill(block);
+  const defaultRectFillType = engine.block.getType(colorFill);
   // highlight-getFill
   // highlight-getProperties
-  const allFillProperties = engine.block.findAllProperties(rectFill);
+  const allFillProperties = engine.block.findAllProperties(colorFill);
   // highlight-getProperties
   // highlight-modifyProperties
-  engine.block.setColorRGBA(rectFill, 'fill/color/value', 1.0, 0.0, 0.0, 1.0);
+  engine.block.setColor(colorFill, 'fill/color/value', {
+    r: 1.0,
+    g: 0.0,
+    b: 0.0,
+    a: 1.0
+  });
   // highlight-modifyProperties
 
   // highlight-disableFill
-  engine.block.setFillEnabled(rect, false);
-  engine.block.setFillEnabled(rect, !engine.block.isFillEnabled(rect));
+  engine.block.setFillEnabled(block, false);
+  engine.block.setFillEnabled(block, !engine.block.isFillEnabled(block));
   // highlight-disableFill
 
   // highlight-createFill
   const imageFill = engine.block.createFill('image');
-  engine.block.setString(imageFill, 'fill/image/imageFileURI', 'https://img.ly/static/ubq_samples/sample_1.jpg');
+  engine.block.setString(
+    imageFill,
+    'fill/image/imageFileURI',
+    'https://img.ly/static/ubq_samples/sample_1.jpg'
+  );
   // highlight-createFill
 
   // highlight-replaceFill
-  engine.block.destroy(engine.block.getFill(circle));
-  engine.block.setFill(circle, imageFill);
+  engine.block.destroy(engine.block.getFill(block));
+  engine.block.setFill(block, imageFill);
 
   /* The following line would also destroy imageFill */
   // engine.block.destroy(circle);
   // highlight-replaceFill
 
   // highlight-duplicateFill
-  const duplicateCircle = engine.block.duplicate(circle);
-  engine.block.setPositionX(duplicateCircle, 450);
-  const autoDuplicateFill = engine.block.getFill(duplicateCircle);
-  engine.block.setString(autoDuplicateFill, 'fill/image/imageFileURI', 'https://img.ly/static/ubq_samples/sample_2.jpg');
+  const duplicateBlock = engine.block.duplicate(block);
+  engine.block.setPositionX(duplicateBlock, 450);
+  const autoDuplicateFill = engine.block.getFill(duplicateBlock);
+  engine.block.setString(
+    autoDuplicateFill,
+    'fill/image/imageFileURI',
+    'https://img.ly/static/ubq_samples/sample_2.jpg'
+  );
 
   // const manualDuplicateFill = engine.block.duplicate(autoDuplicateFill);
   // /* We could now assign this fill to another block. */
@@ -77,13 +87,14 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-duplicateFill
 
   // highlight-sharedFill
-  const star = engine.block.create('shapes/star');
-  engine.block.setPositionX(star, 350);
-  engine.block.setPositionY(star, 400);
-  engine.block.setWidth(star, 100);
-  engine.block.setHeight(star, 100);
-  engine.block.appendChild(page, star);
+  const sharedFillBlock = engine.block.create('graphic');
+  engine.block.setShape(sharedFillBlock, engine.block.createShape('rect'));
+  engine.block.setPositionX(sharedFillBlock, 350);
+  engine.block.setPositionY(sharedFillBlock, 400);
+  engine.block.setWidth(sharedFillBlock, 100);
+  engine.block.setHeight(sharedFillBlock, 100);
+  engine.block.appendChild(page, sharedFillBlock);
 
-  engine.block.setFill(star, engine.block.getFill(circle));
+  engine.block.setFill(sharedFillBlock, engine.block.getFill(block));
   // highlight-sharedFill
 });
