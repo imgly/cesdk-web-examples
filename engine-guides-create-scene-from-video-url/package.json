@@ -1,16 +1,11 @@
 {
-  "name": "create-scene-from-video-url",
-  "version": "1.1.1",
+  "name": "engine-guides-create-scene-from-video-url",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "true",
-    "start": "npx -y -S serve",
-    "serve": "npx -y -S serve -l 8080",
-    "assets": "true",
-    "test:e2e": "yarn run cypress open --project ./tests/e2e"
+    "start": "serve"
   },
   "devDependencies": {
-    "cypress": "^8.1.0"
+    "serve": "latest"
   }
 }
-
