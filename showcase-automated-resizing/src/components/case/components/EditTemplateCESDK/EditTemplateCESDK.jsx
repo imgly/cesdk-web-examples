@@ -24,7 +24,7 @@ const EditTemplateCESDK = memo(
               onClose();
             },
             onUpload: 'local',
-            onDownload: 'local',
+            onDownload: 'download',
             onLoad: 'upload'
           },
           role: 'Creator',
