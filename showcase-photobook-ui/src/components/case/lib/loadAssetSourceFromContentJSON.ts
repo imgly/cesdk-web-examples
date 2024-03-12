@@ -21,6 +21,13 @@ async function loadAssetSourceFromContentJSON(
         }
       });
     }
+
+    if (asset.payload?.sourceSet) {
+      asset.payload.sourceSet.forEach((sourceSet) => {
+        sourceSet.uri = sourceSet.uri.replace('{{base_url}}', baseURL);
+      });
+    }
+
     engine.asset.addAssetToSource(sourceId, asset);
   });
 }
