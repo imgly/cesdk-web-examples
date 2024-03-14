@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import { gettyImagesImageAssets } from './gettyImagesAssetLibrary';
@@ -10,7 +12,7 @@ const CaseComponent = () => {
     /** @type {import('@cesdk/cesdk-js').Configuration} */
     let config = {
       role: 'Adopter',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
           panels: {
@@ -85,7 +87,7 @@ const CaseComponent = () => {
           instance.engine.asset.addSource(gettyImagesImageAssets);
           instance.engine.editor.setSettingBool('page/title/show', false);
           await instance.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/cases/getty-images-image-assets/getty-images.scene`
+            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/getty-images-image-assets/getty-images.scene`
           );
         }
       );

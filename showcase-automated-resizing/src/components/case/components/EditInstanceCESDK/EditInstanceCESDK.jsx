@@ -56,4 +56,6 @@ const EditInstanceCESDK = memo(({ sceneString, onClose, onSave }) => {
   );
 });
 
+EditInstanceCESDK.displayName = 'EditInstanceCESDK';
+
 export default EditInstanceCESDK;

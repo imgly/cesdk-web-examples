@@ -1,5 +1,7 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import ValidationBox from 'components/ui/ValidationBox/ValidationBox';
+import ValidationBox from '@/components/ui/ValidationBox/ValidationBox';
 import React, {
   useCallback,
   useEffect,
@@ -129,7 +131,7 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
           panels: {
@@ -161,7 +163,7 @@ const CaseComponent = () => {
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({ sceneMode: 'Design' });
           await instance.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/cases/design-validation/example.scene`
+            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/design-validation/example.scene`
           );
           setCesdk(instance);
         }

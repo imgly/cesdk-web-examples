@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { ExportModal } from './ExportModal/ExportModal';
 import { useEffect, useRef, useState } from 'react';
@@ -10,7 +12,7 @@ const ExportOptionsCESDK = () => {
     let localCesdk;
     let config = {
       role: 'Adopter',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -31,7 +33,7 @@ const ExportOptionsCESDK = () => {
           localCesdk = instance;
           cesdk.current = localCesdk;
           await localCesdk.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/example-1.scene`
+            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
           );
           setIsLoaded(true);
         }

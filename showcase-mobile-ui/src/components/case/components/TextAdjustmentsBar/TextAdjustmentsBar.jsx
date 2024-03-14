@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ReactComponent as TextFontIcon } from '../../icons/TextFont.svg';
+import TextFontIcon from '../../icons/TextFont.svg';
 import ChangeTextAlignmentSecondary from '../ChangeTextAlignmentSecondary/ChangeTextAlignmentSecondary';
 import ChangeTextColorSecondary from '../ChangeTextColorSecondary/ChangeTextColorSecondary';
 import ChangeFontSecondary from '../ChangeTextFontSecondary/ChangeTextFontSecondary';

@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { useEffect, useRef } from 'react';
 import { useEngine } from '../../lib/EngineContext';
 import classes from './CESDKCanvas.module.css';

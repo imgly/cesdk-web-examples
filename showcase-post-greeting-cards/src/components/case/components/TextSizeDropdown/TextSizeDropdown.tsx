@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ReactComponent as TextSizeIcon } from '../../icons/TextSize.svg';
+import TextSizeIcon from '../../icons/TextSize.svg';
 import Dropdown from '../Dropdown/Dropdown';
 import classes from './TextSizeDropdown.module.css';
 

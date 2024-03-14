@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
-import { ReactComponent as TextIcon } from '../../icons/Text.svg';
-import { ReactComponent as TextAlignMiddleIcon } from '../../icons/TextAlignCenter.svg';
-import { useSinglePageMode } from '../../lib/SinglePageModeContext';
+import TextIcon from '../../icons/Text.svg';
+import TextAlignMiddleIcon from '../../icons/TextAlignCenter.svg';
 import BlockBar from '../BlockBar/BlockBar';
 import ChangeFontSecondary from '../ChangeFontSecondary/ChangeFontSecondary';
 import ChangeTextAlignmentSecondary from '../ChangeTextAlignmentSecondary/ChangeTextAlignmentSecondary';

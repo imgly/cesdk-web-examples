@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import { getImageSize } from './lib/CreativeEngineUtils';
@@ -42,7 +44,7 @@ const CaseComponent = () => {
     const config = {
       role: 'Adopter',
       theme: 'light',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
 
       ui: {
         elements: {
@@ -377,7 +379,7 @@ function createNewImageFromImageFill(engine, page) {
   });
   engine.block
     .getEffects(page)
-    .forEach((e, i) => engine.block.removeEffect(page, 0));
+    .forEach(() => engine.block.removeEffect(page, 0));
 
   engine.block.setScopeEnabled(graphic, 'stroke/change', false);
 

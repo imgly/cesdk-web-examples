@@ -1,5 +1,5 @@
 import classes from './ExampleFileContainer.module.css';
-import { ReactComponent as IndesignFileIcon } from './icons/IndesignFile.svg';
+import IndesignFileIcon from './icons/IndesignFile.svg';
 
 export interface ExampleFile {
   url: string;

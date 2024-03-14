@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEngine from '@cesdk/engine';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import classes from './CaseComponent.module.css';
@@ -40,7 +42,7 @@ const CaseComponent = () => {
 
   useEffect(() => {
     const config = {
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onUpload: 'local'
       }

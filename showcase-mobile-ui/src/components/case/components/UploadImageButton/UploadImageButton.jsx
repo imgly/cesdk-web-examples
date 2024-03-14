@@ -1,6 +1,6 @@
 import { useEditor } from '../../EditorContext';
 import { getImageDimensions } from './getImageDimensions';
-import { ReactComponent as UploadIcon } from '../../icons/Upload.svg';
+import UploadIcon from '../../icons/Upload.svg';
 import { uploadFile } from '../../lib/upload';
 import IconButton from '../IconButton/IconButton';
 

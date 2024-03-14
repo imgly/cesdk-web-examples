@@ -1,4 +1,4 @@
-import { DesignBlockType, type AssetResult } from '@cesdk/cesdk-js';
+import { type AssetResult } from '@cesdk/cesdk-js';
 import CreativeEngine, {
   DesignBlockTypeShorthand,
   type Configuration

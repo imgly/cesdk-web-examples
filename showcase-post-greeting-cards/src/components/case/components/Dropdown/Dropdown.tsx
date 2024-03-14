@@ -14,7 +14,7 @@ const Dropdown = ({ children, label, Icon }: DropdownProps) => {
   const { engine } = useEngine();
 
   useEffect(() => {
-    const touchHandler = (e: Event) => {
+    const touchHandler = () => {
       setIsPopoverOpen(false);
     };
     const canvasElement = engine.element!;

@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK, { UserInterfaceElements } from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import {
@@ -21,7 +23,7 @@ const CaseComponent = () => {
     const config = {
       role: 'Adopter',
       theme: 'light',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       i18n: {
         en: {
           'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
@@ -128,7 +130,7 @@ const CaseComponent = () => {
             .loadFromURL(
               caseAssetPath(`/templates/${loadSelectedTemplateFromURL()}.scene`)
             )
-            .catch((e) => {
+            .catch(() => {
               // Fallback to motion template if the selected template fails to load, e.g due to 404
               cesdk.loadFromURL(caseAssetPath(`/templates/motion.scene`));
             });

@@ -1,5 +1,7 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
+import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
 import React, { useEffect, useRef, useState } from 'react';
 
 const CaseComponent = () => {
@@ -14,7 +16,7 @@ const CaseComponent = () => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       featureFlags: {
         singlePageMode: true
       },
@@ -49,7 +51,7 @@ const CaseComponent = () => {
           cesdk = instance;
           instance.engine.editor.setSettingBool('page/title/show', false);
           await instance.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/example-1.scene`
+            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
           );
           setCesdk(instance);
           const newPageIds = instance.engine.scene.getPages();

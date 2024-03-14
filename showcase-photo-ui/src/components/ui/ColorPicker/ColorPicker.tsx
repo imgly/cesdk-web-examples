@@ -1,8 +1,8 @@
 import classNames from 'classnames';
-import useOnClickOutside from 'lib/useOnClickOutside';
+import { useOnClickOutside } from './useOnClickOutside';
 import { cloneElement, ReactElement, useRef, useState } from 'react';
 import { HexColorInput, HexAlphaColorPicker } from 'react-colorful';
-import { ReactComponent as CaretBottom } from './CaretBottom.svg';
+import CaretBottom from './CaretBottom.svg';
 import classes from './ColorPicker.module.css';
 import useDebounceCallback from './UseDebounceCallback';
 
@@ -32,7 +32,6 @@ export const ColorPicker = ({
   positionY = 'bottom',
   theme = 'dark',
   size = 'sm',
-  defaultValue = '#000',
   presetColors = []
 }: IColorPicker) => {
   const [pickerOpen, setPickerOpen] = useState(false);

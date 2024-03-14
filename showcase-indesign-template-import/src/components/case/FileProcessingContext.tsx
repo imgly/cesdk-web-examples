@@ -31,7 +31,7 @@ const FileProcessingContext = createContext<FileProcessingContextValue>({
   status: 'idle',
   processMessage: '',
   isProcessing: false,
-  processFile: (file: ExampleFile) => {},
+  processFile: () => {},
   currentFile: null,
   resetState: () => {},
   inferenceTime: 0,
@@ -83,7 +83,7 @@ const FileProcessingContextProvider = ({
     let logger: Logger;
     try {
       const engine = await CreativeEngine.init({
-        license: process.env.REACT_APP_LICENSE
+        license: process.env.NEXT_PUBLIC_LICENSE
       });
       setStatus('processing');
       const parser = await IDMLParser.fromFile(

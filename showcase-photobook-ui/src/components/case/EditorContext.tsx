@@ -59,6 +59,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       }
     };
     loadTemplate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engineIsLoaded, engine]);
 
   const findImageAssets = useCallback(async () => {
