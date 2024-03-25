@@ -1,7 +1,9 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.23.0-rc.3/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.23.0-rc.3/assets',
   // highlight-ui-config
   ui: {
     elements: {
