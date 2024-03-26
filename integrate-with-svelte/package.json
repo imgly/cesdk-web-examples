@@ -14,7 +14,7 @@
     "vite": "^3.0.7"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "1.17.0",
+    "@cesdk/cesdk-js": "1.23.0",
     "sirv-cli": "^1.0.0"
   }
 }
