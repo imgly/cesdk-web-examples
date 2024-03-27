@@ -1,5 +1,5 @@
 import { useSelection } from '../../lib/UseSelection';
-import { ReactComponent as TrashBinIcon } from '../../icons/TrashBin.svg';
+import TrashBinIcon from '../../icons/TrashBin.svg';
 import { useEngine } from '../../lib/EngineContext';
 import IconButton from '../IconButton/IconButton';
 

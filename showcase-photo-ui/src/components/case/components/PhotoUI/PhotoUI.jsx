@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
 import { useEffect, useState } from 'react';
 import { useEditor } from '../../EditorContext';
 import BottomControls from '../BottomControls/BottomControls';

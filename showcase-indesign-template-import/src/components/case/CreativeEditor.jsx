@@ -13,7 +13,7 @@ const CreativeEditor = ({ sceneUrl, closeEditor }) => {
       },
       role: 'Creator',
       theme: 'light',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
           panels: {

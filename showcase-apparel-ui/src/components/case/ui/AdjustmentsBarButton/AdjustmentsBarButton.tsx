@@ -29,4 +29,5 @@ const AdjustmentsBarButton = forwardRef(
     );
   }
 );
+AdjustmentsBarButton.displayName = 'AdjustmentsBarButton';
 export default AdjustmentsBarButton;

@@ -1,0 +1,14 @@
+body {
+  height: 100%;
+  background: #e7e7e9 linear-gradient(180deg, rgba(0, 0, 0, .04), transparent 10%);
+}
+
+@import '@/styles/button.css';
+@import '@/styles/ci-v11-variables.css';
+@import '@/styles/css-reset.css';
+@import '@/styles/fonts.css';
+@import '@/styles/forms.css';
+@import '@/styles/root.css';
+@import '@/styles/typography.css';
+@import '@/styles/util.css';
+@import '@/styles/variables.css';

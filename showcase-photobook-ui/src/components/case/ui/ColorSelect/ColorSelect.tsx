@@ -1,11 +1,10 @@
 import { RGBAColor } from '@cesdk/engine';
 import classNames from 'classnames';
-import { ColorPicker } from 'components/ui/ColorPicker/ColorPicker';
+import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
 import { hexToRgba, isColorEqual, rgbaToHex } from '../../lib/ColorUtilities';
 import { caseAssetPath } from '../../util';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import classes from './ColorSelect.module.css';
-import { useMemo } from 'react';
 
 interface ColorSelectProps {
   colorPalette: Array<RGBAColor>;
@@ -23,11 +22,6 @@ const ColorSelect = ({
     a: 1
   }
 }: ColorSelectProps) => {
-  const activeColorHex = useMemo(
-    () => rgbaToHex(activeColor),
-    [activeColor.a, activeColor.b, activeColor.g, activeColor.r]
-  );
-
   return (
     // Resetting the overflow property to allow the ColorPicker to flow out of the boundings of the AdjustmentsBar.
     // Scrolling is not needed for in the ColorSelect Bar.

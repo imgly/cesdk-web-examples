@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -29,7 +31,7 @@ const CaseComponent = () => {
           }
         }
       },
-      license: process.env.REACT_APP_LICENSE
+      license: process.env.NEXT_PUBLIC_LICENSE
     };
     let cesdk;
     if (image && cesdkContainer.current) {
@@ -92,7 +94,7 @@ const CaseComponent = () => {
 };
 
 const caseAssetPath = (path, caseId = 'start-with-image') =>
-  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
+  `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
 // https://unsplash.com/photos/ePpaQC2c1xA
 // https://unsplash.com/photos/6qqwAsB22_M
 // https://unsplash.com/photos/y-GMWtWW_H8

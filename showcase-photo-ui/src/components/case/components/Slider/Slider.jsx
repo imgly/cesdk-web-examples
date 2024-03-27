@@ -64,7 +64,7 @@ export default function Slider({
           left: -(distanceBetweenMarkers / 2) * (max - min),
           right: (distanceBetweenMarkers / 2) * (max - min)
         }}
-        onStart={(event, data) => {
+        onStart={(event) => {
           onStart?.(event);
         }}
         onDrag={(event, data) => {
@@ -74,7 +74,7 @@ export default function Slider({
           setCurrent(newCurrent);
           onChange?.(newCurrent);
         }}
-        onStop={(event, data) => {
+        onStop={(event) => {
           onStop?.(event, current);
           if (_current !== current && controlled) {
             setCurrent(current);

@@ -20,7 +20,7 @@ export const Mockup3DCanvas = ({
       material['pbrMetallicRoughness']['baseColorTexture'].setTexture(texture);
     };
     changeTexture();
-  }, [imageUrl]);
+  }, [baseColorTextureIndex, imageUrl]);
 
   useEffect(() => {
     const duck = modelViewerRef.current;
@@ -32,7 +32,7 @@ export const Mockup3DCanvas = ({
       duck.cameraControls = true;
       setLoaded(true);
     });
-  }, [modelUrl, imageUrl]);
+  }, [modelUrl, imageUrl, baseColorTextureIndex, cameraOrbit]);
 
   return (
     <model-viewer
