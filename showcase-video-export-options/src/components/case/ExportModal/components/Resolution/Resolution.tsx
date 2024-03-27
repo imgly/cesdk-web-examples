@@ -78,7 +78,7 @@ export const Resolution: React.FC<Props> = ({
 
       setResolutionType(value);
     },
-    [setShowResolutionInput, setResolutionType]
+    [resolutions, onChange]
   );
 
   const options = useMemo(

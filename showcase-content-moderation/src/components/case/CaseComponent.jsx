@@ -1,5 +1,7 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import ValidationBox from 'components/ui/ValidationBox/ValidationBox';
+import ValidationBox from '@/components/ui/ValidationBox/ValidationBox';
 import React, {
   useCallback,
   useEffect,
@@ -7,7 +9,7 @@ import React, {
   useRef,
   useState
 } from 'react';
-import { ReactComponent as RefreshIcon } from './refresh.svg';
+import RefreshIcon from './refresh.svg';
 import { checkImageContent, selectAllBlocks } from './restrictionsUtility';
 
 const ImageComplianceCESDK = () => {
@@ -30,7 +32,7 @@ const ImageComplianceCESDK = () => {
   useEffect(() => {
     let config = {
       role: 'Adopter',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       theme: 'light',
       ui: {
         elements: {
@@ -58,7 +60,7 @@ const ImageComplianceCESDK = () => {
           instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdkRef.current = instance;
           await instance.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/cases/content-moderation/example.scene`
+            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/content-moderation/example.scene`
           );
         }
       );

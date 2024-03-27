@@ -44,7 +44,7 @@ const FontSelect = ({ onSelect, activeFontUri }: FontSelectProps) => {
       {fonts.map(({ id, fontWeight, fontPath, fontFamily, isActive, ref }) => {
         return (
           <AdjustmentsBarButton
-            key={fontPath}
+            key={id}
             isActive={isActive}
             onClick={() => onSelect(fontPath)}
             ref={ref}

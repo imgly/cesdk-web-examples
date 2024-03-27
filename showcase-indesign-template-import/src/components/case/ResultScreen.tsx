@@ -2,10 +2,10 @@ import { useState } from 'react';
 import CreativeEditor from './CreativeEditor';
 import { useFileProcessing } from './FileProcessingContext';
 import classes from './ResultScreen.module.css';
-import { ReactComponent as ChevronLeftIcon } from './icons/ChevronLeft.svg';
-import { ReactComponent as DownloadIcon } from './icons/Download.svg';
-import { ReactComponent as EditIcon } from './icons/Edit.svg';
-import { ReactComponent as IndesignFileIcon } from './icons/IndesignFile.svg';
+import ChevronLeftIcon from './icons/ChevronLeft.svg';
+import DownloadIcon from './icons/Download.svg';
+import EditIcon from './icons/Edit.svg';
+import IndesignFileIcon from './icons/IndesignFile.svg';
 import { InfoButton } from './InfoButton/InfoButton';
 
 function ResultScreen() {
@@ -48,6 +48,7 @@ function ResultScreen() {
         <div className={classes.preview}>
           {currentFile?.previewUrl && (
             <img
+              alt="InDesign File"
               src={currentFile?.previewUrl}
               className={classes.comparisonImage}
             />
@@ -69,7 +70,11 @@ function ResultScreen() {
           <span className={classes.previewText}>PNG Preview</span>
         </div>
         <div className={classes.preview}>
-          <img src={result.imageUrl} className={classes.comparisonImage} />
+          <img
+            src={result.imageUrl}
+            className={classes.comparisonImage}
+            alt="Imported Result"
+          />
         </div>
         <div className={classes.actions}>
           <button

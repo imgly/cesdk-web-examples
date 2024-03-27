@@ -1,4 +1,3 @@
-import capitalize from 'lodash/capitalize';
 import Select from '../Select/Select';
 import { useEffect, useState } from 'react';
 import { useEditor } from '../../EditorContext';
@@ -20,6 +19,7 @@ const StickerSelectFilter = ({ onChange }) => {
       setAvailableGroups(newGroups);
     };
     loadGroups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -33,6 +33,7 @@ export const EditorProvider = ({ children }) => {
   });
 
   editorUpdateCallbackRef.current = () => {
+    if (!engine) return;
     const newEditMode = engine.editor.getEditMode();
     if (!isEqual(newEditMode, editMode)) {
       setEditMode(newEditMode);
@@ -69,7 +70,7 @@ export const EditorProvider = ({ children }) => {
           preventScrolling: true
         },
         role: 'Adopter',
-        license: process.env.REACT_APP_LICENSE
+        license: process.env.NEXT_PUBLIC_LICENSE
       };
 
       const engine = await CreativeEngine.init(config);

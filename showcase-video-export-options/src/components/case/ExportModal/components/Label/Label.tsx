@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 
-import { ReactComponent as InfoIcon } from '../../icons/Info.svg';
+import InfoIcon from '../../icons/Info.svg';
 
-import StyledPopover from 'components/ui/StyledPopover/StyledPopover';
+import StyledPopover from '@/components/ui/StyledPopover/StyledPopover';
 import classes from './Label.module.css';
 
 interface Props {

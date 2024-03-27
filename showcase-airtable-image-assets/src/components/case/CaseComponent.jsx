@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import { airtableAssetLibrary } from './airtableAssetLibrary';
@@ -9,7 +11,7 @@ const CaseComponent = () => {
     let cesdk;
     let config = {
       role: 'Adopter',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -89,7 +91,7 @@ const CaseComponent = () => {
           instance.engine.editor.setSettingBool('page/title/show', false);
           cesdk = instance;
           await instance.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/cases/airtable-image-assets/airtable.scene`
+            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/airtable-image-assets/airtable.scene`
           );
         }
       );

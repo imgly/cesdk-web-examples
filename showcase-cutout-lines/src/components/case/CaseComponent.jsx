@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import {
@@ -11,7 +13,7 @@ const CaseComponent = () => {
     const config = {
       role: 'Creator',
       theme: 'light',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
           panels: {
@@ -51,7 +53,7 @@ const CaseComponent = () => {
           instance.addDemoAssetSources({ sceneMode: 'Design' });
           addLocalCutoutAssetLibrary(instance.engine);
           await instance.engine.scene.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/cases/cutout-lines/example.scene`
+            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/cutout-lines/example.scene`
           );
           cesdk = instance;
         }

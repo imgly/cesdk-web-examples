@@ -3,9 +3,9 @@ import UploadZone from './UploadZone';
 
 const EXAMPLE_FILES = ['socialmedia', 'poster', 'postcard'].map((file) => ({
   name: file + '.idml',
-  url: `${window.location.protocol + "//" + window.location.host}/cases/indesign-template-import/${file}.idml`,
-  previewUrl: `${window.location.protocol + "//" + window.location.host}/cases/indesign-template-import/${file}-1.png`,
-  coverBaseUrl: `${window.location.protocol + "//" + window.location.host}/cases/indesign-template-import/${file}-thumb`,
+  url: `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/indesign-template-import/${file}.idml`,
+  previewUrl: `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/indesign-template-import/${file}-1.png`,
+  coverBaseUrl: `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/indesign-template-import/${file}-thumb`,
   alt: `${file} thumbnail`
 }));
 

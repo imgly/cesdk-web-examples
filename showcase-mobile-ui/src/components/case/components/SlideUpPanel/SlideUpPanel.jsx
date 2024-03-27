@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { createContext, useContext, useEffect, useRef } from 'react';
 import { useEditor } from '../../EditorContext';
-import { ReactComponent as CaretDownIcon } from '../../icons/CaretDown.svg';
+import CaretDownIcon from '../../icons/CaretDown.svg';
 import IconButton from '../IconButton/IconButton';
 import classes from './SlideUpPanel.module.css';
 
@@ -28,7 +28,7 @@ const SlideUpPanel = ({
     const containerNode = containerRef.current;
     const defaultZoomPaddingBottom = 8;
 
-    var ro = new ResizeObserver((entries) => {
+    var ro = new ResizeObserver(() => {
       const containerBB = containerNode.getBoundingClientRect();
       const canvasBB = engine.element.getBoundingClientRect();
       const paddingNeeded = canvasBB.height - (containerBB.top - canvasBB.top);

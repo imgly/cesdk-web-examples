@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -28,7 +30,7 @@ const CaseComponent = () => {
           }
         }
       },
-      license: process.env.REACT_APP_LICENSE
+      license: process.env.NEXT_PUBLIC_LICENSE
     };
     let cesdk;
     if (video && cesdkContainer.current) {
@@ -87,7 +89,7 @@ const CaseComponent = () => {
 };
 
 const caseAssetPath = (path, caseId = 'start-with-video') =>
-  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
+  `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
 
 // Sample videos are taken from pexels.com:
 // https://www.pexels.com/video/person-decorating-dessert-with-kiwi-7930811/

@@ -1,6 +1,6 @@
 import { CompleteAssetResult } from '@cesdk/engine';
 import classNames from 'classnames';
-import { ReactComponent as UploadIcon } from '../../icons/Upload.svg';
+import UploadIcon from '../../icons/Upload.svg';
 import { useImageUpload } from '../../lib/UseImageUpload';
 import classes from './UploadButton.module.css';
 
@@ -12,14 +12,7 @@ interface UploadButtonProps {
   onUpload: (asset: CompleteAssetResult) => Promise<void>;
 }
 
-const UploadButton = ({
-  icon,
-  children,
-  isActive,
-  iconColor,
-  onUpload,
-  ...rest
-}: UploadButtonProps) => {
+const UploadButton = ({ iconColor, onUpload, ...rest }: UploadButtonProps) => {
   const { triggerFileUpload } = useImageUpload({
     onUpload
   });

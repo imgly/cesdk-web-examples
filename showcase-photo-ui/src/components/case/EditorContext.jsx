@@ -85,7 +85,7 @@ export const EditorProvider = ({ children }) => {
         featureFlags: {
           preventScrolling: true
         },
-        license: process.env.REACT_APP_LICENSE
+        license: process.env.NEXT_PUBLIC_LICENSE
       };
 
       engine = await CreativeEngine.init(config);

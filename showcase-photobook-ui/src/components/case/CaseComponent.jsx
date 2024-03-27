@@ -1,4 +1,6 @@
-import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+'use client';
+
+import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
 import classes from './CaseComponent.module.css';
 import CUSTOM_LAYOUT_ASSET from './CustomLayout.json';
 import CUSTOM_STICKER_ASSETS from './CustomSticker.json';
@@ -24,7 +26,7 @@ const CaseComponent = () => {
               featureFlags: {
                 preventScrolling: true
               },
-              license: process.env.REACT_APP_LICENSE
+              license: process.env.NEXT_PUBLIC_LICENSE
             }}
             configure={async (engine) => {
               engine.editor.setSettingBool('page/title/show', false);

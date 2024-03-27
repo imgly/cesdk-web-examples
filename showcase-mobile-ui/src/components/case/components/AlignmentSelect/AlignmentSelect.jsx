@@ -1,6 +1,6 @@
-import { ReactComponent as TextAlignCenterIcon } from '../../icons/TextAlignCenter.svg';
-import { ReactComponent as TextAlignLeftIcon } from '../../icons/TextAlignLeft.svg';
-import { ReactComponent as TextAlignRightIcon } from '../../icons/TextAlignRight.svg';
+import TextAlignCenterIcon from '../../icons/TextAlignCenter.svg';
+import TextAlignLeftIcon from '../../icons/TextAlignLeft.svg';
+import TextAlignRightIcon from '../../icons/TextAlignRight.svg';
 import IconButton from '../IconButton/IconButton';
 import classes from './AlignmentSelect.module.css';
 

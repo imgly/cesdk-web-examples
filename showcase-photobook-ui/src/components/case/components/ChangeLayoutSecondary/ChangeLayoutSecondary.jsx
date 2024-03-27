@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useEngine } from '../../lib/EngineContext';
-import { useSinglePageMode } from '../../lib/SinglePageModeContext';
 import AdjustmentsBar from '../../ui/AdjustmentsBar/AdjustmentsBar';
 import AdjustmentsBarButton from '../../ui/AdjustmentsBarButton/AdjustmentsBarButton';
 

@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
 import { useEditor } from '../../EditorContext';
 
-import { ReactComponent as ResetIcon } from '../../icons/Reset.svg';
+import ResetIcon from '../../icons/Reset.svg';
 import { useSelectedProperty } from '../../lib/UseSelectedProperty';
 import IconButton from '../IconButton/IconButton';
 import Slider from '../Slider/Slider';

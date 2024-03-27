@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { createApplyLayoutAsset } from './lib/createApplyLayoutAsset';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
@@ -5,16 +7,15 @@ import LAYOUT_ASSETS from './CustomLayouts.json';
 import { useEffect, useRef } from 'react';
 
 const caseAssetPath = (path, caseId = 'layouts') =>
-  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
+  `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
 
 const CaseComponent = () => {
   const cesdkContainer = useRef(null);
-  const engine = useRef(null);
   useEffect(() => {
     let config = {
       role: 'Adopter',
       theme: 'light',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -64,7 +65,7 @@ const CaseComponent = () => {
 
                     previewBackgroundType: 'contain',
                     gridBackgroundType: 'contain',
-                    icon: ({ theme, iconSize }) => {
+                    icon: ({ iconSize }) => {
                       return iconSize === 'normal'
                         ? caseAssetPath('/collage-small.svg')
                         : caseAssetPath('/collage-large.svg');
