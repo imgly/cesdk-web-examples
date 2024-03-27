@@ -69,7 +69,7 @@ export const useSelectedProperty = (
   return [propertyValue, setEnginePropertyValue];
 };
 
-const BLOCK_PROPERTY_METHODS = (engine) => ({
+const BLOCK_PROPERTY_METHODS = () => ({
   Float: {
     get: 'getFloat',
     set: 'setFloat'

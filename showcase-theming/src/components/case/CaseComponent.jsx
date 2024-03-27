@@ -1,6 +1,8 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { ColorPicker } from 'components/ui/ColorPicker/ColorPicker';
-import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
+import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
+import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   generateColorAbstractionTokensAccent,
@@ -47,7 +49,7 @@ const ThemingCESDK = () => {
     let config = {
       theme: chosenTheme,
       role: 'Adopter',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -76,7 +78,7 @@ const ThemingCESDK = () => {
           instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdk = instance;
           await cesdk.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/example-1.scene`
+            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
           );
         }
       );

@@ -49,6 +49,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
 
     const pages = engine.scene.getPages();
     setCurrentPageBlockId(currentStep === 'Write' ? pages[1] : pages[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engineIsLoaded, setCurrentPageBlockId, currentStep]);
 
   useEffect(() => {
@@ -66,6 +67,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       }
     };
     loadPostcardTemplate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engineIsLoaded, engine, postcardTemplate]);
 
   const findImageAssets = useCallback(async () => {

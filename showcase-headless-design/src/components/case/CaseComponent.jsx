@@ -1,7 +1,9 @@
+'use client';
+
 import CreativeEngine from '@cesdk/engine';
 import classNames from 'classnames';
-import { ColorPicker } from 'components/ui/ColorPicker/ColorPicker';
-import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
+import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import classes from './CaseComponent.module.css';
 import { hexToRgba } from './convert';
@@ -31,7 +33,7 @@ const CaseComponent = () => {
 
     let engineToBeDisposed;
     CreativeEngine.init({
-      license: process.env.REACT_APP_LICENSE
+      license: process.env.NEXT_PUBLIC_LICENSE
     }).then(async (engine) => {
       engine.addDefaultAssetSources();
       engine.addDemoAssetSources({ sceneMode: 'Design' });
@@ -58,9 +60,7 @@ const CaseComponent = () => {
       const canvas = engine.element;
       async function initializeScene() {
         engine.editor.setSettingBool('doubleClickToCropEnabled', false);
-        const scene = await engine.scene.loadFromURL(
-          caseAssetPath('/example.scene')
-        );
+        await engine.scene.loadFromURL(caseAssetPath('/example.scene'));
         const page = engine.block.findByKind('page')[0];
         // Leave some extra space bottom for the gizmo
         engine.scene.enableZoomAutoFit(page, 'Both', 10, 10, 10, 50);
@@ -77,11 +77,13 @@ const CaseComponent = () => {
   useEffect(
     function updateSceneColors() {
       if (isSceneLoaded && colorRGBA) {
-        const page = engine.block.findByKind('page')[0];
-        const text = engine.block.findByKind('text')[0];
+        const [page] = engine.block.findByKind('page');
+        const [text] = engine.block.findByKind('text');
         let { r, g, b } = colorRGBA;
-        engine.block.setColor(page, 'fill/solid/color', { r, g, b, a: 1 });
-        engine.block.setColor(text, 'fill/solid/color', { r, g, b, a: 1 });
+        if (page !== undefined && text !== undefined) {
+          engine.block.setColor(page, 'fill/solid/color', { r, g, b, a: 1 });
+          engine.block.setColor(text, 'fill/solid/color', { r, g, b, a: 1 });
+        }
       }
     },
     [colorRGBA, engine, isSceneLoaded]

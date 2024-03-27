@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK, { UserInterfaceElements } from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import {
@@ -21,12 +23,12 @@ const CaseComponent = () => {
     const config = {
       role: 'Adopter',
       theme: 'light',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       i18n: {
         en: {
           'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
           ...pageFormatI18n(PAGE_FORMAT_ASSETS.assets),
-          'libraries.ly.img.video.templates.label': 'Example Templates'
+          'libraries.ly.img.video.scene.label': 'Example Templates'
         }
       },
       ui: {
@@ -44,7 +46,7 @@ const CaseComponent = () => {
               },
               {
                 id: 'examples',
-                entryIds: ['ly.img.video.templates']
+                entryIds: ['ly.img.video.scene']
               },
               {
                 id: 'ly.img.defaultGroup',
@@ -56,12 +58,15 @@ const CaseComponent = () => {
             insert: {
               entries: (defaultEntries) => {
                 return [
-                  ...defaultEntries,
+                  ...defaultEntries.filter(
+                    ({ id }) => !['ly.img.video.template'].includes(id)
+                  ),
                   PAGE_FORMATS_INSERT_ENTRY,
                   {
-                    id: 'ly.img.video.templates',
-                    sourceIds: ['ly.img.video.templates'],
-                    icon: () => caseAssetPath('/static-video-scenes-icon.svg')
+                    id: 'ly.img.video.scene',
+                    sourceIds: ['ly.img.video.scene'],
+                    icon: () => caseAssetPath('/static-video-scenes-icon.svg'),
+                    gridColumns: 2
                   }
                 ];
               }
@@ -92,7 +97,7 @@ const CaseComponent = () => {
           instance.addDemoAssetSources({
             sceneMode: 'Video',
             // We want to replace the demo audio assets with our own
-            excludeAssetSourceIds: ['ly.img.audio']
+            excludeAssetSourceIds: ['ly.img.audio', 'ly.img.video.template']
           });
           cesdk = instance;
           cesdkRef.current = instance;
@@ -128,7 +133,7 @@ const CaseComponent = () => {
             .loadFromURL(
               caseAssetPath(`/templates/${loadSelectedTemplateFromURL()}.scene`)
             )
-            .catch((e) => {
+            .catch(() => {
               // Fallback to motion template if the selected template fails to load, e.g due to 404
               cesdk.loadFromURL(caseAssetPath(`/templates/motion.scene`));
             });

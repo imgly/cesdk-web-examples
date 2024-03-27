@@ -1,3 +1,5 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import React, { useEffect, useRef } from 'react';
 
@@ -5,9 +7,9 @@ const CaseComponent = () => {
   const cesdkContainer = useRef(null);
   useEffect(() => {
     const config = {
-      role: 'Creator',
       theme: 'dark',
-      license: process.env.REACT_APP_LICENSE,
+      role: 'Adopter',
+      license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
           view: 'advanced',
@@ -40,19 +42,32 @@ const CaseComponent = () => {
 
 
     let cesdk;
+    let dispose = false;
     if (cesdkContainer.current) {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          if (dispose) {
+            instance.dispose();
+            return;
+          }
+          await instance.addDefaultAssetSources();
+          await instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdk = instance;
           await instance.loadFromURL(
-            `${window.location.protocol + "//" + window.location.host}/example-1.scene`
+            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
           );
+          // find first image element
+          const engine = instance.engine;
+          const [imageElement] = engine.block.findByName('HeroImage');
+          if (imageElement) {
+            // set image element to be selected
+            engine.block.select(imageElement);
+          }
         }
       );
     }
     return () => {
+      dispose = true;
       if (cesdk) {
         cesdk.dispose();
       }

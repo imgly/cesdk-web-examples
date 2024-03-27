@@ -1,9 +1,11 @@
+'use client';
+
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import classes from './CaseComponent.module.css';
 
 const caseAssetPath = (path, caseId = 'version-history') =>
-  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
+  `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
 
 function loadSnapshots() {
   return [
@@ -73,7 +75,7 @@ const VersionHistoryCESDK = () => {
     let cesdk;
     let config = {
       role: 'Creator',
-      license: process.env.REACT_APP_LICENSE,
+      license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local',
@@ -164,6 +166,7 @@ const VersionHistoryCESDK = () => {
                 }}
               >
                 <img
+                  alt="Snapshot"
                   src={snapshot.thumbnailUrl}
                   className={classes.snapshotItemImage}
                 />

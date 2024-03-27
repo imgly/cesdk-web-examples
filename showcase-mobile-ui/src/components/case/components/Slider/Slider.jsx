@@ -9,7 +9,7 @@ const Slider = (props) => {
       className={classes.slider}
       thumbClassName={classes.thumb}
       trackClassName={classes.track}
-      renderThumb={({ key, ...props }, state) => (
+      renderThumb={({ key, ...props }) => (
         <div {...props} key={key}>
           <span className={classes.innerThumb} />
         </div>

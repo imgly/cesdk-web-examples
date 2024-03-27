@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useEditor } from '../../EditorContext';
-import { ReactComponent as DownloadIcon } from '../../icons/Download.svg';
-import { ReactComponent as LoadingSpinnerIcon } from '../../icons/LoadingSpinner.svg';
-import { ReactComponent as RedoIcon } from '../../icons/Redo.svg';
-import { ReactComponent as SurfaceIcon } from '../../icons/Surface.svg';
-import { ReactComponent as UndoIcon } from '../../icons/Undo.svg';
+import DownloadIcon from '../../icons/Download.svg';
+import LoadingSpinnerIcon from '../../icons/LoadingSpinner.svg';
+import RedoIcon from '../../icons/Redo.svg';
+import SurfaceIcon from '../../icons/Surface.svg';
+import UndoIcon from '../../icons/Undo.svg';
 import CanvasSizeModal from '../CanvasSizeModal/CanvasSizeModal';
 import IconButton from '../IconButton/IconButton';
 import classes from './TopBar.module.css';

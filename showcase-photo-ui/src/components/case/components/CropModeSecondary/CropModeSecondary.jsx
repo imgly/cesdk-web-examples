@@ -5,9 +5,8 @@ import {
   DEFAULT_HIGHLIGHT_COLOR,
   useEditor
 } from '../../EditorContext';
-import { ReactComponent as FlipHorizontalIcon } from '../../icons/FlipHorizontal.svg';
-import { ReactComponent as RotateCCWIcon } from '../../icons/RotateCCW.svg';
-import { forceRerender } from '../../lib/CreativeEngineUtils';
+import FlipHorizontalIcon from '../../icons/FlipHorizontal.svg';
+import RotateCCWIcon from '../../icons/RotateCCW.svg';
 import { useProperty } from '../../lib/UseSelectedProperty';
 import { getImageSize } from '../../lib/utils';
 import AdjustmentButton from '../AdjustmentButton/AdjustmentButton';

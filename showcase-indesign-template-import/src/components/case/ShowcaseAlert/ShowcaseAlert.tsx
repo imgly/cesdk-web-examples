@@ -1,4 +1,4 @@
-import { ReactComponent as AlertTriangle } from './AlertTriangle.svg';
+import AlertTriangle from './AlertTriangle.svg';
 import classes from './ShowcaseAlert.module.css';
 
 interface ShowcaseAlertProps {

@@ -1,3 +1,5 @@
+'use client';
+
 import classes from './CaseComponent.module.css';
 import FileProcessing from './FileProcessing';
 import { FileProcessingContextProvider } from './FileProcessingContext';

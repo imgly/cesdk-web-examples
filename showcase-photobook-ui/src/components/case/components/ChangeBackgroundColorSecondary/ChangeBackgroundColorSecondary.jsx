@@ -22,7 +22,7 @@ const ChangeBackgroundColorSecondary = () => {
         engine.editor.addUndoStep();
       }
     };
-  }, []);
+  }, [engine]);
 
   return (
     <ColorSelect

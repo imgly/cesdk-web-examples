@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { SectionDivider } from '../SectionDivider/SectionDivider';
-import { ReactComponent as DownloadIcon } from '../../icons/Download.svg';
+import DownloadIcon from '../../icons/Download.svg';
 
 import classes from './Footer.module.css';
 
