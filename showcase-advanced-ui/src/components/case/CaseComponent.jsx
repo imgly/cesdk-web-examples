@@ -1,5 +1,3 @@
-'use client';
-
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import React, { useEffect, useRef } from 'react';
 
@@ -9,7 +7,7 @@ const CaseComponent = () => {
     const config = {
       role: 'Creator',
       theme: 'dark',
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
           view: 'advanced',
@@ -49,7 +47,7 @@ const CaseComponent = () => {
           instance.addDemoAssetSources({ sceneMode: 'Design' });
           cesdk = instance;
           await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
+            `${window.location.protocol + "//" + window.location.host}/example-1.scene`
           );
         }
       );

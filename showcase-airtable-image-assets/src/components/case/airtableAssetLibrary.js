@@ -19,9 +19,9 @@ if (AIRTABLE_API_KEY !== '') {
   }).base(AIRTABLE_DATABASE_ID);
 }
 
-export const queryAirtable = ({ query, perPage }) => {
+export const queryAirtable = ({ query, page, perPage }) => {
   let records = [];
-  return new Promise(function (resolve) {
+  return new Promise(function (resolve, reject) {
     base('Asset sources')
       .select({
         maxRecords: perPage || 100,

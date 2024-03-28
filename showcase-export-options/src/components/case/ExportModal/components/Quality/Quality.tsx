@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 
-import InfoIcon from '../../icons/Info.svg';
+import { ReactComponent as InfoIcon } from '../../icons/Info.svg';
 import { QualityType } from '../../types';
 import { Select } from '../Select/Select';
 
-import StyledPopover from '@/components/ui/StyledPopover/StyledPopover';
+import StyledPopover from 'components/ui/StyledPopover/StyledPopover';
 import classes from './Quality.module.css';
 
 const QualityItems = [

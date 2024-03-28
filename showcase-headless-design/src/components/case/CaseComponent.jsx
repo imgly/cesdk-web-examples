@@ -1,9 +1,7 @@
-'use client';
-
 import CreativeEngine from '@cesdk/engine';
 import classNames from 'classnames';
-import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import { ColorPicker } from 'components/ui/ColorPicker/ColorPicker';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import classes from './CaseComponent.module.css';
 import { hexToRgba } from './convert';
@@ -33,7 +31,7 @@ const CaseComponent = () => {
 
     let engineToBeDisposed;
     CreativeEngine.init({
-      license: process.env.NEXT_PUBLIC_LICENSE
+      license: process.env.REACT_APP_LICENSE
     }).then(async (engine) => {
       engine.addDefaultAssetSources();
       engine.addDemoAssetSources({ sceneMode: 'Design' });
@@ -60,7 +58,9 @@ const CaseComponent = () => {
       const canvas = engine.element;
       async function initializeScene() {
         engine.editor.setSettingBool('doubleClickToCropEnabled', false);
-        await engine.scene.loadFromURL(caseAssetPath('/example.scene'));
+        const scene = await engine.scene.loadFromURL(
+          caseAssetPath('/example.scene')
+        );
         const page = engine.block.findByKind('page')[0];
         // Leave some extra space bottom for the gizmo
         engine.scene.enableZoomAutoFit(page, 'Both', 10, 10, 10, 50);

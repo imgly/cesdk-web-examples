@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useEditor } from '../../EditorContext';
-import DownloadIcon from '../../icons/Download.svg';
-import LoadingSpinnerIcon from '../../icons/LoadingSpinner.svg';
+import { ReactComponent as DownloadIcon } from '../../icons/Download.svg';
+import { ReactComponent as LoadingSpinnerIcon } from '../../icons/LoadingSpinner.svg';
 import SmallButton from '../SmallButton/SmallButton';
 import classes from './TopBar.module.css';
 

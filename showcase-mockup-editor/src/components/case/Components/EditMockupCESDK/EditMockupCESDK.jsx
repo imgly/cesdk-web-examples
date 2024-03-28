@@ -19,7 +19,7 @@ const EditMockupCESDK = ({
         }
       }}
       config={{
-        license: process.env.NEXT_PUBLIC_LICENSE,
+        license: process.env.REACT_APP_LICENSE,
         callbacks: {
           onUpload: 'local',
           onSave: (sceneString) => {

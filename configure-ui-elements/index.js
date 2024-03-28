@@ -1,6 +1,8 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.24.0-rc.0/index.js';
 
 const config = {
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
   ui: {
     // docs-ui-elements
     elements: {
@@ -42,7 +44,8 @@ const config = {
       panels: {
         inspector: {
           show: true, // true or false
-          position: 'left' // 'left' or 'right'
+          position: 'left', // 'left' or 'right'
+          floating: false // true or false
         },
         assetLibrary: {
           show: true, // true or false
@@ -88,7 +91,7 @@ const config = {
       blocks: {
         opacity: false, // true  or false
         transform: false, // true  or false
-        '//ly.img.ubq/image': {
+        '//ly.img.ubq/graphic': {
           adjustments: true, // true  or false
           filters: false, // true  or false
           effects: false, // true  or false

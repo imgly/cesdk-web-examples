@@ -1,4 +1,5 @@
 import { useEditor } from '../../EditorContext';
+import { addImage } from '../../lib/CreativeEngineUtils';
 import ImageSelect from '../ImageSelect/ImageSelect';
 import SlideUpPanel, {
   SlideUpPanelBody,

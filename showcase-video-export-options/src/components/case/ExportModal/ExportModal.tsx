@@ -6,8 +6,8 @@ import { Label } from './components/Label/Label';
 import { Resolution } from './components/Resolution/Resolution';
 import { SectionDivider } from './components/SectionDivider/SectionDivider';
 import { Select } from './components/Select/Select';
-import DownloadIcon from './icons/Download.svg';
-import LoadingSpinnerIcon from './icons/LoadingSpinner.svg';
+import { ReactComponent as DownloadIcon } from './icons/Download.svg';
+import { ReactComponent as LoadingSpinnerIcon } from './icons/LoadingSpinner.svg';
 import { localDownload } from './lib/localDownload';
 
 interface Props {

@@ -1,9 +1,9 @@
-import StyledPopover from '@/components/ui/StyledPopover/StyledPopover';
+import StyledPopover from 'components/ui/StyledPopover/StyledPopover';
 import classNames from 'classnames';
-import React, { useMemo } from 'react';
-import ErrorIcon from './Error.svg';
+import React, { useMemo, useState } from 'react';
+import { ReactComponent as ErrorIcon } from './Error.svg';
 import classes from './InfoButton.module.css';
-import WarningIcon from './Warning.svg';
+import { ReactComponent as WarningIcon } from './Warning.svg';
 
 interface Props {
   messages: string[];

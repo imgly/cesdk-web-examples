@@ -1,5 +1,3 @@
-'use client';
-
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import React, { useEffect, useRef } from 'react';
 
@@ -9,7 +7,7 @@ const CaseComponent = () => {
     const config = {
       role: 'Adopter',
       theme: 'light',
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
           panels: {
@@ -60,7 +58,7 @@ const CaseComponent = () => {
           // The loaded scene includes a backdrop graphic block that is a child of the scene and helps the user to see their design on the finished product.
           // Such a scene can only be prepared using our API.
           await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/apparel-editor-ui/tshirt.scene`
+            `${window.location.protocol + "//" + window.location.host}/cases/apparel-editor-ui/tshirt.scene`
           );
 
           const pages = engine.block.findByType('page');

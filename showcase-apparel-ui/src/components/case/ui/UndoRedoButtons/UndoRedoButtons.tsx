@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import RedoIcon from '../../icons/Redo.svg';
-import UndoIcon from '../../icons/Undo.svg';
+import { ReactComponent as RedoIcon } from '../../icons/Redo.svg';
+import { ReactComponent as UndoIcon } from '../../icons/Undo.svg';
 import { useEngine } from '../../lib/EngineContext';
 import { useHistory } from '../../lib/UseHistory';
 import classes from './UndoRedoButtons.module.css';

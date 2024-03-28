@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
 import styles from './RadioButton.module.css';
-import CheckedHoverIcon from './checked-hover.svg';
-import UncheckedIcon from './unchecked.svg';
+import { ReactComponent as CheckedHoverIcon } from './checked-hover.svg';
+import { ReactComponent as UncheckedIcon } from './unchecked.svg';
 
 interface Props {
   children: React.ReactNode;

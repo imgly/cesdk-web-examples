@@ -1,14 +1,12 @@
-'use client';
-
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import CreativeEngine from '@cesdk/engine';
 import classNames from 'classnames';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
-import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import classes from './CaseComponent.module.css';
-import FullscreenEnterIcon from './FullscreenEnter.svg';
-import FullscreenLeaveIcon from './FullscreenLeave.svg';
+import { ReactComponent as FullscreenEnterIcon } from './FullscreenEnter.svg';
+import { ReactComponent as FullscreenLeaveIcon } from './FullscreenLeave.svg';
 import { Mockup3DCanvas } from './Mockup3DCanvas';
 
 const PRODUCTS = {
@@ -34,7 +32,7 @@ const PRODUCTS = {
     cameraOrbit: '0deg 90deg'
   }
 };
-const WHITE_1_PX_IMAGE_PATH = `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/3d-mockup-editor/1x1-ffffffff.png`;
+const WHITE_1_PX_IMAGE_PATH = `${window.location.protocol + "//" + window.location.host}/cases/3d-mockup-editor/1x1-ffffffff.png`;
 
 const CaseComponent = () => {
   const cesdkContainerRef = useRef(null);
@@ -72,7 +70,7 @@ const CaseComponent = () => {
 
   useEffect(() => {
     const config = {
-      license: process.env.NEXT_PUBLIC_LICENSE
+      license: process.env.REACT_APP_LICENSE
     };
 
 
@@ -119,7 +117,7 @@ const CaseComponent = () => {
       await mockupCesdk.scene.loadFromString(currentMockupScene);
     } else {
       await mockupCesdk.scene.loadFromURL(
-        `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/3d-mockup-editor/${productConfig.assetsFolderName}/textures/Material_baseColor.scene`
+        `${window.location.protocol + "//" + window.location.host}/cases/3d-mockup-editor/${productConfig.assetsFolderName}/textures/Material_baseColor.scene`
       );
     }
 
@@ -146,7 +144,6 @@ const CaseComponent = () => {
     setIsDirty(false);
     setCurrentMockupScene(mockupScene);
     setCurrentMockupUrl(URL.createObjectURL(mockupBlob));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentMockupScene, cesdkEngineRef, mockupEngineRef, productConfig]);
 
   useEffect(() => {
@@ -162,7 +159,7 @@ const CaseComponent = () => {
   useEffect(() => {
     let mounted = true;
     let config = {
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      license: process.env.REACT_APP_LICENSE,
       role: 'Adopter',
       callbacks: {
         onExport: 'download',
@@ -214,7 +211,7 @@ const CaseComponent = () => {
             setIsDirty(true);
           });
           instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/3d-mockup-editor/${productConfig.assetsFolderName}/design.scene`
+            `${window.location.protocol + "//" + window.location.host}/cases/3d-mockup-editor/${productConfig.assetsFolderName}/design.scene`
           );
           setCesdkEngineLoaded(true);
         }
@@ -304,7 +301,7 @@ const CaseComponent = () => {
               <Mockup3DCanvas
                 isInteractive={mockupFullscreen}
                 imageUrl={currentMockupUrl}
-                modelUrl={`${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/3d-mockup-editor/${productConfig.assetsFolderName}/scene.gltf`}
+                modelUrl={`${window.location.protocol + "//" + window.location.host}/cases/3d-mockup-editor/${productConfig.assetsFolderName}/scene.gltf`}
                 baseColorTextureIndex={productConfig.baseColorTextureIndex}
                 cameraOrbit={productConfig.cameraOrbit}
               />

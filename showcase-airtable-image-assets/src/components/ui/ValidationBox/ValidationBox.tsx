@@ -4,9 +4,9 @@ import StyledPopover from '../StyledPopover/StyledPopover';
 import BlockLabel, { IBlockLabel } from './BlockLabel';
 import styles from './ValidationBox.module.css';
 import ValidationPopover from './ValidationPopover';
-import CheckIcon from './icons/check.svg';
-import ClockIcon from './icons/clock.svg';
-import InfoIcon from './icons/info.svg';
+import { ReactComponent as CheckIcon } from './icons/check.svg';
+import { ReactComponent as ClockIcon } from './icons/clock.svg';
+import { ReactComponent as InfoIcon } from './icons/info.svg';
 interface IValidationResult extends IBlockLabel {
   id: string;
   state: 'failed' | 'warning' | 'success';

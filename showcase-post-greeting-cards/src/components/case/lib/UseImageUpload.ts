@@ -30,7 +30,7 @@ export function useImageUpload({
         async (asset) => await onUpload({ ...asset, context: { sourceId } })
       )
     );
-  }, [engine, sourceId, multiple, onUpload]);
+  }, [engine, onUpload, multiple]);
   return {
     triggerFileUpload
   };

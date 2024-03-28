@@ -1,7 +1,5 @@
-'use client';
-
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
+import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
 import React, { useEffect, useRef, useState } from 'react';
 
 const ROLE_OPTIONS = [
@@ -79,7 +77,7 @@ const CaseComponent = () => {
     let _cesdk;
     const config = {
       ...ROLE_OPTIONS.find(({ name }) => name === currentRole).cesdkConfig,
-      license: process.env.NEXT_PUBLIC_LICENSE
+      license: process.env.REACT_APP_LICENSE
     };
     if (cesdkContainer.current) {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
@@ -96,7 +94,7 @@ const CaseComponent = () => {
             await instance.loadFromString(currentScene);
           } else {
             await instance.loadFromURL(
-              `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/placeholders/example.scene`
+              `${window.location.protocol + "//" + window.location.host}/cases/placeholders/example.scene`
             );
           }
         }

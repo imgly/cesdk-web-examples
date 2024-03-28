@@ -1,3 +1,4 @@
+import { DesignBlockType } from '@cesdk/engine';
 import isEqual from 'lodash/isEqual';
 import {
   createContext,

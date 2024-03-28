@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import DownloadIcon from '../../icons/Download.svg';
-import LoadingSpinnerIcon from '../../icons/LoadingSpinner.svg';
+import { ReactComponent as DownloadIcon } from '../../icons/Download.svg';
+import { ReactComponent as LoadingSpinnerIcon } from '../../icons/LoadingSpinner.svg';
 import { useEngine } from '../../lib/EngineContext';
 import { useSinglePageMode } from '../../lib/SinglePageModeContext';
 import classes from './ExportButton.module.css';
@@ -29,7 +29,7 @@ interface ExportButtonProps {
 const ExportButton = ({ fileName = 'my-postcard' }: ExportButtonProps) => {
   const [isExporting, setIsExporting] = useState(false);
   const { engine } = useEngine();
-  const { currentPageBlockId } = useSinglePageMode();
+  const { currentPageBlockId, setEnabled } = useSinglePageMode();
 
   const handleExport = async () => {
     setIsExporting(true);

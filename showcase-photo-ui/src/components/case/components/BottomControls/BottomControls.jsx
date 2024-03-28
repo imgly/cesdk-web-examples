@@ -3,9 +3,9 @@ import { useEditor } from '../../EditorContext';
 import classes from './BottomControls.module.css';
 
 import { useMemo, useState } from 'react';
-import AdjustmentsIcon from '../../icons/Adjustments.svg';
-import CropIcon from '../../icons/Crop.svg';
-import FilterIcon from '../../icons/Filter.svg';
+import { ReactComponent as AdjustmentsIcon } from '../../icons/Adjustments.svg';
+import { ReactComponent as CropIcon } from '../../icons/Crop.svg';
+import { ReactComponent as FilterIcon } from '../../icons/Filter.svg';
 import AdjustSecondary from '../AdjustSecondary/AdjustSecondary';
 import CropModeSecondary from '../CropModeSecondary/CropModeSecondary';
 import FilterSecondary from '../FilterSecondary/FilterSecondary';
@@ -38,7 +38,7 @@ const BottomControls = () => {
   const [selectedMenuId, setSelectedMenuId] = useState();
 
   useEffect(() => {
-    const handler = function () {
+    const handler = function (event) {
       if (engine.editor.getEditMode() === 'Transform') {
         setSelectedMenuId(null);
       }

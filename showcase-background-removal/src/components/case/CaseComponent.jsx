@@ -1,5 +1,3 @@
-'use client';
-
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
 import React, { useEffect, useRef } from 'react';
@@ -10,7 +8,7 @@ const CaseComponent = () => {
     const config = {
       role: 'Adopter',
       theme: 'light',
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
           panels: {
@@ -46,7 +44,7 @@ const CaseComponent = () => {
             })
           );
           await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/background-removal/scene.scene`
+            `${window.location.protocol + "//" + window.location.host}/cases/background-removal/scene.scene`
           );
           const engine = instance.engine;
           // hide the title of the page:

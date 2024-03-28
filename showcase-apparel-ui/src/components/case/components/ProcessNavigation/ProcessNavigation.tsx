@@ -1,9 +1,13 @@
 import { useEditor } from '../../EditorContext';
 
-import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
+import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
 import classes from './ProcessNavigation.module.css';
 
-const ProcessNavigation = () => {
+interface ProcessNavigationProps {
+  disabled?: boolean;
+}
+
+const ProcessNavigation = ({ disabled }: ProcessNavigationProps) => {
   const { currentStep, setCurrentStep } = useEditor();
   return (
     <nav className={classes.wrapper}>

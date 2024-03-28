@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import FontIcon from '../../icons/Font.svg';
+import { ReactComponent as FontIcon } from '../../icons/Font.svg';
 import Dropdown from '../Dropdown/Dropdown';
 import FontPreview from '../../ui/FontPreview/FontPreview';
 import ALL_FONTS from '../../ui/FontSelect/Fonts.json';

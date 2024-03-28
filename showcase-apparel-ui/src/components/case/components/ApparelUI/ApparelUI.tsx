@@ -1,5 +1,7 @@
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 import { useEditor } from '../../EditorContext';
+import { useEngine } from '../../lib/EngineContext';
+import { useEditMode } from '../../lib/UseEditMode';
 import BottomControls from '../../ui/BottomControls/BottomControls';
 import CESDKCanvas from '../../ui/CESDKCanvas/CESDKCanvas';
 import TopBar from '../../ui/TopBar/TopBar';
@@ -7,6 +9,10 @@ import ProcessNavigation from '../ProcessNavigation/ProcessNavigation';
 
 const ApparelUI = () => {
   const { sceneIsLoaded, currentStep } = useEditor();
+  const { engine } = useEngine();
+  const { editMode } = useEditMode({
+    engine
+  });
 
   return (
     <>
@@ -15,7 +21,7 @@ const ApparelUI = () => {
       {!sceneIsLoaded && <LoadingSpinner />}
       {sceneIsLoaded && (
         <TopBar exportFileName="my-t-shirt-design">
-          <ProcessNavigation />
+          <ProcessNavigation disabled={!sceneIsLoaded || editMode === 'Crop'} />
         </TopBar>
       )}
       {/* We want hide the bottom controls in the last step */}

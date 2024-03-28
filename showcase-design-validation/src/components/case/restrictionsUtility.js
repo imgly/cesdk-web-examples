@@ -202,7 +202,8 @@ export const getImageQuality = (
   imageHeight,
   frameHeight,
   frameWidth,
-  scale = 1
+  scale = 1,
+  mode = 'cover'
 ) => {
   var originalRatios = {
     width: frameWidth / (imageWidth / scale),
