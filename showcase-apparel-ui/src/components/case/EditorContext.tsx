@@ -47,7 +47,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       }
     };
     loadTemplate();
-  }, [engineIsLoaded, engine, setEnabled, setCurrentPageBlockId]);
+  }, [engineIsLoaded, engine]);
 
   const findImageAssets = useCallback(async () => {
     const UPLOAD_ASSET_LIBRARY_ID = 'ly.img.image.upload';
@@ -113,7 +113,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       engine.block.setClipped(currentPageBlockId, true);
       engine.block.setBool(currentPageBlockId, 'fill/enabled', false);
     }
-  }, [currentStep, currentPageBlockId, engine, setEnabled]);
+  }, [currentStep, currentPageBlockId, engine]);
 
   const value = {
     sceneIsLoaded,

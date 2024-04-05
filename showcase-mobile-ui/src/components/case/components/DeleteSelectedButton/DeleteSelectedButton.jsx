@@ -1,5 +1,5 @@
 import { useEditor } from '../../EditorContext';
-import TrashBinIcon from '../../icons/TrashBin.svg';
+import { ReactComponent as TrashBinIcon } from '../../icons/TrashBin.svg';
 import IconButton from '../IconButton/IconButton';
 
 const ALLOWED_DELETION_TYPES = ['text', 'image', 'shape', 'sticker'];

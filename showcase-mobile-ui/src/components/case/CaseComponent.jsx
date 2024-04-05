@@ -1,5 +1,3 @@
-'use client';
-
 import classes from './CaseComponent.module.css';
 import MobileUI from './components/MobileUI/MobileUI';
 import { EditorProvider } from './EditorContext';

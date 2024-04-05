@@ -1,6 +1,6 @@
 import { RGBAColor } from '@cesdk/engine';
 import classNames from 'classnames';
-import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
+import { ColorPicker } from 'components/ui/ColorPicker/ColorPicker';
 import { hexToRgba, isColorEqual, rgbaToHex } from '../../lib/ColorUtilities';
 import Stack from '../../ui/Stack/Stack';
 import { caseAssetPath } from '../../util';

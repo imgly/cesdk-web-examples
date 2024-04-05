@@ -1,27 +1,13 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { useEffect, useRef } from 'react';
+import useOnClickOutside from 'lib/useOnClickOutside';
+import React, { useEffect, useRef } from 'react';
 import classes from './CESDKModal.module.css';
-
-const useOnClickOutside = (ref, callback) => {
-  const handleClick = (e) => {
-    // Use isTrusted to check if the event is coming from a real user, or is coming from a script.
-    if (ref.current && !ref.current.contains(e.target) && e.isTrusted) {
-      callback();
-    }
-  };
-  useEffect(() => {
-    document.addEventListener('click', handleClick);
-    return () => {
-      document.removeEventListener('click', handleClick);
-    };
-  });
-};
 
 const CESDKModal = ({ config, configure, onOutsideClick }) => {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
   useEffect(() => {
-    config.license = process.env.NEXT_PUBLIC_LICENSE;
+    config.license = process.env.REACT_APP_LICENSE;
     if (containerRef.current && !instanceRef.current) {
       CreativeEditorSDK.create(containerRef.current, config).then(
         async (instance) => {
@@ -43,7 +29,6 @@ const CESDKModal = ({ config, configure, onOutsideClick }) => {
         }
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config, containerRef]);
 
   useOnClickOutside(containerRef, onOutsideClick);

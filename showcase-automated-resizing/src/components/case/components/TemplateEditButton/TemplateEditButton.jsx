@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import EditIcon from '../../icons/Edit.svg';
+import { ReactComponent as EditIcon } from '../../icons/Edit.svg';
 import classes from './TemplateEditButton.module.css';
 
 const TemplateEditButton = ({ template, onClick }) => {

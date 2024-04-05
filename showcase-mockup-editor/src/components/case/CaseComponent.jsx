@@ -1,17 +1,15 @@
-'use client';
-
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import classNames from 'classnames';
 import CreativeEngine from '@cesdk/engine';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import EditMockupCESDK from './Components/EditMockupCESDK/EditMockupCESDK';
-import DownloadIcon from './Download.svg';
-import FullscreenEnterIcon from './FullscreenEnter.svg';
-import FullscreenLeaveIcon from './FullscreenLeave.svg';
-import EditIcon from './Edit.svg';
+import { ReactComponent as DownloadIcon } from './Download.svg';
+import { ReactComponent as FullscreenEnterIcon } from './FullscreenEnter.svg';
+import { ReactComponent as FullscreenLeaveIcon } from './FullscreenLeave.svg';
+import { ReactComponent as EditIcon } from './Edit.svg';
 import classes from './CaseComponent.module.css';
-import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
+import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
 
 const PRODUCTS = {
   businesscard: {
@@ -45,7 +43,7 @@ const PRODUCTS = {
     mockupScenePath: 'apparel-mockup.scene'
   }
 };
-const WHITE_1_PX_IMAGE_PATH = `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/1x1-ffffffff.png`;
+const WHITE_1_PX_IMAGE_PATH = `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/1x1-ffffffff.png`;
 
 export const replaceImages = (engine, imageName, newUrl) => {
   const images = engine.block.findByName(imageName);
@@ -116,7 +114,7 @@ const CaseComponent = () => {
       await mockupEngine.scene.loadFromString(currentMockupScene);
     } else {
       await mockupEngine.scene.loadFromURL(
-        `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.mockupScenePath}`
+        `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
     }
     // Fill unused pages in the mockup with white.
@@ -154,7 +152,7 @@ const CaseComponent = () => {
   // Use engine to render mockup
   useEffect(() => {
     const config = {
-      license: process.env.NEXT_PUBLIC_LICENSE
+      license: process.env.REACT_APP_LICENSE
     };
 
 
@@ -162,7 +160,7 @@ const CaseComponent = () => {
       engine.addDefaultAssetSources();
       engine.addDemoAssetSources({ sceneMode: 'Design' });
       await engine.scene.loadFromURL(
-        `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.mockupScenePath}`
+        `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
       mockupEngineRef.current = engine;
       setMockupEngineLoaded(true);
@@ -176,7 +174,7 @@ const CaseComponent = () => {
   }, [product]);
   useEffect(() => {
     let config = {
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      license: process.env.REACT_APP_LICENSE,
       role: 'Adopter',
       callbacks: {
         onExport: 'download',
@@ -214,7 +212,7 @@ const CaseComponent = () => {
             setIsDirty(true);
           });
           instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.scenePath}`
+            `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.scenePath}`
           );
           setCesdkEngineLoaded(true);
         }
@@ -266,7 +264,7 @@ const CaseComponent = () => {
             }}
             templateName={`${productConfig.sceneTitle} Mockup`}
             sceneString={currentMockupScene}
-            sceneUrl={`${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.mockupScenePath}`}
+            sceneUrl={`${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`}
           />
         )}
         <div

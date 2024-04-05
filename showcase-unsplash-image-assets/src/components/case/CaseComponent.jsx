@@ -1,5 +1,3 @@
-'use client';
-
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import { unsplashAssetLibrary } from './unsplashAssetLibrary';
@@ -11,7 +9,7 @@ const CaseComponent = () => {
     let cesdk;
     let config = {
       role: 'Adopter',
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      license: process.env.REACT_APP_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -92,7 +90,7 @@ const CaseComponent = () => {
           instance.engine.editor.setSettingBool('page/title/show', false);
           cesdk = instance;
           await cesdk.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/unsplash-image-assets/unsplash.scene`
+            `${window.location.protocol + "//" + window.location.host}/cases/unsplash-image-assets/unsplash.scene`
           );
         }
       );

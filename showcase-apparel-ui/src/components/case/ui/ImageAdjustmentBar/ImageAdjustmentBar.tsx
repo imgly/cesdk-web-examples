@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import CropIcon from '../../icons/Crop.svg';
-import ReplaceIcon from '../../icons/Replace.svg';
+import { ReactComponent as CropIcon } from '../../icons/Crop.svg';
+import { ReactComponent as ReplaceIcon } from '../../icons/Replace.svg';
 import { useEngine } from '../../lib/EngineContext';
 import { useEditMode } from '../../lib/UseEditMode';
 import { useSelectedProperty } from '../../lib/UseSelectedProperty';

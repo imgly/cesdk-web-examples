@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 import React, { Fragment } from 'react';
 import { useEditor } from '../../EditorContext';
-import ChevronRightIcon from '../../icons/ChevronRight.svg';
-import DesignIcon from '../../icons/Design.svg';
-import StyleIcon from '../../icons/Style.svg';
-import WriteIcon from '../../icons/Write.svg';
+import { ReactComponent as ChevronRightIcon } from '../../icons/ChevronRight.svg';
+import { ReactComponent as DesignIcon } from '../../icons/Design.svg';
+import { ReactComponent as StyleIcon } from '../../icons/Style.svg';
+import { ReactComponent as WriteIcon } from '../../icons/Write.svg';
 
 import classes from './ProcessNavigation.module.css';
 

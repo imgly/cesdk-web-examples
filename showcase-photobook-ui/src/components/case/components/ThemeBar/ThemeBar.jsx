@@ -44,7 +44,7 @@ export const ALL_THEMES = [
 const ThemeBar = ({ onClick }) => {
   return (
     <AdjustmentsBar gap="md">
-      {ALL_THEMES.map(({ id, Thumb, asset }) => (
+      {ALL_THEMES.map(({ id, Thumb, type, thumbUri, asset }) => (
         <button
           className={classes.button}
           key={id}

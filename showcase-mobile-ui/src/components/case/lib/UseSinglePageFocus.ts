@@ -190,7 +190,6 @@ export const useSinglePageFocus = ({
     } else {
       zoomToPage();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     engine,
     verticalTextScrollEnabled,

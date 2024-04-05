@@ -1,6 +1,6 @@
-import LayoutIcon from '../../icons/Layout.svg';
-import StickerIcon from '../../icons/Sticker.svg';
-import ThemeIcon from '../../icons/Theme.svg';
+import { ReactComponent as LayoutIcon } from '../../icons/Layout.svg';
+import { ReactComponent as StickerIcon } from '../../icons/Sticker.svg';
+import { ReactComponent as ThemeIcon } from '../../icons/Theme.svg';
 import AddStickerSecondary from '../../ui/AddStickerSecondary/AddStickerSecondary';
 import BackgroundColorIcon from '../BackgroundColorIcon/BackgroundColorIcon';
 import BlockBar from '../../ui/BlockBar/BlockBar';

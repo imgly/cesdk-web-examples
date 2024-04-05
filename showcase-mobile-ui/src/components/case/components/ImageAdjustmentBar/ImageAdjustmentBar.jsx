@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react';
 import ChangeImageFileSecondary from '../ChangeImageFileSecondary/ChangeImageFileSecondary';
 
 import { useEditor } from '../../EditorContext';
-import CropIcon from '../../icons/Crop.svg';
-import ReplaceIcon from '../../icons/Replace.svg';
+import { ReactComponent as CropIcon } from '../../icons/Crop.svg';
+import { ReactComponent as ReplaceIcon } from '../../icons/Replace.svg';
 import ChangeCropSecondary from '../ChangeCropSecondary/ChangeCropSecondary';
 import InspectorBar from '../InspectorBar/InspectorBar';
 import SlideUpPanel from '../SlideUpPanel/SlideUpPanel';

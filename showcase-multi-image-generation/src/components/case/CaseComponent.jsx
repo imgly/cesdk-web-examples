@@ -1,12 +1,10 @@
-'use client';
-
 import CreativeEngine from '@cesdk/engine';
 import React, { useEffect, useRef, useState } from 'react';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 
 const ID_FROM_RESTAURANT_REGEX = /yelp\.de\/biz\/([^?]*).*?$/;
 const caseAssetPath = (path, caseId = 'multi-image-generation') =>
-  `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
+  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
 
 const YELP_EXAMPLES = [
   {
@@ -89,7 +87,7 @@ const CaseComponent = () => {
 
   useEffect(() => {
     const config = {
-      license: process.env.NEXT_PUBLIC_LICENSE
+      license: process.env.REACT_APP_LICENSE
     };
     CreativeEngine.init(config).then(async (engine) => {
       engine.addDefaultAssetSources();

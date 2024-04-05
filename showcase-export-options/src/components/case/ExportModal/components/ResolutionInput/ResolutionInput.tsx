@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
 
-import LockIcon from '../../icons/Lock.svg';
+import { ReactComponent as LockIcon } from '../../icons/Lock.svg';
 import { Input } from '../Input/Input';
 
 import classes from './ResolutionInput.module.css';

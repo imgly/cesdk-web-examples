@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useState } from 'react';
-import UploadIcon from './icons/Upload.svg';
+import { ReactComponent as UploadIcon } from './icons/Upload.svg';
 import classes from './UploadZone.module.css';
 
 interface UploadZoneProps {

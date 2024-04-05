@@ -1,4 +1,4 @@
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 import { useEditor } from '../../EditorContext';
 import BottomControls from '../../ui/BottomControls/BottomControls';
 import CESDKCanvas from '../../ui/CESDKCanvas/CESDKCanvas';

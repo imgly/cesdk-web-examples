@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import classes from './LoadingScreen.module.css';
-import SpinnerIcon from './icons/Spinner.svg';
+import { ReactComponent as SpinnerIcon } from './icons/Spinner.svg';
 
 interface LoadingScreenProps {
   text: string;

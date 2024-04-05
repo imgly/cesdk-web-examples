@@ -1,8 +1,8 @@
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
-import ArrowDownIcon from '../../icons/ArrowDown.svg';
-import ArrowUpIcon from '../../icons/ArrowUp.svg';
-import PlusIcon from '../../icons/Plus.svg';
-import TrashBinIcon from '../../icons/TrashBin.svg';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+import { ReactComponent as ArrowDownIcon } from '../../icons/ArrowDown.svg';
+import { ReactComponent as ArrowUpIcon } from '../../icons/ArrowUp.svg';
+import { ReactComponent as PlusIcon } from '../../icons/Plus.svg';
+import { ReactComponent as TrashBinIcon } from '../../icons/TrashBin.svg';
 import classNames from 'classnames';
 import { useEngine } from '../../lib/EngineContext';
 import { usePagePreview } from '../../lib/PagePreviewContext';
@@ -19,7 +19,6 @@ const BookPreviewBar = () => {
   const canDeleteCurrentPage =
     currentPageBlockId &&
     sortedPageIds?.length > 1 &&
-    engine.block.isValid(currentPageBlockId) &&
     engine.block.isScopeEnabled(currentPageBlockId, 'lifecycle/destroy');
 
   const addPageFromTemplate = async () => {
@@ -74,7 +73,7 @@ const BookPreviewBar = () => {
     <div className={classes.wrapper}>
       <h3 className={classes.headline}>Pages</h3>
       <ul className={classes.pagePreviewList}>
-        {sortedPageIds?.map((id) => (
+        {sortedPageIds?.map((id, index) => (
           <li key={id}>
             <button
               className={classNames(classes.pagePreviewItem, {

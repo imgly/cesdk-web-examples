@@ -1,12 +1,10 @@
-'use client';
-
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { useEffect, useRef } from 'react';
 import FORMAT_ASSETS from './CustomFormats.json';
 
 const caseAssetPath = (path, caseId = 'page-sizes') =>
-  `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
+  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
 
 const LABEL_BELOW_CARD_STYLE = {
   cardLabelStyle: () => ({
@@ -45,7 +43,7 @@ const CaseComponent = () => {
       locale: 'en',
       role: 'Adopter',
       theme: 'light',
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      license: process.env.REACT_APP_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'

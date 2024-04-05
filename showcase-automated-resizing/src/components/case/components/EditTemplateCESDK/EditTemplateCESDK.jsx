@@ -71,6 +71,4 @@ const EditTemplateCESDK = memo(
   }
 );
 
-EditTemplateCESDK.displayName = 'EditTemplateCESDK';
-
 export default EditTemplateCESDK;

@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 import classes from './CaseComponent.module.css';
 

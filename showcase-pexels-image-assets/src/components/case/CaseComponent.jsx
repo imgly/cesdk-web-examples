@@ -1,5 +1,3 @@
-'use client';
-
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import { pexelsAssetLibrary } from './pexelsAssetLibrary';
@@ -11,7 +9,7 @@ const CaseComponent = () => {
     let cesdk;
     let config = {
       role: 'Adopter',
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      license: process.env.REACT_APP_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -91,7 +89,7 @@ const CaseComponent = () => {
           instance.engine.editor.setSettingBool('page/title/show', false);
           cesdk = instance;
           await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/pexels-image-assets/pexels.scene`
+            `${window.location.protocol + "//" + window.location.host}/cases/pexels-image-assets/pexels.scene`
           );
         }
       );

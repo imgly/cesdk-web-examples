@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
-import EditIcon from '../../icons/Edit.svg';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+import { ReactComponent as EditIcon } from '../../icons/Edit.svg';
 import classes from './InstanceImage.module.css';
 
 const InstanceImage = ({

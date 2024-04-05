@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 import { useState } from 'react';
 
 import classes from './ImageBar.module.css';
