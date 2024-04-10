@@ -160,7 +160,7 @@ const CaseComponent = () => {
   }, [isDirty, cesdkEngineLoaded, mockupEngineLoaded, renderMockup]);
 
   useEffect(() => {
-    let mounted = true;
+    let destroyed = false;
     let config = {
       license: process.env.NEXT_PUBLIC_LICENSE,
       role: 'Adopter',
@@ -200,10 +200,13 @@ const CaseComponent = () => {
     let unsubscribe;
     if (cesdkContainerRef.current) {
       CreativeEditorSDK.create(cesdkContainerRef.current, config).then(
-        (instance) => {
-          if (!mounted) return;
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({
+        async (instance) => {
+          if (destroyed) {
+            instance.dispose();
+            return;
+          }
+          await instance.addDefaultAssetSources();
+          await instance.addDemoAssetSources({
             sceneMode: 'Design',
             excludeAssetSourceIds: ['ly.img.template']
           });
@@ -213,7 +216,7 @@ const CaseComponent = () => {
           unsubscribe = instance.engine.editor.onHistoryUpdated(() => {
             setIsDirty(true);
           });
-          instance.loadFromURL(
+          await instance.loadFromURL(
             `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/3d-mockup-editor/${productConfig.assetsFolderName}/design.scene`
           );
           setCesdkEngineLoaded(true);
@@ -221,7 +224,7 @@ const CaseComponent = () => {
       );
     }
     return () => {
-      mounted = false;
+      destroyed = true;
       if (cesdk) {
         if (unsubscribe) {
           unsubscribe();

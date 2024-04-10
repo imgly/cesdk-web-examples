@@ -16,6 +16,7 @@ const CreativeEditor = ({ sceneUrl, closeEditor }) => {
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
+          view: 'advanced',
           panels: {
             settings: true
           },
