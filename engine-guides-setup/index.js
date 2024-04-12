@@ -1,8 +1,7 @@
 // highlight-import
 import CreativeEngine, {
-  supportsWasm,
-  supportsVideo
-} from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+  supportsWasm
+} from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.25.0-rc.0/index.js';
 // highlight-import-npm
 // Import a node module when you work with a bundler:
 // import CreativeEngine from '@cesdk/engine';
@@ -10,7 +9,9 @@ import CreativeEngine, {
 
 // highlight-setup
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.25.0-rc.0/assets'
 };
 
 if (
