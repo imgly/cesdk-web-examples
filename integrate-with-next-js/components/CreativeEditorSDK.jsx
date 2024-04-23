@@ -1,3 +1,4 @@
+'use client';
 // docs-integrate-nextjs-1
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 // docs-integrate-nextjs-1
@@ -11,9 +12,10 @@ const Component = (props = {}) => {
   // docs-integrate-nextjs-4
   useEffect(() => {
     if (cesdk_container.current) {
+      props.config.license = process.env.NEXT_PUBLIC_LICENSE;
       // Serve assets from IMG.LY CDN or locally
       props.config.baseURL =
-        'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets';
+        'https://cdn.img.ly/packages/imgly/cesdk-js/1.25.0/assets';
       // Enable local uploads in Asset Library
       props.config.callbacks = { onUpload: 'local' };
 
