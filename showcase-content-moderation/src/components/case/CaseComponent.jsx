@@ -1,36 +1,32 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
 import ValidationBox from '@/components/ui/ValidationBox/ValidationBox';
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import CreativeEditor, {
+  useConfig,
+  useConfigure,
+  useCreativeEditor
+} from './lib/CreativeEditor';
 import RefreshIcon from './refresh.svg';
 import { checkImageContent, selectAllBlocks } from './restrictionsUtility';
 
 const ImageComplianceCESDK = () => {
-  const cesdkContainer = useRef(null);
-  const cesdkRef = useRef(null);
-
   const [validationResults, setValidationResults] = useState([]);
   const [checkRan, setCheckRan] = useState(false);
+  const [cesdk, setCesdk] = useCreativeEditor();
 
   const runImageModerationCheck = useCallback(async () => {
-    if (!cesdkRef.current) {
+    if (!cesdk) {
       return;
     }
     setCheckRan(false);
-    const validationResults = await checkImageContent(cesdkRef.current.engine);
+    const validationResults = await checkImageContent(cesdk.engine);
     setValidationResults(validationResults);
     setCheckRan(true);
-  }, [setValidationResults]);
+  }, [cesdk, setValidationResults]);
 
-  useEffect(() => {
-    let config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       license: process.env.NEXT_PUBLIC_LICENSE,
       theme: 'light',
@@ -52,25 +48,16 @@ const ImageComplianceCESDK = () => {
       callbacks: {
         onExport: 'download'
       }
-    };
-    if (cesdkContainer.current && !cesdkRef.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          cesdkRef.current = instance;
-          await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/content-moderation/example.scene`
-          );
-        }
-      );
-    }
-    return () => {
-      if (cesdkRef.current) {
-        cesdkRef.current.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/content-moderation/example.scene`
+    );
+  }, []);
 
   const normalizedResults = useMemo(
     () =>
@@ -82,16 +69,21 @@ const ImageComplianceCESDK = () => {
           validationName: name,
           validationDescription: description,
           id: blockId + name,
-          onClick: () => selectAllBlocks(cesdkRef.current.engine, [blockId])
+          onClick: () => selectAllBlocks(cesdk.engine, [blockId])
         })
       ),
-    [validationResults]
+    [validationResults, cesdk]
   );
 
   return (
     <div style={wrapperStyle}>
       <div style={cesdkWrapperStyle}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+        <CreativeEditor
+          style={cesdkStyle}
+          config={config}
+          configure={configure}
+          onInstanceChange={setCesdk}
+        />
       </div>
       <div style={sidebarStyle}>
         <ValidationBox

@@ -77,11 +77,8 @@ export const EditorProvider = ({ children }) => {
       engine.editor.setSettingBool('mouse/enableScroll', false);
       engine.editor.setSettingBool('mouse/enableZoom', false);
 
-      engine.addDefaultAssetSources({
-        baseURL: 'https://cdn.img.ly/assets/v2'
-      });
+      engine.addDefaultAssetSources();
       engine.addDemoAssetSources({
-        baseURL: 'https://cdn.img.ly/assets/demo/v2',
         sceneMode: 'Design'
       });
       engine.editor.setSettingBool('page/title/show', false);

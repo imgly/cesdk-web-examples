@@ -1,9 +1,8 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
-import { useEffect, useRef } from 'react';
 import FORMAT_ASSETS from './CustomFormats.json';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
+import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 
 const caseAssetPath = (path, caseId = 'page-sizes') =>
   `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
@@ -36,12 +35,8 @@ const LABEL_BELOW_CARD_STYLE = {
 };
 
 const CaseComponent = () => {
-  const cesdk_container = useRef(null);
-  const engine = useRef(null);
-  const cesdk = useRef(null);
-  useEffect(() => {
-    /** @type {import(“@cesdk/engine”).Configuration} */
-    let config = {
+  const config = useConfig(
+    () => ({
       locale: 'en',
       role: 'Adopter',
       theme: 'light',
@@ -123,42 +118,36 @@ const CaseComponent = () => {
           'libraries.ly.img.formats.print.label': 'Print'
         }
       }
-    };
-    if (cesdk_container.current) {
-      CreativeEditorSDK.create(cesdk_container.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          loadAssetSourceFromContentJSON(
-            instance.engine,
-            FORMAT_ASSETS,
-            caseAssetPath(''),
-            async (asset) => {
-              const pages = instance.engine.scene.getPages();
-              instance.engine.scene.setDesignUnit(asset.meta.designUnit);
-              instance.engine.block.resizeContentAware(
-                pages,
-                parseInt(asset.meta.formatWidth, 10),
-                parseInt(asset.meta.formatHeight, 10)
-              );
-            }
-          );
-          cesdk.current = instance;
-          engine.current = instance.engine;
-          await instance.loadFromURL(caseAssetPath('/page-sizes.scene'));
-        }
-      );
-    }
-    return () => {
-      if (cesdk.current) {
-        cesdk.current.dispose();
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    loadAssetSourceFromContentJSON(
+      instance.engine,
+      FORMAT_ASSETS,
+      caseAssetPath(''),
+      async (asset) => {
+        const pages = instance.engine.scene.getPages();
+        instance.engine.scene.setDesignUnit(asset.meta.designUnit);
+        instance.engine.block.resizeContentAware(
+          pages,
+          parseInt(asset.meta.formatWidth, 10),
+          parseInt(asset.meta.formatHeight, 10)
+        );
       }
-    };
-  }, [cesdk_container, engine, cesdk]);
+    );
+    await instance.loadFromURL(caseAssetPath('/page-sizes.scene'));
+  }, []);
 
   return (
     <div style={cesdkWrapperStyle}>
-      <div ref={cesdk_container} style={cesdkStyle}></div>
+      <CreativeEditor
+        style={cesdkStyle}
+        config={config}
+        configure={configure}
+      />
     </div>
   );
 };

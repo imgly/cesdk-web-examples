@@ -1,14 +1,13 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import React, { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
   const [locale, setLocale] = useState('en');
-  useEffect(() => {
-    let config = {
+  const config = useConfig(
+    () => ({
       locale,
       role: 'Adopter',
       theme: 'light',
@@ -32,26 +31,16 @@ const CaseComponent = () => {
         onExport: 'download',
         onUpload: 'local'
       }
-    };
-    let cesdk;
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          cesdk = instance;
-          await cesdk.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
-          );
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [locale, cesdkContainer]);
+    }),
+    [locale]
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
+    );
+  });
 
   return (
     <div style={wrapperStyle} className="space-y-2">
@@ -74,7 +63,11 @@ const CaseComponent = () => {
         />
       </div>
       <div style={cesdkWrapperStyle}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+        <CreativeEditor
+          style={cesdkStyle}
+          config={config}
+          configure={configure}
+        ></CreativeEditor>
       </div>
     </div>
   );

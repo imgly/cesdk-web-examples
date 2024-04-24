@@ -1,21 +1,20 @@
 'use client';
 
-import CreativeEngine from '@cesdk/engine';
-import classNames from 'classnames';
 import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import classNames from 'classnames';
+import { useEffect, useMemo, useState } from 'react';
 import classes from './CaseComponent.module.css';
 import { hexToRgba } from './convert';
+import CreativeEngine, {
+  useConfig,
+  useConfigure,
+  useCreativeEngine
+} from './lib/CreativeEngine';
 import { caseAssetPath } from './util';
 
 const CaseComponent = () => {
-  /** @type {[import("@cesdk/engine").default, Function]} CreativeEngine */
-  const [engine, setEngine] = useState();
-  const [isEngineLoaded, setIsEngineLoaded] = useState(false);
-  const [isSceneLoaded, setIsSceneLoaded] = useState(false);
-  const containerRef = useRef(null);
-
+  const [engine, setEngine] = useCreativeEngine();
   const [headline, setHeadline] = useState();
   const [image, setImage] = useState(null);
   const [font, setFont] = useState(null);
@@ -26,82 +25,52 @@ const CaseComponent = () => {
     return { r: r / 255, g: g / 255, b: b / 255 };
   }, [colorHex]);
 
-  useEffect(() => {
-    if (!containerRef.current || isEngineLoaded) {
-      return;
-    }
-
-    let engineToBeDisposed;
-    CreativeEngine.init({
+  const config = useConfig(
+    () => ({
       license: process.env.NEXT_PUBLIC_LICENSE
-    }).then(async (engine) => {
-      engine.addDefaultAssetSources();
-      engine.addDemoAssetSources({ sceneMode: 'Design' });
-      engine.editor.setSettingBool('page/title/show', false);
-      engine.editor.setSettingBool('mouse/enableScroll', false);
-      engine.editor.setSettingBool('mouse/enableZoom', false);
-      engineToBeDisposed = engine;
-      setEngine(engine);
-      setIsEngineLoaded(true);
-    });
+    }),
+    []
+  );
 
-    return function shutdownCreativeEngine() {
-      engineToBeDisposed?.dispose();
-    };
-    // eslint-disable-next-line
+  const configure = useConfigure(async (engine) => {
+    await engine.addDefaultAssetSources();
+    await engine.addDemoAssetSources({ sceneMode: 'Design' });
+    engine.editor.setSettingBool('page/title/show', false);
+    engine.editor.setSettingBool('mouse/enableScroll', false);
+    engine.editor.setSettingBool('mouse/enableZoom', false);
+    engine.editor.setSettingBool('doubleClickToCropEnabled', false);
+    await engine.scene.loadFromURL(caseAssetPath('/example.scene'));
+    const [page] = engine.block.findByKind('page');
+    // // Leave some extra space bottom for the gizmo
+    engine.scene.enableZoomAutoFit(page, 'Both', 10, 10, 10, 50);
   }, []);
 
   useEffect(
-    function initializeScene() {
-      if (!isEngineLoaded) {
-        return;
-      }
-      const container = containerRef.current;
-      const canvas = engine.element;
-      async function initializeScene() {
-        engine.editor.setSettingBool('doubleClickToCropEnabled', false);
-        await engine.scene.loadFromURL(caseAssetPath('/example.scene'));
-        const page = engine.block.findByKind('page')[0];
-        // Leave some extra space bottom for the gizmo
-        engine.scene.enableZoomAutoFit(page, 'Both', 10, 10, 10, 50);
-        container.append(canvas);
-        setIsSceneLoaded(true);
-      }
-      initializeScene();
-      return () => {
-        canvas.remove();
-      };
-    },
-    [engine, isEngineLoaded]
-  );
-  useEffect(
     function updateSceneColors() {
-      if (isSceneLoaded && colorRGBA) {
-        const [page] = engine.block.findByKind('page');
-        const [text] = engine.block.findByKind('text');
-        let { r, g, b } = colorRGBA;
-        if (page !== undefined && text !== undefined) {
-          engine.block.setColor(page, 'fill/solid/color', { r, g, b, a: 1 });
-          engine.block.setColor(text, 'fill/solid/color', { r, g, b, a: 1 });
-        }
-      }
+      if (!engine || !colorRGBA) return;
+
+      const page = engine.block.findByKind('page')[0];
+      const text = engine.block.findByKind('text')[0];
+      let { r, g, b } = colorRGBA;
+      engine.block.setColor(page, 'fill/solid/color', { r, g, b, a: 1 });
+      engine.block.setColor(text, 'fill/solid/color', { r, g, b, a: 1 });
     },
-    [colorRGBA, engine, isSceneLoaded]
+    [colorRGBA, engine]
   );
 
   useEffect(
     function updateFontFamily() {
-      if (isSceneLoaded && font) {
-        const textBlock = engine.block.findByKind('text')[0];
-        engine.block.setString(textBlock, 'text/fontFileUri', font.value);
-      }
+      if (!engine || !font) return;
+
+      const textBlock = engine.block.findByKind('text')[0];
+      engine.block.setString(textBlock, 'text/fontFileUri', font.value);
     },
-    [font, engine, isSceneLoaded]
+    [font, engine]
   );
 
   useEffect(
     function updateImageFile() {
-      if (isSceneLoaded && image) {
+      if (engine && image) {
         const imageBlock = engine.block.findByKind('image')[0];
         const fill = engine.block.getFill(imageBlock);
         engine.block.setString(fill, 'fill/image/imageFileURI', image.full);
@@ -109,16 +78,15 @@ const CaseComponent = () => {
         engine.block.resetCrop(imageBlock);
       }
     },
-    [image, engine, isSceneLoaded]
+    [image, engine]
   );
 
   useEffect(
     function updateText() {
-      if (isSceneLoaded && headline) {
-        engine.variable.setString('quote', headline);
-      }
+      if (!engine || !headline) return;
+      engine.variable.setString('quote', headline);
     },
-    [headline, engine, isSceneLoaded]
+    [headline, engine]
   );
 
   const randomizeParameters = () => {
@@ -195,9 +163,13 @@ const CaseComponent = () => {
       </div>
       <div className="flex flex-col flex-grow space-y-2 w-full items-center">
         <h4 className="h4">Generated Design</h4>
-        <div ref={containerRef} className={classes.canvas}>
-          {!isSceneLoaded && <LoadingSpinner />}
-        </div>
+        {!engine && <LoadingSpinner />}
+        <CreativeEngine
+          config={config}
+          configure={configure}
+          onInstanceChange={setEngine}
+          className={classes.canvas}
+        />
       </div>
     </div>
   );

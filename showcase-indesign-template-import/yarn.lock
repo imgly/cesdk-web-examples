@@ -1045,15 +1045,15 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@cesdk/cesdk-js@1.22.0":
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.22.0.tgz#9d2fa4ad8e92b66129bbe7f50b484b894ffd1d4e"
-  integrity sha512-wrXF1BI5Daw42v8zJ0KrSHxQEiapxxAw3zy3dQMPTrYnYtwb+zQDwOKcPl6qj+AqFMjXva4mpIR2nummoAmwNA==
+"@cesdk/cesdk-js@1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.25.0.tgz#f93b6d0bdbf9c0fb52aa155baeb56285fc78299c"
+  integrity sha512-tF0jgZwRxfW9YWf+SZBFV0bxVqPfc5majqCLIAKaE0P2XNwLuiGt11vJgRZ1P9Qun6IjBwT5xrNVMR0SOe8G9A==
 
-"@cesdk/engine@1.22.0":
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.22.0.tgz#e779f8132954636441e0335690ab156d2c2d383d"
-  integrity sha512-CIL7rkQ9JLgWqevbSsziNVzn7lF4ZEdpULcRs0E157Qf6PSS6zYv6q2KeLNuys8gdCUeQVI5UaHrzfYRRW0Mug==
+"@cesdk/engine@1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.25.0.tgz#425f85ab2437e07d84888d4418a5189f07e0cbde"
+  integrity sha512-nFeA+PWS67uagHgN4ma2iHIhEkIdzc1pmOCum6yps2cYrDhAm7wCdHQKvbQCVMNEhZJQRdHOVSiQa6FFir8n5w==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -3980,6 +3980,7 @@ streamsearch@^1.1.0:
   integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
