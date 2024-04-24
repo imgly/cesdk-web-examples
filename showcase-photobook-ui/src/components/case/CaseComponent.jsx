@@ -31,12 +31,10 @@ const CaseComponent = () => {
             configure={async (engine) => {
               engine.editor.setSettingBool('page/title/show', false);
               await engine.addDefaultAssetSources({
-                baseURL: 'https://cdn.img.ly/assets/v2',
                 excludeAssetSourceIds: ['ly.img.sticker']
               });
               await engine.addDemoAssetSources({
                 sceneMode: 'Design',
-                baseURL: 'https://cdn.img.ly/assets/demo/v2',
                 withUploadAssetSources: true,
                 exclude: ['ly.img.image']
               });

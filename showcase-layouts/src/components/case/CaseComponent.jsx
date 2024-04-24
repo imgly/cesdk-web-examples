@@ -1,18 +1,16 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
+import LAYOUT_ASSETS from './CustomLayouts.json';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import { createApplyLayoutAsset } from './lib/createApplyLayoutAsset';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
-import LAYOUT_ASSETS from './CustomLayouts.json';
-import { useEffect, useRef } from 'react';
 
 const caseAssetPath = (path, caseId = 'layouts') =>
   `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-  useEffect(() => {
-    let config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
@@ -83,45 +81,28 @@ const CaseComponent = () => {
           'libraries.ly.img.layouts.label': 'Layouts'
         }
       }
-    };
-    let cesdk;
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          const engine = instance.engine;
-          await instance.addDefaultAssetSources();
-          await instance.addDemoAssetSources({ sceneMode: 'Design' });
-          loadAssetSourceFromContentJSON(
-            instance.engine,
-            LAYOUT_ASSETS,
-            caseAssetPath(''),
-            createApplyLayoutAsset(instance.engine)
-          );
-          cesdk = instance;
-          engine.current = instance.engine;
-          await cesdk.loadFromURL(caseAssetPath('/custom-layouts.scene'));
-          // Simulate that a user has replaced the placeholder images
-          return engine.block
-            .findByKind('image')
-            .filter((image) => {
-              return !engine.block.isPlaceholderControlsOverlayEnabled(image);
-            })
-            .forEach((image) => {
-              engine.block.setPlaceholderEnabled(image, false);
-            });
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    loadAssetSourceFromContentJSON(
+      instance.engine,
+      LAYOUT_ASSETS,
+      caseAssetPath(''),
+      createApplyLayoutAsset(instance.engine)
+    );
+    await instance.loadFromURL(caseAssetPath('/custom-layouts.scene'));
+  }, []);
 
   return (
     <div style={cesdkWrapperStyle}>
-      <div ref={cesdkContainer} style={cesdkStyle}></div>
+      <CreativeEditor
+        style={cesdkStyle}
+        config={config}
+        configure={configure}
+      />
     </div>
   );
 };

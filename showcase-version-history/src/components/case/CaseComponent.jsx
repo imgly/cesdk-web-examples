@@ -1,8 +1,13 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useState } from 'react';
 import classes from './CaseComponent.module.css';
+import CreativeEditor, {
+  useConfig,
+  useConfigure,
+  useCreativeEditor,
+  useCreativeEditorRef
+} from './lib/CreativeEditor';
 
 const caseAssetPath = (path, caseId = 'version-history') =>
   `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
@@ -52,10 +57,14 @@ async function createLocalSceneUrl(sceneString) {
 
 const VersionHistoryCESDK = () => {
   const [snapshots, setSnapshots] = useState(loadSnapshots());
-  const [cesdk, setCesdk] = useState(null);
+  const cesdkRef = useCreativeEditorRef(null);
+  const [cesdk, setCesdk] = useCreativeEditor();
 
   const loadSnapshot = useCallback(
     async (snapshot) => {
+      if (!cesdk) {
+        return;
+      }
       await cesdk.loadFromURL(snapshot.sceneUrl);
       const page = cesdk.engine.scene.getPages()[0];
       cesdk.engine.scene.enableZoomAutoFit(
@@ -70,17 +79,15 @@ const VersionHistoryCESDK = () => {
     [cesdk]
   );
 
-  const cesdkContainer = useRef(null);
-  useEffect(() => {
-    let cesdk;
-    let config = {
+  const config = useConfig(
+    () => ({
       role: 'Creator',
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local',
         onSave: async (scene) => {
-          const thumbnailUrl = await createLocalThumbnailUrl(cesdk);
+          const thumbnailUrl = await createLocalThumbnailUrl(cesdkRef.current);
           const sceneUrl = await createLocalSceneUrl(scene);
           const snapshot = {
             thumbnailUrl,
@@ -123,33 +130,33 @@ const VersionHistoryCESDK = () => {
           'common.save': 'Save Snapshot'
         }
       }
-    };
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({
-            sceneMode: 'Design',
-            excludeAssetSourceIds: ['ly.img.template']
-          });
-          cesdk = instance;
-          setCesdk(cesdk);
-          await cesdk.loadFromURL(caseAssetPath('/snapshots/1/scene.scene'));
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        setCesdk(null);
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+    }),
+    []
+  );
+
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    await instance.loadFromURL(caseAssetPath('/snapshots/1/scene.scene'));
+  }, []);
+
+  const instanceChangeHandler = useCallback(
+    (instance) => {
+      cesdkRef.current = instance;
+      setCesdk(instance);
+    },
+    [cesdkRef, setCesdk]
+  );
 
   return (
     <div className={classes.wrapper}>
       <div className={classes.cesdkWrapper}>
-        <div ref={cesdkContainer} className={classes.cesdk}></div>
+        <CreativeEditor
+          className={classes.cesdk}
+          config={config}
+          configure={configure}
+          onInstanceChange={instanceChangeHandler}
+        />
       </div>
       <div className={classes.sidebar}>
         <div className={classes.sidebarHeader}>

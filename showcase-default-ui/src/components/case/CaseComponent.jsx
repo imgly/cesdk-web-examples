@@ -1,12 +1,10 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import React, { useEffect, useRef } from 'react';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-  useEffect(() => {
-    const config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
@@ -29,30 +27,24 @@ const CaseComponent = () => {
         onExport: 'download',
         onUpload: 'local'
       }
-    };
-    let cesdk;
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          cesdk = instance;
-          await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
-          );
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
+    );
+  }, []);
 
   return (
     <div style={cesdkWrapperStyle}>
-      <div ref={cesdkContainer} style={cesdkStyle}></div>
+      <CreativeEditor
+        style={cesdkStyle}
+        config={config}
+        configure={configure}
+      />
     </div>
   );
 };

@@ -1,13 +1,11 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
 import BackgroundRemovalPlugin from '@imgly/plugin-background-removal-web';
-import React, { useEffect, useRef } from 'react';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-  useEffect(() => {
-    const config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
@@ -30,48 +28,44 @@ const CaseComponent = () => {
         onExport: 'download',
         onUpload: 'local'
       }
-    };
-    let cesdk;
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          cesdk = instance;
-          await cesdk.unstable_addPlugin(
-            BackgroundRemovalPlugin({
-              ui: {
-                locations: ['canvasMenu']
-              }
-            })
-          );
-          await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/background-removal/scene.scene`
-          );
-          const engine = instance.engine;
-          // hide the title of the page:
-          engine.editor.setSettingBool('page/title/show', false);
+    }),
+    []
+  );
 
-          // Select the first image on canvas to highlight background removal option:
-          const image = engine.block.findByName('FirstImage')[0];
-          const selected = engine.block.findAllSelected();
-          selected.forEach((block) => {
-            engine.block.setSelected(block, false);
-          });
-          engine.block.setSelected(image, true);
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+
+    await instance.unstable_addPlugin(
+      BackgroundRemovalPlugin({
+        ui: {
+          locations: ['canvasMenu']
         }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+      })
+    );
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/background-removal/scene.scene`
+    );
+    const engine = instance.engine;
+    // hide the title of the page:
+    engine.editor.setSettingBool('page/title/show', false);
+
+    // Select the first image on canvas to highlight background removal option:
+    const image = engine.block.findByName('FirstImage')[0];
+    const selected = engine.block.findAllSelected();
+    selected.forEach((block) => {
+      engine.block.setSelected(block, false);
+    });
+    engine.block.setSelected(image, true);
+  });
 
   return (
     <div style={cesdkWrapperStyle}>
-      <div ref={cesdkContainer} style={cesdkStyle}></div>
+      <CreativeEditor
+        style={cesdkStyle}
+        config={config}
+        configure={configure}
+      />
     </div>
   );
 };

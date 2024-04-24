@@ -1,17 +1,22 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import classNames from 'classnames';
-import CreativeEngine from '@cesdk/engine';
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
+import CreativeEngine from '@cesdk/engine';
+import classNames from 'classnames';
+import { useEffect, useMemo, useState } from 'react';
+import classes from './CaseComponent.module.css';
 import EditMockupCESDK from './Components/EditMockupCESDK/EditMockupCESDK';
 import DownloadIcon from './Download.svg';
+import EditIcon from './Edit.svg';
 import FullscreenEnterIcon from './FullscreenEnter.svg';
 import FullscreenLeaveIcon from './FullscreenLeave.svg';
-import EditIcon from './Edit.svg';
-import classes from './CaseComponent.module.css';
-import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
+import CreativeEditor, {
+  useConfig,
+  useConfigure,
+  useCreativeEditor
+} from './lib/CreativeEditor';
+import { useCreativeEngine } from './lib/CreativeEngine';
 
 const PRODUCTS = {
   businesscard: {
@@ -57,17 +62,16 @@ export const replaceImages = (engine, imageName, newUrl) => {
 };
 
 const CaseComponent = () => {
-  const cesdkContainerRef = useRef(null);
-  const cesdkEngineRef = useRef(null);
-  const mockupEngineRef = useRef(null);
+  const [engine, setEngine] = useCreativeEngine();
+  const [cesdk, setCesdk] = useCreativeEditor();
+
   const [currentMockupScene, setCurrentMockupScene] = useState();
   const [mockupEditorVisible, setMockupEditorVisible] = useState(false);
   const [currentMockupUrl, setCurrentMockupUrl] = useState('');
   const [mockupLoading, setMockupLoading] = useState(true);
   const [mockupRendering, setMockupRendering] = useState(false);
   const [mockupFullscreen, setMockupFullscreen] = useState(false);
-  const [cesdkEngineLoaded, setCesdkEngineLoaded] = useState(false);
-  const [mockupEngineLoaded, setMockupEngineLoaded] = useState(false);
+
   const [isDirty, setIsDirty] = useState(true);
 
   const search = window.location.search;
@@ -98,13 +102,11 @@ const CaseComponent = () => {
     setMockupLoading(true);
     // let react render
     await new Promise((resolve) => setTimeout(resolve, 0));
-    const cesdkEngine = cesdkEngineRef.current.engine;
-    const mockupEngine = mockupEngineRef.current;
 
     let pageBlobs = [];
     // Render pages in sequence
-    for (const blockId of cesdkEngine.block.findByKind('page')) {
-      const pageBlob = await cesdkEngine.block.export(blockId, 'image/png', {
+    for (const blockId of cesdk.engine.block.findByKind('page')) {
+      const pageBlob = await cesdk.engine.block.export(blockId, 'image/png', {
         // Reduce size for faster previews
         targetWidth: 512,
         targetHeight: 512
@@ -113,27 +115,23 @@ const CaseComponent = () => {
     }
 
     if (currentMockupScene) {
-      await mockupEngine.scene.loadFromString(currentMockupScene);
+      await engine.scene.loadFromString(currentMockupScene);
     } else {
-      await mockupEngine.scene.loadFromURL(
+      await engine.scene.loadFromURL(
         `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
     }
     // Fill unused pages in the mockup with white.
     for (let index = pageBlobs.length; index <= 10; index++) {
-      replaceImages(mockupEngine, `Image ${index + 1}`, WHITE_1_PX_IMAGE_PATH);
+      replaceImages(engine, `Image ${index + 1}`, WHITE_1_PX_IMAGE_PATH);
     }
     pageBlobs.forEach((blob, index) => {
-      replaceImages(
-        mockupEngine,
-        `Image ${index + 1}`,
-        URL.createObjectURL(blob)
-      );
+      replaceImages(engine, `Image ${index + 1}`, URL.createObjectURL(blob));
     });
-    const scene = mockupEngine.scene.get();
-    const mockupScene = await mockupEngine.scene.saveToString();
+    const scene = engine.scene.get();
+    const mockupScene = await engine.scene.saveToString();
     setCurrentMockupScene(mockupScene);
-    const mockupBlob = await mockupEngine.block.export(scene, 'image/jpeg');
+    const mockupBlob = await engine.block.export(scene, 'image/jpeg');
     setCurrentMockupUrl(URL.createObjectURL(mockupBlob));
     setIsDirty(false);
     setMockupLoading(false);
@@ -142,14 +140,21 @@ const CaseComponent = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (cesdkEngineLoaded && mockupEngineLoaded && isDirty) {
+      console.log(
+        'Checking for dirty state',
+        cesdk && engine && isDirty,
+        cesdk,
+        engine,
+        isDirty
+      );
+      if (cesdk && engine && isDirty) {
         renderMockup();
       }
     }, 1500);
 
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDirty, cesdkEngineLoaded, mockupEngineLoaded]);
+  }, [cesdk, engine, isDirty]);
 
   // Use engine to render mockup
   useEffect(() => {
@@ -158,24 +163,38 @@ const CaseComponent = () => {
     };
 
 
+    let removed = false;
+    let localEngine;
     CreativeEngine.init(config).then(async (engine) => {
-      engine.addDefaultAssetSources();
-      engine.addDemoAssetSources({ sceneMode: 'Design' });
-      await engine.scene.loadFromURL(
-        `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.mockupScenePath}`
-      );
-      mockupEngineRef.current = engine;
-      setMockupEngineLoaded(true);
+      if (removed) {
+        engine.dispose();
+        return;
+      }
+      localEngine = engine;
+      setEngine(engine);
     });
     return () => {
-      if (mockupEngineRef.current) {
-        mockupEngineRef.current.dispose();
+      removed = true;
+      if (localEngine) {
+        localEngine.dispose();
       }
+      setEngine(undefined);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [product]);
-  useEffect(() => {
-    let config = {
+  }, [setEngine]);
+
+  // useEffect(() => {
+  //   if (!engine) return;
+
+  //   async function onEngineReady() {
+  //     await engine.scene.loadFromURL(
+  //       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.mockupScenePath}`
+  //     );
+  //   }
+  //   onEngineReady();
+  // }, [productConfig]);
+
+  const config = useConfig(
+    () => ({
       license: process.env.NEXT_PUBLIC_LICENSE,
       role: 'Adopter',
       callbacks: {
@@ -193,49 +212,51 @@ const CaseComponent = () => {
               }
             }
           },
+          libraries: {
+            insert: {
+              entries: (defaultEntries) => {
+                return defaultEntries.filter(
+                  (entry) => entry.id !== 'ly.img.template'
+                );
+              }
+            }
+          },
           panels: {
             settings: true
           }
         }
       }
-    };
-
-
-    let cesdk;
-    let unsubscribe;
-    if (cesdkContainerRef.current) {
-      CreativeEditorSDK.create(cesdkContainerRef.current, config).then(
-        (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          cesdk = instance;
-          cesdkEngineRef.current = instance;
-          unsubscribe = instance.engine.editor.onHistoryUpdated(() => {
-            setIsDirty(true);
-          });
-          instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.scenePath}`
-          );
-          setCesdkEngineLoaded(true);
-        }
+    }),
+    [productConfig]
+  );
+  const configure = useConfigure(
+    async (instance) => {
+      await instance.addDefaultAssetSources();
+      await instance.addDemoAssetSources({ sceneMode: 'Design' });
+      await instance.loadFromURL(
+        `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.scenePath}`
       );
-    }
+    },
+    [productConfig]
+  );
+
+  useEffect(() => {
+    if (!cesdk) return;
+    const unsubscribe = cesdk.engine.editor.onHistoryUpdated(() => {
+      console.log('History updated');
+      setIsDirty(true);
+    });
     return () => {
-      if (cesdk) {
-        if (unsubscribe) {
-          unsubscribe();
-        }
-        cesdk.dispose();
-      }
+      unsubscribe();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cesdkContainerRef, product]);
+  }, [cesdk]);
 
   useEffect(() => {
     if (product) {
       setMockupLoading(true);
       // Reset Mockup Scene
       setCurrentMockupScene();
+      setIsDirty(true);
     }
   }, [product]);
 
@@ -342,7 +363,12 @@ const CaseComponent = () => {
         </div>
 
         <div className={classes.cesdkWrapper}>
-          <div ref={cesdkContainerRef} className={classes.cesdk}></div>
+          <CreativeEditor
+            className={classes.cesdk}
+            config={config}
+            configure={configure}
+            onInstanceChange={setCesdk}
+          />
         </div>
       </div>
     </div>

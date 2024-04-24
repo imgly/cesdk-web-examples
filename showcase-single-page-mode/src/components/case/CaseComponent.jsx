@@ -1,20 +1,21 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import CreativeEditor, {
+  useConfig,
+  useConfigure,
+  useCreativeEditor
+} from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-  /** @type {[import("@cesdk/cesdk-js").default, Function]} cesdk */
-  const [cesdk, setCesdk] = useState();
+  const [cesdk, setCesdk] = useCreativeEditor();
   const [pageIds, setPageIds] = useState([]);
   const [activePageId, setActivePageId] = useState(null);
 
-  useEffect(() => {
-    let cesdk;
-    let config = {
-      role: 'Adopter',
+  const config = useConfig(
+    () => ({
+      role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       featureFlags: {
@@ -22,9 +23,6 @@ const CaseComponent = () => {
       },
       ui: {
         elements: {
-          libraries: {
-            template: false
-          },
           panels: {
             settings: true
           },
@@ -42,39 +40,40 @@ const CaseComponent = () => {
         onExport: 'download',
         onUpload: 'local'
       }
-    };
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          await instance.addDefaultAssetSources();
-          await instance.addDemoAssetSources({ sceneMode: 'Design' });
-          cesdk = instance;
-          instance.engine.editor.setSettingBool('page/title/show', false);
-          await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
-          );
-          setCesdk(instance);
-          const newPageIds = instance.engine.scene.getPages();
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    instance.engine.editor.setSettingBool('page/title/show', false);
+    const engine = instance.engine;
+
+    const unsubscribeHandlers = [];
+    const unsubscribeActive = engine.scene.onActiveChanged(() => {
+      const newPageIds = engine.scene.getPages();
+      setPageIds(newPageIds);
+      setActivePageId(newPageIds[0]);
+      const pageParent = engine.block.getParent(newPageIds[0]);
+      const unsubscribe = engine.event.subscribe([pageParent], () => {
+        const getPages = async () => {
+          const newPageIds = engine.scene.getPages();
+          const newActivePageId = engine.scene.getCurrentPage();
           setPageIds(newPageIds);
-          setActivePageId(newPageIds[0]);
-          instance.engine.event.subscribe([instance.engine.scene.get()], () => {
-            const getPages = async () => {
-              const newPageIds = instance.engine.scene.getPages();
-              const newActivePageId = instance.engine.scene.getCurrentPage();
-              setPageIds(newPageIds);
-              setActivePageId(newActivePageId);
-            };
-            getPages();
-          });
-        }
-      );
-    }
+          setActivePageId(newActivePageId);
+        };
+        getPages();
+      });
+      unsubscribeHandlers.push(unsubscribe);
+    });
+    unsubscribeHandlers.push(unsubscribeActive);
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
+    );
     return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
+      unsubscribeHandlers.forEach((unsubscribe) => unsubscribe?.());
     };
-  }, [cesdkContainer]);
+  }, []);
 
   useEffect(() => {
     activePageId && cesdk && cesdk.unstable_switchPage(activePageId);
@@ -83,7 +82,7 @@ const CaseComponent = () => {
   return (
     <div style={wrapperStyle} className="space-y-2">
       <div className="flex flex-col items-center">
-        {pageIds && (
+        {pageIds && cesdk && (
           <SegmentedControl
             options={pageIds.map((id, index) => ({
               label: cesdk.engine.block.getName(id) || `Page ${index + 1}`,
@@ -98,7 +97,12 @@ const CaseComponent = () => {
       </div>
 
       <div style={cesdkWrapperStyle}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+        <CreativeEditor
+          style={cesdkStyle}
+          config={config}
+          configure={configure}
+          onInstanceChange={setCesdk}
+        />
       </div>
     </div>
   );

@@ -1,82 +1,69 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import React, { useEffect, useRef } from 'react';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-  useEffect(() => {
-    const config = {
-      theme: 'dark',
-      role: 'Adopter',
-      license: process.env.NEXT_PUBLIC_LICENSE,
-      ui: {
-        elements: {
-          view: 'advanced',
-          panels: {
-            inspector: {
-              show: true,
-              position: 'right'
-            },
-            settings: true
-          },
-          dock: {
-            iconSize: 'normal',
-            hideLabels: true
-          },
-          navigation: {
-            action: {
-              export: {
+  const config = useConfig(
+    () => (
+      {
+        role: 'Adopter',
+        theme: 'dark',
+        license: process.env.NEXT_PUBLIC_LICENSE,
+        ui: {
+          elements: {
+            view: 'advanced',
+            panels: {
+              inspector: {
                 show: true,
-                format: ['image/png', 'application/pdf']
+                position: 'right'
+              },
+              settings: true
+            },
+            dock: {
+              iconSize: 'normal',
+              hideLabels: true
+            },
+            navigation: {
+              action: {
+                export: {
+                  show: true,
+                  format: ['image/png', 'application/pdf']
+                }
               }
             }
           }
+        },
+        callbacks: {
+          onExport: 'download',
+          onUpload: 'local'
         }
       },
-      callbacks: {
-        onExport: 'download',
-        onUpload: 'local'
-      }
-    };
+      []
+    )
+  );
 
-
-    let cesdk;
-    let dispose = false;
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          if (dispose) {
-            instance.dispose();
-            return;
-          }
-          await instance.addDefaultAssetSources();
-          await instance.addDemoAssetSources({ sceneMode: 'Design' });
-          cesdk = instance;
-          await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
-          );
-          // find first image element
-          const engine = instance.engine;
-          const [imageElement] = engine.block.findByName('HeroImage');
-          if (imageElement) {
-            // set image element to be selected
-            engine.block.select(imageElement);
-          }
-        }
-      );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
+    );
+    // find first image element
+    const engine = instance.engine;
+    const [imageElement] = engine.block.findByName('HeroImage');
+    if (imageElement) {
+      // set image element to be selected
+      engine.block.select(imageElement);
     }
-    return () => {
-      dispose = true;
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+  }, []);
 
   return (
     <div style={cesdkWrapperStyle}>
-      <div ref={cesdkContainer} style={cesdkStyle}></div>
+      <CreativeEditor
+        style={cesdkStyle}
+        config={config}
+        configure={configure}
+      />
     </div>
   );
 };

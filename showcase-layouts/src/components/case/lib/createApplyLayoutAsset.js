@@ -65,7 +65,9 @@ const copyAssets = (engine, fromPageId, toPageId) => {
 
   const imagesOnFromPage = fromChildren
     .filter((childId) => engine.block.getKind(childId) === 'image')
-    .filter((imageBlock) => !engine.block.isPlaceholderEnabled(imageBlock));
+    .filter(
+      (imageBlock) => !engine.block.isPlaceholderBehaviorEnabled(imageBlock)
+    );
 
   const toChildren = visuallySortBlocks(
     engine,
@@ -115,10 +117,20 @@ const copyAssets = (engine, fromPageId, toPageId) => {
       'fill/image/imageFileURI',
       fromImageFileUri
     );
+    // copy image source sets
+    const fromImageSourceSets = engine.block.getSourceSet(
+      fromImageFill,
+      'fill/image/sourceSet'
+    );
+    engine.block.setSourceSet(
+      toImageFill,
+      'fill/image/sourceSet',
+      fromImageSourceSets
+    );
     // engine.block.isPlaceholderEnabled(imageBlock)
-    engine.block.setPlaceholderEnabled(
+    engine.block.setPlaceholderBehaviorEnabled(
       toBlock,
-      engine.block.isPlaceholderEnabled(fromBlock)
+      engine.block.isPlaceholderBehaviorEnabled(fromBlock)
     );
 
     engine.block.resetCrop(toBlock);

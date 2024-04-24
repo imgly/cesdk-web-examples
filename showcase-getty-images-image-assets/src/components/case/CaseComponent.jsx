@@ -1,16 +1,11 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { useEffect, useRef } from 'react';
 import { gettyImagesImageAssets } from './gettyImagesAssetLibrary';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-
-  useEffect(() => {
-    let cesdk;
-    /** @type {import('@cesdk/cesdk-js').Configuration} */
-    let config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
@@ -73,36 +68,27 @@ const CaseComponent = () => {
       callbacks: {
         onUpload: 'local'
       }
-    };
-
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          cesdk = instance;
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({
-            sceneMode: 'Design',
-            excludeAssetSourceIds: ['ly.img.image']
-          });
-          instance.engine.asset.addSource(gettyImagesImageAssets);
-          instance.engine.editor.setSettingBool('page/title/show', false);
-          await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/getty-images-image-assets/getty-images.scene`
-          );
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    instance.engine.asset.addSource(gettyImagesImageAssets);
+    instance.engine.editor.setSettingBool('page/title/show', false);
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/getty-images-image-assets/getty-images.scene`
+    );
+  }, []);
 
   return (
     <div style={wrapperStyle}>
       <div style={cesdkWrapperStyle}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+        <CreativeEditor
+          style={cesdkStyle}
+          config={config}
+          configure={configure}
+        />
       </div>
     </div>
   );

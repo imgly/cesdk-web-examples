@@ -1,8 +1,13 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
+import CreativeEditor, {
+  useConfig,
+  useConfigure,
+  useCreativeEditor
+} from './lib/CreativeEditor';
+
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import React, { useEffect, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const ROLE_OPTIONS = [
   {
@@ -67,45 +72,42 @@ const ROLE_OPTIONS = [
 ];
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-  const cesdkRef = useRef(null);
+  const [cesdk, setCesdk] = useCreativeEditor();
   const [currentRole, setCurrentRole] = useState('Creator');
   const [currentScene, setCurrentScene] = useState(null);
 
-  useEffect(() => {
-    let disposed = false;
-    let _cesdk;
-    const config = {
+  const config = useConfig(
+    () => ({
       ...ROLE_OPTIONS.find(({ name }) => name === currentRole).cesdkConfig,
       license: process.env.NEXT_PUBLIC_LICENSE
-    };
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          if (disposed) {
-            instance.dispose();
-            return;
-          }
-          _cesdk = instance;
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Video' });
-          cesdkRef.current = instance;
-          if (currentScene) {
-            await instance.loadFromString(currentScene);
-          } else {
-            await instance.loadFromURL(
-              `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/placeholders-video/example.scene`
-            );
-          }
-        }
-      );
-    }
-    return () => {
-      disposed = true;
-      _cesdk?.dispose();
-      cesdkRef.current = null;
-    };
-  }, [currentRole, currentScene, cesdkContainer]);
+    }),
+    [currentRole]
+  );
+
+  const configure = useConfigure(
+    async (instance) => {
+      await instance.addDefaultAssetSources();
+      await instance.addDemoAssetSources({ sceneMode: 'Video' });
+
+      if (currentScene) {
+        await instance.loadFromString(currentScene);
+      } else {
+        await instance.loadFromURL(
+          `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/placeholders-video/example.scene`
+        );
+      }
+    },
+    [currentRole, currentScene]
+  );
+
+  const onRoleChange = useCallback(
+    async (value) => {
+      const currentScene = await cesdk.engine.scene.saveToString();
+      setCurrentScene(currentScene);
+      setCurrentRole(value);
+    },
+    [cesdk]
+  );
 
   return (
     <div className="gap-sm flex flex-grow flex-col">
@@ -117,17 +119,17 @@ const CaseComponent = () => {
           }))}
           value={currentRole}
           name="currentRole"
-          onChange={async (value) => {
-            const currentScene =
-              await cesdkRef.current.engine.scene.saveToString();
-            setCurrentScene(currentScene);
-            setCurrentRole(value);
-          }}
+          onChange={onRoleChange}
           size="md"
         />
       </div>
       <div style={cesdkWrapperStyle} key={currentRole + currentScene}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+        <CreativeEditor
+          style={cesdkStyle}
+          config={config}
+          configure={configure}
+          onInstanceChange={setCesdk}
+        />
       </div>
     </div>
   );
