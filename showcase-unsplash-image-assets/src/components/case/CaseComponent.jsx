@@ -1,15 +1,11 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { useEffect, useRef } from 'react';
 import { unsplashAssetLibrary } from './unsplashAssetLibrary';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-
-  useEffect(() => {
-    let cesdk;
-    let config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
@@ -81,33 +77,28 @@ const CaseComponent = () => {
           'libraries.unsplash.label': 'Unsplash'
         }
       }
-    };
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    instance.engine.asset.addSource(unsplashAssetLibrary);
+    instance.engine.editor.setSettingBool('page/title/show', false);
 
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          instance.engine.asset.addSource(unsplashAssetLibrary);
-          instance.engine.editor.setSettingBool('page/title/show', false);
-          cesdk = instance;
-          await cesdk.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/unsplash-image-assets/unsplash.scene`
-          );
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/unsplash-image-assets/unsplash.scene`
+    );
+  }, []);
 
   return (
     <div style={wrapperStyle}>
       <div style={cesdkWrapperStyle}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+        <CreativeEditor
+          style={cesdkStyle}
+          config={config}
+          configure={configure}
+        />
       </div>
     </div>
   );

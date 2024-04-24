@@ -1,12 +1,10 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import React, { useEffect, useRef } from 'react';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-  useEffect(() => {
-    const config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
@@ -44,43 +42,34 @@ const CaseComponent = () => {
         onExport: 'download',
         onUpload: 'local'
       }
-    };
-    let cesdk;
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({
-            sceneMode: 'Design',
-            excludeAssetSourceIds: ['ly.img.template']
-          });
-          cesdk = instance;
-          const engine = cesdk.engine;
-          engine.editor.setSettingBool('page/title/show', false);
-          // The loaded scene includes a backdrop graphic block that is a child of the scene and helps the user to see their design on the finished product.
-          // Such a scene can only be prepared using our API.
-          await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/apparel-editor-ui/tshirt.scene`
-          );
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    const engine = instance.engine;
+    engine.editor.setSettingBool('page/title/show', false);
+    // The loaded scene includes a backdrop graphic block that is a child of the scene and helps the user to see their design on the finished product.
+    // Such a scene can only be prepared using our API.
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/apparel-editor-ui/tshirt.scene`
+    );
 
-          const pages = engine.block.findByType('page');
-          pages.forEach((page) => {
-            // This will clip off any content that is beyond the page.
-            engine.block.setClipped(page, true);
-          });
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+    const pages = engine.block.findByType('page');
+    pages.forEach((page) => {
+      // This will clip off any content that is beyond the page.
+      engine.block.setClipped(page, true);
+    });
+  }, []);
 
   return (
     <div style={cesdkWrapperStyle}>
-      <div ref={cesdkContainer} style={cesdkStyle}></div>
+      <CreativeEditor
+        style={cesdkStyle}
+        config={config}
+        configure={configure}
+      />
     </div>
   );
 };

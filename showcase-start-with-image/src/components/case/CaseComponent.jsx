@@ -1,15 +1,13 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import React, { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-  /** @type {[import("@cesdk/cesdk-js").default, Function]} cesdk */
   const [image, setImage] = useState();
 
-  useEffect(() => {
-    const config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       theme: 'light',
       callbacks: {
@@ -32,29 +30,23 @@ const CaseComponent = () => {
         }
       },
       license: process.env.NEXT_PUBLIC_LICENSE
-    };
-    let cesdk;
-    if (image && cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          cesdk = instance;
-          // Preselect the loaded Image
-          await cesdk.createFromImage(image.full);
-          const blocks = cesdk.engine.block.findByKind('image');
-          if (blocks.length > 0) {
-            cesdk.engine.block.setSelected(blocks[0], true);
-          }
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
+    }),
+    []
+  );
+
+  const configure = useConfigure(
+    async (instance) => {
+      await instance.addDefaultAssetSources();
+      await instance.addDemoAssetSources({ sceneMode: 'Design' });
+      // Preselect the loaded Image
+      await instance.createFromImage(image.full);
+      const blocks = instance.engine.block.findByKind('image');
+      if (blocks.length > 0) {
+        instance.engine.block.setSelected(blocks[0], true);
       }
-    };
-  }, [cesdkContainer, image]);
+    },
+    [image]
+  );
 
   return (
     <div className="gap-sm flex h-full w-full flex-row">
@@ -87,7 +79,13 @@ const CaseComponent = () => {
       </div>
 
       <div style={cesdkWrapperStyle}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+        {image && (
+          <CreativeEditor
+            style={cesdkStyle}
+            config={config}
+            configure={configure}
+          />
+        )}
       </div>
     </div>
   );

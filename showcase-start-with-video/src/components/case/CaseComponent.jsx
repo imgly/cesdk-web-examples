@@ -1,15 +1,13 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import React, { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-  /** @type {[import("@cesdk/cesdk-js").default, Function]} cesdk */
   const [video, setVideo] = useState();
 
-  useEffect(() => {
-    const config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       theme: 'light',
       callbacks: {
@@ -31,25 +29,17 @@ const CaseComponent = () => {
         }
       },
       license: process.env.NEXT_PUBLIC_LICENSE
-    };
-    let cesdk;
-    if (video && cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Video' });
-          cesdk = instance;
-          const engine = cesdk.engine;
-          await engine.scene.createFromVideo(video.full);
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer, video]);
+    }),
+    []
+  );
+  const configure = useConfigure(
+    async (instance) => {
+      await instance.addDefaultAssetSources();
+      await instance.addDemoAssetSources({ sceneMode: 'Video' });
+      await instance.engine.scene.createFromVideo(video.full);
+    },
+    [video]
+  );
 
   return (
     <div className="gap-sm flex h-full w-full flex-row">
@@ -82,7 +72,13 @@ const CaseComponent = () => {
       </div>
 
       <div style={cesdkWrapperStyle}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+        {video && (
+          <CreativeEditor
+            style={cesdkStyle}
+            config={config}
+            configure={configure}
+          />
+        )}
       </div>
     </div>
   );

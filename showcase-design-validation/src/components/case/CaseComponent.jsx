@@ -1,20 +1,18 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
 import ValidationBox from '@/components/ui/ValidationBox/ValidationBox';
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import CreativeEditor, {
+  useConfig,
+  useConfigure,
+  useCreativeEditor
+} from './lib/CreativeEditor';
 import {
   getImageBlockQuality,
-  getOutsideBlocks,
-  getProtrudingBlocks,
-  getPartiallyHiddenTexts,
   getLayerName,
+  getOutsideBlocks,
+  getPartiallyHiddenTexts,
+  getProtrudingBlocks,
   selectAllBlocks
 } from './restrictionsUtility';
 
@@ -88,13 +86,13 @@ const VALIDATIONS = [
 ];
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-  const [cesdk, setCesdk] = useState(null);
+  const [cesdk, setCesdk] = useCreativeEditor();
   const [validationResults, setValidationResults] = useState([]);
   const [checkRan, setCheckRan] = useState(false);
   const [isDirty, setIsDirty] = useState(true);
 
   const runChecks = useCallback(async () => {
+    if (!cesdk) return;
     const validationResults = await Promise.all(
       VALIDATIONS.map(async ({ check, name, description }) => ({
         name,
@@ -127,55 +125,6 @@ const CaseComponent = () => {
     }
   }, [isDirty, cesdk, runChecks]);
 
-  useEffect(() => {
-    let config = {
-      role: 'Adopter',
-      theme: 'light',
-      license: process.env.NEXT_PUBLIC_LICENSE,
-      ui: {
-        elements: {
-          panels: {
-            settings: true
-          },
-          libraries: {
-            template: false
-          },
-          navigation: {
-            action: {
-              export: {
-                show: true,
-                format: ['image/png', 'application/pdf']
-              }
-            }
-          }
-        }
-      },
-      callbacks: {
-        onExport: 'download',
-        onUpload: 'local'
-      }
-    };
-    let cesdk;
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          cesdk = instance;
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/design-validation/example.scene`
-          );
-          setCesdk(instance);
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
-
   const normalizedResults = useMemo(
     () =>
       validationResults.flatMap(({ name, description, results }) =>
@@ -192,10 +141,50 @@ const CaseComponent = () => {
     [cesdk, validationResults]
   );
 
+  const config = useConfig(
+    () => ({
+      role: 'Adopter',
+      theme: 'light',
+      license: process.env.NEXT_PUBLIC_LICENSE,
+      ui: {
+        elements: {
+          panels: {
+            settings: true
+          },
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
+          }
+        }
+      },
+      callbacks: {
+        onExport: 'download',
+        onUpload: 'local'
+      }
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/design-validation/example.scene`
+    );
+  }, []);
+
   return (
     <div style={wrapperStyle}>
       <div style={cesdkWrapperStyle}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+        <CreativeEditor
+          style={cesdkStyle}
+          config={config}
+          configure={configure}
+          onInstanceChange={setCesdk}
+        />
       </div>
       <div style={sidebarStyle}>
         <ValidationBox

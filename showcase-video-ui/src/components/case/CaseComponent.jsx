@@ -1,7 +1,6 @@
 'use client';
 
-import CreativeEditorSDK, { UserInterfaceElements } from '@cesdk/cesdk-js';
-import { useEffect, useRef } from 'react';
+import { UserInterfaceElements } from '@cesdk/cesdk-js';
 import {
   PAGE_FORMATS_INSERT_ENTRY,
   formatAssetsToPresets,
@@ -11,16 +10,13 @@ import PAGE_FORMAT_ASSETS from './PageFormatAssets.json';
 import AUDIO_ASSETS from './StaticAudioAssets.json';
 import VIDEO_SCENES_ASSETS from './StaticVideoScenesAssets.json';
 import { createApplyFormatAsset } from './createApplyFormatAsset';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
 
 const CaseComponent = () => {
-  const cesdk_container = useRef(null);
-  const cesdkRef = useRef(null);
-
-  useEffect(() => {
-    /** @type {import("@cesdk/engine").Configuration} */
-    const config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
@@ -86,70 +82,62 @@ const CaseComponent = () => {
         onDownload: 'download',
         onExport: 'download'
       }
-    };
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({
+      sceneMode: 'Video',
+      // We want to replace the demo audio assets with our own
+      excludeAssetSourceIds: ['ly.img.audio', 'ly.img.video.template']
+    });
 
+    const engine = instance.engine;
+    engine.editor.setSettingBool('page/title/show', false);
 
-    let cesdk;
-    if (cesdk_container.current) {
-      CreativeEditorSDK.create(cesdk_container.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({
-            sceneMode: 'Video',
-            // We want to replace the demo audio assets with our own
-            excludeAssetSourceIds: ['ly.img.audio', 'ly.img.video.template']
-          });
-          cesdk = instance;
-          cesdkRef.current = instance;
-          const engine = instance.engine;
-          cesdk.engine.editor.setSettingBool('page/title/show', false);
-
-          loadAssetSourceFromContentJSON(
-            cesdk.engine,
-            VIDEO_SCENES_ASSETS,
-            caseAssetPath('/templates'),
-            async (asset) => {
-              if (!asset.meta || !asset.meta.uri)
-                throw new Error('Asset does not have a uri');
-              await engine.scene.loadFromURL(asset.meta.uri);
-              persistSelectedTemplateToURL(asset.id);
-            }
-          );
-
-          loadAssetSourceFromContentJSON(
-            cesdk.engine,
-            AUDIO_ASSETS,
-            caseAssetPath('/audio')
-          );
-
-          loadAssetSourceFromContentJSON(
-            cesdk.engine,
-            PAGE_FORMAT_ASSETS,
-            caseAssetPath('/page-formats'),
-            createApplyFormatAsset(cesdk.engine)
-          );
-
-          cesdk
-            .loadFromURL(
-              caseAssetPath(`/templates/${loadSelectedTemplateFromURL()}.scene`)
-            )
-            .catch(() => {
-              // Fallback to motion template if the selected template fails to load, e.g due to 404
-              cesdk.loadFromURL(caseAssetPath(`/templates/motion.scene`));
-            });
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
+    loadAssetSourceFromContentJSON(
+      engine,
+      VIDEO_SCENES_ASSETS,
+      caseAssetPath('/templates'),
+      async (asset) => {
+        if (!asset.meta || !asset.meta.uri)
+          throw new Error('Asset does not have a uri');
+        await engine.scene.loadFromURL(asset.meta.uri);
+        persistSelectedTemplateToURL(asset.id);
       }
-    };
-  }, [cesdk_container]);
+    );
+
+    loadAssetSourceFromContentJSON(
+      engine,
+      AUDIO_ASSETS,
+      caseAssetPath('/audio')
+    );
+
+    loadAssetSourceFromContentJSON(
+      engine,
+      PAGE_FORMAT_ASSETS,
+      caseAssetPath('/page-formats'),
+      createApplyFormatAsset(engine)
+    );
+
+    instance
+      .loadFromURL(
+        caseAssetPath(`/templates/${loadSelectedTemplateFromURL()}.scene`)
+      )
+      .catch(() => {
+        // Fallback to motion template if the selected template fails to load, e.g due to 404
+        instance.loadFromURL(caseAssetPath(`/templates/motion.scene`));
+      });
+  }, []);
 
   return (
     <div style={cesdkWrapperStyle}>
-      <div ref={cesdk_container} style={cesdkStyle}></div>
+      <CreativeEditor
+        style={cesdkStyle}
+        config={config}
+        configure={configure}
+      />
     </div>
   );
 };

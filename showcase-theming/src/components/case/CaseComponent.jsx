@@ -1,15 +1,15 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import React, { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import {
   generateColorAbstractionTokensAccent,
   generateColorAbstractionTokensActive,
   generateColorAbstractionTokensBackground,
   generateStaticTokens
 } from './color';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const DEFAULT_BACKGROUND_COLOR = '#121921';
 const DEFAULT_ACTIVE_COLOR = '#FDFDFD';
@@ -34,7 +34,6 @@ const ThemingCESDK = () => {
   const [backgroundColor, setBackgroundColor] = useState(null);
   const [activeColor, setActiveColor] = useState(null);
   const [accentColor, setAccentColor] = useState(null);
-  const cesdkContainer = useRef(null);
 
   const useCustomTheme = !!backgroundColor || !!activeColor || !!accentColor;
   const calculatedTheme = useCustomTheme ? 'custom' : chosenTheme;
@@ -44,9 +43,8 @@ const ThemingCESDK = () => {
     setAccentColor(null);
   };
 
-  useEffect(() => {
-    let cesdk;
-    let config = {
+  const config = useConfig(
+    () => ({
       theme: chosenTheme,
       role: 'Adopter',
       license: process.env.NEXT_PUBLIC_LICENSE,
@@ -70,25 +68,17 @@ const ThemingCESDK = () => {
           }
         }
       }
-    };
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          cesdk = instance;
-          await cesdk.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
-          );
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [chosenTheme, scale, cesdkContainer]);
+    }),
+    [chosenTheme, scale]
+  );
+
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
+    );
+  }, []);
 
   const customThemeStyle = useCustomTheme
     ? generateCustomThemeStyle(
@@ -104,7 +94,12 @@ const ThemingCESDK = () => {
     <div style={wrapperStyle}>
       <div style={cesdkWrapperStyle}>
         <style>{customThemeStyle}</style>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+
+        <CreativeEditor
+          style={cesdkStyle}
+          config={config}
+          configure={configure}
+        />
       </div>
       <div style={sidebarStyle}>
         <div>

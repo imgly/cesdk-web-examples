@@ -1,15 +1,11 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { useEffect, useRef } from 'react';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import { pexelsAssetLibrary } from './pexelsAssetLibrary';
 
 const CaseComponent = () => {
-  const cesdkContainer = useRef(null);
-
-  useEffect(() => {
-    let cesdk;
-    let config = {
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
@@ -81,31 +77,28 @@ const CaseComponent = () => {
           'libraries.pexels.label': 'Pexels'
         }
       }
-    };
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.engine.asset.addSource(pexelsAssetLibrary);
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          instance.engine.editor.setSettingBool('page/title/show', false);
-          cesdk = instance;
-          await instance.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/pexels-image-assets/pexels.scene`
-          );
-        }
-      );
-    }
-    return () => {
-      if (cesdk) {
-        cesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+    }),
+
+    []
+  );
+
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    instance.engine.asset.addSource(pexelsAssetLibrary);
+    instance.engine.editor.setSettingBool('page/title/show', false);
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/pexels-image-assets/pexels.scene`
+    );
+  }, []);
 
   return (
     <div style={cesdkWrapperStyle}>
-      <div ref={cesdkContainer} style={cesdkStyle}></div>
+      <CreativeEditor
+        style={cesdkStyle}
+        config={config}
+        configure={configure}
+      />
     </div>
   );
 };

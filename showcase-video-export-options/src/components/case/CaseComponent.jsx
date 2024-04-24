@@ -1,16 +1,16 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { ExportModal } from './ExportModal/ExportModal';
-import { useEffect, useRef, useState } from 'react';
+import CreativeEditor, {
+  useConfig,
+  useConfigure,
+  useCreativeEditor
+} from './lib/CreativeEditor';
 
 const ExportOptionsCESDK = () => {
-  const cesdkContainer = useRef(null);
-  const cesdk = useRef(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    let localCesdk;
-    let config = {
+  const [cesdk, setCesdk] = useCreativeEditor();
+  const config = useConfig(
+    () => ({
       role: 'Adopter',
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
@@ -24,35 +24,29 @@ const ExportOptionsCESDK = () => {
           }
         }
       }
-    };
-    if (cesdkContainer.current) {
-      CreativeEditorSDK.create(cesdkContainer.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Video' });
-          localCesdk = instance;
-          cesdk.current = localCesdk;
-          await localCesdk.loadFromURL(
-            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/video-export-options/example-video-motion.scene`
-          );
-          setIsLoaded(true);
-        }
-      );
-    }
-    return () => {
-      if (localCesdk) {
-        localCesdk.dispose();
-      }
-    };
-  }, [cesdkContainer]);
+    }),
+    []
+  );
+  const configure = useConfigure(async (instance) => {
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Video' });
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/video-export-options/example-video-motion.scene`
+    );
+  }, []);
 
   return (
     <div style={wrapperStyle}>
       <div style={cesdkWrapperStyle}>
-        <div ref={cesdkContainer} style={cesdkStyle}></div>
+        <CreativeEditor
+          style={cesdkStyle}
+          config={config}
+          configure={configure}
+          onInstanceChange={setCesdk}
+        />
       </div>
       <div style={modalStyle}>
-        {isLoaded && <ExportModal engine={cesdk.current?.engine} />}
+        {cesdk && <ExportModal engine={cesdk.engine} />}
       </div>
     </div>
   );
