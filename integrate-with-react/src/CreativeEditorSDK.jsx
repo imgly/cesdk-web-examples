@@ -8,6 +8,8 @@ import { useEffect, useRef, useState } from 'react';
 
 // highlight-component
 const config = {
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
   // Enable local uploads in Asset Library
   callbacks: { onUpload: 'local' }
 };

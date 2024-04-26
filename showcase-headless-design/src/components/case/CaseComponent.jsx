@@ -39,7 +39,7 @@ const CaseComponent = () => {
     engine.editor.setSettingBool('mouse/enableScroll', false);
     engine.editor.setSettingBool('mouse/enableZoom', false);
     engine.editor.setSettingBool('doubleClickToCropEnabled', false);
-    await engine.scene.loadFromURL(
+    const scene = await engine.scene.loadFromURL(
       caseAssetPath('/example.scene')
     );
     const [page] = engine.block.findByKind('page');

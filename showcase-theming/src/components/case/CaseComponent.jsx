@@ -2,7 +2,7 @@
 
 import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   generateColorAbstractionTokensAccent,
   generateColorAbstractionTokensActive,
@@ -34,6 +34,7 @@ const ThemingCESDK = () => {
   const [backgroundColor, setBackgroundColor] = useState(null);
   const [activeColor, setActiveColor] = useState(null);
   const [accentColor, setAccentColor] = useState(null);
+  const cesdkContainer = useRef(null);
 
   const useCustomTheme = !!backgroundColor || !!activeColor || !!accentColor;
   const calculatedTheme = useCustomTheme ? 'custom' : chosenTheme;

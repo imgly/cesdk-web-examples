@@ -72,7 +72,7 @@ const ImageComplianceCESDK = () => {
           onClick: () => selectAllBlocks(cesdk.engine, [blockId])
         })
       ),
-    [validationResults, cesdk]
+    [validationResults]
   );
 
   return (

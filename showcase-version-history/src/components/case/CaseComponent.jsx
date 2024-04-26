@@ -140,13 +140,10 @@ const VersionHistoryCESDK = () => {
     await instance.loadFromURL(caseAssetPath('/snapshots/1/scene.scene'));
   }, []);
 
-  const instanceChangeHandler = useCallback(
-    (instance) => {
-      cesdkRef.current = instance;
-      setCesdk(instance);
-    },
-    [cesdkRef, setCesdk]
-  );
+  const instanceChangeHandler = useCallback((instance) => {
+    cesdkRef.current = instance;
+    setCesdk(instance);
+  }, []);
 
   return (
     <div className={classes.wrapper}>
