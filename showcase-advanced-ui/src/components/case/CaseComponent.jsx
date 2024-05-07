@@ -4,40 +4,42 @@ import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
   const config = useConfig(
-    () => ({
-      role: 'Adopter',
-      theme: 'dark',
-      license: process.env.NEXT_PUBLIC_LICENSE,
-      ui: {
-        elements: {
-          view: 'advanced',
-          panels: {
-            inspector: {
-              show: true,
-              position: 'right'
-            },
-            settings: true
-          },
-          dock: {
-            iconSize: 'normal',
-            hideLabels: true
-          },
-          navigation: {
-            action: {
-              export: {
+    () => (
+      {
+        role: 'Adopter',
+        theme: 'dark',
+        license: process.env.NEXT_PUBLIC_LICENSE,
+        ui: {
+          elements: {
+            view: 'advanced',
+            panels: {
+              inspector: {
                 show: true,
-                format: ['image/png', 'application/pdf']
+                position: 'right'
+              },
+              settings: true
+            },
+            dock: {
+              iconSize: 'normal',
+              hideLabels: true
+            },
+            navigation: {
+              action: {
+                export: {
+                  show: true,
+                  format: ['image/png', 'application/pdf']
+                }
               }
             }
           }
+        },
+        callbacks: {
+          onExport: 'download',
+          onUpload: 'local'
         }
       },
-      callbacks: {
-        onExport: 'download',
-        onUpload: 'local'
-      }
-    }),
-    []
+      []
+    )
   );
 
   const configure = useConfigure(async (instance) => {
