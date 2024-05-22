@@ -1,13 +1,16 @@
 'use client';
 
-import CutoutLibraryPlugin, {
-  getCutoutLibraryInsertEntry
-} from '@imgly/plugin-cutout-library-web';
-import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
+import { useEffect, useRef } from 'react';
+import {
+  addCutoutAssetLibraryDemoConfiguration,
+  addLocalCutoutAssetLibrary
+} from './CutoutAssetLibrary';
 
 const CaseComponent = () => {
-  const config = useConfig(
-    () => ({
+  const cesdkContainer = useRef(null);
+  useEffect(() => {
+    const config = {
       role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
@@ -28,12 +31,9 @@ const CaseComponent = () => {
           libraries: {
             insert: {
               entries: (defaultEntries) => {
-                return [
-                  ...defaultEntries.filter(
-                    (entry) => entry.id !== 'ly.img.template'
-                  ),
-                  getCutoutLibraryInsertEntry()
-                ];
+                return defaultEntries.filter(
+                  (entry) => entry.id !== 'ly.img.template'
+                );
               }
             }
           }
@@ -43,36 +43,36 @@ const CaseComponent = () => {
         onExport: 'download',
         onUpload: 'local'
       }
-    }),
-    []
-  );
-  const configure = useConfigure(async (instance) => {
-    await instance.addDefaultAssetSources();
-    await instance.addDemoAssetSources({ sceneMode: 'Design' });
-
-    instance.unstable_addPlugin(
-      CutoutLibraryPlugin({
-        ui: {
-          locations: ['canvasMenu']
+    };
+    addCutoutAssetLibraryDemoConfiguration(config);
+    let cesdk;
+    if (cesdkContainer.current) {
+      CreativeEditorSDK.create(cesdkContainer.current, config).then(
+        async (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          addLocalCutoutAssetLibrary(instance.engine);
+          await instance.engine.scene.loadFromURL(
+            `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/cutout-lines/example.scene`
+          );
+          cesdk = instance;
         }
-      })
-    );
-
-    await instance.engine.scene.loadFromURL(
-      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/cutout-lines/example.scene`
-    );
-  });
+      );
+    }
+    return () => {
+      if (cesdk) {
+        cesdk.dispose();
+      }
+    };
+  }, [cesdkContainer]);
 
   return (
     <div style={cesdkWrapperStyle}>
-      <CreativeEditor
-        style={cesdkStyle}
-        config={config}
-        configure={configure}
-      />
+      <div ref={cesdkContainer} style={cesdkStyle}></div>
     </div>
   );
 };
+
 const cesdkStyle = {
   position: 'absolute',
   top: 0,

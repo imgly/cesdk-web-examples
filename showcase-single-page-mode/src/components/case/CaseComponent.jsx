@@ -1,11 +1,11 @@
 'use client';
 
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CreativeEditor, {
+  useCreativeEditor,
   useConfig,
-  useConfigure,
-  useCreativeEditor
+  useConfigure
 } from './lib/CreativeEditor';
 
 const CaseComponent = () => {

@@ -1,5 +1,6 @@
 'use client';
 
+import CreativeEditorSDK from '@cesdk/cesdk-js';
 import CreativeEditor, {
   useConfig,
   useConfigure,
@@ -7,7 +8,7 @@ import CreativeEditor, {
 } from './lib/CreativeEditor';
 
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 const ROLE_OPTIONS = [
   {

@@ -1,9 +1,15 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.26.1/index.js';
 
 // highlight-config
 const config = {
+  // highlight-license
+  license: 'YOUR_API_KEY',
+  // highlight-license
+  // highlight-userid
+  userId: 'USER_ID',
+  // highlight-userid
   // highlight-baseurl
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.26.1/assets',
   // highlight-baseurl
   // highlight-locale
   locale: 'en', // 'de'
@@ -27,5 +33,16 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
   instance.addDemoAssetSources({ sceneMode: 'Design' });
+
+  // highlight-onRoleChanged
+  instance.engine.editor.onRoleChanged((role) => {
+    if (role === 'Adopter') {
+      // Enable the filter tab in the appearance panel when previewing the
+      // design in the Adopter role.
+      instance.engine.editor.setGlobalScope('appearance/filter', 'Allow');
+    }
+  });
+  // highlight-onRoleChanged
+
   await instance.createDesignScene();
 });
