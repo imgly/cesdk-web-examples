@@ -1,7 +1,9 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.27.1-rc.0/index.js';
 
-let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
+const config = {
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.27.1-rc.0/assets',
   // highlight-callbacks
   callbacks: {
     // highlight-onunsupportedbrowser
@@ -28,6 +30,12 @@ let config = {
       window.alert('Save callback!');
       console.info(scene);
     },
+    // highlight-ondownload
+    onDownload: (scene) => {
+      window.alert('Download callback!');
+      console.info(scene);
+    },
+    // highlight-ondownload
     // highlight-onsave
     // highlight-onload
     onLoad: () => {
@@ -68,6 +76,7 @@ let config = {
           close: true,
           back: true,
           save: true,
+          download: true,
           load: true,
           export: true
         }

@@ -1,22 +1,25 @@
 {
   "name": "integrate-with-next-js",
-  "version": "1.1.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "serve": "next start --port 8080",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "1.17.0",
-    "next": "11.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@cesdk/cesdk-js": "1.27.1-rc.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.0.4"
   },
   "devDependencies": {
-    "eslint": "7.31.0",
-    "eslint-config-next": "11.0.1"
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4"
   }
 }
