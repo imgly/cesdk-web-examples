@@ -153,7 +153,6 @@ const CaseComponent = () => {
     }, 1500);
 
     return () => clearInterval(intervalId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cesdk, engine, isDirty]);
 
   // Use engine to render mockup
@@ -180,7 +179,7 @@ const CaseComponent = () => {
       }
       setEngine(undefined);
     };
-  }, [setEngine]);
+  }, []);
 
   // useEffect(() => {
   //   if (!engine) return;

@@ -96,7 +96,7 @@ const CaseComponent = () => {
         setEngine(undefined);
       }
     };
-  }, [setEngine]);
+  }, []);
 
   const renderMockup = useCallback(async () => {
     if (mockupRendering) {

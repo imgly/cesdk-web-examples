@@ -1,12 +1,14 @@
 'use client';
 
-import { removeBackground } from '@imgly/background-removal';
-import APP_ASSETS from './Apps.json';
-import FORMAT_ASSETS from './CustomFormats.json';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
+import { useEffect, useRef } from 'react';
 import { getImageSize } from './lib/CreativeEngineUtils';
+import FORMAT_ASSETS from './CustomFormats.json';
+import APP_ASSETS from './Apps.json';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
+import { removeBackground } from '@imgly/background-removal';
 
 const LABEL_BELOW_CARD_STYLE = {
   cardLabelStyle: () => ({
