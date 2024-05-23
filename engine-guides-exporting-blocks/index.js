@@ -1,31 +1,36 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.27.1/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.27.1/assets'
 };
 
 const exportButton = document.getElementById('export_button');
 
-CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
-  async (instance) => {
-    await instance.addDefaultAssetSources();
-    await instance.scene.loadFromURL(
-      'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
-    );
-    exportButton.removeAttribute('disabled');
+CreativeEngine.init(config).then(async (engine) => {
+  document.getElementById('cesdk_container').append(engine.element);
 
-    exportButton.onclick = async () => {
-      /* Export scene as PNG image. */
-      const scene = instance.scene.get();
-      const mimeType = 'image/png';
-      const options = { pngCompressionLevel: 9 };
-      const blob = await instance.block.export(scene, mimeType, options);
+  await engine.addDefaultAssetSources();
+  await engine.scene.loadFromURL(
+    'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
+  );
+  exportButton.removeAttribute('disabled');
 
-      /* Download blob. */
-      const anchor = document.createElement('a');
-      anchor.href = URL.createObjectURL(blob);
-      anchor.download = 'export.png';
-      anchor.click();
-    }
-  }
-);
+  exportButton.onclick = async () => {
+    /* Export scene as PNG image. */
+    const scene = engine.scene.get();
+    const mimeType = 'image/png';
+    /* Optionally, the maximum supported export size can be checked before exporting. */
+    const maxExportSizeInPixels = engine.editor.getMaxExportSize();
+    /* Optionally, the compression level and the target size can be specified. */
+    const options = { pngCompressionLevel: 9, targetWidth: null, targetHeight: null};
+    const blob = await engine.block.export(scene, mimeType, options);
+
+    /* Download blob. */
+    const anchor = document.createElement('a');
+    anchor.href = URL.createObjectURL(blob);
+    anchor.download = 'export.png';
+    anchor.click();
+  };
+});

@@ -1,0 +1,11 @@
+{
+  "name": "engine-guides-node-setup",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@cesdk/node": "^1.27.1"
+  }
+}
