@@ -1,58 +1,98 @@
-import classNames from 'classnames';
-import { createRef, useEffect, useMemo } from 'react';
-import { caseAssetPath } from '../../util';
-import ALL_FONTS from './Fonts.json';
+import { createRef, useEffect, useMemo, useState } from 'react';
+import FontPreview from '../FontPreview/FontPreview';
+import { useEditor } from '../../EditorContext';
 import classes from './FontSelect.module.css';
+import classNames from 'classnames';
 
-const fullFontPath = (fontPath) => `/extensions/ly.img.cesdk.fonts/${fontPath}`;
+const FONT_SUBSET = [
+  'Caveat',
+  'Courier Prime',
+  'Roboto',
+  'Oswald',
+  'Parisienne',
+  'Manrope'
+];
 
-const FontSelect = ({ fontFilter = () => true, onSelect, activeFontUri }) => {
-  const fonts = useMemo(
+const SCROLL_INTO_VIEW_ENABLED = false;
+
+const FontSelect = ({ onSelect, activeTypeface }) => {
+  const { engine } = useEditor();
+  const [typefaces, setTypefaces] = useState([]);
+
+  useEffect(() => {
+    async function fetchFonts() {
+      const typefaceAssetResults = await engine.asset.findAssets(
+        'ly.img.typeface',
+        {
+          page: 0,
+          perPage: 100,
+          query: ''
+        }
+      );
+
+      setTypefaces(
+        typefaceAssetResults.assets
+          .map((asset) => asset.payload.typeface)
+          .filter((typeface) => FONT_SUBSET.includes(typeface.name))
+      );
+    }
+    fetchFonts();
+  }, [engine]);
+
+  const typefacesWithRef = useMemo(
     () =>
-      ALL_FONTS.filter(fontFilter).map((font) => ({
-        ...font,
+      typefaces.map((typeface) => ({
+        typeface,
         ref: createRef(),
-        isActive: fullFontPath(font.fontPath) === activeFontUri
+        isActive: activeTypeface?.name === typeface.name
       })),
-    [fontFilter, activeFontUri]
+    [activeTypeface, typefaces]
   );
   const activeFont = useMemo(
-    () => fonts.find(({ isActive }) => isActive),
-    [fonts]
+    () => typefacesWithRef.find(({ isActive }) => isActive),
+    [typefacesWithRef]
   );
+
   useEffect(() => {
-    if (activeFont && activeFont.ref.current) {
-      activeFont.ref.current.scrollIntoView({
-        behavior: 'auto',
-        block: 'center',
-        inline: 'center'
-      });
+    if (
+      typefaces.length == 0 ||
+      !activeFont ||
+      !activeFont.ref.current ||
+      !SCROLL_INTO_VIEW_ENABLED
+    ) {
+      return;
     }
-    // Only scroll into view when opening
+    activeFont.ref.current.scrollIntoView({
+      behavior: 'auto',
+      block: 'center',
+      inline: 'center'
+    });
+
+    // Only scroll into view when opening, not when changing the active font
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [typefaces]);
 
   return (
     <div className={classes.wrapper}>
-      {fonts.map(({ id, fontPath, fontFamily, isActive, ref }) => {
+      {typefacesWithRef.map(({ typeface, isActive, ref }) => {
         return (
           <button
-            key={fontPath}
-            onClick={() => onSelect(fullFontPath(fontPath))}
+            key={typeface.name}
+            onClick={() =>
+              onSelect(
+                typeface.fonts.find(
+                  (font) => font.weight === 'normal' && font.style === 'normal'
+                ) ?? typeface.fonts[0],
+                typeface
+              )
+            }
             ref={ref}
             className={classNames(classes.button, {
               [classes['button--active']]: isActive
             })}
           >
-            <span>
-              <img
-                src={caseAssetPath(`/font-previews/${id}.png`)}
-                width={70}
-                height={26}
-                alt={fontFamily}
-              />
-            </span>
-            <span>{fontFamily}</span>
+            <FontPreview text="Ag" typeface={typeface} />
+            <span>{typeface.name}</span>
           </button>
         );
       })}

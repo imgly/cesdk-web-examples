@@ -64,6 +64,7 @@ export const EditorProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    let mounted = true;
     const loadEditor = async () => {
       const config = {
         featureFlags: {
@@ -74,6 +75,10 @@ export const EditorProvider = ({ children }) => {
       };
 
       const engine = await CreativeEngine.init(config);
+      if (!mounted) {
+        engine.dispose();
+        return;
+      }
       engine.editor.setSettingBool('mouse/enableScroll', false);
       engine.editor.setSettingBool('mouse/enableZoom', false);
 
@@ -96,6 +101,7 @@ export const EditorProvider = ({ children }) => {
     loadEditor();
 
     return () => {
+      mounted = false;
       if (engine) {
         engine.dispose();
       }

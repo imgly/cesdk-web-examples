@@ -1,59 +1,106 @@
-import { createRef, useEffect, useMemo } from 'react';
+import { Font, Typeface } from '@cesdk/engine';
+import { createRef, useEffect, useMemo, useState } from 'react';
+import { useEngine } from '../../lib/EngineContext';
 import AdjustmentsBar from '../AdjustmentsBar/AdjustmentsBar';
 import AdjustmentsBarButton from '../AdjustmentsBarButton/AdjustmentsBarButton';
 import FontPreview from '../FontPreview/FontPreview';
-import ALL_FONTS from './Fonts.json';
+
+const FONT_SUBSET = [
+  'Caveat',
+  'Courier Prime',
+  'Archivo',
+  'Roboto',
+  // Used as font for text inside the apparel scene template:
+  'Oswald',
+  'Parisienne'
+];
 
 interface FontSelectProps {
-  onSelect: (fontPath: string) => void;
-  activeFontUri?: string;
+  onSelect: (font: Font, typeface: Typeface) => void;
+  activeTypeface?: Typeface;
 }
 
-const FontSelect = ({ onSelect, activeFontUri }: FontSelectProps) => {
-  const fonts = useMemo(
+const FontSelect = ({ onSelect, activeTypeface }: FontSelectProps) => {
+  const { engine } = useEngine();
+  const [typefaces, setTypefaces] = useState<Typeface[]>([]);
+
+  useEffect(() => {
+    async function fetchFonts() {
+      const typefaceAssetResults = await engine.asset.findAssets(
+        'ly.img.typeface',
+        {
+          page: 0,
+          perPage: 100,
+          query: ''
+        }
+      );
+
+      setTypefaces(
+        typefaceAssetResults.assets
+          .map((asset) => asset.payload!.typeface!)
+          .filter((typeface) => FONT_SUBSET.includes(typeface.name))
+      );
+    }
+    fetchFonts();
+  }, [engine]);
+
+  const typefacesWithRef = useMemo<
+    {
+      typeface: Typeface;
+      ref: React.RefObject<HTMLButtonElement>;
+      isActive: boolean;
+    }[]
+  >(
     () =>
-      ALL_FONTS.map((font) => ({
-        ...font,
+      typefaces.map((typeface) => ({
+        typeface,
         ref: createRef<
           HTMLButtonElement & {
             scrollIntoView: (options?: boolean | ScrollIntoViewOptions) => void;
           }
         >(),
-        isActive: font.fontPath === activeFontUri
+        isActive: activeTypeface?.name === typeface.name
       })),
-    [activeFontUri]
+    [activeTypeface, typefaces]
   );
   const activeFont = useMemo(
-    () => fonts.find(({ isActive }) => isActive),
-    [fonts]
+    () => typefacesWithRef.find(({ isActive }) => isActive),
+    [typefacesWithRef]
   );
+
   useEffect(() => {
-    if (activeFont && activeFont.ref.current) {
-      activeFont.ref.current.scrollIntoView({
-        behavior: 'auto',
-        block: 'center',
-        inline: 'center'
-      });
+    if (typefaces.length == 0 || !activeFont || !activeFont.ref.current) {
+      return;
     }
-    // Only scroll into view when opening
+    activeFont.ref.current.scrollIntoView({
+      behavior: 'auto',
+      block: 'center',
+      inline: 'center'
+    });
+
+    // Only scroll into view when opening, not when changing the active font
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [typefaces]);
 
   return (
     <AdjustmentsBar>
-      {fonts.map(({ id, fontWeight, fontPath, fontFamily, isActive, ref }) => {
+      {typefacesWithRef.map(({ typeface, isActive, ref }) => {
         return (
           <AdjustmentsBarButton
-            key={id}
+            key={typeface.name}
             isActive={isActive}
-            onClick={() => onSelect(fontPath)}
+            onClick={() =>
+              onSelect(
+                typeface.fonts.find(
+                  (font) => font.weight === 'normal' && font.style === 'normal'
+                ) ?? typeface.fonts[0],
+                typeface
+              )
+            }
             ref={ref}
           >
-            <FontPreview
-              text="Ag"
-              font={{ fontPath, fontFamily, fontWeight }}
-            />
-            <span>{fontFamily}</span>
+            <FontPreview text="Ag" typeface={typeface} />
+            <span>{typeface.name}</span>
           </AdjustmentsBarButton>
         );
       })}

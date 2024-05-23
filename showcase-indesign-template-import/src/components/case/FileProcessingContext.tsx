@@ -7,7 +7,12 @@ import {
   useState
 } from 'react';
 import { ExampleFile } from './ExampleFileContainer';
-import { IDMLParser, LogMessage, Logger } from '@imgly/idml-importer';
+import {
+  IDMLParser,
+  LogMessage,
+  Logger,
+  addGoogleFontsAssetLibrary
+} from '@imgly/idml-importer';
 
 interface ProcessResult {
   imageUrl: string;
@@ -86,6 +91,7 @@ const FileProcessingContextProvider = ({
         license: process.env.NEXT_PUBLIC_LICENSE
       });
       setStatus('processing');
+      await addGoogleFontsAssetLibrary(engine);
       const parser = await IDMLParser.fromFile(
         engine as any,
         blob,

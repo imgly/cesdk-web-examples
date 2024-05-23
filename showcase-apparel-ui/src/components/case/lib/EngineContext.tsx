@@ -25,8 +25,13 @@ export const EngineProvider = ({
 
   useEffect(() => {
     let localEngine: CreativeEngine;
+    let mounted = true;
     const loadEngine = async () => {
       localEngine = await CreativeEngine.init(config);
+      if (!mounted) {
+        localEngine.dispose();
+        return;
+      }
       localEngine.editor.setSettingBool('mouse/enableScroll', false);
       localEngine.editor.setSettingBool('mouse/enableZoom', false);
       if (configure) {
@@ -41,6 +46,7 @@ export const EngineProvider = ({
       if (localEngine) {
         localEngine.dispose();
       }
+      mounted = false;
       setIsLoaded(false);
     };
     // We do not want to rerender when the config changes. Config should never change!

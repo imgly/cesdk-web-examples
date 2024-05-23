@@ -7,8 +7,8 @@ import { hexToRgba } from '../../lib/ColorUtilities';
 
 const BackPageToolbar = () => {
   const {
-    backGreetingsTextFont,
-    setBackGreetingsTextFont,
+    backGreetingsTextTypeface,
+    setBackGreetingsTextTypeface,
     backGreetingsTextColor,
     setBackGreetingsTextColor,
     backGreetingsTextSize,
@@ -24,8 +24,8 @@ const BackPageToolbar = () => {
   return (
     <>
       <TextFontDropdown
-        activeFontPath={backGreetingsTextFont}
-        onSelect={setBackGreetingsTextFont}
+        activeTypeface={backGreetingsTextTypeface}
+        onSelect={setBackGreetingsTextTypeface}
       />
       <ColorDropdown
         label="Color"

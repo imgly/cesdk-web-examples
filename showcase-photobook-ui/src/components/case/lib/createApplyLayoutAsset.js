@@ -9,6 +9,10 @@ export const createApplyLayoutAsset = (
   config = { addUndoStep: true }
 ) => {
   return async (asset) => {
+    const checkScopesInAPIsSetting =
+      engine.editor.getSettingBool('checkScopesInAPIs');
+    engine.editor.setSettingBool('checkScopesInAPIs', false);
+
     const scopeBefore = engine.editor.getGlobalScope('lifecycle/destroy');
     engine.editor.setGlobalScope('lifecycle/destroy', 'Allow');
 
@@ -44,6 +48,8 @@ export const createApplyLayoutAsset = (
     if (config.addUndoStep) {
       engine.editor.addUndoStep();
     }
+    // restore checkScopesInAPIs setting
+    engine.editor.setSettingBool('checkScopesInAPIs', checkScopesInAPIsSetting);
     return page;
   };
 };
@@ -91,12 +97,15 @@ const copyAssets = (engine, fromPageId, toPageId) => {
       fromBlock,
       'text/fontFileUri'
     );
+    try {
+      const fromTypeface = engine.block.getTypeface(fromBlock);
+      engine.block.setFont(toBlock, fromFontFileUri, fromTypeface);
+    } catch (e) {}
     const fromTextFillColor = engine.block.getColor(
       fromBlock,
       'fill/solid/color'
     );
     engine.block.setString(toBlock, 'text/text', fromText);
-    engine.block.setString(toBlock, 'text/fontFileUri', fromFontFileUri);
     engine.block.setColor(toBlock, 'fill/solid/color', fromTextFillColor);
   }
   for (

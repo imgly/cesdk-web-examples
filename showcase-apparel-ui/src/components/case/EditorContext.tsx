@@ -80,7 +80,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   useEffect(() => {
-    if (!currentPageBlockId) {
+    if (!currentPageBlockId || !engine.block.isValid(currentPageBlockId)) {
       return;
     }
     // if current step changes, update the editor mode
