@@ -175,6 +175,10 @@ const CaseComponent = () => {
       caseAssetPath(''),
       async (asset) => {
         const engine = instance.engine;
+        const checkScopesInAPIsSetting =
+          engine.editor.getSettingBool('checkScopesInAPIs');
+        engine.editor.setSettingBool('checkScopesInAPIs', false);
+
         const pages = engine.scene.getPages();
         // Find relevant block to crop:
         const relevantBlock =
@@ -189,6 +193,11 @@ const CaseComponent = () => {
           pages,
           parseInt(asset.meta.formatWidth, 10),
           parseInt(asset.meta.formatHeight, 10)
+        );
+        // restore checkScopesInAPIs setting
+        engine.editor.setSettingBool(
+          'checkScopesInAPIs',
+          checkScopesInAPIsSetting
         );
       }
     );
@@ -293,6 +302,9 @@ async function applyRemoveBackground(engine) {
   if (!pageHasImageFill) {
     return;
   }
+  const checkScopesInAPIsSetting =
+    engine.editor.getSettingBool('checkScopesInAPIs');
+  engine.editor.setSettingBool('checkScopesInAPIs', false);
   const oldImageUri = engine.block.getString(fill, 'fill/image/imageFileURI');
   await setBlockLoading(engine, page, true);
   const removedBackgroundBlob = await removeBackground(oldImageUri);
@@ -317,6 +329,8 @@ async function applyRemoveBackground(engine) {
   engine.block.setSelected(graphic, true);
   engine.block.setSelected(page, false);
   engine.editor.addUndoStep();
+  // restore checkScopesInAPIs setting
+  engine.editor.setSettingBool('checkScopesInAPIs', checkScopesInAPIsSetting);
 }
 
 const SAMPLE_GRADIENT_FILL_STOPS = [

@@ -34,6 +34,7 @@ const BookPreviewBar = () => {
     const page = blocks[0];
     engine.block.setVisible(page, false);
     engine.block.appendChild(pagesParent, page);
+    engine.block.setScopeEnabled(page, 'lifecycle/destroy', true);
     await setCurrentPageBlockId(page);
     refocus();
     setEnabled(true);

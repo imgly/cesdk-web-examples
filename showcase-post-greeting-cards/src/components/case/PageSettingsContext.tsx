@@ -1,4 +1,4 @@
-import { RGBAColor } from '@cesdk/engine';
+import { RGBAColor, Typeface } from '@cesdk/engine';
 import {
   createContext,
   useCallback,
@@ -16,8 +16,8 @@ interface PageSettingsContextType {
   frontAccentColor: RGBAColor;
   setFrontAccentColor: (color: RGBAColor) => void;
 
-  backGreetingsTextFont: string;
-  setBackGreetingsTextFont: (fontFileUri: string) => void;
+  backGreetingsTextTypeface: Typeface | null;
+  setBackGreetingsTextTypeface: (typeface: Typeface) => void;
   backGreetingsTextColor: RGBAColor;
   setBackGreetingsTextColor: (color: RGBAColor) => void;
   backGreetingsTextSize: number;
@@ -47,13 +47,24 @@ export const PageSettingsProvider = ({
     useState<RGBAColor>(DEFAULT_COLOR);
   const [frontAccentColor, setFrontAccentColor] =
     useState<RGBAColor>(DEFAULT_COLOR);
-  const [backGreetingsTextFont, setBackGreetingsTextFont] = useState<string>(
-    'extensions/ly.img.cesdk.fonts/fonts/Caveat/Caveat-Regular.ttf'
-  );
+  const [backGreetingsTextTypeface, setBackGreetingsTextTypeface] =
+    useState<Typeface | null>(null);
+
   const [backGreetingsTextColor, setBackGreetingsTextColor] =
     useState<RGBAColor>(hexToRgba('#263BAA'));
   const [backGreetingsTextSize, setBackGreetingsTextSize] =
     useState<number>(22);
+
+  useEffect(() => {
+    if (!engine || !sceneIsLoaded) {
+      return;
+    }
+    const [block] = engine.block.findByName('Greeting');
+    if (!block) {
+      return;
+    }
+    setBackGreetingsTextTypeface(engine.block.getTypeface(block));
+  }, [engine, sceneIsLoaded]);
 
   const setColorByBlockName = useCallback(
     (blockName: string, color: RGBAColor | null) => {
@@ -86,12 +97,16 @@ export const PageSettingsProvider = ({
   );
 
   const setTextFontByBlockName = useCallback(
-    (blockName: string, fontFileUri: string | null) => {
-      if (!sceneIsLoaded || !fontFileUri) {
+    (blockName: string, typeface: Typeface | null) => {
+      if (!sceneIsLoaded || !typeface) {
         return;
       }
+      const font =
+        typeface.fonts.find(
+          (font) => font.style === 'normal' && font.weight === 'normal'
+        ) ?? typeface.fonts[0];
       engine.block.findByName(blockName).forEach((blockId) => {
-        engine.block.setString(blockId, 'text/fontFileUri', fontFileUri);
+        engine.block.setFont(blockId, font.uri, typeface);
       });
       engine.editor.addUndoStep();
     },
@@ -108,8 +123,8 @@ export const PageSettingsProvider = ({
   );
 
   useEffect(
-    () => setTextFontByBlockName('Greeting', backGreetingsTextFont),
-    [setTextFontByBlockName, backGreetingsTextFont]
+    () => setTextFontByBlockName('Greeting', backGreetingsTextTypeface),
+    [setTextFontByBlockName, backGreetingsTextTypeface]
   );
   useEffect(
     () => setColorByBlockName('Greeting', backGreetingsTextColor),
@@ -133,8 +148,8 @@ export const PageSettingsProvider = ({
     frontAccentColor,
     setFrontAccentColor,
 
-    backGreetingsTextFont,
-    setBackGreetingsTextFont,
+    backGreetingsTextTypeface,
+    setBackGreetingsTextTypeface,
     backGreetingsTextColor,
     setBackGreetingsTextColor,
     backGreetingsTextSize,

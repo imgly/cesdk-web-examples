@@ -24,6 +24,7 @@ const CaseComponent = () => {
             }}
             configure={async (engine) => {
               engine.editor.setSettingBool('page/title/show', false);
+              engine.editor.setSettingBool('checkScopesInAPIs', false);
               await engine.addDefaultAssetSources();
               await engine.addDemoAssetSources({
                 sceneMode: 'Design',

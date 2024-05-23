@@ -6,35 +6,30 @@ export const ALL_THEMES = [
   {
     id: 'jungle',
     defaultBGColor: '#008625',
-    defaultFontFileUri:
-      'extensions/ly.img.cesdk.fonts/fonts/imgly_font_aleo_bold.otf'
+    defaultTypeface: 'Aleo'
   },
   {
     id: 'sea',
     defaultBGColor: '#0027BC',
-    defaultFontFileUri:
-      'extensions/ly.img.cesdk.fonts/fonts/Coiny/Coiny-Regular.ttf'
+    defaultTypeface: 'Coiny'
   },
   {
     id: 'savanna',
     defaultBGColor: '#E2701D',
-    defaultFontFileUri:
-      'extensions/ly.img.cesdk.fonts/fonts/imgly_font_trash_hand.ttf'
+    defaultTypeface: 'Trash Hand'
   },
   {
     id: 'castle',
     defaultBGColor: '#DC1876',
-    defaultFontFileUri:
-      'extensions/ly.img.cesdk.fonts/fonts/ElsieSwashCaps/ElsieSwashCaps-Regular.ttf'
+    defaultTypeface: 'Elsie Swash Caps'
   }
-].map(({ id, defaultBGColor, defaultFontFileUri }) => ({
+].map(({ id, ...rest }) => ({
   id: id,
   label: `${id} Theme`,
   asset: {
     light: caseAssetPath(`/themes/${id}-bg-light.svg`),
     dark: caseAssetPath(`/themes/${id}-bg-dark.svg`),
-    defaultBGColor,
-    defaultFontFileUri
+    ...rest
   },
   Thumb: (
     <img src={caseAssetPath(`/themes/${id}-preview.png`)} alt={`${id} Theme`} />

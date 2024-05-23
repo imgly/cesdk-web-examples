@@ -128,9 +128,11 @@ export const SinglePageModeProvider = ({
           return sortedPageIds;
         });
       };
-      const pagesParent = engine.block.getParent(
-        engine.block.findByType('page')[0]
-      )!;
+      const page = engine.block.findByType('page')[0];
+      if (!page) {
+        return;
+      }
+      const pagesParent = engine.block.getParent(page)!;
       const unsubscribe = engine.event.subscribe([pagesParent], (events) => {
         if (events.length > 0) {
           updateSortedPageIds();

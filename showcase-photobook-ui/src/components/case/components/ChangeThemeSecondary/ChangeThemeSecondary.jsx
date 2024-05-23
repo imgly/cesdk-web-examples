@@ -7,7 +7,7 @@ const ChangeThemeSecondary = () => {
   const { engine } = useEngine();
   const { currentPageBlockId } = useSinglePageMode();
 
-  const changeTheme = (asset) => {
+  const changeTheme = async (asset) => {
     const findByNameOnCurrentPage = (name) =>
       engine.block
         .findByName(name)
@@ -17,16 +17,25 @@ const ChangeThemeSecondary = () => {
       'fill/solid/color',
       hexToRgba(asset.defaultBGColor)
     );
-    engine.block
-      .findByType('text')
-      .filter((block) => engine.block.getParent(block) === currentPageBlockId)
-      .forEach((block) =>
-        engine.block.setString(
-          block,
-          'text/fontFileUri',
-          asset.defaultFontFileUri
-        )
-      );
+    const typefaceAssetQuery = await engine.asset.findAssets(
+      'ly.img.typeface',
+      {
+        page: 0,
+        perPage: 1,
+        query: asset.defaultTypeface
+      }
+    );
+    if (typefaceAssetQuery.assets.length > 0) {
+      const typeface = typefaceAssetQuery.assets[0].payload.typeface;
+      const font =
+        typeface.fonts.find(
+          (font) => font.weight === 'normal' && font.style === 'normal'
+        ) ?? typeface.fonts[0];
+      engine.block
+        .findByType('text')
+        .filter((block) => engine.block.getParent(block) === currentPageBlockId)
+        .forEach((block) => engine.block.setFont(block, font.uri, typeface));
+    }
 
     const bgDarkBlock = findByNameOnCurrentPage('BG Dark');
     const bgDarkBlockFill = engine.block.getFill(bgDarkBlock);

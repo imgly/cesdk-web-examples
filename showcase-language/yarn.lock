@@ -1045,15 +1045,15 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@cesdk/cesdk-js@1.25.0":
-  version "1.25.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.25.0.tgz#f93b6d0bdbf9c0fb52aa155baeb56285fc78299c"
-  integrity sha512-tF0jgZwRxfW9YWf+SZBFV0bxVqPfc5majqCLIAKaE0P2XNwLuiGt11vJgRZ1P9Qun6IjBwT5xrNVMR0SOe8G9A==
+"@cesdk/cesdk-js@1.27.1":
+  version "1.27.1"
+  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.27.1.tgz#649265472e2dfc6d850a7e1522ddc3823969ac41"
+  integrity sha512-OC+Ct6ZxF5jWLcgGkKtwnS3kRtz0e+dsKrKIVcKN8/8pmoRE71Wfx2OY0HZj/2iZJLfC1Z+Vb6fzFezBVd0tRw==
 
-"@cesdk/engine@1.25.0":
-  version "1.25.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.25.0.tgz#425f85ab2437e07d84888d4418a5189f07e0cbde"
-  integrity sha512-nFeA+PWS67uagHgN4ma2iHIhEkIdzc1pmOCum6yps2cYrDhAm7wCdHQKvbQCVMNEhZJQRdHOVSiQa6FFir8n5w==
+"@cesdk/engine@1.27.1":
+  version "1.27.1"
+  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.27.1.tgz#104bc9c26316cb64baaca844d09a1ffc3068a3d9"
+  integrity sha512-omwkd+foTC61zTuJWkLfIJ/oS3KF+yCL9pwa3BWth/s8tPMkqmkzRL0j7e302TV/OX7uhfuk/mQtsYXZZHTaOA==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -1126,10 +1126,10 @@
     onnxruntime-web "~1.17.0"
     zod "~3.21.0"
 
-"@imgly/idml-importer@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@imgly/idml-importer/-/idml-importer-1.0.2.tgz#047edcfb45ea53e71e4c0a53923d3fe78d87dffc"
-  integrity sha512-8Ktg0mZTbMGAXM9dLkbz75bT+YuPr+kOa2IBt/ajVlJHnegArPH7vBX4/ei2SzNtlxPplYRrzJJXnm4T6uQ/YA==
+"@imgly/idml-importer@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@imgly/idml-importer/-/idml-importer-1.0.6.tgz#993e662ef1ebb4ea33ee44f5c4b9ea576f50bf41"
+  integrity sha512-0M1dUOIRuOS8olJt5z9Q+T6oZl+ITp6o+QxJfrYBsaPfHlDvnjdfTDVy9irH6kuh6CPfTA5wOjUsFKzkELHKWw==
   dependencies:
     jszip "^3.10.1"
 
@@ -1139,6 +1139,13 @@
   integrity sha512-fqY4PflN0wI7otkAff/mITvi86bUT9TI1oaAEm8bkhDQIZMB9zOPLWRdq+t2zr9D0OFJnfsG1Pwyr2EHKJf1aA==
   dependencies:
     "@imgly/background-removal" "^1.4.4"
+    lodash "^4.17.21"
+
+"@imgly/plugin-cutout-library-web@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@imgly/plugin-cutout-library-web/-/plugin-cutout-library-web-0.1.0.tgz#3a2e9a43e5ff15b3f1ecc45bf5e2e60ffd9e24d3"
+  integrity sha512-2bpEo+yzqsmZ07tUQs2sVL5y22bj0txem50fn8hvA1bC4T9C8DW6wzMhnIU/12hP8O57s7OlEe27P1VvQKNjDA==
+  dependencies:
     lodash "^4.17.21"
 
 "@isaacs/cliui@^8.0.2":

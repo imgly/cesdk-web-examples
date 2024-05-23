@@ -1,0 +1,4 @@
+.text {
+  /* Prevents character cut off */
+  overflow: visible;
+}

@@ -17,7 +17,7 @@ const CaseComponent = () => {
   const [engine, setEngine] = useCreativeEngine();
   const [headline, setHeadline] = useState();
   const [image, setImage] = useState(null);
-  const [font, setFont] = useState(null);
+  const [fontName, setFontName] = useState(null);
   const [colorHex, setColorHex] = useState('#C0C3C5');
   const colorRGBA = useMemo(() => {
     let { r, g, b } = hexToRgba(colorHex);
@@ -60,12 +60,33 @@ const CaseComponent = () => {
 
   useEffect(
     function updateFontFamily() {
-      if (!engine || !font) return;
+      if (!engine || !fontName) return;
 
-      const textBlock = engine.block.findByKind('text')[0];
-      engine.block.setString(textBlock, 'text/fontFileUri', font.value);
+      async function updateFontFamily() {
+        const textBlock = engine.block.findByKind('text')[0];
+        const typefaceAssetResults = await engine.asset.findAssets(
+          'ly.img.typeface',
+          {
+            query: fontName,
+            page: 0,
+            perPage: 1
+          }
+        );
+        const typefaceAsset = typefaceAssetResults.assets[0];
+        if (!typefaceAsset) {
+          console.error(`Could not find font with name ${fontName}`);
+          return;
+        }
+        const typeface = typefaceAsset.payload.typeface;
+        const font = typeface.fonts.find(
+          (font) => font.weight === 'normal' && font.style === 'normal'
+        );
+        engine.block.setFont(textBlock, font.uri, typeface);
+      }
+
+      updateFontFamily();
     },
-    [font, engine]
+    [fontName, engine]
   );
 
   useEffect(
@@ -90,7 +111,7 @@ const CaseComponent = () => {
   );
 
   const randomizeParameters = () => {
-    setFont(FONTS[Math.floor(Math.random() * FONTS.length)]);
+    setFontName(FONTS[Math.floor(Math.random() * FONTS.length)]);
     setImage(IMAGES[Math.floor(Math.random() * IMAGES.length)]);
     setHeadline(QUOTES[Math.floor(Math.random() * QUOTES.length)]);
     setColorHex(COLORS[Math.floor(Math.random() * COLORS.length)]);
@@ -126,19 +147,17 @@ const CaseComponent = () => {
               id="font"
               className={classNames(
                 'select',
-                !font?.value && 'select--placeholder'
+                !fontName && 'select--placeholder'
               )}
-              value={font?.value || 'placeholder'}
-              onChange={(e) =>
-                setFont(FONTS.find((font) => font.value === e.target.value))
-              }
+              value={fontName || 'placeholder'}
+              onChange={(e) => setFontName(e.target.value)}
             >
               <option value="placeholder" disabled>
                 Select Font
               </option>
-              {FONTS.map(({ label, value }) => (
-                <option key={value} value={value}>
-                  {label}
+              {FONTS.map((name) => (
+                <option key={name} value={name}>
+                  {name}
                 </option>
               ))}
             </select>
@@ -178,28 +197,11 @@ const CaseComponent = () => {
 const COLORS = ['#2B3B52', '#4700BB', '#72332E', '#BA9820', '#FF6363'];
 
 const FONTS = [
-  {
-    value:
-      '/extensions/ly.img.cesdk.fonts/fonts/Playfair_Display/PlayfairDisplay-SemiBold.ttf',
-    label: 'Playfair display'
-  },
-  {
-    label: 'Poppins',
-    value: '/extensions/ly.img.cesdk.fonts/fonts/Poppins/Poppins-Bold.ttf'
-  },
-  {
-    label: 'Rasa',
-    value: '/extensions/ly.img.cesdk.fonts/fonts/Rasa/Rasa-Bold.ttf'
-  },
-  {
-    label: 'Courier Prime',
-    value:
-      '/extensions/ly.img.cesdk.fonts/fonts/CourierPrime/CourierPrime-Bold.ttf'
-  },
-  {
-    label: 'Caveat',
-    value: '/extensions/ly.img.cesdk.fonts/fonts/Caveat/Caveat-Bold.ttf'
-  }
+  'Playfair display',
+  'Poppins',
+  'Rasa',
+  'Courier Prime',
+  'Caveat'
 ];
 // https://unsplash.com/photos/9COU9FyUIMU
 // https://unsplash.com/photos/A2BMfcZH_Ig

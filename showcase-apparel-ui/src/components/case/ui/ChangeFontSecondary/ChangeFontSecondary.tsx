@@ -1,13 +1,22 @@
-import { useSelectedProperty } from '../../lib/UseSelectedProperty';
+import { useState } from 'react';
+import { useEngine } from '../../lib/EngineContext';
 import FontSelect from '../FontSelect/FontSelect';
 
 const ChangeFontSecondary = () => {
-  const [fontFileUri, setFontFileUri] = useSelectedProperty('text/fontFileUri');
+  const { engine } = useEngine();
+  const [activeTypeface, setActiveTypeface] = useState(
+    engine.block.getTypeface(engine.block.findAllSelected()[0])
+  );
 
   return (
     <FontSelect
-      onSelect={(fontUri: string) => setFontFileUri(fontUri)}
-      activeFontUri={fontFileUri}
+      onSelect={(font, typeface) => {
+        engine.block.findAllSelected().forEach((block) => {
+          engine.block.setFont(block, font.uri, typeface);
+        });
+        setActiveTypeface(typeface);
+      }}
+      activeTypeface={activeTypeface}
     />
   );
 };
