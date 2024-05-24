@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <CreativeEditorSDK
-      :config="{
-        callbacks: { onUpload: 'local' } // Enables local uploads in Asset Library. 
-      }"
-    />
+    <CreativeEditorSDK :config="{
+      license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+      userId: 'guides-user',
+      callbacks: { onUpload: 'local' } // Enables local uploads in Asset Library. 
+    }" />
   </div>
 </template>
 
