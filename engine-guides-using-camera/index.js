@@ -1,12 +1,14 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.28.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.28.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  document.getElementById('root').append(engine.element);
+  document.getElementById('cesdk_container').append(engine.element);
 
   engine.scene.createVideo();
   const stack = engine.block.findByType('stack')[0];
@@ -16,7 +18,7 @@ CreativeEngine.init(config).then(async (engine) => {
   const pixelStreamFill = engine.block.createFill('pixelStream');
   engine.block.setFill(page, pixelStreamFill);
 
-  engine.block.addEffect(page, engine.block.createEffect('half_tone'));
+  engine.block.appendEffect(page, engine.block.createEffect('half_tone'));
   // highlight-setup
 
   // highlight-orientation
