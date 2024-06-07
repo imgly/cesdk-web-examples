@@ -61,8 +61,12 @@ const CaseComponent = () => {
     engine.editor.setSettingBool('checkScopesInAPIs', false);
     const pages = engine.block.findByType('page');
     pages.forEach((page) => {
+      // temporary allow clipping
+      const oldScope = engine.block.isScopeEnabled(page, 'layer/clipping');
+      engine.block.setScopeEnabled(page, 'layer/clipping', true);
       // This will clip off any content that is beyond the page.
       engine.block.setClipped(page, true);
+      engine.block.setScopeEnabled(page, 'layer/clipping', oldScope);
     });
     // restore checkScopesInAPIs setting
     engine.editor.setSettingBool('checkScopesInAPIs', checkScopesInAPIsSetting);
