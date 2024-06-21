@@ -1,15 +1,17 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.30.0-rc.0/index.js';
 
-let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
+const config = {
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.30.0-rc.0/assets',
   // docs-theming-theme
   theme: 'light', // 'light' or 'dark'
   ui: {
     scale: ({ containerWidth, isTouch }) => {
       if (containerWidth < 600 || isTouch) {
-        return "large"
+        return 'large';
       } else {
-        return "normal"
+        return 'normal';
       }
     }, // or 'normal' or 'large'
     // docs-theming-theme

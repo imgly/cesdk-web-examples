@@ -9,38 +9,38 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.1.3",
-    "@cesdk/cesdk-js": "1.27.1",
-    "@cesdk/engine": "1.27.1",
+    "@cesdk/cesdk-js": "1.30.0-rc.0",
+    "@cesdk/engine": "1.30.0-rc.0",
+    "@google/model-viewer": "3.1.1",
+    "@imgly/idml-importer": "^1.0.6",
+    "@imgly/plugin-background-removal-web": "^0.3.0",
+    "@imgly/plugin-cutout-library-web": "^0.1.0",
     "airtable": "^0.12.1",
     "chroma-js": "^2.4.2",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
-    "@imgly/plugin-background-removal-web": "^0.2.0",
-    "@imgly/plugin-cutout-library-web": "^0.1.0",
-    "@imgly/idml-importer": "^1.0.6",
+    "next": "14.1.3",
+    "react": "^18",
     "react-colorful": "^5.6.1",
     "react-div-100vh": "^0.7.0",
+    "react-dom": "^18",
     "react-draggable": "^4.4.5",
     "react-masonry-css": "^1.0.16",
     "react-slider": "^2.0.6",
     "react-tiny-popover": "^7.2.4",
-    "unsplash-js": "^7.0.18",
-    "@google/model-viewer": "3.1.1",
-    "three": "^0.154.0"
+    "three": "^0.154.0",
+    "unsplash-js": "^7.0.18"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@svgr/webpack": "^8.1.0",
+    "@types/chroma-js": "^2.4.0",
+    "@types/lodash": "^4.14.197",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.1.3",
-    "@types/chroma-js": "^2.4.0",
-    "@types/lodash": "^4.14.197",
     "eslint-plugin-unused-imports": "^3.1.0",
-    "@svgr/webpack": "^8.1.0"
+    "typescript": "^5"
   }
 }

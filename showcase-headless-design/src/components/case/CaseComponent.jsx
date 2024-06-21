@@ -42,7 +42,7 @@ const CaseComponent = () => {
     await engine.scene.loadFromURL(caseAssetPath('/example.scene'));
     const [page] = engine.block.findByKind('page');
     // // Leave some extra space bottom for the gizmo
-    engine.scene.enableZoomAutoFit(page, 'Both', 10, 10, 10, 50);
+    engine.scene.zoomToBlock(page, 10, 10, 10, 50);
   }, []);
 
   useEffect(
