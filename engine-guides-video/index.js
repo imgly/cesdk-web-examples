@@ -1,8 +1,10 @@
 // highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.30.0/index.js';
 
 const config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.17.0/assets'
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.30.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -11,43 +13,51 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-setup
   // highlight-setupScene
   const scene = engine.scene.createVideo();
-  const stack = engine.block.findByType('stack')[0];
 
-  const page1 = engine.block.create('page');
-  const page2 = engine.block.create('page');
-  engine.block.appendChild(stack, page1);
-  engine.block.appendChild(stack, page2);
+  const page = engine.block.create('page');
+  engine.block.appendChild(scene, page);
 
-  engine.block.setWidth(page1, 1280);
-  engine.block.setHeight(page1, 720);
-  engine.block.setWidth(page2, 1280);
-  engine.block.setHeight(page2, 720);
+  engine.block.setWidth(page, 1280);
+  engine.block.setHeight(page, 720);
   // highlight-setupScene
 
   // highlight-setPageDuration
-  /* Show the first page for 4 seconds and the second page for 20 seconds. */
-  engine.block.setDuration(page1, 4);
-  engine.block.setDuration(page2, 20);
+  engine.block.setDuration(page, 20);
   // highlight-setPageDuration
 
   // highlight-assignVideoFill
-  const rectShape = engine.block.create('shapes/rect');
-  engine.block.destroy(engine.block.getFill(rectShape));
+  const video1 = engine.block.create('graphic');
+  engine.block.setShape(video1, engine.block.createShape('rect'));
   const videoFill = engine.block.createFill('video');
-  engine.block.setFill(rectShape, videoFill);
-
   engine.block.setString(
     videoFill,
     'fill/video/fileURI',
-    'https://cdn.img.ly/assets/demo/v1/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barrelling-a-wave-12715991.mp4'
+    'https://cdn.img.ly/assets/demo/v2/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barrelling-a-wave-12715991.mp4'
   );
+  engine.block.setFill(video1, videoFill);
 
-  engine.block.appendChild(page2, rectShape);
-  engine.block.setPositionX(rectShape, 0);
-  engine.block.setPositionY(rectShape, 0);
-  engine.block.setWidth(rectShape, engine.block.getWidth(page2));
-  engine.block.setHeight(rectShape, engine.block.getHeight(page2));
+  const video2 = engine.block.create('graphic');
+  engine.block.setShape(video2, engine.block.createShape('rect'));
+  const videoFill2 = engine.block.createFill('video');
+  engine.block.setString(
+    videoFill2,
+    'fill/video/fileURI',
+    'https://cdn.img.ly/assets/demo/v2/ly.img.video/videos/pexels-kampus-production-8154913.mp4'
+  );
+  engine.block.setFill(video2, videoFill2);
   // highlight-assignVideoFill
+
+  // highlight-addToTrack
+  const track = engine.block.create('track');
+  engine.block.appendChild(page, track);
+  engine.block.appendChild(track, video1);
+  engine.block.appendChild(track, video2);
+  engine.block.fillParent(track);
+  // highlight-addToTrack
+
+  // highlight-setDuration
+  engine.block.setDuration(video1, 15);
+  // highlight-setDuration
 
   // highlight-trim
   /* Make sure that the video is loaded before calling the trim APIs. */
@@ -64,7 +74,7 @@ CreativeEngine.init(config).then(async (engine) => {
 
   // highlight-audio
   const audio = engine.block.create('audio');
-  engine.block.appendChild(scene, audio);
+  engine.block.appendChild(page, audio);
   engine.block.setString(
     audio,
     'audio/fileURI',
@@ -88,12 +98,24 @@ CreativeEngine.init(config).then(async (engine) => {
   // highlight-audioDuration
 
   // highlight-exportVideo
-  /* Export scene as mp4 video. */
+  /* Export page as mp4 video. */
   const mimeType = 'video/mp4';
   const progressCallback = (renderedFrames, encodedFrames, totalFrames) => {
-    console.log('Rendered', renderedFrames, 'frames and encoded', encodedFrames, 'frames out of', totalFrames);
+    console.log(
+      'Rendered',
+      renderedFrames,
+      'frames and encoded',
+      encodedFrames,
+      'frames out of',
+      totalFrames
+    );
   };
-  const blob = await engine.block.exportVideo(scene, mimeType, progressCallback, {});
+  const blob = await engine.block.exportVideo(
+    page,
+    mimeType,
+    progressCallback,
+    {}
+  );
 
   /* Download blob. */
   const anchor = document.createElement('a');

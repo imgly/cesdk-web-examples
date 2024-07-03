@@ -1,7 +1,12 @@
-import dynamic from 'next/dynamic'
+'use client';
 
-const CreativeEditorSDKWithNoSSR = dynamic(() => import('./CreativeEditorSDK'), {
-  ssr: false
-})
+import dynamic from 'next/dynamic';
+
+const CreativeEditorSDKWithNoSSR = dynamic(
+  () => import('./CreativeEditorSDK'),
+  {
+    ssr: false
+  }
+);
 
 export default CreativeEditorSDKWithNoSSR;
