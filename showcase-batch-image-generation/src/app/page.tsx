@@ -10,7 +10,7 @@ const DynamicCaseComponent = dynamic(
 export default function Home() {
   return (
     <div
-      className="App"
+      className="App showcaseContainer"
       style={{
         minHeight: '100vh',
         display: 'flex'
