@@ -55,15 +55,6 @@ const CreativeEditor = ({ sceneUrl, closeEditor }) => {
     };
   }, [cesdkContainer, closeEditor, sceneUrl]);
 
-  // Workaround to prevent body scrolling:
-  useEffect(() => {
-    const body = document.querySelector('body');
-    body.style.overflow = 'hidden';
-    return () => {
-      body.style.overflow = 'auto';
-    };
-  }, []);
-
   return (
     <div
       className={classes.overlay}

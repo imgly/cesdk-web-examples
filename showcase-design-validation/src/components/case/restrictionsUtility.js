@@ -41,13 +41,21 @@ export const getProtrudingBlocks = (cesdk) => {
     .filter((o) => !!o);
 };
 
+const findParentPage = (cesdk, blockId) => {
+  const parent = cesdk.engine.block.getParent(blockId);
+  if (cesdk.engine.block.getKind(parent) === 'page') {
+    return parent;
+  }
+  return findParentPage(cesdk, parent);
+};
+
 export const getOutsideBlocks = (cesdk) => {
-  const page = cesdk.engine.block.findByType('page')[0];
   return getRelevantBlocks(cesdk)
     .map((elementBlockId) => {
+      const parentPage = findParentPage(cesdk, elementBlockId);
       const overlapWithPage = getElementOverlap(
         getElementBoundingBox(cesdk, elementBlockId),
-        getElementBoundingBox(cesdk, page)
+        getElementBoundingBox(cesdk, parentPage)
       );
       const isOutside = overlapWithPage === 0;
       return isOutside && elementBlockId;
