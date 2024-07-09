@@ -31,6 +31,7 @@
 .actions {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 16px;
@@ -82,5 +83,7 @@
 }
 
 .comparisonImage {
-  box-shadow: 0px 1px 1.75px -2px rgba(22, 22, 23, 0.12), 0px 2px 2.5px -2px rgba(22, 22, 23, 0.12), 0px 4px 6px -2px rgba(22, 22, 23, 0.12), 0px 0px 2px 0px rgba(22, 22, 23, 0.25);
+  width: 100%;
+  filter: drop-shadow(0px 1px 1.75px rgba(22, 22, 23, 0.12)) drop-shadow(0px 2px 2.5px rgba(22, 22, 23, 0.12)) drop-shadow(0px 4px 6px rgba(22, 22, 23, 0.12)) drop-shadow(0px 0px 2px rgba(22, 22, 23, 0.25));
+  object-fit: contain;
 }
