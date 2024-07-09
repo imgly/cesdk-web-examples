@@ -30,19 +30,23 @@
       window.onload = function () {
         // docs-integrate-electron-3
         let config = {
+          license:
+            'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
           // Serve assets from IMG.LY cdn or locally
-          baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
+          baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0-rc.2/assets',
           // Enable local uploads in Asset Library
           callbacks: { onUpload: 'local' }
         };
 
-        CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
-          // Do something with the instance of CreativeEditor SDK, for example:
-          // Populate the asset library with default / demo asset sources.
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          await instance.createDesignScene();
-        });
+        CreativeEditorSDK.create('#cesdk_container', config).then(
+          async (instance) => {
+            // Do something with the instance of CreativeEditor SDK, for example:
+            // Populate the asset library with default / demo asset sources.
+            instance.addDefaultAssetSources();
+            instance.addDemoAssetSources({ sceneMode: 'Design' });
+            await instance.createDesignScene();
+          }
+        );
         // docs-integrate-electron-3
       };
     </script>

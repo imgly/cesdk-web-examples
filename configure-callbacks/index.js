@@ -1,7 +1,9 @@
-import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/cesdk.umd.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0-rc.2/index.js';
 
-let config = {
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.17.0/assets',
+const config = {
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  userId: 'guides-user',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0-rc.2/assets',
   // highlight-callbacks
   callbacks: {
     // highlight-onunsupportedbrowser
@@ -9,7 +11,7 @@ let config = {
       /* This is the default window alert which will be shown in case an unsupported
        * browser tries to run CE.SDK */
       window.alert(
-        'Your current browser is not supported.\nPlease use one of the following:\n\n- Mozilla Firefox 86 or newer\n- Apple Safari 14.1 or newer\n- Microsoft Edge 88 or newer\n- Google Chrome 88 or newer'
+        'Your current browser is not supported.\nPlease use one of the following:\n\n- Mozilla Firefox 115 or newer\n- Apple Safari 15.6 or newer\n- Microsoft Edge 114 or newer\n- Google Chrome 114 or newer'
       );
     },
     // highlight-onunsupportedbrowser
@@ -28,6 +30,12 @@ let config = {
       window.alert('Save callback!');
       console.info(scene);
     },
+    // highlight-ondownload
+    onDownload: (scene) => {
+      window.alert('Download callback!');
+      console.info(scene);
+    },
+    // highlight-ondownload
     // highlight-onsave
     // highlight-onload
     onLoad: () => {
@@ -68,6 +76,7 @@ let config = {
           close: true,
           back: true,
           save: true,
+          download: true,
           load: true,
           export: true
         }
