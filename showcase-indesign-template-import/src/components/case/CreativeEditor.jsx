@@ -2,7 +2,7 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import classes from './CreativeEditor.module.css';
 
-const CreativeEditor = ({ sceneUrl, closeEditor }) => {
+const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
   const cesdkContainer = useRef(null);
   const overlayContainer = useRef(null);
 
@@ -43,7 +43,7 @@ const CreativeEditor = ({ sceneUrl, closeEditor }) => {
         async (instance) => {
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({ sceneMode: 'Design' });
-          await instance.loadFromURL(sceneUrl);
+          await instance.engine.scene.loadFromArchiveURL(sceneArchiveUrl);
           cesdk = instance;
         }
       );
@@ -53,16 +53,7 @@ const CreativeEditor = ({ sceneUrl, closeEditor }) => {
         cesdk.dispose();
       }
     };
-  }, [cesdkContainer, closeEditor, sceneUrl]);
-
-  // Workaround to prevent body scrolling:
-  useEffect(() => {
-    const body = document.querySelector('body');
-    body.style.overflow = 'hidden';
-    return () => {
-      body.style.overflow = 'auto';
-    };
-  }, []);
+  }, [cesdkContainer, closeEditor, sceneArchiveUrl]);
 
   return (
     <div

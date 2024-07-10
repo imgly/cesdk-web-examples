@@ -98,7 +98,7 @@ function ResultScreen() {
       </div>
       {editorOpen && (
         <CreativeEditor
-          sceneUrl={result.sceneUrl}
+          sceneArchiveUrl={result.sceneArchiveUrl}
           closeEditor={() => {
             setEditorOpen(false);
           }}
