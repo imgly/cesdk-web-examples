@@ -81,9 +81,11 @@ const ValidationBox = ({
                     </span>
                   </StyledPopover>
                 </span>
-                <button className={styles.checkCTA} onClick={result.onClick}>
-                  Select
-                </button>
+                {result.onClick && (
+                  <button className={styles.checkCTA} onClick={result.onClick}>
+                    Select
+                  </button>
+                )}
               </div>
               <BlockLabel
                 blockType={result.blockType}
