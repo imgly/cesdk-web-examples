@@ -2,7 +2,7 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import classes from './CreativeEditor.module.css';
 
-const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
+const CreativeEditor = ({ sceneUrl, closeEditor }) => {
   const cesdkContainer = useRef(null);
   const overlayContainer = useRef(null);
 
@@ -43,7 +43,7 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
         async (instance) => {
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({ sceneMode: 'Design' });
-          await instance.engine.scene.loadFromArchiveURL(sceneArchiveUrl);
+          await instance.loadFromURL(sceneUrl);
           cesdk = instance;
         }
       );
@@ -53,7 +53,7 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
         cesdk.dispose();
       }
     };
-  }, [cesdkContainer, closeEditor, sceneArchiveUrl]);
+  }, [cesdkContainer, closeEditor, sceneUrl]);
 
   return (
     <div

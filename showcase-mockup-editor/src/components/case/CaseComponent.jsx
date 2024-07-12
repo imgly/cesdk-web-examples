@@ -140,6 +140,13 @@ const CaseComponent = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
+      console.log(
+        'Checking for dirty state',
+        cesdk && engine && isDirty,
+        cesdk,
+        engine,
+        isDirty
+      );
       if (cesdk && engine && isDirty) {
         renderMockup();
       }
@@ -236,6 +243,7 @@ const CaseComponent = () => {
   useEffect(() => {
     if (!cesdk) return;
     const unsubscribe = cesdk.engine.editor.onHistoryUpdated(() => {
+      console.log('History updated');
       setIsDirty(true);
     });
     return () => {
@@ -353,9 +361,10 @@ const CaseComponent = () => {
             )}
           </div>
         </div>
-        <div className="cesdkWrapperStyle">
+
+        <div className={classes.cesdkWrapper}>
           <CreativeEditor
-            className="cesdkStyle"
+            className={classes.cesdk}
             config={config}
             configure={configure}
             onInstanceChange={setCesdk}

@@ -1,0 +1,11 @@
+{
+  "name": "engine-guides-custom-asset-source",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "serve"
+  },
+  "devDependencies": {
+    "serve": "latest"
+  }
+}

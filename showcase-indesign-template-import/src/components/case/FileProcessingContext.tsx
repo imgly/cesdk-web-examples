@@ -1,11 +1,5 @@
 import CreativeEngine from '@cesdk/engine';
 import {
-  IDMLParser,
-  LogMessage,
-  Logger,
-  addGoogleFontsAssetLibrary
-} from '@imgly/idml-importer';
-import {
   createContext,
   useCallback,
   useContext,
@@ -13,9 +7,16 @@ import {
   useState
 } from 'react';
 import { ExampleFile } from './ExampleFileContainer';
+import {
+  IDMLParser,
+  LogMessage,
+  Logger,
+  addGoogleFontsAssetLibrary
+} from '@imgly/idml-importer';
 
 interface ProcessResult {
   imageUrl: string;
+  sceneUrl: string;
   sceneArchiveUrl: string;
   messages: LogMessage[];
 }
@@ -82,6 +83,7 @@ const FileProcessingContextProvider = ({
 
     setStatus('init');
     let imageBlob;
+    let sceneString;
     let sceneArchive;
     let logger: Logger;
     try {
@@ -107,6 +109,7 @@ const FileProcessingContextProvider = ({
           targetWidth: 1000
         }
       );
+      sceneString = await engine.scene.saveToString();
       sceneArchive = await engine.scene.saveToArchive();
     } catch (error) {
       console.error(error);
@@ -118,6 +121,9 @@ const FileProcessingContextProvider = ({
     setResult({
       messages: logger.getMessages(),
       imageUrl: URL.createObjectURL(imageBlob),
+      sceneUrl: URL.createObjectURL(
+        new Blob([sceneString], { type: 'text/plain;charset=UTF-8' })
+      ),
       sceneArchiveUrl: URL.createObjectURL(sceneArchive)
     });
     setStatus('idle');

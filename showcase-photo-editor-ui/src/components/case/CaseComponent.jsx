@@ -8,6 +8,33 @@ import { getImageSize } from './lib/CreativeEngineUtils';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
 
+const LABEL_BELOW_CARD_STYLE = {
+  cardLabelStyle: () => ({
+    height: '24px',
+    width: '72px',
+    left: '4px',
+    right: '4px',
+    bottom: '-32px',
+    padding: '0',
+    background: 'transparent',
+    overflow: 'hidden',
+    textOverflow: 'unset',
+    whiteSpace: 'unset',
+    fontSize: '10px',
+    lineHeight: '12px',
+    letterSpacing: '0.02em',
+    textAlign: 'center',
+    pointerEvents: 'none',
+    pointer: 'default'
+  }),
+  cardStyle: () => ({
+    height: '80px',
+    width: '80px',
+    marginBottom: '40px',
+    overflow: 'visible'
+  })
+};
+
 const INITIAL_DEMO_IMAGE_URL = `https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=dom-hill-nimElTcTNyY-unsplash.jpg&w=1920`;
 
 const CaseComponent = () => {
@@ -69,7 +96,8 @@ const CaseComponent = () => {
                     previewBackgroundType: 'contain',
                     gridBackgroundType: 'cover',
                     cardLabel: (assetResult) => assetResult.label,
-                    cardLabelPosition: () => 'bottom',
+                    cardStyle: LABEL_BELOW_CARD_STYLE.cardStyle,
+                    cardLabelStyle: LABEL_BELOW_CARD_STYLE.cardLabelStyle,
                     icon: ({ theme }) =>
                       caseAssetPath(`/apps-sizes-large-${theme}.svg`),
                     title: ({ group }) => {
@@ -89,7 +117,8 @@ const CaseComponent = () => {
                     previewBackgroundType: 'contain',
                     gridBackgroundType: 'cover',
                     cardLabel: (assetResult) => assetResult.label,
-                    cardLabelPosition: () => 'bottom',
+                    cardStyle: LABEL_BELOW_CARD_STYLE.cardStyle,
+                    cardLabelStyle: LABEL_BELOW_CARD_STYLE.cardLabelStyle,
                     icon: ({ theme }) =>
                       caseAssetPath(`/page-sizes-large-${theme}.svg`),
                     title: ({ group }) => {

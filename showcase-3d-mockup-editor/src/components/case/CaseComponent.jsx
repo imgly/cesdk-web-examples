@@ -297,9 +297,9 @@ const CaseComponent = () => {
           </div>
         </div>
 
-        <div className="cesdkWrapperStyle">
+        <div className={classes.cesdkWrapper}>
           <CreativeEditor
-            className="cesdkStyle"
+            className={classes.cesdk}
             config={config}
             configure={configure}
             onInstanceChange={setCesdk}
