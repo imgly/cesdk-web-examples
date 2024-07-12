@@ -249,9 +249,9 @@ const CaseComponent = () => {
 };
 
 const removeInstanceVariables = (cesdk) => {
-  cesdk.variable.findAll().forEach((variable) => {
-    cesdk.variable.remove(variable.name);
-  });
+  cesdk.variable.remove('Department');
+  cesdk.variable.remove('FirstName');
+  cesdk.variable.remove('LastName');
 };
 const setInstanceVariables = (cesdk, { department, firstName, lastName }) => {
   cesdk.variable.setString('Department', department || '');
