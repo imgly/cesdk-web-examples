@@ -1,16 +1,17 @@
 export const checkImageContent = async (engine) => {
-  const imageBlocksData = engine.block
-    .findByKind('image')
-    .map((blockId) => ({
-      blockId,
-      url: getImageUrl(engine, blockId),
-      blockType: engine.block.getType(blockId),
-      blockName: engine.block.getName(blockId)
-    }))
-    .filter(({ url }) => url);
+  const imageBlocksData = engine.block.findByKind('image').map((blockId) => ({
+    blockId,
+    url: engine.block.getString(
+      engine.block.getFill(blockId),
+      'fill/image/imageFileURI'
+    ),
+    blockType: engine.block.getType(blockId),
+    blockName: engine.block.getName(blockId)
+  }));
 
   const imagesWithValidity = await Promise.all(
     imageBlocksData.flatMap(async (imageBlockData) => {
+      console.log('Checking image content for', imageBlockData.url);
       const imageContentCategories = await checkImageContentAPI(
         imageBlockData.url
       );
@@ -84,27 +85,6 @@ export const checkImageContentAPI = async (url) => {
   ];
   complianceCache[url] = checksResult;
   return checksResult;
-};
-
-const getImageUrl = (engine, blockId) => {
-  const imageFill = engine.block.getFill(blockId);
-  const fillImageURI = engine.block.getString(
-    imageFill,
-    'fill/image/imageFileURI'
-  );
-  if (fillImageURI) {
-    return fillImageURI;
-  }
-
-  // check source set
-  const sourceSet = engine.block.getSourceSet(
-    imageFill,
-    'fill/image/sourceSet'
-  );
-  if (sourceSet && sourceSet.length) {
-    return sourceSet[0].uri;
-  }
-  return null;
 };
 
 // Poor Man's cache, prefilled with images in the scene
