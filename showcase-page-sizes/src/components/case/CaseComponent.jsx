@@ -7,6 +7,33 @@ import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON
 const caseAssetPath = (path, caseId = 'page-sizes') =>
   `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
 
+const LABEL_BELOW_CARD_STYLE = {
+  cardLabelStyle: () => ({
+    height: '24px',
+    width: '72px',
+    left: '4px',
+    right: '4px',
+    bottom: '-32px',
+    padding: '0',
+    background: 'transparent',
+    overflow: 'hidden',
+    textOverflow: 'unset',
+    whiteSpace: 'unset',
+    fontSize: '10px',
+    lineHeight: '12px',
+    letterSpacing: '0.02em',
+    textAlign: 'center',
+    pointerEvents: 'none',
+    pointer: 'default'
+  }),
+  cardStyle: () => ({
+    height: '80px',
+    width: '80px',
+    marginBottom: '40px',
+    overflow: 'visible'
+  })
+};
+
 const CaseComponent = () => {
   const config = useConfig(
     () => ({
@@ -67,7 +94,8 @@ const CaseComponent = () => {
                     previewBackgroundType: 'contain',
                     gridBackgroundType: 'cover',
                     cardLabel: (assetResult) => assetResult.label,
-                    cardLabelPosition: () => 'bottom',
+                    cardStyle: LABEL_BELOW_CARD_STYLE.cardStyle,
+                    cardLabelStyle: LABEL_BELOW_CARD_STYLE.cardLabelStyle,
                     icon: () => caseAssetPath('/page-sizes-large.svg'),
                     title: ({ group }) => {
                       if (group) {
