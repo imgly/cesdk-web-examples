@@ -27,7 +27,9 @@ export function useImageUpload({
     );
     Promise.allSettled(
       uploadedAssets.map(
-        async (asset) => await onUpload({ ...asset, context: { sourceId } })
+        async (asset) =>
+          // @ts-ignore
+          await onUpload({ ...asset, context: { sourceId }, active: false })
       )
     );
   }, [engine, sourceId, multiple, onUpload]);

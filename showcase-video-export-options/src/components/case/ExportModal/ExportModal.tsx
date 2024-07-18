@@ -81,13 +81,17 @@ export const ExportModal: React.FC<Props> = ({ engine }) => {
   }>(() => getResolution(engine));
   const fpsString = fps.toString();
   const [progress, setProgress] = useState(0);
+  const [isExporting, setIsExporting] = useState(false);
   const handleVideoExport = useCallback(async () => {
     const page = engine.scene.getCurrentPage();
     if (!page) {
       return;
     }
 
+    setIsExporting(true);
     setProgress(0);
+    // let react rounder
+    await new Promise((resolve) => setTimeout(resolve, 0));
     const blob = await engine.block.exportVideo(
       page,
       MimeType.Mp4,
@@ -102,6 +106,7 @@ export const ExportModal: React.FC<Props> = ({ engine }) => {
     );
     await localDownload(blob, `my-video`);
     setProgress(0);
+    setIsExporting(false);
   }, [engine, resolution, fps]);
 
   return (
@@ -150,7 +155,7 @@ export const ExportModal: React.FC<Props> = ({ engine }) => {
             onClick={() => {
               handleVideoExport();
             }}
-            disabled={progress > 0 || resolution.width > 3840}
+            disabled={isExporting || progress > 0 || resolution.width > 3840}
           >
             <span>Export</span>
             {progress === 0 ? <DownloadIcon /> : <LoadingSpinnerIcon />}

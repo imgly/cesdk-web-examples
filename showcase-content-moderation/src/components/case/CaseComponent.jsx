@@ -42,6 +42,17 @@ const ImageComplianceCESDK = () => {
                 format: ['image/png', 'application/pdf']
               }
             }
+          },
+          libraries: {
+            insert: {
+              entries: (defaultEntries) => {
+                return [
+                  ...defaultEntries.filter(
+                    ({ id }) => !['ly.img.upload'].includes(id)
+                  )
+                ];
+              }
+            }
           }
         }
       },
