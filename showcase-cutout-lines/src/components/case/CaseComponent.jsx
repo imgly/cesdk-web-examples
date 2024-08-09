@@ -1,8 +1,6 @@
 'use client';
 
-import CutoutLibraryPlugin, {
-  getCutoutLibraryInsertEntry
-} from '@imgly/plugin-cutout-library-web';
+import CutoutLibraryPlugin from '@imgly/plugin-cutout-library-web';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
@@ -24,18 +22,6 @@ const CaseComponent = () => {
                 format: ['application/pdf']
               }
             }
-          },
-          libraries: {
-            insert: {
-              entries: (defaultEntries) => {
-                return [
-                  ...defaultEntries.filter(
-                    (entry) => entry.id !== 'ly.img.template'
-                  ),
-                  getCutoutLibraryInsertEntry()
-                ];
-              }
-            }
           }
         }
       },
@@ -50,14 +36,24 @@ const CaseComponent = () => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
 
-    instance.unstable_addPlugin(
-      CutoutLibraryPlugin({
-        ui: {
-          locations: ['canvasMenu']
-        }
-      })
+    instance.addPlugin(
+      CutoutLibraryPlugin({ ui: { locations: ['canvasMenu'] } })
     );
-
+    const cutoutAssetEntry = instance.ui.getAssetLibraryEntry(
+      'ly.img.cutout.entry'
+    );
+    instance.ui.setDockOrder([
+      {
+        id: 'ly.img.assetLibrary.dock',
+        label: 'Cutout',
+        key: 'ly.img.assetLibrary.dock',
+        icon: cutoutAssetEntry?.icon,
+        entries: ['ly.img.cutout.entry']
+      },
+      ...instance.ui
+        .getDockOrder()
+        .filter(({ key }) => key !== 'ly.img.template')
+    ]);
     await instance.engine.scene.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/cutout-lines/example.scene`
     );
