@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { useEditor } from '../../EditorContext';
-import DownloadIcon from '../../icons/Download.svg';
-import LoadingSpinnerIcon from '../../icons/LoadingSpinner.svg';
+import { ReactComponent as DownloadIcon } from '../../icons/Download.svg';
+import { ReactComponent as LoadingSpinnerIcon } from '../../icons/LoadingSpinner.svg';
 import SmallButton from '../SmallButton/SmallButton';
 import classes from './TopBar.module.css';
 
 const TopBar = () => {
   const [isExporting, setIsExporting] = useState(false);
 
-  const { engine, editMode, refocus, canRecenter, enableAutoRecenter } =
+  const { creativeEngine, editMode, refocus, canRecenter, enableAutoRecenter } =
     useEditor();
 
   const handleExport = async () => {
     setIsExporting(true);
     // Let react rerender
     await new Promise((resolve) => setTimeout(resolve, 0));
-    const blob = await engine.block.export(
-      engine.scene.get(),
+    const blob = await creativeEngine.block.export(
+      creativeEngine.scene.get(),
       'image/jpeg',
       {}
     );

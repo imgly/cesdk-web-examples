@@ -9,15 +9,14 @@ const Slider = (props) => {
       className={classes.slider}
       thumbClassName={classes.thumb}
       trackClassName={classes.track}
-      renderThumb={({ key, ...props }) => (
-        <div {...props} key={key}>
+      renderThumb={(props, state) => (
+        <div {...props}>
           <span className={classes.innerThumb} />
         </div>
       )}
-      renderTrack={({ key, ...props }, state) => (
+      renderTrack={(props, state) => (
         <div
           {...props}
-          key={key}
           className={classNames(
             props.className,
             classes[`track--part-${state.index}`]

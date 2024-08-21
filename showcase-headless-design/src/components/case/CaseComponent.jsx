@@ -1,23 +1,22 @@
-'use client';
-
-import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import CreativeEngine from '@cesdk/engine';
 import classNames from 'classnames';
-import { useEffect, useMemo, useState } from 'react';
-import classes from './CaseComponent.module.css';
+import { ColorPicker } from 'components/ui/ColorPicker/ColorPicker';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { hexToRgba } from './convert';
-import CreativeEngine, {
-  useConfig,
-  useConfigure,
-  useCreativeEngine
-} from './lib/CreativeEngine';
-import { caseAssetPath } from './util';
+import classes from './CaseComponent.module.css';
+import { caseAssetPath, useDevicePixelRatio } from './util';
 
 const CaseComponent = () => {
-  const [engine, setEngine] = useCreativeEngine();
+  /** @type {[import("@cesdk/engine").default, Function]} CreativeEngine */
+  const [engine, setEngine] = useState();
+  const [isEngineLoaded, setIsEngineLoaded] = useState(false);
+  const [isSceneLoaded, setIsSceneLoaded] = useState(false);
+  const containerRef = useRef(null);
+
   const [headline, setHeadline] = useState();
   const [image, setImage] = useState(null);
-  const [fontName, setFontName] = useState(null);
+  const [font, setFont] = useState(null);
   const [colorHex, setColorHex] = useState('#C0C3C5');
   const colorRGBA = useMemo(() => {
     let { r, g, b } = hexToRgba(colorHex);
@@ -25,93 +24,130 @@ const CaseComponent = () => {
     return { r: r / 255, g: g / 255, b: b / 255 };
   }, [colorHex]);
 
-  const config = useConfig(
-    () => ({
-      license: process.env.NEXT_PUBLIC_LICENSE
-    }),
-    []
-  );
+  useEffect(() => {
 
-  const configure = useConfigure(async (engine) => {
-    await engine.addDefaultAssetSources();
-    await engine.addDemoAssetSources({ sceneMode: 'Design' });
-    engine.editor.setSettingBool('page/title/show', false);
-    engine.editor.setSettingBool('mouse/enableScroll', false);
-    engine.editor.setSettingBool('mouse/enableZoom', false);
-    engine.editor.setSettingBool('doubleClickToCropEnabled', false);
-    await engine.scene.loadFromURL(caseAssetPath('/example.scene'));
-    const [page] = engine.block.findByKind('page');
-    // // Leave some extra space bottom for the gizmo
-    engine.scene.zoomToBlock(page, 10, 10, 10, 50);
+    if (!containerRef.current || isEngineLoaded) {
+      return;
+    }
+    /** @type {import("@cesdk/engine").Configuration} */
+    const config = {
+      page: {
+        title: {
+          show: false
+        }
+      }
+    };
+
+    let engineToBeDisposed;
+    CreativeEngine.init(config).then(async (instance) => {
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
+      engineToBeDisposed = instance;
+      setEngine(instance);
+      setIsEngineLoaded(true);
+    });
+
+    return function shutdownCreativeEngine() {
+      engineToBeDisposed?.dispose();
+    };
+    // eslint-disable-next-line
   }, []);
 
   useEffect(
-    function updateSceneColors() {
-      if (!engine || !colorRGBA) return;
-
-      const page = engine.block.findByKind('page')[0];
-      const text = engine.block.findByKind('text')[0];
-      let { r, g, b } = colorRGBA;
-      engine.block.setColor(page, 'fill/solid/color', { r, g, b, a: 1 });
-      engine.block.setColor(text, 'fill/solid/color', { r, g, b, a: 1 });
+    function initializeScene() {
+      if (!isEngineLoaded) {
+        return;
+      }
+      const container = containerRef.current;
+      const canvas = engine.element;
+      async function initializeScene() {
+        engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
+        await engine.scene.loadFromURL(caseAssetPath('/example.scene'));
+        container.append(canvas);
+        await engine.scene.zoomToBlock(engine.scene.get(), 0, 0, 0, 0);
+        setIsSceneLoaded(true);
+      }
+      initializeScene();
+      return () => {
+        canvas.remove();
+      };
     },
-    [colorRGBA, engine]
+    [engine, isEngineLoaded]
+  );
+
+  // We need to refocus the scene when the DPR changes, e.g when the window is moved between monitors.
+  const [dpr] = useDevicePixelRatio();
+  useEffect(
+    function refocusAfterDPRChange() {
+      if (isSceneLoaded && dpr) {
+        engine.scene.zoomToBlock(engine.scene.get(), 0, 0, 0, 0);
+      }
+    },
+    [dpr, engine, isSceneLoaded]
+  );
+
+  // We need to refocus the scene when the canvas size changes.
+  useEffect(
+    function refocusAfterCanvasSizeChange() {
+      if (isSceneLoaded) {
+        const resizeObserver = new ResizeObserver(async () => {
+          await engine.scene.zoomToBlock(engine.scene.get(), 0, 0, 0, 0);
+        });
+        resizeObserver.observe(engine.element);
+        return () => {
+          resizeObserver.disconnect();
+        };
+      }
+    },
+    [engine, isSceneLoaded]
+  );
+
+  useEffect(
+    function updateSceneColors() {
+      if (isSceneLoaded && colorRGBA) {
+        const page = engine.block.findByType('page')[0];
+        const text = engine.block.findByType('//ly.img.ubq/text')[0];
+        let { r, g, b } = colorRGBA;
+        engine.block.setColorRGBA(page, 'fill/solid/color', r, g, b, 1.0);
+        engine.block.setColorRGBA(text, 'fill/solid/color', r, g, b, 1.0);
+      }
+    },
+    [colorRGBA, engine, isSceneLoaded]
   );
 
   useEffect(
     function updateFontFamily() {
-      if (!engine || !fontName) return;
-
-      async function updateFontFamily() {
-        const textBlock = engine.block.findByKind('text')[0];
-        const typefaceAssetResults = await engine.asset.findAssets(
-          'ly.img.typeface',
-          {
-            query: fontName,
-            page: 0,
-            perPage: 1
-          }
-        );
-        const typefaceAsset = typefaceAssetResults.assets[0];
-        if (!typefaceAsset) {
-          console.error(`Could not find font with name ${fontName}`);
-          return;
-        }
-        const typeface = typefaceAsset.payload.typeface;
-        const font = typeface.fonts.find(
-          (font) => font.weight === 'normal' && font.style === 'normal'
-        );
-        engine.block.setFont(textBlock, font.uri, typeface);
+      if (isSceneLoaded && font) {
+        const textBlock = engine.block.findByType('//ly.img.ubq/text')[0];
+        engine.block.setString(textBlock, 'text/fontFileUri', font.value);
       }
-
-      updateFontFamily();
     },
-    [fontName, engine]
+    [font, engine, isSceneLoaded]
   );
 
   useEffect(
     function updateImageFile() {
-      if (engine && image) {
-        const imageBlock = engine.block.findByKind('image')[0];
-        const fill = engine.block.getFill(imageBlock);
-        engine.block.setString(fill, 'fill/image/imageFileURI', image.full);
+      if (isSceneLoaded && image) {
+        const imageBlock = engine.block.findByType('image')[0];
+        engine.block.setString(imageBlock, 'image/imageFileURI', image.full);
         // We need to reset the crop after changing an image file to ensure that it is shown in full.
         engine.block.resetCrop(imageBlock);
       }
     },
-    [image, engine]
+    [image, engine, isSceneLoaded]
   );
 
   useEffect(
     function updateText() {
-      if (!engine || !headline) return;
-      engine.variable.setString('quote', headline);
+      if (isSceneLoaded && headline) {
+        engine.variable.setString('quote', headline);
+      }
     },
-    [headline, engine]
+    [headline, engine, isSceneLoaded]
   );
 
   const randomizeParameters = () => {
-    setFontName(FONTS[Math.floor(Math.random() * FONTS.length)]);
+    setFont(FONTS[Math.floor(Math.random() * FONTS.length)]);
     setImage(IMAGES[Math.floor(Math.random() * IMAGES.length)]);
     setHeadline(QUOTES[Math.floor(Math.random() * QUOTES.length)]);
     setColorHex(COLORS[Math.floor(Math.random() * COLORS.length)]);
@@ -119,8 +155,15 @@ const CaseComponent = () => {
 
   return (
     <div className={classes.wrapper}>
+      <div className="caseHeader">
+        <h3>Automatic Design Generation</h3>
+        <p>
+          Use our API and underlying creative engine to autogenerate
+          ready-to-use designs by selecting input parameters.
+        </p>
+      </div>
       <div className={classes.inputsWrapper}>
-        <h4 className={'h4'}>Select Content</h4>
+        <h4 className={classes.headline}>Select Content</h4>
         <div className={classes.imageSelectionWrapper}>
           {IMAGES.map((someImage, i) => (
             <button onClick={() => setImage(someImage)} key={someImage.thumb}>
@@ -147,17 +190,19 @@ const CaseComponent = () => {
               id="font"
               className={classNames(
                 'select',
-                !fontName && 'select--placeholder'
+                !font?.value && 'select--placeholder'
               )}
-              value={fontName || 'placeholder'}
-              onChange={(e) => setFontName(e.target.value)}
+              value={font?.value || 'placeholder'}
+              onChange={(e) =>
+                setFont(FONTS.find((font) => font.value === e.target.value))
+              }
             >
               <option value="placeholder" disabled>
                 Select Font
               </option>
-              {FONTS.map((name) => (
-                <option key={name} value={name}>
-                  {name}
+              {FONTS.map(({ label, value }) => (
+                <option key={value} value={value}>
+                  {label}
                 </option>
               ))}
             </select>
@@ -173,22 +218,18 @@ const CaseComponent = () => {
         </div>
         <div>
           <button
-            className="button button--primary"
+            className="button button--light-white"
             onClick={() => randomizeParameters()}
           >
             Shuffle
           </button>
         </div>
       </div>
-      <div className="flex flex-col flex-grow space-y-2 w-full items-center">
-        <h4 className="h4">Generated Design</h4>
-        {!engine && <LoadingSpinner />}
-        <CreativeEngine
-          config={config}
-          configure={configure}
-          onInstanceChange={setEngine}
-          className={classes.canvas}
-        />
+      <div className="space-y-2">
+        <h4 className={classes.headline}>Generated Design</h4>
+        <div ref={containerRef} className={classes.canvas}>
+          {!isSceneLoaded && <LoadingSpinner />}
+        </div>
       </div>
     </div>
   );
@@ -197,11 +238,28 @@ const CaseComponent = () => {
 const COLORS = ['#2B3B52', '#4700BB', '#72332E', '#BA9820', '#FF6363'];
 
 const FONTS = [
-  'Playfair display',
-  'Poppins',
-  'Rasa',
-  'Courier Prime',
-  'Caveat'
+  {
+    value:
+      '/extensions/ly.img.cesdk.fonts/fonts/Playfair_Display/PlayfairDisplay-SemiBold.ttf',
+    label: 'Playfair display'
+  },
+  {
+    label: 'Poppins',
+    value: '/extensions/ly.img.cesdk.fonts/fonts/Poppins/Poppins-Bold.ttf'
+  },
+  {
+    label: 'Rasa',
+    value: '/extensions/ly.img.cesdk.fonts/fonts/Rasa/Rasa-Bold.ttf'
+  },
+  {
+    label: 'Courier Prime',
+    value:
+      '/extensions/ly.img.cesdk.fonts/fonts/CourierPrime/CourierPrime-Bold.ttf'
+  },
+  {
+    label: 'Caveat',
+    value: '/extensions/ly.img.cesdk.fonts/fonts/Caveat/Caveat-Bold.ttf'
+  }
 ];
 // https://unsplash.com/photos/9COU9FyUIMU
 // https://unsplash.com/photos/A2BMfcZH_Ig

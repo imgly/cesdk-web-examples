@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 import { useEffect, useState } from 'react';
 import { useEditor } from '../../EditorContext';
 import BottomControls from '../BottomControls/BottomControls';
@@ -8,7 +8,7 @@ import TopBar from '../TopBar/TopBar';
 import classes from './PhotoUI.module.css';
 
 const PhotoUI = () => {
-  const { sceneIsLoaded, engine, editMode, refocus, setCanRecenter } =
+  const { sceneIsLoaded, creativeEngine, editMode, refocus, setCanRecenter } =
     useEditor();
 
   const [isDragging, setIsDragging] = useState(false);
@@ -20,7 +20,7 @@ const PhotoUI = () => {
     }
     let previousTimeout;
     const onMouseUp = (e) => {
-      if (e.target !== engine.element) {
+      if (e.target !== creativeEngine.element) {
         return;
       }
       setCanRecenter(true);
@@ -36,27 +36,28 @@ const PhotoUI = () => {
 
     const onMouseDown = (e) => {
       if (
-        e.target === engine.element &&
-        DRAGGING_CURSORS.includes(engine.editor.getCursorType())
+        e.target === creativeEngine.element &&
+        DRAGGING_CURSORS.includes(creativeEngine.editor.getCursorType())
       ) {
         setIsDragging(true);
       }
     };
-    engine.element.addEventListener('mousedown', onMouseDown);
-    engine.element.addEventListener('touchstart', onMouseDown);
+    creativeEngine.element.addEventListener('mousedown', onMouseDown);
+    creativeEngine.element.addEventListener('touchstart', onMouseDown);
 
     window.addEventListener('mouseup', onMouseUp);
     window.addEventListener('touchend', onMouseUp);
     window.addEventListener('touchcancel', onMouseUp);
     return () => {
-      engine.element?.removeEventListener('mousedown', onMouseDown);
-      engine.element?.removeEventListener('touchstart', onMouseDown);
+      creativeEngine.element.removeEventListener('mousedown', onMouseDown);
+      creativeEngine.element.removeEventListener('touchstart', onMouseDown);
 
       window.removeEventListener('mouseup', onMouseUp);
       window.removeEventListener('touchend', onMouseUp);
       window.removeEventListener('touchcancel', onMouseUp);
     };
-  }, [engine, editMode, refocus, sceneIsLoaded, setCanRecenter]);
+  }, [creativeEngine, editMode, refocus, sceneIsLoaded, setCanRecenter]);
+
 
   return (
     <div

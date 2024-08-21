@@ -1,8 +1,6 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.4/cesdk.umd.js';
 
 const config = {
-  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  userId: 'guides-user',
   ui: {
     // docs-ui-elements
     elements: {
@@ -44,8 +42,7 @@ const config = {
       panels: {
         inspector: {
           show: true, // true or false
-          position: 'left', // 'left' or 'right'
-          floating: false // true or false
+          position: 'left' // 'left' or 'right'
         },
         assetLibrary: {
           show: true, // true or false
@@ -91,7 +88,7 @@ const config = {
       blocks: {
         opacity: false, // true  or false
         transform: false, // true  or false
-        '//ly.img.ubq/graphic': {
+        '//ly.img.ubq/image': {
           adjustments: true, // true  or false
           filters: false, // true  or false
           effects: false, // true  or false
@@ -109,14 +106,9 @@ const config = {
       // docs-ui-blocks
     }
     // docs-ui-elements
-  },
-  callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
+  }
 };
 
-CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
-  // Do something with the instance of CreativeEditor SDK, for example:
-  // Populate the asset library with default / demo asset sources.
-  instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design' });
-  await instance.createDesignScene();
+CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
+  /** do something with the instance of CreativeEditor SDK * */
 });

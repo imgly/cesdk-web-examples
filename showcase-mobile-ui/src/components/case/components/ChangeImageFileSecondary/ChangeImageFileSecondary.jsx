@@ -1,4 +1,5 @@
 import { useEditor } from '../../EditorContext';
+import { replaceImage } from '../../lib/CreativeEngineUtils';
 import ImageSelect from '../ImageSelect/ImageSelect';
 import {
   SlideUpPanelBody,
@@ -7,31 +8,22 @@ import {
 import UploadImageButton from '../UploadImageButton/UploadImageButton';
 
 const ChangeImageFileSecondary = ({ onClose }) => {
-  const { engine, selectedBlocks } = useEditor();
+  const { creativeEngine, selectedBlocks } = useEditor();
 
   return (
     <>
       <SlideUpPanelHeader headline="Replace">
         <UploadImageButton
           multiple={false}
-          onUpload={(asset) =>
-            engine.asset.applyToBlock(
-              asset.context.sourceId,
-              asset,
-              selectedBlocks[0].id
-            )
+          onUpload={(imageURL) =>
+            replaceImage(creativeEngine, selectedBlocks[0].id, imageURL)
           }
         />
       </SlideUpPanelHeader>
       <SlideUpPanelBody>
         <ImageSelect
-          onSelect={(asset) => {
-            engine.asset.applyToBlock(
-              asset.context.sourceId,
-              asset,
-              selectedBlocks[0].id
-            );
-            engine.block.resetCrop(selectedBlocks[0].id);
+          onSelect={(imageURL) => {
+            replaceImage(creativeEngine, selectedBlocks[0].id, imageURL);
             onClose();
           }}
         />
