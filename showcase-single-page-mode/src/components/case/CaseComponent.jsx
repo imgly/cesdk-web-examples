@@ -15,7 +15,7 @@ const CaseComponent = () => {
 
   const config = useConfig(
     () => ({
-      role: 'Adopter',
+      role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       featureFlags: {
@@ -81,7 +81,7 @@ const CaseComponent = () => {
 
   return (
     <div style={wrapperStyle} className="space-y-2">
-      <div className="flex flex-col items-center mobile-padding-top">
+      <div className="flex flex-col items-center">
         {pageIds && cesdk && (
           <SegmentedControl
             options={pageIds.map((id, index) => ({
