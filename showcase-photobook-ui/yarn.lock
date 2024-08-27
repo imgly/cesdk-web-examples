@@ -1140,10 +1140,10 @@
   dependencies:
     "@imgly/background-removal" "^1.5.3"
 
-"@imgly/plugin-cutout-library-web@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@imgly/plugin-cutout-library-web/-/plugin-cutout-library-web-1.0.1.tgz#30cff40325eec84015547cb5988b1260f7ff267d"
-  integrity sha512-EXHrXe9D7y6lb6jcunTfl0+uNplBeiuT5V5xxlZlaI4Ox0YEhv4JQI0bn7E2MvQYpYDjx6JFnGH0wwpVQjoRUA==
+"@imgly/plugin-cutout-library-web@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@imgly/plugin-cutout-library-web/-/plugin-cutout-library-web-1.0.2.tgz#1b881823b27e8fb91d15fe850095ca60b1533420"
+  integrity sha512-uyPrv/LkQbbdDip+4myopeTs72hGcY8GgJCsR5AZMfZXQgwbWEb9pF+I6msejSVaSnWxgNveorGcqq2/9hUW7g==
   dependencies:
     lodash "^4.17.21"
 
@@ -1153,6 +1153,14 @@
   integrity sha512-7x34dv7lQmdnZU1u8blmxnqu8G/tFUDJ5Z/+ZReux0j1bA+2zeb6ZCBraRhtjE23tRYd9lGmYsunntVXz7s3cQ==
   dependencies:
     "@imgly/vectorizer" "1.0.0"
+
+"@imgly/psd-importer@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@imgly/psd-importer/-/psd-importer-0.0.2.tgz#5c168cec1b94db1eb0e73eb5576bea577904947c"
+  integrity sha512-EwfMBuisb4HK0C2Iw0Kp6OCEDjBTVCdYcTL5OdnWSzV7vxcmTkoPKcnEiG5VV/x7iy2AeIY9CqbS6GkROlVQeg==
+  dependencies:
+    "@webtoon/psd" "^0.4.0"
+    opentype.js "^1.3.4"
 
 "@imgly/vectorizer@1.0.0":
   version "1.0.0"
@@ -1614,6 +1622,11 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
+
+"@webtoon/psd@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@webtoon/psd/-/psd-0.4.0.tgz#855cb6541a67ce8add4be5d0c5b8e9eb0193cc8f"
+  integrity sha512-ztriE8oFOamRrV9opBURDy+JMiyhur2//vOXsC5CgdnYCB0L1Lnaag4NzP8N+NFCj7uNz9JRYtPmAbQMSDLIsQ==
 
 abort-controller@^3.0.0:
   version "3.0.0"
@@ -3561,6 +3574,14 @@ onnxruntime-web@~1.18.0:
     platform "^1.3.6"
     protobufjs "^7.2.4"
 
+opentype.js@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/opentype.js/-/opentype.js-1.3.4.tgz#1c0e72e46288473cc4a4c6a2dc60fd7fe6020d77"
+  integrity sha512-d2JE9RP/6uagpQAVtJoF0pJJA/fgai89Cc50Yp0EJHk+eLp6QQ7gBoblsnubRULNY132I0J1QKMJ+JTbMqz4sw==
+  dependencies:
+    string.prototype.codepointat "^0.2.1"
+    tiny-inflate "^1.0.3"
+
 optionator@^0.9.3:
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.9.3.tgz#007397d44ed1872fdc6ed31360190f81814e2c64"
@@ -4033,6 +4054,11 @@ string-width@^5.0.1, string-width@^5.1.2:
     emoji-regex "^9.2.2"
     strip-ansi "^7.0.1"
 
+string.prototype.codepointat@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/string.prototype.codepointat/-/string.prototype.codepointat-0.2.1.tgz#004ad44c8afc727527b108cd462b4d971cd469bc"
+  integrity sha512-2cBVCj6I4IOvEnjgO/hWqXjqBGsY+zwPmHl12Srk9IXSZ56Jwwmy+66XO5Iut/oQVR7t5ihYdLB0GMa4alEUcg==
+
 string.prototype.matchall@^4.0.10:
   version "4.0.10"
   resolved "https://registry.yarnpkg.com/string.prototype.matchall/-/string.prototype.matchall-4.0.10.tgz#a1553eb532221d4180c51581d6072cd65d1ee100"
@@ -4164,6 +4190,11 @@ three@^0.154.0:
   version "0.154.0"
   resolved "https://registry.yarnpkg.com/three/-/three-0.154.0.tgz#dbef21e10fe6015ec283acc60d0eb58733991e27"
   integrity sha512-Uzz8C/5GesJzv8i+Y2prEMYUwodwZySPcNhuJUdsVMH2Yn4Nm8qlbQe6qRN5fOhg55XB0WiLfTPBxVHxpE60ug==
+
+tiny-inflate@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-inflate/-/tiny-inflate-1.0.3.tgz#122715494913a1805166aaf7c93467933eea26c4"
+  integrity sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==
 
 to-fast-properties@^2.0.0:
   version "2.0.0"
