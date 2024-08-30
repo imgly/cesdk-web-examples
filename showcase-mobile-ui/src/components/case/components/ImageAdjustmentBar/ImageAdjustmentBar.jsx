@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react';
 import ChangeImageFileSecondary from '../ChangeImageFileSecondary/ChangeImageFileSecondary';
 
 import { useEditor } from '../../EditorContext';
-import CropIcon from '../../icons/Crop.svg';
-import ReplaceIcon from '../../icons/Replace.svg';
+import { ReactComponent as CropIcon } from '../../icons/Crop.svg';
+import { ReactComponent as ReplaceIcon } from '../../icons/Replace.svg';
 import ChangeCropSecondary from '../ChangeCropSecondary/ChangeCropSecondary';
 import InspectorBar from '../InspectorBar/InspectorBar';
 import SlideUpPanel from '../SlideUpPanel/SlideUpPanel';
@@ -24,7 +24,7 @@ const ALL_ADJUSTMENTS = [
 
 const ImageAdjustmentBar = () => {
   const [selectedAdjustmentId, setSelectedAdjustmentId] = useState();
-  const { editMode, engine } = useEditor();
+  const { editMode, creativeEngine } = useEditor();
 
   const calculatedAdjustmentId = useMemo(
     () => (editMode === 'Crop' ? 'crop' : selectedAdjustmentId),
@@ -47,7 +47,7 @@ const ImageAdjustmentBar = () => {
       isExpanded={!!calculatedAdjustmentId}
       onExpandedChanged={(value) => {
         if (!value) {
-          engine.editor.setEditMode('Transform');
+          creativeEngine.editor.setEditMode('Transform');
           setSelectedAdjustmentId();
         }
       }}
@@ -57,10 +57,10 @@ const ImageAdjustmentBar = () => {
           onAdjustmentChange={(newAdjustmentId) => {
             if (newAdjustmentId === 'crop') {
               setSelectedAdjustmentId();
-              engine.editor.setEditMode('Crop');
+              creativeEngine.editor.setEditMode('Crop');
             } else {
               setSelectedAdjustmentId(newAdjustmentId);
-              engine.editor.setEditMode('Transform');
+              creativeEngine.editor.setEditMode('Transform');
             }
           }}
           adjustments={ALL_ADJUSTMENTS}

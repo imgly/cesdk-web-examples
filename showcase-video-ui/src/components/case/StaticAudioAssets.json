@@ -11,7 +11,7 @@
         "uri": "{{base_url}}/Cody_Martin_Lemon_Drop_instrumental_4_19.mp3",
         "thumbUri": "{{base_url}}/thumbnails/cody-martin.jpeg",
         "blockType": "//ly.img.ubq/audio",
-        "mimeType": "audio/mpeg",
+        "mimeType": "audio/m4a",
         "duration": "259"
       }
     },
@@ -24,7 +24,7 @@
         "uri": "{{base_url}}/Daniele_Musto_Hiphoppin_instrumental_2_08.mp3",
         "thumbUri": "{{base_url}}/thumbnails/daniele-musto.jpeg",
         "blockType": "//ly.img.ubq/audio",
-        "mimeType": "audio/mpeg",
+        "mimeType": "audio/m4a",
         "duration": "128"
       }
     },
@@ -37,7 +37,7 @@
         "uri": "{{base_url}}/Daniele_Musto_Not_Scurred_background_vocals_2_37.mp3",
         "thumbUri": "{{base_url}}/thumbnails/daniele-musto.jpeg",
         "blockType": "//ly.img.ubq/audio",
-        "mimeType": "audio/mpeg",
+        "mimeType": "audio/m4a",
         "duration": "158"
       }
     },
@@ -50,7 +50,7 @@
         "uri": "{{base_url}}/PALA_Cabo_Cantina_background_vocals_3_25.mp3",
         "thumbUri": "{{base_url}}/thumbnails/pala-cabo.png",
         "blockType": "//ly.img.ubq/audio",
-        "mimeType": "audio/mpeg",
+        "mimeType": "audio/m4a",
         "duration": "205"
       }
     },
@@ -63,7 +63,7 @@
         "uri": "{{base_url}}/Sam_Barsh_That_Corner_In_Harlem_instrumental_3_14.mp3",
         "thumbUri": "{{base_url}}/thumbnails/sam-barsh.png",
         "blockType": "//ly.img.ubq/audio",
-        "mimeType": "audio/mpeg",
+        "mimeType": "audio/m4a",
         "duration": "194"
       }
     },
@@ -76,7 +76,7 @@
         "uri": "{{base_url}}/TAYME_Then_Now_instrumental_3_28.mp3",
         "thumbUri": "{{base_url}}/thumbnails/Tayme.png",
         "blockType": "//ly.img.ubq/audio",
-        "mimeType": "audio/mpeg",
+        "mimeType": "audio/m4a",
         "duration": "208"
       }
     },
@@ -89,7 +89,7 @@
         "uri": "{{base_url}}/Tiger_Gang_The_Goat_instrumental_2_56.mp3",
         "thumbUri": "{{base_url}}/thumbnails/tiger-gang.jpeg",
         "blockType": "//ly.img.ubq/audio",
-        "mimeType": "audio/mpeg",
+        "mimeType": "audio/m4a",
         "duration": "177"
       }
     }

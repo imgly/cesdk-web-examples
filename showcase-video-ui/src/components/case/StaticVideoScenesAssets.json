@@ -1,48 +1,15 @@
 {
   "version": "1.0.0",
-  "id": "ly.img.video.scene",
+  "id": "ly.img.video.templates",
   "assets": [
     {
-      "id": "month-in-review",
+      "id": "milli-surf-school",
       "label": {
-        "en": "Month in Review · Story Example"
+        "en": "Surf School · Portrait Example"
       },
       "meta": {
-        "uri": "{{base_url}}/month-in-review.scene",
-        "thumbUri": "{{base_url}}/month-in-review.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
-    },
-    {
-      "id": "my-new-hobby",
-      "label": {
-        "en": "My Hobby · Story Example"
-      },
-      "meta": {
-        "uri": "{{base_url}}/my-new-hobby.scene",
-        "thumbUri": "{{base_url}}/my-new-hobby.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
-    },
-    {
-      "id": "red-dot",
-      "label": {
-        "en": "Red Dot · Story Example"
-      },
-      "meta": {
-        "uri": "{{base_url}}/red-dot.scene",
-        "thumbUri": "{{base_url}}/red-dot.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
-    },
-    {
-      "id": "milli",
-      "label": {
-        "en": "Milli · Portrait Example"
-      },
-      "meta": {
-        "uri": "{{base_url}}/milli.scene",
-        "thumbUri": "{{base_url}}/milli.png",
+        "uri": "{{base_url}}/milli-surf-school.scene",
+        "thumbUri": "{{base_url}}/milli-surf-school.png",
         "blockType": "//ly.img.ubq/scene"
       }
     },
@@ -65,28 +32,6 @@
       "meta": {
         "uri": "{{base_url}}/yoga.scene",
         "thumbUri": "{{base_url}}/yoga.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
-    },
-    {
-      "id": "ecommerce",
-      "label": {
-        "en": "Lunar Beauty · E-Commerce Example"
-      },
-      "meta": {
-        "uri": "{{base_url}}/ecommerce.scene",
-        "thumbUri": "{{base_url}}/ecommerce.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
-    },
-    {
-      "id": "sales",
-      "label": {
-        "en": "IMG.LY · Sales Example"
-      },
-      "meta": {
-        "uri": "{{base_url}}/sales.scene",
-        "thumbUri": "{{base_url}}/sales.png",
         "blockType": "//ly.img.ubq/scene"
       }
     }

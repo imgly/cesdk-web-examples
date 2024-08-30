@@ -11,7 +11,3 @@
 .wrapper * {
   pointer-events: all;
 }
-
-.wrapper cesdk-canvas {
-  border-radius: 20px;
-}

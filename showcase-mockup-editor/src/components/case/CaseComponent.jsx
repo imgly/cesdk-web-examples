@@ -1,90 +1,73 @@
-'use client';
-
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
-import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import CreativeEngine from '@cesdk/engine';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
 import classNames from 'classnames';
-import { useEffect, useMemo, useState } from 'react';
-import classes from './CaseComponent.module.css';
+import CreativeEngine from '@cesdk/engine';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import EditMockupCESDK from './Components/EditMockupCESDK/EditMockupCESDK';
-import DownloadIcon from './Download.svg';
-import EditIcon from './Edit.svg';
-import FullscreenEnterIcon from './FullscreenEnter.svg';
-import FullscreenLeaveIcon from './FullscreenLeave.svg';
-import CreativeEditor, {
-  useConfig,
-  useConfigure,
-  useCreativeEditor
-} from './lib/CreativeEditor';
-import { useCreativeEngine } from './lib/CreativeEngine';
+import { ReactComponent as DownloadIcon } from './Download.svg';
+import { ReactComponent as FullscreenEnterIcon } from './FullscreenEnter.svg';
+import { ReactComponent as FullscreenLeaveIcon } from './FullscreenLeave.svg';
+import { ReactComponent as EditIcon } from './Edit.svg';
+import classes from './CaseComponent.module.css';
 
 const PRODUCTS = {
   businesscard: {
-    label: 'Business Card',
     scenePath: 'business-card.scene',
     sceneTitle: 'Business Card Design',
-    mockupScenePath: 'business-card-mockup.scene'
+    mockupScenePath: 'business-card-mockup.scene',
+    previewDPI: 300
   },
   poster: {
-    label: 'Poster',
     scenePath: 'poster.scene',
     sceneTitle: 'Poster Design',
-    mockupScenePath: 'poster-mockup.scene'
+    mockupScenePath: 'poster-mockup.scene',
+    previewDPI: 72
   },
   socialmedia: {
-    label: 'Social Media',
     scenePath: 'social-media.scene',
     sceneTitle: 'Social Media Post',
-    mockupScenePath: 'social-media-mockup.scene'
+    mockupScenePath: 'social-media-mockup.scene',
+    previewDPI: 300
   },
   postcard: {
-    label: 'Post Card',
     scenePath: 'postcard.scene',
     sceneTitle: 'Postcard Design',
-    mockupScenePath: 'postcard-mockup.scene'
+    mockupScenePath: 'postcard-mockup.scene',
+    previewDPI: 300
   },
   apparel: {
-    label: 'Apparel',
     scenePath: 'apparel.scene',
     sceneTitle: 'T-Shirt Design',
-    mockupScenePath: 'apparel-mockup.scene'
+    mockupScenePath: 'apparel-mockup.scene',
+    previewDPI: 72
   }
 };
-const WHITE_1_PX_IMAGE_PATH = `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/1x1-ffffffff.png`;
+const MOCKUP_ENGINE_TIMEOUT = 1500;
+const WHITE_1_PX_IMAGE_PATH = `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/1x1-ffffffff.png`;
 
-export const replaceImages = (engine, imageName, newUrl) => {
-  const images = engine.block.findByName(imageName);
+export const replaceImages = (cesdk, imageName, newUrl) => {
+  const images = cesdk.block.findByName(imageName);
 
   images.forEach((image) => {
-    const fill = engine.block.getFill(image);
-    engine.block.setString(fill, 'fill/image/imageFileURI', newUrl);
+    cesdk.block.setString(image, 'image/imageFileURI', newUrl);
+    cesdk.block.resetCrop(image);
   });
 };
 
-const CaseComponent = () => {
-  const [engine, setEngine] = useCreativeEngine();
-  const [cesdk, setCesdk] = useCreativeEditor();
-
+const CaseComponent = ({ product = 'postcard' }) => {
+  const cesdkContainerRef = useRef(null);
+  const cesdkEngineRef = useRef(null);
+  const mockupEngineRef = useRef(null);
   const [currentMockupScene, setCurrentMockupScene] = useState();
   const [mockupEditorVisible, setMockupEditorVisible] = useState(false);
   const [currentMockupUrl, setCurrentMockupUrl] = useState('');
   const [mockupLoading, setMockupLoading] = useState(true);
   const [mockupRendering, setMockupRendering] = useState(false);
   const [mockupFullscreen, setMockupFullscreen] = useState(false);
-
+  const [cesdkEngineLoaded, setCesdkEngineLoaded] = useState(false);
+  const [mockupEngineLoaded, setMockupEngineLoaded] = useState(false);
   const [isDirty, setIsDirty] = useState(true);
 
-  const search = window.location.search;
-  const params = new URLSearchParams(search);
-  const productParam = params.get('c_product') || 'postcard';
-  const [product, setProduct] = useState(productParam);
-  // Syncs the selected product with the URL for demonstration purposes
-  useEffect(() => {
-    const search = window.location.search;
-    const params = new URLSearchParams(search);
-    params.set('c_product', product);
-    window.history.pushState({}, '', `${window.location.pathname}?${params}`);
-  }, [product]);
   const productConfig = useMemo(() => PRODUCTS[product], [product]);
 
   const downloadMockup = () => {
@@ -102,36 +85,47 @@ const CaseComponent = () => {
     setMockupLoading(true);
     // let react render
     await new Promise((resolve) => setTimeout(resolve, 0));
+    const cesdkEngine = cesdkEngineRef.current.engine;
+    const cesdkScene = cesdkEngine.block.findByType('scene')[0];
+    const mockupCesdk = mockupEngineRef.current;
+    const originalDPI = cesdkEngine.block.getFloat(cesdkScene, 'scene/dpi');
 
     let pageBlobs = [];
+    // Reduce DPI for faster previews
+    cesdkEngine.block.setFloat(
+      cesdkScene,
+      'scene/dpi',
+      productConfig.previewDPI
+    );
     // Render pages in sequence
-    for (const blockId of cesdk.engine.block.findByKind('page')) {
-      const pageBlob = await cesdk.engine.block.export(blockId, 'image/png', {
-        // Reduce size for faster previews
-        targetWidth: 512,
-        targetHeight: 512
-      });
+    for (const blockId of cesdkEngine.block.findByType('page')) {
+      const pageBlob = await cesdkEngine.block.export(blockId, 'image/png');
       pageBlobs = [...pageBlobs, pageBlob];
     }
+    cesdkEngine.block.setFloat(cesdkScene, 'scene/dpi', originalDPI);
 
     if (currentMockupScene) {
-      await engine.scene.loadFromString(currentMockupScene);
+      await mockupCesdk.scene.loadFromString(currentMockupScene);
     } else {
-      await engine.scene.loadFromURL(
-        `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.mockupScenePath}`
+      await mockupCesdk.scene.loadFromURL(
+        `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
       );
     }
     // Fill unused pages in the mockup with white.
     for (let index = pageBlobs.length; index <= 10; index++) {
-      replaceImages(engine, `Image ${index + 1}`, WHITE_1_PX_IMAGE_PATH);
+      replaceImages(mockupCesdk, `Image ${index + 1}`, WHITE_1_PX_IMAGE_PATH);
     }
     pageBlobs.forEach((blob, index) => {
-      replaceImages(engine, `Image ${index + 1}`, URL.createObjectURL(blob));
+      replaceImages(
+        mockupCesdk,
+        `Image ${index + 1}`,
+        URL.createObjectURL(blob)
+      );
     });
-    const scene = engine.scene.get();
-    const mockupScene = await engine.scene.saveToString();
+    const scene = mockupCesdk.block.findByType('scene')[0];
+    const mockupScene = await mockupCesdk.scene.saveToString();
     setCurrentMockupScene(mockupScene);
-    const mockupBlob = await engine.block.export(scene, 'image/jpeg');
+    const mockupBlob = await mockupCesdk.block.export(scene, 'image/jpeg');
     setCurrentMockupUrl(URL.createObjectURL(mockupBlob));
     setIsDirty(false);
     setMockupLoading(false);
@@ -140,56 +134,45 @@ const CaseComponent = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (cesdk && engine && isDirty) {
+      if (cesdkEngineLoaded && mockupEngineLoaded && isDirty) {
         renderMockup();
       }
     }, 1500);
 
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cesdk, engine, isDirty]);
+  }, [isDirty, cesdkEngineLoaded, mockupEngineLoaded]);
 
   // Use engine to render mockup
   useEffect(() => {
+
     const config = {
-      license: process.env.NEXT_PUBLIC_LICENSE
+      license: process.env.REACT_APP_LICENSE
     };
 
 
-    let removed = false;
-    let localEngine;
-    CreativeEngine.init(config).then(async (engine) => {
-      if (removed) {
-        engine.dispose();
-        return;
-      }
-      localEngine = engine;
-      setEngine(engine);
+    CreativeEngine.init(config).then(async (instance) => {
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
+      await instance.scene.loadFromURL(
+        `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`
+      );
+      mockupEngineRef.current = instance;
+      // Give engine time to load assets.
+      setTimeout(() => setMockupEngineLoaded(true), MOCKUP_ENGINE_TIMEOUT);
     });
     return () => {
-      removed = true;
-      if (localEngine) {
-        localEngine.dispose();
+      if (mockupEngineRef.current) {
+        mockupEngineRef.current.dispose();
       }
-      setEngine(undefined);
     };
-  }, [setEngine]);
-
-  // useEffect(() => {
-  //   if (!engine) return;
-
-  //   async function onEngineReady() {
-  //     await engine.scene.loadFromURL(
-  //       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.mockupScenePath}`
-  //     );
-  //   }
-  //   onEngineReady();
-  // }, [productConfig]);
-
-  const config = useConfig(
-    () => ({
-      license: process.env.NEXT_PUBLIC_LICENSE,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product]);
+  useEffect(() => {
+    let config = {
+      license: process.env.REACT_APP_LICENSE,
       role: 'Adopter',
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.scenePath}`,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -205,109 +188,147 @@ const CaseComponent = () => {
               }
             }
           },
-          libraries: {
-            insert: {
-              entries: (defaultEntries) => {
-                return defaultEntries.filter(
-                  (entry) => entry.id !== 'ly.img.template'
-                );
-              }
-            }
-          },
           panels: {
             settings: true
           }
         }
+      },
+      // Begin standard template presets
+      presets: {
+        templates: {
+          postcard_1: {
+            label: 'Postcard Design',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.png`
+          },
+          postcard_2: {
+            label: 'Postcard Tropical',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.png`
+          },
+          business_card_1: {
+            label: 'Business card',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.png`
+          },
+          instagram_photo_1: {
+            label: 'Instagram photo',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
+          },
+          instagram_story_1: {
+            label: 'Instagram story',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.png`
+          },
+          poster_1: {
+            label: 'Poster',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.png`
+          },
+          presentation_4: {
+            label: 'Presentation',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.png`
+          },
+          collage_1: {
+            label: 'Collage',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.png`
+          }
+        }
       }
-    }),
-    [productConfig]
-  );
-  const configure = useConfigure(
-    async (instance) => {
-      await instance.addDefaultAssetSources();
-      await instance.addDemoAssetSources({ sceneMode: 'Design' });
-      await instance.loadFromURL(
-        `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.scenePath}`
-      );
-    },
-    [productConfig]
-  );
-
-  useEffect(() => {
-    if (!cesdk) return;
-    const unsubscribe = cesdk.engine.editor.onHistoryUpdated(() => {
-      setIsDirty(true);
-    });
-    return () => {
-      unsubscribe();
+      // End standard template presets
     };
-  }, [cesdk]);
+
+
+    let cesdk;
+    let unsubscribe;
+    if (cesdkContainerRef.current) {
+      CreativeEditorSDK.init(cesdkContainerRef.current, config).then(
+        (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
+          cesdk = instance;
+          cesdkEngineRef.current = instance;
+          unsubscribe = instance.engine.event.subscribe([], (events) => {
+            if (events.length > 0) {
+              setIsDirty(true);
+            }
+          });
+          setCesdkEngineLoaded(true);
+        }
+      );
+    }
+    return () => {
+      if (cesdk) {
+        if (unsubscribe) {
+          unsubscribe();
+        }
+        cesdk.dispose();
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cesdkContainerRef, product]);
 
   useEffect(() => {
     if (product) {
       setMockupLoading(true);
       // Reset Mockup Scene
       setCurrentMockupScene();
-      setIsDirty(true);
     }
   }, [product]);
 
   return (
-    <div className={classes.outerWrapper}>
-      <div className={classes.productsWrapper}>
-        <SegmentedControl
-          options={Object.entries(PRODUCTS).map(([value, { label }]) => ({
-            label,
-            value
-          }))}
-          value={product}
-          name="product"
-          onChange={(value) => setProduct(value)}
-          size="md"
-        />
-      </div>
-
-      <div className={classes.wrapper}>
-        {mockupEditorVisible && (
-          <EditMockupCESDK
-            onClose={() => setMockupEditorVisible(false)}
-            onSave={async (sceneString) => {
-              setCurrentMockupScene(sceneString);
-              setMockupEditorVisible(false);
-              setIsDirty(true);
-              setMockupLoading(true);
-            }}
-            templateName={`${productConfig.sceneTitle} Mockup`}
-            sceneString={currentMockupScene}
-            sceneUrl={`${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.mockupScenePath}`}
-          />
-        )}
-        <div
-          className={classes.smokeScreen}
-          style={{
-            visibility: mockupFullscreen ? 'visible' : 'hidden',
-            opacity: mockupFullscreen ? '1' : '0'
+    <div className="gap-md flex h-full w-full flex-col">
+      {mockupEditorVisible && (
+        <EditMockupCESDK
+          onClose={() => setMockupEditorVisible(false)}
+          onSave={async (sceneString) => {
+            setCurrentMockupScene(sceneString);
+            setMockupEditorVisible(false);
+            setIsDirty(true);
+            setMockupLoading(true);
           }}
-        ></div>
+          templateName={`${productConfig.sceneTitle} Mockup`}
+          sceneString={currentMockupScene}
+          sceneUrl={`${window.location.protocol + "//" + window.location.host}/cases/mockup-editor/${productConfig.mockupScenePath}`}
+        />
+      )}
+      <div
+        className={classes.smokeScreenStyle}
+        style={{
+          visibility: mockupFullscreen ? 'visible' : 'hidden',
+          opacity: mockupFullscreen ? '1' : '0'
+        }}
+      ></div>
+      <div
+        className={classNames(
+          'gap-sm flex flex-row justify-between',
+          classes.headerStyle
+        )}
+      >
+        <div className="caseHeader">
+          <h3>Mockup Editor</h3>
+          <p>
+            Choose a product on the left bar and showcase your design in mockup
+            scenes.
+          </p>
+        </div>
         <div
           className={classNames({
-            [classes.fullscreenMockupCenter]: mockupFullscreen
+            [classes.fullscreenMockupCenterStyle]: mockupFullscreen
           })}
-          onClick={(e) => {
-            if (mockupFullscreen && e.target === e.currentTarget) {
-              setMockupFullscreen(false);
-            }
-          }}
         >
           <div
             className={classNames({
-              [classes.fullscreenMockupWrapper]: mockupFullscreen,
-              [classes.mockupWrapper]: !mockupFullscreen
+              [classes.fullscreenMockupWrapperStyle]: mockupFullscreen,
+              [classes.mockupWrapperStyle]: !mockupFullscreen
             })}
           >
             {mockupLoading && <LoadingSpinner />}
             {currentMockupUrl && (
-              <div className={classes.topBar}>
+              <div className={classes.topBarStyle}>
                 <button
                   className={classes.button}
                   onClick={() => setMockupFullscreen((prev) => !prev)}
@@ -348,19 +369,15 @@ const CaseComponent = () => {
                 data-cy="mockup-preview"
                 src={currentMockupUrl}
                 alt={`Mockup of the ${product}`}
-                className={classes.previewImage}
+                className={classes.previewImageStyle}
               />
             )}
           </div>
         </div>
-        <div className="cesdkWrapperStyle">
-          <CreativeEditor
-            className="cesdkStyle"
-            config={config}
-            configure={configure}
-            onInstanceChange={setCesdk}
-          />
-        </div>
+      </div>
+
+      <div className={classes.wrapperStyle}>
+        <div ref={cesdkContainerRef} className={classes.cesdkStyle}></div>
       </div>
     </div>
   );

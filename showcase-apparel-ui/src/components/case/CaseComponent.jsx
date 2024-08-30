@@ -1,74 +1,45 @@
-'use client';
-
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 import classes from './CaseComponent.module.css';
-import { EditorProvider } from './EditorContext';
-import createUnsplashSource from './lib/UnsplashSource';
-import ApparelUI from './components/ApparelUI/ApparelUI';
-import { EngineProvider } from './lib/EngineContext';
-import { SinglePageModeProvider } from './lib/SinglePageModeContext';
+import BottomControls from './components/BottomControls/BottomControls';
+import CESDKCanvas from './components/CESDKCanvas/CESDKCanvas';
+import TopBar from './components/TopBar/TopBar';
+import { EditorProvider, useEditor } from './EditorContext';
+
+const CustomUI = () => {
+  const { isLoaded } = useEditor();
+
+
+  return (
+    <>
+      {!isLoaded && <LoadingSpinner />}
+      {isLoaded && <TopBar />}
+      <CESDKCanvas />
+      {isLoaded && <BottomControls />}
+    </>
+  );
+};
 
 const CaseComponent = () => {
   return (
-    <div className={classes.fullHeightWrapper}>
-      <div className={classes.wrapper}>
-        <div className={classes.innerWrapper}>
-          <EngineProvider
-            LoadingComponent={<LoadingSpinner />}
-            config={{
-              role: 'Adopter',
-              featureFlags: {
-                preventScrolling: true
-              },
-              license: process.env.NEXT_PUBLIC_LICENSE
-            }}
-            configure={async (engine) => {
-              engine.editor.setSettingBool('page/title/show', false);
-              engine.editor.setSettingBool('checkScopesInAPIs', false);
-              await engine.addDefaultAssetSources();
-              await engine.addDemoAssetSources({
-                sceneMode: 'Design',
-                withUploadAssetSources: true,
-                exclude: ['ly.img.image']
-              });
-
-              engine.editor.setGlobalScope('lifecycle/destroy', 'Defer');
-
-              let UNSPLASH_API_URL = ''; // INSERT YOUR UNSPLASH PROXY URL HERE
-              engine.asset.addSource(
-                createUnsplashSource(UNSPLASH_API_URL, engine)
-              );
-              const stickers = await engine.asset.findAssets('ly.img.sticker', {
-                perPage: 9999
-              });
-              stickers.assets.forEach((sticker) => {
-                if (
-                  sticker.groups[0] !==
-                  '//ly.img.cesdk.stickers.emoticons/category/emoticons'
-                ) {
-                  engine.asset.removeAssetFromSource(
-                    'ly.img.sticker',
-                    sticker.id
-                  );
-                }
-              });
-            }}
-          >
-            <SinglePageModeProvider
-              defaultVerticalTextScrollEnabled={true}
-              defaultPaddingBottom={92}
-              defaultPaddingLeft={40}
-              defaultPaddingRight={40}
-              defaultPaddingTop={110}
-            >
-              <EditorProvider>
-                <ApparelUI />
-              </EditorProvider>
-            </SinglePageModeProvider>
-          </EngineProvider>
+    <EditorProvider>
+      {/* Use this element to fix the size in iOS Safari. */}
+      <div className={classes.fullHeightWrapper}>
+        <div className={classes.caseWrapper}>
+          <div className="caseHeader">
+            <h3>Apparel UI</h3>
+            <p>
+              Try out customizing a t-shirt design with this mobile apparel
+              editor and export a print-ready PDF.{' '}
+            </p>
+          </div>
+          <div className={classes.wrapper}>
+            <div className={classes.kioskWrapper}>
+              <CustomUI />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </EditorProvider>
   );
 };
 

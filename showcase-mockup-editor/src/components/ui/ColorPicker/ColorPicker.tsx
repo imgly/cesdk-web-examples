@@ -1,21 +1,21 @@
 import classNames from 'classnames';
-import { useOnClickOutside } from './UseOnClickOutside';
+import useOnClickOutside from 'lib/useOnClickOutside';
 import { cloneElement, ReactElement, useRef, useState } from 'react';
-import { HexColorInput, HexAlphaColorPicker } from 'react-colorful';
-import CaretBottom from './CaretBottom.svg';
+import { HexColorInput, HexColorPicker } from 'react-colorful';
+import { ReactComponent as CaretBottom } from './CaretBottom.svg';
 import classes from './ColorPicker.module.css';
 import useDebounceCallback from './UseDebounceCallback';
 
 interface IColorPicker {
-  presetColors?: string[];
+  presetColors: string[];
   name: string;
-  label?: string;
-  defaultValue?: string;
+  label: string;
+  defaultValue: string;
   value: string;
-  theme?: 'light' | 'dark';
-  size?: 'sm' | 'lg';
-  positionX?: 'right' | 'left';
-  positionY?: 'top' | 'bottom';
+  theme: 'light' | 'dark';
+  size: 'sm' | 'lg';
+  positionX: 'right' | 'left';
+  positionY: 'top' | 'bottom';
   children: ReactElement;
   onChange: (value: string) => void;
   onChangeDebounced?: () => void;
@@ -32,6 +32,7 @@ export const ColorPicker = ({
   positionY = 'bottom',
   theme = 'dark',
   size = 'sm',
+  defaultValue = '#000',
   presetColors = []
 }: IColorPicker) => {
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -67,7 +68,7 @@ export const ColorPicker = ({
   return (
     <div
       className={classNames(
-        'gap-xs flex items-center justify-between',
+        'flex items-center justify-between',
         classes.wrapper,
         classes['wrapper--' + theme],
         classes['wrapper--' + size]
@@ -79,6 +80,26 @@ export const ColorPicker = ({
         </label>
       )}
       <div className={classNames('space-x-2', classes.selectionWrapper)}>
+        {cloneElement(TriggerComponent, { onClick: () => setPickerOpen(true) })}
+
+        <div
+          style={{
+            display: pickerOpen ? 'block' : 'none'
+          }}
+          className={classNames(
+            classes.pickerModal,
+            'space-y-1',
+            classes[`pickerModal--${positionX}`],
+            classes[`pickerModal--${positionY}`]
+          )}
+          ref={pickerRef}
+        >
+          <HexColorPicker color={value} onChange={handleChange} />
+          <div className={'flex space-x-2'}>
+            <span>#</span>
+            <HexColorInput color={value} onChange={handleChange} />
+          </div>
+        </div>
         {presetColors.length > 0 && (
           <div className="flex space-x-1">
             {presetColors.map((color, i) => (
@@ -93,31 +114,6 @@ export const ColorPicker = ({
             ))}
           </div>
         )}
-        {cloneElement(TriggerComponent, {
-          onClick: (e: Event) => {
-            setPickerOpen(true);
-            e.stopPropagation();
-          }
-        })}
-
-        <div
-          style={{
-            display: pickerOpen ? 'block' : 'none'
-          }}
-          className={classNames(
-            classes.pickerModal,
-            'space-y-1',
-            classes[`pickerModal--${positionX}`],
-            classes[`pickerModal--${positionY}`]
-          )}
-          ref={pickerRef}
-        >
-          <HexAlphaColorPicker color={value} onChange={handleChange} />
-          <div className={'flex space-x-2'}>
-            <span>#</span>
-            <HexColorInput color={value} onChange={handleChange} />
-          </div>
-        </div>
       </div>
     </div>
   );

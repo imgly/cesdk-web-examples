@@ -1,17 +1,32 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.5/cesdk.umd.js';
 
-const config = {
-  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/assets',
+let config = {
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.5/assets',
   // highlight-callbacks
   callbacks: {
+    // highlight-onlog
+    log: (message, logLevel) => {
+      switch (logLevel) {
+        case 'Info':
+          console.info(message);
+          break;
+        case 'Warning':
+          console.warn(message);
+          break;
+        case 'Error':
+          console.error(message);
+          break;
+        default:
+          console.log(message);
+      }
+    },
+    // highlight-onlog
     // highlight-onunsupportedbrowser
     onUnsupportedBrowser: () => {
       /* This is the default window alert which will be shown in case an unsupported
        * browser tries to run CE.SDK */
       window.alert(
-        'Your current browser is not supported.\nPlease use one of the following:\n\n- Mozilla Firefox 115 or newer\n- Apple Safari 15.6 or newer\n- Microsoft Edge 114 or newer\n- Google Chrome 114 or newer'
+        'Your current browser is not supported.\nPlease use one of the following:\n\n- Mozilla Firefox 86 or newer\n- Apple Safari 14.1 or newer\n- Microsoft Edge 88 or newer\n- Google Chrome 88 or newer'
       );
     },
     // highlight-onunsupportedbrowser
@@ -30,17 +45,11 @@ const config = {
       window.alert('Save callback!');
       console.info(scene);
     },
-    // highlight-ondownload
-    onDownload: (scene) => {
-      window.alert('Download callback!');
-      console.info(scene);
-    },
-    // highlight-ondownload
     // highlight-onsave
     // highlight-onload
     onLoad: () => {
       window.alert('Load callback!');
-      const scene = '...'; // Fill with sene
+      let scene = '...'; // Fill with sene
       return Promise.resolve(scene);
     },
     // highlight-onload
@@ -67,7 +76,6 @@ const config = {
     }
     // highlight-onupload
   },
-  // highlight-callbacks
   ui: {
     elements: {
       // highlight-navigation
@@ -76,7 +84,6 @@ const config = {
           close: true,
           back: true,
           save: true,
-          download: true,
           load: true,
           export: true
         }
@@ -85,11 +92,8 @@ const config = {
     }
   }
 };
+// highlight-callbacks
 
-CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
-  // Do something with the instance of CreativeEditor SDK, for example:
-  // Populate the asset library with default / demo asset sources.
-  instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design' });
-  await instance.createDesignScene();
+CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
+  /** do something with the instance of CreativeEditor SDK **/
 });

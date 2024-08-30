@@ -1,12 +1,10 @@
-'use client';
-
 import CreativeEngine from '@cesdk/engine';
 import React, { useEffect, useRef, useState } from 'react';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 
 const ID_FROM_RESTAURANT_REGEX = /yelp\.de\/biz\/([^?]*).*?$/;
 const caseAssetPath = (path, caseId = 'multi-image-generation') =>
-  `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
+  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
 
 const YELP_EXAMPLES = [
   {
@@ -45,12 +43,11 @@ const TEMPLATE_PATHS = [
 ];
 
 const replaceImage = (cesdk, imageName, newUrl) => {
-  const imgBlock = cesdk.block.findByName(imageName)[0];
-  if (!imgBlock) {
+  const img = cesdk.block.findByName(imageName)[0];
+  if (!img) {
     return;
   }
-  const img = cesdk.block.getFill(imgBlock);
-  cesdk.block.setString(img, 'fill/image/imageFileURI', newUrl);
+  cesdk.block.setString(img, 'image/imageFileURI', newUrl);
   cesdk.block.resetCrop(img);
 };
 
@@ -62,10 +59,8 @@ const fillTemplate = (cesdk, yelpData) => {
   cesdk.variable.setString('Name', yelpData.name || '');
   cesdk.variable.setString('$$', yelpData.price || '');
   cesdk.variable.setString('Count', yelpData.review_count.toString() || '');
-  const rating = yelpData.rating;
-  const ratingRoundedToHalf = Math.round(rating * 2) / 2;
   const ratingImageUrl = caseAssetPath(
-    `/images/${ratingRoundedToHalf.toString().replace('.', '_')}.png`
+    `/images/${yelpData.rating.toString().replace('.', '_')}.png`
   );
   replaceImage(cesdk, 'ReviewStars', ratingImageUrl);
 };
@@ -88,13 +83,14 @@ const CaseComponent = () => {
   const [reviewBlobs, setReviewBlobs] = useState(new Array(3).fill(null));
 
   useEffect(() => {
+
     const config = {
-      license: process.env.NEXT_PUBLIC_LICENSE
+      license: process.env.REACT_APP_LICENSE
     };
-    CreativeEngine.init(config).then(async (engine) => {
-      engine.addDefaultAssetSources();
-      engine.addDemoAssetSources({ sceneMode: 'Design' });
-      engineRef.current = engine;
+    CreativeEngine.init(config).then(async (instance) => {
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
+      engineRef.current = instance;
     });
 
     return function shutdownCreativeEngine() {
@@ -110,17 +106,18 @@ const CaseComponent = () => {
   }, [yelpId]);
 
   useEffect(() => {
-    const engine = engineRef?.current;
-    if (!engine || !yelpData) {
+    if (!engineRef?.current || !yelpData) {
       return;
     }
     async function renderTemplates() {
       // This can not be done in parallel.
       for (const [index, sceneUrl] of TEMPLATE_PATHS.entries()) {
-        await engine.scene.loadFromURL(caseAssetPath(sceneUrl.scenePath));
+        await engineRef?.current.scene.loadFromURL(
+          caseAssetPath(sceneUrl.scenePath)
+        );
         fillTemplate(engineRef.current, yelpData);
-        const blob = await engine.block.export(
-          engine.scene.get(),
+        const blob = await engineRef?.current.block.export(
+          engineRef?.current.block.findByType('scene')[0],
           'image/jpeg'
         );
         setReviewBlobs((oldBlobs) => {
@@ -153,9 +150,18 @@ const CaseComponent = () => {
   };
 
   return (
-    <div className="gap-lg flex flex-grow flex-col items-center justify-center">
-      <div className="gap-sm flex flex-col items-center">
-        <h3 className="h4">Paste Yelp Restaurant URL</h3>
+    <div className="gap-lg flex flex-grow flex-col">
+      <div className="caseHeader caseHeader--no-margin">
+        <h3>Multi Image Generation</h3>
+        <p>
+          Generate multiple designs based on your input with the help of
+          templates. Paste a URL to autogenerate different review card designs.
+        </p>
+      </div>
+      <div className="gap-sm flex flex-col">
+        <h3 className="h4" style={headlineStyle}>
+          Paste Yelp Restaurant URL
+        </h3>
         <div className="gap-sm flex flex-wrap">
           <input
             type="text"
@@ -182,7 +188,7 @@ const CaseComponent = () => {
             </button>
           )}
         </div>
-        <div className="paragraphSmall" style={paragraphStyle}>
+        <div style={paragraphStyle}>
           <span>Or try these examples:</span>
           <div className="gap-xs flex">
             {YELP_EXAMPLES.map(({ label, value }) => (
@@ -200,13 +206,14 @@ const CaseComponent = () => {
           </div>
         </div>
       </div>
-      <div className="gap-sm flex flex-col items-center">
-        <h3 className="h4">Generated Assets</h3>
+      <div className="gap-sm flex flex-col">
+        <h3 className="h4" style={headlineStyle}>
+          Generated Assets
+        </h3>
         <div style={imageWrapper}>
           {TEMPLATE_PATHS.map(({ width, height, placeholderPath }, index) => (
             <div style={{ width, position: 'relative' }} key={placeholderPath}>
               <img
-                data-cy={!reviewBlobs[index]?.isLoading ? 'export-image' : ''}
                 key={index}
                 src={reviewBlobs[index]?.src || caseAssetPath(placeholderPath)}
                 style={{
@@ -241,7 +248,12 @@ const imageWrapper = {
   overflow: 'auto'
 };
 
+const headlineStyle = {
+  color: 'white'
+};
+
 const paragraphStyle = {
+  color: 'rgba(255, 255, 255, 0.65)',
   display: 'flex',
   columnGap: '1rem',
   flexWrap: 'wrap'

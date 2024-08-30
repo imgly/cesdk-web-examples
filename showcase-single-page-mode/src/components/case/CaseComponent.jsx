@@ -1,28 +1,32 @@
-'use client';
-
-import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import { useEffect, useState } from 'react';
-import CreativeEditor, {
-  useConfig,
-  useConfigure,
-  useCreativeEditor
-} from './lib/CreativeEditor';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
+import SegmentedControl from 'components/ui/SegmentedControl/SegmentedControl';
+import React, { useEffect, useRef, useState } from 'react';
 
 const CaseComponent = () => {
-  const [cesdk, setCesdk] = useCreativeEditor();
-  const [pageIds, setPageIds] = useState([]);
+  const cesdk_container = useRef(null);
+  const cesdkRef = useRef(null);
+  const pageIds = useRef(null);
   const [activePageId, setActivePageId] = useState(null);
 
-  const config = useConfig(
-    () => ({
+  useEffect(() => {
+    let config = {
       role: 'Adopter',
       theme: 'light',
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/example-1-adopter.scene`,
+      license: process.env.REACT_APP_LICENSE,
       featureFlags: {
         singlePageMode: true
       },
+      page: {
+        title: {
+          show: false
+        }
+      },
       ui: {
         elements: {
+          libraries: {
+            template: false
+          },
           panels: {
             settings: true
           },
@@ -40,72 +44,79 @@ const CaseComponent = () => {
         onExport: 'download',
         onUpload: 'local'
       }
-    }),
-    []
-  );
-  const configure = useConfigure(async (instance) => {
-    await instance.addDefaultAssetSources();
-    await instance.addDemoAssetSources({ sceneMode: 'Design' });
-    instance.engine.editor.setSettingBool('page/title/show', false);
-    const engine = instance.engine;
-
-    const unsubscribeHandlers = [];
-    const unsubscribeActive = engine.scene.onActiveChanged(() => {
-      const newPageIds = engine.scene.getPages();
-      setPageIds(newPageIds);
-      setActivePageId(newPageIds[0]);
-      const pageParent = engine.block.getParent(newPageIds[0]);
-      const unsubscribe = engine.event.subscribe([pageParent], () => {
-        const getPages = async () => {
-          const newPageIds = engine.scene.getPages();
-          const newActivePageId = engine.scene.getCurrentPage();
-          setPageIds(newPageIds);
-          setActivePageId(newActivePageId);
-        };
-        getPages();
-      });
-      unsubscribeHandlers.push(unsubscribe);
-    });
-    unsubscribeHandlers.push(unsubscribeActive);
-    await instance.loadFromURL(
-      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
-    );
-    return () => {
-      unsubscribeHandlers.forEach((unsubscribe) => unsubscribe?.());
     };
-  }, []);
+    if (cesdk_container.current) {
+      CreativeEditorSDK.init(cesdk_container.current, config).then(
+        async (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
+          pageIds.current = await instance.unstable_getPages();
+          cesdkRef.current = instance;
+          setActivePageId(pageIds.current[0]);
+        }
+      );
+    }
+    return () => {
+      if (cesdkRef.current) {
+        cesdkRef.current.dispose();
+      }
+    };
+  }, [cesdk_container]);
 
   useEffect(() => {
-    activePageId && cesdk && cesdk.unstable_switchPage(activePageId);
-  }, [cesdk, activePageId]);
+    activePageId && cesdkRef.current?.unstable_switchPage(activePageId);
+  }, [activePageId]);
 
   return (
-    <div style={wrapperStyle} className="space-y-2">
-      <div className="flex flex-col items-center mobile-padding-top">
-        {pageIds && cesdk && (
-          <SegmentedControl
-            options={pageIds.map((id, index) => ({
-              label: cesdk.engine.block.getName(id) || `Page ${index + 1}`,
-              value: id
-            }))}
-            value={activePageId}
-            name="pageId"
-            onChange={(value) => setActivePageId(value)}
-            size="md"
-          />
-        )}
+    <div className="flex h-full w-full flex-col">
+      <div className="caseHeader">
+        <h3>Single Page Mode</h3>
+        <p>
+          Display one page at a time and switch between the pages of your design
+          with a clear focus for multi-page use cases, e.g., various print
+          products.
+        </p>
       </div>
 
-      <div className="cesdkWrapperStyle">
-        <CreativeEditor
-          className="cesdkStyle"
-          config={config}
-          configure={configure}
-          onInstanceChange={setCesdk}
-        />
+      <div style={wrapperStyle} className="space-y-2">
+        <div className="space-y flex flex-col space-y-2">
+          <div className="flex space-x-2">
+            {pageIds.current && (
+              <SegmentedControl
+                options={[
+                  { label: 'Page 1', value: pageIds.current?.[0] },
+                  { label: 'Page 2', value: pageIds.current?.[1] }
+                ]}
+                value={activePageId}
+                name="pageId"
+                onChange={(value) => setActivePageId(value)}
+                size="md"
+              />
+            )}
+          </div>
+        </div>
+
+        <div style={cesdkWrapperStyle}>
+          <div ref={cesdk_container} style={cesdkStyle}></div>
+        </div>
       </div>
     </div>
   );
+};
+
+const cesdkStyle = {
+  height: '100%',
+  width: '100%',
+  flexGrow: 1,
+  overflow: 'hidden',
+  borderRadius: '0.75rem'
+};
+const cesdkWrapperStyle = {
+  borderRadius: '0.75rem',
+  flexGrow: '1',
+  display: 'flex',
+  boxShadow:
+    '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
 };
 
 const wrapperStyle = {

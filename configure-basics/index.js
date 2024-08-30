@@ -1,15 +1,9 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.5/cesdk.umd.js';
 
 // highlight-config
-const config = {
-  // highlight-license
-  license: 'YOUR_API_KEY',
-  // highlight-license
-  // highlight-userid
-  userId: 'USER_ID',
-  // highlight-userid
+let config = {
   // highlight-baseurl
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.10.5/assets',
   // highlight-baseurl
   // highlight-locale
   locale: 'en', // 'de'
@@ -20,29 +14,21 @@ const config = {
   // highlight-role
   role: 'Creator', // 'Adopter' 'Viewer'
   // highlight-role
-  callbacks: { onUpload: 'local' }, // Enable local uploads in Asset Library.
-  // highlight-logger
-  logger: (message, logLevel) => {
-    console.log(`${logLevel}: ${message}}`);
-  }
-  // highlight-logger
+  // highlight-initialSceneMode
+  initialSceneMode: 'Design' // 'Video'
+  // highlight-initialSceneMode
+  // highlight-initialSceneString
+  initialSceneString: 'UBQ1ewoiZm9ybW…', // A scene string
+  // highlight-initialSceneString
+  // highlight-initialSceneURL
+  initialSceneURL: `${window.location.protocol}//${window.location.host}/example.scene`, // A URL pointing at a scene file
+  // highlight-initialSceneURL
+  // highlight-initialImageURL
+  initialImageURL: undefined, // A URL pointing to an image file
+  // highlight-initialImageURL
 };
 // highlight-config
 
-CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
-  // Populate the asset library with default / demo asset sources.
-  instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design' });
-
-  // highlight-onRoleChanged
-  instance.engine.editor.onRoleChanged((role) => {
-    if (role === 'Adopter') {
-      // Enable the filter tab in the appearance panel when previewing the
-      // design in the Adopter role.
-      instance.engine.editor.setGlobalScope('appearance/filter', 'Allow');
-    }
-  });
-  // highlight-onRoleChanged
-
-  await instance.createDesignScene();
+CreativeEditorSDK.init('#cesdk_container', config).then((instance) => {
+  /** do something with the instance of CreativeEditor SDK **/
 });

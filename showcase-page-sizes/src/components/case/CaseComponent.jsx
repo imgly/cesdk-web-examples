@@ -1,19 +1,33 @@
-'use client';
-
-import FORMAT_ASSETS from './CustomFormats.json';
-import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
-import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
+import { resizeCanvas } from './lib/CreativeEngineUtils';
+import { useEffect, useRef } from 'react';
+import ALL_PAGE_SIZES from './PageSizes.json';
 
 const caseAssetPath = (path, caseId = 'page-sizes') =>
-  `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
+  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
+
+const qualifyAssetUris = ({ meta, label, ...rest }) => ({
+  ...rest,
+  meta: {
+    ...meta,
+    thumbUri: caseAssetPath(`/${meta.thumbUri}`)
+  },
+  label,
+  cardLabel: label
+});
 
 const CaseComponent = () => {
-  const config = useConfig(
-    () => ({
+  const cesdk_container = useRef(null);
+  const engine = useRef(null);
+  const cesdk = useRef(null);
+  useEffect(() => {
+    /** @type {import(“@cesdk/engine”).Configuration} */
+    let config = {
       locale: 'en',
       role: 'Adopter',
       theme: 'light',
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      initialSceneURL: caseAssetPath('/page-sizes.scene'),
+      license: process.env.REACT_APP_LICENSE,
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -31,8 +45,8 @@ const CaseComponent = () => {
           dock: {
             groups: [
               {
-                id: 'ly.img.formats',
-                entryIds: ['ly.img.formats']
+                id: 'pageSizes',
+                entryIds: ['pageSizes']
               },
               {
                 id: 'ly.img.template',
@@ -58,8 +72,8 @@ const CaseComponent = () => {
               entries: (defaultEntries) => {
                 return [
                   {
-                    id: 'ly.img.formats',
-                    sourceIds: ['ly.img.formats'],
+                    id: 'pageSizes',
+                    sourceIds: ['pageSizes'],
                     previewLength: 3,
                     gridColumns: 3,
                     gridItemHeight: 'auto',
@@ -67,11 +81,34 @@ const CaseComponent = () => {
                     previewBackgroundType: 'contain',
                     gridBackgroundType: 'cover',
                     cardLabel: (assetResult) => assetResult.label,
-                    cardLabelPosition: () => 'bottom',
+                    cardLabelStyle: () => ({
+                      height: '24px',
+                      width: '72px',
+                      left: '4px',
+                      right: '4px',
+                      bottom: '-32px',
+                      padding: '0',
+                      background: 'transparent',
+                      overflow: 'hidden',
+                      textOverflow: 'unset',
+                      whiteSpace: 'unset',
+                      fontSize: '10px',
+                      lineHeight: '12px',
+                      letterSpacing: '0.02em',
+                      textAlign: 'center',
+                      pointerEvents: 'none',
+                      pointer: 'default'
+                    }),
+                    cardStyle: () => ({
+                      height: '80px',
+                      width: '80px',
+                      marginBottom: '40px',
+                      overflow: 'visible'
+                    }),
                     icon: () => caseAssetPath('/page-sizes-large.svg'),
                     title: ({ group }) => {
                       if (group) {
-                        return `libraries.ly.img.formats.${group}.label`;
+                        return `libraries.pageSizes.${group}.label`;
                       }
                       return undefined;
                     }
@@ -83,55 +120,114 @@ const CaseComponent = () => {
           }
         }
       },
+      assetSources: {
+        pageSizes: {
+          getGroups: async () => ['print', 'social'],
+          findAssets: async (queryParameters) => {
+            const assets = ALL_PAGE_SIZES.map(qualifyAssetUris).filter(
+              ({ meta }) => queryParameters.groups.includes(meta.group)
+            );
+
+            return {
+              assets,
+              total: assets.length,
+              nextPage: undefined,
+              currentPage: 0
+            };
+          },
+          applyAsset: async (asset) => {
+            const pages = engine.current.block.getChildren(
+              engine.current.block.findByType('stack')[0]
+            );
+
+            if (pages && pages.length) {
+              if (asset.meta.designUnit === 'Pixel') {
+                engine.current.scene.unstable_setDesignUnit('px');
+              } else if (asset.meta.designUnit === 'Millimeter') {
+                engine.current.scene.unstable_setDesignUnit('mm');
+              } else if (asset.meta.designUnit === 'Inch') {
+                engine.current.scene.unstable_setDesignUnit('in');
+              }
+
+              pages.forEach((pageId) => {
+                resizeCanvas(
+                  engine.current,
+                  pageId,
+                  parseInt(asset.meta.formatWidth, 10),
+                  parseInt(asset.meta.formatHeight, 10)
+                );
+              });
+
+              await cesdk.current.unstable_focusPage(pages[0]);
+            }
+          }
+        }
+      },
       i18n: {
         en: {
-          'libraries.ly.img.formats.label': 'Page Sizes',
-          'libraries.ly.img.formats.social.label': 'Social',
-          'libraries.ly.img.formats.print.label': 'Print'
+          'libraries.pageSizes.label': 'Page Sizes',
+          'libraries.pageSizes.social.label': 'Social',
+          'libraries.pageSizes.print.label': 'Print'
         }
       }
-    }),
-    []
-  );
-  const configure = useConfigure(async (instance) => {
-    await instance.addDefaultAssetSources();
-    await instance.addDemoAssetSources({ sceneMode: 'Design' });
-    loadAssetSourceFromContentJSON(
-      instance.engine,
-      FORMAT_ASSETS,
-      caseAssetPath(''),
-      async (asset) => {
-        const engine = instance.engine;
-        // disable checkScopesInAPIs setting
-        const checkScopesInAPIsSetting =
-          engine.editor.getSettingBool('checkScopesInAPIs');
-        engine.editor.setSettingBool('checkScopesInAPIs', false);
-        const pages = engine.scene.getPages();
-        engine.scene.setDesignUnit(asset.meta.designUnit);
-        engine.block.resizeContentAware(
-          pages,
-          parseInt(asset.meta.formatWidth, 10),
-          parseInt(asset.meta.formatHeight, 10)
-        );
-        // restore checkScopesInAPIs setting
-        engine.editor.setSettingBool(
-          'checkScopesInAPIs',
-          checkScopesInAPIsSetting
-        );
+    };
+    if (cesdk_container.current) {
+      CreativeEditorSDK.init(cesdk_container.current, config).then(
+        (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
+          cesdk.current = instance;
+          engine.current = instance.engine;
+        }
+      );
+    }
+    return () => {
+      if (cesdk.current) {
+        cesdk.current.dispose();
       }
-    );
-    await instance.loadFromURL(caseAssetPath('/page-sizes.scene'));
-  }, []);
+    };
+  }, [cesdk_container, engine, cesdk]);
 
   return (
-    <div className="cesdkWrapperStyle">
-      <CreativeEditor
-        className="cesdkStyle"
-        config={config}
-        configure={configure}
-      />
+    <div style={caseContainerStyle}>
+      <div className="caseHeader">
+        <h3>Page Sizes</h3>
+        <p>
+          Design once use anywhere. You can automatically adapt the same design
+          or template to different page sizes. This allows your users to roll
+          out the same design to different social media platforms or create
+          multi-product designs for print.
+        </p>
+      </div>
+      <div style={wrapperStyle}>
+        <div ref={cesdk_container} style={cesdkStyle}></div>
+      </div>
     </div>
   );
+};
+
+const caseContainerStyle = {
+  gap: '2.5rem',
+  maxHeight: '100%',
+  display: 'flex',
+  flexGrow: '1',
+  flexDirection: 'column',
+  minWidth: 0
+};
+
+const cesdkStyle = {
+  width: '100%',
+  height: '100%',
+  overflow: 'hidden',
+  borderRadius: '0.75rem'
+};
+
+const wrapperStyle = {
+  borderRadius: '0.75rem',
+  flexGrow: '1',
+  minHeight: '450px',
+  boxShadow:
+    '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
 };
 
 export default CaseComponent;
