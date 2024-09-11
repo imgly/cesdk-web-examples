@@ -36,7 +36,7 @@ const CaseComponent = () => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
 
-    instance.addPlugin(
+    await instance.unstable_addPlugin(
       BackgroundRemovalPlugin({
         ui: {
           locations: ['canvasMenu']

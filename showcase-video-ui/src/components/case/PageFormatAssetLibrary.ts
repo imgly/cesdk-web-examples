@@ -1,8 +1,8 @@
 import {
   AssetDefinition,
   AssetResult,
-  Configuration,
-  DesignUnit
+  DesignUnit,
+  _RequiredConfiguration
 } from '@cesdk/cesdk-js';
 import { ContentJSON } from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
@@ -90,5 +90,5 @@ interface PageFormatAsset extends AssetDefinition {
   };
 }
 type PageFormatsDefinition = NonNullable<
-  NonNullable<Configuration['ui']>['pageFormats']
+  _RequiredConfiguration['ui']['pageFormats']
 >;
