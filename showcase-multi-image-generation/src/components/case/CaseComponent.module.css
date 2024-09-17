@@ -1,0 +1,16 @@
+.example_button {
+  width: 139px;
+  padding: 5px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.example_button:hover,
+.example_button:focus {
+  border: 1px solid #471aff;
+}
+
+.example_button.selected {
+  border: 2px solid #471aff;
+}
