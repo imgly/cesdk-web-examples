@@ -1,34 +1,9 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.35.1/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/assets',
-  // highlight-ui-config
-  ui: {
-    elements: {
-      dock: {
-        groups: [
-          {
-            id: 'my-templates-group',
-            entryIds: ['my-templates-entry']
-          }
-        ]
-      },
-      libraries: {
-        insert: {
-          entries: [
-            {
-              id: 'my-templates-entry',
-              sourceIds: ['my-templates'],
-              title: 'My Templates'
-            }
-          ]
-        }
-      }
-    }
-  },
-  // highlight-ui-config
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.35.1/assets',
   callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
 };
 
@@ -59,5 +34,25 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
     }
   });
   // highlight-add-asset
+  // highlight-ui-config
+  instance.ui.addAssetLibraryEntry({
+    id: 'my-templates-entry',
+    sourceIds: ['my-templates'],
+    sceneMode: 'Design',
+    previewLength: 5,
+    previewBackgroundType: 'cover',
+    gridBackgroundType: 'cover',
+    gridColumns: 3
+  });
+  instance.ui.setDockOrder([
+    {
+      id: 'ly.img.assetLibrary.dock',
+      key: 'my-templates-dock-entry',
+      label: 'My Templates',
+      icon: '@imgly/Template',
+      entries: ['my-templates-entry']
+    }
+  ]);
+  // highlight-ui-config
   instance.createDesignScene();
 });
