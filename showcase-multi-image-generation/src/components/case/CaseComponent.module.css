@@ -1,0 +1,42 @@
+.example_button {
+  position: relative;
+  width: 139px;
+  padding: 5px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.example_button:disabled {
+  pointer-events: none;
+}
+
+.example_button:hover,
+.example_button:focus {
+  border: 1px solid #471aff;
+}
+
+.example_button.selected {
+  border: 2px solid #471aff;
+}
+
+.example_button:disabled .overlay {
+  opacity: 0.1;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 1;
+  top: -2px;
+  bottom: -2px;
+  left: -2px;
+  display: flex;
+  width: 139px;
+  height: cal(100% + 14px);
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.1s;
+}
