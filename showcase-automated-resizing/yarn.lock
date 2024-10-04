@@ -1045,17 +1045,17 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@cesdk/cesdk-js@1.35.1":
-  version "1.35.1"
-  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.35.1.tgz#9f1eac7f27a7c9dd427542c85a741959da2b57b4"
-  integrity sha512-ZFiOIjMyLbfRoUgRgCELwraykHz97opHR7XiIqgrl0ZkfT78JELu1JlCA6dW5jSrZN7sMd4Z/y7fEGyUo30VyQ==
+"@cesdk/cesdk-js@1.36.0":
+  version "1.36.0"
+  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.36.0.tgz#bcf5d7a69efcd2fc7bccf18bab159153f2fdf7a6"
+  integrity sha512-quPOGER4lLjK7FPLYZ3qGRyWk1LlgLxIZQsE35Ok5H6PIxAdbQGfJldYtOifcVTj9lQX6qw9dNgOUyI9VtB2BA==
   dependencies:
-    "@cesdk/engine" "1.35.1"
+    "@cesdk/engine" "1.36.0"
 
-"@cesdk/engine@1.35.1":
-  version "1.35.1"
-  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.35.1.tgz#b22657eced0924e27b7ddf3460499f4b4efa38be"
-  integrity sha512-aNsMUfbybo3YYsjca8fut2GmhAsEd0lKsN9FMvJYtzuqS3dqSwk6Md7rEuDmrS2HBAOexn0a6QwhQYslLuzCZg==
+"@cesdk/engine@1.36.0":
+  version "1.36.0"
+  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.36.0.tgz#c844da5b1f3769c4daea07807a4c6592b72a6483"
+  integrity sha512-I6VtiizUiRSgGWEd6Q16F64aWkObwg1UoA/0XrvhhVWOoTbgkxVCQYJFX+pJH4jt9kNkzMpfNgaGEK8FBP2s/Q==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -1142,10 +1142,10 @@
   dependencies:
     "@imgly/background-removal" "^1.5.3"
 
-"@imgly/plugin-cutout-library-web@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@imgly/plugin-cutout-library-web/-/plugin-cutout-library-web-1.0.4.tgz#799301bdbed30e4309e9e48067c84ec0e130c64d"
-  integrity sha512-sfVt/jHBpqxNgz/KOzOGyuSv1ILWw6OFg4Y73LMh0gt5d8UJwF4egfmRyNcA2A3E5zxZc6llhNekEtXKkTqCEA==
+"@imgly/plugin-cutout-library-web@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@imgly/plugin-cutout-library-web/-/plugin-cutout-library-web-1.0.2.tgz#1b881823b27e8fb91d15fe850095ca60b1533420"
+  integrity sha512-uyPrv/LkQbbdDip+4myopeTs72hGcY8GgJCsR5AZMfZXQgwbWEb9pF+I6msejSVaSnWxgNveorGcqq2/9hUW7g==
   dependencies:
     lodash "^4.17.21"
 
@@ -4037,8 +4037,16 @@ streamsearch@^1.1.0:
   resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-1.1.0.tgz#404dd1e2247ca94af554e841a8ef0eaa238da764"
   integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
 
-"string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
-  name string-width-cjs
+"string-width-cjs@npm:string-width@^4.2.0":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
+  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
+  dependencies:
+    emoji-regex "^8.0.0"
+    is-fullwidth-code-point "^3.0.0"
+    strip-ansi "^6.0.1"
+
+string-width@^4.1.0:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -4110,7 +4118,14 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
+  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
+  dependencies:
+    ansi-regex "^5.0.1"
+
+strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
