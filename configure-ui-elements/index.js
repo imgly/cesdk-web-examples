@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.37.0-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
@@ -60,28 +60,15 @@ const config = {
       dock: {
         iconSize: 'large', // 'large' or 'normal'
         hideLabels: false, // false or true
-        groups: [
-          {
-            id: 'ly.img.template', // string
-            entryIds: ['ly.img.template'] // string[]
-          },
-          {
-            id: 'ly.img.defaultGroup', // string
-            showOverview: true // true or false
-          }
-        ],
-        defaultGroupId: 'ly.img.defaultGroup' // string
       },
       // docs-ui-dock
       // docs-ui-libraries
       libraries: {
         insert: {
-          entries: (defaultEntries) => defaultEntries,
           floating: true, // true or false
           autoClose: false // true or false
         },
         replace: {
-          entries: (defaultEntries) => defaultEntries,
           floating: true, // true or false
           autoClose: false // true or false
         }
