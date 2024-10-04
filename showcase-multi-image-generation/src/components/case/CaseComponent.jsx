@@ -80,13 +80,25 @@ const fillTemplate = (cesdk, restaurantData) => {
   if (!restaurantData) {
     return false;
   }
-  replaceImage(cesdk, 'RestaurantPhoto', caseAssetPath(restaurantData.photo_path));
+  replaceImage(
+    cesdk,
+    'RestaurantPhoto',
+    caseAssetPath(restaurantData.photo_path)
+  );
   const photoBlock = cesdk.block.findByName('RestaurantPhoto')[0];
   cesdk.block.setContentFillMode(photoBlock, 'Cover');
-  replaceImage(cesdk, 'RestaurantLogo', caseAssetPath(restaurantData.logo_path));
+  replaceImage(
+    cesdk,
+    'RestaurantLogo',
+    caseAssetPath(restaurantData.logo_path)
+  );
   cesdk.variable.setString('Name', restaurantData.name || '');
+  // FIXME: not changed!
   cesdk.variable.setString('$$', restaurantData.price || '');
-  cesdk.variable.setString('Count', restaurantData.review_count.toString() || '');
+  cesdk.variable.setString(
+    'Count',
+    restaurantData.review_count.toString() || ''
+  );
   // Apply colors based on black/white-ness of the previous color
   const primaryColor = hexToRgba(restaurantData.primary_color);
   const secondaryColor = hexToRgba(restaurantData.secondary_color);
@@ -105,22 +117,11 @@ const fillTemplate = (cesdk, restaurantData) => {
       if (cesdk.block.supportsFill(block) && cesdk.block.hasFill(block)) {
         const fillBlock = cesdk.block.getFill(block);
         if (cesdk.block.getType(fillBlock) === '//ly.img.ubq/fill/color') {
-          const preColor = cesdk.block.getColor(
-            fillBlock,
-            'fill/color/value'
-          );
+          const preColor = cesdk.block.getColor(fillBlock, 'fill/color/value');
           if (preColor.r === 1 && preColor.g === 1 && preColor.b === 1) {
             //white
-            cesdk.block.setColor(
-              fillBlock,
-              'fill/color/value',
-              secondaryColor
-            );
-          } else if (
-            preColor.r === 0 &&
-            preColor.g === 0 &&
-            preColor.b === 0
-          ) {
+            cesdk.block.setColor(fillBlock, 'fill/color/value', secondaryColor);
+          } else if (preColor.r === 0 && preColor.g === 0 && preColor.b === 0) {
             //black
             cesdk.block.setColor(fillBlock, 'fill/color/value', primaryColor);
           }
@@ -150,7 +151,7 @@ const CaseComponent = () => {
   const engineRef = useRef(null);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [restaurantName, setRestaurantName] = useState(null);
+  const [restaurantData, setRestaurantData] = useState(null);
   const [reviewBlobs, setReviewBlobs] = useState(new Array(3).fill(null));
 
   useEffect(() => {
@@ -166,31 +167,40 @@ const CaseComponent = () => {
     return function shutdownCreativeEngine() {
       engineRef?.current?.dispose();
     };
+    // eslint-disable-next-line
   }, []);
 
-  const selectRestaurant = async (restaurantData) => {
+  useEffect(() => {
     const engine = engineRef?.current;
     if (!engine || !restaurantData) {
       return;
     }
+    async function renderTemplates(data) {
+      // This can not be done in parallel.
+      for (const [index, sceneUrl] of TEMPLATE_PATHS.entries()) {
+        await engine.scene.loadFromURL(caseAssetPath(sceneUrl.scenePath));
+        fillTemplate(engineRef.current, data);
+        const blob = await engine.block.export(
+          engine.scene.get(),
+          'image/jpeg'
+        );
+        setReviewBlobs((oldBlobs) => {
+          oldBlobs[index] = {
+            isLoading: false,
+            src: URL.createObjectURL(blob)
+          };
+          return [...oldBlobs];
+        });
+        await new Promise((resolve) => setTimeout(resolve, 400));
+      }
+    }
+    setIsLoading(true);
     setReviewBlobs((oldBlobs) => [
       ...oldBlobs.map((blob) => ({ ...blob, isLoading: true }))
     ]);
-    // This can not be done in parallel.
-    for (const [index, sceneUrl] of TEMPLATE_PATHS.entries()) {
-      await engine.scene.loadFromURL(caseAssetPath(sceneUrl.scenePath));
-      fillTemplate(engineRef.current, restaurantData);
-      const blob = await engine.block.export(engine.scene.get(), 'image/jpeg');
-      setReviewBlobs((oldBlobs) => {
-        oldBlobs[index] = {
-          isLoading: false,
-          src: URL.createObjectURL(blob)
-        };
-        return [...oldBlobs];
-      });
-    }
+    renderTemplates({ ...restaurantData });
     setIsLoading(false);
-  };
+  }, [restaurantData]);
 
   return (
     <div
@@ -205,22 +215,18 @@ const CaseComponent = () => {
               <button
                 key={example.name}
                 className={`${classes.example_button} ${
-                  restaurantName === example.name ? classes.selected : ''
+                  restaurantData && restaurantData.name === example.name
+                    ? classes.selected
+                    : ''
                 }`}
-                disabled={restaurantName !== example.name && isLoading}
                 style={{ backgroundColor: example.secondary_color }}
-                onClick={() => {
-                  setIsLoading(true);
-                  setRestaurantName(example.name);
-                  selectRestaurant(example);
-                }}
+                onClick={() => setRestaurantData(example)}
               >
                 <img
                   className="object-contain w-auto"
                   src={caseAssetPath(example.card_path)}
                   alt={example.name}
                 />
-                <div className={classes.overlay}></div>
               </button>
             ))}
           </div>
