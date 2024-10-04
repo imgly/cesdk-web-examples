@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.37.0-rc.0/index.js';
 
 // highlight-config
 const config = {
@@ -9,7 +9,7 @@ const config = {
   userId: 'USER_ID',
   // highlight-userid
   // highlight-baseurl
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.37.0-rc.0/assets',
   // highlight-baseurl
   // highlight-locale
   locale: 'en', // 'de'

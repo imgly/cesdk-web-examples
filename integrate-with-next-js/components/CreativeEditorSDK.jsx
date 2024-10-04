@@ -15,7 +15,7 @@ const Component = (props = {}) => {
       props.config.license = process.env.NEXT_PUBLIC_LICENSE;
       // Serve assets from IMG.LY CDN or locally
       props.config.baseURL =
-        'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/assets';
+        'https://cdn.img.ly/packages/imgly/cesdk-js/1.37.0-rc.0/assets';
       // Enable local uploads in Asset Library
       props.config.callbacks = { onUpload: 'local' };
 
