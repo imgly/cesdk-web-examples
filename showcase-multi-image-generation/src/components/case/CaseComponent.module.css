@@ -1,4 +1,47 @@
-.example_button {
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+}
+
+.containerButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.h4 {
+  color: var(--ci-foreground-black-default);
+  font-family: var(--font-family-gt);
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  line-height: 32px;
+}
+
+.paragraph {
+  display: flex;
+  flex: wrap;
+  color: rgba(22, 22, 23, 0.65);
+  column-gap: 1rem;
+  font-family: var(--font-family-ibm-sans);
+  font-size: 14px;
+  font-weight: normal;
+  hyphens: none;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.exampleButton {
   position: relative;
   width: 139px;
   padding: 5px;
@@ -7,36 +50,94 @@
   background: #fff;
 }
 
-.example_button:disabled {
+.exampleButton:disabled {
   pointer-events: none;
 }
 
-.example_button:hover,
-.example_button:focus {
+.exampleButton:hover,
+.exampleButton:focus {
   border: 1px solid #471aff;
 }
 
-.example_button.selected {
+.exampleButton.selected {
   border: 2px solid #471aff;
 }
 
-.example_button:disabled .overlay {
+.exampleButton:disabled .overlay {
+  top: -2px;
+  bottom: -2px;
+  left: -2px;
+  width: 139px;
+  height: cal(100% + 14px);
+  border-radius: 16px;
   opacity: 0.1;
+}
+
+.restaurantLogoImage {
+  width: auto;
+  object-fit: contain;
+}
+
+.containerAssets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wrapperAssets {
+  display: flex;
+  overflow: auto;
+  flex: wrap;
+  align-items: center;
+  gap: 3rem;
+}
+
+.wrapperAsset {
+  position: relative;
+}
+
+.wrapperAsset:hover .overlay,
+.wrapperAsset:focus .overlay {
+  opacity: 1;
 }
 
 .overlay {
   position: absolute;
   z-index: 1;
-  top: -2px;
-  bottom: -2px;
-  left: -2px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
-  width: 139px;
-  height: cal(100% + 14px);
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: opacity 0.1s;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow:
+    0px 0px 2px rgba(22, 22, 23, 0.25),
+    0px 0px 0px -2px rgba(22, 22, 23, 0.12),
+    0px 0px 0px -2px rgba(22, 22, 23, 0.12),
+    0px 0px 0px -2px rgba(22, 22, 23, 0.12);
+  color: #161617;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 4px;
+  line-height: 20px;
+}
+
+.editButton:hover,
+.editButton:focus {
+  border: 1px solid #ffffff;
+  background: rgba(255, 255, 255, 0.65);
 }

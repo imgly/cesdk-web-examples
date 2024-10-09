@@ -9,11 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "1.35.1",
-    "@cesdk/engine": "1.35.1",
+    "@cesdk/cesdk-js": "1.36.0",
+    "@cesdk/engine": "1.36.0",
     "@google/model-viewer": "3.1.1",
     "@imgly/idml-importer": "^1.0.6",
-    "@imgly/psd-importer": "^0.0.2",
+    "@imgly/psd-importer": "^0.0.3",
     "@imgly/plugin-background-removal-web": "^1.0.0",
     "@imgly/plugin-cutout-library-web": "^1.0.4",
     "@imgly/plugin-vectorizer-web": "^1.0.0",

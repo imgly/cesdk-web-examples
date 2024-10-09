@@ -8,9 +8,64 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-custom.svg"
+        "thumbUri": "{{base_url}}/thumbnails/custom.png"
       },
       "groups": ["custom"]
+    },
+    {
+      "id": "page-sizes-1-1",
+      "label": { "en": "Square" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnails/ratio-1-1.png",
+        "aspectRatio": "1:1"
+      },
+      "groups": ["fixed-ratio"]
+    },
+    {
+      "id": "page-sizes-4-3",
+      "label": { "en": "Ratio 4:3" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnails/ratio-4-3.png",
+        "aspectRatio": "4:3"
+      },
+      "groups": ["fixed-ratio"]
+    },
+    {
+      "id": "page-sizes-3-4",
+      "label": { "en": "Ratio 3:4" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnails/ratio-3-4.png",
+        "aspectRatio": "3:4"
+      },
+      "groups": ["fixed-ratio"]
+    },
+    {
+      "id": "page-sizes-16-9",
+      "label": { "en": "Ratio 16:9" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnails/ratio-16-9.png",
+        "aspectRatio": "16:9"
+      },
+      "groups": ["fixed-ratio"]
+    },
+    {
+      "id": "page-sizes-9-16",
+      "label": { "en": "Ratio 9:16" },
+      "meta": {
+        "width": 80,
+        "height": 120,
+        "thumbUri": "{{base_url}}/thumbnails/ratio-9-16.png",
+        "aspectRatio": "9:16"
+      },
+      "groups": ["fixed-ratio"]
     },
     {
       "id": "page-sizes-ig-story",
@@ -18,7 +73,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-ig-story.svg",
+        "thumbUri": "{{base_url}}/thumbnails/ig-story.png",
         "formatWidth": 1080,
         "formatHeight": 1920,
         "designUnit": "Pixel",
@@ -32,7 +87,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-ig-feed.svg",
+        "thumbUri": "{{base_url}}/thumbnails/ig-feed.png",
         "formatWidth": 1080,
         "formatHeight": 1080,
         "designUnit": "Pixel",
@@ -46,7 +101,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-ig-portrait.svg",
+        "thumbUri": "{{base_url}}/thumbnails/ig-portrait.png",
         "formatWidth": 1080,
         "formatHeight": 1350,
         "designUnit": "Pixel",
@@ -60,7 +115,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-ig-profile.svg",
+        "thumbUri": "{{base_url}}/thumbnails/ig-profile.png",
         "formatWidth": 320,
         "formatHeight": 320,
         "designUnit": "Pixel",
@@ -74,7 +129,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-fb-photo-post.svg",
+        "thumbUri": "{{base_url}}/thumbnails/facebook-photo-post.png",
         "formatWidth": 1200,
         "formatHeight": 630,
         "designUnit": "Pixel",
@@ -88,7 +143,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-fb-profile.svg",
+        "thumbUri": "{{base_url}}/thumbnails/facebook-profile.png",
         "formatWidth": 400,
         "formatHeight": 400,
         "designUnit": "Pixel",
@@ -102,7 +157,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-fb-story.svg",
+        "thumbUri": "{{base_url}}/thumbnails/facebook-story.png",
         "formatWidth": 1080,
         "formatHeight": 1920,
         "designUnit": "Pixel",
@@ -116,7 +171,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-tw-header.svg",
+        "thumbUri": "{{base_url}}/thumbnails/twitter-header.png",
         "formatWidth": 1500,
         "formatHeight": 500,
         "designUnit": "Pixel",
@@ -130,7 +185,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-tw-in-stream-photo.svg",
+        "thumbUri": "{{base_url}}/thumbnails/twitter-in-stream-photo.png",
         "formatWidth": 1600,
         "formatHeight": 1900,
         "designUnit": "Pixel",
@@ -144,7 +199,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-tw-profile.svg",
+        "thumbUri": "{{base_url}}/thumbnails/twitter-profile.png",
         "formatWidth": 400,
         "formatHeight": 400,
         "designUnit": "Pixel",
@@ -158,7 +213,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-postcard.svg",
+        "thumbUri": "{{base_url}}/thumbnails/postcard-5x7.png",
         "formatWidth": 235,
         "formatHeight": 125,
         "designUnit": "Millimeter",
@@ -172,7 +227,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-business-card.svg",
+        "thumbUri": "{{base_url}}/thumbnails/business-card35x2.png",
         "formatWidth": 85,
         "formatHeight": 55,
         "designUnit": "Millimeter",
@@ -186,7 +241,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-poster.svg",
+        "thumbUri": "{{base_url}}/thumbnails/poster.png",
         "formatWidth": 1000,
         "formatHeight": 1400,
         "designUnit": "Millimeter",
@@ -200,7 +255,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-flyer.svg",
+        "thumbUri": "{{base_url}}/thumbnails/flyer.png",
         "formatWidth": 130,
         "formatHeight": 150,
         "designUnit": "Millimeter",
@@ -214,7 +269,7 @@
       "meta": {
         "width": 80,
         "height": 120,
-        "thumbUri": "{{base_url}}/thumbnail-brochure.svg",
+        "thumbUri": "{{base_url}}/thumbnails/brochure.png",
         "formatWidth": 315,
         "formatHeight": 148,
         "designUnit": "Millimeter",

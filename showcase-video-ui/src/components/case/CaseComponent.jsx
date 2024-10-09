@@ -17,7 +17,7 @@ import { caseAssetPath } from './util';
 const CaseComponent = () => {
   const config = useConfig(
     () => ({
-      role: 'Adopter',
+      role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       i18n: {
@@ -92,6 +92,9 @@ const CaseComponent = () => {
       // We want to replace the demo audio assets with our own
       excludeAssetSourceIds: ['ly.img.audio', 'ly.img.video.template']
     });
+    // Disable placeholder and preview features
+    instance.feature.enable('ly.img.placeholder', false);
+    instance.feature.enable('ly.img.preview', false);
 
     const engine = instance.engine;
     engine.editor.setSettingBool('page/title/show', false);
