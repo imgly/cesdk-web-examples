@@ -1156,10 +1156,10 @@
   dependencies:
     "@imgly/vectorizer" "1.0.0"
 
-"@imgly/psd-importer@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@imgly/psd-importer/-/psd-importer-0.0.3.tgz#effe7fdd086a4815e664c929cb3abd6f57c8cb50"
-  integrity sha512-PUbDZku3yWlo00uFRMHvkX9D0k3f9ixE7BIyGaC0z64dF51TisHqmfYSMqsM0Fyte0y5mbfn4NPYmJu+9+Cugg==
+"@imgly/psd-importer@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@imgly/psd-importer/-/psd-importer-0.0.2.tgz#5c168cec1b94db1eb0e73eb5576bea577904947c"
+  integrity sha512-EwfMBuisb4HK0C2Iw0Kp6OCEDjBTVCdYcTL5OdnWSzV7vxcmTkoPKcnEiG5VV/x7iy2AeIY9CqbS6GkROlVQeg==
   dependencies:
     "@webtoon/psd" "^0.4.0"
     opentype.js "^1.3.4"
