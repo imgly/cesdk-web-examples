@@ -1,9 +1,3 @@
-import CreativeEditorSDK, {
-  AssetResult,
-  CreativeEngine,
-  DesignUnit,
-  SettingsBool
-} from '@cesdk/cesdk-js';
 import { removeBackground } from '@imgly/background-removal';
 import APP_ASSETS from './Apps.json';
 import FORMAT_ASSETS from './CustomFormats.json';
@@ -11,6 +5,12 @@ import PageCropPanel, { setTempSizeInMetadata } from './PageCropPanel';
 import { getImageSize } from './lib/CreativeEngineUtils';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
+
+import CreativeEditorSDK, {
+  AssetResult,
+  CreativeEngine,
+  DesignUnit
+} from '@cesdk/cesdk-js';
 
 export async function initPhotoEditorUIConfig(
   instance: CreativeEditorSDK,
@@ -50,10 +50,8 @@ export async function initPhotoEditorUIConfig(
     instance,
     photoUri
   );
-
-  instance.ui.unstable_registerPanel('ly.img.page-crop', (context) =>
-    PageCropPanel({ ...context, ui: instance.ui })
-  );
+  // @ts-ignore
+  instance.ui.unstable_registerPanel('ly.img.page-crop', PageCropPanel);
   instance.setTranslations({
     en: {
       'panel.ly.img.page-crop': 'Crop'
@@ -379,39 +377,22 @@ async function setupPhotoEditingScene(
     if (editMode !== 'Crop') {
       // close size preset panel
       instance.ui.closePanel('ly.img.page-crop');
-      engine.editor.setSettingBool(
-        'ubq://page/allowResizeInteraction' as SettingsBool,
-        false
-      );
+      // @ts-ignore
+      engine.editor.setSettingBool('ubq://page/allowResizeInteraction', false);
       return;
     }
     if (cropConstraint === 'none') {
-      engine.editor.setSettingBool(
-        'ubq://page/restrictResizeInteractionToFixedAspectRatio' as SettingsBool,
-        false
-      );
-      engine.editor.setSettingBool(
-        'ubq://page/allowResizeInteraction' as SettingsBool,
-        true
-      );
+      // @ts-ignore
+      engine.editor.setSettingBool('ubq://page/allowResizeInteraction', true);
     } else if (cropConstraint === 'aspect-ratio') {
-      engine.editor.setSettingBool(
-        'ubq://page/restrictResizeInteractionToFixedAspectRatio' as SettingsBool,
-        true
-      );
-      engine.editor.setSettingBool(
-        'ubq://page/allowResizeInteraction' as SettingsBool,
-        true
-      );
+      // TODO: This is currently getting implemented and will be available in 1.35
+      // engine.editor.setSettingBool(
+      //   'ubq://page/allowResizeProportionalInteraction',
+      //   true
+      // );
     } else if (cropConstraint === 'resolution') {
-      engine.editor.setSettingBool(
-        'ubq://page/allowResizeInteraction' as SettingsBool,
-        false
-      );
-      engine.editor.setSettingBool(
-        'ubq://page/restrictResizeInteractionToFixedAspectRatio' as SettingsBool,
-        false
-      );
+      // @ts-ignore
+      engine.editor.setSettingBool('ubq://page/allowResizeInteraction', false);
     }
   });
 
@@ -468,22 +449,6 @@ function createApplyFormatAsset(
       newHeight = parseInt(asset.meta.formatHeight as string, 10);
       newDesignUnit = asset.meta.designUnit as DesignUnit;
       setCropConstraintMetadata(engine, 'resolution');
-    } else if (asset.meta?.aspectRatio) {
-      const aspectRatio = asset.meta.aspectRatio as string;
-      const [width, height] = aspectRatio.split(':').map(Number);
-      // adjust size to match aspect ratio
-      const { width: originalWidth, height: originalHeight } =
-        getOriginalSize(engine);
-      const originalAspectRatio = originalWidth / originalHeight;
-      const newAspectRatio = width / height;
-      if (originalAspectRatio > newAspectRatio) {
-        newWidth = originalHeight * newAspectRatio;
-        newHeight = originalHeight;
-      } else {
-        newWidth = originalWidth;
-        newHeight = originalWidth / newAspectRatio;
-      }
-      setCropConstraintMetadata(engine, 'aspect-ratio');
     }
     if (newDesignUnit) {
       engine.scene.setDesignUnit(newDesignUnit);

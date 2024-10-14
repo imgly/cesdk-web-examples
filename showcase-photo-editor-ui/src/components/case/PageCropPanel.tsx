@@ -71,7 +71,7 @@ const PageCropPanel = ({
   const cropConstraint = getCropConstraintMetadata(engine);
   const designUnit = engine.scene.getDesignUnit();
   const shortDesignUnit = shortenDesignUnit(designUnit);
-  const currentAspectRatio = realSize.width / realSize.height;
+
   Section('dimensions', {
     title: `Dimensions`,
     children: () => {
@@ -79,38 +79,22 @@ const PageCropPanel = ({
         label: `Width (${shortDesignUnit})`,
         value: tempSize.width,
         isDisabled: cropConstraint === 'resolution',
-        setValue: (value: number) => {
-          if (cropConstraint === 'aspect-ratio') {
-            setTempSizeInMetadata(engine, pageId, {
-              width: value,
-              height: value / currentAspectRatio
-            });
-          } else {
-            setTempSizeInMetadata(engine, pageId, {
-              width: value,
-              height: tempSize.height
-            });
-          }
-        }
+        setValue: (value: number) =>
+          setTempSizeInMetadata(engine, pageId, {
+            width: value,
+            height: tempSize.height
+          })
       });
 
       NumberInput('height', {
         label: `Height (${shortDesignUnit})`,
         value: tempSize.height,
         isDisabled: cropConstraint === 'resolution',
-        setValue: (value: number) => {
-          if (cropConstraint === 'aspect-ratio') {
-            setTempSizeInMetadata(engine, pageId, {
-              width: value * currentAspectRatio,
-              height: value
-            });
-          } else {
-            setTempSizeInMetadata(engine, pageId, {
-              width: tempSize.width,
-              height: value
-            });
-          }
-        }
+        setValue: (value: number) =>
+          setTempSizeInMetadata(engine, pageId, {
+            width: tempSize.width,
+            height: value
+          })
       });
 
       Button('apply', {

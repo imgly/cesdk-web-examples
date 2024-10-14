@@ -1,79 +1,148 @@
 'use client';
 
 import CreativeEngine from '@cesdk/engine';
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
-import {
-  caseAssetPath,
-  fillTemplate,
-  removeInstanceVariables
-} from './lib/TemplateUtilities';
+import { hexToRgba } from './lib/ColorUtilities';
 import classes from './CaseComponent.module.css';
-import EditIcon from './icons/Edit.svg';
-import { EditTemplateCESDK } from './components/EditTemplateCESDK';
-import { EditInstanceCESDK } from './components/EditInstanceCESDK';
-import SCENES from './scenes.json';
+
+const caseAssetPath = (path, caseId = 'multi-image-generation') =>
+  `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/${caseId}${path}`;
 
 const EXAMPLES = [
   {
     name: 'Bean there Bean good',
-    photoPath: '/images/photo-bean.png',
+    photo_path: '/images/photo-bean.png',
     price: '$$',
-    reviewCount: 281,
+    review_count: 281,
     rating: 1,
-    cardPath: '/images/card-bean.png',
-    logoPath: '/images/logo-bean.png',
-    primaryColor: '#050087',
-    secondaryColor: '#F1E1C7'
+    card_path: '/images/card-bean.png',
+    logo_path: '/images/logo-bean.png',
+    primary_color: '#050087',
+    secondary_color: '#F1E1C7'
   },
   {
     name: 'Scoop\nthere it is',
-    photoPath: '/images/photo-scoop.png',
+    photo_path: '/images/photo-scoop.png',
     price: '$',
-    reviewCount: 114,
+    review_count: 114,
     rating: 5,
-    cardPath: '/images/card-scoop.png',
-    logoPath: '/images/logo-scoop.png',
-    primaryColor: '#EB11D5',
-    secondaryColor: '#85EAD1'
+    card_path: '/images/card-scoop.png',
+    logo_path: '/images/logo-scoop.png',
+    primary_color: '#EB11D5',
+    secondary_color: '#85EAD1'
   },
   {
     name: 'BUN intended',
-    photoPath: '/images/photo-bun.png',
+    photo_path: '/images/photo-bun.png',
     price: '$$$',
-    reviewCount: 65,
+    review_count: 65,
     rating: 3,
-    cardPath: '/images/card-bun.png',
-    logoPath: '/images/logo-bun.png',
-    primaryColor: '#2E573E',
-    secondaryColor: '#E4A341'
+    card_path: '/images/card-bun.png',
+    logo_path: '/images/logo-bun.png',
+    primary_color: '#2E573E',
+    secondary_color: '#E4A341'
   }
 ];
 
-const TEMPLATES = {
-  Square: {
-    label: 'Square',
-    sceneString: SCENES.square,
-    previewImagePath: caseAssetPath('/images/placeholder-1.png'),
-    outputFormat: 'image/png',
+const TEMPLATE_PATHS = [
+  {
+    scenePath: '/example-1.scene',
+    placeholderPath: '/images/placeholder-1.png',
     width: 480 / 2,
     height: 480 / 2
   },
-  Portrait: {
-    label: 'Portrait',
-    sceneString: SCENES.portrait,
-    previewImagePath: caseAssetPath('/images/placeholder-2.png'),
-    outputFormat: 'image/png',
+  {
+    scenePath: '/example-2.scene',
+    placeholderPath: '/images/placeholder-2.png',
     width: 400 / 2,
     height: 560 / 2
   },
-  Landscape: {
-    label: 'Landscape',
-    sceneString: SCENES.landscape,
-    previewImagePath: caseAssetPath('/images/placeholder-3.png'),
-    outputFormat: 'image/png',
+  {
+    scenePath: '/example-3.scene',
+    placeholderPath: '/images/placeholder-3.png',
     width: 560 / 2,
     height: 400 / 2
+  }
+];
+
+const replaceImage = (cesdk, imageName, newUrl) => {
+  const imgBlock = cesdk.block.findByName(imageName)[0];
+  if (!imgBlock) {
+    return;
+  }
+  const img = cesdk.block.getFill(imgBlock);
+  cesdk.block.setString(img, 'fill/image/imageFileURI', newUrl);
+  cesdk.block.resetCrop(img);
+};
+
+const fillTemplate = (cesdk, restaurantData) => {
+  if (!restaurantData) {
+    return false;
+  }
+  replaceImage(cesdk, 'RestaurantPhoto', caseAssetPath(restaurantData.photo_path));
+  const photoBlock = cesdk.block.findByName('RestaurantPhoto')[0];
+  cesdk.block.setContentFillMode(photoBlock, 'Cover');
+  replaceImage(cesdk, 'RestaurantLogo', caseAssetPath(restaurantData.logo_path));
+  cesdk.variable.setString('Name', restaurantData.name || '');
+  cesdk.variable.setString('$$', restaurantData.price || '');
+  cesdk.variable.setString('Count', restaurantData.review_count.toString() || '');
+  // Apply colors based on black/white-ness of the previous color
+  const primaryColor = hexToRgba(restaurantData.primary_color);
+  const secondaryColor = hexToRgba(restaurantData.secondary_color);
+  cesdk.block.findAll().forEach((block) => {
+    // handle text blocks differently
+    if (cesdk.block.getType(block) === '//ly.img.ubq/text') {
+      const preColor = cesdk.block.getTextColors(block)[0];
+      if (preColor.r === 1 && preColor.g === 1 && preColor.b === 1) {
+        //white
+        cesdk.block.setTextColor(block, secondaryColor);
+      } else if (preColor.r === 0 && preColor.g === 0 && preColor.b === 0) {
+        //black
+        cesdk.block.setTextColor(block, primaryColor);
+      }
+    } else {
+      if (cesdk.block.supportsFill(block) && cesdk.block.hasFill(block)) {
+        const fillBlock = cesdk.block.getFill(block);
+        if (cesdk.block.getType(fillBlock) === '//ly.img.ubq/fill/color') {
+          const preColor = cesdk.block.getColor(
+            fillBlock,
+            'fill/color/value'
+          );
+          if (preColor.r === 1 && preColor.g === 1 && preColor.b === 1) {
+            //white
+            cesdk.block.setColor(
+              fillBlock,
+              'fill/color/value',
+              secondaryColor
+            );
+          } else if (
+            preColor.r === 0 &&
+            preColor.g === 0 &&
+            preColor.b === 0
+          ) {
+            //black
+            cesdk.block.setColor(fillBlock, 'fill/color/value', primaryColor);
+          }
+        }
+      }
+    }
+  });
+  // Fill rating stars' color
+  const onColor = cesdk.block.getColor(
+    cesdk.block.findByName('Rating1')[0],
+    'fill/solid/color'
+  );
+  const offColor = cesdk.block.getColor(
+    cesdk.block.findByName('Rating5')[0],
+    'fill/solid/color'
+  );
+  for (let i = 1; i < 6; i++) {
+    cesdk.block.setColor(
+      cesdk.block.findByName(`Rating${i}`)[0],
+      'fill/solid/color',
+      restaurantData.rating >= i ? onColor : offColor
+    );
   }
 };
 
@@ -81,11 +150,8 @@ const CaseComponent = () => {
   const engineRef = useRef(null);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [restaurant, setRestaurant] = useState(null);
+  const [restaurantName, setRestaurantName] = useState(null);
   const [reviewBlobs, setReviewBlobs] = useState(new Array(3).fill(null));
-  const [allTemplates, setAllTemplates] = useState(TEMPLATES);
-  const [currentSceneData, setCurrentSceneData] = useState();
-  const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
     const config = {
@@ -107,25 +173,18 @@ const CaseComponent = () => {
     if (!engine || !restaurantData) {
       return;
     }
-    setReviewBlobs(
-      reviewBlobs.map((blob) => ({
-        ...blob,
-        isLoading: true
-      }))
-    );
+    setReviewBlobs((oldBlobs) => [
+      ...oldBlobs.map((blob) => ({ ...blob, isLoading: true }))
+    ]);
     // This can not be done in parallel.
-    for (const [index, [, template]] of Object.entries(
-      Object.entries(allTemplates)
-    )) {
-      await fillTemplate(engine, template.sceneString, restaurantData);
-      const image = await engine.block.export(engine.scene.get(), 'image/jpeg');
-      const sceneString = await engine.scene.saveToString();
+    for (const [index, sceneUrl] of TEMPLATE_PATHS.entries()) {
+      await engine.scene.loadFromURL(caseAssetPath(sceneUrl.scenePath));
+      fillTemplate(engineRef.current, restaurantData);
+      const blob = await engine.block.export(engine.scene.get(), 'image/jpeg');
       setReviewBlobs((oldBlobs) => {
         oldBlobs[index] = {
           isLoading: false,
-          src: URL.createObjectURL(image),
-          label: template.label,
-          sceneString
+          src: URL.createObjectURL(blob)
         };
         return [...oldBlobs];
       });
@@ -133,110 +192,32 @@ const CaseComponent = () => {
     setIsLoading(false);
   };
 
-  const resetSelection = async () => {
-    setRestaurant(null);
-    setReviewBlobs((oldBlobs) => [
-      ...oldBlobs.map((blob) => ({
-        ...blob,
-        src: null,
-        label: null,
-        sceneString: null,
-        isLoading: false
-      }))
-    ]);
-    setIsLoading(false);
-  };
-
-  const onEditClicked = useCallback((sceneData) => {
-    setCurrentSceneData(sceneData);
-    setShowEditModal(true);
-  }, []);
-
-  const updateTemplate = useCallback(
-    async (sceneString, currentTemplate) => {
-      const engine = engineRef?.current;
-
-      // Render Scene from updated sceneString
-      await engine.scene.loadFromString(sceneString);
-      removeInstanceVariables(engine);
-      const blob = await engine.block.export(
-        engine.block.findByType('scene')[0],
-        currentTemplate.outputFormat
-      );
-      setAllTemplates({
-        ...allTemplates,
-        [currentTemplate.label]: {
-          ...currentTemplate,
-          sceneString,
-          previewImagePath: URL.createObjectURL(blob)
-        }
-      });
-      setShowEditModal(false);
-    },
-    [allTemplates]
-  );
-
-  const updateInstance = useCallback(
-    async (sceneString, currentTemplate) => {
-      const engine = engineRef?.current;
-
-      // Render Scene from updated sceneString
-      await engine.scene.loadFromString(sceneString);
-      const newBlob = await engine.block.export(
-        engine.block.findByType('scene')[0],
-        currentTemplate.outputFormat
-      );
-      setReviewBlobs(
-        reviewBlobs.map((blob) =>
-          blob.label === currentTemplate.label
-            ? {
-                ...blob,
-                sceneString,
-                src: URL.createObjectURL(newBlob)
-              }
-            : blob
-        )
-      );
-      setShowEditModal(false);
-    },
-    [reviewBlobs]
-  );
-
-  const hideEditModal = useCallback(() => {
-    setShowEditModal(false);
-  }, []);
-
   return (
-    <div className={classes.container}>
-      <div className={classes.containerButtons}>
-        <h3 className={classes.h4}>Select Restaurant</h3>
-        <div className={classes.paragraph}>
-          <div className={classes.buttons}>
+    <div
+      className="flex flex-grow flex-col items-center justify-center"
+      style={{ gap: '64px' }}
+    >
+      <div className="gap-sm flex flex-col items-center">
+        <h3 className="h4">Select Restaurant</h3>
+        <div className="paragraphSmall" style={paragraphStyle}>
+          <div className="gap-sm flex">
             {EXAMPLES.map((example) => (
               <button
                 key={example.name}
-                className={`${classes.exampleButton} ${
-                  restaurant && restaurant.name === example.name
-                    ? classes.selected
-                    : ''
+                className={`${classes.example_button} ${
+                  restaurantName === example.name ? classes.selected : ''
                 }`}
-                disabled={
-                  restaurant && restaurant.name !== example.name && isLoading
-                }
-                style={{ backgroundColor: example.secondaryColor }}
+                disabled={restaurantName !== example.name && isLoading}
+                style={{ backgroundColor: example.secondary_color }}
                 onClick={() => {
-                  if (restaurant && restaurant.name === example.name) {
-                    resetSelection();
-                  } else {
-                    setIsLoading(true);
-                    setRestaurant(example);
-                    selectRestaurant(example);
-                  }
+                  setIsLoading(true);
+                  setRestaurantName(example.name);
+                  selectRestaurant(example);
                 }}
               >
                 <img
-                  className={classes.restaurantLogoImage}
-                  src={caseAssetPath(example.cardPath)}
+                  className="object-contain w-auto"
+                  src={caseAssetPath(example.card_path)}
                   alt={example.name}
                 />
                 <div className={classes.overlay}></div>
@@ -245,19 +226,15 @@ const CaseComponent = () => {
           </div>
         </div>
       </div>
-      <div className={classes.containerAssets}>
+      <div className="gap-sm flex flex-col items-center">
         <h3 className="h4">Generated Assets</h3>
-        <div className={classes.wrapperAssets}>
-          {Object.entries(allTemplates).map(([_, template], index) => (
-            <div
-              className={classes.wrapperAsset}
-              style={{ width: template.width }}
-              key={template.label}
-            >
+        <div style={imageWrapper}>
+          {TEMPLATE_PATHS.map(({ width, height, placeholderPath }, index) => (
+            <div style={{ width, position: 'relative' }} key={placeholderPath}>
               <img
                 data-cy={!reviewBlobs[index]?.isLoading ? 'export-image' : ''}
                 key={index}
-                src={reviewBlobs[index]?.src || template.previewImagePath}
+                src={reviewBlobs[index]?.src || caseAssetPath(placeholderPath)}
                 style={{
                   ...(reviewBlobs[index]?.isLoading
                     ? { opacity: 0.5 }
@@ -265,47 +242,31 @@ const CaseComponent = () => {
                   transition: 'opacity .5s',
                   transitionTimingFunction: 'ease-in-out'
                 }}
-                width={template.width}
-                height={template.height}
+                width={width}
+                height={height}
                 alt={'Rendered review template ' + index}
               />
-              <div className={classes.overlay}>
-                <button
-                  onClick={() => onEditClicked(template)}
-                  className={classes.editButton}
-                >
-                  <EditIcon />
-                  <span>Edit</span>
-                </button>
-              </div>
               {reviewBlobs[index]?.isLoading && <LoadingSpinner />}
             </div>
           ))}
         </div>
       </div>
-      {showEditModal && restaurant && (
-        <EditInstanceCESDK
-          templateName={currentSceneData.label}
-          restaurantData={restaurant}
-          sceneString={currentSceneData.sceneString}
-          onSave={async (sceneString) =>
-            updateInstance(sceneString, currentSceneData)
-          }
-          onClose={hideEditModal}
-        />
-      )}
-      {showEditModal && !restaurant && (
-        <EditTemplateCESDK
-          templateName={currentSceneData.label}
-          sceneString={currentSceneData.sceneString}
-          onSave={async (sceneString) =>
-            updateTemplate(sceneString, currentSceneData)
-          }
-          onClose={hideEditModal}
-        />
-      )}
     </div>
   );
+};
+
+const imageWrapper = {
+  display: 'flex',
+  alignItems: 'center',
+  flexWrap: 'wrap',
+  gap: '3rem',
+  overflow: 'auto'
+};
+
+const paragraphStyle = {
+  display: 'flex',
+  columnGap: '1rem',
+  flexWrap: 'wrap'
 };
 
 export default CaseComponent;

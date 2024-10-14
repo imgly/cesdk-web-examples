@@ -8,7 +8,7 @@ const CaseComponent = () => {
 
   const config = useConfig(
     () => ({
-      role: 'Creator',
+      role: 'Adopter',
       theme: 'light',
       callbacks: {
         onExport: 'download',
@@ -36,9 +36,6 @@ const CaseComponent = () => {
     async (instance) => {
       await instance.addDefaultAssetSources();
       await instance.addDemoAssetSources({ sceneMode: 'Video' });
-      // Disable placeholder and preview features
-      instance.feature.enable('ly.img.placeholder', false);
-      instance.feature.enable('ly.img.preview', false);
       await instance.engine.scene.createFromVideo(video.full);
     },
     [video]
