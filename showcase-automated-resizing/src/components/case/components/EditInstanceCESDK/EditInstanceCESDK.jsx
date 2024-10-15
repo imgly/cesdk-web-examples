@@ -6,6 +6,11 @@ const EditInstanceCESDK = memo(({ sceneString, onClose, onSave }) => {
     <CESDKModal
       onOutsideClick={onClose}
       configure={async (instance) => {
+        instance.ui.setDockOrder([
+          ...instance.ui
+            .getDockOrder()
+            .filter(({ key }) => key !== 'ly.img.template')
+        ]);
         await instance.engine.scene.loadFromString(sceneString);
       }}
       config={{
@@ -32,21 +37,6 @@ const EditInstanceCESDK = memo(({ sceneString, onClose, onSave }) => {
                 save: true,
                 back: true,
                 download: true
-              }
-            },
-            dock: {
-              groups: [
-                {
-                  id: 'ly.img.defaultGroup',
-                  showOverview: true
-                }
-              ]
-            },
-
-            libraries: {
-              insert: {
-                entries: (defaultEntries) =>
-                  defaultEntries.filter((e) => e.id !== 'ly.img.template')
               }
             }
           }

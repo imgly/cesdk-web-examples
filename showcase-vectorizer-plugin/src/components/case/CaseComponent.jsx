@@ -11,7 +11,7 @@ const CaseComponent = () => {
       featureFlags: {
         archiveSceneEnabled: true
       },
-      role: 'Adopter',
+      role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
@@ -40,6 +40,9 @@ const CaseComponent = () => {
   const configure = useConfigure(async (instance) => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    // Disable placeholder and preview features
+    instance.feature.enable('ly.img.placeholder', false);
+    instance.feature.enable('ly.img.preview', false);
     instance.addPlugin(
       VectorizationPlugin({
         // This will automatically prepend a button to the canvas menu

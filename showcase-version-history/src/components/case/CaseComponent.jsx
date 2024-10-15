@@ -100,21 +100,6 @@ const VersionHistoryCESDK = () => {
       },
       ui: {
         elements: {
-          dock: {
-            groups: [
-              {
-                id: 'ly.img.defaultGroup',
-                showOverview: true
-              }
-            ]
-          },
-
-          libraries: {
-            insert: {
-              entries: (defaultEntries) =>
-                defaultEntries.filter((e) => e.id !== 'ly.img.template')
-            }
-          },
           panels: {
             settings: true
           },
@@ -137,6 +122,13 @@ const VersionHistoryCESDK = () => {
   const configure = useConfigure(async (instance) => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
+
+    instance.ui.setDockOrder([
+      ...instance.ui
+        .getDockOrder()
+        .filter(({ key }) => key !== 'ly.img.template')
+    ]);
+
     await instance.loadFromURL(caseAssetPath('/snapshots/1/scene.scene'));
   }, []);
 

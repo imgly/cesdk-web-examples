@@ -11,7 +11,7 @@ const ExportOptionsCESDK = () => {
   const [cesdk, setCesdk] = useCreativeEditor();
   const config = useConfig(
     () => ({
-      role: 'Adopter',
+      role: 'Creator',
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onExport: 'download',
@@ -30,6 +30,9 @@ const ExportOptionsCESDK = () => {
   const configure = useConfigure(async (instance) => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    // Disable placeholder and preview features
+    instance.feature.enable('ly.img.placeholder', false);
+    instance.feature.enable('ly.img.preview', false);
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
     );

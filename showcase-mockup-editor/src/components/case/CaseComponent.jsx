@@ -175,21 +175,10 @@ const CaseComponent = () => {
     };
   }, [setEngine]);
 
-  // useEffect(() => {
-  //   if (!engine) return;
-
-  //   async function onEngineReady() {
-  //     await engine.scene.loadFromURL(
-  //       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.mockupScenePath}`
-  //     );
-  //   }
-  //   onEngineReady();
-  // }, [productConfig]);
-
   const config = useConfig(
     () => ({
       license: process.env.NEXT_PUBLIC_LICENSE,
-      role: 'Adopter',
+      role: 'Creator',
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -205,15 +194,6 @@ const CaseComponent = () => {
               }
             }
           },
-          libraries: {
-            insert: {
-              entries: (defaultEntries) => {
-                return defaultEntries.filter(
-                  (entry) => entry.id !== 'ly.img.template'
-                );
-              }
-            }
-          },
           panels: {
             settings: true
           }
@@ -226,6 +206,16 @@ const CaseComponent = () => {
     async (instance) => {
       await instance.addDefaultAssetSources();
       await instance.addDemoAssetSources({ sceneMode: 'Design' });
+      // Disable placeholder and preview features
+      instance.feature.enable('ly.img.placeholder', false);
+      instance.feature.enable('ly.img.preview', false);
+
+      instance.ui.setDockOrder([
+        ...instance.ui
+          .getDockOrder()
+          .filter(({ key }) => key !== 'ly.img.template')
+      ]);
+
       await instance.loadFromURL(
         `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.scenePath}`
       );
