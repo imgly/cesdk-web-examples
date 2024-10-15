@@ -11,7 +11,7 @@ const caseAssetPath = (path, caseId = 'layouts') =>
 const CaseComponent = () => {
   const config = useConfig(
     () => ({
-      role: 'Adopter',
+      role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
@@ -28,19 +28,6 @@ const CaseComponent = () => {
               }
             }
           },
-          dock: {
-            groups: [
-              {
-                id: 'ly.img.layouts',
-                entryIds: ['ly.img.layouts']
-              },
-              {
-                id: 'ly.img.defaultGroup',
-                showOverview: true
-              }
-            ],
-            defaultGroupId: 'ly.img.defaultGroup'
-          },
           panels: {
             settings: true
           },
@@ -51,27 +38,7 @@ const CaseComponent = () => {
             },
             insert: {
               autoClose: false,
-              floating: false,
-              entries: (defaultEntries) => {
-                return [
-                  {
-                    id: 'ly.img.layouts',
-                    sourceIds: ['ly.img.layouts'],
-                    previewLength: 2,
-                    gridColumns: 2,
-                    gridItemHeight: 'square',
-
-                    previewBackgroundType: 'contain',
-                    gridBackgroundType: 'contain',
-                    icon: ({ iconSize }) => {
-                      return iconSize === 'normal'
-                        ? caseAssetPath('/collage-small.svg')
-                        : caseAssetPath('/collage-large.svg');
-                    }
-                  },
-                  ...defaultEntries.filter(({ id }) => id !== 'ly.img.template')
-                ];
-              }
+              floating: false
             }
           }
         }
@@ -87,6 +54,38 @@ const CaseComponent = () => {
   const configure = useConfigure(async (instance) => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    // Disable placeholder and preview features
+    instance.feature.enable('ly.img.placeholder', false);
+    instance.feature.enable('ly.img.preview', false);
+
+    instance.ui.setDockOrder([
+      {
+        id: 'ly.img.assetLibrary.dock',
+        key: 'ly.img.layouts',
+        label: 'libraries.ly.img.layouts.label',
+        icon: ({ iconSize }) => {
+          return iconSize === 'normal'
+            ? caseAssetPath('/collage-small.svg')
+            : caseAssetPath('/collage-large.svg');
+        },
+        entries: ['ly.img.layouts']
+      },
+      'ly.img.separator',
+      ...instance.ui
+        .getDockOrder()
+        .filter(({ key }) => !['ly.img.template'].includes(key))
+    ]);
+
+    instance.ui.addAssetLibraryEntry({
+      id: 'ly.img.layouts',
+      sourceIds: ['ly.img.layouts'],
+      previewLength: 2,
+      gridColumns: 2,
+      gridItemHeight: 'square',
+      previewBackgroundType: 'contain',
+      gridBackgroundType: 'contain'
+    });
+
     loadAssetSourceFromContentJSON(
       instance.engine,
       LAYOUT_ASSETS,

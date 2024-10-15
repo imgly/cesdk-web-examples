@@ -11,7 +11,7 @@ const CaseComponent = () => {
   const config = useConfig(
     () => ({
       locale: 'en',
-      role: 'Adopter',
+      role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
@@ -28,22 +28,6 @@ const CaseComponent = () => {
               }
             }
           },
-          dock: {
-            groups: [
-              {
-                id: 'ly.img.formats',
-                entryIds: ['ly.img.formats']
-              },
-              {
-                id: 'ly.img.template',
-                entryIds: ['ly.img.template']
-              },
-              {
-                id: 'ly.img.defaultGroup',
-                showOverview: true
-              }
-            ]
-          },
           panels: {
             settings: true
           },
@@ -54,31 +38,7 @@ const CaseComponent = () => {
             },
             insert: {
               autoClose: false,
-              floating: false,
-              entries: (defaultEntries) => {
-                return [
-                  {
-                    id: 'ly.img.formats',
-                    sourceIds: ['ly.img.formats'],
-                    previewLength: 3,
-                    gridColumns: 3,
-                    gridItemHeight: 'auto',
-
-                    previewBackgroundType: 'contain',
-                    gridBackgroundType: 'cover',
-                    cardLabel: (assetResult) => assetResult.label,
-                    cardLabelPosition: () => 'bottom',
-                    icon: () => caseAssetPath('/page-sizes-large.svg'),
-                    title: ({ group }) => {
-                      if (group) {
-                        return `libraries.ly.img.formats.${group}.label`;
-                      }
-                      return undefined;
-                    }
-                  },
-                  ...defaultEntries
-                ];
-              }
+              floating: false
             }
           }
         }
@@ -96,6 +56,34 @@ const CaseComponent = () => {
   const configure = useConfigure(async (instance) => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    // Disable placeholder and preview features
+    instance.feature.enable('ly.img.placeholder', false);
+    instance.feature.enable('ly.img.preview', false);
+
+    instance.ui.setDockOrder([
+      {
+        id: 'ly.img.assetLibrary.dock',
+        key: 'ly.img.formats',
+        label: 'libraries.ly.img.formats.label',
+        icon: () => caseAssetPath('/page-sizes-large.svg'),
+        entries: ['ly.img.formats']
+      },
+      'ly.img.separator',
+      ...instance.ui.getDockOrder()
+    ]);
+
+    instance.ui.addAssetLibraryEntry({
+      id: 'ly.img.formats',
+      sourceIds: ['ly.img.formats'],
+      previewLength: 3,
+      gridColumns: 3,
+      gridItemHeight: 'auto',
+      previewBackgroundType: 'contain',
+      gridBackgroundType: 'cover',
+      cardLabel: (assetResult) => assetResult.label,
+      cardLabelPosition: () => 'below'
+    });
+
     loadAssetSourceFromContentJSON(
       instance.engine,
       FORMAT_ASSETS,

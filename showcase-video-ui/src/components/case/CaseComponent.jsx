@@ -2,7 +2,8 @@
 
 import { UserInterfaceElements } from '@cesdk/cesdk-js';
 import {
-  PAGE_FORMATS_INSERT_ENTRY,
+  PAGE_FORMATS_INSERT_ENTRY_DOCK,
+  PAGE_FORMATS_INSERT_ENTRY_ASSET,
   formatAssetsToPresets,
   pageFormatI18n
 } from './PageFormatAssetLibrary';
@@ -34,41 +35,6 @@ const CaseComponent = () => {
           panels: {
             settings: true
           },
-          dock: {
-            groups: [
-              {
-                id: 'misc',
-                entryIds: ['pageFormats']
-              },
-              {
-                id: 'examples',
-                entryIds: ['ly.img.video.scene']
-              },
-              {
-                id: 'ly.img.defaultGroup',
-                showOverview: true
-              }
-            ]
-          },
-          libraries: {
-            insert: {
-              entries: (defaultEntries) => {
-                return [
-                  ...defaultEntries.filter(
-                    ({ id }) => !['ly.img.video.template'].includes(id)
-                  ),
-                  PAGE_FORMATS_INSERT_ENTRY,
-                  {
-                    id: 'ly.img.video.scene',
-                    sourceIds: ['ly.img.video.scene'],
-                    icon: () => caseAssetPath('/static-video-scenes-icon.svg'),
-                    gridColumns: 2
-                  }
-                ];
-              }
-            }
-          },
-
           navigation: {
             position: UserInterfaceElements.NavigationPosition.Top,
             action: {
@@ -92,6 +58,30 @@ const CaseComponent = () => {
       // We want to replace the demo audio assets with our own
       excludeAssetSourceIds: ['ly.img.audio', 'ly.img.video.template']
     });
+
+    instance.ui.setDockOrder([
+      PAGE_FORMATS_INSERT_ENTRY_DOCK,
+      'ly.img.separator',
+      {
+        id: 'ly.img.assetLibrary.dock',
+        key: 'examples',
+        label: 'libraries.ly.img.video.scene.label',
+        icon: () => caseAssetPath('/static-video-scenes-icon.svg'),
+        entries: ['ly.img.video.scene']
+      },
+      'ly.img.separator',
+      ...instance.ui
+        .getDockOrder()
+        .filter(({ key }) => !['ly.img.video.template'].includes(key))
+    ]);
+
+    instance.ui.addAssetLibraryEntry({
+      id: 'ly.img.video.scene',
+      sourceIds: ['ly.img.video.scene']
+    });
+
+    instance.ui.addAssetLibraryEntry(PAGE_FORMATS_INSERT_ENTRY_ASSET);
+
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);

@@ -6,7 +6,7 @@ import { pexelsAssetLibrary } from './pexelsAssetLibrary';
 const CaseComponent = () => {
   const config = useConfig(
     () => ({
-      role: 'Adopter',
+      role: 'Creator',
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onExport: 'download',
@@ -22,51 +22,6 @@ const CaseComponent = () => {
               export: {
                 show: true,
                 format: ['image/png', 'application/pdf']
-              }
-            }
-          },
-          libraries: {
-            insert: {
-              floating: false,
-              entries: (defaultEntries) => {
-                const entriesWithoutDefaultImages = defaultEntries.filter(
-                  (entry) => {
-                    return entry.id !== 'ly.img.image';
-                  }
-                );
-                return [
-                  {
-                    id: 'pexels',
-                    sourceIds: ['pexels'],
-                    previewLength: 3,
-                    gridItemHeight: 'auto',
-                    gridBackgroundType: 'cover',
-                    gridColumns: 2
-                  },
-                  ...entriesWithoutDefaultImages
-                ];
-              }
-            },
-            replace: {
-              floating: false,
-              entries: (defaultEntries, context) => {
-                if (
-                  context.selectedBlocks.length !== 1 ||
-                  context.selectedBlocks[0].fillType !==
-                    '//ly.img.ubq/fill/image'
-                ) {
-                  return [];
-                }
-                return [
-                  {
-                    id: 'pexels',
-                    sourceIds: ['pexels'],
-                    previewLength: 3,
-                    gridItemHeight: 'auto',
-                    gridBackgroundType: 'cover',
-                    gridColumns: 2
-                  }
-                ];
               }
             }
           }
@@ -85,6 +40,42 @@ const CaseComponent = () => {
   const configure = useConfigure(async (instance) => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    // Disable placeholder and preview features
+    instance.feature.enable('ly.img.placeholder', false);
+    instance.feature.enable('ly.img.preview', false);
+
+    instance.ui.addAssetLibraryEntry({
+      id: 'pexels',
+      sourceIds: ['pexels'],
+      previewLength: 3,
+      gridItemHeight: 'auto',
+      gridBackgroundType: 'cover',
+      gridColumns: 2
+    });
+
+    instance.ui.setDockOrder(
+      instance.ui.getDockOrder().map((component) =>
+        ['ly.img.image'].includes(component.key)
+          ? {
+              id: 'ly.img.assetLibrary.dock',
+              key: 'pexels',
+              label: 'libraries.pexels.label',
+              entries: ['pexels']
+            }
+          : component
+      )
+    );
+
+    instance.ui.setReplaceAssetLibraryEntries(({ selectedBlocks, _ }) => {
+      if (
+        selectedBlocks.length !== 1 ||
+        selectedBlocks[0].fillType !== '//ly.img.ubq/fill/image'
+      ) {
+        return [];
+      }
+      return ['pexels'];
+    });
+
     instance.engine.asset.addSource(pexelsAssetLibrary);
     instance.engine.editor.setSettingBool('page/title/show', false);
     await instance.loadFromURL(

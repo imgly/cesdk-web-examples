@@ -10,7 +10,7 @@ const CaseComponent = () => {
 
   const config = useConfig(
     () => ({
-      role: 'Adopter',
+      role: 'Creator',
       theme: 'light',
       callbacks: {
         onExport: 'download',
@@ -44,6 +44,9 @@ const CaseComponent = () => {
     async (instance) => {
       await instance.addDefaultAssetSources();
       await instance.addDemoAssetSources({ sceneMode: 'Design' });
+      // Disable placeholder and preview features
+      instance.feature.enable('ly.img.placeholder', false);
+      instance.feature.enable('ly.img.preview', false);
       // Preselect the loaded Image
       await instance.createFromImage(image.full);
       const blocks = instance.engine.block.findByKind('image');

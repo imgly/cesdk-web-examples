@@ -7,6 +7,11 @@ const EditTemplateCESDK = memo(
       <CESDKModal
         onOutsideClick={onClose}
         configure={async (instance) => {
+          instance.ui.setDockOrder([
+            ...instance.ui
+              .getDockOrder()
+              .filter(({ key }) => key !== 'ly.img.template')
+          ]);
           instance.engine.editor.setSettingBool('page/title/show', false);
           if (sceneString) {
             await instance.engine.scene.loadFromString(sceneString);
@@ -50,19 +55,7 @@ const EditTemplateCESDK = memo(
               dock: {
                 iconSize: 'normal',
                 hideLabels: true,
-                groups: [
-                  {
-                    id: 'ly.img.defaultGroup',
-                    showOverview: true
-                  }
-                ]
               },
-              libraries: {
-                insert: {
-                  entries: (defaultEntries) =>
-                    defaultEntries.filter((e) => e.id !== 'ly.img.template')
-                }
-              }
             }
           }
         }}

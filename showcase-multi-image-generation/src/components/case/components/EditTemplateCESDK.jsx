@@ -6,15 +6,6 @@ export const EditTemplateCESDK = memo(
     return (
       <CESDKModal
         configure={async (instance) => {
-          // change the position of the close button to the left
-          const closeComponentId = 'ly.img.close.navigationBar';
-          const navBarOrder = instance.ui.getNavigationBarOrder();
-          const trimmedNavBarOrder = navBarOrder.filter(
-            (item) => item.id !== closeComponentId
-          );
-          instance.ui.setNavigationBarOrder(
-            [{ id: closeComponentId }].concat(trimmedNavBarOrder)
-          );
           instance.engine.editor.setSettingBool('page/title/show', false);
           await instance.engine.scene.loadFromString(sceneString);
         }}

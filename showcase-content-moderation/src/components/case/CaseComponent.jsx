@@ -27,7 +27,7 @@ const ImageComplianceCESDK = () => {
 
   const config = useConfig(
     () => ({
-      role: 'Adopter',
+      role: 'Creator',
       license: process.env.NEXT_PUBLIC_LICENSE,
       theme: 'light',
       ui: {
@@ -42,17 +42,6 @@ const ImageComplianceCESDK = () => {
                 format: ['image/png', 'application/pdf']
               }
             }
-          },
-          libraries: {
-            insert: {
-              entries: (defaultEntries) => {
-                return [
-                  ...defaultEntries.filter(
-                    ({ id }) => !['ly.img.upload'].includes(id)
-                  )
-                ];
-              }
-            }
           }
         }
       },
@@ -65,6 +54,12 @@ const ImageComplianceCESDK = () => {
   const configure = useConfigure(async (instance) => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    // Disable placeholder and preview features
+    instance.feature.enable('ly.img.placeholder', false);
+    instance.feature.enable('ly.img.preview', false);
+    instance.ui.setDockOrder([
+      ...instance.ui.getDockOrder().filter(({ key }) => key !== 'ly.img.upload')
+    ]);
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/content-moderation/example.scene`
     );

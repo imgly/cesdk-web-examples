@@ -100,6 +100,7 @@
 .wrapperAsset:hover .overlay,
 .wrapperAsset:focus .overlay {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .overlay {
@@ -114,6 +115,7 @@
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.1s;
 }
 
@@ -140,4 +142,55 @@
 .editButton:focus {
   border: 1px solid #ffffff;
   background: rgba(255, 255, 255, 0.65);
+}
+
+.editButton:hover,
+.editButton:focus {
+  border: 1px solid #ffffff;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+@media only screen and (max-width: 650px) {
+  .container {
+    margin-top: 2rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .wrapperAssets {
+    flex-direction: column;
+    margin-bottom: 3rem;
+    gap: 1.5rem;
+  }
+
+  .editButton:hover,
+  .editButton:focus {
+    pointer-events: none;
+  }
+
+  .editButton:active {
+    pointer-events: auto;
+  }
+}
+
+@container (width <= 650px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    padding-top: 2rem;
+    overflow-y: auto;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .wrapperAssets {
+    flex-direction: column;
+    margin-bottom: 3rem;
+    gap: 1.5rem;
+  }
 }
