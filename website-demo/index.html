@@ -23,7 +23,7 @@
     <!--highlight-2-->
 
     <script type="module">
-      import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+      import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.38.0-rc.0/index.js';
 
       fetch(
         'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
@@ -53,8 +53,7 @@
                   }
                 }
               }
-            },
-            defaultFont: '//ly.img.cesdk.fonts/roboto_regular'
+            }
           };
 
           CreativeEditorSDK.create('#cesdk_container', config).then(
