@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.38.0-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
@@ -86,4 +86,21 @@ CreativeEngine.init(config).then(async (engine) => {
     )
   ); // Lists the entries from above again.
   // highlight-apply-asset
+
+  // highlight-video-source-sets
+  const videoFill = engine.block.createFill('video');
+  engine.block.setSourceSet(videoFill, 'fill/video/sourceSet', [
+    {
+      uri: 'https://img.ly/static/example-assets/sourceset/1x.mp4',
+      width: 1920,
+      height: 1080
+    }
+  ]);
+
+  await engine.block.addVideoFileURIToSourceSet(
+    videoFill,
+    'fill/video/sourceSet',
+    'https://img.ly/static/example-assets/sourceset/2x.mp4'
+  );
+  // highlight-video-source-sets
 });
