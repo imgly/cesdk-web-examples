@@ -1149,6 +1149,11 @@
   dependencies:
     lodash "^4.17.21"
 
+"@imgly/plugin-qr-code-web@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@imgly/plugin-qr-code-web/-/plugin-qr-code-web-0.1.0.tgz#cb7276162bf7c34e8b6acce967c50a453cb582ce"
+  integrity sha512-4Jpry6iNp1AXR7FUcJV5bXJKVFG1iXVjSV6zwa0ETahkRj4qBKFpMWJpOAQHBvWviAdULitU9Wss43Fm/fKpRA==
+
 "@imgly/plugin-vectorizer-web@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@imgly/plugin-vectorizer-web/-/plugin-vectorizer-web-1.0.0.tgz#4ddc52403c881ea9ec977da4b786b386b59cd02b"
