@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.labelContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-left: 0.5rem;
+}
+
+.description {
+  font-weight: 400;
+}

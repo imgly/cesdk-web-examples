@@ -1,14 +1,20 @@
 'use client';
 
-import { ExportDesignPanelPlugin } from './ExportDesignPanelPlugin';
-import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
+import { ExportModal } from './ExportModal/ExportModal';
+import CreativeEditor, {
+  useConfig,
+  useConfigure,
+  useCreativeEditor
+} from './lib/CreativeEditor';
 
 const ExportOptionsCESDK = () => {
+  const [cesdk, setCesdk] = useCreativeEditor();
   const config = useConfig(
     () => ({
       role: 'Creator',
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
+        onExport: 'download',
         onUpload: 'local'
       },
       ui: {
@@ -27,19 +33,6 @@ const ExportOptionsCESDK = () => {
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
-
-    instance.addPlugin(ExportDesignPanelPlugin());
-
-    instance.ui.setNavigationBarOrder([
-      'ly.img.back.navigationBar',
-      'ly.img.undoRedo.navigationBar',
-
-      'ly.img.spacer',
-
-      'ly.img.zoom.navigationBar',
-      'ly.img.export-options-design.navigationBar'
-    ]);
-
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
     );
@@ -52,8 +45,10 @@ const ExportOptionsCESDK = () => {
           className="cesdkStyle"
           config={config}
           configure={configure}
+          onInstanceChange={setCesdk}
         />
       </div>
+      <ExportModal show={!!cesdk} engine={cesdk?.engine} />
     </div>
   );
 };
