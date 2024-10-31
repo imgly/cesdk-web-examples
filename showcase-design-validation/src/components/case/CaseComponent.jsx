@@ -93,7 +93,6 @@ const CaseComponent = () => {
 
   const runChecks = useCallback(async () => {
     if (!cesdk) return;
-    cesdk.engine.editor.setSettingBool(`checkScopesInAPIs`, false);
 
     const validationResults = await Promise.all(
       VALIDATIONS.map(async ({ check, name, description }) => ({
@@ -102,7 +101,6 @@ const CaseComponent = () => {
         results: await check(cesdk)
       }))
     );
-    cesdk.engine.editor.setSettingBool(`checkScopesInAPIs`, true);
     setValidationResults(validationResults);
     setIsDirty(false);
     setCheckRan(true);

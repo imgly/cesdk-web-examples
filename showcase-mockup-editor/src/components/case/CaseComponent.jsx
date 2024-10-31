@@ -252,7 +252,12 @@ const CaseComponent = () => {
           }))}
           value={product}
           name="product"
-          onChange={(value) => setProduct(value)}
+          onChange={(value) => {
+            if (!mockupLoading) setProduct(value);
+          }}
+          buttonStyle={{
+            cursor: mockupLoading ? 'wait' : 'pointer'
+          }}
           size="md"
         />
       </div>

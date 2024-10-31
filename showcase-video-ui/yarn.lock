@@ -1045,17 +1045,17 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@cesdk/cesdk-js@1.37.0":
-  version "1.37.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.37.0.tgz#791634fea6d75a3addc29bc77bd8f6383cab076b"
-  integrity sha512-Tg1NPxgh1loqomCBci1gDnlbjVyAULTrD+Bxi4USfw4LAJBxdmD+T97b6MAHOc5kVFtQWrpfEKplT3xYnRHytQ==
+"@cesdk/cesdk-js@1.38.0":
+  version "1.38.0"
+  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.38.0.tgz#d4744aaff4e2b0b2ed6cd772eade927d7baf4e09"
+  integrity sha512-qmnkRT6BkIQXbQMBa69y2N7hJvoLWeOOW59DT1woWQwb6o3B1V99Z3baya4sP7YraAoYEl4ssZcJ9opTG+EtnQ==
   dependencies:
-    "@cesdk/engine" "1.37.0"
+    "@cesdk/engine" "1.38.0"
 
-"@cesdk/engine@1.37.0":
-  version "1.37.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.37.0.tgz#904bf6bf85147f8f13a7ab77ff1e5a9257289902"
-  integrity sha512-7UsBukfoQ6MVrHU7q3lBposcXTmtF32wuSPV0kwtDqkHdYC1CJ61jJLs2FbVb3yqtecI/AUxdzH3/RblTXeU6w==
+"@cesdk/engine@1.38.0":
+  version "1.38.0"
+  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.38.0.tgz#a20d8fb8b4a5ade14bb3bd7bc42bcbbbeb33b65d"
+  integrity sha512-2Jn6M6/4npqD9649Y/92asxceKMvQLI4T4R/cmX0FqZPRususSwZ7GELWcsCvImEiu7HK6mrIw7ztDYCvmc2ZA==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -1142,10 +1142,10 @@
   dependencies:
     "@imgly/background-removal" "^1.5.3"
 
-"@imgly/plugin-cutout-library-web@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@imgly/plugin-cutout-library-web/-/plugin-cutout-library-web-1.0.4.tgz#799301bdbed30e4309e9e48067c84ec0e130c64d"
-  integrity sha512-sfVt/jHBpqxNgz/KOzOGyuSv1ILWw6OFg4Y73LMh0gt5d8UJwF4egfmRyNcA2A3E5zxZc6llhNekEtXKkTqCEA==
+"@imgly/plugin-cutout-library-web@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@imgly/plugin-cutout-library-web/-/plugin-cutout-library-web-1.0.5.tgz#467188a7a65a012b976e03e0a73410aa6fd4679a"
+  integrity sha512-MUvteEi9kE32tba7+ZB81KVvl7pNSNvav29m4S2PMBNqjcQGuKFcbZ7py+jT4iNTN2y5AmEDONpsc2GzOm1Ebw==
   dependencies:
     lodash "^4.17.21"
 

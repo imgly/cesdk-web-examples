@@ -62,3 +62,14 @@ body {
     padding-top: 0;
   }
 }
+
+/* hide hubspot chat widget on mobile */
+#hubspot-messages-iframe-container {
+  visibility: hidden;
+}
+
+@media (min-width: 650px) {
+  #hubspot-messages-iframe-container {
+    visibility: initial;
+  }
+}

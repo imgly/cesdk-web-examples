@@ -51,9 +51,6 @@ const CaseComponent = () => {
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/apparel-editor-ui/tshirt.scene`
     );
 
-    const checkScopesInAPIsSetting =
-      engine.editor.getSettingBool('checkScopesInAPIs');
-    engine.editor.setSettingBool('checkScopesInAPIs', false);
     const pages = engine.block.findByType('page');
     pages.forEach((page) => {
       // temporary allow clipping
@@ -63,8 +60,6 @@ const CaseComponent = () => {
       engine.block.setClipped(page, true);
       engine.block.setScopeEnabled(page, 'layer/clipping', oldScope);
     });
-    // restore checkScopesInAPIs setting
-    engine.editor.setSettingBool('checkScopesInAPIs', checkScopesInAPIsSetting);
   }, []);
 
   return (
