@@ -62,7 +62,7 @@ const CaseComponent = () => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
 
-    const cleanup = initPhotoEditorUIConfig(
+    const cleanup = await initPhotoEditorUIConfig(
       instance,
       'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=dom-hill-nimElTcTNyY-unsplash.jpg&w=1920'
     );

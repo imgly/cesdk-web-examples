@@ -51,7 +51,7 @@ export async function initPhotoEditorUIConfig(
     photoUri
   );
 
-  instance.ui.unstable_registerPanel('ly.img.page-crop', (context) =>
+  instance.ui.registerPanel('ly.img.page-crop', (context) =>
     PageCropPanel({ ...context, ui: instance.ui })
   );
   instance.setTranslations({
@@ -111,7 +111,7 @@ function setupDock(instance: CreativeEditorSDK) {
         instance.ui.isPanelOpen('ly.img.page-crop');
       Button('open-crop', {
         label: 'Crop',
-        icon: ({ theme }) => caseAssetPath(`/page-sizes-large-${theme}.svg`),
+        icon: ({ theme }) => caseAssetPath(`/crop-large-${theme}.svg`),
         isSelected: isFormatAssetLibraryOpen,
         onClick: async () => {
           if (isFormatAssetLibraryOpen) {
@@ -438,10 +438,6 @@ function createApplyFormatAsset(
   return async (asset) => {
     const engine = instance.engine;
     const page = engine.scene.getCurrentPage()!;
-
-    const checkScopesInAPIsSetting =
-      engine.editor.getSettingBool('checkScopesInAPIs');
-    engine.editor.setSettingBool('checkScopesInAPIs', false);
     // Set fill mode to cover:
     engine.block.setContentFillMode(page, 'Cover');
     // Select it:
@@ -493,8 +489,6 @@ function createApplyFormatAsset(
     }
     // enter crop:
     engine.editor.setEditMode('Crop');
-    // restore checkScopesInAPIs setting
-    engine.editor.setSettingBool('checkScopesInAPIs', checkScopesInAPIsSetting);
     return page;
   };
 }
@@ -514,9 +508,6 @@ function createApplyAppAsset(
 async function applyRemoveBackground(engine: CreativeEngine) {
   const page = engine.scene.getCurrentPage()!;
   const fill = engine.block.getFill(page);
-  const checkScopesInAPIsSetting =
-    engine.editor.getSettingBool('checkScopesInAPIs');
-  engine.editor.setSettingBool('checkScopesInAPIs', false);
   const sourceSet = engine.block.getSourceSet(fill, 'fill/image/sourceSet');
   const imageSource = sourceSet[0];
   const oldImageUri = imageSource.uri;
@@ -529,8 +520,6 @@ async function applyRemoveBackground(engine: CreativeEngine) {
     { ...imageSource, uri: newImageUri }
   ]);
   engine.editor.addUndoStep();
-  // restore checkScopesInAPIs setting
-  engine.editor.setSettingBool('checkScopesInAPIs', checkScopesInAPIsSetting);
 }
 
 function closeAllPanels(instance: CreativeEditorSDK) {

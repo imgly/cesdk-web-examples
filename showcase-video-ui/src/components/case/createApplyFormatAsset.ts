@@ -6,10 +6,6 @@ export const createApplyFormatAsset =
     if (!meta) {
       throw new Error('Asset does not have meta');
     }
-    const checkScopesInAPIsSetting =
-      engine.editor.getSettingBool('checkScopesInAPIs');
-    engine.editor.setSettingBool('checkScopesInAPIs', false);
-
     const height = parseInt(meta.formatHeight as string, 10);
     const width = parseInt(meta.formatWidth as string, 10);
     const pageIds = engine.block.findByType('page');
@@ -25,6 +21,4 @@ export const createApplyFormatAsset =
     trackIds.forEach((id) => {
       engine.block.fillParent(id);
     });
-    // restore checkScopesInAPIs setting
-    engine.editor.setSettingBool('checkScopesInAPIs', checkScopesInAPIsSetting);
   };

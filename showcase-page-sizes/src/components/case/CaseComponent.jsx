@@ -90,21 +90,12 @@ const CaseComponent = () => {
       caseAssetPath(''),
       async (asset) => {
         const engine = instance.engine;
-        // disable checkScopesInAPIs setting
-        const checkScopesInAPIsSetting =
-          engine.editor.getSettingBool('checkScopesInAPIs');
-        engine.editor.setSettingBool('checkScopesInAPIs', false);
         const pages = engine.scene.getPages();
         engine.scene.setDesignUnit(asset.meta.designUnit);
         engine.block.resizeContentAware(
           pages,
           parseInt(asset.meta.formatWidth, 10),
           parseInt(asset.meta.formatHeight, 10)
-        );
-        // restore checkScopesInAPIs setting
-        engine.editor.setSettingBool(
-          'checkScopesInAPIs',
-          checkScopesInAPIsSetting
         );
       }
     );

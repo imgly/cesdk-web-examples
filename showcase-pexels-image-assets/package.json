@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "1.37.0",
-    "@cesdk/engine": "1.37.0",
+    "@cesdk/cesdk-js": "1.38.0",
+    "@cesdk/engine": "1.38.0",
     "@google/model-viewer": "3.1.1",
     "@imgly/idml-importer": "^1.0.6",
     "@imgly/psd-importer": "^0.0.3",
     "@imgly/plugin-background-removal-web": "^1.0.0",
-    "@imgly/plugin-cutout-library-web": "^1.0.4",
+    "@imgly/plugin-cutout-library-web": "^1.0.5",
     "@imgly/plugin-qr-code-web": "^0.1.0",
     "@imgly/plugin-vectorizer-web": "^1.0.0",
     "airtable": "^0.12.1",

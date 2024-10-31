@@ -40,9 +40,9 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
     engine.editor.setGlobalScope('editor/select', 'Deny');
 
     let imageBlocks: number[] = [];
-    let imageBlocksByName: BlocksByName = new Map();
+    let editableImageTemplateBlocks: EditableProperty[] = [];
     let textBlocks = [];
-    let textBlocksByName: BlocksByName = new Map();
+    let editableTextTemplateBlocks: EditableProperty[] = [];
 
     let colors: Record<
       string,
@@ -86,10 +86,22 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
         });
 
         imageBlocks = getTemplateImageBlocks(engine);
-        imageBlocksByName = groupBlocksByName(engine, imageBlocks);
+        editableImageTemplateBlocks = BlocksToEditableProperties(
+          engine,
+          imageBlocks
+        );
 
         textBlocks = getTemplateTextBlocks(engine);
-        textBlocksByName = groupBlocksByName(engine, textBlocks);
+        editableTextTemplateBlocks = BlocksToEditableProperties(
+          engine,
+          textBlocks,
+          (block) => {
+            const text = engine.block.getString(block, 'text/text');
+            return {
+              expanded: text.includes('\n')
+            };
+          }
+        );
 
         colors = getAllColors(engine);
 
@@ -121,7 +133,7 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
           builder.Section('form-based-adaption.image', {
             title: 'Image',
             children: () => {
-              imageBlocksByName.forEach((blocks) => {
+              editableImageTemplateBlocks.forEach(({ blocks }) => {
                 const block = blocks[0];
                 const fillBlock = engine.block.getFill(block);
                 const uri =
@@ -188,31 +200,19 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
 
         if (textBlocks.length > 0) {
           // state of the text block, if they are expanded or not:
-          const textBlockState = state<
-            Map<
-              string,
-              {
-                expanded: boolean;
-              }
-            >
-          >(
+          const textBlockState = state<Map<string, TextEditingOptions>>(
             'textBlockState',
             new Map(
-              Array.from(textBlocksByName.keys()).map((name) => [
+              editableTextTemplateBlocks.map(({ name, options }) => [
                 name,
-                {
-                  // if the existing text contains a line break, we use a textarea
-                  expanded: engine.block
-                    .getString(textBlocksByName.get(name)![0], 'text/text')
-                    .includes('\n')
-                }
+                options
               ])
             )
           );
           builder.Section('form-based-adaption.text', {
             title: 'Text',
             children: () => {
-              textBlocksByName.forEach((blocks, name) => {
+              editableTextTemplateBlocks.forEach(({ blocks, name }) => {
                 const value = engine.block.getString(blocks[0], 'text/text');
                 const setValue = (newValue: string) => {
                   blocks.forEach((block) => {
@@ -504,16 +504,41 @@ function getTemplateImageBlocks(engine: CreativeEngine): number[] {
     })
   );
 }
-type BlocksByName = Map<string, number[]>;
-function groupBlocksByName(
+
+interface EditableProperty {
+  name: string;
+  blocks: number[];
+  options: EditingOptions;
+}
+interface EditingOptions extends ImageEditingOptions, TextEditingOptions {}
+
+interface ImageEditingOptions {}
+interface TextEditingOptions {
+  expanded: boolean;
+}
+
+function BlocksToEditableProperties(
   engine: CreativeEngine,
-  blocks: number[]
-): BlocksByName {
-  return blocks.reduce((acc, block) => {
-    // We do not want to group unnamed blocks
-    const name = engine.block.getName(block) || block.toString();
-    const blocksForName = acc.get(name) || [];
-    acc.set(name, [...blocksForName, block]);
-    return acc;
-  }, new Map<string, number[]>());
+  blocks: number[],
+  defaultOptions?: (block: number) => EditingOptions
+): EditableProperty[] {
+  return blocks
+    .map((block) => {
+      const name = engine.block.getName(block) || block.toString();
+      return {
+        name,
+        blocks: [block],
+        options: defaultOptions?.(block) ?? ({} as EditingOptions)
+      };
+    })
+    .reduce<EditableProperty[]>((acc, block) => {
+      const name = block.name;
+      const existing = acc.find((existing) => existing.name === name);
+      if (existing) {
+        existing.blocks.push(...block.blocks);
+      } else {
+        acc.push(block);
+      }
+      return acc;
+    }, []);
 }

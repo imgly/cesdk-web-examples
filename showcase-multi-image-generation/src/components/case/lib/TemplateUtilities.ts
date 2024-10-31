@@ -48,9 +48,6 @@ export const fillTemplate = async (
   if (!restaurantData) {
     return false;
   }
-  // Set this to false to avoid the error of missing scopes in the API
-  engine.editor.setSettingBool('checkScopesInAPIs', false);
-  //
   await engine.scene.loadFromString(sceneString);
   replaceImage(
     engine,
