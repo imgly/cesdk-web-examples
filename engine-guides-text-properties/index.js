@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.39.0-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.39.0-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -87,19 +87,34 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setFont(text, typeface.fonts[3].uri, typeface);
   // highlight-setFont
 
+  // highlight-setTypeface
+  engine.block.setTypeface(text, typeface);
+  // highlight-setTypeface
+
   // highlight-getTypeface
-  const currentTypeface = engine.block.getTypeface(text);
+  const currentDefaultTypeface = engine.block.getTypeface(text);
   // highlight-getTypeface
+
+  // highlight-getTypefaces
+  const currentTypefaces = engine.block.getTypefaces(text);
+  const currentTypefacesOfRange = engine.block.getTypefaces(text, 1, 4);
+  // highlight-getTypefaces
 
   // highlight-toggleBold
   if (engine.block.canToggleBoldFont(text)) {
     engine.block.toggleBoldFont(text);
+  }
+  if (engine.block.canToggleBoldFont(text, 1, 4)) {
+    engine.block.toggleBoldFont(text, 1, 4);
   }
   // highlight-toggleBold
 
   // highlight-toggleItalic
   if (engine.block.canToggleItalicFont(text)) {
     engine.block.toggleItalicFont(text);
+  }
+  if (engine.block.canToggleItalicFont(text, 1, 4)) {
+    engine.block.toggleItalicFont(text, 1, 4);
   }
   // highlight-toggleItalic
 
