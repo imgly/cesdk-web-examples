@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.39.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.39.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -95,11 +95,17 @@ CreativeEngine.init(config).then(async (engine) => {
   if (engine.block.canToggleBoldFont(text)) {
     engine.block.toggleBoldFont(text);
   }
+  if (engine.block.canToggleBoldFont(text, 1, 4)) {
+    engine.block.toggleBoldFont(text, 1, 4);
+  }
   // highlight-toggleBold
 
   // highlight-toggleItalic
   if (engine.block.canToggleItalicFont(text)) {
     engine.block.toggleItalicFont(text);
+  }
+  if (engine.block.canToggleItalicFont(text, 1, 4)) {
+    engine.block.toggleItalicFont(text, 1, 4);
   }
   // highlight-toggleItalic
 
