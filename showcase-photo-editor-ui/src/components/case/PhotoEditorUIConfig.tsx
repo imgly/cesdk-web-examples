@@ -7,7 +7,7 @@ import CreativeEditorSDK, {
 import { removeBackground } from '@imgly/background-removal';
 import APP_ASSETS from './Apps.json';
 import FORMAT_ASSETS from './CustomFormats.json';
-import PageCropPanel, { setTempSizeInMetadata } from './PageCropPanel';
+import { registerPageCropPanel, setTempSizeInMetadata } from './PageCropPanel';
 import { getImageSize } from './lib/CreativeEngineUtils';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
@@ -51,9 +51,7 @@ export async function initPhotoEditorUIConfig(
     photoUri
   );
 
-  instance.ui.registerPanel('ly.img.page-crop', (context) =>
-    PageCropPanel({ ...context, ui: instance.ui })
-  );
+  registerPageCropPanel(instance);
   instance.setTranslations({
     en: {
       'panel.ly.img.page-crop': 'Crop'

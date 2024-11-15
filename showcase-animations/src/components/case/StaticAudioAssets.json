@@ -1,0 +1,97 @@
+{
+  "version": "1.0.0",
+  "id": "ly.img.audio",
+  "assets": [
+    {
+      "id": "Cody_Martin_Lemon_Drop_instrumental_4_19",
+      "label": {
+        "en": "Cody Martin Lemon Drop Instrumental"
+      },
+      "meta": {
+        "uri": "{{base_url}}/Cody_Martin_Lemon_Drop_instrumental_4_19.mp3",
+        "thumbUri": "{{base_url}}/thumbnails/cody-martin.jpeg",
+        "blockType": "//ly.img.ubq/audio",
+        "mimeType": "audio/mpeg",
+        "duration": "259"
+      }
+    },
+    {
+      "id": "Daniele_Musto_Hiphoppin_instrumental_2_08",
+      "label": {
+        "en": "Daniele Musto Hiphoppin Instrumental"
+      },
+      "meta": {
+        "uri": "{{base_url}}/Daniele_Musto_Hiphoppin_instrumental_2_08.mp3",
+        "thumbUri": "{{base_url}}/thumbnails/daniele-musto.jpeg",
+        "blockType": "//ly.img.ubq/audio",
+        "mimeType": "audio/mpeg",
+        "duration": "128"
+      }
+    },
+    {
+      "id": "Daniele_Musto_Not_Scurred_background_vocals_2_37",
+      "label": {
+        "en": "Daniele Musto Not Scurred Background Vocals"
+      },
+      "meta": {
+        "uri": "{{base_url}}/Daniele_Musto_Not_Scurred_background_vocals_2_37.mp3",
+        "thumbUri": "{{base_url}}/thumbnails/daniele-musto.jpeg",
+        "blockType": "//ly.img.ubq/audio",
+        "mimeType": "audio/mpeg",
+        "duration": "158"
+      }
+    },
+    {
+      "id": "PALA_Cabo_Cantina_background_vocals_3_25",
+      "label": {
+        "en": "Pala Cabo Cantina Background Vocals"
+      },
+      "meta": {
+        "uri": "{{base_url}}/PALA_Cabo_Cantina_background_vocals_3_25.mp3",
+        "thumbUri": "{{base_url}}/thumbnails/pala-cabo.png",
+        "blockType": "//ly.img.ubq/audio",
+        "mimeType": "audio/mpeg",
+        "duration": "205"
+      }
+    },
+    {
+      "id": "Sam_Barsh_That_Corner_In_Harlem_instrumental_3_14",
+      "label": {
+        "en": "Sam Barsh That Corner In Harlem Instrumental"
+      },
+      "meta": {
+        "uri": "{{base_url}}/Sam_Barsh_That_Corner_In_Harlem_instrumental_3_14.mp3",
+        "thumbUri": "{{base_url}}/thumbnails/sam-barsh.png",
+        "blockType": "//ly.img.ubq/audio",
+        "mimeType": "audio/mpeg",
+        "duration": "194"
+      }
+    },
+    {
+      "id": "TAYME_Then_Now_instrumental_3_28",
+      "label": {
+        "en": "Tayme Then Now Instrumental"
+      },
+      "meta": {
+        "uri": "{{base_url}}/TAYME_Then_Now_instrumental_3_28.mp3",
+        "thumbUri": "{{base_url}}/thumbnails/Tayme.png",
+        "blockType": "//ly.img.ubq/audio",
+        "mimeType": "audio/mpeg",
+        "duration": "208"
+      }
+    },
+    {
+      "id": "Tiger_Gang_The_Goat_instrumental_2_56",
+      "label": {
+        "en": "Tiger Gang The Goat Instrumental"
+      },
+      "meta": {
+        "uri": "{{base_url}}/Tiger_Gang_The_Goat_instrumental_2_56.mp3",
+        "thumbUri": "{{base_url}}/thumbnails/tiger-gang.jpeg",
+        "blockType": "//ly.img.ubq/audio",
+        "mimeType": "audio/mpeg",
+        "duration": "177"
+      }
+    }
+  ]
+}
