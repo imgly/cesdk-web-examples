@@ -79,7 +79,7 @@ const CaseComponent = () => {
       gridColumns: 3,
       gridItemHeight: 'auto',
       previewBackgroundType: 'contain',
-      gridBackgroundType: 'cover',
+      gridBackgroundType: 'contain',
       cardLabel: (assetResult) => assetResult.label,
       cardLabelPosition: () => 'below'
     });

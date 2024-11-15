@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "id": "ly.img.video.scene",
+  "assets": [
+    {
+      "id": "lunar-cosmetics",
+      "label": {
+        "en": "Lunar Cosmetics · Landscape Example"
+      },
+      "meta": {
+        "uri": "{{base_url}}/lunar-cosmetics.scene",
+        "thumbUri": "{{base_url}}/lunar-cosmetics.png",
+        "blockType": "//ly.img.ubq/scene"
+      }
+    },
+    {
+      "id": "surf-school",
+      "label": {
+        "en": "Surf School · Portrait Example"
+      },
+      "meta": {
+        "uri": "{{base_url}}/surf-school.scene",
+        "thumbUri": "{{base_url}}/surf-school.png",
+        "blockType": "//ly.img.ubq/scene"
+      }
+    }
+  ]
+}
