@@ -1,15 +1,12 @@
 const fs = require('fs/promises');
-// highlight-require
 const CreativeEngine = require('@cesdk/node');
 
 const { MimeType } = CreativeEngine;
-// highlight-require
 
-// highlight-use
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.31.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.40.0-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -30,4 +27,3 @@ CreativeEngine.init(config).then(async (engine) => {
       engine.dispose();
     });
 });
-// highlight-use
