@@ -45,7 +45,7 @@ const ExportOptionsCESDK = () => {
   }, []);
 
   return (
-    <div className="cesdkWrapperStyle">
+    <div className="cesdkWrapperStyle" style={{ minHeight: '820px' }}>
       <CreativeEditor
         className="cesdkStyle"
         config={config}
