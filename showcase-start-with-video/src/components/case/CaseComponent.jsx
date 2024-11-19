@@ -74,7 +74,7 @@ const CaseComponent = () => {
         </div>
       </div>
 
-      <div className="cesdkWrapperStyle">
+      <div className="cesdkWrapperStyle" style={{ minHeight: '820px' }}>
         {video && (
           <CreativeEditor
             className="cesdkStyle"
