@@ -123,7 +123,11 @@ const CaseComponent = () => {
           size="md"
         />
       </div>
-      <div className="cesdkWrapperStyle" key={currentRole + currentScene}>
+      <div
+        className="cesdkWrapperStyle"
+        key={currentRole + currentScene}
+        style={{ minHeight: '820px' }}
+      >
         <CreativeEditor
           className="cesdkStyle"
           config={config}

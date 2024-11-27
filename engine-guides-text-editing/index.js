@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.40.0-rc.2/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.40.0-rc.2/assets'
 };
 
 CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
@@ -11,14 +11,11 @@ CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
     // Add default assets used in scene.
     instance.addDefaultAssetSources();
 
-    // highlight-editmode
     instance.editor.setEditMode('Transform');
     instance.editor.onStateChanged(() => {
       console.log('EditMode is ', instance.editor.getEditMode());
     });
-    // highlight-editmode
 
-    // highlight-blur
     document.addEventListener('cesdk-blur', (event) => {
       const relatedTarget = event.detail;
 
@@ -37,9 +34,7 @@ CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
     function engineShouldExitTextMode() {
       return false;
     }
-    // highlight-blur
 
-    // highlight-refocus
     document.addEventListener('cesdk-refocus', (event) => {
       const relatedTarget = event.detail;
 
@@ -53,7 +48,6 @@ CreativeEngine.init(config, document.getElementById('cesdk_canvas')).then(
       // Afterwards we want an input in the dialog to receive focus
       return newActiveElement?.id === 'open-dialog';
     }
-    // highlight-refocus
 
     await instance.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
