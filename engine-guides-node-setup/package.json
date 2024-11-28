@@ -6,6 +6,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@cesdk/node": "^1.31.0"
+    "@cesdk/node": "^1.40.0"
   }
 }
