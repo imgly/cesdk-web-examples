@@ -10,13 +10,6 @@ const ExportOptionsCESDK = () => {
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onUpload: 'local'
-      },
-      ui: {
-        elements: {
-          panels: {
-            settings: true
-          }
-        }
       }
     }),
     []
@@ -27,9 +20,7 @@ const ExportOptionsCESDK = () => {
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
-
     instance.addPlugin(ExportDesignPanelPlugin());
-
     instance.ui.setNavigationBarOrder([
       'ly.img.back.navigationBar',
       'ly.img.undoRedo.navigationBar',
@@ -39,7 +30,6 @@ const ExportOptionsCESDK = () => {
       'ly.img.zoom.navigationBar',
       'ly.img.export-options-design.navigationBar'
     ]);
-
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
     );
