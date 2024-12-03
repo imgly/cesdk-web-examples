@@ -100,9 +100,6 @@ const VersionHistoryCESDK = () => {
       },
       ui: {
         elements: {
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               save: true
@@ -122,13 +119,11 @@ const VersionHistoryCESDK = () => {
   const configure = useConfigure(async (instance) => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
-
     instance.ui.setDockOrder([
       ...instance.ui
         .getDockOrder()
         .filter(({ key }) => key !== 'ly.img.template')
     ]);
-
     await instance.loadFromURL(caseAssetPath('/snapshots/1/scene.scene'));
   }, []);
 
