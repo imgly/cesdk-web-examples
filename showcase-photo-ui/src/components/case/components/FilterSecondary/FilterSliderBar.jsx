@@ -56,8 +56,8 @@ const FilterSliderBar = ({ lutFilterConfig }) => {
   );
 
   useEffect(() => {
-    setFilterProperties(lutFilterIntensity);
-  }, [lutFilterConfig]);
+    setFilterProperties(fromPercent(LUT_FILTER_DEFAULT_VALUE));
+  }, [setFilterProperties]);
 
   return (
     <SliderBar
