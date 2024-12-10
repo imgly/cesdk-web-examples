@@ -28,9 +28,6 @@ const CaseComponent = () => {
               }
             }
           },
-          panels: {
-            settings: true
-          },
           libraries: {
             replace: {
               floating: false,
@@ -57,7 +54,6 @@ const CaseComponent = () => {
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
-
     instance.ui.setDockOrder([
       {
         id: 'ly.img.assetLibrary.dock',
@@ -75,7 +71,6 @@ const CaseComponent = () => {
         .getDockOrder()
         .filter(({ key }) => !['ly.img.template'].includes(key))
     ]);
-
     instance.ui.addAssetLibraryEntry({
       id: 'ly.img.layouts',
       sourceIds: ['ly.img.layouts'],
@@ -85,7 +80,6 @@ const CaseComponent = () => {
       previewBackgroundType: 'contain',
       gridBackgroundType: 'contain'
     });
-
     loadAssetSourceFromContentJSON(
       instance.engine,
       LAYOUT_ASSETS,

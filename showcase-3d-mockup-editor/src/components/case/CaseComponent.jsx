@@ -177,9 +177,6 @@ const CaseComponent = () => {
                 format: ['image/png', 'application/pdf']
               }
             }
-          },
-          panels: {
-            settings: true
           }
         }
       }
@@ -190,13 +187,11 @@ const CaseComponent = () => {
     async (instance) => {
       await instance.addDefaultAssetSources();
       await instance.addDemoAssetSources({ sceneMode: 'Design' });
-
       instance.ui.setDockOrder([
         ...instance.ui
           .getDockOrder()
           .filter(({ key }) => key !== 'ly.img.template')
       ]);
-
       instance.engine.editor.setSettingBool('page/title/show', false);
       instance.loadFromURL(
         `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/3d-mockup-editor/${productConfig.assetsFolderName}/design.scene`
