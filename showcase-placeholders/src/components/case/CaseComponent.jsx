@@ -21,8 +21,7 @@ const ROLE_OPTIONS = [
             inspector: {
               show: true,
               position: 'right'
-            },
-            settings: true
+            }
           },
           dock: {
             iconSize: 'normal',
@@ -51,9 +50,6 @@ const ROLE_OPTIONS = [
       },
       ui: {
         elements: {
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               export: {

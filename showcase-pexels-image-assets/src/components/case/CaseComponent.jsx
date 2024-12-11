@@ -14,9 +14,6 @@ const CaseComponent = () => {
       },
       ui: {
         elements: {
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               export: {
@@ -43,7 +40,6 @@ const CaseComponent = () => {
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
-
     instance.ui.addAssetLibraryEntry({
       id: 'pexels',
       sourceIds: ['pexels'],
@@ -52,7 +48,6 @@ const CaseComponent = () => {
       gridBackgroundType: 'cover',
       gridColumns: 2
     });
-
     instance.ui.setDockOrder(
       instance.ui.getDockOrder().map((component) =>
         ['ly.img.image'].includes(component.key)
@@ -65,7 +60,6 @@ const CaseComponent = () => {
           : component
       )
     );
-
     instance.ui.setReplaceAssetLibraryEntries(({ selectedBlocks, _ }) => {
       if (
         selectedBlocks.length !== 1 ||
@@ -75,7 +69,6 @@ const CaseComponent = () => {
       }
       return ['pexels'];
     });
-
     instance.engine.asset.addSource(pexelsAssetLibrary);
     instance.engine.editor.setSettingBool('page/title/show', false);
     await instance.loadFromURL(

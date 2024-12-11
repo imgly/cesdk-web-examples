@@ -19,9 +19,6 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
         typefaceLibraries: ['ly.img.typeface', 'ly.img.google-fonts'],
         elements: {
           view: 'advanced',
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               back: true,

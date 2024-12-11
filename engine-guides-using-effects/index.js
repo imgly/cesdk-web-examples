@@ -1,10 +1,9 @@
-// highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.41.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.41.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -33,48 +32,31 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setWidth(block, 300);
   engine.block.setHeight(block, 300);
   engine.block.appendChild(page, block);
-  // highlight-setup
 
-  // highlight-supportsEffects
   engine.block.supportsEffects(scene); // Returns false
   engine.block.supportsEffects(block); // Returns true
-  // highlight-supportsEffects
 
-  // highlight-createEffect
   const pixelize = engine.block.createEffect('pixelize');
   const adjustments = engine.block.createEffect('adjustments');
-  // highlight-createEffect
 
-  // highlight-addEffect
   engine.block.appendEffect(block, pixelize);
   engine.block.insertEffect(block, adjustments, 0);
   // engine.block.removeEffect(rect, 0);
-  // highlight-addEffect
 
-  // highlight-getEffects
   // This will return [adjustments, pixelize]
   const effectsList = engine.block.getEffects(block);
-  // highlight-getEffects
 
-  // highlight-destroyEffect
   const unusedEffect = engine.block.createEffect('half_tone');
   engine.block.destroy(unusedEffect);
-  // highlight-destroyEffect
 
-  // highlight-getProperties
   const allPixelizeProperties = engine.block.findAllProperties(pixelize);
   const allAdjustmentProperties = engine.block.findAllProperties(adjustments);
-  // highlight-getProperties
-  // highlight-modifyProperties
   engine.block.setInt(pixelize, 'pixelize/horizontalPixelSize', 20);
   engine.block.setFloat(adjustments, 'effect/adjustments/brightness', 0.2);
-  // highlight-modifyProperties
 
-  // highlight-disableEffect
   engine.block.setEffectEnabled(pixelize, false);
   engine.block.setEffectEnabled(
     pixelize,
     !engine.block.isEffectEnabled(pixelize)
   );
-  // highlight-disableEffect
 });
