@@ -26,8 +26,7 @@ const ROLE_OPTIONS = [
             inspector: {
               show: true,
               position: 'right'
-            },
-            settings: true
+            }
           },
           dock: {
             iconSize: 'normal',
@@ -55,9 +54,6 @@ const ROLE_OPTIONS = [
       },
       ui: {
         elements: {
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               export: {
@@ -88,7 +84,6 @@ const CaseComponent = () => {
     async (instance) => {
       await instance.addDefaultAssetSources();
       await instance.addDemoAssetSources({ sceneMode: 'Video' });
-
       if (currentScene) {
         await instance.loadFromString(currentScene);
       } else {

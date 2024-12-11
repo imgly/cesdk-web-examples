@@ -11,9 +11,6 @@ const CaseComponent = () => {
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               export: {
@@ -38,7 +35,6 @@ const CaseComponent = () => {
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
-
     instance.addPlugin(
       BackgroundRemovalPlugin({
         ui: {
