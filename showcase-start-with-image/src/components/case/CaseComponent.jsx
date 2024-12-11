@@ -21,9 +21,6 @@ const CaseComponent = () => {
       },
       ui: {
         elements: {
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               back: true,

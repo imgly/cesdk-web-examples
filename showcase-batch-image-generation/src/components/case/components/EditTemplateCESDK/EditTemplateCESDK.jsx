@@ -37,8 +37,7 @@ const EditTemplateCESDK = memo(
                 inspector: {
                   show: true,
                   position: 'right'
-                },
-                settings: true
+                }
               },
               dock: {
                 iconSize: 'normal',

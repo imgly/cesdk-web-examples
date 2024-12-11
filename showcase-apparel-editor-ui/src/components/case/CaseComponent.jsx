@@ -10,9 +10,6 @@ const CaseComponent = () => {
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               export: {
@@ -36,13 +33,11 @@ const CaseComponent = () => {
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
-
     instance.ui.setDockOrder([
       ...instance.ui
         .getDockOrder()
         .filter(({ key }) => !['ly.img.template'].includes(key))
     ]);
-
     const engine = instance.engine;
     engine.editor.setSettingBool('page/title/show', false);
     // The loaded scene includes a backdrop graphic block that is a child of the scene and helps the user to see their design on the finished product.

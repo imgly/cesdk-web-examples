@@ -10,13 +10,6 @@ const ExportOptionsCESDK = () => {
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {
         onUpload: 'local'
-      },
-      ui: {
-        elements: {
-          panels: {
-            settings: true
-          }
-        }
       }
     }),
     []
@@ -38,7 +31,6 @@ const ExportOptionsCESDK = () => {
       'ly.img.zoom.navigationBar',
       'ly.img.export-options.navigationBar'
     ]);
-
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/video-export-options/example-video-motion.scene`
     );

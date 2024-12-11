@@ -151,9 +151,6 @@ const CaseComponent = () => {
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
         elements: {
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               export: {
