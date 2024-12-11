@@ -32,9 +32,6 @@ const ImageComplianceCESDK = () => {
       theme: 'light',
       ui: {
         elements: {
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               export: {

@@ -28,9 +28,6 @@ const CaseComponent = () => {
               }
             }
           },
-          panels: {
-            settings: true
-          },
           libraries: {
             replace: {
               floating: false,
@@ -59,7 +56,6 @@ const CaseComponent = () => {
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
-
     instance.ui.setDockOrder([
       {
         id: 'ly.img.assetLibrary.dock',
@@ -71,7 +67,6 @@ const CaseComponent = () => {
       'ly.img.separator',
       ...instance.ui.getDockOrder()
     ]);
-
     instance.ui.addAssetLibraryEntry({
       id: 'ly.img.formats',
       sourceIds: ['ly.img.formats'],
@@ -83,7 +78,6 @@ const CaseComponent = () => {
       cardLabel: (assetResult) => assetResult.label,
       cardLabelPosition: () => 'below'
     });
-
     loadAssetSourceFromContentJSON(
       instance.engine,
       FORMAT_ASSETS,

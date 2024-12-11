@@ -17,9 +17,6 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
       ui: {
         elements: {
           view: 'advanced',
-          panels: {
-            settings: true
-          },
           navigation: {
             action: {
               back: true,
