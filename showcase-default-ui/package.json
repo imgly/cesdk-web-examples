@@ -11,13 +11,13 @@
   "dependencies": {
     "@cesdk/cesdk-js": "1.41.0",
     "@cesdk/engine": "1.41.0",
-    "@google/model-viewer": "3.5.0",
-    "@imgly/idml-importer": "^1.0.8",
+    "@google/model-viewer": "3.1.1",
+    "@imgly/idml-importer": "^1.0.6",
+    "@imgly/psd-importer": "^0.0.4",
     "@imgly/plugin-background-removal-web": "^1.0.0",
     "@imgly/plugin-cutout-library-web": "^1.0.5",
-    "@imgly/plugin-qr-code-web": "^0.1.2",
+    "@imgly/plugin-qr-code-web": "^0.1.0",
     "@imgly/plugin-vectorizer-web": "^1.0.0",
-    "@imgly/psd-importer": "^0.0.5",
     "airtable": "^0.12.1",
     "chroma-js": "^2.4.2",
     "classnames": "^2.3.2",
@@ -30,7 +30,7 @@
     "react-masonry-css": "^1.0.16",
     "react-slider": "^2.0.6",
     "react-tiny-popover": "^7.2.4",
-    "three": "0.163.0",
+    "three": "^0.154.0",
     "unsplash-js": "^7.0.18"
   },
   "devDependencies": {
