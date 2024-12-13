@@ -85,11 +85,6 @@ const CaseComponent = () => {
       VIDEO_SCENES_ASSETS,
       caseAssetPath('/templates'),
       async (asset) => {
-        // Stop the current playing scene before loading a new one to prevent errors
-        const page = engine.scene.getCurrentPage();
-        if (engine.block.isPlaying(page)) {
-          engine.block.setPlaying(page, false);
-        }
         if (!asset.meta || !asset.meta.uri)
           throw new Error('Asset does not have a uri');
         await engine.scene.loadFromURL(asset.meta.uri);
