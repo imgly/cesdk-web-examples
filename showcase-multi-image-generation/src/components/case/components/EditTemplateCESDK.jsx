@@ -8,6 +8,9 @@ export const EditTemplateCESDK = memo(
         configure={async (instance) => {
           instance.engine.editor.setSettingBool('page/title/show', false);
           await instance.engine.scene.loadFromString(sceneString);
+          instance.engine.variable.setString('Name', 'Restaurant Name');
+          instance.engine.variable.setString('$$', '$$');
+          instance.engine.variable.setString('Count', '100');
         }}
         config={{
           license: process.env.NEXT_PUBLIC_LICENSE,

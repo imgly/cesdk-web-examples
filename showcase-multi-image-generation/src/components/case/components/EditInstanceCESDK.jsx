@@ -20,13 +20,7 @@ const localDownload = (data, filename) => {
 };
 
 export const EditInstanceCESDK = memo(
-  ({
-    templateName,
-    restaurantData,
-    sceneString,
-    onClose,
-    onSave
-  }) => {
+  ({ templateName, restaurantData, sceneString, onClose, onSave }) => {
     return (
       <CESDKModal
         configure={async (instance) => {
