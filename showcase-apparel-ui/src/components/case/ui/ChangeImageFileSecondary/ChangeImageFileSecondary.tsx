@@ -4,7 +4,7 @@ import ImagesBar from '../ImageBar/ImageBar';
 
 const ChangeImageFileSecondary = () => {
   const { engine } = useEngine();
-  const { selection } = useSelection({ engine });
+  const { selection } = useSelection();
   return (
     <ImagesBar
       onClick={(asset) =>

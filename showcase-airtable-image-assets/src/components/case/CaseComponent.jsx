@@ -86,7 +86,7 @@ const CaseComponent = () => {
       <div style={sidebarStyle}>
         <iframe
           className="airtable-embed"
-          src="https://airtable.com/embed/shr4x8s9jqaxiJxm5?backgroundColor=orange"
+          src="https://airtable.com/embed/shr4x8s9jqaxiJxm5"
           frameBorder="0"
           width="280"
           title="airtable"

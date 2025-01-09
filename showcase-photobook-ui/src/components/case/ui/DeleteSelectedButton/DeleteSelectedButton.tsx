@@ -5,7 +5,7 @@ import IconButton from '../IconButton/IconButton';
 
 const DeleteSelectedButton = ({ isActive = false }) => {
   const { engine } = useEngine();
-  const { selection } = useSelection({ engine });
+  const { selection } = useSelection();
 
   const deleteSelectedElement = () => {
     if (engine.editor.getEditMode() === 'Crop') {

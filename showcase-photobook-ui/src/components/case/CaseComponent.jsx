@@ -13,8 +13,12 @@ import createUnsplashSource from './lib/UnsplashSource';
 import { createApplyLayoutAsset } from './lib/createApplyLayoutAsset';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
+import { SelectionProvider } from './lib/UseSelection';
+import { useState } from 'react';
 
 const CaseComponent = () => {
+  const [engine, setEngine] = useState(null);
+
   return (
     <div className={classes.fullHeightWrapper}>
       <div className={classes.wrapper}>
@@ -29,6 +33,7 @@ const CaseComponent = () => {
               license: process.env.NEXT_PUBLIC_LICENSE
             }}
             configure={async (engine) => {
+              setEngine(engine);
               engine.editor.setSettingBool('page/title/show', false);
               await engine.addDefaultAssetSources({
                 excludeAssetSourceIds: ['ly.img.sticker']
@@ -67,7 +72,9 @@ const CaseComponent = () => {
             >
               <PagePreviewProvider>
                 <EditorProvider>
-                  <PhotoBookUI />
+                  <SelectionProvider engine={engine}>
+                    <PhotoBookUI />
+                  </SelectionProvider>
                 </EditorProvider>
               </PagePreviewProvider>
             </SinglePageModeProvider>

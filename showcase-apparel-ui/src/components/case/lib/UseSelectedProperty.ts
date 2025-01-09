@@ -75,7 +75,7 @@ export const useSelectedProperty = (
   options = { shouldAddUndoStep: true }
 ) => {
   const { engine } = useEngine();
-  const { selection } = useSelection({ engine });
+  const { selection } = useSelection();
   const [propertyValue, setEnginePropertyValue] = useProperty(
     selection[0],
     propertyName,
