@@ -50,7 +50,7 @@ const EditInstanceCESDK = memo(
             onSave: (sceneString) => {
               onSave(sceneString);
             },
-            onClose: () => {
+            onBack: () => {
               onClose();
             },
             onUpload: 'local'
@@ -66,7 +66,7 @@ const EditInstanceCESDK = memo(
                     format: ['image/png']
                   },
                   save: true,
-                  close: true
+                  back: true
                 }
               }
             }

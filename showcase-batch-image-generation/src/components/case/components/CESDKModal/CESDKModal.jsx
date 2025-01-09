@@ -30,15 +30,6 @@ const CESDKModal = ({ config, configure, onOutsideClick }) => {
             await configure(instance);
           }
           instanceRef.current = instance;
-          // change the position of the close button to the left
-          const closeComponentId = 'ly.img.close.navigationBar';
-          const navBarOrder = instance.ui.getNavigationBarOrder();
-          let trimmedNavBarOrder = navBarOrder.filter(
-            (item) => item.id !== closeComponentId
-          );
-          instance.ui.setNavigationBarOrder(
-            [{ id: closeComponentId }].concat(trimmedNavBarOrder)
-          );
         }
       );
       return () => {

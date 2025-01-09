@@ -152,19 +152,6 @@ const CaseComponent = () => {
     [currentTemplate, currentTemplateName]
   );
 
-  // prevent background scrolling when modal is open
-  useEffect(() => {
-    const body = document.querySelector('body');
-    if (showTemplateModal || showInstanceModal) {
-      body.style.overflow = 'hidden';
-    } else {
-      body.style.overflow = '';
-    }
-    return () => {
-      body.style.overflow = '';
-    };
-  }, [showTemplateModal, showInstanceModal]);
-
   return (
     <div className="flex flex-grow flex-col">
       <div className={classes.wrapper}>
