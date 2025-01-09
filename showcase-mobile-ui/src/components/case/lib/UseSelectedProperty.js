@@ -73,8 +73,7 @@ export const useSelectedProperty = (
   propertyName,
   options = { shouldAddUndoStep: true }
 ) => {
-  const { engine } = useEditor();
-  const { selection } = useSelection({ engine });
+  const { selection } = useSelection();
   const [propertyValue, setEnginePropertyValue] = useProperty(
     selection[0],
     propertyName,

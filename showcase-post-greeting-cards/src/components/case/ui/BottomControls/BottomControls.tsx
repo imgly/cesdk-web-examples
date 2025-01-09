@@ -30,7 +30,7 @@ const BLOCK_TYPE_TO_CONTROLS = [
 
 const BottomControls = ({ DefaultComponent = AddBlockBar, visible = true }) => {
   const { engine } = useEngine();
-  const { selection } = useSelection({ engine });
+  const { selection } = useSelection();
 
   let ControlComponent = DefaultComponent;
 

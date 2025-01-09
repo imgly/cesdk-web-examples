@@ -8,8 +8,11 @@ import { PageSettingsProvider } from './PageSettingsContext';
 import { EngineProvider } from './lib/EngineContext';
 import { SinglePageModeProvider } from './lib/SinglePageModeContext';
 import createUnsplashSource from './lib/UnsplashSource';
+import { SelectionProvider } from './lib/UseSelection';
+import { useState } from 'react';
 
 const CaseComponent = () => {
+  const [engine, setEngine] = useState(null);
   return (
     <div className={classes.fullHeightWrapper}>
       <div className={classes.wrapper}>
@@ -24,6 +27,7 @@ const CaseComponent = () => {
               license: process.env.NEXT_PUBLIC_LICENSE
             }}
             configure={async (engine) => {
+              setEngine(engine);
               engine.editor.setSettingBool('page/title/show', false);
               await engine.addDefaultAssetSources({});
               await engine.addDemoAssetSources({
@@ -63,7 +67,9 @@ const CaseComponent = () => {
             >
               <EditorProvider>
                 <PageSettingsProvider>
-                  <PostcardUI />
+                  <SelectionProvider engine={engine}>
+                    <PostcardUI />
+                  </SelectionProvider>
                 </PageSettingsProvider>
               </EditorProvider>
             </SinglePageModeProvider>

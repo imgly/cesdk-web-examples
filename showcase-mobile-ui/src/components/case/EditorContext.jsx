@@ -3,6 +3,7 @@ import isEqual from 'lodash/isEqual';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { useSinglePageFocus } from './lib/UseSinglePageFocus';
 import { caseAssetPath } from './util';
+import { SelectionProvider } from './lib/UseSelection';
 
 const EditorContext = createContext();
 
@@ -125,7 +126,9 @@ export const EditorProvider = ({ children }) => {
     setZoomPaddingBottom
   };
   return (
-    <EditorContext.Provider value={value}>{children}</EditorContext.Provider>
+    <EditorContext.Provider value={value}>
+      <SelectionProvider engine={engine}>{children}</SelectionProvider>
+    </EditorContext.Provider>
   );
 };
 
