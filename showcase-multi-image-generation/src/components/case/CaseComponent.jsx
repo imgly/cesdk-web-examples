@@ -206,19 +206,6 @@ const CaseComponent = () => {
     setShowEditModal(false);
   }, []);
 
-  // prevent background scrolling when modal is open
-  useEffect(() => {
-    const body = document.querySelector('body');
-    if (showEditModal) {
-      body.style.overflow = 'hidden';
-    } else {
-      body.style.overflow = '';
-    }
-    return () => {
-      body.style.overflow = '';
-    };
-  }, [showEditModal]);
-
   return (
     <div className={classes.container}>
       <div className={classes.containerButtons}>

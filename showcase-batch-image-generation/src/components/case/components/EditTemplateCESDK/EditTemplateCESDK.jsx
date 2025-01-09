@@ -8,9 +8,6 @@ const EditTemplateCESDK = memo(
         onOutsideClick={onClose}
         configure={async (instance) => {
           instance.engine.editor.setSettingBool('page/title/show', false);
-          instance.engine.variable.setString('FirstName', 'Firstname');
-          instance.engine.variable.setString('LastName', 'Lastname');
-          instance.engine.variable.setString('Department', 'Department');
           await instance.engine.scene.loadFromString(sceneString);
         }}
         config={{
@@ -20,7 +17,7 @@ const EditTemplateCESDK = memo(
             onSave: (sceneString) => {
               onSave(sceneString);
             },
-            onClose: () => {
+            onBack: () => {
               onClose();
             },
             onUpload: 'local'
@@ -32,7 +29,7 @@ const EditTemplateCESDK = memo(
               navigation: {
                 title: `${templateName}`,
                 action: {
-                  close: true,
+                  back: true,
                   save: true
                 }
               },
