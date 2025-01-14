@@ -1,24 +1,18 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.43.0-rc.1/index.js';
 
-// highlight-config
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  // highlight-locale
   locale: 'fr',
-  // highlight-locale
-  // highlight-i18n
   i18n: {
     fr: {
       'common.back': 'Retour',
-      // highlight-meta
       'meta.currentLanguage': 'Français'
     },
     it: {
       'common.back': 'Indietro',
       'meta.currentLanguage': 'Italiano'
     }
-    // highlight-i18n
   },
   ui: {
     elements: {
@@ -34,7 +28,6 @@ const config = {
   },
   callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
 };
-// highlight-config
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Populate the asset library with default / demo asset sources.
