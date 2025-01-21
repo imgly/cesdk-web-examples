@@ -29,7 +29,6 @@ export async function initPhotoEditorUIConfig(
     en: {
       'libraries.ly.img.formats.label': 'Size',
       'libraries.ly.img.formats.custom.label': 'Custom',
-      'libraries.ly.img.formats.fixed-ratio.label': 'Fixed Ratio',
       'libraries.ly.img.formats.social.label': 'Social',
       'libraries.ly.img.formats.print.label': 'Print'
     }
