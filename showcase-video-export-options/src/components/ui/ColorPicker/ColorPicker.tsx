@@ -16,7 +16,7 @@ interface IColorPicker {
   size?: 'sm' | 'lg';
   positionX?: 'right' | 'left';
   positionY?: 'top' | 'bottom';
-  children: ReactElement;
+  children?: ReactElement;
   onChange: (value: string) => void;
   onChangeDebounced?: () => void;
 }
