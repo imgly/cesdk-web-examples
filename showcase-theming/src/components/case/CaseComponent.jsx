@@ -11,10 +11,6 @@ import {
 } from './color';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
-const DEFAULT_BACKGROUND_COLOR = '#121921';
-const DEFAULT_ACTIVE_COLOR = '#FDFDFD';
-const DEFAULT_ACCENT_COLOR = '#4B64E2';
-
 const themeColors = {
   light: {
     backgroundColor: '#D6DBE1',
@@ -86,9 +82,9 @@ const ThemingCESDK = () => {
   const customThemeStyle = useCustomTheme
     ? generateCustomThemeStyle(
         generateCustomTheme(
-          backgroundColor || DEFAULT_BACKGROUND_COLOR,
-          activeColor || DEFAULT_ACTIVE_COLOR,
-          accentColor || DEFAULT_ACCENT_COLOR
+          backgroundColor || themeColors[chosenTheme].backgroundColor,
+          activeColor || themeColors[chosenTheme].activeColor,
+          accentColor || themeColors[chosenTheme].accentColor
         )
       )
     : '';
