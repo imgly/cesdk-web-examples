@@ -26,6 +26,7 @@ const Dropdown = ({ children, label, Icon }: DropdownProps) => {
 
   return (
     <>
+      {/* @ts-ignore */}
       <Popover
         isOpen={isPopoverOpen}
         positions={['bottom', 'left', 'right', 'top']}
