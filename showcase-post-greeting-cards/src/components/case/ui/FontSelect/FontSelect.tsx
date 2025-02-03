@@ -53,7 +53,7 @@ const FontSelect = ({ onSelect, activeTypeface }: FontSelectProps) => {
   const typefacesWithRef = useMemo<
     {
       typeface: Typeface;
-      ref: React.RefObject<HTMLButtonElement | null>;
+      ref: React.RefObject<HTMLButtonElement>;
       isActive: boolean;
     }[]
   >(
