@@ -4,8 +4,8 @@ import { ArrowContainer, Popover } from 'react-tiny-popover';
 import classes from './StyledPopover.module.css';
 
 interface Props {
-  content: ReactElement<any>;
-  children: ReactElement<any>;
+  content: ReactElement;
+  children: ReactElement;
   size?: 'sm' | 'md' | 'lg';
 }
 
@@ -22,12 +22,10 @@ const StyledPopover: React.FC<Props> = ({ content, size = 'sm', children }) => {
     return <div></div>;
   }
   return (
-    // @ts-ignore
     <Popover
       isOpen={isPopoverActive || isPopoverOpen}
       positions={['top', 'bottom', 'left', 'right']}
       content={({ position, childRect, popoverRect }) => (
-        // @ts-ignore
         <ArrowContainer
           style={{ padding: '12px' }}
           position={position}

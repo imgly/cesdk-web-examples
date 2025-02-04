@@ -16,7 +16,7 @@ interface IColorPicker {
   size?: 'sm' | 'lg';
   positionX?: 'right' | 'left';
   positionY?: 'top' | 'bottom';
-  children?: ReactElement<any>;
+  children?: ReactElement;
   onChange: (value: string) => void;
   onChangeDebounced?: () => void;
 }
@@ -112,11 +112,9 @@ export const ColorPicker = ({
           )}
           ref={pickerRef}
         >
-          {/* @ts-ignore */}
           <HexAlphaColorPicker color={value} onChange={handleChange} />
           <div className={'flex space-x-2'}>
             <span>#</span>
-            {/* @ts-ignore */}
             <HexColorInput color={value} onChange={handleChange} />
           </div>
         </div>
