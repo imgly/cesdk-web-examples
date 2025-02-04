@@ -5,20 +5,19 @@ import classes from './CESDKCanvas.module.css';
 const CESDKCanvas = () => {
   const wrapperRef = useRef(null);
 
-  const { engineIsLoaded, engine } = useEditor();
+  const { engineIsLoaded, creativeEngine } = useEditor();
 
   useEffect(() => {
     if (!engineIsLoaded) {
       return;
     }
     const container = wrapperRef.current;
-    const canvas = engine.element;
-
+    const canvas = creativeEngine.element;
     container.append(canvas);
     return () => {
       container.remove(canvas);
     };
-  }, [engineIsLoaded, engine]);
+  }, [engineIsLoaded, creativeEngine]);
 
   return <div id="cesdk" className={classes.wrapper} ref={wrapperRef}></div>;
 };

@@ -1,45 +1,52 @@
 .header {
-  width: 100%;
-  color: #161617;
   font-family: 'GT Walsheim Pro';
-  font-size: 22px;
   font-weight: 700;
-  letter-spacing: 0.01em;
+  font-size: 22px;
+  line-height: 32px;
+  color: #FFFFFF;
+  width: 100%;
 }
 
 .wrapper {
-  display: flex;
   flex-direction: column;
-  gap: 1rem;
+  margin-bottom: 16px;
 }
 
 .imageBar {
   display: flex;
-  height: max-content;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 40px;
+  flex-direction: row;
+  height: 85px;
+  width: max-content;
   gap: 16px;
+  margin-bottom: 40px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .imageButton {
-  box-shadow: 0px 12px 18px -2px rgba(22, 22, 23, 0.12),
-    0px 6px 7.5px -2px rgba(22, 22, 23, 0.12),
-    0px 3px 5.25px -2px rgba(22, 22, 23, 0.12);
+  height: 85px;
+  box-shadow: 0px 12px 18px -2px rgba(22, 22, 23, 0.12), 0px 6px 7.5px -2px rgba(22, 22, 23, 0.12), 0px 3px 5.25px -2px rgba(22, 22, 23, 0.12);
 }
 
-.imageButton>* {
-  max-width: 140px;
+.imageButton > *{
   border-radius: 4px;
+  height: 85px;
 }
 
-.imageButton--active>* {
-  outline: rgba(255, 255, 255, 1) solid 2px;
+.imageButton--active > *{
+
+  outline: rgba(255, 255,255, 1) solid 2px ;
 }
 
-.imageButton:hover>*, .imageButton:focus>* {
-  cursor: pointer;
+.imageButton:hover > *{
+  cursor:pointer;
   opacity: 80%;
-  outline: rgba(255, 255, 255, 0.5) solid 2px;
+  outline: rgba(255, 255,255, 0.5) solid 2px ;
+}
+
+
+@media (max-aspect-ratio: 1/1){
+  .wrapper{
+    display: none;
+  }
 }

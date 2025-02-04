@@ -1,38 +1,56 @@
-import {
-  AssetDefinition,
-  AssetResult,
-  Configuration,
-  DesignUnit
-} from '@cesdk/cesdk-js';
-import { ContentJSON } from './lib/loadAssetSourceFromContentJSON';
+import { AssetDefinition, AssetResult, Configuration } from '@cesdk/cesdk-js';
+import { ContentJSON } from './loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
 
 export const pageFormatI18n = (formats: PageFormatAsset[]) => {
   return Object.fromEntries([
     ['libraries.pageFormats.label', 'Formats'],
-    ...formats.map((format) => [`document.${format.id}`, format.label])
+    ...formats.map((format) => [`preset.document.${format.id}`, format.label])
   ]);
 };
 
-export const PAGE_FORMATS_INSERT_ENTRY_DOCK = {
-  id: 'ly.img.assetLibrary.dock',
-  key: 'pageFormats',
-  label: 'libraries.pageFormats.label',
-  icon: () => caseAssetPath('/page-sizes-large-icon.svg'),
-  entries: ['pageFormats']
-};
-
-export const PAGE_FORMATS_INSERT_ENTRY_ASSET = {
+export const PAGE_FORMATS_INSERT_ENTRY = {
   id: 'pageFormats',
   sourceIds: ['pageFormats'],
+
   previewLength: 3,
+  gridColumns: 3,
+  gridItemHeight: 'auto',
+
   previewBackgroundType: 'contain',
   gridBackgroundType: 'cover',
-  gridColumns: 3,
-  gridItemHeight: 'square',
-
   cardLabel: (assetResult: AssetResult) => assetResult.label,
-  cardLabelPosition: () => 'below',
+  cardLabelStyle: () => ({
+    height: '24px',
+    width: '72px',
+    left: '4px',
+    right: '4px',
+    bottom: '-32px',
+    padding: '0',
+    background: 'transparent',
+    overflow: 'hidden',
+    textOverflow: 'unset',
+    whiteSpace: 'unset',
+    fontSize: '10px',
+    lineHeight: '12px',
+    letterSpacing: '0.02em',
+    textAlign: 'center',
+    pointerEvents: 'none',
+    pointer: 'default'
+  }),
+  cardStyle: () => ({
+    height: '80px',
+    width: '80px',
+    marginBottom: '40px',
+    overflow: 'visible'
+  }),
+  icon: () => caseAssetPath('/page-sizes-large-icon.svg'),
+  title: ({ group }: { group: string }) => {
+    if (group) {
+      return `libraries.pageSizes.${group}.label`;
+    }
+    return undefined;
+  }
 };
 
 export const formatAssetsToPresets = (
@@ -41,14 +59,13 @@ export const formatAssetsToPresets = (
   const formatPresets = Object.entries(contentJSON.assets).map(
     ([_key, asset]) => {
       const { id } = asset;
-      const { unit, formatWidth, formatHeight } = (asset as PageFormatAsset)
-        .meta;
+      const { width, height, unit } = (asset as PageFormatAsset).meta;
 
       const pageFormat: PageFormatsDefinition[string] = {
-        width: formatWidth,
-        height: formatHeight,
+        width,
+        height,
         unit,
-        default: !!asset.meta!.default
+        meta: { default: !!asset.meta!.default }
       };
       return [id, pageFormat];
     }
@@ -62,10 +79,10 @@ interface PageFormatAsset extends AssetDefinition {
     formatHeight: number;
     height: number;
     width: number;
-    unit: DesignUnit;
+    unit: 'px' | 'mm' | 'in';
     thumbUri: string;
   };
 }
 type PageFormatsDefinition = NonNullable<
-  NonNullable<Configuration['ui']>['pageFormats']
+  NonNullable<Configuration['presets']>['pageFormats']
 >;

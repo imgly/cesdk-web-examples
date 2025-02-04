@@ -3,7 +3,7 @@
   box-sizing: border-box;
   padding: 8px;
   border: 2px solid #471aff;
-  background: #FAFAFA;
+  background: #7b8187;
   border-radius: 8px;
 }
 
@@ -29,8 +29,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 6px;
+  background-color: rgba(236, 236, 238, 0.5);
+  border-radius: 8px;
   opacity: 0;
   transition: opacity 0.1s;
 }

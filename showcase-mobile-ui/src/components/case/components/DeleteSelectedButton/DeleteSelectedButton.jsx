@@ -1,23 +1,29 @@
 import { useEditor } from '../../EditorContext';
-import TrashBinIcon from '../../icons/TrashBin.svg';
+import { ReactComponent as TrashBinIcon } from '../../icons/TrashBin.svg';
 import IconButton from '../IconButton/IconButton';
 
-const ALLOWED_DELETION_TYPES = ['text', 'image', 'shape', 'sticker'];
+const ALLOWED_DELETION_TYPES = [
+  '//ly.img.ubq/text',
+  '//ly.img.ubq/image',
+  '//ly.img.ubq/shapes',
+  '//ly.img.ubq/vector_path',
+  '//ly.img.ubq/sticker'
+];
 
 const DeleteSelectedButton = ({ isActive = false }) => {
-  const { selectedBlocks, engine } = useEditor();
+  const { selectedBlocks, creativeEngine } = useEditor();
   const selectedBlockType =
     selectedBlocks?.length === 1 && selectedBlocks[0].type;
 
   const deleteSelectedElement = () => {
-    const selectedBlocks = engine.block.findAllSelected();
-    if (engine.editor.getEditMode() === 'Crop') {
-      engine.editor.setEditMode('Transform');
+    const selectedBlocks = creativeEngine.block.findAllSelected();
+    if (creativeEngine.editor.getEditMode() === 'Crop') {
+      creativeEngine.editor.setEditMode('Transform');
     }
     selectedBlocks.forEach((pageId) => {
-      engine.block.destroy(pageId);
+      creativeEngine.block.destroy(pageId);
     });
-    engine.editor.addUndoStep();
+    creativeEngine.editor.addUndoStep();
   };
 
   if (

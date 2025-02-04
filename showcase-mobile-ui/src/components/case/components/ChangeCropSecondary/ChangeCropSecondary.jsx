@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
 import { useEditor } from '../../EditorContext';
 
-import ResetIcon from '../../icons/Reset.svg';
+import { ReactComponent as ResetIcon } from '../../icons/Reset.svg';
 import { useSelectedProperty } from '../../lib/UseSelectedProperty';
 import IconButton from '../IconButton/IconButton';
 import Slider from '../Slider/Slider';
@@ -13,7 +13,7 @@ import {
 import classes from './ChangeCropSecondary.module.css';
 
 const ChangeCropSecondary = () => {
-  const { engine, selectedBlocks } = useEditor();
+  const { creativeEngine, selectedBlocks } = useEditor();
   const selectedImage = useMemo(() => selectedBlocks[0], [selectedBlocks]);
   const [cropScaleRatio] = useSelectedProperty('crop/scaleRatio');
   const [cropRotation] = useSelectedProperty('crop/rotation');
@@ -25,24 +25,27 @@ const ChangeCropSecondary = () => {
 
   const resetCurrentCrop = () => {
     selectedBlocks.forEach(({ id }) => {
-      engine.block.resetCrop(id);
+      creativeEngine.block.resetCrop(id);
     });
   };
 
   const scale = (newScale) => {
     selectedBlocks.forEach(({ id }) => {
-      engine.block.setCropScaleRatio(id, newScale);
-      const currentRatio = engine.block.getCropScaleRatio(id);
-      engine.block.adjustCropToFillFrame(id, currentRatio);
+      creativeEngine.block.setCropScaleRatio(id, newScale);
+      const currentRatio = creativeEngine.block.getCropScaleRatio(id);
+      creativeEngine.block.adjustCropToFillFrame(id, currentRatio);
     });
   };
 
   const straighten = (degree) => {
     selectedBlocks.forEach(({ id }) => {
       const rotationInRadians = (degree * Math.PI) / 180;
-      engine.block.setCropRotation(id, rotationInRadians);
+      creativeEngine.block.setCropRotation(id, rotationInRadians);
       // Scale crop back to the cropScaleRatio before we started straightening
-      engine.block.adjustCropToFillFrame(id, initialCropScaleRatio.current);
+      creativeEngine.block.adjustCropToFillFrame(
+        id,
+        initialCropScaleRatio.current
+      );
     });
   };
 
@@ -69,13 +72,12 @@ const ChangeCropSecondary = () => {
               trackStartValue={0}
               max={45}
               onAfterChange={() => {
-                engine.element.style['pointer-events'] = 'initial';
+                creativeEngine.element.style['pointer-events'] = 'initial';
               }}
               onBeforeChange={() => {
-                engine.element.style['pointer-events'] = 'none';
-                initialCropScaleRatio.current = engine.block.getCropScaleRatio(
-                  selectedImage.id
-                );
+                creativeEngine.element.style['pointer-events'] = 'none';
+                initialCropScaleRatio.current =
+                  creativeEngine.block.getCropScaleRatio(selectedImage.id);
               }}
               onChange={(value) => straighten(value)}
             />

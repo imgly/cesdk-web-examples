@@ -14,15 +14,16 @@ const lutFilterUriToId = (filterUri) =>
   ALL_FILTERS.find(({ lutImage }) => filterUri.includes(lutImage))?.id;
 
 const FilterSecondary = () => {
-  const { currentPageBlockId, engine } = useEditor();
+  const { currentPageBlockId, creativeEngine } = useEditor();
 
   const [activeFilterId, setActiveFilterId] = useState(() => {
-    const effects = engine.block.getEffects(currentPageBlockId);
+    const effects = creativeEngine.block.getEffects(currentPageBlockId);
     let lutFilterEffect = effects.find(
-      (effect) => engine.block.getString(effect, 'type') === LUT_FILTER_TYPE
+      (effect) =>
+        creativeEngine.block.getString(effect, 'type') === LUT_FILTER_TYPE
     );
     if (!lutFilterEffect) return 'none';
-    let lutUri = engine.block.getString(
+    let lutUri = creativeEngine.block.getString(
       lutFilterEffect,
       'effect/lut_filter/lutFileURI'
     );
@@ -36,11 +37,7 @@ const FilterSecondary = () => {
   );
   useEffect(() => {
     const element = document.getElementById(activeFilterId);
-    element?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
-    });
+    element?.scrollIntoView({ inline: 'center' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -56,12 +53,13 @@ const FilterSecondary = () => {
           label="None"
           thumbUrl={caseAssetPath('/images/none-filter-thumb.png')}
           onClick={() => {
-            const effects = engine.block.getEffects(currentPageBlockId);
+            const effects = creativeEngine.block.getEffects(currentPageBlockId);
             let adjustmentEffect = effects.find(
               (effect) =>
-                engine.block.getString(effect, 'type') === LUT_FILTER_TYPE
+                creativeEngine.block.getString(effect, 'type') ===
+                LUT_FILTER_TYPE
             );
-            engine.block.destroy(adjustmentEffect);
+            creativeEngine.block.destroy(adjustmentEffect);
             setActiveFilterId('none');
           }}
           isActive={activeFilterId === 'none'}
@@ -70,7 +68,7 @@ const FilterSecondary = () => {
           <FilterButton
             id={filter.id}
             key={filter.id}
-            thumbUrl={engine.editor.defaultURIResolver(
+            thumbUrl={creativeEngine.editor.defaultURIResolver(
               `extensions/ly.img.cesdk.filters.lut/${filter.thumbPath}`
             )}
             onClick={() => {

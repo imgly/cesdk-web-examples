@@ -1,36 +1,29 @@
 import { useState } from 'react';
-import { useEditor } from '../../EditorContext';
+import { useSelectedProperty } from '../../lib/UseSelectedProperty';
 import FontSelect from '../FontSelect/FontSelect';
+import FontSelectFilter from '../FontSelect/FontSelectFilter';
 import {
   SlideUpPanelBody,
   SlideUpPanelHeader
 } from '../SlideUpPanel/SlideUpPanel';
 
-const getTypeface = (engine) => {
-  try {
-    return engine.block.getTypeface(engine.block.findAllSelected()[0]);
-  } catch {
-    console.error('Error getting typeface');
-    return null;
-  }
-};
-
 const ChangeTextFontSecondary = () => {
-  const { engine } = useEditor();
-  const [activeTypeface, setActiveTypeface] = useState(getTypeface(engine));
+  const [fontFileUri, setFontFileUri] = useSelectedProperty('text/fontFileUri');
+
+  const [fontFilterGroup, setFontFilterGroup] = useState();
 
   return (
     <>
-      <SlideUpPanelHeader headline="Font"></SlideUpPanelHeader>
+      <SlideUpPanelHeader headline="Font">
+        <FontSelectFilter onChange={(value) => setFontFilterGroup(value)} />
+      </SlideUpPanelHeader>
       <SlideUpPanelBody>
         <FontSelect
-          onSelect={(font, typeface) => {
-            engine.block.findAllSelected().forEach((block) => {
-              engine.block.setFont(block, font.uri, typeface);
-            });
-            setActiveTypeface(typeface);
-          }}
-          activeTypeface={activeTypeface}
+          fontFilter={({ group }) =>
+            !fontFilterGroup || fontFilterGroup === group
+          }
+          onSelect={(fontUri) => setFontFileUri(fontUri)}
+          activeFontUri={fontFileUri}
         />
       </SlideUpPanelBody>
     </>

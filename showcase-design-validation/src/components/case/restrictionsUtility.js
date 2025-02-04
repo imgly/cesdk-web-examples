@@ -23,7 +23,13 @@ const getElementBoundingBox = (cesdk, blockId) => {
 const getRelevantBlocks = (cesdk) => {
   return [
     ...cesdk.engine.block.findByType('text'),
-    ...cesdk.engine.block.findByType('graphic')
+    ...cesdk.engine.block.findByType('image'),
+    ...cesdk.engine.block.findByType('sticker'),
+    ...cesdk.engine.block.findByType('shapes/rect'),
+    ...cesdk.engine.block.findByType('shapes/line'),
+    ...cesdk.engine.block.findByType('shapes/star'),
+    ...cesdk.engine.block.findByType('shapes/polygon'),
+    ...cesdk.engine.block.findByType('shapes/ellipse')
   ];
 };
 
@@ -41,21 +47,13 @@ export const getProtrudingBlocks = (cesdk) => {
     .filter((o) => !!o);
 };
 
-const findParentPage = (cesdk, blockId) => {
-  const parent = cesdk.engine.block.getParent(blockId);
-  if (cesdk.engine.block.getKind(parent) === 'page') {
-    return parent;
-  }
-  return findParentPage(cesdk, parent);
-};
-
 export const getOutsideBlocks = (cesdk) => {
+  const page = cesdk.engine.block.findByType('page')[0];
   return getRelevantBlocks(cesdk)
     .map((elementBlockId) => {
-      const parentPage = findParentPage(cesdk, elementBlockId);
       const overlapWithPage = getElementOverlap(
         getElementBoundingBox(cesdk, elementBlockId),
-        getElementBoundingBox(cesdk, parentPage)
+        getElementBoundingBox(cesdk, page)
       );
       const isOutside = overlapWithPage === 0;
       return isOutside && elementBlockId;
@@ -72,56 +70,18 @@ export const getBlockIdsAbove = (cesdk, blockId) => {
 
 // Returns all text blocks that may obstructed by other blocks
 export const getPartiallyHiddenTexts = (cesdk) => {
-  const engine = cesdk.engine;
-  return engine.block
+  return cesdk.engine.block
     .findByType('text')
     .map((elementBlockId) => {
       const elementsLayingAbove = getBlockIdsAbove(cesdk, elementBlockId);
-      const elementBBOverlapping = elementsLayingAbove.filter(
+      const anyElementOverlapping = elementsLayingAbove.some(
         (blockId) =>
           getElementOverlap(
             getElementBoundingBox(cesdk, elementBlockId),
             getElementBoundingBox(cesdk, blockId)
           ) > 0
       );
-      // now check if they are really overlapping:
-      // duplicate all
-      const elementsTrulyOverlapping = elementBBOverlapping.some((blockId) => {
-        // duplicate both elements:
-        const duplicatedText = engine.block.duplicate(elementBlockId);
-        const duplicatedBlockId = engine.block.duplicate(blockId);
-        // Workaround until 1.21: Force layouting using setRotation:
-        engine.block.setRotation(
-          duplicatedText,
-          engine.block.getRotation(duplicatedText)
-        );
-        let union;
-        let hasIntersection = false;
-        try {
-          union = engine.block.combine(
-            [duplicatedText, duplicatedBlockId],
-            'Intersection'
-          );
-        } catch (e) {
-          const message = e.message;
-          if (!message.includes('Result is an empty shape.')) {
-            throw e;
-          }
-        }
-        if (union && engine.block.isValid(union)) {
-          hasIntersection = true;
-          engine.block.destroy(union);
-        }
-        if (engine.block.isValid(duplicatedBlockId)) {
-          engine.block.destroy(duplicatedBlockId);
-        }
-        if (engine.block.isValid(duplicatedText)) {
-          engine.block.destroy(duplicatedText);
-        }
-        return hasIntersection;
-      });
-
-      return elementsTrulyOverlapping && elementBlockId;
+      return anyElementOverlapping && elementBlockId;
     })
     .filter((o) => !!o);
 };
@@ -147,26 +107,25 @@ export const transformToPixel = (fromUnit, fromValue, dpi) => {
 export const millimeterToPx = (mm, dpi) => (mm * dpi) / 25.4;
 export const inchToPx = (inches, dpi) => inches * dpi;
 
-export const getImageBlockQuality = async (engine, imageId) => {
+export const getImageBlockQuality = async (cesdk, imageId) => {
   const [frameWidthDesignUnit, frameHeightDesignUnit] = [
-    engine.block.getFrameWidth(imageId),
-    engine.block.getFrameHeight(imageId)
+    cesdk.engine.block.getFrameWidth(imageId),
+    cesdk.engine.block.getFrameHeight(imageId)
   ];
-  const scene = engine.scene.get();
+  const scene = cesdk.engine.block.findByType('scene')[0];
   const [pageUnit, pageDPI] = [
-    engine.block.getEnum(scene, 'scene/designUnit'),
-    engine.block.getFloat(scene, 'scene/dpi')
+    cesdk.engine.block.getEnum(scene, 'scene/designUnit'),
+    cesdk.engine.block.getFloat(scene, 'scene/dpi')
   ];
   const [frameWidth, frameHeight] = [
     transformToPixel(pageUnit, frameWidthDesignUnit, pageDPI),
     transformToPixel(pageUnit, frameHeightDesignUnit, pageDPI)
   ];
-  const fill = engine.block.getFill(imageId);
   const { width, height } = await fetchImageResolution(
-    engine.block.getString(fill, 'fill/image/imageFileURI')
+    cesdk.engine.block.getString(imageId, 'image/imageFileURI')
   );
   // Currently scaleX and scaleY are the same
-  const scaleY = engine.block.getCropScaleY(imageId) || 1;
+  const scaleY = cesdk.engine.block.getCropScaleY(imageId) || 1;
   const imageQuality = getImageQuality(
     width,
     height,
@@ -210,7 +169,8 @@ export const getImageQuality = (
   imageHeight,
   frameHeight,
   frameWidth,
-  scale = 1
+  scale = 1,
+  mode = 'cover'
 ) => {
   var originalRatios = {
     width: frameWidth / (imageWidth / scale),
@@ -220,27 +180,35 @@ export const getImageQuality = (
   return 1 / coverRatio;
 };
 
-export const getLayerName = (cesdk, blockId) => {
+export const getImageLayerName = (cesdk, blockId) => {
   const layerName = cesdk.engine.block.getName(blockId);
   if (layerName && !['Text'].includes(layerName)) {
     return layerName;
   }
-  const kind = cesdk.engine.block.getKind(blockId);
-  switch (kind) {
-    case 'text':
+  const type = cesdk.engine.block.getType(blockId);
+  switch (type) {
+    case '//ly.img.ubq/text':
       const textContent = cesdk.engine.block.getString(blockId, 'text/text');
       const truncatedTextContent = truncate(textContent, { length: 25 });
       if (truncatedTextContent) {
         return truncatedTextContent;
       }
       return 'Text';
-    case 'image':
+    case '//ly.img.ubq/image':
       return 'Image';
-    case 'sticker':
+    case '//ly.img.ubq/sticker':
       return 'Sticker';
-    case 'shapes':
-      return 'Shape';
+    case '//ly.img.ubq/shapes/rect':
+      return 'Shape: rect';
+    case '//ly.img.ubq/shapes/line':
+      return 'Shape: line';
+    case '//ly.img.ubq/shapes/star':
+      return 'Shape: star';
+    case '//ly.img.ubq/shapes/polygon':
+      return 'Shape: polygon';
+    case '//ly.img.ubq/shapes/ellipse':
+      return 'Shape: ellipse';
     default:
-      return kind;
+      return type;
   }
 };

@@ -1,34 +1,50 @@
 .wrapper {
   display: flex;
+  width: 100%;
   flex-direction: column;
   flex-grow: 1;
-  align-items: center;
-  gap: 24px;
+  padding: 1rem;
 }
 
-.section {
+.inputsWrapper {
   display: flex;
-  overflow: hidden;
-  width: 100%;
-  flex: none;
+  max-width: fit-content;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  padding: 32px 40px;
-  border-radius: 16px;
-  background: white;
-  box-shadow:
-    0px 0px 2px 0px rgba(46, 46, 47, 0.25),
-    0px 8px 12px -2px rgba(46, 46, 47, 0.12),
-    0px 4px 5px -2px rgba(46, 46, 47, 0.12),
-    0px 2px 3.5px -2px rgba(46, 46, 47, 0.12);
-  gap: 32px;
-  text-align: left;
+  margin-bottom: 2rem;
+  gap: 0.5rem;
 }
 
-.customizationSectionWrapper {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 48px;
+.imageSelectionWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.image {
+  min-width: 50px;
+  height: 100%;
+  max-height: 50px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.imageActiveState {
+  border: 2px solid #471aff;
+}
+
+.headline {
+  color: white;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.canvas {
+  position: relative;
+  max-width: 640px;
+  max-height: 400px;
+  aspect-ratio: 640 / 400;
 }

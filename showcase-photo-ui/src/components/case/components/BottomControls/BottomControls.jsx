@@ -3,9 +3,9 @@ import { useEditor } from '../../EditorContext';
 import classes from './BottomControls.module.css';
 
 import { useMemo, useState } from 'react';
-import AdjustmentsIcon from '../../icons/Adjustments.svg';
-import CropIcon from '../../icons/Crop.svg';
-import FilterIcon from '../../icons/Filter.svg';
+import { ReactComponent as AdjustmentsIcon } from '../../icons/Adjustments.svg';
+import { ReactComponent as CropIcon } from '../../icons/Crop.svg';
+import { ReactComponent as FilterIcon } from '../../icons/Filter.svg';
 import AdjustSecondary from '../AdjustSecondary/AdjustSecondary';
 import CropModeSecondary from '../CropModeSecondary/CropModeSecondary';
 import FilterSecondary from '../FilterSecondary/FilterSecondary';
@@ -33,19 +33,19 @@ const SECONDARY_BARS = {
 };
 
 const BottomControls = () => {
-  const { setZoomPaddingBottom, editMode, engine, currentPageBlockId } =
+  const { setZoomPaddingBottom, editMode, creativeEngine, currentPageBlockId } =
     useEditor();
   const [selectedMenuId, setSelectedMenuId] = useState();
 
   useEffect(() => {
-    const handler = function () {
-      if (engine.editor.getEditMode() === 'Transform') {
+    const handler = function (event) {
+      if (creativeEngine.editor.getEditMode() === 'Transform') {
         setSelectedMenuId(null);
       }
     };
-    engine.element.addEventListener('click', handler);
-    return () => engine.element?.removeEventListener('click', handler);
-  }, [engine]);
+    creativeEngine.element.addEventListener('click', handler);
+    return () => creativeEngine.element?.removeEventListener('click', handler);
+  }, [creativeEngine]);
 
   const calculatedMenuId = useMemo(
     () => (editMode === 'Crop' ? 'Crop' : selectedMenuId),
@@ -75,16 +75,16 @@ const BottomControls = () => {
               isActive={calculatedMenuId === key}
               onClick={() => {
                 if (calculatedMenuId === key) {
-                  engine.editor.setEditMode('Transform');
+                  creativeEngine.editor.setEditMode('Transform');
                   setSelectedMenuId(null);
                 } else {
                   if (key === 'Crop') {
                     setSelectedMenuId(null);
-                    engine.block.setSelected(currentPageBlockId, true);
-                    engine.editor.setEditMode('Crop');
+                    creativeEngine.block.setSelected(currentPageBlockId, true);
+                    creativeEngine.editor.setEditMode('Crop');
                   } else {
                     setSelectedMenuId(key);
-                    engine.editor.setEditMode('Transform');
+                    creativeEngine.editor.setEditMode('Transform');
                   }
                 }
               }}

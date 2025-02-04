@@ -1,6 +1,3 @@
-// This file contains multiple unofficial helper functions for working with the editor.
-// We expect that most of these functions will move into the engine core over time.
-
 export const zoomToSelectedText = async (
   engine,
   paddingTop = 0,
@@ -62,31 +59,19 @@ export const pixelToCanvasUnit = (engine, pixel) => {
 };
 
 // Appends a block into the scene and positions it somewhat randomly.
-export const autoPlaceBlockOnPage = (
-  engine,
-  page,
-  block,
-  config = {
-    basePosX: 0.25,
-    basePosY: 0.25,
-    randomPosX: 0.05,
-    randomPosY: 0.05
-  }
-) => {
+export const autoPlaceBlockOnPage = (engine, page, block) => {
   engine.block
     .findAllSelected()
     .forEach((blockId) => engine.block.setSelected(blockId, false));
   engine.block.appendChild(page, block);
 
   const pageWidth = engine.block.getWidth(page);
-  const posX =
-    pageWidth * (config.basePosX + Math.random() * config.randomPosX);
+  const posX = pageWidth * (0.25 + Math.random() * 0.05);
   engine.block.setPositionXMode(block, 'Absolute');
   engine.block.setPositionX(block, posX);
 
   const pageHeight = engine.block.getWidth(page);
-  const posY =
-    pageHeight * (config.basePosY + Math.random() * config.randomPosY);
+  const posY = pageHeight * (0.25 + Math.random() * 0.05);
   engine.block.setPositionYMode(block, 'Absolute');
   engine.block.setPositionY(block, posY);
 
@@ -94,26 +79,85 @@ export const autoPlaceBlockOnPage = (
   engine.editor.addUndoStep();
 };
 
-export function getImageSize(url) {
-  const img = document.createElement('img');
-
-  const promise = new Promise((resolve, reject) => {
-    img.onload = () => {
-      // Natural size is the actual image size regardless of rendering.
-      // The 'normal' `width`/`height` are for the **rendered** size.
-      const width = img.naturalWidth;
-      const height = img.naturalHeight;
-
-      // Resolve promise with the width and height
-      resolve({ width, height });
-    };
-
-    // Reject promise on error
-    img.onerror = reject;
-  });
-
-  // Setting the source makes it start downloading and eventually call `onload`
-  img.src = url;
-
-  return promise;
+// Color utilities
+export function hexToRgb(hex) {
+  return {
+    r: ('0x' + hex[1] + hex[2]) | 0,
+    g: ('0x' + hex[3] + hex[4]) | 0,
+    b: ('0x' + hex[5] + hex[6]) | 0
+  };
 }
+export function rgbToHex(r, g, b) {
+  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+export const normalizeColors = ({ r, g, b }) => ({
+  r: r / 255,
+  g: g / 255,
+  b: b / 255
+});
+export const denormalizeColors = ({ r, g, b }) => ({
+  r: r * 255,
+  g: g * 255,
+  b: b * 255
+});
+
+const PRECISION = 0.001;
+/**
+ * Compares two colors with a certain precision
+ * @param {ColorObject} colorA First color to compare
+ * @param {ColorObject} colorB Second color to compare
+ * @returns Wether the colors are approximately the same
+ */
+export const isColorEqual = (colorA, colorB, precision = PRECISION) => {
+  return (
+    Math.abs(colorB.r - colorA.r) < precision &&
+    Math.abs(colorB.g - colorA.g) < precision &&
+    Math.abs(colorB.b - colorA.b) < precision
+  );
+};
+export const RGBAArrayToObj = ([r, g, b, _a]) => ({ r, g, b });
+
+const ADJUSTMENT_TYPE = '//ly.img.ubq/effect/adjustments';
+export const fetchAdjustmentEffect = (engine, block) => {
+  const effects = engine.block.getEffects(block);
+
+  let adjustmentEffect = effects.find(
+    (effect) => engine.block.getString(effect, 'type') === ADJUSTMENT_TYPE
+  );
+
+  if (!adjustmentEffect) {
+    adjustmentEffect = engine.block.createEffect('adjustments');
+    engine.block.appendEffect(block, adjustmentEffect);
+  }
+  return adjustmentEffect;
+};
+
+const LUT_FILTER_TYPE = '//ly.img.ubq/effect/lut_filter';
+export const fetchLutFilterEffect = (engine, block) => {
+  const effects = engine.block.getEffects(block);
+
+  let adjustmentEffect = effects.find(
+    (effect) => engine.block.getString(effect, 'type') === LUT_FILTER_TYPE
+  );
+
+  if (!adjustmentEffect) {
+    adjustmentEffect = engine.block.createEffect('lut_filter');
+    engine.block.appendEffect(block, adjustmentEffect);
+  }
+  return adjustmentEffect;
+};
+
+/**
+ * Workaround to force a rerender of the engine.
+ * Should be used sparingly.
+ * @param {import('@cesdk/engine').CreativeEngine} engine
+ */
+export const forceRerender = (engine) => {
+  const event = new MouseEvent('mousemove', {
+    view: window,
+    bubbles: true,
+    cancelable: true
+  });
+  engine.element.dispatchEvent(event);
+};

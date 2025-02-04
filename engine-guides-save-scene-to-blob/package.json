@@ -1,11 +1,16 @@
 {
-  "name": "engine-guides-save-scene-to-blob",
-  "version": "1.0.0",
+  "name": "guides-save-scene-to-blob",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
-    "start": "serve"
+    "build": "true",
+    "start": "npx -y -S serve",
+    "serve": "npx -y -S serve -l 8080",
+    "assets": "true",
+    "test:e2e": "yarn run cypress open --project ./tests/e2e"
   },
   "devDependencies": {
-    "serve": "latest"
+    "cypress": "^8.1.0"
   }
 }
+

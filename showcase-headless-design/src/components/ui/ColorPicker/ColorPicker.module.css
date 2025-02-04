@@ -72,11 +72,6 @@
 .pickerModal :global(.react-colorful) {
   width: 150px;
   height: 150px;
-  gap: 4px;
-}
-
-.pickerModal :global(.react-colorful)>* {
-  border-radius: 6px;
 }
 
 .pickerModal input {
@@ -110,7 +105,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  background: linear-gradient(0deg, #FAFAFA, #FAFAFA);
+  background: linear-gradient(0deg, #f4f4f5, #f4f4f5);
   border-radius: 9999px;
 }
 

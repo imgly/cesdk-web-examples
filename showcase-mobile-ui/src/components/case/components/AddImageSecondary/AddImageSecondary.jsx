@@ -1,4 +1,5 @@
 import { useEditor } from '../../EditorContext';
+import { addImage } from '../../lib/CreativeEngineUtils';
 import ImageSelect from '../ImageSelect/ImageSelect';
 import SlideUpPanel, {
   SlideUpPanelBody,
@@ -7,7 +8,7 @@ import SlideUpPanel, {
 import UploadImageButton from '../UploadImageButton/UploadImageButton';
 
 const AddImageSecondary = ({ onClose }) => {
-  const { engine } = useEditor();
+  const { creativeEngine, currentPageBlockId } = useEditor();
 
   return (
     <SlideUpPanel
@@ -16,16 +17,16 @@ const AddImageSecondary = ({ onClose }) => {
     >
       <SlideUpPanelHeader headline="Add Image">
         <UploadImageButton
-          onUpload={(asset) => {
-            engine.asset.apply(asset.context.sourceId, asset);
-          }}
+          onUpload={(url) =>
+            addImage(creativeEngine, currentPageBlockId, url, 1)
+          }
         />
       </SlideUpPanelHeader>
       <SlideUpPanelBody>
         <ImageSelect
-          onSelect={(asset) => {
-            engine.asset.apply(asset.context.sourceId, asset);
-          }}
+          onSelect={(image) =>
+            addImage(creativeEngine, currentPageBlockId, image)
+          }
         />
       </SlideUpPanelBody>
     </SlideUpPanel>

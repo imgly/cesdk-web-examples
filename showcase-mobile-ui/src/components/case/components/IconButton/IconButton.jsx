@@ -3,6 +3,7 @@ import classes from './IconButton.module.css';
 
 const IconButton = ({
   icon,
+  children,
   isActive,
   iconColor,
   theme,

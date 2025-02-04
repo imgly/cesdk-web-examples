@@ -60,7 +60,7 @@ export function generateColorAbstractionTokensBackground(color: string) {
 
 export function generateColorAbstractionTokensActive(color: string) {
   return {
-    '--ubq-foreground-active': chroma(color).alpha(0.9).css('hsl'),
+    '--ubq-foreground-active': getContrastColor(color).alpha(0.9).css('hsl'),
     '--ubq-interactive-active-default': chroma(color).css('hsl'),
     '--ubq-interactive-active-hover': setLightness(color, '+0.05').css('hsl'),
     '--ubq-interactive-active-pressed': setLightness(color, '-0.05').css('hsl'),

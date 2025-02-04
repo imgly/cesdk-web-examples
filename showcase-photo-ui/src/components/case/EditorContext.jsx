@@ -29,7 +29,7 @@ export const EditorProvider = ({ children }) => {
   const enableAutoRecenter = ENABLE_AUTO_RECENTER;
   const [engineIsLoaded, setEngineIsLoaded] = useState(false);
   const [sceneIsLoaded, setSceneIsLoaded] = useState(false);
-  const [engine, setEngine] = useState(null);
+  const [creativeEngine, setCreativeEngine] = useState(null);
   const [canRecenter, setCanRecenter] = useState(false);
   const [editMode, setEditMode] = useState('Transform');
   const [selectedImageUrl, setSelectedImageUrl] = useState(
@@ -50,7 +50,7 @@ export const EditorProvider = ({ children }) => {
 
   const editorUpdateCallbackRef = useRef(() => {});
   editorUpdateCallbackRef.current = () => {
-    const newEditMode = engine.editor.getEditMode();
+    const newEditMode = creativeEngine.editor.getEditMode();
     if (editMode !== newEditMode) {
       setEditMode(newEditMode);
     }
@@ -58,7 +58,7 @@ export const EditorProvider = ({ children }) => {
 
   const changeImage = useCallback(
     async (src, keepChanges) => {
-      engine.editor.setEditMode('Transform');
+      creativeEngine.editor.setEditMode('Transform');
       setEditMode('Transform');
       setSceneIsLoaded(false);
       setSelectedImageUrl(src);
@@ -66,33 +66,44 @@ export const EditorProvider = ({ children }) => {
       // Let react render
       await new Promise((resolve) => setTimeout(resolve, 0));
       if (keepChanges) {
-        await setImageSource(engine, engine.block.findByType('page')[0], src);
+        await setImageSource(
+          creativeEngine,
+          creativeEngine.block.findByType('page')[0],
+          src
+        );
       } else {
-        await setupPhotoScene(engine, src);
+        await setupPhotoScene(creativeEngine, src);
       }
       setSceneIsLoaded(true);
       setFocusEnabled(true);
       await new Promise((resolve) => setTimeout(resolve, 0));
-      engine.block.setVisible(engine.block.findByType('page')[0], true);
+      creativeEngine.block.setVisible(
+        creativeEngine.block.findByType('page')[0],
+        true
+      );
     },
-    [engine, setFocusEnabled]
+    [creativeEngine, setFocusEnabled]
   );
 
   useEffect(() => {
     let engine;
     const loadEditor = async () => {
+
       const config = {
         featureFlags: {
           preventScrolling: true
         },
-        license: process.env.NEXT_PUBLIC_LICENSE
+
+        page: {
+          title: {
+            show: false
+          }
+        },
+        license: process.env.REACT_APP_LICENSE
       };
 
       engine = await CreativeEngine.init(config);
-      engine.editor.setSettingBool('mouse/enableScroll', false);
-      engine.editor.setSettingBool('mouse/enableZoom', false);
-      engine.editor.setSettingBool('page/title/show', false);
-      setEngine(engine);
+      setCreativeEngine(engine);
     };
     loadEditor();
 
@@ -104,22 +115,24 @@ export const EditorProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (engine) {
+    if (creativeEngine) {
       const setupEngine = async () => {
-        engine.editor.onStateChanged(() => editorUpdateCallbackRef.current());
+        creativeEngine.editor.onStateChanged(() =>
+          editorUpdateCallbackRef.current()
+        );
         const initialImageUrl = caseAssetPath(INITIAL_IMAGE_PATH);
-        await setupPhotoScene(engine, initialImageUrl);
-        setFocusEngine(engine);
+        await setupPhotoScene(creativeEngine, initialImageUrl);
+        setFocusEngine(creativeEngine);
         setFocusEnabled(true);
         await new Promise((resolve) => setTimeout(resolve, 0));
-        const page = engine.block.findByType('page')[0];
-        engine.block.setVisible(page, true);
+        const page = creativeEngine.block.findByType('page')[0];
+        creativeEngine.block.setVisible(page, true);
         setEngineIsLoaded(true);
         setSceneIsLoaded(true);
       };
       setupEngine();
     }
-  }, [engine, setFocusEnabled, setFocusEngine]);
+  }, [creativeEngine, setFocusEnabled, setFocusEngine]);
 
   const value = {
     sceneIsLoaded,
@@ -128,7 +141,7 @@ export const EditorProvider = ({ children }) => {
     setCanRecenter,
     editMode,
     changeImage,
-    engine,
+    creativeEngine,
     engineIsLoaded,
     currentPageBlockId,
     refocus,
@@ -155,9 +168,9 @@ export const useEditor = () => {
  * @param {string} imageUrl
  */
 async function setupPhotoScene(engine, src) {
-  engine.editor.setSettingBool('page/dimOutOfPageAreas', false);
-  engine.editor.setSettingColorRGBA('highlightColor', 1, 1, 1, 1);
-  engine.editor.setSettingColorRGBA('cropOverlayColor', 1, 1, 1, 0.55);
+  engine.editor.setSettingBool('ubq://page/dimOutOfPageAreas', false);
+  engine.editor.setSettingColorRGBA('ubq://highlightColor', 1, 1, 1, 1);
+  engine.editor.setSettingColorRGBA('ubq://cropOverlayColor', 1, 1, 1, 0.55);
   engine.editor.setGlobalScope('design/arrange', 'Allow');
 
   // We recreate the scene to discard all changes
@@ -178,7 +191,8 @@ async function setupPhotoScene(engine, src) {
   await setImageSource(engine, page, src);
   await engine.block.setClipped(page, false);
 
-  engine.editor.setSettingBool('doubleClickToCropEnabled', false);
+  engine.editor.setSettingBool('ubq://doubleClickToCropEnabled', false);
+  engine.editor.addUndoStep();
 }
 
 /**

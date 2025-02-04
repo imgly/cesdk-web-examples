@@ -56,5 +56,23 @@ export const EMPLOYEES = [
     firstName: 'Olga',
     lastName: 'Stadnicka',
     department: 'Quality Assurance'
+  },
+  {
+    imagePath: 'photo_imgly_03.png',
+    firstName: 'Sascha',
+    lastName: 'Schwabbauer',
+    department: 'Mobile Development'
+  },
+  {
+    imagePath: 'photo_imgly_01.png',
+    firstName: 'Caroline',
+    lastName: 'Scheele-Bild',
+    department: 'Support'
+  },
+  {
+    imagePath: 'photo_imgly_05.png',
+    firstName: 'Dogus',
+    lastName: 'Dolu',
+    department: 'Web Development'
   }
 ];

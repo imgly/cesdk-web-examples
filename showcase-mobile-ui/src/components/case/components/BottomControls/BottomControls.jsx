@@ -8,10 +8,11 @@ import TextAdjustmentsBar from '../TextAdjustmentsBar/TextAdjustmentsBar';
 import classes from './BottomControls.module.css';
 
 const BLOCK_TYPE_TO_CONTROLS = [
-  { type: 'text', component: <TextAdjustmentsBar /> },
-  { type: 'image', component: <ImageAdjustmentBar /> },
-  { type: 'shape', component: <ShapesAdjustmentBar /> },
-  { type: 'sticker', component: <StickerAdjustmentBar /> }
+  { type: '//ly.img.ubq/text', component: <TextAdjustmentsBar /> },
+  { type: '//ly.img.ubq/image', component: <ImageAdjustmentBar /> },
+  { type: '//ly.img.ubq/shapes', component: <ShapesAdjustmentBar /> },
+  { type: '//ly.img.ubq/vector_path', component: <ShapesAdjustmentBar /> },
+  { type: '//ly.img.ubq/sticker', component: <StickerAdjustmentBar /> }
 ];
 
 const BottomControls = () => {

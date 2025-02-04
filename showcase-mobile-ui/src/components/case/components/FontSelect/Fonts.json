@@ -1,0 +1,304 @@
+[
+  {
+    "id": "abril_fatface_regular",
+    "fontFamily": "Abril Fatface",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_abril_fatface_regular.ttf"
+  },
+  {
+    "id": "aleo_bold",
+    "fontFamily": "Aleo",
+    "fontWeight": "bold",
+    "fontPath": "fonts/imgly_font_aleo_bold.otf"
+  },
+  {
+    "id": "amaticsc_regular",
+    "fontFamily": "AmaticSC",
+    "fontWeight": "normal",
+    "fontPath": "fonts/AmaticSC/imgly_font_amaticsc_regular.ttf"
+  },
+  {
+    "id": "archivo_regular",
+    "fontFamily": "Archivo",
+    "fontWeight": 400,
+    "fontPath": "fonts/Archivo/static/Archivo/Archivo-Regular.ttf"
+  },
+  {
+    "id": "bangers",
+    "fontFamily": "Bangers",
+    "fontWeight": "normal",
+    "fontPath": "fonts/Bangers/Bangers-Regular.ttf"
+  },
+  {
+    "id": "barlowcondensed_regular",
+    "fontFamily": "Barlow Condensed",
+    "fontWeight": 400,
+    "fontPath": "fonts/BarlowCondensed/BarlowCondensed-Regular.ttf"
+  },
+  {
+    "id": "bungee_inline",
+    "fontFamily": "Bungee Inline",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_bungee_inline.ttf"
+  },
+  {
+    "id": "carter_one",
+    "fontFamily": "Carter",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_carter_one.ttf"
+  },
+  {
+    "id": "caveat_regular",
+    "fontFamily": "Caveat",
+    "fontWeight": 400,
+    "fontPath": "fonts/Caveat/Caveat-Regular.ttf"
+  },
+  {
+    "id": "courierprime_regular",
+    "fontFamily": "Courier Prime",
+    "fontWeight": 400,
+    "fontPath": "fonts/CourierPrime/CourierPrime-Regular.ttf"
+  },
+  {
+    "id": "elsie_swash_caps_regular",
+    "fontFamily": "Elsie Swash Caps",
+    "fontWeight": 400,
+    "fontPath": "fonts/ElsieSwashCaps/ElsieSwashCaps-Regular.ttf"
+  },
+  {
+    "id": "fira_sans_regular",
+    "fontFamily": "Fira Sans",
+    "fontWeight": 400,
+    "fontPath": "fonts/FiraSans/FiraSans-Regular.ttf"
+  },
+  {
+    "id": "lobstertwo_regular",
+    "fontFamily": "Lobster Two",
+    "fontWeight": 400,
+    "fontPath": "fonts/LobsterTwo/LobsterTwo-Regular.ttf"
+  },
+  {
+    "id": "manrope_regular",
+    "fontFamily": "Manrope",
+    "fontWeight": 400,
+    "fontPath": "fonts/Manrope/Manrope-Regular.ttf"
+  },
+  {
+    "id": "montserrat_regular",
+    "fontFamily": "Montserrat",
+    "fontWeight": 400,
+    "fontPath": "fonts/Montserrat/Montserrat-Regular.ttf"
+  },
+  {
+    "id": "nunito_regular",
+    "fontFamily": "Nunito",
+    "fontWeight": 400,
+    "fontPath": "fonts/Nunito/Nunito-Regular.ttf"
+  },
+  {
+    "id": "open_sans_regular",
+    "fontFamily": "Open Sans",
+    "fontWeight": 400,
+    "fontPath": "fonts/OpenSans/OpenSans-Regular.ttf"
+  },
+  {
+    "id": "oswald_regular",
+    "fontFamily": "Oswald",
+    "fontWeight": 400,
+    "fontPath": "fonts/Oswald/Oswald-Regular.ttf"
+  },
+  {
+    "id": "parisienne_regular",
+    "fontFamily": "Parisienne",
+    "fontWeight": 400,
+    "fontPath": "fonts/Parisienne/Parisienne-Regular.ttf"
+  },
+  {
+    "id": "permanent_marker_regular",
+    "fontFamily": "Permanent Marker",
+    "fontWeight": 400,
+    "fontPath": "fonts/Permanent_Marker/PermanentMarker-Regular.ttf"
+  },
+  {
+    "id": "playfair_display_regular",
+    "fontFamily": "Playfair Display",
+    "fontWeight": 400,
+    "fontPath": "fonts/Playfair_Display/PlayfairDisplay-Regular.ttf"
+  },
+  {
+    "id": "poppins_regular",
+    "fontFamily": "Poppins",
+    "fontWeight": 400,
+    "fontPath": "fonts/Poppins/Poppins-Regular.ttf"
+  },
+  {
+    "id": "rasa_regular",
+    "fontFamily": "Rasa",
+    "fontWeight": 400,
+    "fontPath": "fonts/Rasa/Rasa-Regular.ttf"
+  },
+  {
+    "id": "krona_one",
+    "fontFamily": "Krona",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_krona_one.ttf",
+    "group": "brand"
+  },
+  {
+    "id": "kumar_one_outline",
+    "fontFamily": "Kumar",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_kumar_one_outline.otf"
+  },
+  {
+    "id": "monoton",
+    "fontFamily": "Monoton",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_monoton.ttf"
+  },
+  {
+    "id": "nixie_one",
+    "fontFamily": "Nixie",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_nixie_one.ttf",
+    "group": "brand"
+  },
+  {
+    "id": "notable",
+    "fontFamily": "Notable",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_notable.ttf"
+  },
+  {
+    "id": "ostrich_sans_black",
+    "fontFamily": "Ostrich",
+    "fontWeight": 800,
+    "fontPath": "fonts/imgly_font_ostrich_sans_black.otf"
+  },
+  {
+    "id": "palanquin_dark_regular",
+    "fontFamily": "Palanquin Dark",
+    "fontWeight": "normal",
+    "fontPath": "fonts/Palanquin_Dark/PalanquinDark-Regular.ttf"
+  },
+  {
+    "id": "permanent_marker",
+    "fontFamily": "Marker",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_permanent_marker.ttf"
+  },
+  {
+    "id": "petit_formal_script",
+    "fontFamily": "Petit Formal Script",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_petit_formal_script.ttf"
+  },
+  {
+    "id": "quicksand_regular",
+    "fontFamily": "Quicksand",
+    "fontWeight": "normal",
+    "fontPath": "fonts/Quicksand/static/Quicksand-Regular.ttf"
+  },
+  {
+    "id": "roboto_regular",
+    "fontFamily": "Roboto",
+    "fontWeight": 400,
+    "fontPath": "fonts/Roboto/Roboto-Regular.ttf"
+  },
+  {
+    "id": "roboto_condensed_regular",
+    "fontFamily": "Roboto Condensed",
+    "fontWeight": 400,
+    "fontPath": "fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
+  },
+  {
+    "id": "roboto_slab_regular",
+    "fontFamily": "Roboto Slab",
+    "fontWeight": 400,
+    "fontPath": "fonts/Roboto_Slab/RobotoSlab-Regular.ttf"
+  },
+  {
+    "id": "sancreek",
+    "fontFamily": "Sancreek",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_sancreek.ttf"
+  },
+  {
+    "id": "shrikhand_regular",
+    "fontFamily": "Shrikhand",
+    "fontWeight": 400,
+    "fontPath": "fonts/Shrikhand/Shrikhand-Regular.ttf"
+  },
+  {
+    "id": "stint_ultra_expanded",
+    "fontFamily": "Stint Ultra Expanded",
+    "fontWeight": "normal",
+    "fontPath": "fonts/Stint_Ultra_Expanded/StintUltraExpanded-Regular.ttf"
+  },
+  {
+    "id": "stint_ultra_condensed",
+    "fontFamily": "Stint Ultra Condensed",
+    "fontWeight": "normal",
+    "fontPath": "fonts/Stint_Ultra_Condensed/StintUltraCondensed-Regular.ttf"
+  },
+  {
+    "id": "sue_ellen_francisco",
+    "fontFamily": "Sue",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_sue_ellen_francisco.ttf"
+  },
+  {
+    "id": "source_code_pro_regular",
+    "fontFamily": "Source Code Pro",
+    "fontWeight": 400,
+    "fontPath": "fonts/SourceCodePro/SourceCodePro-Regular.ttf"
+  },
+  {
+    "id": "sourcesanspro_regular",
+    "fontFamily": "Source Sans Pro",
+    "fontWeight": 400,
+    "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf"
+  },
+  {
+    "id": "source_serif_pro_regular",
+    "fontFamily": "Source Serif Pro",
+    "fontWeight": 400,
+    "fontPath": "fonts/SourceSerifPro/SourceSerifPro-Regular.ttf"
+  },
+  {
+    "id": "space_grotesk_regular",
+    "fontFamily": "Space Grotesk",
+    "fontWeight": 400,
+    "fontPath": "fonts/SpaceGrotesk/SpaceGrotesk-Regular.ttf"
+  },
+  {
+    "id": "space_mono_regular",
+    "fontFamily": "Space Mono",
+    "fontWeight": 400,
+    "fontPath": "fonts/SpaceMono/SpaceMono-Regular.ttf"
+  },
+  {
+    "id": "trash_hand",
+    "fontFamily": "Trash Hand",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_trash_hand.ttf"
+  },
+  {
+    "id": "ultra",
+    "fontFamily": "Ultra",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_ultra.ttf"
+  },
+  {
+    "id": "vt323",
+    "fontFamily": "VT323",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_vt323.ttf"
+  },
+  {
+    "id": "yeseva_one",
+    "fontFamily": "Yeseva",
+    "fontWeight": "normal",
+    "fontPath": "fonts/imgly_font_yeseva_one.ttf"
+  }
+]

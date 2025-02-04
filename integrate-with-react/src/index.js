@@ -1,13 +1,15 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 
-import CreativeEditorSDK from './CreativeEditorSDK';
+import CreativeEditorSDK from './CreativeEditorSDK'
 
-const reactRoot = createRoot(document.getElementById('root'));
-
-reactRoot.render(
+let config = {
+  //baseURL: 'assets/'
+}
+ReactDOM.render(
   <React.StrictMode>
-    <CreativeEditorSDK />
-  </React.StrictMode>
+    <CreativeEditorSDK config={config} />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
