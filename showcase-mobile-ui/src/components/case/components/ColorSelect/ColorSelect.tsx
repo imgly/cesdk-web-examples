@@ -34,7 +34,6 @@ const ColorSelect = ({
           ></button>
         ))}
       </div>
-      {/* @ts-ignore */}
       <HexColorPicker
         className={classes.colorPicker}
         color={rgbaToHex(activeColor)}
