@@ -1,4 +1,11 @@
-import { CaseComponentNoSSR } from './CaseComponentNoSSR';
+import dynamic from 'next/dynamic';
+
+const DynamicCaseComponent = dynamic(
+  () => import('../components/case/CaseComponent'),
+  {
+    ssr: false
+  }
+);
 
 export default function Home() {
   return (
@@ -9,7 +16,7 @@ export default function Home() {
         display: 'flex'
       }}
     >
-      <CaseComponentNoSSR />
+      <DynamicCaseComponent />
     </div>
   );
 }
