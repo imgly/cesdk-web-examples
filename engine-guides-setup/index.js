@@ -1,17 +1,13 @@
-// highlight-import
 import CreativeEngine, {
   supportsWasm
-} from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/index.js';
-// highlight-import-npm
+} from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.44.0/index.js';
 // Import a node module when you work with a bundler:
 // import CreativeEngine from '@cesdk/engine';
-// highlight-import-npm
 
-// highlight-setup
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.44.0/assets'
 };
 
 if (
@@ -20,11 +16,9 @@ if (
   // supportsVideo()
 ) {
   CreativeEngine.init(config).then(
-    // highlight-setup
     async (engine) => {
       document.getElementById('cesdk_container').append(engine.element);
 
-      // highlight-work
       // Add default asset sources to the engine.
       await engine.addDefaultAssetSources();
       await engine.scene.loadFromURL(
@@ -34,12 +28,9 @@ if (
       engine.block.findByType('//ly.img.ubq/text').forEach((id) => {
         engine.block.setOpacity(id, 0.5);
       });
-      // highlight-work
 
-      // highlight-dispose
       engine.element.remove();
       engine.dispose();
-      // highlight-dispose
     }
   );
 } else {

@@ -1,12 +1,10 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.44.0/index.js';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
-// highlight-unsplash-api-creation
 const unsplashApi = unsplash.createApi({
   apiUrl: '...'
 });
-// highlight-unsplash-api-creation
 
 const EMPTY_RESULT = {
   assets: [],
@@ -15,21 +13,17 @@ const EMPTY_RESULT = {
   nextPage: undefined
 };
 
-// highlight-unsplash-findAssets
 const findUnsplashAssets = async (queryData) => {
   /* Unsplash page indices are 1-based. */
   const unsplashPage = queryData.page + 1;
 
   if (queryData.query) {
-    // highlight-unsplash-query
     const response = await unsplashApi.search.getPhotos({
       query: queryData.query,
       page: unsplashPage,
       perPage: queryData.perPage
     });
-    // highlight-unsplash-query
     if (response.type === 'success') {
-      // highlight-unsplash-result-mapping
       const { results, total, total_pages } = response.response;
 
       return {
@@ -40,16 +34,12 @@ const findUnsplashAssets = async (queryData) => {
         nextPage:
           queryData.page + 1 < total_pages ? queryData.page + 1 : undefined
       };
-      // highlight-unsplash-result-mapping
     } else if (response.type === 'error') {
-      // highlight-unsplash-error
       throw new Error(response.errors.join('. '));
     } else {
-      // highlight-unsplash-empty-fallback
       return Promise.resolve(EMPTY_RESULT);
     }
   } else {
-    // highlight-unsplash-list
     const response = await unsplashApi.photos.list({
       orderBy: 'popular',
       page: unsplashPage,
@@ -74,7 +64,6 @@ const findUnsplashAssets = async (queryData) => {
     } else {
       return Promise.resolve(EMPTY_RESULT);
     }
-    // highlight-unsplash-list
   }
 };
 
@@ -92,7 +81,7 @@ const getUnsplashUrl = async (unsplashResult) => {
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.44.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -103,11 +92,9 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.appendChild(scene, page);
   engine.scene.zoomToBlock(page);
 
-  // highlight-unsplash-definition
   const customSource = {
     id: 'unsplash',
     findAssets: findUnsplashAssets,
-    // highlight-unsplash-credits-license
     credits: {
       name: 'Unsplash',
       url: 'https://unsplash.com/'
@@ -116,9 +103,7 @@ CreativeEngine.init(config).then(async (engine) => {
       name: 'Unsplash license (free)',
       url: 'https://unsplash.com/license'
     }
-    // highlight-unsplash-credits-license
   };
-  // highlight-unsplash-definition
 
   engine.asset.addSource(customSource);
 
@@ -130,12 +115,9 @@ CreativeEngine.init(config).then(async (engine) => {
 
   await engine.asset.apply(customSource.id, asset);
 
-  // highlight-add-local-source
   const localSourceId = 'background-videos';
   engine.asset.addLocalSource(localSourceId);
-  // highlight-add-local-source
 
-  // highlight-add-asset-to-source
   engine.asset.addAssetToSource(localSourceId, {
     id: 'ocean-waves-1',
     label: {
@@ -158,66 +140,44 @@ CreativeEngine.init(config).then(async (engine) => {
       url: 'https://example.com/johndoe'
     }
   });
-  // highlight-add-asset-to-source
 });
 
-// highlight-translateToAssetResult
 async function translateToAssetResult(image) {
   const artistName = image?.user?.name;
   const artistUrl = image?.user?.links?.html;
 
   return {
-    // highlight-result-id
     id: image.id,
-    // highlight-result-locale
     locale: 'en',
     //
-    // highlight-result-label
     label: image.description ?? image.alt_description ?? undefined,
-    // highlight-result-tags
     tags: image.tags ? image.tags.map((tag) => tag.title) : undefined,
 
-    // highlight-result-meta
     meta: {
-      // highlight-result-uri
       uri: await getUnsplashUrl(image),
-      // highlight-result-thumbUri
       thumbUri: image.urls.thumb,
-      // highlight-result-blockType
       blockType: '//ly.img.ubq/graphic',
-      // highlight-result-fillType
       fillType: '//ly.img.ubq/fill/image',
-      // highlight-result-shapeType
       shapeType: '//ly.img.ubq/shape/rect',
-      // highlight-result-kind
       kind: 'image',
-      // highlight-result-kind
-      // highlight-result-size
       width: image.width,
       height: image.height
-      // highlight-result-size
     },
 
-    // highlight-result-context
     context: {
       sourceId: 'unsplash'
     },
-    // highlight-result-context
 
-    // highlight-result-credits
     credits: artistName
       ? {
           name: artistName,
           url: artistUrl
         }
       : undefined,
-    // highlight-result-credits
 
-    // highlight-result-utm
     utm: {
       source: 'CE.SDK Demo',
       medium: 'referral'
     }
-    // highlight-result-utm
   };
 }

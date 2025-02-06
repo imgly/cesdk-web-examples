@@ -1,13 +1,12 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.44.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.44.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  // highlight-setup
   document.getElementById('cesdk_container').append(engine.element);
 
   const scene = engine.scene.create();
@@ -30,13 +29,9 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setFill(block, fill);
   const rgbaBlue = { r: 0.0, g: 0.0, b: 1.0, a: 1.0 };
   engine.block.setColor(fill, `fill/color/value`, rgbaBlue);
-  // highlight-setup
 
-  // highlight-create-underlayer-spot-color
   engine.editor.setSpotColorRGB('RDG_WHITE', 0.8, 0.8, 0.8);
-  // highlight-create-underlayer-spot-color
 
-  // highlight-export-pdf-underlayer
   await block
     .export(page, 'application/pdf', {
       exportPdfWithUnderlayer: true,
@@ -51,5 +46,4 @@ CreativeEngine.init(config).then(async (engine) => {
       element.click();
       element.remove();
     });
-  // highlight-export-pdf-underlayer
 });
