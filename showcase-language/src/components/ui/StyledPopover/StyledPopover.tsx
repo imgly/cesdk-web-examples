@@ -26,6 +26,7 @@ const StyledPopover: React.FC<Props> = ({ content, size = 'sm', children }) => {
     <Popover
       isOpen={isPopoverActive || isPopoverOpen}
       positions={['top', 'bottom', 'left', 'right']}
+      // @ts-ignore
       content={({ position, childRect, popoverRect }) => (
         // @ts-ignore
         <ArrowContainer
