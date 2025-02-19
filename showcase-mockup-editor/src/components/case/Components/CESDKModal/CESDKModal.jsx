@@ -1,37 +1,18 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import useOnClickOutside from 'lib/useOnClickOutside';
 import { useEffect, useRef } from 'react';
 import classes from './CESDKModal.module.css';
 
-const useOnClickOutside = (ref, callback) => {
-  const handleClick = (e) => {
-    // Use isTrusted to check if the event is coming from a real user, or is coming from a script.
-    if (ref.current && !ref.current.contains(e.target) && e.isTrusted) {
-      callback();
-    }
-  };
-  useEffect(() => {
-    document.addEventListener('click', handleClick);
-    return () => {
-      document.removeEventListener('click', handleClick);
-    };
-  });
-};
-
-const CESDKModal = ({ config, configure, onOutsideClick }) => {
+const CESDKModal = ({ config, onOutsideClick }) => {
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
   useEffect(() => {
     if (containerRef.current && !instanceRef.current) {
-      CreativeEditorSDK.create(containerRef.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
-          if (configure) {
-            await configure(instance);
-          }
-          instanceRef.current = instance;
-        }
-      );
+      CreativeEditorSDK.init(containerRef.current, config).then((instance) => {
+        instance.addDefaultAssetSources();
+        instance.addDemoAssetSources();
+        instanceRef.current = instance;
+      });
       return () => {
         if (instanceRef.current) {
           instanceRef.current.dispose();
@@ -39,7 +20,7 @@ const CESDKModal = ({ config, configure, onOutsideClick }) => {
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [config, containerRef]);
+  }, [containerRef]);
 
   useOnClickOutside(containerRef, onOutsideClick);
 

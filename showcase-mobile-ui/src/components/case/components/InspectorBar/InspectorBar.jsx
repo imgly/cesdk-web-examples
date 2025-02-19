@@ -11,21 +11,21 @@ const InspectorBar = ({
 }) => {
   const adjustmentToComponent = useMemo(
     () =>
-      // eslint-disable-next-line react/display-name
-      ({ label, id, Icon, onClick }) => (
-        <IconButton
-          key={id}
-          onClick={() =>
-            (onClick && onClick()) || activeAdjustmentId === id
-              ? onAdjustmentChange()
-              : onAdjustmentChange(id)
-          }
-          icon={<Icon />}
-          isActive={activeAdjustmentId === id}
-        >
-          {label}
-        </IconButton>
-      ),
+      ({ label, id, Icon, onClick }) =>
+        (
+          <IconButton
+            key={id}
+            onClick={() =>
+              (onClick && onClick()) || activeAdjustmentId === id
+                ? onAdjustmentChange()
+                : onAdjustmentChange(id)
+            }
+            icon={<Icon />}
+            isActive={activeAdjustmentId === id}
+          >
+            {label}
+          </IconButton>
+        ),
     [onAdjustmentChange, activeAdjustmentId]
   );
   const leftAdjustments = useMemo(
@@ -60,7 +60,4 @@ const InspectorBar = ({
     </div>
   );
 };
-
-InspectorBar.displayName = 'InspectorBar';
-
 export default InspectorBar;

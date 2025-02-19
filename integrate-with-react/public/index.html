@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CE.SDK Example</title>
+    <title>CESDK Example</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -28,5 +28,127 @@
 
   <body>
     <div id="root"></div>
+
+    <script>
+      window.onload = function () {
+        var href = window.location.href.split('?');
+        var module = CreativeEditorSDK;
+        var config = {
+          locale: 'en',
+          theme: 'light',
+          baseURL: 'assets/',
+          role: 'Creator', // 'Creator', 'Editor', 'Viewer'
+          callbacks: {
+            onBack: () => alert('Back'),
+            onClose: () => alert('Callback'),
+            onSave: handleSave,
+            onLoad: handleLoad,
+            onExport: handleExport,
+            onUnsupportedBrowser: () => {
+              console.error('Unsupported Browser Detected');
+            },
+            log: (msg, level) => {
+              console.log(msg);
+            }
+          },
+          defaultFont: '//ly.img.cesdk.fonts/roboto_regular',
+          presets: {
+            template: {
+              emptyTemplate: {
+                scene: 'assets/templates/template-preset-0.scene',
+                thumbnailURL: 'assets/templates/template-preset-0-thumbnail.png'
+              },
+              bestVideoGameCharacter: {
+                scene: async () => {
+                  const sceneResponse = await fetch(
+                    './assets/templates/template-preset-1.scene'
+                  );
+                  const sceneData = await sceneResponse.json();
+
+                  return sceneData;
+                },
+                thumbnailURL: 'assets/templates/template-preset-1-thumbnail.png'
+              },
+              simpleTemplate: {
+                scene: 'assets/templates/template-preset-2.scene',
+                thumbnailURL: 'assets/templates/template-preset-2-thumbnail.png'
+              }
+            }
+          }
+        };
+
+        module.init(document.getElementById('root'), config);
+      };
+
+      var handleExport = function (blob) {
+        const element = document.createElement('a');
+        element.setAttribute('href', window.URL.createObjectURL(blob));
+        element.setAttribute(
+          'download',
+          `cesdk-${new Date().toISOString()}.png`
+        );
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+      };
+
+      var handleSave = function (scene) {
+        const element = document.createElement('a');
+        const base64Data = btoa(unescape(encodeURIComponent(scene)));
+        element.setAttribute(
+          'href',
+          `data:application/octet-stream;base64,${base64Data}`
+        );
+        element.setAttribute(
+          'download',
+          `cesdk-${new Date().toISOString()}.scene`
+        );
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+      };
+
+      var handleLoad = (function () {
+        const element = document.createElement('input');
+        element.setAttribute('type', 'file');
+        element.setAttribute('accept', '.scene');
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        return () => {
+          return new Promise((resolve, reject) => {
+            element.onchange = (e) => {
+              const file = e.target.files[0];
+              if (file === undefined) {
+                reject(new Error('No files selected'));
+              } else {
+                const reader = new FileReader();
+                reader.readAsText(file, 'UTF-8');
+
+                reader.onload = (readerEvent) => {
+                  const scene = readerEvent.target.result;
+                  resolve(scene);
+                };
+              }
+
+              element.onchange = null;
+              element.value = '';
+            };
+
+            element.click();
+          });
+        };
+      })();
+    </script>
+    <script src="cesdk.umd.js"></script>
   </body>
 </html>

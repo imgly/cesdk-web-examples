@@ -1,16 +1,16 @@
 import CreativeEngine from '@cesdk/engine';
 import isEqual from 'lodash/isEqual';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { findCustomStickerAssets } from './components/StickerSelect/CustomStickerAssetLibrary';
 import { useSinglePageFocus } from './lib/UseSinglePageFocus';
 import { caseAssetPath } from './util';
-import { SelectionProvider } from './lib/UseSelection';
 
 const EditorContext = createContext();
 
 export const EditorProvider = ({ children }) => {
   const [engineIsLoaded, setEngineIsLoaded] = useState(false);
 
-  const [engine, setEngine] = useState(null);
+  const [creativeEngine, setCreativeEngine] = useState(null);
 
   const [localUploads, setLocalUploads] = useState([]);
   const [canUndo, setCanUndo] = useState(false);
@@ -34,30 +34,31 @@ export const EditorProvider = ({ children }) => {
   });
 
   editorUpdateCallbackRef.current = () => {
-    if (!engine) return;
-    const newEditMode = engine.editor.getEditMode();
+    const newEditMode = creativeEngine.editor.getEditMode();
     if (!isEqual(newEditMode, editMode)) {
       setEditMode(newEditMode);
     }
   };
   engineEventCallbackRef.current = (events) => {
-    if (engine && events.length > 0) {
+    if (creativeEngine && events.length > 0) {
       // Extract and store the currently selected block
-      const newSelectedBlocks = engine.block.findAllSelected().map((id) => ({
-        id,
-        type: engine.block.getKind(id)
-      }));
+      const newSelectedBlocks = creativeEngine.block
+        .findAllSelected()
+        .map((id) => ({
+          id,
+          type: creativeEngine.block.getType(id)
+        }));
       if (!isEqual(newSelectedBlocks, selectedBlocks)) {
         setSelectedBlocks(newSelectedBlocks);
       }
 
       // Extract and store canUndo
-      const newCanUndo = engine.editor.canUndo();
+      const newCanUndo = creativeEngine.editor.canUndo();
       if (newCanUndo !== canUndo) {
         setCanUndo(newCanUndo);
       }
       // Extract and store canRedo
-      const newCanRedo = engine.editor.canRedo();
+      const newCanRedo = creativeEngine.editor.canRedo();
       if (newCanRedo !== canRedo) {
         setCanRedo(newCanRedo);
       }
@@ -65,46 +66,47 @@ export const EditorProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    let mounted = true;
     const loadEditor = async () => {
+      const assetSources = {
+        stickers: {
+          findAssets: findCustomStickerAssets
+        }
+      };
       const config = {
+        page: {
+          title: {
+            show: false
+          }
+        },
         featureFlags: {
           preventScrolling: true
         },
-        role: 'Adopter',
-        license: process.env.NEXT_PUBLIC_LICENSE
+        assetSources,
+        license: process.env.REACT_APP_LICENSE
       };
 
-      const engine = await CreativeEngine.init(config);
-      if (!mounted) {
-        engine.dispose();
-        return;
-      }
-      engine.editor.setSettingBool('mouse/enableScroll', false);
-      engine.editor.setSettingBool('mouse/enableZoom', false);
-
-      engine.addDefaultAssetSources();
-      engine.addDemoAssetSources({
-        sceneMode: 'Design'
-      });
-      engine.editor.setSettingBool('page/title/show', false);
-      engine.editor.onStateChanged(() => editorUpdateCallbackRef.current());
-      engine.event.subscribe([], (events) =>
+      const creativeEngine = await CreativeEngine.init(config);
+      creativeEngine.editor.onStateChanged(() =>
+        editorUpdateCallbackRef.current()
+      );
+      creativeEngine.event.subscribe([], (events) =>
         engineEventCallbackRef.current(events)
       );
-      await engine.scene.loadFromURL(caseAssetPath('/social-media.scene'));
+      await creativeEngine.scene.loadFromURL(
+        caseAssetPath('/social-media.scene')
+      );
+      creativeEngine.editor.addUndoStep();
 
-      setFocusEngine(engine);
+      setFocusEngine(creativeEngine);
       setFocusEnabled(true);
-      setEngine(engine);
+      setCreativeEngine(creativeEngine);
       setEngineIsLoaded(true);
     };
     loadEditor();
 
     return () => {
-      mounted = false;
-      if (engine) {
-        engine.dispose();
+      if (creativeEngine) {
+        creativeEngine.dispose();
       }
       setEngineIsLoaded(false);
     };
@@ -112,7 +114,7 @@ export const EditorProvider = ({ children }) => {
   }, []);
 
   const value = {
-    engine,
+    creativeEngine,
     engineIsLoaded,
     editMode,
     localUploads,
@@ -126,9 +128,7 @@ export const EditorProvider = ({ children }) => {
     setZoomPaddingBottom
   };
   return (
-    <EditorContext.Provider value={value}>
-      <SelectionProvider engine={engine}>{children}</SelectionProvider>
-    </EditorContext.Provider>
+    <EditorContext.Provider value={value}>{children}</EditorContext.Provider>
   );
 };
 

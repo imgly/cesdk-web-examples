@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import CESDKModal from '../CESDKModal/CESDKModal';
 
 const localDownload = (data, filename) => {
@@ -18,65 +18,68 @@ const localDownload = (data, filename) => {
   });
 };
 
-const EditInstanceCESDK = memo(
-  ({
-    firstName,
-    lastName,
-    department,
-    styleName,
-    sceneString,
-    onClose,
-    onSave
-  }) => {
-    return (
-      <CESDKModal
-        onOutsideClick={onClose}
-        configure={async (instance) => {
-          instance.engine.editor.setSettingBool('page/title/show', false);
-          instance.engine.variable.setString('Department', department);
-          instance.engine.variable.setString('FirstName', firstName);
-          instance.engine.variable.setString('LastName', lastName);
-          await instance.engine.scene.loadFromString(sceneString);
-        }}
-        config={{
-          license: process.env.NEXT_PUBLIC_LICENSE,
-          callbacks: {
-            onExport: (blobs) => {
-              localDownload(
-                blobs[0],
-                `${firstName}${lastName}${styleName}.png`
-              );
-            },
-            onSave: (sceneString) => {
-              onSave(sceneString);
-            },
-            onClose: () => {
-              onClose();
-            },
-            onUpload: 'local'
+const EditInstanceCESDK = ({
+  firstName,
+  lastName,
+  department,
+  styleName,
+  sceneString,
+  onClose,
+  onSave
+}) => {
+  return (
+    <CESDKModal
+      onOutsideClick={onClose}
+      config={{
+        initialSceneString: sceneString,
+        callbacks: {
+          onExport: (blobs) => {
+            localDownload(blobs[0], `${firstName}${lastName}${styleName}.png`);
           },
-          role: 'Adopter',
-          ui: {
-            elements: {
-              navigation: {
-                title: `${firstName} ${lastName} ${styleName}`,
-                action: {
-                  export: {
-                    show: true,
-                    format: ['image/png']
-                  },
-                  save: true,
-                  close: true
-                }
-              }
-            }
+          onSave: (sceneString) => {
+            onSave(sceneString);
+          },
+          onBack: () => {
+            onClose();
+          },
+          onUpload: 'local'
+        },
+        role: 'Adopter',
+        variables: {
+          Department: {
+            value: department
+          },
+          FirstName: {
+            value: firstName
+          },
+          LastName: {
+            value: lastName
           }
-        }}
-      />
-    );
-  }
-);
-
-EditInstanceCESDK.displayName = 'EditInstanceCESDK';
+        },
+        page: {
+          title: {
+            show: false
+          }
+        },
+        ui: {
+          elements: {
+            navigation: {
+              title: `${firstName} ${lastName} ${styleName}`,
+              action: {
+                export: {
+                  show: true,
+                  format: ['image/png']
+                },
+                save: true,
+                back: true
+              }
+            },
+            libraries: { template: false }
+          }
+        }
+      }}
+    />
+  );
+};
 
 export default EditInstanceCESDK;

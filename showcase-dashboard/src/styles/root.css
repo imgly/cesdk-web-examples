@@ -3,6 +3,8 @@ html {
 
   -webkit-font-smoothing: antialiased;
   line-height: 1.45;
+
+  scroll-behavior: smooth;
 }
 
 body {
@@ -20,59 +22,4 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   word-break: break-word;
-}
-
-/* Default styles we use in almost every showcase */
-/* These styles are available in each showcase (standalone) */
-.showcaseContainer {
-  container-type: inline-size;
-}
-
-.cesdkStyle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.cesdkWrapperStyle {
-  position: relative;
-  display: flex;
-  overflow: hidden;
-  flex-grow: 1;
-  border-radius: 0.75rem;
-  box-shadow:
-    0px 0px 2px rgba(22, 22, 23, 0.25),
-    0px 4px 6px -2px rgba(22, 22, 23, 0.12),
-    0px 2px 2.5px -2px rgba(22, 22, 23, 0.12),
-    0px 1px 1.75px -2px rgba(22, 22, 23, 0.12);
-}
-
-/* if we are on desktop, add min-height and border radius */
-@container (min-width: 650px) {
-  .cesdkWrapperStyle {
-    min-height: 640px;
-  }
-}
-
-.mobile-padding-top {
-  padding-top: 0.75rem;
-}
-
-@container (min-width: 650px) {
-  .mobile-padding-top {
-    padding-top: 0;
-  }
-}
-
-/* hide hubspot chat widget on mobile */
-#hubspot-messages-iframe-container {
-  visibility: hidden;
-}
-
-@media (min-width: 650px) {
-  #hubspot-messages-iframe-container {
-    visibility: initial;
-  }
 }

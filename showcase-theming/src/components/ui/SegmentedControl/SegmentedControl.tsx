@@ -8,11 +8,10 @@ interface IOption {
 interface ISegmentedControl {
   options: IOption[];
   name: string;
-  label?: string;
+  label: string;
   value: string;
   buttonStyle: React.CSSProperties;
   size: 'sm' | 'md';
-  disabled?: boolean;
   onChange: (value: string) => void;
 }
 
@@ -23,8 +22,7 @@ const SegmentedControl = ({
   label,
   buttonStyle,
   onChange,
-  size = 'sm',
-  disabled = false
+  size = 'sm'
 }: ISegmentedControl) => {
   const getId = (option: IOption) => name + option.value;
 
@@ -45,7 +43,6 @@ const SegmentedControl = ({
                   [styles.labelWrapperActive]: isActive
                 }
               )}
-              disabled={disabled}
               onClick={() => !isActive && onChange(option.value)}
             >
               {option.label}

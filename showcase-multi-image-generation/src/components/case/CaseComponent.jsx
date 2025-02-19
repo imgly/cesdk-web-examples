@@ -1,276 +1,221 @@
-'use client';
-
 import CreativeEngine from '@cesdk/engine';
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
-import {
-  caseAssetPath,
-  fillTemplate,
-  removeInstanceVariables
-} from './lib/TemplateUtilities';
-import classes from './CaseComponent.module.css';
-import EditIcon from './icons/Edit.svg';
-import { EditTemplateCESDK } from './components/EditTemplateCESDK';
-import { EditInstanceCESDK } from './components/EditInstanceCESDK';
-import SCENES from './scenes.json';
+import React, { useEffect, useRef, useState } from 'react';
+import LoadingSpinner from 'components/ui/LoadingSpinner/LoadingSpinner';
 
-const EXAMPLES = [
+const ID_FROM_RESTAURANT_REGEX = /yelp\.de\/biz\/([^?]*).*?$/;
+const caseAssetPath = (path, caseId = 'multi-image-generation') =>
+  `${window.location.protocol + "//" + window.location.host}/cases/${caseId}${path}`;
+
+const YELP_EXAMPLES = [
   {
-    name: 'Bean there Bean good',
-    photoPath: '/images/photo-bean.png',
-    price: '$$',
-    reviewCount: 281,
-    rating: 1,
-    cardPath: '/images/card-bean.png',
-    logoPath: '/images/logo-bean.png',
-    primaryColor: '#050087',
-    secondaryColor: '#F1E1C7'
+    label: 'Ice Cream',
+    value: 'https://www.yelp.de/biz/i-am-love-bochum-2'
   },
   {
-    name: 'Scoop\nthere it is',
-    photoPath: '/images/photo-scoop.png',
-    price: '$',
-    reviewCount: 114,
-    rating: 5,
-    cardPath: '/images/card-scoop.png',
-    logoPath: '/images/logo-scoop.png',
-    primaryColor: '#EB11D5',
-    secondaryColor: '#85EAD1'
+    label: 'Coffee',
+    value: 'https://www.yelp.de/biz/r%C3%B6st-art-bochum'
   },
   {
-    name: 'BUN intended',
-    photoPath: '/images/photo-bun.png',
-    price: '$$$',
-    reviewCount: 65,
-    rating: 3,
-    cardPath: '/images/card-bun.png',
-    logoPath: '/images/logo-bun.png',
-    primaryColor: '#2E573E',
-    secondaryColor: '#E4A341'
+    label: 'Burger',
+    value: 'https://www.yelp.de/biz/burgerado-bochum'
   }
 ];
 
-const TEMPLATES = {
-  Square: {
-    label: 'Square',
-    sceneString: SCENES.square,
-    previewImagePath: caseAssetPath('/images/placeholder-1.png'),
-    outputFormat: 'image/png',
+const TEMPLATE_PATHS = [
+  {
+    scenePath: '/example-1.scene',
+    placeholderPath: '/images/placeholder-1.png',
     width: 480 / 2,
     height: 480 / 2
   },
-  Portrait: {
-    label: 'Portrait',
-    sceneString: SCENES.portrait,
-    previewImagePath: caseAssetPath('/images/placeholder-2.png'),
-    outputFormat: 'image/png',
+  {
+    scenePath: '/example-2.scene',
+    placeholderPath: '/images/placeholder-2.png',
     width: 400 / 2,
     height: 560 / 2
   },
-  Landscape: {
-    label: 'Landscape',
-    sceneString: SCENES.landscape,
-    previewImagePath: caseAssetPath('/images/placeholder-3.png'),
-    outputFormat: 'image/png',
+  {
+    scenePath: '/example-3.scene',
+    placeholderPath: '/images/placeholder-3.png',
     width: 560 / 2,
     height: 400 / 2
   }
+];
+
+const replaceImage = (cesdk, imageName, newUrl) => {
+  const img = cesdk.block.findByName(imageName)[0];
+  if (!img) {
+    return;
+  }
+  cesdk.block.setString(img, 'image/imageFileURI', newUrl);
+  cesdk.block.resetCrop(img);
+};
+
+const fillTemplate = (cesdk, yelpData) => {
+  if (!yelpData) {
+    return false;
+  }
+  replaceImage(cesdk, 'RestaurantPhoto', yelpData.image_url);
+  cesdk.variable.setString('Name', yelpData.name || '');
+  cesdk.variable.setString('$$', yelpData.price || '');
+  cesdk.variable.setString('Count', yelpData.review_count.toString() || '');
+  const ratingImageUrl = caseAssetPath(
+    `/images/${yelpData.rating.toString().replace('.', '_')}.png`
+  );
+  replaceImage(cesdk, 'ReviewStars', ratingImageUrl);
+};
+
+const yelpIdFromUrl = (url) => {
+  const match = url.match(ID_FROM_RESTAURANT_REGEX);
+  if (match && match[1]) {
+    return match[1];
+  }
+  return null;
 };
 
 const CaseComponent = () => {
   const engineRef = useRef(null);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [restaurant, setRestaurant] = useState(null);
+  const [yelpData, setYelpData] = useState(null);
+  const [yelpId, setYelpId] = useState(null);
+  const [yelpUrl, setYelpUrl] = useState('');
   const [reviewBlobs, setReviewBlobs] = useState(new Array(3).fill(null));
-  const [allTemplates, setAllTemplates] = useState(TEMPLATES);
-  const [currentSceneData, setCurrentSceneData] = useState();
-  const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
+
     const config = {
-      license: process.env.NEXT_PUBLIC_LICENSE
+      license: process.env.REACT_APP_LICENSE
     };
-    CreativeEngine.init(config).then(async (engine) => {
-      engine.addDefaultAssetSources();
-      engine.addDemoAssetSources({ sceneMode: 'Design' });
-      engineRef.current = engine;
+    CreativeEngine.init(config).then(async (instance) => {
+      instance.addDefaultAssetSources();
+      instance.addDemoAssetSources();
+      engineRef.current = instance;
     });
 
     return function shutdownCreativeEngine() {
       engineRef?.current?.dispose();
     };
+    // eslint-disable-next-line
   }, []);
 
-  const selectRestaurant = async (restaurantData) => {
-    const engine = engineRef?.current;
-    if (!engine || !restaurantData) {
+  useEffect(() => {
+    if (yelpId) {
+      fetchApiData(yelpId);
+    }
+  }, [yelpId]);
+
+  useEffect(() => {
+    if (!engineRef?.current || !yelpData) {
       return;
     }
-    setReviewBlobs(
-      reviewBlobs.map((blob) => ({
-        ...blob,
-        isLoading: true
-      }))
-    );
-    // This can not be done in parallel.
-    for (const [index, [, template]] of Object.entries(
-      Object.entries(allTemplates)
-    )) {
-      await fillTemplate(engine, template.sceneString, restaurantData);
-      const image = await engine.block.export(engine.scene.get(), 'image/jpeg');
-      const sceneString = await engine.scene.saveToString();
-      setReviewBlobs((oldBlobs) => {
-        oldBlobs[index] = {
-          isLoading: false,
-          src: URL.createObjectURL(image),
-          label: template.label,
-          sceneString
-        };
-        return [...oldBlobs];
-      });
+    async function renderTemplates() {
+      // This can not be done in parallel.
+      for (const [index, sceneUrl] of TEMPLATE_PATHS.entries()) {
+        await engineRef?.current.scene.loadFromURL(
+          caseAssetPath(sceneUrl.scenePath)
+        );
+        fillTemplate(engineRef.current, yelpData);
+        const blob = await engineRef?.current.block.export(
+          engineRef?.current.block.findByType('scene')[0],
+          'image/jpeg'
+        );
+        setReviewBlobs((oldBlobs) => {
+          oldBlobs[index] = {
+            isLoading: false,
+            src: URL.createObjectURL(blob)
+          };
+          return [...oldBlobs];
+        });
+        await new Promise((resolve) => setTimeout(resolve, 400));
+      }
     }
-    setIsLoading(false);
-  };
+    renderTemplates();
+  }, [yelpData]);
 
-  const resetSelection = async () => {
-    setRestaurant(null);
+  const fetchApiData = async (id) => {
+    setIsLoading(true);
     setReviewBlobs((oldBlobs) => [
-      ...oldBlobs.map((blob) => ({
-        ...blob,
-        src: null,
-        label: null,
-        sceneString: null,
-        isLoading: false
-      }))
+      ...oldBlobs.map((blob) => ({ ...blob, isLoading: true }))
     ]);
+    const res = await fetch(
+      `https://europe-west3-img-ly.cloudfunctions.net/demos-yelp-api-proxy2?id=` +
+        id
+    );
+    const resJson = await res.json();
+    if (resJson.id) {
+      setYelpData(resJson);
+    }
     setIsLoading(false);
   };
-
-  const onEditClicked = useCallback((sceneData) => {
-    setCurrentSceneData(sceneData);
-    setShowEditModal(true);
-  }, []);
-
-  const updateTemplate = useCallback(
-    async (sceneString, currentTemplate) => {
-      const engine = engineRef?.current;
-
-      // Render Scene from updated sceneString
-      await engine.scene.loadFromString(sceneString);
-      removeInstanceVariables(engine);
-      const blob = await engine.block.export(
-        engine.block.findByType('scene')[0],
-        currentTemplate.outputFormat
-      );
-      setAllTemplates({
-        ...allTemplates,
-        [currentTemplate.label]: {
-          ...currentTemplate,
-          sceneString,
-          previewImagePath: URL.createObjectURL(blob)
-        }
-      });
-      setShowEditModal(false);
-    },
-    [allTemplates]
-  );
-
-  const updateInstance = useCallback(
-    async (sceneString, currentTemplate) => {
-      const engine = engineRef?.current;
-
-      // Render Scene from updated sceneString
-      await engine.scene.loadFromString(sceneString);
-      const newBlob = await engine.block.export(
-        engine.block.findByType('scene')[0],
-        currentTemplate.outputFormat
-      );
-      setReviewBlobs(
-        reviewBlobs.map((blob) =>
-          blob.label === currentTemplate.label
-            ? {
-                ...blob,
-                sceneString,
-                src: URL.createObjectURL(newBlob)
-              }
-            : blob
-        )
-      );
-      setShowEditModal(false);
-    },
-    [reviewBlobs]
-  );
-
-  const hideEditModal = useCallback(() => {
-    setShowEditModal(false);
-  }, []);
-
-  // prevent background scrolling when modal is open
-  useEffect(() => {
-    const body = document.querySelector('body');
-    if (showEditModal) {
-      body.style.overflow = 'hidden';
-    } else {
-      body.style.overflow = '';
-    }
-    return () => {
-      body.style.overflow = '';
-    };
-  }, [showEditModal]);
 
   return (
-    <div className={classes.container}>
-      <div className={classes.containerButtons}>
-        <h3 className={classes.h4}>Select Restaurant</h3>
-        <div className={classes.paragraph}>
-          <div className={classes.buttons}>
-            {EXAMPLES.map((example) => (
-              <button
-                key={example.name}
-                className={`${classes.exampleButton} ${
-                  restaurant && restaurant.name === example.name
-                    ? classes.selected
-                    : ''
-                }`}
-                disabled={
-                  restaurant && restaurant.name !== example.name && isLoading
+    <div className="gap-lg flex flex-grow flex-col">
+      <div className="caseHeader caseHeader--no-margin">
+        <h3>Multi Image Generation</h3>
+        <p>
+          Generate multiple designs based on your input with the help of
+          templates. Paste a URL to autogenerate different review card designs.
+        </p>
+      </div>
+      <div className="gap-sm flex flex-col">
+        <h3 className="h4" style={headlineStyle}>
+          Paste Yelp Restaurant URL
+        </h3>
+        <div className="gap-sm flex flex-wrap">
+          <input
+            type="text"
+            value={yelpUrl}
+            placeholder={`e.g. ${YELP_EXAMPLES[0].value}`}
+            onChange={(e) => setYelpUrl(e.target.value)}
+            style={inputStyle}
+          />
+          {isLoading ? (
+            <button disabled className="button button--primary">
+              Loading
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                if (!yelpUrl) {
+                  setYelpUrl(YELP_EXAMPLES[0].value);
                 }
-                style={{ backgroundColor: example.secondaryColor }}
+                setYelpId(yelpIdFromUrl(yelpUrl || YELP_EXAMPLES[0].value));
+              }}
+              className="button button--primary"
+            >
+              Generate
+            </button>
+          )}
+        </div>
+        <div style={paragraphStyle}>
+          <span>Or try these examples:</span>
+          <div className="gap-xs flex">
+            {YELP_EXAMPLES.map(({ label, value }) => (
+              <button
+                key={value}
+                style={exampleButtonStyle}
                 onClick={() => {
-                  if (restaurant && restaurant.name === example.name) {
-                    resetSelection();
-                  } else {
-                    setIsLoading(true);
-                    setRestaurant(example);
-                    selectRestaurant(example);
-                  }
+                  setYelpUrl(value);
+                  setYelpId(yelpIdFromUrl(value));
                 }}
               >
-                <img
-                  className={classes.restaurantLogoImage}
-                  src={caseAssetPath(example.cardPath)}
-                  alt={example.name}
-                />
-                <div className={classes.overlay}></div>
+                {label}
               </button>
             ))}
           </div>
         </div>
       </div>
-      <div className={classes.containerAssets}>
-        <h3 className="h4">Generated Assets</h3>
-        <div className={classes.wrapperAssets}>
-          {Object.entries(allTemplates).map(([_, template], index) => (
-            <div
-              className={classes.wrapperAsset}
-              style={{ width: template.width }}
-              key={template.label}
-            >
+      <div className="gap-sm flex flex-col">
+        <h3 className="h4" style={headlineStyle}>
+          Generated Assets
+        </h3>
+        <div style={imageWrapper}>
+          {TEMPLATE_PATHS.map(({ width, height, placeholderPath }, index) => (
+            <div style={{ width, position: 'relative' }} key={placeholderPath}>
               <img
-                data-cy={!reviewBlobs[index]?.isLoading ? 'export-image' : ''}
                 key={index}
-                src={reviewBlobs[index]?.src || template.previewImagePath}
+                src={reviewBlobs[index]?.src || caseAssetPath(placeholderPath)}
                 style={{
                   ...(reviewBlobs[index]?.isLoading
                     ? { opacity: 0.5 }
@@ -278,47 +223,42 @@ const CaseComponent = () => {
                   transition: 'opacity .5s',
                   transitionTimingFunction: 'ease-in-out'
                 }}
-                width={template.width}
-                height={template.height}
+                width={width}
+                height={height}
                 alt={'Rendered review template ' + index}
               />
-              <div className={classes.overlay}>
-                <button
-                  onClick={() => onEditClicked(template)}
-                  className={classes.editButton}
-                >
-                  <EditIcon />
-                  <span>Edit</span>
-                </button>
-              </div>
               {reviewBlobs[index]?.isLoading && <LoadingSpinner />}
             </div>
           ))}
         </div>
       </div>
-      {showEditModal && restaurant && (
-        <EditInstanceCESDK
-          templateName={currentSceneData.label}
-          restaurantData={restaurant}
-          sceneString={currentSceneData.sceneString}
-          onSave={async (sceneString) =>
-            updateInstance(sceneString, currentSceneData)
-          }
-          onClose={hideEditModal}
-        />
-      )}
-      {showEditModal && !restaurant && (
-        <EditTemplateCESDK
-          templateName={currentSceneData.label}
-          sceneString={currentSceneData.sceneString}
-          onSave={async (sceneString) =>
-            updateTemplate(sceneString, currentSceneData)
-          }
-          onClose={hideEditModal}
-        />
-      )}
     </div>
   );
 };
+
+const inputStyle = {
+  minWidth: 320
+};
+
+const imageWrapper = {
+  display: 'flex',
+  alignItems: 'center',
+  flexWrap: 'wrap',
+  gap: '3rem',
+  overflow: 'auto'
+};
+
+const headlineStyle = {
+  color: 'white'
+};
+
+const paragraphStyle = {
+  color: 'rgba(255, 255, 255, 0.65)',
+  display: 'flex',
+  columnGap: '1rem',
+  flexWrap: 'wrap'
+};
+
+const exampleButtonStyle = { color: '#471AFF' };
 
 export default CaseComponent;

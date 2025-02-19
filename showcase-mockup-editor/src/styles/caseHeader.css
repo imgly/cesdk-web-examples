@@ -1,0 +1,66 @@
+/* We use only css classes instead of using a react component */
+/* so we do not introduce dependencies to Showcases without any dependency */
+.caseHeader {
+  display: flex;
+  min-width: 200px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.caseHeader>h3 {
+  width: 100%;
+  color: #ffffff;
+  font-family: 'GT Walsheim Pro';
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 44px;
+  text-align: center;
+}
+
+.caseHeader>p {
+  display: none;
+  max-width: 60ch;
+
+  color: #ffffff;
+
+  font-family: 'IBM Plex Sans';
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 28px;
+}
+
+.caseHeader__title--large {
+  display: none;
+}
+
+/* Hide descriptions on mobile to save screenspace (see e.g custom UI) */
+@media (min-width: 800px) {
+  .caseHeader {
+    margin-bottom: 2rem;
+  }
+
+  .caseHeader--no-margin {
+    margin-bottom: 0;
+  }
+
+  .caseHeader>p {
+    display: block;
+  }
+
+  .caseHeader>h3 {
+    text-align: left;
+  }
+
+
+  .caseHeader__title--large {
+    display: block;
+  }
+
+  .caseHeader__title--small {
+    display: none;
+  }
+}

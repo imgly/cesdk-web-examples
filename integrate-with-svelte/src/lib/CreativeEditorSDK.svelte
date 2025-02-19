@@ -12,13 +12,9 @@
   onMount(() => {
     const { el, children, class: _, config, ...props } = $$props;
     try {
-      CreativeEditorSDK.create(container, config).then(async (instance) => {
+      CreativeEditorSDK.init(container, config).then((instance) => {
         cesdk = instance;
-        // Do something with the instance of CreativeEditor SDK, for example:
-        // Populate the asset library with default / demo asset sources.
-        cesdk.addDefaultAssetSources();
-        cesdk.addDemoAssetSources({ sceneMode: 'Design' });
-        await cesdk.createDesignScene();
+        /** do something with the instance of CreativeEditor SDK **/
       });
     } catch (err) {
       console.warn(`CreativeEditor SDK failed to mount.`, { err });

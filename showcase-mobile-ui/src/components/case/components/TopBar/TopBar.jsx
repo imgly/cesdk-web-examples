@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useEditor } from '../../EditorContext';
-import DownloadIcon from '../../icons/Download.svg';
-import LoadingSpinnerIcon from '../../icons/LoadingSpinner.svg';
-import RedoIcon from '../../icons/Redo.svg';
-import SurfaceIcon from '../../icons/Surface.svg';
-import UndoIcon from '../../icons/Undo.svg';
+import { ReactComponent as DownloadIcon } from '../../icons/Download.svg';
+import { ReactComponent as LoadingSpinnerIcon } from '../../icons/LoadingSpinner.svg';
+import { ReactComponent as RedoIcon } from '../../icons/Redo.svg';
+import { ReactComponent as SurfaceIcon } from '../../icons/Surface.svg';
+import { ReactComponent as UndoIcon } from '../../icons/Undo.svg';
 import CanvasSizeModal from '../CanvasSizeModal/CanvasSizeModal';
 import IconButton from '../IconButton/IconButton';
 import classes from './TopBar.module.css';
@@ -36,7 +36,7 @@ const TopBar = () => {
     canRedo,
     editMode,
     currentPageBlockId,
-    engine,
+    creativeEngine,
     refocus
   } = useEditor();
 
@@ -44,7 +44,10 @@ const TopBar = () => {
     setIsExporting(true);
     // Let react rerender
     await new Promise((resolve) => setTimeout(resolve, 0));
-    const blob = await engine.block.export(currentPageBlockId, 'image/png');
+    const blob = await creativeEngine.block.export(
+      currentPageBlockId,
+      'image/png'
+    );
     localDownload(blob, 'my-design');
     setIsExporting(false);
   };
@@ -71,7 +74,7 @@ const TopBar = () => {
       <div>
         <IconButton
           onClick={() => {
-            engine.editor.undo();
+            creativeEngine.editor.undo();
             refocus();
           }}
           disabled={!canUndo || !buttonsEnabled}
@@ -79,7 +82,7 @@ const TopBar = () => {
         ></IconButton>
         <IconButton
           onClick={() => {
-            engine.editor.redo();
+            creativeEngine.editor.redo();
             refocus();
           }}
           disabled={!canRedo || !buttonsEnabled}

@@ -1,18 +1,18 @@
-'use client';
-
-import ValidationBox from '@/components/ui/ValidationBox/ValidationBox';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import CreativeEditor, {
-  useConfig,
-  useConfigure,
-  useCreativeEditor
-} from './lib/CreativeEditor';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
+import ValidationBox from 'components/ui/ValidationBox/ValidationBox';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
 import {
   getImageBlockQuality,
-  getLayerName,
   getOutsideBlocks,
-  getPartiallyHiddenTexts,
   getProtrudingBlocks,
+  getPartiallyHiddenTexts,
+  getImageLayerName,
   selectAllBlocks
 } from './restrictionsUtility';
 
@@ -24,8 +24,8 @@ const VALIDATIONS = [
       return getOutsideBlocks(cesdk).map((blockId) => ({
         blockId,
         state: 'failed',
-        blockType: cesdk.engine.block.getKind(blockId),
-        blockName: getLayerName(cesdk, blockId)
+        blockType: cesdk.engine.block.getType(blockId),
+        blockName: getImageLayerName(cesdk, blockId)
       }));
     }
   },
@@ -36,8 +36,8 @@ const VALIDATIONS = [
       return getProtrudingBlocks(cesdk).map((blockId) => ({
         blockId,
         state: 'warning',
-        blockType: cesdk.engine.block.getKind(blockId),
-        blockName: getLayerName(cesdk, blockId)
+        blockType: cesdk.engine.block.getType(blockId),
+        blockName: getImageLayerName(cesdk, blockId)
       }));
     }
   },
@@ -49,8 +49,8 @@ const VALIDATIONS = [
       return getPartiallyHiddenTexts(cesdk).map((blockId) => ({
         blockId,
         state: 'warning',
-        blockType: cesdk.engine.block.getKind(blockId),
-        blockName: getLayerName(cesdk, blockId)
+        blockType: cesdk.engine.block.getType(blockId),
+        blockName: getImageLayerName(cesdk, blockId)
       }));
     }
   },
@@ -59,10 +59,10 @@ const VALIDATIONS = [
     description:
       'Some elements are having a low resolution. This will lead to suboptimal results.',
     check: async (cesdk) => {
-      const allImageBlocks = cesdk.engine.block.findByKind('image');
+      const allImageBlocks = cesdk.engine.block.findByType('image');
       const results = await Promise.all(
         allImageBlocks.map(async (blockId) => {
-          const quality = await getImageBlockQuality(cesdk.engine, blockId);
+          const quality = await getImageBlockQuality(cesdk, blockId);
           let state;
           if (quality < 0.7) {
             state = 'failed';
@@ -75,8 +75,8 @@ const VALIDATIONS = [
             blockId,
             state,
             quality,
-            blockType: cesdk.engine.block.getKind(blockId),
-            blockName: getLayerName(cesdk, blockId)
+            blockType: cesdk.engine.block.getType(blockId),
+            blockName: getImageLayerName(cesdk, blockId)
           };
         })
       );
@@ -86,71 +86,50 @@ const VALIDATIONS = [
 ];
 
 const CaseComponent = () => {
-  const [cesdk, setCesdk] = useCreativeEditor();
+  const cesdk_container = useRef(null);
+  const cesdkRef = useRef(null);
+
   const [validationResults, setValidationResults] = useState([]);
   const [checkRan, setCheckRan] = useState(false);
   const [isDirty, setIsDirty] = useState(true);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   const runChecks = useCallback(async () => {
-    if (!cesdk) return;
-
     const validationResults = await Promise.all(
       VALIDATIONS.map(async ({ check, name, description }) => ({
         name,
         description,
-        results: await check(cesdk)
+        results: await check(cesdkRef.current)
       }))
     );
     setValidationResults(validationResults);
     setIsDirty(false);
     setCheckRan(true);
-  }, [cesdk, setValidationResults]);
+  }, [setValidationResults]);
 
   useEffect(() => {
-    let unsubscribe;
-    if (cesdk) {
-      unsubscribe = cesdk.engine.editor.onHistoryUpdated(() => {
-        setIsDirty(true);
-      });
-    }
-    return () => {
-      if (unsubscribe) {
-        unsubscribe();
-      }
-    };
-  }, [cesdk, setIsDirty]);
-
+    setInterval(() => setIsDirty(true), 2000);
+  }, [setIsDirty]);
   useEffect(() => {
-    if (isDirty && cesdk) {
+    if (isDirty && isInitialized) {
       runChecks();
     }
-  }, [isDirty, cesdk, runChecks]);
+  }, [isDirty, isInitialized, runChecks]);
 
-  const normalizedResults = useMemo(
-    () =>
-      validationResults.flatMap(({ name, description, results }) =>
-        results.map(({ blockId, state, blockType, blockName }) => ({
-          state,
-          blockType,
-          blockName,
-          validationName: name,
-          validationDescription: description,
-          id: blockId + name,
-          onClick: cesdk.engine.block.isAllowedByScope(blockId, 'editor/select')
-            ? () => selectAllBlocks(cesdk, [blockId])
-            : null
-        }))
-      ),
-    [cesdk, validationResults]
-  );
-
-  const config = useConfig(
-    () => ({
-      role: 'Creator',
+  useEffect(() => {
+    let config = {
+      role: 'Adopter',
       theme: 'light',
-      license: process.env.NEXT_PUBLIC_LICENSE,
+      initialSceneURL: `${window.location.protocol + "//" + window.location.host}/cases/design-validation/example.scene`,
+      license: process.env.REACT_APP_LICENSE,
       ui: {
         elements: {
+          panels: {
+            settings: true
+          },
+          libraries: {
+            template: false
+          },
           navigation: {
             action: {
               export: {
@@ -164,32 +143,101 @@ const CaseComponent = () => {
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
+      },
+      // Begin standard template presets
+      presets: {
+        templates: {
+          postcard_1: {
+            label: 'Postcard Design',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.png`
+          },
+          postcard_2: {
+            label: 'Postcard Tropical',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.png`
+          },
+          business_card_1: {
+            label: 'Business card',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_business_card_1.png`
+          },
+          instagram_photo_1: {
+            label: 'Instagram photo',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_photo_1.png`
+          },
+          instagram_story_1: {
+            label: 'Instagram story',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_instagram_story_1.png`
+          },
+          poster_1: {
+            label: 'Poster',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_poster_1.png`
+          },
+          presentation_4: {
+            label: 'Presentation',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_presentation_1.png`
+          },
+          collage_1: {
+            label: 'Collage',
+            scene: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.scene`,
+            thumbnailURL: `https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_collage_1.png`
+          }
+        }
       }
-    }),
-    []
+      // End standard template presets
+    };
+    if (cesdk_container.current && !cesdkRef.current) {
+      CreativeEditorSDK.init(cesdk_container.current, config).then(
+        (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources();
+          cesdkRef.current = instance;
+          setIsInitialized(true);
+        }
+      );
+    }
+    return () => {
+      if (cesdkRef.current) {
+        cesdkRef.current.dispose();
+      }
+    };
+  }, [cesdk_container]);
+
+  const normalizedResults = useMemo(
+    () =>
+      validationResults.flatMap(({ name, description, results }) =>
+        results.map(({ blockId, state, blockType, blockName }) => ({
+          state,
+          blockType,
+          blockName,
+          validationName: name,
+          validationDescription: description,
+          id: blockId + name,
+          onClick: () => selectAllBlocks(cesdkRef.current, [blockId])
+        }))
+      ),
+    [validationResults]
   );
-  const configure = useConfigure(async (instance) => {
-    await instance.addDefaultAssetSources();
-    await instance.addDemoAssetSources({ sceneMode: 'Design' });
-    // Disable placeholder and preview features
-    instance.feature.enable('ly.img.placeholder', false);
-    instance.feature.enable('ly.img.preview', false);
-    await instance.loadFromURL(
-      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/design-validation/example.scene`
-    );
-  }, []);
 
   return (
     <div style={wrapperStyle}>
-      <div className="cesdkWrapperStyle">
-        <CreativeEditor
-          className="cesdkStyle"
-          config={config}
-          configure={configure}
-          onInstanceChange={setCesdk}
-        />
-      </div>
-      <div style={sidebarStyle}>
+      <div style={headerStyle}>
+        <div
+          className="caseHeader caseHeader--no-margin"
+          style={caseHeaderStyle}
+        >
+          <h3>Design Validation</h3>
+          <p>
+            Set validation rules to provide design and layout feedback. For
+            example, check if elements protrude the page or enforce a minimum
+            image resolution.
+          </p>
+        </div>
         <ValidationBox
           checkStatus={checkRan ? 'performed' : 'pending'}
           results={normalizedResults}
@@ -202,20 +250,46 @@ const CaseComponent = () => {
           }
         />
       </div>
+
+      <div style={cesdkWrapperStyle}>
+        <div ref={cesdk_container} style={cesdkStyle}></div>
+      </div>
     </div>
   );
 };
 
-const wrapperStyle = {
-  flex: '1',
-  maxWidth: '100%',
+const headerStyle = {
   display: 'flex',
-  flexDirection: 'row',
-  gap: '1rem'
+  justifyContent: 'space-between',
+  gap: '2rem',
+  color: 'white'
 };
-const sidebarStyle = {
-  flexBasis: '280px',
-  flexShrink: 0
+
+const caseHeaderStyle = {
+  maxWidth: '50%'
+};
+
+const cesdkStyle = {
+  height: '100%',
+  width: '100%',
+  flexGrow: 1,
+  overflow: 'hidden',
+  borderRadius: '0.75rem'
+};
+const cesdkWrapperStyle = {
+  borderRadius: '0.75rem',
+  flexGrow: '1',
+  display: 'flex',
+  boxShadow:
+    '0px 0px 2px rgba(0, 0, 0, 0.25), 0px 18px 18px -2px rgba(18, 26, 33, 0.12), 0px 7.5px 7.5px -2px rgba(18, 26, 33, 0.12), 0px 3.75px 3.75px -2px rgba(18, 26, 33, 0.12)'
+};
+
+const wrapperStyle = {
+  flexGrow: '1',
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  gap: '1rem'
 };
 
 export default CaseComponent;
