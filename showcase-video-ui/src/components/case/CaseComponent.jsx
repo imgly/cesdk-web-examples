@@ -119,14 +119,12 @@ const CaseComponent = () => {
       createApplyFormatAsset(engine)
     );
 
-    instance
-      .loadFromURL(
-        caseAssetPath(`/templates/${loadSelectedTemplateFromURL()}.scene`)
-      )
-      .catch(() => {
-        // Fallback to motion template if the selected template fails to load, e.g due to 404
-        instance.loadFromURL(caseAssetPath(`/templates/motion.scene`));
-      });
+    // Load a different template based on the URL
+    const templateAsset =
+      VIDEO_SCENES_ASSETS.assets.find(
+        (a) => a.id === loadSelectedTemplateFromURL()
+      ) ?? VIDEO_SCENES_ASSETS.assets[0];
+    await engine.scene.loadFromURL(templateAsset.meta.uri);
   }, []);
 
   return (
@@ -140,14 +138,14 @@ const CaseComponent = () => {
   );
 };
 
-function persistSelectedTemplateToURL(templateName) {
+function persistSelectedTemplateToURL(assetId) {
   const url = new URL(window.location.href);
-  url.searchParams.set('template', templateName);
+  url.searchParams.set('template', assetId);
   window.history.pushState({}, '', url);
 }
 function loadSelectedTemplateFromURL() {
   const url = new URL(window.location.href);
-  return url.searchParams.get('template') || 'motion';
+  return url.searchParams.get('template');
 }
 
 export default CaseComponent;

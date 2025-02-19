@@ -66,7 +66,8 @@ const CaseComponent = () => {
 
     instance.ui.addAssetLibraryEntry({
       id: 'ly.img.video.scene',
-      sourceIds: ['ly.img.video.scene']
+      sourceIds: ['ly.img.video.scene'],
+      gridColumns: 2
     });
 
     // Disable placeholder and preview features
@@ -117,6 +118,7 @@ const CaseComponent = () => {
     const unsubscribe = engine.scene.onActiveChanged(() => {
       openAnimationPanel(instance);
     });
+    return () => unsubscribe();
   }, []);
 
   // Needed to set the height of the editor to 100% in the fullscreen (standalone) mode
