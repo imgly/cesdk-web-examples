@@ -3,46 +3,57 @@
   "id": "ly.img.video.scene",
   "assets": [
     {
-      "id": "month-in-review",
+      "id": "01-furniture-sale",
       "label": {
-        "en": "Month in Review · Story Example"
+        "en": "Interior Sale · Instagram Example"
       },
       "meta": {
-        "uri": "{{base_url}}/month-in-review.scene",
-        "thumbUri": "{{base_url}}/month-in-review.png",
+        "uri": "{{base_url}}/01-furniture-sale/scene.scene",
+        "thumbUri": "{{base_url}}/01-furniture-sale.png",
         "blockType": "//ly.img.ubq/scene"
       }
     },
     {
-      "id": "my-new-hobby",
+      "id": "02-beauty-product",
       "label": {
-        "en": "My Hobby · Story Example"
+        "en": "Skin Care Product · Story Example"
       },
       "meta": {
-        "uri": "{{base_url}}/my-new-hobby.scene",
-        "thumbUri": "{{base_url}}/my-new-hobby.png",
+        "uri": "{{base_url}}/02-beauty-product/scene.scene",
+        "thumbUri": "{{base_url}}/02-beauty-product.png",
         "blockType": "//ly.img.ubq/scene"
       }
     },
     {
-      "id": "red-dot",
+      "id": "03-fashion-portfolio",
       "label": {
-        "en": "Red Dot · Story Example"
+        "en": "Video Porfolio · Instagram Example"
       },
       "meta": {
-        "uri": "{{base_url}}/red-dot.scene",
-        "thumbUri": "{{base_url}}/red-dot.png",
+        "uri": "{{base_url}}/03-fashion-portfolio/scene.scene",
+        "thumbUri": "{{base_url}}/03-fashion-portfolio.png",
         "blockType": "//ly.img.ubq/scene"
       }
     },
     {
-      "id": "milli",
+      "id": "04-fabric-sale",
       "label": {
-        "en": "Milli · Portrait Example"
+        "en": "Bedding Sale · Story Example"
       },
       "meta": {
-        "uri": "{{base_url}}/milli.scene",
-        "thumbUri": "{{base_url}}/milli.png",
+        "uri": "{{base_url}}/04-fabric-sale/scene.scene",
+        "thumbUri": "{{base_url}}/04-fabric-sale.png",
+        "blockType": "//ly.img.ubq/scene"
+      }
+    },
+    {
+      "id": "05-vegetable-product",
+      "label": {
+        "en": "Green Product Ad · Instagram Example"
+      },
+      "meta": {
+        "uri": "{{base_url}}/05-vegetable-product/scene.scene",
+        "thumbUri": "{{base_url}}/05-vegetable-product.png",
         "blockType": "//ly.img.ubq/scene"
       }
     },
@@ -54,39 +65,6 @@
       "meta": {
         "uri": "{{base_url}}/motion.scene",
         "thumbUri": "{{base_url}}/motion.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
-    },
-    {
-      "id": "yoga",
-      "label": {
-        "en": "Tystnad Yoga · Square Example"
-      },
-      "meta": {
-        "uri": "{{base_url}}/yoga.scene",
-        "thumbUri": "{{base_url}}/yoga.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
-    },
-    {
-      "id": "ecommerce",
-      "label": {
-        "en": "Lunar Beauty · E-Commerce Example"
-      },
-      "meta": {
-        "uri": "{{base_url}}/ecommerce.scene",
-        "thumbUri": "{{base_url}}/ecommerce.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
-    },
-    {
-      "id": "sales",
-      "label": {
-        "en": "IMG.LY · Sales Example"
-      },
-      "meta": {
-        "uri": "{{base_url}}/sales.scene",
-        "thumbUri": "{{base_url}}/sales.png",
         "blockType": "//ly.img.ubq/scene"
       }
     }
