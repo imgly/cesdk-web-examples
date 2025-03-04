@@ -1,11 +1,11 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.46.0/index.js';
 
 window.onload = async () => {
   const config = {
     license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
     userId: 'guides-user',
     theme: 'light',
-    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/assets',
+    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.46.0/assets',
     ui: {
       elements: {
         view: 'default',
@@ -21,11 +21,6 @@ window.onload = async () => {
             export: true
           }
         },
-        libraries: {
-          // highlight-background-track-library-entries
-          backgroundTrackLibraryEntries: ['ly.img.image', 'ly.img.video']
-          // highlight-background-track-library-entries
-        }
       }
     },
     callbacks: {
@@ -57,10 +52,7 @@ window.onload = async () => {
 
   const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);
   cesdk.addDefaultAssetSources();
-  // highlight-demo-asset-sources
   cesdk.addDemoAssetSources({ sceneMode: 'Video' });
-  // highlight-demo-asset-sources
-  // highlight-create-video-scene
+  cesdk.ui.setBackgroundTrackAssetLibraryEntries(['ly.img.image', 'ly.img.video']);
   const scene = await cesdk.createVideoScene();
-  // highlight-create-video-scene
 };
