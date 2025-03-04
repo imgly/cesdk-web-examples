@@ -1,0 +1,2025 @@
+{
+  "version": "3.0.0",
+  "id": "ly.img.sticker",
+  "assets": [
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/camera",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Camera",
+        "de": "Kamera"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_camera.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_camera.png",
+        "filename": "doodle_camera.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1339
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/divingmask",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Diving Mask",
+        "de": "Tauchermaske"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_divingmask.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_divingmask.png",
+        "filename": "doodle_divingmask.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1506,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/fish",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Fish",
+        "de": "Fisch"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_fish.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_fish.png",
+        "filename": "doodle_fish.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1004,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/hat",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Hat",
+        "de": "Hut"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_hat.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_hat.png",
+        "filename": "doodle_hat.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 984
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/hula",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Hawaiian Lei",
+        "de": "Blumenkranz"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_hula.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_hula.png",
+        "filename": "doodle_hula.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1114,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/jetpack",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Jetpack",
+        "de": "Jetpack"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_jetpack.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_jetpack.png",
+        "filename": "doodle_jetpack.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1346,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/rocket",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Rocket",
+        "de": "Rakete"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_rocket.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_rocket.png",
+        "filename": "doodle_rocket.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 738,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/saturn",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Planet Saturn",
+        "de": "Planet Saturn"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_saturn.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_saturn.png",
+        "filename": "doodle_saturn.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1036
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/skateboard",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Skateboard",
+        "de": "Skateboard"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_skateboard.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_skateboard.png",
+        "filename": "doodle_skateboard.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 394
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/spaceman",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Spaceman",
+        "de": "Spaceman"
+      },
+      "tags": {
+        "en": ["astronaut"],
+        "de": ["astronaut", "weltall"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_spaceman.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_spaceman.png",
+        "filename": "doodle_spaceman.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1688,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/star",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Star",
+        "de": "Stern"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_star.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_star.png",
+        "filename": "doodle_star.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1937,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/starfish",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Starfish",
+        "de": "Seestern"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_starfish.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_starfish.png",
+        "filename": "doodle_starfish.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1969
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/sun",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Sun",
+        "de": "Sonne"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_sun.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_sun.png",
+        "filename": "doodle_sun.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2331,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/surfing",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Surfing",
+        "de": "Surfing"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_surfing.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_surfing.png",
+        "filename": "doodle_surfing.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 759
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/wing_01",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Wing 1",
+        "de": "Flügel"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_wing_01.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_wing_01.png",
+        "filename": "doodle_wing_01.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1496,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.doodle/wing_02",
+      "groups": ["//ly.img.cesdk.stickers.doodle/category/doodle"],
+      "label": {
+        "en": "Wing 2",
+        "de": "Flügel"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/doodle/doodle_wing_02.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/doodle/doodle_wing_02.png",
+        "filename": "doodle_wing_02.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 902,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/Vomiting",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Vomiting",
+        "de": "Erbrechen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_Vomiting.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_Vomiting.png",
+        "filename": "emoji_Vomiting.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1410,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/anguished",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Anguished",
+        "de": "Qualvoll"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_anguished.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_anguished.png",
+        "filename": "emoji_anguished.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/ape",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Ape",
+        "de": "Affe"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_ape.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_ape.png",
+        "filename": "emoji_ape.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1696
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/crying",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Crying",
+        "de": "Weinen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_crying.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_crying.png",
+        "filename": "emoji_crying.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/devil",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Devil",
+        "de": "Teufel"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_devil.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_devil.png",
+        "filename": "emoji_devil.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1957
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/doubtful",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Doubtful",
+        "de": "Zweifelnd"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_doubtful.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_doubtful.png",
+        "filename": "emoji_doubtful.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/drooling",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Drooling",
+        "de": "Sabern"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_drooling.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_drooling.png",
+        "filename": "emoji_drooling.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1551,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/flushed",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Flushed",
+        "de": "Errötet"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_flushed.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_flushed.png",
+        "filename": "emoji_flushed.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/grim",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Grim",
+        "de": "Grimmig"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_grim.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_grim.png",
+        "filename": "emoji_grim.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/grimacing",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Grimacing",
+        "de": "Grimasse schneiden"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_grimacing.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_grimacing.png",
+        "filename": "emoji_grimacing.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/halo",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Halo",
+        "de": "Heiligenschein"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_halo.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_halo.png",
+        "filename": "emoji_halo.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1753,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/hand_pointing_left",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Hand pointing left",
+        "de": "Hand zeigt nach links"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_hand_pointing_left.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_hand_pointing_left.png",
+        "filename": "emoji_hand_pointing_left.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1556
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/hand_pointing_right",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Hand pointing right",
+        "de": "Hand zeigt nach rechts"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_hand_pointing_right.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_hand_pointing_right.png",
+        "filename": "emoji_hand_pointing_right.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1556
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/hanky",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Hanky",
+        "de": "Hanky"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_hanky.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_hanky.png",
+        "filename": "emoji_hanky.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1553
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/happyface",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Happy face",
+        "de": "Glückliches Gesicht"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_happyface.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_happyface.png",
+        "filename": "emoji_happyface.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/hearteyes",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Heart eyes",
+        "de": "Herzaugen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_hearteyes.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_hearteyes.png",
+        "filename": "emoji_hearteyes.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1661
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/lips",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Lips",
+        "de": "Lippen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_lips.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_lips.png",
+        "filename": "emoji_lips.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1353
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/melon",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Melon",
+        "de": "Melone"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_melon.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_melon.png",
+        "filename": "emoji_melon.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1151
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/nauseated",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Nauseated",
+        "de": "Angewidert"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_nauseated.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_nauseated.png",
+        "filename": "emoji_nauseated.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/pacman",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Pacman",
+        "de": "Pacman"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_pacman.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_pacman.png",
+        "filename": "emoji_pacman.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/persevering",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Persevering",
+        "de": "Beharrlich"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_persevering.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_persevering.png",
+        "filename": "emoji_persevering.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/pizza",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Pizza",
+        "de": "Pizza"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_pizza.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_pizza.png",
+        "filename": "emoji_pizza.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1380,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/rollingeyes",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Rolling eyes",
+        "de": "Augenrollen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_rollingeyes.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_rollingeyes.png",
+        "filename": "emoji_rollingeyes.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/sad",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Sad",
+        "de": "Traurig"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_sad.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_sad.png",
+        "filename": "emoji_sad.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/skull",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Skull",
+        "de": "Schädel"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_skull.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_skull.png",
+        "filename": "emoji_skull.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1965,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/smile",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Smile",
+        "de": "Lachen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_smile.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_smile.png",
+        "filename": "emoji_smile.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/sunglasses",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Sun glasses",
+        "de": "Sonnenbrille"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_sunglasses.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_sunglasses.png",
+        "filename": "emoji_sunglasses.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1810
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/tearsofjoy",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Tears of joy",
+        "de": "Tränen der Freude"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_tearsofjoy.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_tearsofjoy.png",
+        "filename": "emoji_tearsofjoy.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 1530
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/thumbsup",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Thumps up",
+        "de": "Daumen hoch"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_thumbsup.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_thumbsup.png",
+        "filename": "emoji_thumbsup.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1601,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/tongueout",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Tongue out",
+        "de": "Zunge raus"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_tongueout.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_tongueout.png",
+        "filename": "emoji_tongueout.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 985,
+        "height": 1024
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/unamused",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Unamused",
+        "de": "Nicht amüsiert"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_unamused.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_unamused.png",
+        "filename": "emoji_unamused.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/unicorn",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Unicorn",
+        "de": "Einhorn"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_unicorn.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_unicorn.png",
+        "filename": "emoji_unicorn.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1769,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/winking",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Winking",
+        "de": "Zwinkern"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_winking.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_winking.png",
+        "filename": "emoji_winking.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 2048,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoji/zany",
+      "groups": ["//ly.img.cesdk.stickers.emoji/category/emoji"],
+      "label": {
+        "en": "Zany",
+        "de": "Verrückt"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoji/emoji_zany.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoji/emoji_zany.png",
+        "filename": "emoji_zany.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1723,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/alien",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Alien",
+        "de": "Alien"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_alien.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_alien.png",
+        "filename": "imgly_sticker_emoticons_alien.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/angel",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Angel",
+        "de": "Engel"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_angel.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_angel.png",
+        "filename": "imgly_sticker_emoticons_angel.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 64
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/angry",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Angry",
+        "de": "wütend"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_angry.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_angry.png",
+        "filename": "imgly_sticker_emoticons_angry.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 62
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/anxious",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Anxious",
+        "de": "besorgt"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_anxious.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_anxious.png",
+        "filename": "imgly_sticker_emoticons_anxious.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/asleep",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Asleep",
+        "de": "schlafend"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_asleep.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_asleep.png",
+        "filename": "imgly_sticker_emoticons_asleep.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/attention",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Attention",
+        "de": "Aufmerksamkeit"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_attention.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_attention.png",
+        "filename": "imgly_sticker_emoticons_attention.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 60
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/baby_chicken",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Baby Chicken",
+        "de": "Küken"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_baby_chicken.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_baby_chicken.png",
+        "filename": "imgly_sticker_emoticons_baby_chicken.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 61,
+        "height": 42
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/batman",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Batman",
+        "de": "Batman"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_batman.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_batman.png",
+        "filename": "imgly_sticker_emoticons_batman.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/blush",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Blush",
+        "de": "Schamröte"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_blush.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_blush.png",
+        "filename": "imgly_sticker_emoticons_blush.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/boxer",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Boxer",
+        "de": "Boxer"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_boxer.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_boxer.png",
+        "filename": "imgly_sticker_emoticons_boxer.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 62
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/business",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Business",
+        "de": "Geschäft"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_business.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_business.png",
+        "filename": "imgly_sticker_emoticons_business.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 60,
+        "height": 63
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/chicken",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Chicken",
+        "de": "Huhn"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_chicken.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_chicken.png",
+        "filename": "imgly_sticker_emoticons_chicken.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 63,
+        "height": 55
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/cool",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Cool",
+        "de": "Cool"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_cool.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_cool.png",
+        "filename": "imgly_sticker_emoticons_cool.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/cry",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Cry",
+        "de": "weinen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_cry.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_cry.png",
+        "filename": "imgly_sticker_emoticons_cry.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/deceased",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Deceased",
+        "de": "verstorben"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_deceased.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_deceased.png",
+        "filename": "imgly_sticker_emoticons_deceased.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/devil",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Devil",
+        "de": "Teufel"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_devil.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_devil.png",
+        "filename": "imgly_sticker_emoticons_devil.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/duckface",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Duckface",
+        "de": "Duckface"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_duckface.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_duckface.png",
+        "filename": "imgly_sticker_emoticons_duckface.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/furious",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Furious",
+        "de": "aufgebracht"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_furious.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_furious.png",
+        "filename": "imgly_sticker_emoticons_furious.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 61
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/grin",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Grin",
+        "de": "Grinsen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_grin.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_grin.png",
+        "filename": "imgly_sticker_emoticons_grin.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/guitar",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Guitar",
+        "de": "Gitarre"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_guitar.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_guitar.png",
+        "filename": "imgly_sticker_emoticons_guitar.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 64,
+        "height": 60
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/harry_potter",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Harry Potter",
+        "de": "Harry Potter"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_harry_potter.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_harry_potter.png",
+        "filename": "imgly_sticker_emoticons_harry_potter.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 64,
+        "height": 62
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/hippie",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Hippie",
+        "de": "Hippie"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_hippie.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_hippie.png",
+        "filename": "imgly_sticker_emoticons_hippie.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 62
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/humourous",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Humourous",
+        "de": "humorvoll"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_humourous.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_humourous.png",
+        "filename": "imgly_sticker_emoticons_humourous.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/idea",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Idea",
+        "de": "Idee"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_idea.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_idea.png",
+        "filename": "imgly_sticker_emoticons_idea.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 64,
+        "height": 62
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/impatient",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Impatient",
+        "de": "ungeduldig"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_impatient.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_impatient.png",
+        "filename": "imgly_sticker_emoticons_impatient.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/kiss",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Kiss",
+        "de": "Kuss"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_kiss.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_kiss.png",
+        "filename": "imgly_sticker_emoticons_kiss.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/kisses",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Kisses",
+        "de": "Küsse"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_kisses.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_kisses.png",
+        "filename": "imgly_sticker_emoticons_kisses.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/laugh",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Laugh",
+        "de": "lachen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_laugh.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_laugh.png",
+        "filename": "imgly_sticker_emoticons_laugh.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/loud_cry",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Loud Cry",
+        "de": "lautes Weinen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_loud_cry.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_loud_cry.png",
+        "filename": "imgly_sticker_emoticons_loud_cry.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 64,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/loving",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Loving",
+        "de": "liebevoll"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_loving.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_loving.png",
+        "filename": "imgly_sticker_emoticons_loving.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/masked",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Masked",
+        "de": "maskiert"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_masked.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_masked.png",
+        "filename": "imgly_sticker_emoticons_masked.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 62
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/music",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Music",
+        "de": "Musik"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_music.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_music.png",
+        "filename": "imgly_sticker_emoticons_music.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 54
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/nerd",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Nerd",
+        "de": "Nerd"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_nerd.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_nerd.png",
+        "filename": "imgly_sticker_emoticons_nerd.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 64,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/ninja",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Ninja",
+        "de": "Ninja"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_ninja.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_ninja.png",
+        "filename": "imgly_sticker_emoticons_ninja.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/not_speaking_to_you",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Not speaking to you",
+        "de": "Ich spreche nicht mit dir"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_not_speaking_to_you.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_not_speaking_to_you.png",
+        "filename": "imgly_sticker_emoticons_not_speaking_to_you.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/pig",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Pig",
+        "de": "Schwein"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_pig.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_pig.png",
+        "filename": "imgly_sticker_emoticons_pig.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 63,
+        "height": 41
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/pumpkin",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Pumpkin",
+        "de": "Kürbis"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_pumpkin.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_pumpkin.png",
+        "filename": "imgly_sticker_emoticons_pumpkin.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 60
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/question",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Question",
+        "de": "Frage"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_question.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_question.png",
+        "filename": "imgly_sticker_emoticons_question.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 62
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/rabbit",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Rabbit",
+        "de": "Kaninchen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_rabbit.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_rabbit.png",
+        "filename": "imgly_sticker_emoticons_rabbit.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 65,
+        "height": 47
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/sad",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Sad",
+        "de": "traurig"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_sad.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_sad.png",
+        "filename": "imgly_sticker_emoticons_sad.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/sick",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Sick",
+        "de": "krank"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_sick.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_sick.png",
+        "filename": "imgly_sticker_emoticons_sick.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/skateboard",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Skateboard",
+        "de": "Skateboard"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_skateboard.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_skateboard.png",
+        "filename": "imgly_sticker_emoticons_skateboard.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 64
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/skull",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Skull",
+        "de": "Schädel"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_skull.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_skull.png",
+        "filename": "imgly_sticker_emoticons_skull.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 62
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/sleepy",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Sleepy",
+        "de": "schläfrig"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_sleepy.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_sleepy.png",
+        "filename": "imgly_sticker_emoticons_sleepy.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 60
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/smile",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Smile",
+        "de": "Lächeln"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_smile.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_smile.png",
+        "filename": "imgly_sticker_emoticons_smile.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/sobbing",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Sobbing",
+        "de": "Schluchzen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_sobbing.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_sobbing.png",
+        "filename": "imgly_sticker_emoticons_sobbing.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 59
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/star",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Star",
+        "de": "Stern"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_star.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_star.png",
+        "filename": "imgly_sticker_emoticons_star.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/steaming_furious",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Steaming furious",
+        "de": "wutentbrannt"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_steaming_furious.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_steaming_furious.png",
+        "filename": "imgly_sticker_emoticons_steaming_furious.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/sunbathing",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Sunbathing",
+        "de": "Sonnenbaden"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_sunbathing.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_sunbathing.png",
+        "filename": "imgly_sticker_emoticons_sunbathing.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/tired",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Tired",
+        "de": "Müde"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_tired.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_tired.png",
+        "filename": "imgly_sticker_emoticons_tired.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 60
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/tongue_out_wink",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Tongue out wink",
+        "de": "Augenzwinkern mit ausgestreckter Zunge"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_tongue_out_wink.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_tongue_out_wink.png",
+        "filename": "imgly_sticker_emoticons_tongue_out_wink.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/wave",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Wave",
+        "de": "winken"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_wave.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_wave.png",
+        "filename": "imgly_sticker_emoticons_wave.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 60
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/wide_grin",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Wide grin",
+        "de": "breites Grinsen"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_wide_grin.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_wide_grin.png",
+        "filename": "imgly_sticker_emoticons_wide_grin.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/wink",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Wink",
+        "de": "Augenzwinkern"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_wink.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_wink.png",
+        "filename": "imgly_sticker_emoticons_wink.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 58
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.emoticons/wrestler",
+      "groups": ["//ly.img.cesdk.stickers.emoticons/category/emoticons"],
+      "label": {
+        "en": "Wrestler",
+        "de": "Wrestler"
+      },
+      "tags": {},
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_wrestler.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/emoticons/imgly_sticker_emoticons_wrestler.png",
+        "filename": "imgly_sticker_emoticons_wrestler.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 62,
+        "height": 60
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.hand/five",
+      "groups": ["//ly.img.cesdk.stickers.hand/category/hand"],
+      "label": {
+        "en": "High five",
+        "de": "High five"
+      },
+      "tags": {
+        "en": ["hand"],
+        "de": ["hand"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/hand/hand_five.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/hand/hand_five.png",
+        "filename": "hand_five.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 806,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.hand/friends",
+      "groups": ["//ly.img.cesdk.stickers.hand/category/hand"],
+      "label": {
+        "en": "Best friends",
+        "de": "Best friends"
+      },
+      "tags": {
+        "en": ["hand"],
+        "de": ["hand"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/hand/hand_friends.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/hand/hand_friends.png",
+        "filename": "hand_friends.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1211,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.hand/heart",
+      "groups": ["//ly.img.cesdk.stickers.hand/category/hand"],
+      "label": {
+        "en": "You and me",
+        "de": "You and me"
+      },
+      "tags": {
+        "en": ["hand", "heart"],
+        "de": ["hand", "heart"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/hand/hand_heart.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/hand/hand_heart.png",
+        "filename": "hand_heart.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1386,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.hand/luck",
+      "groups": ["//ly.img.cesdk.stickers.hand/category/hand"],
+      "label": {
+        "en": "Good luck",
+        "de": "Good luck"
+      },
+      "tags": {
+        "en": ["hand"],
+        "de": ["hand"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/hand/hand_luck.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/hand/hand_luck.png",
+        "filename": "hand_luck.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 854,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.hand/ok",
+      "groups": ["//ly.img.cesdk.stickers.hand/category/hand"],
+      "label": {
+        "en": "Everything is OK",
+        "de": "Everything is OK"
+      },
+      "tags": {
+        "en": ["hand"],
+        "de": ["hand"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/hand/hand_ok.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/hand/hand_ok.png",
+        "filename": "hand_ok.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1425,
+        "height": 2048
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.stickers.hand/vibes",
+      "groups": ["//ly.img.cesdk.stickers.hand/category/hand"],
+      "label": {
+        "en": "Good vibes only",
+        "de": "Good vibes only"
+      },
+      "tags": {
+        "en": ["hand"],
+        "de": ["hand"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.sticker/images/hand/hand_vibes.svg",
+        "thumbUri": "{{base_url}}/ly.img.sticker/thumbnails/hand/hand_vibes.png",
+        "filename": "hand_vibes.svg",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1567,
+        "height": 2048
+      }
+    }
+  ]
+}
