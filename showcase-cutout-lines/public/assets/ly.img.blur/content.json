@@ -1,0 +1,46 @@
+{
+  "version": "3.0.0",
+  "id": "ly.img.blur",
+  "assets": [
+    {
+      "id": "//ly.img.cesdk.blur/uniform_blur",
+      "meta": {
+        "blurType": "//ly.img.ubq/blur/uniform",
+        "thumbUri": "{{base_url}}/ly.img.blur/thumbnails/imgly_effect_26.jpeg"
+      },
+      "label": {
+        "en": "Gaussian Blur"
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.blur/blur/linear_blur",
+      "meta": {
+        "blurType": "//ly.img.ubq/blur/linear",
+        "thumbUri": "{{base_url}}/ly.img.blur/thumbnails/imgly_effect_23.jpeg"
+      },
+      "label": {
+        "en": "Linear Blur"
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.blur/blur/mirrored",
+      "meta": {
+        "blurType": "//ly.img.ubq/blur/mirrored",
+        "thumbUri": "{{base_url}}/ly.img.blur/thumbnails/imgly_effect_24.jpeg"
+      },
+      "label": {
+        "en": "Mirrored Blur"
+      }
+    },
+    {
+      "id": "//ly.img.cesdk.blur/blur/radial",
+      "meta": {
+        "blurType": "//ly.img.ubq/blur/radial",
+        "thumbUri": "{{base_url}}/ly.img.blur/thumbnails/imgly_effect_25.jpeg"
+      },
+      "label": {
+        "en": "Radial Blur"
+      }
+    }
+  ]
+}

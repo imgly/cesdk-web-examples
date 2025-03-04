@@ -1,0 +1,2063 @@
+{
+  "version" : "3.0.0",
+  "id" : "ly.img.typeface",
+  "assets": [
+    {
+      "id": "//ly.img.typeface/abril_fatface",
+      "label": {
+        "en": "Abril Fatface"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Abril Fatface",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_abril_fatface_regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/aleo",
+      "label": {
+        "en": "Aleo"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Aleo",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_aleo_bold.otf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/amaticsc",
+      "label": {
+        "en": "Amatic SC"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Amatic SC",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/AmaticSC/imgly_font_amaticsc_regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/AmaticSC/imgly_font_amaticsc_bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/archivo",
+      "label": {
+        "en": "Archivo"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Archivo",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-ExtraBold.ttf",
+              "subFamily": "ExtraBold",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-ExtraBoldItalic.ttf",
+              "subFamily": "ExtraBold Italic",
+              "weight": "extraBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-ExtraLightItalic.ttf",
+              "subFamily": "ExtraLight Italic",
+              "weight": "extraLight",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-MediumItalic.ttf",
+              "subFamily": "Medium Italic",
+              "weight": "medium",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-Thin.ttf",
+              "subFamily": "Thin",
+              "weight": "thin"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Archivo/static/Archivo/Archivo-ThinItalic.ttf",
+              "subFamily": "Thin Italic",
+              "weight": "thin",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/bangers",
+      "label": {
+        "en": "Bangers"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Bangers",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Bangers/Bangers-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/barlow_condensed",
+      "label": {
+        "en": "Barlow Condensed"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Barlow Condensed",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-ExtraBold.ttf",
+              "subFamily": "ExtraBold",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-ExtraBoldItalic.ttf",
+              "subFamily": "ExtraBold Italic",
+              "weight": "extraBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-ExtraLightItalic.ttf",
+              "subFamily": "ExtraLight Italic",
+              "weight": "extraLight",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-MediumItalic.ttf",
+              "subFamily": "Medium Italic",
+              "weight": "medium",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-Thin.ttf",
+              "subFamily": "Thin",
+              "weight": "thin"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/BarlowCondensed/BarlowCondensed-ThinItalic.ttf",
+              "subFamily": "Thin Italic",
+              "weight": "thin",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/bungee_inline",
+      "label": {
+        "en": "Bungee Inline"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Bungee Inline",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_bungee_inline.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/carter_one",
+      "label": {
+        "en": "Carter One"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Carter One",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_carter_one.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/caveat",
+      "label": {
+        "en": "Caveat"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Caveat",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Caveat/Caveat-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Caveat/Caveat-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Caveat/Caveat-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Caveat/Caveat-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/coiny",
+      "label": {
+        "en": "Coiny"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Coiny",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Coiny/Coiny-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/courier_prime",
+      "label": {
+        "en": "Courier Prime"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Courier Prime",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/CourierPrime/CourierPrime-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/CourierPrime/CourierPrime-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/CourierPrime/CourierPrime-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/CourierPrime/CourierPrime-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/elsie_swash_caps",
+      "label": {
+        "en": "Elsie Swash Caps"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Elsie Swash Caps",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/ElsieSwashCaps/ElsieSwashCaps-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/ElsieSwashCaps/ElsieSwashCaps-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/fira_sans",
+      "label": {
+        "en": "Fira Sans"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Fira Sans",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-ExtraBold.ttf",
+              "subFamily": "ExtraBold",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-ExtraBoldItalic.ttf",
+              "subFamily": "ExtraBold Italic",
+              "weight": "extraBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-ExtraLightItalic.ttf",
+              "subFamily": "ExtraLight Italic",
+              "weight": "extraLight",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-MediumItalic.ttf",
+              "subFamily": "Medium Italic",
+              "weight": "medium",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-Thin.ttf",
+              "subFamily": "Thin",
+              "weight": "thin"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/FiraSans/FiraSans-ThinItalic.ttf",
+              "subFamily": "Thin Italic",
+              "weight": "thin",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/krona_one",
+      "label": {
+        "en": "Krona One"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Krona One",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_krona_one.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/kumar_one_outline",
+      "label": {
+        "en": "Kumar One Outline"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Kumar One Outline",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_kumar_one_outline.otf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/lobstertwo",
+      "label": {
+        "en": "Lobster Two"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Lobster Two",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/LobsterTwo/LobsterTwo-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/LobsterTwo/LobsterTwo-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/LobsterTwo/LobsterTwo-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/LobsterTwo/LobsterTwo-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/manrope",
+      "label": {
+        "en": "Manrope"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Manrope",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Manrope/Manrope-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Manrope/Manrope-ExtraBold.ttf",
+              "subFamily": "ExtraBold",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Manrope/Manrope-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Manrope/Manrope-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Manrope/Manrope-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Manrope/Manrope-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Manrope/Manrope-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/monoton",
+      "label": {
+        "en": "Monoton"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Monoton",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_monoton.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/montserrat",
+      "label": {
+        "en": "Montserrat"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Montserrat",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-ExtraBold.ttf",
+              "subFamily": "ExtraBold",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf",
+              "subFamily": "ExtraBold Italic",
+              "weight": "extraBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-ExtraLightItalic.ttf",
+              "subFamily": "ExtraLight Italic",
+              "weight": "extraLight",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-MediumItalic.ttf",
+              "subFamily": "Medium Italic",
+              "weight": "medium",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-Thin.ttf",
+              "subFamily": "Thin",
+              "weight": "thin"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Montserrat/Montserrat-ThinItalic.ttf",
+              "subFamily": "Thin Italic",
+              "weight": "thin",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/nixie_one",
+      "label": {
+        "en": "Nixie One"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Nixie One",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_nixie_one.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/notable",
+      "label": {
+        "en": "Notable"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Notable",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_notable.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/nunito",
+      "label": {
+        "en": "Nunito"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Nunito",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-ExtraBold.ttf",
+              "subFamily": "ExtraBold",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-ExtraBoldItalic.ttf",
+              "subFamily": "ExtraBold Italic",
+              "weight": "extraBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-ExtraLightItalic.ttf",
+              "subFamily": "ExtraLight Italic",
+              "weight": "extraLight",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Nunito/Nunito-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/open_sans",
+      "label": {
+        "en": "Open Sans"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Open Sans",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/OpenSans/OpenSans-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/OpenSans/OpenSans-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/OpenSans/OpenSans-ExtraBold.ttf",
+              "subFamily": "ExtraBold",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/OpenSans/OpenSans-ExtraBoldItalic.ttf",
+              "subFamily": "ExtraBold Italic",
+              "weight": "extraBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/OpenSans/OpenSans-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/OpenSans/OpenSans-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/OpenSans/OpenSans-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/OpenSans/OpenSans-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/OpenSans/OpenSans-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/OpenSans/OpenSans-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/ostrich_sans",
+      "label": {
+        "en": "Ostrich Sans"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Ostrich Sans",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_ostrich_sans_black.otf",
+              "subFamily": "Black",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_ostrich_sans_bold.otf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_ostrich_sans_heavy.otf",
+              "subFamily": "Heavy",
+              "weight": "heavy"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/oswald",
+      "label": {
+        "en": "Oswald"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Oswald",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Oswald/Oswald-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Oswald/Oswald-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Oswald/Oswald-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Oswald/Oswald-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Oswald/Oswald-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Oswald/Oswald-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/palanquin_dark",
+      "label": {
+        "en": "Palanquin Dark"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Palanquin Dark",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Palanquin_Dark/PalanquinDark-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Palanquin_Dark/PalanquinDark-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Palanquin_Dark/PalanquinDark-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Palanquin_Dark/PalanquinDark-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/parisienne",
+      "label": {
+        "en": "Parisienne"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Parisienne",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Parisienne/Parisienne-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/permanent_marker",
+      "label": {
+        "en": "Permanent Marker"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Permanent Marker",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Permanent_Marker/PermanentMarker-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/petit_formal_script",
+      "label": {
+        "en": "Petit Format Script"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Petit Format Script",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_petit_formal_script.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/playfair_display",
+      "label": {
+        "en": "Playfair Display"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Playfair Display",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-ExtraBold.ttf",
+              "subFamily": "ExtraBold",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-ExtraBoldItalic.ttf",
+              "subFamily": "ExtraBold Italic",
+              "weight": "extraBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-MediumItalic.ttf",
+              "subFamily": "Medium Italic",
+              "weight": "medium",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Playfair_Display/PlayfairDisplay-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/poppins",
+      "label": {
+        "en": "Poppins"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Poppins",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-ExtraBold.ttf",
+              "subFamily": "ExtraBold",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-ExtraBoldItalic.ttf",
+              "subFamily": "ExtraBold Italic",
+              "weight": "extraBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-ExtraLightItalic.ttf",
+              "subFamily": "ExtraLight Italic",
+              "weight": "extraLight",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-MediumItalic.ttf",
+              "subFamily": "Medium Italic",
+              "weight": "medium",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-Thin.ttf",
+              "subFamily": "Thin",
+              "weight": "thin"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Poppins/Poppins-ThinItalic.ttf",
+              "subFamily": "Thin Italic",
+              "weight": "thin",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/quicksand",
+      "label": {
+        "en": "Quicksand"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Quicksand",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Quicksand/static/Quicksand-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Quicksand/static/Quicksand-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Quicksand/static/Quicksand-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Quicksand/static/Quicksand-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Quicksand/static/Quicksand-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/rasa",
+      "label": {
+        "en": "Rasa"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Rasa",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Rasa/Rasa-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Rasa/Rasa-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Rasa/Rasa-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Rasa/Rasa-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Rasa/Rasa-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Rasa/Rasa-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Rasa/Rasa-MediumItalic.ttf",
+              "subFamily": "Medium Italic",
+              "weight": "medium",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Rasa/Rasa-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Rasa/Rasa-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Rasa/Rasa-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/roboto",
+      "label": {
+        "en": "Roboto"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Roboto",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-MediumItalic.ttf",
+              "subFamily": "Medium Italic",
+              "weight": "medium",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-Thin.ttf",
+              "subFamily": "Thin",
+              "weight": "thin"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto/Roboto-ThinItalic.ttf",
+              "subFamily": "Thin Italic",
+              "weight": "thin",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/roboto_condensed",
+      "label": {
+        "en": "Roboto Condensed"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Roboto Condensed",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Condensed/RobotoCondensed-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/roboto_slab",
+      "label": {
+        "en": "Roboto Slab"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Roboto Slab",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Slab/RobotoSlab-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Slab/RobotoSlab-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Slab/RobotoSlab-ExtraBold.ttf",
+              "subFamily": "ExtraBold",
+              "weight": "extraBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Slab/RobotoSlab-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Slab/RobotoSlab-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Slab/RobotoSlab-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Slab/RobotoSlab-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Slab/RobotoSlab-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Roboto_Slab/RobotoSlab-Thin.ttf",
+              "subFamily": "Thin",
+              "weight": "thin"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/sancreek",
+      "label": {
+        "en": "Sancreek"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Sancreek",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_sancreek.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/shrikhand",
+      "label": {
+        "en": "Shrikhand"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Shrikhand",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Shrikhand/Shrikhand-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/source_code_pro",
+      "label": {
+        "en": "Source Code Pro"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Source Code Pro",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-ExtraLightItalic.ttf",
+              "subFamily": "ExtraLight Italic",
+              "weight": "extraLight",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-MediumItalic.ttf",
+              "subFamily": "Medium Italic",
+              "weight": "medium",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceCodePro/SourceCodePro-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/source_sans_pro",
+      "label": {
+        "en": "Source Sans Pro"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Source Sans Pro",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-ExtraLightItalic.ttf",
+              "subFamily": "ExtraLight Italic",
+              "weight": "extraLight",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSansPro/SourceSansPro-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/source_serif_pro",
+      "label": {
+        "en": "Source Serif Pro"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Source Serif Pro",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-Black.ttf",
+              "subFamily": "Black",
+              "weight": "heavy"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-BlackItalic.ttf",
+              "subFamily": "Black Italic",
+              "weight": "heavy",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-ExtraLight.ttf",
+              "subFamily": "ExtraLight",
+              "weight": "extraLight"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-ExtraLightItalic.ttf",
+              "subFamily": "ExtraLight Italic",
+              "weight": "extraLight",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-LightItalic.ttf",
+              "subFamily": "Light Italic",
+              "weight": "light",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SourceSerifPro/SourceSerifPro-SemiBoldItalic.ttf",
+              "subFamily": "SemiBold Italic",
+              "weight": "semiBold",
+              "style": "italic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/space_grotesk",
+      "label": {
+        "en": "Space Grotesk"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Space Grotesk",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SpaceGrotesk/SpaceGrotesk-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SpaceGrotesk/SpaceGrotesk-Light.ttf",
+              "subFamily": "Light",
+              "weight": "light"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SpaceGrotesk/SpaceGrotesk-Medium.ttf",
+              "subFamily": "Medium",
+              "weight": "medium"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SpaceGrotesk/SpaceGrotesk-Regular.ttf",
+              "subFamily": "Regular"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SpaceGrotesk/SpaceGrotesk-SemiBold.ttf",
+              "subFamily": "SemiBold",
+              "weight": "semiBold"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/space_mono",
+      "label": {
+        "en": "Space Mono"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Space Mono",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SpaceMono/SpaceMono-Bold.ttf",
+              "subFamily": "Bold",
+              "weight": "bold"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SpaceMono/SpaceMono-BoldItalic.ttf",
+              "subFamily": "Bold Italic",
+              "weight": "bold",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SpaceMono/SpaceMono-Italic.ttf",
+              "subFamily": "Italic",
+              "style": "italic"
+            },
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/SpaceMono/SpaceMono-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/stint_ultra_condensed",
+      "label": {
+        "en": "Stint Ultra Condensed"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Stint Ultra Condensed",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Stint_Ultra_Condensed/StintUltraCondensed-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/stint_ultra_expanded",
+      "label": {
+        "en": "Stint Ultra Expanded"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Stint Ultra Expanded",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/Stint_Ultra_Expanded/StintUltraExpanded-Regular.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/sue_ellen_francisco",
+      "label": {
+        "en": "Sue Ellen Francisco"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Sue Ellen Francisco",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_sue_ellen_francisco.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/trash_hand",
+      "label": {
+        "en": "TrashHand"
+      },
+      "payload": {
+        "typeface": {
+          "name": "TrashHand",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_trash_hand.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/ultra",
+      "label": {
+        "en": "Ultra"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Ultra",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_ultra.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/vt323",
+      "label": {
+        "en": "VT323"
+      },
+      "payload": {
+        "typeface": {
+          "name": "VT323",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_vt323.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "//ly.img.typeface/yeseva_one",
+      "label": {
+        "en": "Yeseva One"
+      },
+      "payload": {
+        "typeface": {
+          "name": "Yeseva One",
+          "fonts": [
+            {
+              "uri": "{{base_url}}/ly.img.typeface/fonts/imgly_font_yeseva_one.ttf",
+              "subFamily": "Regular"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
