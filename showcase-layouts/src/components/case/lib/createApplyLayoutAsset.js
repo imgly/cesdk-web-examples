@@ -63,11 +63,9 @@ const copyAssets = (engine, fromPageId, toPageId) => {
     engine.block.getType(childId).includes('text')
   );
 
-  const imagesOnFromPage = fromChildren
-    .filter((childId) => engine.block.getKind(childId) === 'image')
-    .filter(
-      (imageBlock) => !engine.block.isPlaceholderBehaviorEnabled(imageBlock)
-    );
+  const imagesOnFromPage = fromChildren.filter(
+    (childId) => engine.block.getKind(childId) === 'image'
+  );
 
   const toChildren = visuallySortBlocks(
     engine,
@@ -130,11 +128,12 @@ const copyAssets = (engine, fromPageId, toPageId) => {
       'fill/image/sourceSet',
       fromImageSourceSets
     );
-    // engine.block.isPlaceholderEnabled(imageBlock)
-    engine.block.setPlaceholderBehaviorEnabled(
-      toBlock,
-      engine.block.isPlaceholderBehaviorEnabled(fromBlock)
-    );
+    if (engine.block.supportsPlaceholderBehavior(fromBlock)) {
+      engine.block.setPlaceholderBehaviorEnabled(
+        toBlock,
+        engine.block.isPlaceholderBehaviorEnabled(fromBlock)
+      );
+    }
 
     engine.block.resetCrop(toBlock);
   }
