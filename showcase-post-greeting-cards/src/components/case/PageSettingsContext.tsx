@@ -105,7 +105,6 @@ export const PageSettingsProvider = ({
         typeface.fonts.find(
           (font) => font.style === 'normal' && font.weight === 'normal'
         ) ?? typeface.fonts[0];
-      engine.editor.setEditMode('Transform');
       engine.block.findByName(blockName).forEach((blockId) => {
         engine.block.setFont(blockId, font.uri, typeface);
       });
