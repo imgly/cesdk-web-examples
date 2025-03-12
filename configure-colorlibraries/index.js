@@ -1,6 +1,5 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.47.0-rc.1/index.js';
 
-// highlight-definitions
 const colors = [
   {
     id: 'RGB Murky Magenta',
@@ -50,23 +49,18 @@ const colors = [
     }
   }
 ];
-// highlight-definitions
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
   locale: 'en',
-  // highlight-config-labels
   i18n: {
     en: {
       'libraries.myCustomColors.label': 'Custom Color Library'
     }
   },
-  // highlight-config-labels
   ui: {
-    // highlight-config-order
     colorLibraries: ['ly.img.colors.defaultPalette', 'myCustomColors'],
-    // highlight-config-order
     elements: {
       view: 'default',
       panels: {
@@ -80,12 +74,10 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (cesdk) => {
   cesdk.addDefaultAssetSources();
   cesdk.addDemoAssetSources();
 
-  // highlight-add-library
   cesdk.engine.asset.addLocalSource('myCustomColors', ['text/plain']);
   for (const asset of colors) {
     cesdk.engine.asset.addAssetToSource('myCustomColors', asset);
   }
-  // highlight-add-library
 
   cesdk.createDesignScene();
 });
