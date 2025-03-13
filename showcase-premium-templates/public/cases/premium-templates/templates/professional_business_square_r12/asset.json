@@ -1,0 +1,15 @@
+{
+    "id": "professional_business_square_r12",
+    "label": {
+      "en": "Hiring Sales Manager"
+    },
+    "tags": {
+      "en": ["hiring", "professional", "business", "sales-manager", "career"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_business_square_r12/design.zip",
+      "thumbUri": "{{base_uri}}/professional_business_square_r12/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

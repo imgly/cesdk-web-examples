@@ -1,0 +1,15 @@
+{
+    "id": "professional_futuristic_square_n25",
+    "label": {
+      "en": "Streamer Promo"
+    },
+    "tags": {
+      "en": ["streamer", "gaming", "fantasy", "twitch"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_futuristic_square_n25/design.zip",
+      "thumbUri": "{{base_uri}}/professional_futuristic_square_n25/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

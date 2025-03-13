@@ -1,0 +1,15 @@
+{
+    "id": "personal_natural_story_r18",
+    "label": {
+      "en": "Personal Photo Collage Natural"
+    },
+    "tags": {
+      "en": ["personal", "post", "travel", "natural", "pictures", "collage"]
+    },
+    "groups": ["personal"],
+    "meta": {
+      "uri": "{{base_uri}}/personal_natural_story_r18/design.zip",
+      "thumbUri": "{{base_uri}}/personal_natural_story_r18/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

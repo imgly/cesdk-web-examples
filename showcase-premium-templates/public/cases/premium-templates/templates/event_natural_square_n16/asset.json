@@ -1,0 +1,15 @@
+{
+    "id": "event_natural_square_n16",
+    "label": {
+      "en": "Happy Holidays"
+    },
+    "tags": {
+      "en": ["holiday", "greetings", "seasonal", "card"]
+    },
+    "groups": ["event"],
+    "meta": {
+      "uri": "{{base_uri}}/event_natural_square_n/design.zip",
+      "thumbUri": "{{base_uri}}/event_natural_square_n/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

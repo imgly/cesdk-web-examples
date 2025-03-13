@@ -1,0 +1,15 @@
+{
+    "id": "professional_bold_square_n22",
+    "label": {
+      "en": "Professional Growth"
+    },
+    "tags": {
+      "en": ["workshop", "HR", "workshop", "booking"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_bold_square_n22/design.zip",
+      "thumbUri": "{{base_uri}}/professional_bold_square_n22/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

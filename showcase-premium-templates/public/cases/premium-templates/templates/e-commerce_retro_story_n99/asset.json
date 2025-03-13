@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_retro_story_n99",
+    "label": {
+      "en": "70s Retro Sale"
+    },
+    "tags": {
+      "en": ["70s", "retro", "fashion", "online-store"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_retro_story_n99/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_retro_story_n99/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

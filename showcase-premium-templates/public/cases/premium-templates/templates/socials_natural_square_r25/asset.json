@@ -1,0 +1,15 @@
+{
+    "id": "socials_natural_square_r25",
+    "label": {
+      "en": "Natural Motivational Quote"
+    },
+    "tags": {
+      "en": ["social-media", "post", "natural", "design", "quote", "illustrated", "motivational"]
+    },
+    "groups": ["socials"],
+    "meta": {
+      "uri": "{{base_uri}}/socials_natural_square_r25/design.zip",
+      "thumbUri": "{{base_uri}}/socials_natural_square_r25/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_modern_square_n1",
+    "label": {
+      "en": "Giveaway"
+    },
+    "tags": {
+      "en": ["fashion", "giveaway", "colorful", "win"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_modern_square_n1/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

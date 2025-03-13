@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_business_square_r10",
+    "label": {
+      "en": "Interior Furniture Sale"
+    },
+    "tags": {
+      "en": ["interior", "product", "business", "modern", "online-store", "sale", "showcase"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_business_square_r10/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_business_square_r10/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

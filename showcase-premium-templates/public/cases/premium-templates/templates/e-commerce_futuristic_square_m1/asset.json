@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_futuristic_square_m1",
+    "label": {
+      "en": "Sneaker Promo"
+    },
+    "tags": {
+      "en": ["fashion", "product", "modern", "online-store"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_futuristic_square_m1/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_futuristic_square_m1/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

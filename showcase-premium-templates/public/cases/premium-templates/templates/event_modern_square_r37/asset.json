@@ -1,0 +1,15 @@
+{
+    "id": "event_modern_square_r37",
+    "label": {
+      "en": "Follower Milestone Celebration"
+    },
+    "tags": {
+      "en": ["event", "modern", "follower", "celebration", "party"]
+    },
+    "groups": ["event"],
+    "meta": {
+      "uri": "{{base_uri}}/event_modern_square_r37/design.zip",
+      "thumbUri": "{{base_uri}}/event_modern_square_r37/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

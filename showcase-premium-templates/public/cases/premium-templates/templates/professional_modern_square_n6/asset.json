@@ -1,0 +1,15 @@
+{
+    "id": "professional_modern_square_n6",
+    "label": {
+      "en": "Wild Workshop"
+    },
+    "tags": {
+      "en": ["workshop", "sign up", "youth", "education"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_modern_square_n6/design.zip",
+      "thumbUri": "{{base_uri}}/professional_modern_square_n6/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

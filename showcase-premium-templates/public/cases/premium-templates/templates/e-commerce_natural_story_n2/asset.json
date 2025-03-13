@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_natural_story_n2",
+    "label": {
+      "en": "Beauty Product Ad"
+    },
+    "tags": {
+      "en": ["product", "beauty", "sale", "online-store"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_natural_story_n2/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_natural_story_n2/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

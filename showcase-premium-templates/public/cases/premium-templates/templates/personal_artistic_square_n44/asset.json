@@ -1,0 +1,15 @@
+{
+    "id": "personal_artistic_square_n44",
+    "label": {
+      "en": "Motivational Watercolor"
+    },
+    "tags": {
+      "en": ["watercolor", "quote", "inspirational", "painting"]
+    },
+    "groups": ["personal"],
+    "meta": {
+      "uri": "{{base_uri}}/personal_artistic_square_n44/design.zip",
+      "thumbUri": "{{base_uri}}/personal_artistic_square_n44/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

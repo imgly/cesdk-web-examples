@@ -1,0 +1,15 @@
+{
+  "id": "event_natural_square_r42",
+  "label": {
+    "en": "Book Club Event"
+  },
+  "tags": {
+    "en": ["event", "books", "natural", "meetup"]
+  },
+  "groups": ["event"],
+  "meta": {
+    "uri": "{{base_uri}}/event_natural_square_r42/design.zip",
+    "thumbUri": "{{base_uri}}/event_natural_square_r42/thumbnail.png",
+    "mimeType": "scene/zip"
+  }
+}

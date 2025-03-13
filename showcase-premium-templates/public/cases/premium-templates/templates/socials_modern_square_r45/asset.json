@@ -1,0 +1,15 @@
+{
+    "id": "socials_modern_square_r45",
+    "label": {
+      "en": "Fitness Studio Announcement"
+    },
+    "tags": {
+      "en": ["social-media", "post", "business", "modern", "announcement"]
+    },
+    "groups": ["socials"],
+    "meta": {
+      "uri": "{{base_uri}}/socials_modern_square_r45/design.zip",
+      "thumbUri": "{{base_uri}}/socials_modern_square_r45/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

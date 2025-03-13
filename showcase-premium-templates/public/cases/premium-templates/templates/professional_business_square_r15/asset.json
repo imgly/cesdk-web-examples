@@ -1,0 +1,15 @@
+{
+    "id": "professional_business_square_r15",
+    "label": {
+      "en": "Project Proposal Business"
+    },
+    "tags": {
+      "en": ["project-proposal", "professional", "business", "corporate"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_business_square_r15/design.zip",
+      "thumbUri": "{{base_uri}}/professional_business_square_r15/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

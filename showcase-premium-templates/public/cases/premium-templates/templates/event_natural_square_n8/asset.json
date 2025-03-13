@@ -1,0 +1,15 @@
+{
+    "id": "event_natural_square_n8",
+    "label": {
+      "en": "Fall Event"
+    },
+    "tags": {
+      "en": ["fall", "autumn", "event", "invitation"]
+    },
+    "groups": ["event"],
+    "meta": {
+      "uri": "{{base_uri}}/event_natural_square_n8/design.zip",
+      "thumbUri": "{{base_uri}}/event_natural_square_n8/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

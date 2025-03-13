@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_artistic_story_n3",
+    "label": {
+      "en": "Delivery Promo"
+    },
+    "tags": {
+      "en": ["food", "delivery", "promo", "doodles"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_artistic_story_n/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_artistic_story_n/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

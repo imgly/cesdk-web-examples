@@ -1,0 +1,15 @@
+{
+    "id": "professional_business_square_r13",
+    "label": {
+      "en": "Hiring Art Director & Storyteller"
+    },
+    "tags": {
+      "en": ["hiring", "professional", "business", "art-director", "storyteller", "career"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_business_square_r13/design.zip",
+      "thumbUri": "{{base_uri}}/professional_business_square_r13/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

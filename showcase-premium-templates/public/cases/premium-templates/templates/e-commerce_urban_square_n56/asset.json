@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_urban_square_n56",
+    "label": {
+      "en": "Cozy Fashion Sale"
+    },
+    "tags": {
+      "en": ["fashion", "product", "modern", "online-store"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_urban_square_n56/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_urban_square_n56/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

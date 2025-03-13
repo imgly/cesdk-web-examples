@@ -1,0 +1,15 @@
+{
+    "id": "socials_modern_story_r26",
+    "label": {
+      "en": "Modern Social Story"
+    },
+    "tags": {
+      "en": ["social-media", "post", "modern", "people", "updates"]
+    },
+    "groups": ["socials"],
+    "meta": {
+      "uri": "{{base_uri}}/socials_modern_story_r26/design.zip",
+      "thumbUri": "{{base_uri}}/socials_modern_story_r26/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

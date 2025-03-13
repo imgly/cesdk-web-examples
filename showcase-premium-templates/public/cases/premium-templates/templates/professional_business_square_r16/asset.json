@@ -1,0 +1,15 @@
+{
+    "id": "professional_business_square_r16",
+    "label": {
+      "en": "Business Report"
+    },
+    "tags": {
+      "en": ["business-report", "professional", "business", "growth", "project", "corporate"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_business_square_r16/design.zip",
+      "thumbUri": "{{base_uri}}/professional_business_square_r16/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

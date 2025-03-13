@@ -1,0 +1,15 @@
+{
+    "id": "event_modern_square_n7",
+    "label": {
+      "en": "Brunch Promo"
+    },
+    "tags": {
+      "en": ["brunch", "restaurant", "dinner", "Ad"]
+    },
+    "groups": ["event"],
+    "meta": {
+      "uri": "{{base_uri}}/event_modern_square_n7/design.zip",
+      "thumbUri": "{{base_uri}}/event_modern_square_n7/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

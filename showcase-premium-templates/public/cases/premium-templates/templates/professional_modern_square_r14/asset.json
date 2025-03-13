@@ -1,0 +1,15 @@
+{
+    "id": "professional_modern_square_r14",
+    "label": {
+      "en": "Hiring Spokesperson"
+    },
+    "tags": {
+      "en": ["hiring", "professional", "modern", "spokesperson", "career"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_modern_square_r14/design.zip",
+      "thumbUri": "{{base_uri}}/professional_modern_square_r14/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

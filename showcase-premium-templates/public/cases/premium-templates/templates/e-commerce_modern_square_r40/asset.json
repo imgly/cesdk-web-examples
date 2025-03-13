@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_modern_square_r40",
+    "label": {
+      "en": "New Arrivals Modern Fashion Store"
+    },
+    "tags": {
+      "en": ["fashion", "product", "modern", "online-store", "new-arrivals"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_modern_square_r40/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_modern_square_r40/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

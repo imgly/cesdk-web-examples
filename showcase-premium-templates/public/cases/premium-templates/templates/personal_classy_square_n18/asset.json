@@ -1,0 +1,15 @@
+{
+    "id": "personal_classy_square_n18",
+    "label": {
+      "en": "Chic Inspiration"
+    },
+    "tags": {
+      "en": ["fashion", "quote", "inspiration", "black"]
+    },
+    "groups": ["personal"],
+    "meta": {
+      "uri": "{{base_uri}}/personal_classy_square_n18/design.zip",
+      "thumbUri": "{{base_uri}}/personal_classy_square_n18/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

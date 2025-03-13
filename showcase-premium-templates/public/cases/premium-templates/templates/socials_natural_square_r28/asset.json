@@ -1,0 +1,15 @@
+{
+    "id": "socials_natural_square_r28",
+    "label": {
+      "en": "Relaxation Tipps"
+    },
+    "tags": {
+      "en": ["social-media", "post", "natural", "tipps", "guide", "relaxation"]
+    },
+    "groups": ["socials"],
+    "meta": {
+      "uri": "{{base_uri}}/socials_natural_square_r28/design.zip",
+      "thumbUri": "{{base_uri}}/socials_natural_square_r28/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

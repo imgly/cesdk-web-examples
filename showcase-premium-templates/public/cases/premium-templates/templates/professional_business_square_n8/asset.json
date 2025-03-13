@@ -1,0 +1,15 @@
+{
+    "id": "professional_business_square_n8",
+    "label": {
+      "en": "Professional Quote"
+    },
+    "tags": {
+      "en": ["inspiration", "quote", "people", "mindful"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_business_square_n8/design.zip",
+      "thumbUri": "{{base_uri}}/professional_business_square_n8/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

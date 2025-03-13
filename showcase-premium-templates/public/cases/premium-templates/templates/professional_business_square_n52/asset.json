@@ -1,0 +1,15 @@
+{
+    "id": "professional_business_square_n52",
+    "label": {
+      "en": "Series Illustration"
+    },
+    "tags": {
+      "en": ["episode", "cartoon", "illustration", "series"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_business_square_n52/design.zip",
+      "thumbUri": "{{base_uri}}/professional_business_square_n52/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}
