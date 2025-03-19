@@ -4,7 +4,6 @@ import ErrorIcon from './icons/Error.svg';
 import CesdkIcon from './icons/Cesdk.svg';
 import ArrowIcon from './icons/Arrow.svg';
 import PsdFileIcon from './icons/PsdFile.svg';
-import { buildUrl } from '@/next-lib/paths';
 
 function DisclaimerSection() {
   return (
@@ -55,7 +54,10 @@ function DisclaimerSection() {
         </div>
         <div className={classes.description}>
           With the help of our{' '}
-          <a target="_blank" href={buildUrl('psd-template-import/web')}>
+          <a
+            target="_blank"
+            href="https://img.ly/showcases/cesdk/psd-template-import/web"
+          >
             PSD Importer
           </a>{' '}
           you <br />
