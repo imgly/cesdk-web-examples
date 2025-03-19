@@ -1,13 +1,12 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.47.0-rc.3/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.47.0-rc.3/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  // highlight-setup
   document.getElementById('cesdk_container').append(engine.element);
 
   const scene = engine.scene.create();
@@ -28,9 +27,7 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setHeight(block, 100);
 
   const fill = engine.block.getFill(block);
-  // highlight-setup
 
-  // highlight-create-colors
   const rgbaBlue = { r: 0.0, g: 0.0, b: 1.0, a: 1.0 };
   const cmykRed = { c: 0.0, m: 1.0, y: 1.0, k: 0.0, tint: 1.0 };
   const cmykPartialRed = { c: 0.0, m: 1.0, y: 1.0, k: 0.0, tint: 0.5 };
@@ -47,17 +44,13 @@ CreativeEngine.init(config).then(async (engine) => {
     tint: 0.3,
     externalReference: ''
   };
-  // highlight-create-colors
 
-  // highlight-apply-colors
   engine.block.setColor(fill, `fill/color/value`, rgbaBlue);
   engine.block.setColor(fill, `fill/color/value`, cmykRed);
   engine.block.setColor(block, `stroke/color`, cmykPartialRed);
   engine.block.setColor(fill, `fill/color/value`, spotPinkFlamingo);
   engine.block.setColor(block, `dropShadow/color`, spotPartialYellow);
-  // highlight-apply-colors
 
-  // highlight-convert-color
   const cmykBlueConverted = engine.editor.convertColorToColorSpace(
     rgbaBlue,
     'CMYK'
@@ -66,17 +59,10 @@ CreativeEngine.init(config).then(async (engine) => {
     spotPinkFlamingo,
     'sRGB'
   );
-  // highlight-convert-color
 
-  // highlight-find-spot
   engine.editor.findAllSpotColors(); // ['Crayola-Pink-Flamingo', 'Yellow']
-  // highlight-find-spot
 
-  // highlight-change-spot
   engine.editor.setSpotColorCMYK('Yellow', 0.2, 0.0, 1.0, 0.0);
-  // highlight-change-spot
 
-  // highlight-undefine-spot
   engine.editor.removeSpotColor('Yellow');
-  // highlight-undefine-spot
 });

@@ -1236,28 +1236,28 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.33.5.tgz#56f00962ff0c4e0eb93d34a047d29fa995e3e342"
   integrity sha512-MpY/o8/8kj+EcnxwvrP4aTJSWw/aZ7JIGR4aBeZkZw5B7/Jn+tY9/VNwtcoGmdT7GfggGIU4kygOMSbYnOrAbg==
 
-"@imgly/background-removal@1.6.0", "@imgly/background-removal@^1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@imgly/background-removal/-/background-removal-1.6.0.tgz#58b808af03c450efb9354b9b3cc98432a1e60029"
-  integrity sha512-nmqOBDE9dQpDEJg73XrKNUoWugyyDHEVh+U1akjYdUW85ILh9UilvKu/kdv1MI822rKExwgLNuVLVulzAzgZJg==
+"@imgly/background-removal@1.5.8", "@imgly/background-removal@^1.5.8":
+  version "1.5.8"
+  resolved "https://registry.npmjs.org/@imgly/background-removal/-/background-removal-1.5.8.tgz"
+  integrity sha512-a30whecOeGGH5Xbg2m4QdVX2nq9HvAcMWyBqGi74DH/ag9MRlpsNvI3uYxC1IP0+Hr/XIQwg1iJITXEezguxLw==
   dependencies:
     lodash-es "^4.17.21"
     ndarray "~1.0.0"
     zod "^3.23.8"
 
-"@imgly/idml-importer@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@imgly/idml-importer/-/idml-importer-1.1.1.tgz#4e0f5d9ee86a07dfe62f1ffd83f201ac91363c4a"
-  integrity sha512-uZfy11w8c4GhObCCmBu/g9dH7Gengdidb4ker0TTV1jBuKpxr98wmYZ7Hth658KiQkoMHm7KFGipOhhp653kWQ==
+"@imgly/idml-importer@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/@imgly/idml-importer/-/idml-importer-1.0.8.tgz"
+  integrity sha512-l1h+nzFVzSA8ZhFxitD3tHmV3kvhIf2LtFqsblDO/H+lVimrWmdQ7u8JKtWmj7EuwuN8T2q8Upwo+H7jnRpQhw==
   dependencies:
     jszip "^3.10.1"
 
-"@imgly/plugin-background-removal-web@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@imgly/plugin-background-removal-web/-/plugin-background-removal-web-1.1.0.tgz#2a1ed39aa8d9383c365205e13f56283a55b87c69"
-  integrity sha512-u1GtygZOxWOIe1BoHMuSlZbRzIAvgK+IBv1M6+oSdPeALo/sX14Z3JzJAOeJJoNKUkh8qWaZQWK985EUhG1fcQ==
+"@imgly/plugin-background-removal-web@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/@imgly/plugin-background-removal-web/-/plugin-background-removal-web-1.0.3.tgz"
+  integrity sha512-mcEY//EdjXhG1nVh6INL7vKRgYjGhTGig+uj/aKNrduXym2NkSiMBWvGuienvywLVyUPpZ5pR/3v0QvPQlDdMw==
   dependencies:
-    "@imgly/background-removal" "1.6.0"
+    "@imgly/background-removal" "1.5.8"
 
 "@imgly/plugin-cutout-library-web@^1.0.5":
   version "1.0.5"
@@ -1278,10 +1278,10 @@
   dependencies:
     "@imgly/vectorizer" "1.0.0"
 
-"@imgly/psd-importer@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@imgly/psd-importer/-/psd-importer-0.0.6.tgz#69aacb91e8b322fd8428507d5a66658b6b5c5c2a"
-  integrity sha512-LqgJCJPJ650VXEMgHEC1dl9HmiP2xnFmHswCNfOqz2ldEiE2L2b9L03JsBjal9aYql0KmXu1/NJmmB2z3Y2c0Q==
+"@imgly/psd-importer@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.npmjs.org/@imgly/psd-importer/-/psd-importer-0.0.5.tgz"
+  integrity sha512-1c5yLXvdGJdOeD5cbJrzTRU1bG4QunNCO8LdegypPhOx2BtLy3likeWcSE/H9K49hlE3TaeJ9VabA+5bTnx0yQ==
   dependencies:
     "@webtoon/psd" "^0.4.0"
     opentype.js "^1.3.4"
@@ -2829,10 +2829,10 @@ flat-cache@^3.0.4:
     keyv "^4.5.3"
     rimraf "^3.0.2"
 
-flatbuffers@^25.1.24:
-  version "25.2.10"
-  resolved "https://registry.yarnpkg.com/flatbuffers/-/flatbuffers-25.2.10.tgz#308b750545f62db670ca4c9d7dbc66161420a95e"
-  integrity sha512-7JlN9ZvLDG1McO3kbX0k4v+SUAg48L1rIwEvN6ZQl/eCtgJz9UylTMzE9wrmYrcorgxm3CX/3T/w5VAub99UUw==
+flatbuffers@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.npmjs.org/flatbuffers/-/flatbuffers-1.12.0.tgz"
+  integrity sha512-c7CZADjRcl6j0PlvFy0ZqXQ67qSEZfrVPynmnL+2zPc+NtMvrF8Y0QceMo7QqnSPc7+uWjUIAbvCQ5WIKlMVdQ==
 
 flatted@^3.2.9:
   version "3.3.1"
@@ -3711,20 +3711,20 @@ once@^1.3.0:
   dependencies:
     wrappy "1"
 
-onnxruntime-common@1.21.0-dev.20250206-d981b153d3:
-  version "1.21.0-dev.20250206-d981b153d3"
-  resolved "https://registry.yarnpkg.com/onnxruntime-common/-/onnxruntime-common-1.21.0-dev.20250206-d981b153d3.tgz#b9d782d2228f2d2d6abe8063076ae1543cc04463"
-  integrity sha512-TwaE51xV9q2y8pM61q73rbywJnusw9ivTEHAJ39GVWNZqxCoDBpe/tQkh/w9S+o/g+zS7YeeL0I/2mEWd+dgyA==
+onnxruntime-common@1.21.0-dev.20241212-1f88284f96:
+  version "1.21.0-dev.20241212-1f88284f96"
+  resolved "https://registry.npmjs.org/onnxruntime-common/-/onnxruntime-common-1.21.0-dev.20241212-1f88284f96.tgz"
+  integrity sha512-zD6mQJfgeezbNKV2fiN/ZqB+LKdixJ7sKc5vu6PdqMU+bZk581g5XqrhoYNwe/RDJdFGQSMKK9+gUg4Mep+jKw==
 
-onnxruntime-web@1.21.0-dev.20250206-d981b153d3:
-  version "1.21.0-dev.20250206-d981b153d3"
-  resolved "https://registry.yarnpkg.com/onnxruntime-web/-/onnxruntime-web-1.21.0-dev.20250206-d981b153d3.tgz#b87b374bdef16c3322e031da1f1ad5ec39b760ce"
-  integrity sha512-esDVQdRic6J44VBMFLumYvcGfioMh80ceLmzF1yheJyuLKq/Th8VT2aj42XWQst+2bcWnAhw4IKmRQaqzU8ugg==
+onnxruntime-web@1.21.0-dev.20250114-228dd16893:
+  version "1.21.0-dev.20250114-228dd16893"
+  resolved "https://registry.npmjs.org/onnxruntime-web/-/onnxruntime-web-1.21.0-dev.20250114-228dd16893.tgz"
+  integrity sha512-fUnedxS63NYwNkQJlvdD55jVcOtyM+Qzw1SGt9Pj3jZVaIwR4mltx/5C0yvwdue44BTSV7M5Q0qnhL6/30ewqA==
   dependencies:
-    flatbuffers "^25.1.24"
+    flatbuffers "^1.12.0"
     guid-typescript "^1.0.9"
     long "^5.2.3"
-    onnxruntime-common "1.21.0-dev.20250206-d981b153d3"
+    onnxruntime-common "1.21.0-dev.20241212-1f88284f96"
     platform "^1.3.6"
     protobufjs "^7.2.4"
 

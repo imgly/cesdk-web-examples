@@ -1,12 +1,9 @@
 import './index.css';
 
-// highlight-import
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-// highlight-import
 
 import { useEffect, useRef, useState } from 'react';
 
-// highlight-component
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
@@ -15,11 +12,8 @@ const config = {
 };
 
 export default function CreativeEditorSDKComponent() {
-  // highlight-state
   const cesdk_container = useRef(null);
   const [cesdk, setCesdk] = useState(null);
-  // highlight-state
-  // highlight-effect
   useEffect(() => {
     if (!cesdk_container.current) return;
 
@@ -53,12 +47,9 @@ export default function CreativeEditorSDKComponent() {
   }, [cesdk_container]);
   //highlight-effect
   return (
-    // highlight-container
     <div
       ref={cesdk_container}
       style={{ width: '100vw', height: '100vh' }}
     ></div>
-    // highlight-container
   );
 }
-// highlight-component
