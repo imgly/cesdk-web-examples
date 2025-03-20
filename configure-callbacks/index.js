@@ -1,12 +1,10 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.47.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/assets',
-  // highlight-callbacks
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.47.0/assets',
   callbacks: {
-    // highlight-onunsupportedbrowser
     onUnsupportedBrowser: () => {
       /* This is the default window alert which will be shown in case an unsupported
        * browser tries to run CE.SDK */
@@ -14,37 +12,25 @@ const config = {
         'Your current browser is not supported.\nPlease use one of the following:\n\n- Mozilla Firefox 115 or newer\n- Apple Safari 15.6 or newer\n- Microsoft Edge 114 or newer\n- Google Chrome 114 or newer'
       );
     },
-    // highlight-onunsupportedbrowser
-    // highlight-onback
     onBack: () => {
       window.alert('Back callback!');
     },
-    // highlight-onback
-    // highlight-onclose
     onClose: () => {
       window.alert('Close callback!');
     },
-    // highlight-onclose
-    // highlight-onsave
     onSave: (scene) => {
       window.alert('Save callback!');
       console.info(scene);
     },
-    // highlight-ondownload
     onDownload: (scene) => {
       window.alert('Download callback!');
       console.info(scene);
     },
-    // highlight-ondownload
-    // highlight-onsave
-    // highlight-onload
     onLoad: () => {
       window.alert('Load callback!');
       const scene = '...'; // Fill with sene
       return Promise.resolve(scene);
     },
-    // highlight-onload
-    // highlight-onexport
     onExport: (blobs, options) => {
       window.alert('Export callback!');
       console.info(options.mimeType);
@@ -52,8 +38,6 @@ const config = {
       console.info(options.pages);
       return Promise.resolve();
     },
-    // highlight-onexport
-    // highlight-onupload
     onUpload: (file, onProgress) => {
       window.alert('Upload callback!');
       const newImage = {
@@ -65,12 +49,9 @@ const config = {
       };
       return Promise.resolve(newImage);
     }
-    // highlight-onupload
   },
-  // highlight-callbacks
   ui: {
     elements: {
-      // highlight-navigation
       navigation: {
         action: {
           close: true,
@@ -81,7 +62,6 @@ const config = {
           export: true
         }
       }
-      // highlight-navigation
     }
   }
 };
