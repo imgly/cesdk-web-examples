@@ -108,9 +108,6 @@ export const CESDKModal = memo(({ asset, onClose }) => {
           // Clean up the dock
           instance.ui.setDockOrder([
             {
-              id: 'ly.img.spacer'
-            },
-            {
               id: 'ly.img.assetLibrary.dock',
               key: 'premium-templates',
               label: 'libraries.ly.img.templates.premium.label',
@@ -127,10 +124,7 @@ export const CESDKModal = memo(({ asset, onClose }) => {
                   'ly.img.vectorpath',
                   'ly.img.sticker'
                 ].includes(item.key)
-              ),
-            {
-              id: 'ly.img.spacer'
-            }
+              )
           ]);
           instance.i18n.setTranslations({
             en: {
