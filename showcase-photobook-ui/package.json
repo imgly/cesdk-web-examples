@@ -12,7 +12,7 @@
     "@cesdk/cesdk-js": "1.47.0",
     "@cesdk/engine": "1.47.0",
     "@google/model-viewer": "3.5.0",
-    "@imgly/idml-importer": "^1.1.1",
+    "@imgly/idml-importer": "^1.1.6",
     "@imgly/plugin-background-removal-web": "^1.1.0",
     "@imgly/plugin-cutout-library-web": "^1.0.5",
     "@imgly/plugin-qr-code-web": "^0.1.2",
