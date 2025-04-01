@@ -1,22 +1,21 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
-import { Podcast } from './PodcastSearchSection';
-import { GeneratedAsset } from './GeneratedAssetsSection';
+import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
+import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
 import CreativeEngine, {
   Configuration,
   MimeType,
   RGBColor,
-  supportsVideo,
-  supportsVideoExport,
+  supportsVideoExport
 } from '@cesdk/engine';
-import { hexToRgba } from '../convert';
+import classNames from 'classnames';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { SIZES } from '../CaseComponent';
+import { hexToRgba } from '../convert';
+import WarningIcon from '../icons/AlertTriangle.svg';
 import { caseAssetPath } from '../util';
 import classes from './CustomizationSection.module.css';
-import classNames from 'classnames';
-import { ColorPicker } from '@/components/ui/ColorPicker/ColorPicker';
-import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
-import WarningIcon from '../icons/AlertTriangle.svg';
+import { GeneratedAsset } from './GeneratedAssetsSection';
+import { Podcast } from './PodcastSearchSection';
 
 interface CustomizationSectionProps {
   podcastProp: Podcast;
@@ -69,9 +68,8 @@ function CustomizationSection({
       engine.addDemoAssetSources({ sceneMode: 'Design' });
       engineRef.current = engine;
       async function getSupportsVideoExport() {
-        const videoExportSupported = await supportsVideoExport();
-        setVideoSupported(
-          videoExportSupported && supportsVideo())
+        const supported = await supportsVideoExport();
+        setVideoSupported(supported);
       }
       getSupportsVideoExport();
       loadPodcastAssets();
@@ -404,9 +402,7 @@ function CustomizationSection({
               <span>
                 <WarningIcon />
               </span>
-              <p>
-                Video is only supported in Chromium-based browsers.
-              </p>
+              <p>Video is only supported in Chromium-based browsers.</p>
             </div>
           )}
         </div>
