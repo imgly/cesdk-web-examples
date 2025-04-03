@@ -1,0 +1,228 @@
+/* esbuild-sass-plugin:css-chunk:../../packages/ubq-uikit-web/src/themes/index.scss */
+.ubq-dark {
+  --ubq-canvas: hsl(207 18% 10%);
+  --ubq-elevation-1: hsl(207 17% 12%);
+  --ubq-elevation-2: hsl(210 15% 15%);
+  --ubq-elevation-3: hsl(208 14% 18%);
+  --ubq-foreground-accent: hsl(208 14% 18%);
+  --ubq-foreground-active: hsl(221 100% 80%);
+  --ubq-foreground-default: hsl(200 11% 95%);
+  --ubq-foreground-info: hsl(200 11% 95% / 0.5);
+  --ubq-foreground-light: hsl(200 11% 95% / 0.7);
+  --ubq-foreground-danger-default: hsl(208 14% 18%);
+  --ubq-foreground-notice-default: hsl(208 14% 18%);
+  --ubq-interactive-default: hsl(208 12% 28%);
+  --ubq-interactive-hover: hsl(207 10% 34%);
+  --ubq-interactive-pressed: hsl(208 13% 23%);
+  --ubq-interactive-selected: hsl(208 12% 28%);
+  --ubq-interactive-accent-default: hsl(221 100% 80%);
+  --ubq-interactive-accent-hover: hsl(219 100% 88%);
+  --ubq-interactive-accent-pressed: hsl(223 100% 76%);
+  --ubq-interactive-active-default: hsl(221 100% 80%);
+  --ubq-interactive-active-hover: hsl(219 100% 88%);
+  --ubq-interactive-active-pressed: hsl(223 100% 76%);
+  --ubq-interactive-danger-default: hsl(346 98% 81%);
+  --ubq-interactive-danger-hover: hsl(347 100% 88%);
+  --ubq-interactive-danger-pressed: hsl(344 89% 75%);
+  --ubq-interactive-group-default: hsl(0 0% 0% / 0);
+  --ubq-interactive-group-hover: hsl(208 14% 18%);
+  --ubq-interactive-group-active-default: hsl(208 13% 23%);
+  --ubq-interactive-group-active-hover: hsl(208 12% 28%);
+  --ubq-interactive-template-default: hsl(273 100% 82%);
+  --ubq-interactive-template-hover: hsl(273 100% 89%);
+  --ubq-interactive-template-pressed: hsl(273 100% 77%);
+  --ubq-input-default: hsl(207 18% 10%);
+  --ubq-input-hover: hsl(207 17% 12%);
+  --ubq-progress: hsl(206 8% 62%);
+  --ubq-border-default: hsl(0 0% 100% / 0.16);
+  --ubq-stroke-contrast-1: hsl(200 11% 95% / 0.12);
+  --ubq-stroke-contrast-2: hsl(200 11% 95% / 0.25);
+  --ubq-stroke-contrast-3: hsl(200 11% 95% / 0.9);
+  --ubq-focus-default: hsl(221 100% 80%);
+  --ubq-focus-outline: hsl(221 100% 80% / 0.35);
+  --ubq-overlay: hsl(207 18% 10% / 0.8);
+  --ubq-notice-error: hsl(346 98% 81%);
+  --ubq-notice-info: hsl(205 9% 75%);
+  --ubq-notice-success: hsl(158 42% 67%);
+  --ubq-notice-warning: hsl(37 61% 67%);
+  --ubq-effect-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.24), 0px 0px 0px 0.5px hsla(0, 0%, 0%, 0.12);
+  --ubq-effect-focus:
+    0px 1px 2px 0px hsla(0, 0%, 0%, 0.24),
+    0px 0px 0px 0.5px hsla(0, 0%, 0%, 0.12),
+    0px 0px 0px 2px var(--ubq-elevation-2),
+    0px 0px 0px 3px var(--ubq-focus-default),
+    0px 0px 0px 7px var(--ubq-focus-outline);
+}
+.ubq-light {
+  --ubq-canvas: hsl(210 9% 87%);
+  --ubq-elevation-1: hsl(204 9% 90%);
+  --ubq-elevation-2: hsl(210 10% 92%);
+  --ubq-elevation-3: hsl(200 11% 95%);
+  --ubq-foreground-accent: hsl(200 11% 95%);
+  --ubq-foreground-active: hsl(228 100% 65%);
+  --ubq-foreground-default: hsl(208 14% 18%);
+  --ubq-foreground-info: hsl(208 14% 18% / 0.5);
+  --ubq-foreground-light: hsl(208 14% 18% / 0.7);
+  --ubq-foreground-danger-default: hsl(200 11% 95%);
+  --ubq-foreground-notice-default: hsl(200 11% 95%);
+  --ubq-interactive-default: hsl(0 0% 100%);
+  --ubq-interactive-hover: hsl(210 10% 85%);
+  --ubq-interactive-pressed: hsl(205 9% 75%);
+  --ubq-interactive-selected: hsl(0 0% 100%);
+  --ubq-interactive-accent-default: hsl(228 100% 65%);
+  --ubq-interactive-accent-hover: hsl(229 88% 60%);
+  --ubq-interactive-accent-pressed: hsl(231 76% 54%);
+  --ubq-interactive-active-default: hsl(228 100% 65%);
+  --ubq-interactive-active-hover: hsl(229 88% 60%);
+  --ubq-interactive-active-pressed: hsl(231 76% 54%);
+  --ubq-interactive-danger-default: hsl(340 66% 54%);
+  --ubq-interactive-danger-hover: hsl(337 69% 46%);
+  --ubq-interactive-danger-pressed: hsl(332 100% 36%);
+  --ubq-interactive-group-default: hsl(0 0% 100% / 0);
+  --ubq-interactive-group-hover: hsl(210 8% 88%);
+  --ubq-interactive-group-active-default: hsl(210 8% 85%);
+  --ubq-interactive-group-active-hover: hsl(210 8% 82%);
+  --ubq-interactive-template-default: hsl(273 91% 61%);
+  --ubq-interactive-template-hover: hsl(275 81% 53%);
+  --ubq-interactive-template-pressed: hsl(278 100% 42%);
+  --ubq-input-default: hsl(210 9% 87%);
+  --ubq-input-hover: hsl(210 10% 85%);
+  --ubq-progress: hsl(206 8% 62%);
+  --ubq-border-default: hsl(0 0% 100% / 0.4);
+  --ubq-stroke-contrast-1: hsl(208 14% 18% / 0.12);
+  --ubq-stroke-contrast-2: hsl(208 14% 18% / 0.25);
+  --ubq-stroke-contrast-3: hsl(208 14% 18% / 0.9);
+  --ubq-focus-default: hsl(231 76% 54%);
+  --ubq-focus-outline: hsl(231 76% 54% / 0.35);
+  --ubq-overlay: hsl(210 9% 87% / 0.8);
+  --ubq-notice-error: hsl(340 66% 54%);
+  --ubq-notice-info: hsl(207 7% 51%);
+  --ubq-notice-success: hsl(165 100% 30%);
+  --ubq-notice-warning: hsl(39 100% 34%);
+  --ubq-effect-shadow: 0px 1px 2px 0px hsla(207, 18%, 10%, 0.16), 0px 0px 0px 0.5px hsla(207, 18%, 10%, 0.08);
+  --ubq-effect-focus:
+    0px 1px 2px 0px hsla(207, 18%, 10%, 0.16),
+    0px 0px 0px 0.5px hsla(207, 18%, 10%, 0.08),
+    0px 0px 0px 2px var(--ubq-elevation-2),
+    0px 0px 0px 3px var(--ubq-focus-default),
+    0px 0px 0px 7px var(--ubq-focus-outline);
+}
+.ubq-static {
+  --ubq-static-selection-frame: hsl(230, 100%, 60%);
+  --ubq-static-contrast-white: hsl(0, 0%, 100%);
+  --ubq-static-contrast-black: hsl(0, 0%, 0%);
+  --ubq-static-snapping: hsl(338, 100%, 50%);
+  --ubq-static-bleed: hsl(334, 73%, 43%);
+  --ubq-static-text-variable: hsl(274, 97%, 60%);
+  --ubq-static-card-label-background:
+    linear-gradient(
+      
+      180deg,
+      rgba(0, 0, 0, 0) 14.46%,
+      rgba(0, 0, 0, 0.6) 100% );
+  --ubq-static-card-background:
+    linear-gradient(
+      
+      180deg,
+      hsla(0, 0%, 100%, 0.08),
+      hsla(0, 0%, 0%, 0.08) ),
+    hsla(0, 0%, 67%, 0.16);
+}
+.ubq-normal {
+  --ubq-typography-headline-l-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-headline-l-size: 16px;
+  --ubq-typography-headline-l-weight: 600;
+  --ubq-typography-headline-l-letter_spacing: 0.01em;
+  --ubq-typography-headline-l-line_height: 20px;
+  --ubq-typography-headline-m-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-headline-m-size: 12px;
+  --ubq-typography-headline-m-weight: 600;
+  --ubq-typography-headline-m-letter_spacing: 0.03em;
+  --ubq-typography-headline-m-line_height: 16px;
+  --ubq-typography-label-m-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-label-m-size: 12px;
+  --ubq-typography-label-m-weight: normal;
+  --ubq-typography-label-m-letter_spacing: 0.02em;
+  --ubq-typography-label-m-line_height: 16px;
+  --ubq-typography-label-s-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-label-s-size: 10px;
+  --ubq-typography-label-s-weight: normal;
+  --ubq-typography-label-s-letter_spacing: 0.02em;
+  --ubq-typography-label-s-line_height: 14px;
+  --ubq-typography-body-m-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-body-m-size: 12px;
+  --ubq-typography-body-m-weight: normal;
+  --ubq-typography-body-m-letter_spacing: 0.02em;
+  --ubq-typography-body-m-line_height: 18px;
+  --ubq-typography-input-m-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-input-m-size: 12px;
+  --ubq-typography-input-m-weight: normal;
+  --ubq-typography-input-m-letter_spacing: 0.02em;
+  --ubq-typography-input-m-line_height: 16px;
+  --ubq-typography-button-m-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-button-m-size: 12px;
+  --ubq-typography-button-m-weight: normal;
+  --ubq-typography-button-m-letter_spacing: 0.02em;
+  --ubq-typography-button-m-line_height: 16px;
+  --ubq-scale-base: 4px;
+  --ubq-margin-base: 4px;
+  --ubq-margin-xs: 4px;
+  --ubq-margin-s: 8px;
+  --ubq-margin-m: 12px;
+  --ubq-margin-l: 16px;
+  --ubq-margin-xl: 24px;
+  --ubq-border_radius-base: 4px;
+  --ubq-border_radius-xs: 2px;
+  --ubq-border_radius-s: 4px;
+  --ubq-border_radius-m: 8px;
+  --ubq-border_radius-l: 12px;
+}
+.ubq-large {
+  --ubq-typography-headline-l-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-headline-l-size: 20px;
+  --ubq-typography-headline-l-weight: 600;
+  --ubq-typography-headline-l-letter_spacing: 0.01em;
+  --ubq-typography-headline-l-line_height: 25px;
+  --ubq-typography-headline-m-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-headline-m-size: 15px;
+  --ubq-typography-headline-m-weight: 600;
+  --ubq-typography-headline-m-letter_spacing: 0.03em;
+  --ubq-typography-headline-m-line_height: 20px;
+  --ubq-typography-label-m-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-label-m-size: 15px;
+  --ubq-typography-label-m-weight: normal;
+  --ubq-typography-label-m-letter_spacing: 0.02em;
+  --ubq-typography-label-m-line_height: 20px;
+  --ubq-typography-label-s-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-label-s-size: 12.5px;
+  --ubq-typography-label-s-weight: normal;
+  --ubq-typography-label-s-letter_spacing: 0.02em;
+  --ubq-typography-label-s-line_height: 17.5px;
+  --ubq-typography-body-m-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-body-m-size: 15px;
+  --ubq-typography-body-m-weight: normal;
+  --ubq-typography-body-m-letter_spacing: 0.02em;
+  --ubq-typography-body-m-line_height: 22.5px;
+  --ubq-typography-input-m-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-input-m-size: 15px;
+  --ubq-typography-input-m-weight: normal;
+  --ubq-typography-input-m-letter_spacing: 0.02em;
+  --ubq-typography-input-m-line_height: 20px;
+  --ubq-typography-button-m-font_family: var( --ubq-typography-font_family, "Inter", sans-serif );
+  --ubq-typography-button-m-size: 15px;
+  --ubq-typography-button-m-weight: normal;
+  --ubq-typography-button-m-letter_spacing: 0.02em;
+  --ubq-typography-button-m-line_height: 20px;
+  --ubq-scale-base: 5px;
+  --ubq-margin-base: 5px;
+  --ubq-margin-xs: 5px;
+  --ubq-margin-s: 10px;
+  --ubq-margin-m: 15px;
+  --ubq-margin-l: 20px;
+  --ubq-margin-xl: 30px;
+  --ubq-border_radius-base: 5px;
+  --ubq-border_radius-xs: 2.5px;
+  --ubq-border_radius-s: 5px;
+  --ubq-border_radius-m: 10px;
+  --ubq-border_radius-l: 15px;
+}
