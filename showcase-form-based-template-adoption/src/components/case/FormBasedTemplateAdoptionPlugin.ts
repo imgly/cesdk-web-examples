@@ -142,7 +142,6 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
                     'fill/image/sourceSet'
                   )?.[0]?.uri ??
                   engine.block.getString(fillBlock, 'fill/image/imageFileURI');
-                if (!uri) return;
 
                 const uploadState = state(`imageUpload-${block}`, false);
 
@@ -164,10 +163,14 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
                         const [file] = files;
                         if (file != null) {
                           const url = URL.createObjectURL(file);
-
                           blocks.map((blockToChange) => {
                             const fillToChange =
                               engine.block.getFill(blockToChange);
+                            engine.block.setString(
+                              fillToChange,
+                              'fill/image/imageFileURI',
+                              ''
+                            );
                             engine.block.setSourceSet(
                               fillToChange,
                               'fill/image/sourceSet',
