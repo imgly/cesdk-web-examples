@@ -6,7 +6,9 @@ import {
 } from '../SlideUpPanel/SlideUpPanel';
 
 const ChangeShapeColorSecondary = () => {
-  const [fillColor, setFillColor] = useSelectedProperty('fill/solid/color');
+  const [fillColor, setFillColor] = useSelectedProperty('fill/solid/color', {
+    shouldAddUndoStep: false
+  });
 
   return (
     <>
