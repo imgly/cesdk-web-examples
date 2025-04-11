@@ -1045,17 +1045,17 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@cesdk/cesdk-js@1.48.0":
-  version "1.48.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.48.0.tgz#08dd662dcb291402830d939d1b08d5a3e3935d14"
-  integrity sha512-itYi1QmguPBYxsglfpKJmMMaRpYiptS3ANjUwKuihDfZZwoUFkx2tJrli2mwnPw8J0ThoIgxGxZhsIpI9v5BGw==
+"@cesdk/cesdk-js@1.47.0":
+  version "1.47.0"
+  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.47.0.tgz#11da093379ba88a2edfc2724a814fdea63fcaca7"
+  integrity sha512-GfRlFTLJQwJ/WZgnxQbNYsuM9uMLcuvlAFHZKSWKB/mltBXRDWKeYLY3SPNkU1QBbMNYbF8fjH+woQYfyZ2xgg==
   dependencies:
-    "@cesdk/engine" "1.48.0"
+    "@cesdk/engine" "1.47.0"
 
-"@cesdk/engine@1.48.0":
-  version "1.48.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.48.0.tgz#60fc7f6fb38fad96f677c5c105655884dad5aac6"
-  integrity sha512-J+hhcgIXo1QHaSJYrz/7RARN83HpLv6ykMp/XAt7DL1sH2ZttsIsh2jt6TVa4E7MRCJgeVkebx90M141MIdEYg==
+"@cesdk/engine@1.47.0":
+  version "1.47.0"
+  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.47.0.tgz#af7527872117d499e168058a4a60cb2a385b5847"
+  integrity sha512-nKGiWwRx21KA/4LkDy2g66ynRtx7J/Oj3+o/JGoyiO47SMse5jT/X2z4BHfycC7qNA8GQzRbRr4rYragxOt5jA==
 
 "@emnapi/runtime@^1.2.0":
   version "1.3.1"
@@ -1245,10 +1245,10 @@
     ndarray "~1.0.0"
     zod "^3.23.8"
 
-"@imgly/idml-importer@^1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@imgly/idml-importer/-/idml-importer-1.1.6.tgz#790daf6633faea7e3c8fe6aa256a3ca26ae9dae7"
-  integrity sha512-t67yHEZT7r6qkjRMbaprJi5Tw1Aa/Wsfi+vLICyj/SI5lafDNQnNLYSNkfzqqjoZl1E5zxdA54ujYlBvriJgZg==
+"@imgly/idml-importer@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@imgly/idml-importer/-/idml-importer-1.1.1.tgz#4e0f5d9ee86a07dfe62f1ffd83f201ac91363c4a"
+  integrity sha512-uZfy11w8c4GhObCCmBu/g9dH7Gengdidb4ker0TTV1jBuKpxr98wmYZ7Hth658KiQkoMHm7KFGipOhhp653kWQ==
   dependencies:
     jszip "^3.10.1"
 
