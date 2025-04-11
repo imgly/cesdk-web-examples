@@ -6,9 +6,7 @@ import {
 } from '../SlideUpPanel/SlideUpPanel';
 
 const ChangeTextColorSecondary = () => {
-  const [fillColor, setFillColor] = useSelectedProperty('fill/solid/color', {
-    shouldAddUndoStep: false
-  });
+  const [fillColor, setFillColor] = useSelectedProperty('fill/solid/color');
 
   return (
     <>

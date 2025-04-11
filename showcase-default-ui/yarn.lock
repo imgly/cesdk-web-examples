@@ -1245,10 +1245,10 @@
     ndarray "~1.0.0"
     zod "^3.23.8"
 
-"@imgly/idml-importer@^1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@imgly/idml-importer/-/idml-importer-1.1.6.tgz#790daf6633faea7e3c8fe6aa256a3ca26ae9dae7"
-  integrity sha512-t67yHEZT7r6qkjRMbaprJi5Tw1Aa/Wsfi+vLICyj/SI5lafDNQnNLYSNkfzqqjoZl1E5zxdA54ujYlBvriJgZg==
+"@imgly/idml-importer@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@imgly/idml-importer/-/idml-importer-1.1.1.tgz#4e0f5d9ee86a07dfe62f1ffd83f201ac91363c4a"
+  integrity sha512-uZfy11w8c4GhObCCmBu/g9dH7Gengdidb4ker0TTV1jBuKpxr98wmYZ7Hth658KiQkoMHm7KFGipOhhp653kWQ==
   dependencies:
     jszip "^3.10.1"
 
