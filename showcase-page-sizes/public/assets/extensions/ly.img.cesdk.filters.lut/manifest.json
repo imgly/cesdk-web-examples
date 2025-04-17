@@ -1,0 +1,537 @@
+{
+  "id" : "//ly.img.cesdk.filters.lut",
+  "version" : "0.1.0",
+  "schemaVersion" : "0.1.0", 
+  "assets" : [
+    {
+      "type" : "ly.img.filter.lut",
+      "categories" : [
+        {
+          "id" : "category/bw",
+          "thumbPath" : "thumbnails/b&w.jpg",
+          "assets" : [
+            "//ly.img.cesdk.filters.lut/ad1920",
+            "//ly.img.cesdk.filters.lut/bw",
+            "//ly.img.cesdk.filters.lut/x400",
+            "//ly.img.cesdk.filters.lut/litho",
+            "//ly.img.cesdk.filters.lut/sepiahigh",
+            "//ly.img.cesdk.filters.lut/plate",
+            "//ly.img.cesdk.filters.lut/sin"
+          ]
+        },
+        {
+          "id" : "category/retro",
+          "thumbPath" : "thumbnails/vintage.jpg",
+          "assets" : [
+            "//ly.img.cesdk.filters.lut/blues",
+            "//ly.img.cesdk.filters.lut/front",
+            "//ly.img.cesdk.filters.lut/texas",
+            "//ly.img.cesdk.filters.lut/celsius",
+            "//ly.img.cesdk.filters.lut/cool"
+          ]
+        },
+        {
+          "id" : "category/analog",
+          "thumbPath" : "thumbnails/smooth.jpg",
+          "assets" : [
+            "//ly.img.cesdk.filters.lut/chest",
+            "//ly.img.cesdk.filters.lut/winter",
+            "//ly.img.cesdk.filters.lut/kdynamic",
+            "//ly.img.cesdk.filters.lut/fall",
+            "//ly.img.cesdk.filters.lut/lenin",
+            "//ly.img.cesdk.filters.lut/pola669"
+          ]
+        },
+        {
+          "id" : "category/winter",
+          "thumbPath" : "thumbnails/cold.jpg",
+          "assets" : [
+            "//ly.img.cesdk.filters.lut/elder",
+            "//ly.img.cesdk.filters.lut/orchid",
+            "//ly.img.cesdk.filters.lut/bleached",
+            "//ly.img.cesdk.filters.lut/bleachedblue",
+            "//ly.img.cesdk.filters.lut/breeze",
+            "//ly.img.cesdk.filters.lut/blueshadows"
+          ]
+        },
+        {
+          "id" : "category/summer",
+          "thumbPath" : "thumbnails/warm.jpg",
+          "assets" : [
+            "//ly.img.cesdk.filters.lut/sunset",
+            "//ly.img.cesdk.filters.lut/eighties",
+            "//ly.img.cesdk.filters.lut/evening",
+            "//ly.img.cesdk.filters.lut/k2",
+            "//ly.img.cesdk.filters.lut/nogreen"
+          ]
+        },
+        {
+          "id" : "category/legacy",
+          "thumbPath" : "thumbnails/legacy.jpg",
+          "assets" : [
+            "//ly.img.cesdk.filters.lut/ancient",
+            "//ly.img.cesdk.filters.lut/cottoncandy",
+            "//ly.img.cesdk.filters.lut/classic",
+            "//ly.img.cesdk.filters.lut/colorful",
+            "//ly.img.cesdk.filters.lut/creamy",
+            "//ly.img.cesdk.filters.lut/fixie",
+            "//ly.img.cesdk.filters.lut/food",
+            "//ly.img.cesdk.filters.lut/fridge",
+            "//ly.img.cesdk.filters.lut/glam",
+            "//ly.img.cesdk.filters.lut/gobblin",
+            "//ly.img.cesdk.filters.lut/highcontrast",
+            "//ly.img.cesdk.filters.lut/highcarb",
+            "//ly.img.cesdk.filters.lut/k1",
+            "//ly.img.cesdk.filters.lut/k6",
+            "//ly.img.cesdk.filters.lut/keen",
+            "//ly.img.cesdk.filters.lut/lomo100",
+            "//ly.img.cesdk.filters.lut/lucid",
+            "//ly.img.cesdk.filters.lut/mellow",
+            "//ly.img.cesdk.filters.lut/neat",
+            "//ly.img.cesdk.filters.lut/pale",
+            "//ly.img.cesdk.filters.lut/pitched",
+            "//ly.img.cesdk.filters.lut/polasx",
+            "//ly.img.cesdk.filters.lut/pro400",
+            "//ly.img.cesdk.filters.lut/quozi",
+            "//ly.img.cesdk.filters.lut/settled",
+            "//ly.img.cesdk.filters.lut/seventies",
+            "//ly.img.cesdk.filters.lut/soft",
+            "//ly.img.cesdk.filters.lut/steel",
+            "//ly.img.cesdk.filters.lut/summer",
+            "//ly.img.cesdk.filters.lut/tender",
+            "//ly.img.cesdk.filters.lut/twilight"
+          ]
+        }
+      ],
+      "assets" : [
+        {
+          "id" : "ad1920",
+          "lutImage" : "LUTs/imgly_lut_ad1920_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_ad1920.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "bw",
+          "lutImage" : "LUTs/imgly_lut_bw_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_bw.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "x400",
+          "lutImage" : "LUTs/imgly_lut_dusty_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_x400.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "litho",
+          "lutImage" : "LUTs/imgly_lut_litho_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_litho.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "sepiahigh",
+          "lutImage" : "LUTs/imgly_lut_sepia_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_sepiahigh.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "plate",
+          "lutImage" : "LUTs/imgly_lut_weathered_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_plate.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "sin",
+          "lutImage" : "LUTs/imgly_lut_hard_stuff_8_8_512.png",
+          "thumbPath" : "thumbnails/imgly_lut_sin.jpg",
+          "horizontalTileCount" : 8,
+          "verticalTileCount" : 8
+        },
+        {
+          "id" : "blues",
+          "lutImage" : "LUTs/imgly_lut_polaroid_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_blues.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "front",
+          "lutImage" : "LUTs/imgly_lut_sunny_70s_8_8_512.png",
+          "thumbPath" : "thumbnails/imgly_lut_front.jpg",
+          "horizontalTileCount" : 8,
+          "verticalTileCount" : 8
+        },
+        {
+          "id" : "texas",
+          "lutImage" : "LUTs/imgly_lut_oldtimer_8_8_512.png",
+          "thumbPath" : "thumbnails/imgly_lut_texas.jpg",
+          "horizontalTileCount" : 8,
+          "verticalTileCount" : 8
+        },
+        {
+          "id" : "celsius",
+          "lutImage" : "LUTs/imgly_lut_inferno_8_8_512.png",
+          "thumbPath" : "thumbnails/imgly_lut_celsius.jpg",
+          "horizontalTileCount" : 8,
+          "verticalTileCount" : 8
+        },
+        {
+          "id" : "cool",
+          "lutImage" : "LUTs/imgly_lut_snappy_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_cool.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "chest",
+          "lutImage" : "LUTs/imgly_lut_chestnut_8_8_512.png",
+          "thumbPath" : "thumbnails/imgly_lut_chest.jpg",
+          "horizontalTileCount" : 8,
+          "verticalTileCount" : 8
+        },
+        {
+          "id" : "winter",
+          "lutImage" : "LUTs/imgly_lut_softly_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_winter.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "kdynamic",
+          "lutImage" : "LUTs/imgly_lut_pebble_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_kdynamic.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "fall",
+          "lutImage" : "LUTs/imgly_lut_moss_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_fall.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "lenin",
+          "lutImage" : "LUTs/imgly_lut_lemon_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_lenin.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "pola669",
+          "lutImage" : "LUTs/imgly_lut_green_gap_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_pola669.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "elder",
+          "lutImage" : "LUTs/imgly_lut_colla_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_elder.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "orchid",
+          "lutImage" : "LUTs/imgly_lut_solanus_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_orchid.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "bleached",
+          "lutImage" : "LUTs/imgly_lut_kalmen_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_bleached.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "bleachedblue",
+          "lutImage" : "LUTs/imgly_lut_joran_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_bleachedblue.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "breeze",
+          "lutImage" : "LUTs/imgly_lut_levante_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_breeze.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "blueshadows",
+          "lutImage" : "LUTs/imgly_lut_zephyr_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_blueshadows.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "sunset",
+          "lutImage" : "LUTs/imgly_lut_golden_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_sunset.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "eighties",
+          "lutImage" : "LUTs/imgly_lut_low_fire_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_eighties.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "evening",
+          "lutImage" : "LUTs/imgly_lut_sunrise_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_evening.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "k2",
+          "lutImage" : "LUTs/imgly_lut_flat_black_8_8_512.png",
+          "thumbPath" : "thumbnails/imgly_lut_k2.jpg",
+          "horizontalTileCount" : 8,
+          "verticalTileCount" : 8
+        },
+        {
+          "id" : "nogreen",
+          "lutImage" : "LUTs/imgly_lut_pumpkin_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_nogreen.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "ancient",
+          "lutImage" : "LUTs/imgly_lut_ancient_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_ancient.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "cottoncandy",
+          "lutImage" : "LUTs/imgly_lut_cottoncandy_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_cottoncandy.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "classic",
+          "lutImage" : "LUTs/imgly_lut_classic_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_classic.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "colorful",
+          "lutImage" : "LUTs/imgly_lut_colorful_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_colorful.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "creamy",
+          "lutImage" : "LUTs/imgly_lut_creamy_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_creamy.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "fixie",
+          "lutImage" : "LUTs/imgly_lut_fixie_8_8_512.png",
+          "thumbPath" : "thumbnails/imgly_lut_fixie.jpg",
+          "horizontalTileCount" : 8,
+          "verticalTileCount" : 8
+        },
+        {
+          "id" : "food",
+          "lutImage" : "LUTs/imgly_lut_food_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_food.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "fridge",
+          "lutImage" : "LUTs/imgly_lut_fridge_8_8_512.png",
+          "thumbPath" : "thumbnails/imgly_lut_fridge.jpg",
+          "horizontalTileCount" : 8,
+          "verticalTileCount" : 8
+        },
+        {
+          "id" : "glam",
+          "lutImage" : "LUTs/imgly_lut_glam_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_glam.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "gobblin",
+          "lutImage" : "LUTs/imgly_lut_gobblin_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_gobblin.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "highcontrast",
+          "lutImage" : "LUTs/imgly_lut_highcontrast_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_highcontrast.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "highcarb",
+          "lutImage" : "LUTs/imgly_lut_highcarb_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_highcarb.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "k1",
+          "lutImage" : "LUTs/imgly_lut_k1_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_k1.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "k6",
+          "lutImage" : "LUTs/imgly_lut_k6_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_k6.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "keen",
+          "lutImage" : "LUTs/imgly_lut_keen_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_keen.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "lomo",
+          "lutImage" : "LUTs/imgly_lut_lomo_8_8_512.png",
+          "thumbPath" : "thumbnails/imgly_lut_lomo.jpg",
+          "horizontalTileCount" : 8,
+          "verticalTileCount" : 8
+        },
+        {
+          "id" : "lomo100",
+          "lutImage" : "LUTs/imgly_lut_lomo100_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_lomo100.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "lucid",
+          "lutImage" : "LUTs/imgly_lut_lucid_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_lucid.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "mellow",
+          "lutImage" : "LUTs/imgly_lut_mellow_8_8_512.png",
+          "thumbPath" : "thumbnails/imgly_lut_mellow.jpg",
+          "horizontalTileCount" : 8,
+          "verticalTileCount" : 8
+        },
+        {
+          "id" : "neat",
+          "lutImage" : "LUTs/imgly_lut_neat_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_neat.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "pale",
+          "lutImage" : "LUTs/imgly_lut_pale_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_pale.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "pitched",
+          "lutImage" : "LUTs/imgly_lut_pitched_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_pitched.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "polasx",
+          "lutImage" : "LUTs/imgly_lut_polasx_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_polasx.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "pro400",
+          "lutImage" : "LUTs/imgly_lut_pro400_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_pro400.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "quozi",
+          "lutImage" : "LUTs/imgly_lut_quozi_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_quozi.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "settled",
+          "lutImage" : "LUTs/imgly_lut_settled_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_settled.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "seventies",
+          "lutImage" : "LUTs/imgly_lut_seventies_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_seventies.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "soft",
+          "lutImage" : "LUTs/imgly_lut_soft_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_soft.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "steel",
+          "lutImage" : "LUTs/imgly_lut_steel_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_steel.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "summer",
+          "lutImage" : "LUTs/imgly_lut_summer_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_summer.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "tender",
+          "lutImage" : "LUTs/imgly_lut_tender_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_tender.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        },
+        {
+          "id" : "twilight",
+          "lutImage" : "LUTs/imgly_lut_twilight_5_5_128.png",
+          "thumbPath" : "thumbnails/imgly_lut_twilight.jpg",
+          "horizontalTileCount" : 5,
+          "verticalTileCount" : 5
+        }
+      ]
+    }
+  ]
+}
