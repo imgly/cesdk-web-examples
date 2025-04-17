@@ -36,7 +36,15 @@ const CaseComponent = () => {
         .replace('design.zip', `${currentAsset.id}.zip`)
         .replace('{{base_url}}', caseAssetPath(`/templates`));
       persistSelectedTemplateToURL(currentAsset.id);
+      // prevent background scrolling when modal is open
+      document.body.classList.add('no-scroll');
+    } else {
+      // enable scrolling again when modal is closed
+      document.body.classList.remove('no-scroll');
     }
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
   }, [currentAsset]);
 
   return (

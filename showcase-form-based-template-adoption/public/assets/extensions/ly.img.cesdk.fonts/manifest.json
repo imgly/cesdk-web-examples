@@ -1,0 +1,1751 @@
+{
+  "id": "//ly.img.cesdk.fonts",
+  "version": "1.1.1",
+  "schemaVersion": "0.1.0",
+  "assets": [
+    {
+      "type": "ly.img.font",
+      "assets": [
+        {
+          "id": "abril_fatface_regular",
+          "fontFamily": "Abril Fatface",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_abril_fatface_regular.ttf"
+        },
+        {
+          "id": "aleo_bold",
+          "fontFamily": "Aleo",
+          "fontWeight": "bold",
+          "fontPath": "fonts/imgly_font_aleo_bold.otf"
+        },
+        {
+          "id": "amaticsc",
+          "fontFamily": "AmaticSC",
+          "fontWeight": "bold",
+          "fontPath": "fonts/AmaticSC/imgly_font_amaticsc_bold.ttf"
+        },
+        {
+          "id": "amaticsc_regular",
+          "fontFamily": "AmaticSC",
+          "fontWeight": "normal",
+          "fontPath": "fonts/AmaticSC/imgly_font_amaticsc_regular.ttf"
+        },
+        {
+          "id": "archivo_black",
+          "fontFamily": "Archivo",
+          "fontWeight": 900,
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-Black.ttf"
+        },
+        {
+          "id": "archivo_black_italic",
+          "fontFamily": "Archivo",
+          "fontWeight": 900,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-BlackItalic.ttf"
+        },
+        {
+          "id": "archivo_bold",
+          "fontFamily": "Archivo",
+          "fontWeight": 700,
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-Bold.ttf"
+        },
+        {
+          "id": "archivo_bold_italic",
+          "fontFamily": "Archivo",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-BoldItalic.ttf"
+        },
+        {
+          "id": "archivo_extra_bold",
+          "fontFamily": "Archivo",
+          "fontWeight": 800,
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-ExtraBold.ttf"
+        },
+        {
+          "id": "archivo_extra_bold_italic",
+          "fontFamily": "Archivo",
+          "fontWeight": 800,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-ExtraBoldItalic.ttf"
+        },
+        {
+          "id": "archivo_extra_light",
+          "fontFamily": "Archivo",
+          "fontWeight": 200,
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-ExtraLight.ttf"
+        },
+        {
+          "id": "archivo_extra_light_italic",
+          "fontFamily": "Archivo",
+          "fontWeight": 200,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-ExtraLightItalic.ttf"
+        },
+        {
+          "id": "archivo_italic",
+          "fontFamily": "Archivo",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-Italic.ttf"
+        },
+        {
+          "id": "archivo_light",
+          "fontFamily": "Archivo",
+          "fontWeight": 200,
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-Light.ttf"
+        },
+        {
+          "id": "archivo_light_italic",
+          "fontFamily": "Archivo",
+          "fontWeight": 200,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-LightItalic.ttf"
+        },
+        {
+          "id": "archivo_medium",
+          "fontFamily": "Archivo",
+          "fontWeight": 500,
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-Medium.ttf"
+        },
+        {
+          "id": "archivo_medium_italic",
+          "fontFamily": "Archivo",
+          "fontWeight": 500,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-MediumItalic.ttf"
+        },
+        {
+          "id": "archivo_regular",
+          "fontFamily": "Archivo",
+          "fontWeight": 400,
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-Regular.ttf"
+        },
+        {
+          "id": "archivo_semibold",
+          "fontFamily": "Archivo",
+          "fontWeight": 600,
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-SemiBold.ttf"
+        },
+        {
+          "id": "archivo_semibold_italic",
+          "fontFamily": "Archivo",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "archivo_thin",
+          "fontFamily": "Archivo",
+          "fontWeight": 100,
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-Thin.ttf"
+        },
+        {
+          "id": "archivo_thin_italic",
+          "fontFamily": "Archivo",
+          "fontWeight": 100,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Archivo/static/Archivo/Archivo-ThinItalic.ttf"
+        },
+        {
+          "id": "bangers",
+          "fontFamily": "Bangers",
+          "fontWeight": "normal",
+          "fontPath": "fonts/Bangers/Bangers-Regular.ttf"
+        },
+        {
+          "id": "barlowcondensed_thin",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 100,
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-Thin.ttf"
+        },
+        {
+          "id": "barlowcondensed_thin_italic",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 100,
+          "fontStyle": "italic",
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-ThinItalic.ttf"
+        },
+        {
+          "id": "barlowcondensed_extra_light",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 200,
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-ExtraLight.ttf"
+        },
+        {
+          "id": "barlowcondensed_extra_light_italic",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 200,
+          "fontStyle": "italic",
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-ExtraLightItalic.ttf"
+        },
+        {
+          "id": "barlowcondensed_light",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 300,
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-Light.ttf"
+        },
+        {
+          "id": "barlowcondensed_light_italic",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-LightItalic.ttf"
+        },
+        {
+          "id": "barlowcondensed_regular",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 400,
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-Regular.ttf"
+        },
+        {
+          "id": "barlowcondensed_italic",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-Italic.ttf"
+        },
+        {
+          "id": "barlowcondensed_medium",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 500,
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-Medium.ttf"
+        },
+        {
+          "id": "barlowcondensed_medium_italic",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 500,
+          "fontStyle": "italic",
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-MediumItalic.ttf"
+        },
+        {
+          "id": "barlowcondensed_semi_bold",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 600,
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-SemiBold.ttf"
+        },
+        {
+          "id": "barlowcondensed_semi_bold_italic",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "barlowcondensed_bold",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 700,
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-Bold.ttf"
+        },
+        {
+          "id": "barlowcondensed_bold_italic",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-BoldItalic.ttf"
+        },
+        {
+          "id": "barlowcondensed_extra_bold",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 800,
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-ExtraBold.ttf"
+        },
+        {
+          "id": "barlowcondensed_extra_bold_italic",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 800,
+          "fontStyle": "italic",
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-ExtraBoldItalic.ttf"
+        },
+        {
+          "id": "barlowcondensed_black",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 900,
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-Black.ttf"
+        },
+        {
+          "id": "barlowcondensed_black_italic",
+          "fontFamily": "Barlow Condensed",
+          "fontWeight": 900,
+          "fontStyle": "italic",
+          "fontPath": "fonts/BarlowCondensed/BarlowCondensed-BlackItalic.ttf"
+        },
+        {
+          "id": "bungee_inline",
+          "fontFamily": "Bungee Inline",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_bungee_inline.ttf"
+        },
+        {
+          "id": "carter_one",
+          "fontFamily": "Carter",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_carter_one.ttf"
+        },
+        {
+          "id": "caveat_regular",
+          "fontFamily": "Caveat",
+          "fontWeight": 400,
+          "fontPath": "fonts/Caveat/Caveat-Regular.ttf"
+        },
+        {
+          "id": "caveat_medium",
+          "fontFamily": "Caveat",
+          "fontWeight": 500,
+          "fontPath": "fonts/Caveat/Caveat-Medium.ttf"
+        },
+        {
+          "id": "caveat_semi_bold",
+          "fontFamily": "Caveat",
+          "fontWeight": 600,
+          "fontPath": "fonts/Caveat/Caveat-SemiBold.ttf"
+        },
+        {
+          "id": "caveat_bold",
+          "fontFamily": "Caveat",
+          "fontWeight": 700,
+          "fontPath": "fonts/Caveat/Caveat-Bold.ttf"
+        },
+        {
+          "id": "coiny_regular",
+          "fontFamily": "Coiny",
+          "fontWeight": 400,
+          "fontPath": "fonts/Coiny/Coiny-Regular.ttf"
+        },
+        {
+          "id": "courierprime_regular",
+          "fontFamily": "Courier Prime",
+          "fontWeight": 400,
+          "fontPath": "fonts/CourierPrime/CourierPrime-Regular.ttf"
+        },
+        {
+          "id": "courierprime_italic",
+          "fontFamily": "Courier Prime",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/CourierPrime/CourierPrime-Italic.ttf"
+        },
+        {
+          "id": "courierprime_bold",
+          "fontFamily": "Courier Prime",
+          "fontWeight": 700,
+          "fontPath": "fonts/CourierPrime/CourierPrime-Bold.ttf"
+        },
+        {
+          "id": "courierprime_bold_italic",
+          "fontFamily": "Courier Prime",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/CourierPrime/CourierPrime-BoldItalic.ttf"
+        },
+        {
+          "id": "elsie_swash_caps_regular",
+          "fontFamily": "Elsie Swash Caps",
+          "fontWeight": 400,
+          "fontPath": "fonts/ElsieSwashCaps/ElsieSwashCaps-Regular.ttf"
+        },
+        {
+          "id": "elsie_swash_caps_black",
+          "fontFamily": "Elsie Swash Caps",
+          "fontWeight": 900,
+          "fontPath": "fonts/ElsieSwashCaps/ElsieSwashCaps-Black.ttf"
+        },
+        {
+          "id": "fira_sans_thin",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 100,
+          "fontPath": "fonts/FiraSans/FiraSans-Thin.ttf"
+        },
+        {
+          "id": "fira_sans_thin_italic",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 100,
+          "fontStyle": "italic",
+          "fontPath": "fonts/FiraSans/FiraSans-ThinItalic.ttf"
+        },
+        {
+          "id": "fira_sans_extra_light",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 200,
+          "fontPath": "fonts/FiraSans/FiraSans-ExtraLight.ttf"
+        },
+        {
+          "id": "fira_sans_extra_light_italic",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 200,
+          "fontStyle": "italic",
+          "fontPath": "fonts/FiraSans/FiraSans-ExtraLightItalic.ttf"
+        },
+        {
+          "id": "fira_sans_light",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 300,
+          "fontPath": "fonts/FiraSans/FiraSans-Light.ttf"
+        },
+        {
+          "id": "fira_sans_light_italic",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/FiraSans/FiraSans-LightItalic.ttf"
+        },
+        {
+          "id": "fira_sans_regular",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 400,
+          "fontPath": "fonts/FiraSans/FiraSans-Regular.ttf"
+        },
+        {
+          "id": "fira_sans_italic",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/FiraSans/FiraSans-Italic.ttf"
+        },
+        {
+          "id": "fira_sans_medium",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 500,
+          "fontPath": "fonts/FiraSans/FiraSans-Medium.ttf"
+        },
+        {
+          "id": "fira_sans_medium_italic",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 500,
+          "fontStyle": "italic",
+          "fontPath": "fonts/FiraSans/FiraSans-MediumItalic.ttf"
+        },
+        {
+          "id": "fira_sans_semi_bold",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 600,
+          "fontPath": "fonts/FiraSans/FiraSans-SemiBold.ttf"
+        },
+        {
+          "id": "fira_sans_semi_bold_italic",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/FiraSans/FiraSans-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "fira_sans_bold",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 700,
+          "fontPath": "fonts/FiraSans/FiraSans-Bold.ttf"
+        },
+        {
+          "id": "fira_sans_bold_italic",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/FiraSans/FiraSans-BoldItalic.ttf"
+        },
+        {
+          "id": "fira_sans_extra_bold",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 800,
+          "fontPath": "fonts/FiraSans/FiraSans-ExtraBold.ttf"
+        },
+        {
+          "id": "fira_sans_extra_bold_italic",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 800,
+          "fontStyle": "italic",
+          "fontPath": "fonts/FiraSans/FiraSans-ExtraBoldItalic.ttf"
+        },
+        {
+          "id": "fira_sans_black",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 900,
+          "fontPath": "fonts/FiraSans/FiraSans-Black.ttf"
+        },
+        {
+          "id": "fira_sans_black_italic",
+          "fontFamily": "Fira Sans",
+          "fontWeight": 900,
+          "fontStyle": "italic",
+          "fontPath": "fonts/FiraSans/FiraSans-BlackItalic.ttf"
+        },
+        {
+          "id": "lobstertwo_regular",
+          "fontFamily": "Lobster Two",
+          "fontWeight": 400,
+          "fontPath": "fonts/LobsterTwo/LobsterTwo-Regular.ttf"
+        },
+        {
+          "id": "lobstertwo_italic",
+          "fontFamily": "Lobster Two",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/LobsterTwo/LobsterTwo-Italic.ttf"
+        },
+        {
+          "id": "lobstertwo_bold",
+          "fontFamily": "Lobster Two",
+          "fontWeight": 700,
+          "fontPath": "fonts/LobsterTwo/LobsterTwo-Bold.ttf"
+        },
+        {
+          "id": "lobstertwo_bold_italic",
+          "fontFamily": "Lobster Two",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/LobsterTwo/LobsterTwo-BoldItalic.ttf"
+        },
+        {
+          "id": "manrope_extra_light",
+          "fontFamily": "Manrope",
+          "fontWeight": 200,
+          "fontPath": "fonts/Manrope/Manrope-ExtraLight.ttf"
+        },
+        {
+          "id": "manrope_light",
+          "fontFamily": "Manrope",
+          "fontWeight": 300,
+          "fontPath": "fonts/Manrope/Manrope-Light.ttf"
+        },
+        {
+          "id": "manrope_regular",
+          "fontFamily": "Manrope",
+          "fontWeight": 400,
+          "fontPath": "fonts/Manrope/Manrope-Regular.ttf"
+        },
+        {
+          "id": "manrope_medium",
+          "fontFamily": "Manrope",
+          "fontWeight": 500,
+          "fontPath": "fonts/Manrope/Manrope-Medium.ttf"
+        },
+        {
+          "id": "manrope_semi_bold",
+          "fontFamily": "Manrope",
+          "fontWeight": 600,
+          "fontPath": "fonts/Manrope/Manrope-SemiBold.ttf"
+        },
+        {
+          "id": "manrope_bold",
+          "fontFamily": "Manrope",
+          "fontWeight": 700,
+          "fontPath": "fonts/Manrope/Manrope-Bold.ttf"
+        },
+        {
+          "id": "manrope_extra_bold",
+          "fontFamily": "Manrope",
+          "fontWeight": 800,
+          "fontPath": "fonts/Manrope/Manrope-ExtraBold.ttf"
+        },
+        {
+          "id": "montserrat_thin",
+          "fontFamily": "Montserrat",
+          "fontWeight": 100,
+          "fontPath": "fonts/Montserrat/Montserrat-Thin.ttf"
+        },
+        {
+          "id": "montserrat_thin_italic",
+          "fontFamily": "Montserrat",
+          "fontWeight": 100,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Montserrat/Montserrat-ThinItalic.ttf"
+        },
+        {
+          "id": "montserrat_extra_light",
+          "fontFamily": "Montserrat",
+          "fontWeight": 200,
+          "fontPath": "fonts/Montserrat/Montserrat-ExtraLight.ttf"
+        },
+        {
+          "id": "montserrat_extra_light_italic",
+          "fontFamily": "Montserrat",
+          "fontWeight": 200,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Montserrat/Montserrat-ExtraLightItalic.ttf"
+        },
+        {
+          "id": "montserrat_light",
+          "fontFamily": "Montserrat",
+          "fontWeight": 300,
+          "fontPath": "fonts/Montserrat/Montserrat-Light.ttf"
+        },
+        {
+          "id": "montserrat_light_italic",
+          "fontFamily": "Montserrat",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Montserrat/Montserrat-LightItalic.ttf"
+        },
+        {
+          "id": "montserrat_regular",
+          "fontFamily": "Montserrat",
+          "fontWeight": 400,
+          "fontPath": "fonts/Montserrat/Montserrat-Regular.ttf"
+        },
+        {
+          "id": "montserrat_italic",
+          "fontFamily": "Montserrat",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Montserrat/Montserrat-Italic.ttf"
+        },
+        {
+          "id": "montserrat_medium",
+          "fontFamily": "Montserrat",
+          "fontWeight": 500,
+          "fontPath": "fonts/Montserrat/Montserrat-Medium.ttf"
+        },
+        {
+          "id": "montserrat_medium_italic",
+          "fontFamily": "Montserrat",
+          "fontWeight": 500,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Montserrat/Montserrat-MediumItalic.ttf"
+        },
+        {
+          "id": "montserrat_semi_bold",
+          "fontFamily": "Montserrat",
+          "fontWeight": 600,
+          "fontPath": "fonts/Montserrat/Montserrat-SemiBold.ttf"
+        },
+        {
+          "id": "montserrat_semi_bold_italic",
+          "fontFamily": "Montserrat",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Montserrat/Montserrat-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "montserrat_bold",
+          "fontFamily": "Montserrat",
+          "fontWeight": 700,
+          "fontPath": "fonts/Montserrat/Montserrat-Bold.ttf"
+        },
+        {
+          "id": "montserrat_bold_italic",
+          "fontFamily": "Montserrat",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Montserrat/Montserrat-BoldItalic.ttf"
+        },
+        {
+          "id": "montserrat_extra_bold",
+          "fontFamily": "Montserrat",
+          "fontWeight": 800,
+          "fontPath": "fonts/Montserrat/Montserrat-ExtraBold.ttf"
+        },
+        {
+          "id": "montserrat_extra_bold_italic",
+          "fontFamily": "Montserrat",
+          "fontWeight": 800,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf"
+        },
+        {
+          "id": "montserrat_black",
+          "fontFamily": "Montserrat",
+          "fontWeight": 900,
+          "fontPath": "fonts/Montserrat/Montserrat-Black.ttf"
+        },
+        {
+          "id": "montserrat_black_italic",
+          "fontFamily": "Montserrat",
+          "fontWeight": 900,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Montserrat/Montserrat-BlackItalic.ttf"
+        },
+        {
+          "id": "nunito_extra_light",
+          "fontFamily": "Nunito",
+          "fontWeight": 200,
+          "fontPath": "fonts/Nunito/Nunito-ExtraLight.ttf"
+        },
+        {
+          "id": "nunito_extra_light_italic",
+          "fontFamily": "Nunito",
+          "fontWeight": 200,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Nunito/Nunito-ExtraLightItalic.ttf"
+        },
+        {
+          "id": "nunito_light",
+          "fontFamily": "Nunito",
+          "fontWeight": 300,
+          "fontPath": "fonts/Nunito/Nunito-Light.ttf"
+        },
+        {
+          "id": "nunito_light_italic",
+          "fontFamily": "Nunito",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Nunito/Nunito-LightItalic.ttf"
+        },
+        {
+          "id": "nunito_regular",
+          "fontFamily": "Nunito",
+          "fontWeight": 400,
+          "fontPath": "fonts/Nunito/Nunito-Regular.ttf"
+        },
+        {
+          "id": "nunito_italic",
+          "fontFamily": "Nunito",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Nunito/Nunito-Italic.ttf"
+        },
+        {
+          "id": "nunito_semi_bold",
+          "fontFamily": "Nunito",
+          "fontWeight": 600,
+          "fontPath": "fonts/Nunito/Nunito-SemiBold.ttf"
+        },
+        {
+          "id": "nunito_semi_bold_italic",
+          "fontFamily": "Nunito",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Nunito/Nunito-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "nunito_bold",
+          "fontFamily": "Nunito",
+          "fontWeight": 700,
+          "fontPath": "fonts/Nunito/Nunito-Bold.ttf"
+        },
+        {
+          "id": "nunito_bold_italic",
+          "fontFamily": "Nunito",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Nunito/Nunito-BoldItalic.ttf"
+        },
+        {
+          "id": "nunito_extra_bold",
+          "fontFamily": "Nunito",
+          "fontWeight": 800,
+          "fontPath": "fonts/Nunito/Nunito-ExtraBold.ttf"
+        },
+        {
+          "id": "nunito_extra_bold_italic",
+          "fontFamily": "Nunito",
+          "fontWeight": 800,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Nunito/Nunito-ExtraBoldItalic.ttf"
+        },
+        {
+          "id": "nunito_black",
+          "fontFamily": "Nunito",
+          "fontWeight": 900,
+          "fontPath": "fonts/Nunito/Nunito-Black.ttf"
+        },
+        {
+          "id": "nunito_black_italic",
+          "fontFamily": "Nunito",
+          "fontWeight": 900,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Nunito/Nunito-BlackItalic.ttf"
+        },
+        {
+          "id": "open_sans_light",
+          "fontFamily": "Open Sans",
+          "fontWeight": 300,
+          "fontPath": "fonts/OpenSans/OpenSans-Light.ttf"
+        },
+        {
+          "id": "open_sans_light_italic",
+          "fontFamily": "Open Sans",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/OpenSans/OpenSans-LightItalic.ttf"
+        },
+        {
+          "id": "open_sans_regular",
+          "fontFamily": "Open Sans",
+          "fontWeight": 400,
+          "fontPath": "fonts/OpenSans/OpenSans-Regular.ttf"
+        },
+        {
+          "id": "open_sans_italic",
+          "fontFamily": "Open Sans",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/OpenSans/OpenSans-Italic.ttf"
+        },
+        {
+          "id": "open_sans_semi_bold",
+          "fontFamily": "Open Sans",
+          "fontWeight": 600,
+          "fontPath": "fonts/OpenSans/OpenSans-SemiBold.ttf"
+        },
+        {
+          "id": "open_sans_semi_bold_italic",
+          "fontFamily": "Open Sans",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/OpenSans/OpenSans-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "open_sans_bold",
+          "fontFamily": "Open Sans",
+          "fontWeight": 700,
+          "fontPath": "fonts/OpenSans/OpenSans-Bold.ttf"
+        },
+        {
+          "id": "open_sans_bold_italic",
+          "fontFamily": "Open Sans",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/OpenSans/OpenSans-BoldItalic.ttf"
+        },
+        {
+          "id": "open_sans_extra_bold",
+          "fontFamily": "Open Sans",
+          "fontWeight": 800,
+          "fontPath": "fonts/OpenSans/OpenSans-ExtraBold.ttf"
+        },
+        {
+          "id": "open_sans_extra_bold_italic",
+          "fontFamily": "Open Sans",
+          "fontWeight": 800,
+          "fontStyle": "italic",
+          "fontPath": "fonts/OpenSans/OpenSans-ExtraBoldItalic.ttf"
+        },
+        {
+          "id": "oswald_extra_light",
+          "fontFamily": "Oswald",
+          "fontWeight": 200,
+          "fontPath": "fonts/Oswald/Oswald-ExtraLight.ttf"
+        },
+        {
+          "id": "oswald_light",
+          "fontFamily": "Oswald",
+          "fontWeight": 300,
+          "fontPath": "fonts/Oswald/Oswald-Light.ttf"
+        },
+        {
+          "id": "oswald_regular",
+          "fontFamily": "Oswald",
+          "fontWeight": 400,
+          "fontPath": "fonts/Oswald/Oswald-Regular.ttf"
+        },
+        {
+          "id": "oswald_medium",
+          "fontFamily": "Oswald",
+          "fontWeight": 500,
+          "fontPath": "fonts/Oswald/Oswald-Medium.ttf"
+        },
+        {
+          "id": "oswald_semi_bold",
+          "fontFamily": "Oswald",
+          "fontWeight": 600,
+          "fontPath": "fonts/Oswald/Oswald-SemiBold.ttf"
+        },
+        {
+          "id": "oswald_bold",
+          "fontFamily": "Oswald",
+          "fontWeight": 700,
+          "fontPath": "fonts/Oswald/Oswald-Bold.ttf"
+        },
+        {
+          "id": "parisienne_regular",
+          "fontFamily": "Parisienne",
+          "fontWeight": 400,
+          "fontPath": "fonts/Parisienne/Parisienne-Regular.ttf"
+        },
+        {
+          "id": "permanent_marker_regular",
+          "fontFamily": "Permanent Marker",
+          "fontWeight": 400,
+          "fontPath": "fonts/Permanent_Marker/PermanentMarker-Regular.ttf"
+        },
+        {
+          "id": "playfair_display_regular",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 400,
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-Regular.ttf"
+        },
+        {
+          "id": "playfair_display_italic",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-Italic.ttf"
+        },
+        {
+          "id": "playfair_display_medium",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 500,
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-Medium.ttf"
+        },
+        {
+          "id": "playfair_display_medium_italic",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 500,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-MediumItalic.ttf"
+        },
+        {
+          "id": "playfair_display_semi_bold",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 600,
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-SemiBold.ttf"
+        },
+        {
+          "id": "playfair_display_semi_bold_italic",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "playfair_display_bold",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 700,
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-Bold.ttf"
+        },
+        {
+          "id": "playfair_display_bold_italic",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-BoldItalic.ttf"
+        },
+        {
+          "id": "playfair_display_extra_bold",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 800,
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-ExtraBold.ttf"
+        },
+        {
+          "id": "playfair_display_extra_bold_italic",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 800,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-ExtraBoldItalic.ttf"
+        },
+        {
+          "id": "playfair_display_black",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 900,
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-Black.ttf"
+        },
+        {
+          "id": "playfair_display_black_italic",
+          "fontFamily": "Playfair Display",
+          "fontWeight": 900,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Playfair_Display/PlayfairDisplay-BlackItalic.ttf"
+        },
+        {
+          "id": "poppins_thin",
+          "fontFamily": "Poppins",
+          "fontWeight": 100,
+          "fontPath": "fonts/Poppins/Poppins-Thin.ttf"
+        },
+        {
+          "id": "poppins_thin_italic",
+          "fontFamily": "Poppins",
+          "fontWeight": 100,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Poppins/Poppins-ThinItalic.ttf"
+        },
+        {
+          "id": "poppins_extra_light",
+          "fontFamily": "Poppins",
+          "fontWeight": 200,
+          "fontPath": "fonts/Poppins/Poppins-ExtraLight.ttf"
+        },
+        {
+          "id": "poppins_extra_light_italic",
+          "fontFamily": "Poppins",
+          "fontWeight": 200,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Poppins/Poppins-ExtraLightItalic.ttf"
+        },
+        {
+          "id": "poppins_light",
+          "fontFamily": "Poppins",
+          "fontWeight": 300,
+          "fontPath": "fonts/Poppins/Poppins-Light.ttf"
+        },
+        {
+          "id": "poppins_light_italic",
+          "fontFamily": "Poppins",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Poppins/Poppins-LightItalic.ttf"
+        },
+        {
+          "id": "poppins_regular",
+          "fontFamily": "Poppins",
+          "fontWeight": 400,
+          "fontPath": "fonts/Poppins/Poppins-Regular.ttf"
+        },
+        {
+          "id": "poppins_italic",
+          "fontFamily": "Poppins",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Poppins/Poppins-Italic.ttf"
+        },
+        {
+          "id": "poppins_medium",
+          "fontFamily": "Poppins",
+          "fontWeight": 500,
+          "fontPath": "fonts/Poppins/Poppins-Medium.ttf"
+        },
+        {
+          "id": "poppins_medium_italic",
+          "fontFamily": "Poppins",
+          "fontWeight": 500,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Poppins/Poppins-MediumItalic.ttf"
+        },
+        {
+          "id": "poppins_semi_bold",
+          "fontFamily": "Poppins",
+          "fontWeight": 600,
+          "fontPath": "fonts/Poppins/Poppins-SemiBold.ttf"
+        },
+        {
+          "id": "poppins_semi_bold_italic",
+          "fontFamily": "Poppins",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Poppins/Poppins-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "poppins",
+          "fontFamily": "Poppins",
+          "fontWeight": 700,
+          "fontPath": "fonts/Poppins/Poppins-Bold.ttf"
+        },
+        {
+          "id": "poppins_bold_italic",
+          "fontFamily": "Poppins",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Poppins/Poppins-BoldItalic.ttf"
+        },
+        {
+          "id": "poppins_extra_bold",
+          "fontFamily": "Poppins",
+          "fontWeight": 800,
+          "fontPath": "fonts/Poppins/Poppins-ExtraBold.ttf"
+        },
+        {
+          "id": "poppins_extra_bold_italic",
+          "fontFamily": "Poppins",
+          "fontWeight": 800,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Poppins/Poppins-ExtraBoldItalic.ttf"
+        },
+        {
+          "id": "poppins_black",
+          "fontFamily": "Poppins",
+          "fontWeight": 900,
+          "fontPath": "fonts/Poppins/Poppins-Black.ttf"
+        },
+        {
+          "id": "poppins_black_italic",
+          "fontFamily": "Poppins",
+          "fontWeight": 900,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Poppins/Poppins-BlackItalic.ttf"
+        },
+        {
+          "id": "rasa_light",
+          "fontFamily": "Rasa",
+          "fontWeight": 300,
+          "fontPath": "fonts/Rasa/Rasa-Light.ttf"
+        },
+        {
+          "id": "rasa_light_italic",
+          "fontFamily": "Rasa",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Rasa/Rasa-LightItalic.ttf"
+        },
+        {
+          "id": "rasa_regular",
+          "fontFamily": "Rasa",
+          "fontWeight": 400,
+          "fontPath": "fonts/Rasa/Rasa-Regular.ttf"
+        },
+        {
+          "id": "rasa_italic",
+          "fontFamily": "Rasa",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Rasa/Rasa-Italic.ttf"
+        },
+        {
+          "id": "rasa_500",
+          "fontFamily": "Rasa",
+          "fontWeight": 500,
+          "fontPath": "fonts/Rasa/Rasa-Medium.ttf"
+        },
+        {
+          "id": "rasa_medium_italic",
+          "fontFamily": "Rasa",
+          "fontWeight": 500,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Rasa/Rasa-MediumItalic.ttf"
+        },
+        {
+          "id": "rasa_semi_bold",
+          "fontFamily": "Rasa",
+          "fontWeight": 600,
+          "fontPath": "fonts/Rasa/Rasa-SemiBold.ttf"
+        },
+        {
+          "id": "rasa_semi_bold_italic",
+          "fontFamily": "Rasa",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Rasa/Rasa-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "rasa_bold",
+          "fontFamily": "Rasa",
+          "fontWeight": 700,
+          "fontPath": "fonts/Rasa/Rasa-Bold.ttf"
+        },
+        {
+          "id": "rasa_bold_italic",
+          "fontFamily": "Rasa",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Rasa/Rasa-BoldItalic.ttf"
+        },
+        {
+          "id": "krona_one",
+          "fontFamily": "Krona",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_krona_one.ttf"
+        },
+        {
+          "id": "kumar_one_outline",
+          "fontFamily": "Kumar",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_kumar_one_outline.otf"
+        },
+        {
+          "id": "monoton",
+          "fontFamily": "Monoton",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_monoton.ttf"
+        },
+        {
+          "id": "nixie_one",
+          "fontFamily": "Nixie",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_nixie_one.ttf"
+        },
+        {
+          "id": "notable",
+          "fontFamily": "Notable",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_notable.ttf"
+        },
+        {
+          "id": "ostrich_sans_black",
+          "fontFamily": "Ostrich",
+          "fontWeight": 800,
+          "fontPath": "fonts/imgly_font_ostrich_sans_black.otf"
+        },
+        {
+          "id": "ostrich_sans_bold",
+          "fontFamily": "Ostrich",
+          "fontWeight": "bold",
+          "fontPath": "fonts/imgly_font_ostrich_sans_bold.otf"
+        },
+        {
+          "id": "ostrich_sans_heavy",
+          "fontFamily": "Ostrich",
+          "fontWeight": 900,
+          "fontPath": "fonts/imgly_font_ostrich_sans_heavy.otf"
+        },
+        {
+          "id": "palanquin_dark_regular",
+          "fontFamily": "Palanquin Dark",
+          "fontWeight": "normal",
+          "fontPath": "fonts/Palanquin_Dark/PalanquinDark-Regular.ttf"
+        },
+        {
+          "id": "palanquin_dark_medium",
+          "fontFamily": "Palanquin Dark",
+          "fontWeight": "medium",
+          "fontPath": "fonts/Palanquin_Dark/PalanquinDark-Medium.ttf"
+        },
+        {
+          "id": "palanquin_dark_semi_bold",
+          "fontFamily": "Palanquin Dark",
+          "fontWeight": 600,
+          "fontPath": "fonts/Palanquin_Dark/PalanquinDark-SemiBold.ttf"
+        },
+        {
+          "id": "palanquin_dark_bold",
+          "fontFamily": "Palanquin Dark",
+          "fontWeight": "bold",
+          "fontPath": "fonts/Palanquin_Dark/PalanquinDark-Bold.ttf"
+        },
+        {
+          "id": "permanent_marker",
+          "fontFamily": "Marker",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_permanent_marker.ttf"
+        },
+        {
+          "id": "petit_formal_script",
+          "fontFamily": "Petit Formal Script",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_petit_formal_script.ttf"
+        },
+        {
+          "id": "quicksand_light",
+          "fontFamily": "Quicksand",
+          "fontWeight": "light",
+          "fontPath": "fonts/Quicksand/static/Quicksand-Light.ttf"
+        },
+        {
+          "id": "quicksand_medium",
+          "fontFamily": "Quicksand",
+          "fontWeight": "medium",
+          "fontPath": "fonts/Quicksand/static/Quicksand-Medium.ttf"
+        },
+        {
+          "id": "quicksand_regular",
+          "fontFamily": "Quicksand",
+          "fontWeight": "normal",
+          "fontPath": "fonts/Quicksand/static/Quicksand-Regular.ttf"
+        },
+        {
+          "id": "quicksand_semibold",
+          "fontFamily": "Quicksand",
+          "fontWeight": 600,
+          "fontPath": "fonts/Quicksand/static/Quicksand-SemiBold.ttf"
+        },
+        {
+          "id": "quicksand_bold",
+          "fontFamily": "Quicksand",
+          "fontWeight": "bold",
+          "fontPath": "fonts/Quicksand/static/Quicksand-Bold.ttf"
+        },
+        {
+          "id": "roboto_thin",
+          "fontFamily": "Roboto",
+          "fontWeight": 100,
+          "fontPath": "fonts/Roboto/Roboto-Thin.ttf"
+        },
+        {
+          "id": "roboto_thin_italic",
+          "fontFamily": "Roboto",
+          "fontWeight": 100,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Roboto/Roboto-ThinItalic.ttf"
+        },
+        {
+          "id": "roboto_light",
+          "fontFamily": "Roboto",
+          "fontWeight": 300,
+          "fontPath": "fonts/Roboto/Roboto-Light.ttf"
+        },
+        {
+          "id": "roboto_light_italic",
+          "fontFamily": "Roboto",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Roboto/Roboto-LightItalic.ttf"
+        },
+        {
+          "id": "roboto_regular",
+          "fontFamily": "Roboto",
+          "fontWeight": 400,
+          "fontPath": "fonts/Roboto/Roboto-Regular.ttf"
+        },
+        {
+          "id": "roboto_italic",
+          "fontFamily": "Roboto",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Roboto/Roboto-Italic.ttf"
+        },
+        {
+          "id": "roboto_medium",
+          "fontFamily": "Roboto",
+          "fontWeight": 500,
+          "fontPath": "fonts/Roboto/Roboto-Medium.ttf"
+        },
+        {
+          "id": "roboto_medium_italic",
+          "fontFamily": "Roboto",
+          "fontWeight": 500,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Roboto/Roboto-MediumItalic.ttf"
+        },
+        {
+          "id": "roboto_bold",
+          "fontFamily": "Roboto",
+          "fontWeight": 700,
+          "fontPath": "fonts/Roboto/Roboto-Bold.ttf"
+        },
+        {
+          "id": "roboto_bold_italic",
+          "fontFamily": "Roboto",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Roboto/Roboto-BoldItalic.ttf"
+        },
+        {
+          "id": "roboto_black",
+          "fontFamily": "Roboto",
+          "fontWeight": 900,
+          "fontPath": "fonts/Roboto/Roboto-Black.ttf"
+        },
+        {
+          "id": "roboto_black_italic",
+          "fontFamily": "Roboto",
+          "fontWeight": 900,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Roboto/Roboto-BlackItalic.ttf"
+        },
+        {
+          "id": "roboto_condensed_light",
+          "fontFamily": "Roboto Condensed",
+          "fontWeight": 300,
+          "fontPath": "fonts/Roboto_Condensed/RobotoCondensed-Light.ttf"
+        },
+        {
+          "id": "roboto_condensed_light_italic",
+          "fontFamily": "Roboto Condensed",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Roboto_Condensed/RobotoCondensed-LightItalic.ttf"
+        },
+        {
+          "id": "roboto_condensed_regular",
+          "fontFamily": "Roboto Condensed",
+          "fontWeight": 400,
+          "fontPath": "fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
+        },
+        {
+          "id": "roboto_condensed_italic",
+          "fontFamily": "Roboto Condensed",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf"
+        },
+        {
+          "id": "roboto_condensed_bold",
+          "fontFamily": "Roboto Condensed",
+          "fontWeight": 700,
+          "fontPath": "fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf"
+        },
+        {
+          "id": "roboto_condensed_bold_italic",
+          "fontFamily": "Roboto Condensed",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf"
+        },
+        {
+          "id": "roboto_slab_thin",
+          "fontFamily": "Roboto Slab",
+          "fontWeight": 100,
+          "fontPath": "fonts/Roboto_Slab/RobotoSlab-Thin.ttf"
+        },
+        {
+          "id": "roboto_slab_extra_light",
+          "fontFamily": "Roboto Slab",
+          "fontWeight": 200,
+          "fontPath": "fonts/Roboto_Slab/RobotoSlab-ExtraLight.ttf"
+        },
+        {
+          "id": "roboto_slab_light",
+          "fontFamily": "Roboto Slab",
+          "fontWeight": 300,
+          "fontPath": "fonts/Roboto_Slab/RobotoSlab-Light.ttf"
+        },
+        {
+          "id": "roboto_slab_regular",
+          "fontFamily": "Roboto Slab",
+          "fontWeight": 400,
+          "fontPath": "fonts/Roboto_Slab/RobotoSlab-Regular.ttf"
+        },
+        {
+          "id": "roboto_slab_medium",
+          "fontFamily": "Roboto Slab",
+          "fontWeight": 500,
+          "fontPath": "fonts/Roboto_Slab/RobotoSlab-Medium.ttf"
+        },
+        {
+          "id": "roboto_slab_semi_bold",
+          "fontFamily": "Roboto Slab",
+          "fontWeight": 600,
+          "fontPath": "fonts/Roboto_Slab/RobotoSlab-SemiBold.ttf"
+        },
+        {
+          "id": "roboto_slab_bold",
+          "fontFamily": "Roboto Slab",
+          "fontWeight": 700,
+          "fontPath": "fonts/Roboto_Slab/RobotoSlab-Bold.ttf"
+        },
+        {
+          "id": "roboto_slab_extra_bold",
+          "fontFamily": "Roboto Slab",
+          "fontWeight": 800,
+          "fontPath": "fonts/Roboto_Slab/RobotoSlab-ExtraBold.ttf"
+        },
+        {
+          "id": "roboto_slab_black",
+          "fontFamily": "Roboto Slab",
+          "fontWeight": 900,
+          "fontPath": "fonts/Roboto_Slab/RobotoSlab-Black.ttf"
+        },
+        {
+          "id": "sancreek",
+          "fontFamily": "Sancreek",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_sancreek.ttf"
+        },
+        {
+          "id": "shrikhand_regular",
+          "fontFamily": "Shrikhand",
+          "fontWeight": 400,
+          "fontPath": "fonts/Shrikhand/Shrikhand-Regular.ttf"
+        },
+        {
+          "id": "stint_ultra_expanded",
+          "fontFamily": "Stint Ultra Expanded",
+          "fontWeight": "normal",
+          "fontPath": "fonts/Stint_Ultra_Expanded/StintUltraExpanded-Regular.ttf"
+        },
+        {
+          "id": "stint_ultra_condensed",
+          "fontFamily": "Stint Ultra Condensed",
+          "fontWeight": "normal",
+          "fontPath": "fonts/Stint_Ultra_Condensed/StintUltraCondensed-Regular.ttf"
+        },
+        {
+          "id": "sue_ellen_francisco",
+          "fontFamily": "Sue",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_sue_ellen_francisco.ttf"
+        },
+        {
+          "id": "source_code_pro_light",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 300,
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-Light.ttf"
+        },
+        {
+          "id": "source_code_pro_light_italic",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-LightItalic.ttf"
+        },
+        {
+          "id": "source_code_pro_regular",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 400,
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-Regular.ttf"
+        },
+        {
+          "id": "source_code_pro_italic",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-Italic.ttf"
+        },
+        {
+          "id": "source_code_pro_medium",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 500,
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-Medium.ttf"
+        },
+        {
+          "id": "source_code_pro_medium_italic",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 500,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-MediumItalic.ttf"
+        },
+        {
+          "id": "source_code_pro_semi_bold",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 600,
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-SemiBold.ttf"
+        },
+        {
+          "id": "source_code_pro_semi_bold_italic",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "source_code_pro_bold",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 700,
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-Bold.ttf"
+        },
+        {
+          "id": "source_code_pro_bold_italic",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-BoldItalic.ttf"
+        },
+        {
+          "id": "source_code_pro_black",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 900,
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-Black.ttf"
+        },
+        {
+          "id": "source_code_pro_black_italic",
+          "fontFamily": "Source Code Pro",
+          "fontWeight": 900,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceCodePro/SourceCodePro-BlackItalic.ttf"
+        },
+        {
+          "id": "sourcesanspro_black",
+          "fontFamily": "Source Sans Pro",
+          "fontWeight": 900,
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-Black.ttf"
+        },
+        {
+          "id": "sourcesanspro_blackitalic",
+          "fontFamily": "Source Sans Pro",
+          "fontStyle": "italic",
+          "fontWeight": 900,
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-BlackItalic.ttf"
+        },
+        {
+          "id": "sourcesanspro_bold",
+          "fontFamily": "Source Sans Pro",
+          "fontWeight": 700,
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf"
+        },
+        {
+          "id": "sourcesanspro_bolditalic",
+          "fontFamily": "Source Sans Pro",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-BoldItalic.ttf"
+        },
+        {
+          "id": "sourcesanspro_extralight",
+          "fontFamily": "Source Sans Pro",
+          "fontWeight": 200,
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-ExtraLight.ttf"
+        },
+        {
+          "id": "sourcesanspro_extralightitalic",
+          "fontFamily": "Source Sans Pro",
+          "fontWeight": 200,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-ExtraLightItalic.ttf"
+        },
+        {
+          "id": "sourcesanspro_italic",
+          "fontFamily": "Source Sans Pro",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-Italic.ttf"
+        },
+        {
+          "id": "sourcesanspro_light",
+          "fontWeight": 300,
+          "fontFamily": "Source Sans Pro",
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-Light.ttf"
+        },
+        {
+          "id": "sourcesanspro_lightitalic",
+          "fontFamily": "Source Sans Pro",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-LightItalic.ttf"
+        },
+        {
+          "id": "sourcesanspro_regular",
+          "fontFamily": "Source Sans Pro",
+          "fontWeight": 400,
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf"
+        },
+        {
+          "id": "sourcesanspro_semibold",
+          "fontWeight": 600,
+          "fontFamily": "Source Sans Pro",
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-SemiBold.ttf"
+        },
+        {
+          "id": "sourcesanspro_semibolditalic",
+          "fontFamily": "Source Sans Pro",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/Source_Sans_Pro/SourceSansPro-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "source_serif_pro_extra_light",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 200,
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-ExtraLight.ttf"
+        },
+        {
+          "id": "source_serif_pro_extra_light_italic",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 200,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-ExtraLightItalic.ttf"
+        },
+        {
+          "id": "source_serif_pro_light",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 300,
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-Light.ttf"
+        },
+        {
+          "id": "source_serif_pro_light_italic",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 300,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-LightItalic.ttf"
+        },
+        {
+          "id": "source_serif_pro_regular",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 400,
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-Regular.ttf"
+        },
+        {
+          "id": "source_serif_pro_italic",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-Italic.ttf"
+        },
+        {
+          "id": "source_serif_pro_semi_bold",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 600,
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-SemiBold.ttf"
+        },
+        {
+          "id": "source_serif_pro_semi_bold_italic",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 600,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-SemiBoldItalic.ttf"
+        },
+        {
+          "id": "source_serif_pro_bold",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 700,
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-Bold.ttf"
+        },
+        {
+          "id": "source_serif_pro_bold_italic",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-BoldItalic.ttf"
+        },
+        {
+          "id": "source_serif_pro_black",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 900,
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-Black.ttf"
+        },
+        {
+          "id": "source_serif_pro_black_italic",
+          "fontFamily": "Source Serif Pro",
+          "fontWeight": 900,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SourceSerifPro/SourceSerifPro-BlackItalic.ttf"
+        },
+        {
+          "id": "space_grotesk_light",
+          "fontFamily": "Space Grotesk",
+          "fontWeight": 300,
+          "fontPath": "fonts/SpaceGrotesk/SpaceGrotesk-Light.ttf"
+        },
+        {
+          "id": "space_grotesk_regular",
+          "fontFamily": "Space Grotesk",
+          "fontWeight": 400,
+          "fontPath": "fonts/SpaceGrotesk/SpaceGrotesk-Regular.ttf"
+        },
+        {
+          "id": "space_grotesk_medium",
+          "fontFamily": "Space Grotesk",
+          "fontWeight": 500,
+          "fontPath": "fonts/SpaceGrotesk/SpaceGrotesk-Medium.ttf"
+        },
+        {
+          "id": "space_grotesk_semi_bold",
+          "fontFamily": "Space Grotesk",
+          "fontWeight": 600,
+          "fontPath": "fonts/SpaceGrotesk/SpaceGrotesk-SemiBold.ttf"
+        },
+        {
+          "id": "space_grotesk_bold",
+          "fontFamily": "Space Grotesk",
+          "fontWeight": 700,
+          "fontPath": "fonts/SpaceGrotesk/SpaceGrotesk-Bold.ttf"
+        },
+        {
+          "id": "space_mono_regular",
+          "fontFamily": "Space Mono",
+          "fontWeight": 400,
+          "fontPath": "fonts/SpaceMono/SpaceMono-Regular.ttf"
+        },
+        {
+          "id": "space_mono_italic",
+          "fontFamily": "Space Mono",
+          "fontWeight": 400,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SpaceMono/SpaceMono-Italic.ttf"
+        },
+        {
+          "id": "space_mono_bold",
+          "fontFamily": "Space Mono",
+          "fontWeight": 700,
+          "fontPath": "fonts/SpaceMono/SpaceMono-Bold.ttf"
+        },
+        {
+          "id": "space_mono_bold_italic",
+          "fontFamily": "Space Mono",
+          "fontWeight": 700,
+          "fontStyle": "italic",
+          "fontPath": "fonts/SpaceMono/SpaceMono-BoldItalic.ttf"
+        },
+        {
+          "id": "trash_hand",
+          "fontFamily": "Trash Hand",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_trash_hand.ttf"
+        },
+        {
+          "id": "ultra",
+          "fontFamily": "Ultra",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_ultra.ttf"
+        },
+        {
+          "id": "vt323",
+          "fontFamily": "VT323",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_vt323.ttf"
+        },
+        {
+          "id": "yeseva_one",
+          "fontFamily": "Yeseva",
+          "fontWeight": "normal",
+          "fontPath": "fonts/imgly_font_yeseva_one.ttf"
+        }
+      ]
+    }
+  ]
+}
