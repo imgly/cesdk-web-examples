@@ -14,18 +14,6 @@ import { createApplyFormatAsset } from './createApplyFormatAsset';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
-import RemoteAssetSourcePlugin from '@imgly/plugin-remote-asset-source-web';
-
-let GIPHY_API_ENDPOINT = ''; // INSERT YOUR GIPHY API ENDPOINT HERE
-
-
-function getGiphyEndpoint() {
-  if (GIPHY_API_ENDPOINT === '' && !window.giphyWarning) {
-    window.giphyWarning = true;
-    alert(`Please provide your Giphy api endpoint.`);
-  }
-  return GIPHY_API_ENDPOINT;
-}
 
 const CaseComponent = () => {
   const config = useConfig(
@@ -98,21 +86,6 @@ const CaseComponent = () => {
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
 
-    instance.addPlugin(
-      RemoteAssetSourcePlugin({
-        baseUrl: getGiphyEndpoint()
-      })
-    );
-
-    instance.ui.updateAssetLibraryEntry('ly.img.sticker', {
-      sourceIds: [
-        ...instance.ui.getAssetLibraryEntry('ly.img.sticker').sourceIds,
-        'ly.img.video.giphy.sticker'
-      ],
-      gridColumns: 2
-    });
-
-
     const engine = instance.engine;
     engine.editor.setSettingBool('page/title/show', false);
 
@@ -174,4 +147,5 @@ function loadSelectedTemplateFromURL() {
   const url = new URL(window.location.href);
   return url.searchParams.get('template');
 }
+
 export default CaseComponent;

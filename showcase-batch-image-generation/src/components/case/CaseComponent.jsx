@@ -154,13 +154,14 @@ const CaseComponent = () => {
 
   // prevent background scrolling when modal is open
   useEffect(() => {
+    const body = document.querySelector('body');
     if (showTemplateModal || showInstanceModal) {
-      document.body.classList.add('no-scroll');
+      body.style.overflow = 'hidden';
     } else {
-      document.body.classList.remove('no-scroll');
+      body.style.overflow = '';
     }
     return () => {
-      document.body.classList.remove('no-scroll');
+      body.style.overflow = '';
     };
   }, [showTemplateModal, showInstanceModal]);
 
