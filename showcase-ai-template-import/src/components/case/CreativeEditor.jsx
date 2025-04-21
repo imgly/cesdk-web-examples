@@ -16,7 +16,7 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
-        typefaceLibraries: ['ly.img.google-fonts'],
+        typefaceLibraries: ['ly.img.typeface', 'ly.img.google-fonts'],
         elements: {
           view: 'advanced',
           navigation: {

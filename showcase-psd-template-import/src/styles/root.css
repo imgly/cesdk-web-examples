@@ -22,10 +22,6 @@ body {
   word-break: break-word;
 }
 
-body.no-scroll {
-  overflow: hidden;
-}
-
 /* Default styles we use in almost every showcase */
 /* These styles are available in each showcase (standalone) */
 .showcaseContainer {

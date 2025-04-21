@@ -67,39 +67,6 @@
         "thumbUri": "{{base_url}}/motion.png",
         "blockType": "//ly.img.ubq/scene"
       }
-    },
-    {
-      "id": "e-commerce-fashiondrop-ND25-01",
-      "label": {
-        "en": "New Fashion Drop · Story"
-      },
-      "meta": {
-        "uri": "{{base_url}}/e-commerce-fashiondrop-ND25-01/scene.scene",
-        "thumbUri": "{{base_url}}/e-commerce-fashiondrop-ND25-01.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
-    },
-    {
-      "id": "educational-ND25-02",
-      "label": {
-        "en": "Workshop Signup · Story"
-      },
-      "meta": {
-        "uri": "{{base_url}}/educational-ND25-02/scene.scene",
-        "thumbUri": "{{base_url}}/educational-ND25-02.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
-    },
-    {
-      "id": "educational-ND25-03",
-      "label": {
-        "en": "Animated Tips · Story"
-      },
-      "meta": {
-        "uri": "{{base_url}}/educational-ND25-03/scene.scene",
-        "thumbUri": "{{base_url}}/educational-ND25-03.png",
-        "blockType": "//ly.img.ubq/scene"
-      }
     }
   ]
 }
