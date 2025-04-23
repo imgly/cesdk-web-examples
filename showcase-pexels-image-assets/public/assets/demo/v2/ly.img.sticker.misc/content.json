@@ -1,0 +1,2927 @@
+{
+  "version": "2.0.0",
+  "id": "ly.img.sticker.misc",
+  "assets": [
+    {
+      "id": "//ly.img.sticker.misc/check",
+      "groups": ["sketches"],
+      "label": { "en": "Checkmark", "de": "Häkchen" },
+      "tags": {
+        "en": ["check", "accept", "confirm", "tick", "right"],
+        "de": ["überprüfen", "akzeptieren", "bestätigen", "anhaken", "richtig"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/check.png",
+        "thumbUri": "{{base_url}}/assets/check-thumb.png",
+        "filename": "check.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/check.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/check-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/smiley-outline",
+      "groups": ["sketches"],
+      "label": { "en": "Smiley Face Outline", "de": "Umriss eines Smileys" },
+      "tags": {
+        "en": ["smiley", "outline", "happy", "face", "black and white"],
+        "de": ["smiley", "umriss", "glücklich", "gesicht", "schwarz und weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/smiley-outline.png",
+        "thumbUri": "{{base_url}}/assets/smiley-outline-thumb.png",
+        "filename": "smiley-outline.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/smiley-outline.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/smiley-outline-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/heart-outline-white",
+      "groups": ["sketches"],
+      "label": { "en": "Heart Outline", "de": "Herzumriss" },
+      "tags": {
+        "en": ["heart", "outline", "sticker", "love", "white"],
+        "de": ["herz", "umriss", "aufkleber", "liebe", "weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/heart-outline-white.png",
+        "thumbUri": "{{base_url}}/assets/heart-outline-white-thumb.png",
+        "filename": "heart-outline-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/heart-outline-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/heart-outline-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/smiley",
+      "groups": ["sketches"],
+      "label": { "en": "Smiley Face", "de": "Smiley-Gesicht" },
+      "tags": {
+        "en": ["smiley", "sticker", "happy", "black and white", "emotion"],
+        "de": ["smiley", "aufkleber", "glücklich", "schwarz und weiß", "gefühl"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/smiley.png",
+        "thumbUri": "{{base_url}}/assets/smiley-thumb.png",
+        "filename": "smiley.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/smiley.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/smiley-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/circle-1-white",
+      "groups": ["sketches"],
+      "label": { "en": "White circle", "de": "Weißer Kreis" },
+      "tags": {
+        "en": ["circle", "white", "round", "shape", "sticker"],
+        "de": ["kreis", "weiß", "rund", "form", "aufkleber"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/circle-1-white.png",
+        "thumbUri": "{{base_url}}/assets/circle-1-white-thumb.png",
+        "filename": "circle-1-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/circle-1-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/circle-1-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/star-white",
+      "groups": ["sketches"],
+      "label": { "en": "White Star", "de": "Weißer Stern" },
+      "tags": {
+        "en": ["star", "white", "symbol", "sticker", "graphic"],
+        "de": ["stern", "weiß", "symbol", "aufkleber", "grafik"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/star-white.png",
+        "thumbUri": "{{base_url}}/assets/star-white-thumb.png",
+        "filename": "star-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/star-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/star-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/boom",
+      "groups": ["sketches"],
+      "label": { "en": "Star", "de": "Stern" },
+      "tags": {
+        "en": ["star", "black", "shape", "burst", "explosion"],
+        "de": ["stern", "schwarz", "form", "explosion"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/boom.png",
+        "thumbUri": "{{base_url}}/assets/boom-thumb.png",
+        "filename": "boom.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/boom.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/boom-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/boom-outline-white",
+      "groups": ["sketches"],
+      "label": { "en": "Starburst", "de": "Sternexplosion" },
+      "tags": {
+        "en": ["star", "boom", "explosion", "outline", "white"],
+        "de": ["stern", "knall", "explosion", "umriss", "weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/boom-outline-white.png",
+        "thumbUri": "{{base_url}}/assets/boom-outline-white-thumb.png",
+        "filename": "boom-outline-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/boom-outline-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/boom-outline-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/circle-2",
+      "groups": ["sketches"],
+      "label": { "en": "Circle", "de": "Kreis" },
+      "tags": {
+        "en": ["circle", "round", "black", "hand-drawn", "shape"],
+        "de": ["kreis", "rund", "schwarz", "handgezeichnet", "form"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/circle-2.png",
+        "thumbUri": "{{base_url}}/assets/circle-2-thumb.png",
+        "filename": "circle-2.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/circle-2.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/circle-2-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/circle-1",
+      "groups": ["sketches"],
+      "label": { "en": "Circle", "de": "Kreis" },
+      "tags": {
+        "en": ["circle", "black", "round", "geometric", "shape"],
+        "de": ["kreis", "schwarz", "rund", "geometrisch", "form"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/circle-1.png",
+        "thumbUri": "{{base_url}}/assets/circle-1-thumb.png",
+        "filename": "circle-1.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/circle-1.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/circle-1-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/boom-outline",
+      "groups": ["sketches"],
+      "label": { "en": "Star", "de": "Stern" },
+      "tags": {
+        "en": ["star", "outline", "boom", "black", "icon"],
+        "de": ["stern", "umriss", "knall", "schwarz", "icon"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/boom-outline.png",
+        "thumbUri": "{{base_url}}/assets/boom-outline-thumb.png",
+        "filename": "boom-outline.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/boom-outline.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/boom-outline-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/smiley-outline-white",
+      "groups": ["sketches"],
+      "label": { "en": "Smiley face outline", "de": "Umriss eines Smileys" },
+      "tags": {
+        "en": ["smiley", "outline", "happy", "emoji", "white"],
+        "de": ["smiley", "umriss", "glücklich", "emoji", "weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/smiley-outline-white.png",
+        "thumbUri": "{{base_url}}/assets/smiley-outline-white-thumb.png",
+        "filename": "smiley-outline-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/smiley-outline-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/smiley-outline-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/heart",
+      "groups": ["sketches"],
+      "label": { "en": "Heart", "de": "Herz" },
+      "tags": {
+        "en": ["heart", "love", "sticker", "symbol", "black"],
+        "de": ["herz", "liebe", "aufkleber", "symbol", "schwarz"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/heart.png",
+        "thumbUri": "{{base_url}}/assets/heart-thumb.png",
+        "filename": "heart.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/heart.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/heart-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/smiley-upside-down-white",
+      "groups": ["sketches"],
+      "label": {
+        "en": "Upside-down smiley face",
+        "de": "Auf den Kopf gestelltes Smiley-Gesicht"
+      },
+      "tags": {
+        "en": ["sticker", "emoji", "smiley", "upside-down", "black and white"],
+        "de": ["aufkleber", "emoji", "smiley", "kopfüber", "schwarz und weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/smiley-upside-down-white.png",
+        "thumbUri": "{{base_url}}/assets/smiley-upside-down-white-thumb.png",
+        "filename": "smiley-upside-down-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/smiley-upside-down-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/smiley-upside-down-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/boom-white",
+      "groups": ["sketches"],
+      "label": { "en": "Star Explosion", "de": "Stern Explosion" },
+      "tags": {
+        "en": ["star", "explosion", "burst", "white", "boom"],
+        "de": ["stern", "explosion", "ausbruch", "weiß", "knall"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/boom-white.png",
+        "thumbUri": "{{base_url}}/assets/boom-white-thumb.png",
+        "filename": "boom-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/boom-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/boom-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/smiley-upside-down",
+      "groups": ["sketches"],
+      "label": {
+        "en": "Upside-down smiley face",
+        "de": "Verkehrtes Smiley-Gesicht"
+      },
+      "tags": {
+        "en": [
+          "sticker",
+          "emoticon",
+          "upside down",
+          "smiley",
+          "black and white"
+        ],
+        "de": [
+          "aufkleber",
+          "emoticon",
+          "verkehrt herum",
+          "smiley",
+          "schwarz und weiß"
+        ]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/smiley-upside-down.png",
+        "thumbUri": "{{base_url}}/assets/smiley-upside-down-thumb.png",
+        "filename": "smiley-upside-down.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/smiley-upside-down.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/smiley-upside-down-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/cross",
+      "groups": ["sketches"],
+      "label": { "en": "Cross", "de": "Kreuz" },
+      "tags": {
+        "en": ["cross", "X", "black", "symbol", "mark"],
+        "de": ["kreuz", "X", "schwarz", "symbol", "markierung"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/cross.png",
+        "thumbUri": "{{base_url}}/assets/cross-thumb.png",
+        "filename": "cross.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/cross.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/cross-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/check-white",
+      "groups": ["sketches"],
+      "label": { "en": "Check mark", "de": "Häkchen" },
+      "tags": {
+        "en": ["check", "tick", "confirmation", "correct", "white"],
+        "de": ["haken", "abzeichen", "bestätigung", "korrekt", "weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/check-white.png",
+        "thumbUri": "{{base_url}}/assets/check-white-thumb.png",
+        "filename": "check-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/check-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/check-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/smiley-outline-upside-down-white",
+      "groups": ["sketches"],
+      "label": {
+        "en": "Upside-down smiley face",
+        "de": "Auf den Kopf gestelltes Smiley-Gesicht"
+      },
+      "tags": {
+        "en": [
+          "smiley",
+          "face",
+          "upside-down",
+          "icon",
+          "emoticon",
+          "white",
+          "sticker"
+        ],
+        "de": [
+          "smiley",
+          "gesicht",
+          "kopfüber",
+          "symbol",
+          "emoticon",
+          "weiß",
+          "aufkleber"
+        ]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/smiley-outline-upside-down-white.png",
+        "thumbUri": "{{base_url}}/assets/smiley-outline-upside-down-white-thumb.png",
+        "filename": "smiley-outline-upside-down-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/smiley-outline-upside-down-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/smiley-outline-upside-down-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/smiley-outline-upside-down",
+      "groups": ["sketches"],
+      "label": {
+        "en": "Upside Down Smiley Face Outline",
+        "de": "Kontur eines verkehrt herum gezeichneten Smiley-Gesichts"
+      },
+      "tags": {
+        "en": ["smiley", "upside down", "face", "outline", "emoji"],
+        "de": ["smiley", "verkehrt herum", "gesicht", "umriss", "emoji"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/smiley-outline-upside-down.png",
+        "thumbUri": "{{base_url}}/assets/smiley-outline-upside-down-thumb.png",
+        "filename": "smiley-outline-upside-down.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/smiley-outline-upside-down.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/smiley-outline-upside-down-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/speech-bubble",
+      "groups": ["sketches"],
+      "label": { "en": "Speech Bubble", "de": "Sprechblase" },
+      "tags": {
+        "en": ["speech bubble", "dialogue", "comic", "message", "chat"],
+        "de": ["sprechblase", "dialog", "comic", "nachricht", "unterhaltung"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/speech-bubble.png",
+        "thumbUri": "{{base_url}}/assets/speech-bubble-thumb.png",
+        "filename": "speech-bubble.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/speech-bubble.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/speech-bubble-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/diamond",
+      "groups": ["sketches"],
+      "label": { "en": "Diamond Shape", "de": "Diamantform" },
+      "tags": {
+        "en": ["diamond", "shape", "black", "symbol", "icon"],
+        "de": ["diamant", "form", "schwarz", "symbol", "ikone"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/diamond.png",
+        "thumbUri": "{{base_url}}/assets/diamond-thumb.png",
+        "filename": "diamond.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/diamond.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/diamond-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/star",
+      "groups": ["sketches"],
+      "label": { "en": "Star", "de": "Stern" },
+      "tags": {
+        "en": ["star", "shape", "symbol", "black", "graphic"],
+        "de": ["stern", "form", "symbol", "schwarz", "grafik"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/star.png",
+        "thumbUri": "{{base_url}}/assets/star-thumb.png",
+        "filename": "star.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/star.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/star-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/speech-bubble-white",
+      "groups": ["sketches"],
+      "label": { "en": "Speech Bubble", "de": "Sprechblase" },
+      "tags": {
+        "en": [
+          "speech bubble",
+          "dialogue",
+          "communication",
+          "white",
+          "outline"
+        ],
+        "de": ["sprechblase", "dialog", "kommunikation", "weiß", "umriss"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/speech-bubble-white.png",
+        "thumbUri": "{{base_url}}/assets/speech-bubble-white-thumb.png",
+        "filename": "speech-bubble-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/speech-bubble-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/speech-bubble-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/cross-white",
+      "groups": ["sketches"],
+      "label": { "en": "White Cross", "de": "Weißes Kreuz" },
+      "tags": {
+        "en": ["cross", "white", "symbol", "graphic"],
+        "de": ["kreuz", "weiß", "symbol", "grafik"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/cross-white.png",
+        "thumbUri": "{{base_url}}/assets/cross-white-thumb.png",
+        "filename": "cross-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/cross-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/cross-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/circle-2-white",
+      "groups": ["sketches"],
+      "label": { "en": "Circle", "de": "Kreis" },
+      "tags": {
+        "en": ["circle", "white", "hand-drawn", "sketch", "outline"],
+        "de": ["kreis", "weiß", "handgezeichnet", "skizze", "umriss"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/circle-2-white.png",
+        "thumbUri": "{{base_url}}/assets/circle-2-white-thumb.png",
+        "filename": "circle-2-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/circle-2-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/circle-2-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/smiley-white",
+      "groups": ["sketches"],
+      "label": { "en": "Smiley Face", "de": "Smiley-Gesicht" },
+      "tags": {
+        "en": ["smiley", "face", "happy", "emoji", "black and white"],
+        "de": ["smiley", "gesicht", "glücklich", "emoji", "schwarz und weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/smiley-white.png",
+        "thumbUri": "{{base_url}}/assets/smiley-white-thumb.png",
+        "filename": "smiley-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1082
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/smiley-white.png",
+            "width": 1080,
+            "height": 1082
+          },
+          {
+            "uri": "{{base_url}}/assets/smiley-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/heart-outline",
+      "groups": ["sketches"],
+      "label": { "en": "Heart Outline", "de": "Herzumriss" },
+      "tags": {
+        "en": ["heart", "outline", "love", "symbol", "emblem"],
+        "de": ["herz", "umriss", "liebe", "symbol", "emblem"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/heart-outline.png",
+        "thumbUri": "{{base_url}}/assets/heart-outline-thumb.png",
+        "filename": "heart-outline.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/heart-outline.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/heart-outline-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/diamond-white",
+      "groups": ["sketches"],
+      "label": { "en": "White diamond shape", "de": "Weißes Diamantform" },
+      "tags": {
+        "en": ["diamond", "white", "geometric", "shape", "outline"],
+        "de": ["diamant", "weiß", "geometrisch", "form", "umriss"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/diamond-white.png",
+        "thumbUri": "{{base_url}}/assets/diamond-white-thumb.png",
+        "filename": "diamond-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/diamond-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/diamond-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/heart-white",
+      "groups": ["sketches"],
+      "label": { "en": "White heart", "de": "Weißes Herz" },
+      "tags": {
+        "en": ["heart", "white", "sticker", "love", "emblem"],
+        "de": ["herz", "weiß", "aufkleber", "liebe", "embleme"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/heart-white.png",
+        "thumbUri": "{{base_url}}/assets/heart-white-thumb.png",
+        "filename": "heart-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1081
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/heart-white.png",
+            "width": 1080,
+            "height": 1081
+          },
+          {
+            "uri": "{{base_url}}/assets/heart-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/tape-08",
+      "groups": ["tape"],
+      "label": { "en": "Duct Tape", "de": "Klebeband" },
+      "tags": {
+        "en": ["duct tape", "adhesive", "repair", "silver", "sticky"],
+        "de": ["klebeband", "klebstoff", "reparatur", "silber", "klebrig"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/tape-08.png",
+        "thumbUri": "{{base_url}}/assets/tape-08-thumb.png",
+        "filename": "tape-08.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/tape-08.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/tape-08-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/tape-09",
+      "groups": ["tape"],
+      "label": { "en": "Adhesive Tape", "de": "Klebeband" },
+      "tags": {
+        "en": ["adhesive tape", "sticky", "tape", "transparent", "yellow"],
+        "de": ["klebeband", "klebrig", "band", "durchsichtig", "gelb"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/tape-09.png",
+        "thumbUri": "{{base_url}}/assets/tape-09-thumb.png",
+        "filename": "tape-09.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/tape-09.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/tape-09-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/tape-01",
+      "groups": ["tape"],
+      "label": { "en": "Duct Tape", "de": "Klebeband" },
+      "tags": {
+        "en": ["duct tape", "adhesive", "sticky", "tape", "repair", "silver"],
+        "de": [
+          "klebeband",
+          "klebstoff",
+          "klebrig",
+          "band",
+          "reparatur",
+          "silber"
+        ]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/tape-01.png",
+        "thumbUri": "{{base_url}}/assets/tape-01-thumb.png",
+        "filename": "tape-01.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/tape-01.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/tape-01-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/tape-02",
+      "groups": ["tape"],
+      "label": { "en": "Duct Tape", "de": "Klebeband" },
+      "tags": {
+        "en": ["duct tape", "adhesive", "silver", "tape", "sticky"],
+        "de": ["klebeband", "klebstoff", "silber", "band", "klebrig"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/tape-02.png",
+        "thumbUri": "{{base_url}}/assets/tape-02-thumb.png",
+        "filename": "tape-02.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/tape-02.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/tape-02-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/tape-03",
+      "groups": ["tape"],
+      "label": { "en": "Tape", "de": "Klebeband" },
+      "tags": {
+        "en": ["tape", "adhesive", "sticky", "silver", "roll"],
+        "de": ["klebeband", "klebstoff", "klebrig", "silber", "rolle"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/tape-03.png",
+        "thumbUri": "{{base_url}}/assets/tape-03-thumb.png",
+        "filename": "tape-03.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/tape-03.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/tape-03-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/tape-07",
+      "groups": ["tape"],
+      "label": { "en": "Adhesive Tape", "de": "Klebeband" },
+      "tags": {
+        "en": ["adhesive", "tape", "sticky", "yellow", "repair"],
+        "de": ["klebend", "band", "klebrig", "gelb", "reparatur"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/tape-07.png",
+        "thumbUri": "{{base_url}}/assets/tape-07-thumb.png",
+        "filename": "tape-07.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/tape-07.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/tape-07-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/tape-06",
+      "groups": ["tape"],
+      "label": { "en": "Piece of Tape", "de": "Klebeband" },
+      "tags": {
+        "en": ["tape", "adhesive", "sticky", "yellow", "glitter"],
+        "de": ["klebestreifen", "klebend", "klebrig", "gelb", "glitzer"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/tape-06.png",
+        "thumbUri": "{{base_url}}/assets/tape-06-thumb.png",
+        "filename": "tape-06.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/tape-06.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/tape-06-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/tape-10",
+      "groups": ["tape"],
+      "label": { "en": "Paperclip", "de": "Büroklammer" },
+      "tags": {
+        "en": ["paperclip", "office supplies", "metal", "clip", "stationery"],
+        "de": ["büroklammer", "bürobedarf", "metall", "klammer", "schreibwaren"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/tape-10.png",
+        "thumbUri": "{{base_url}}/assets/tape-10-thumb.png",
+        "filename": "tape-10.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/tape-10.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/tape-10-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/tape-04",
+      "groups": ["tape"],
+      "label": { "en": "Duct Tape", "de": "Klebeband" },
+      "tags": {
+        "en": ["duct tape", "adhesive", "tape", "silver", "repair", "sticky"],
+        "de": ["klebeband", "klebstoff", "silber", "reparatur", "klebrig"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/tape-04.png",
+        "thumbUri": "{{base_url}}/assets/tape-04-thumb.png",
+        "filename": "tape-04.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/tape-04.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/tape-04-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/tape-05",
+      "groups": ["tape"],
+      "label": { "en": "Roll of tape", "de": "Klebebandrolle" },
+      "tags": {
+        "en": ["tape", "adhesive", "sticky", "roll", "black", "blue"],
+        "de": ["klebeband", "klebstoff", "klebrig", "rolle", "schwarz", "blau"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/tape-05.png",
+        "thumbUri": "{{base_url}}/assets/tape-05-thumb.png",
+        "filename": "tape-05.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/tape-05.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/tape-05-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/line-2",
+      "groups": ["marker"],
+      "label": { "en": "Zipper", "de": "Reißverschluss" },
+      "tags": {
+        "en": ["zipper", "fastener", "closure", "black", "sewing"],
+        "de": ["reißverschluss", "verschluss", "schließung", "schwarz", "nähen"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/line-2.png",
+        "thumbUri": "{{base_url}}/assets/line-2-thumb.png",
+        "filename": "line-2.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/line-2.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/line-2-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/ziggy-white",
+      "groups": ["marker"],
+      "label": { "en": "Zigzag pattern", "de": "Zickzack-Muster" },
+      "tags": {
+        "en": ["zigzag", "pattern", "abstract", "black and white"],
+        "de": ["zickzack", "muster", "abstrakt", "schwarz und weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/ziggy-white.png",
+        "thumbUri": "{{base_url}}/assets/ziggy-white-thumb.png",
+        "filename": "ziggy-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1141,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/ziggy-white.png",
+            "width": 1141,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/ziggy-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/line-3",
+      "groups": ["marker"],
+      "label": { "en": "Slash", "de": "Schrägstrich" },
+      "tags": {
+        "en": ["slash", "line", "diagonal", "black", "symbol"],
+        "de": ["schrägstrich", "linie", "diagonale", "schwarz", "symbol"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/line-3.png",
+        "thumbUri": "{{base_url}}/assets/line-3-thumb.png",
+        "filename": "line-3.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/line-3.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/line-3-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/line-1",
+      "groups": ["marker"],
+      "label": { "en": "line-1", "de": "line-1" },
+      "tags": {
+        "en": ["line", "marker", "pen", "black", "symbol"],
+        "de": ["Strich", "Linie", "Stift", "schwarz", "symbol"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/line-1.png",
+        "thumbUri": "{{base_url}}/assets/line-1-thumb.png",
+        "filename": "line-1.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/line-1.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/line-1-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-left-outline-white",
+      "groups": ["marker"],
+      "label": { "en": "Left Arrow Outline", "de": "Pfeil nach links Kontur" },
+      "tags": {
+        "en": ["arrow", "left", "direction", "outline", "white"],
+        "de": ["pfeil", "links", "richtung", "kontur", "weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-left-outline-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-left-outline-white-thumb.png",
+        "filename": "arrow-left-outline-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1141,
+        "height": 1155
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-left-outline-white.png",
+            "width": 1141,
+            "height": 1155
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-left-outline-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/line-1-white",
+      "groups": ["marker"],
+      "label": { "en": "line-1-white", "de": "line-1-white" },
+      "tags": {
+        "en": ["line", "marker", "pen", "white", "symbol"],
+        "de": ["Strich", "Linie", "Stift", "weiß", "symbol"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/line-1-white.png",
+        "thumbUri": "{{base_url}}/assets/line-1-white-thumb.png",
+        "filename": "line-1-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1110,
+        "height": 1148
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/line-1-white.png",
+            "width": 1110,
+            "height": 1148
+          },
+          {
+            "uri": "{{base_url}}/assets/line-1-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-right",
+      "groups": ["marker"],
+      "label": { "en": "Right Arrow", "de": "Pfeil nach rechts" },
+      "tags": {
+        "en": ["arrow", "right", "direction", "pointer", "black"],
+        "de": ["pfeil", "rechts", "richtung", "zeiger", "schwarz"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-right.png",
+        "thumbUri": "{{base_url}}/assets/arrow-right-thumb.png",
+        "filename": "arrow-right.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-right.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-right-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-left-outline",
+      "groups": ["marker"],
+      "label": { "en": "Left arrow", "de": "Pfeil nach links" },
+      "tags": {
+        "en": ["arrow", "left", "direction", "outline", "back"],
+        "de": ["pfeil", "links", "richtung", "umriss", "zurück"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-left-outline.png",
+        "thumbUri": "{{base_url}}/assets/arrow-left-outline-thumb.png",
+        "filename": "arrow-left-outline.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-left-outline.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-left-outline-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/ziggy-thin-long-white",
+      "groups": ["marker"],
+      "label": { "en": "Zigzag Line", "de": "Zickzacklinie" },
+      "tags": {
+        "en": ["zigzag", "line", "abstract", "white", "pattern"],
+        "de": ["zickzack", "linie", "abstrakt", "weiß", "muster"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/ziggy-thin-long-white.png",
+        "thumbUri": "{{base_url}}/assets/ziggy-thin-long-white-thumb.png",
+        "filename": "ziggy-thin-long-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1141,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/ziggy-thin-long-white.png",
+            "width": 1141,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/ziggy-thin-long-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-s",
+      "groups": ["marker"],
+      "label": { "en": "Curved Arrow", "de": "Gekrümmter Pfeil" },
+      "tags": {
+        "en": [
+          "curved arrow",
+          "black arrow",
+          "direction",
+          "pointing",
+          "indicator"
+        ],
+        "de": [
+          "gekrümmter pfeil",
+          "schwarzer pfeil",
+          "richtung",
+          "zeigen",
+          "anzeiger"
+        ]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-s.png",
+        "thumbUri": "{{base_url}}/assets/arrow-s-thumb.png",
+        "filename": "arrow-s.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-s.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-s-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-s-white",
+      "groups": ["marker"],
+      "label": { "en": "White arrow sticker", "de": "Weißer Pfeil-Aufkleber" },
+      "tags": {
+        "en": ["arrow", "sticker", "direction", "white"],
+        "de": ["pfeil", "aufkleber", "richtung", "weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-s-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-s-white-thumb.png",
+        "filename": "arrow-s-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1170
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-s-white.png",
+            "width": 1081,
+            "height": 1170
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-s-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/ziggy-long-white",
+      "groups": ["marker"],
+      "label": { "en": "ziggy-long-white", "de": "ziggy-long-white" },
+      "tags": {
+        "en": ["line", "marker", "pen", "white", "symbol", "zick-zack"],
+        "de": ["Strich", "Linie", "Stift", "weiß", "symbol", "zick-zack"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/ziggy-long-white.png",
+        "thumbUri": "{{base_url}}/assets/ziggy-long-white-thumb.png",
+        "filename": "ziggy-long-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1141,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/ziggy-long-white.png",
+            "width": 1141,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/ziggy-long-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-up-outline-white",
+      "groups": ["marker"],
+      "label": { "en": "Upwards arrow", "de": "Pfeil nach oben" },
+      "tags": {
+        "en": ["arrow", "up", "direction", "outline", "white"],
+        "de": ["pfeil", "oben", "richtung", "umriss", "weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-up-outline-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-up-outline-white-thumb.png",
+        "filename": "arrow-up-outline-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1133,
+        "height": 1170
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-up-outline-white.png",
+            "width": 1133,
+            "height": 1170
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-up-outline-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/ziggy-long",
+      "groups": ["marker"],
+      "label": { "en": "Zigzag Line", "de": "Zickzacklinie" },
+      "tags": {
+        "en": ["zigzag", "line", "black", "abstract", "pattern"],
+        "de": ["zickzack", "linie", "schwarz", "abstrakt", "muster"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/ziggy-long.png",
+        "thumbUri": "{{base_url}}/assets/ziggy-long-thumb.png",
+        "filename": "ziggy-long.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/ziggy-long.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/ziggy-long-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-u",
+      "groups": ["marker"],
+      "label": {
+        "en": "Curved arrow pointing up",
+        "de": "Gebogener Pfeil nach oben"
+      },
+      "tags": {
+        "en": ["arrow", "upward", "direction", "curve", "black"],
+        "de": ["pfeil", "aufwärts", "richtung", "kurve", "schwarz"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-u.png",
+        "thumbUri": "{{base_url}}/assets/arrow-u-thumb.png",
+        "filename": "arrow-u.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-u.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-u-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-swing-white",
+      "groups": ["marker"],
+      "label": { "en": "Swinging Arrow", "de": "Schwingender Pfeil" },
+      "tags": {
+        "en": ["arrow", "swing", "white", "sticker", "direction"],
+        "de": ["pfeil", "schwingen", "weiß", "aufkleber", "richtung"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-swing-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-swing-white-thumb.png",
+        "filename": "arrow-swing-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1170
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-swing-white.png",
+            "width": 1081,
+            "height": 1170
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-swing-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-up-outline",
+      "groups": ["marker"],
+      "label": { "en": "Upward arrow", "de": "Pfeil nach oben" },
+      "tags": {
+        "en": ["arrow", "up", "outline", "direction", "black"],
+        "de": ["pfeil", "nach oben", "umriss", "richtung", "schwarz"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-up-outline.png",
+        "thumbUri": "{{base_url}}/assets/arrow-up-outline-thumb.png",
+        "filename": "arrow-up-outline.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-up-outline.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-up-outline-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-u-white",
+      "groups": ["marker"],
+      "label": {
+        "en": "Curved arrow pointing up",
+        "de": "Nach oben zeigender gebogener Pfeil"
+      },
+      "tags": {
+        "en": ["arrow", "up", "curve", "direction", "white"],
+        "de": ["pfeil", "nach oben", "kurve", "richtung", "weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-u-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-u-white-thumb.png",
+        "filename": "arrow-u-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1115,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-u-white.png",
+            "width": 1115,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-u-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/ziggy-thin-long",
+      "groups": ["marker"],
+      "label": { "en": "Zigzag Line", "de": "Zickzacklinie" },
+      "tags": {
+        "en": ["zigzag", "line", "abstract", "pattern", "design"],
+        "de": ["zickzack", "linie", "abstrakt", "muster", "design"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/ziggy-thin-long.png",
+        "thumbUri": "{{base_url}}/assets/ziggy-thin-long-thumb.png",
+        "filename": "ziggy-thin-long.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/ziggy-thin-long.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/ziggy-thin-long-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/dots",
+      "groups": ["marker"],
+      "label": { "en": "Abstract dots", "de": "Abstrakte Punkte" },
+      "tags": {
+        "en": ["dots", "abstract", "black and white", "design", "pattern"],
+        "de": ["punkte", "abstrakt", "schwarz und weiß", "design", "muster"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/dots.png",
+        "thumbUri": "{{base_url}}/assets/dots-thumb.png",
+        "filename": "dots.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/dots.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/dots-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/ziggy-thin-white",
+      "groups": ["marker"],
+      "label": { "en": "ziggy-thin-white", "de": "ziggy-thin-white" },
+      "tags": {
+        "en": ["line", "marker", "pen", "white", "symbol", "zig-zag"],
+        "de": ["Strich", "Linie", "Stift", "weiß", "symbol", "zick-zack"]
+      },
+      
+      "meta": {
+        "uri": "{{base_url}}/assets/ziggy-thin-white.png",
+        "thumbUri": "{{base_url}}/assets/ziggy-thin-white-thumb.png",
+        "filename": "ziggy-thin-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1141,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/ziggy-thin-white.png",
+            "width": 1141,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/ziggy-thin-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-down",
+      "groups": ["marker"],
+      "label": { "en": "Downward Arrow", "de": "Pfeil nach unten" },
+      "tags": {
+        "en": ["arrow", "down", "direction", "black", "pointing down"],
+        "de": ["pfeil", "unten", "richtung", "schwarz", "nach unten zeigend"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-down.png",
+        "thumbUri": "{{base_url}}/assets/arrow-down-thumb.png",
+        "filename": "arrow-down.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-down.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-down-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-left-white",
+      "groups": ["marker"],
+      "label": { "en": "Left Arrow", "de": "Pfeil nach links" },
+      "tags": {
+        "en": ["arrow", "left", "direction", "white", "navigation"],
+        "de": ["pfeil", "links", "richtung", "weiß", "navigation"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-left-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-left-white-thumb.png",
+        "filename": "arrow-left-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1102,
+        "height": 1170
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-left-white.png",
+            "width": 1102,
+            "height": 1170
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-left-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-down-outline-white",
+      "groups": ["marker"],
+      "label": { "en": "Downward Arrow", "de": "Pfeil nach unten" },
+      "tags": {
+        "en": ["arrow", "down", "outline", "white", "direction"],
+        "de": ["pfeil", "unten", "umriss", "weiß", "richtung"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-down-outline-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-down-outline-white-thumb.png",
+        "filename": "arrow-down-outline-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1132,
+        "height": 1170
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-down-outline-white.png",
+            "width": 1132,
+            "height": 1170
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-down-outline-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-left",
+      "groups": ["marker"],
+      "label": { "en": "Left Arrow", "de": "Pfeil nach links" },
+      "tags": {
+        "en": ["left arrow", "direction", "pointer", "black"],
+        "de": ["links pfeil", "richtung", "zeiger", "schwarz"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-left.png",
+        "thumbUri": "{{base_url}}/assets/arrow-left-thumb.png",
+        "filename": "arrow-left.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-left.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-left-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/line-3-white",
+      "groups": ["marker"],
+      "label": { "en": "Diagonal Line", "de": "Diagonale Linie" },
+      "tags": {
+        "en": ["line", "diagonal", "white", "slash", "minimalistic"],
+        "de": ["linie", "diagonal", "weiß", "schrägstrich", "minimalistisch"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/line-3-white.png",
+        "thumbUri": "{{base_url}}/assets/line-3-white-thumb.png",
+        "filename": "line-3-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1106
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/line-3-white.png",
+            "width": 1081,
+            "height": 1106
+          },
+          {
+            "uri": "{{base_url}}/assets/line-3-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-up",
+      "groups": ["marker"],
+      "label": { "en": "Upward Arrow", "de": "Pfeil nach oben" },
+      "tags": {
+        "en": ["arrow", "up", "direction", "pointer", "black"],
+        "de": ["pfeil", "nach oben", "richtung", "zeiger", "schwarz"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-up.png",
+        "thumbUri": "{{base_url}}/assets/arrow-up-thumb.png",
+        "filename": "arrow-up.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-up.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-up-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-right-white",
+      "groups": ["marker"],
+      "label": { "en": "Right Arrow", "de": "Pfeil nach rechts" },
+      "tags": {
+        "en": ["arrow", "right", "direction", "white", "navigation"],
+        "de": ["pfeil", "rechts", "richtung", "weiß", "navigation"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-right-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-right-white-thumb.png",
+        "filename": "arrow-right-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1103,
+        "height": 1170
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-right-white.png",
+            "width": 1103,
+            "height": 1170
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-right-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/ziggy-thin",
+      "groups": ["marker"],
+      "label": { "en": "Zigzag Line", "de": "Zickzacklinie" },
+      "tags": {
+        "en": ["zigzag", "line", "simple", "abstract", "pattern"],
+        "de": ["zickzack", "linie", "einfach", "abstrakt", "muster"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/ziggy-thin.png",
+        "thumbUri": "{{base_url}}/assets/ziggy-thin-thumb.png",
+        "filename": "ziggy-thin.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/ziggy-thin.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/ziggy-thin-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-right-outline",
+      "groups": ["marker"],
+      "label": {
+        "en": "Right Arrow Outline",
+        "de": "Pfeil nach rechts Umriss"
+      },
+      "tags": {
+        "en": ["arrow", "right", "direction", "outline", "pointer"],
+        "de": ["pfeil", "rechts", "richtung", "umriss", "zeiger"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-right-outline.png",
+        "thumbUri": "{{base_url}}/assets/arrow-right-outline-thumb.png",
+        "filename": "arrow-right-outline.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-right-outline.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-right-outline-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-down-white",
+      "groups": ["marker"],
+      "label": { "en": "Downward Arrow", "de": "Pfeil nach unten" },
+      "tags": {
+        "en": ["arrow", "down", "white", "direction", "pointer"],
+        "de": ["pfeil", "unten", "weiß", "richtung", "zeiger"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-down-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-down-white-thumb.png",
+        "filename": "arrow-down-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1141,
+        "height": 1140
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-down-white.png",
+            "width": 1141,
+            "height": 1140
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-down-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-right-outline-white",
+      "groups": ["marker"],
+      "label": {
+        "en": "Right arrow outline",
+        "de": "Umriss eines Pfeils nach rechts"
+      },
+      "tags": {
+        "en": ["arrow", "right", "direction", "outline", "white"],
+        "de": ["pfeil", "rechts", "richtung", "umriss", "weiß"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-right-outline-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-right-outline-white-thumb.png",
+        "filename": "arrow-right-outline-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1141,
+        "height": 1155
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-right-outline-white.png",
+            "width": 1141,
+            "height": 1155
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-right-outline-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/dots-white",
+      "groups": ["marker"],
+      "label": { "en": "White dots pattern", "de": "Weißes Punktmuster" },
+      "tags": {
+        "en": [
+          "dots",
+          "pattern",
+          "white",
+          "black background",
+          "simple",
+          "design"
+        ],
+        "de": [
+          "punkte",
+          "muster",
+          "weiß",
+          "schwarzer hintergrund",
+          "einfach",
+          "design"
+        ]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/dots-white.png",
+        "thumbUri": "{{base_url}}/assets/dots-white-thumb.png",
+        "filename": "dots-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1141,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/dots-white.png",
+            "width": 1141,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/dots-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-up-white",
+      "groups": ["marker"],
+      "label": { "en": "Upward Arrow", "de": "Pfeil nach oben" },
+      "tags": {
+        "en": ["arrow", "up", "direction", "white", "pointer"],
+        "de": ["pfeil", "nach oben", "richtung", "weiß", "zeiger"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-up-white.png",
+        "thumbUri": "{{base_url}}/assets/arrow-up-white-thumb.png",
+        "filename": "arrow-up-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1141,
+        "height": 1147
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-up-white.png",
+            "width": 1141,
+            "height": 1147
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-up-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/ziggy",
+      "groups": ["marker"],
+      "label": { "en": "Zigzag", "de": "Zickzack" },
+      "tags": {
+        "en": ["zigzag", "pattern", "black", "line", "abstract"],
+        "de": ["zickzack", "muster", "schwarz", "linie", "abstrakt"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/ziggy.png",
+        "thumbUri": "{{base_url}}/assets/ziggy-thumb.png",
+        "filename": "ziggy.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/ziggy.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/ziggy-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-swing",
+      "groups": ["marker"],
+      "label": { "en": "Curved Arrow", "de": "Gekrümmter Pfeil" },
+      "tags": {
+        "en": ["arrow", "curved", "direction", "black", "pointer"],
+        "de": ["pfeil", "gekrümmt", "richtung", "schwarz", "zeiger"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-swing.png",
+        "thumbUri": "{{base_url}}/assets/arrow-swing-thumb.png",
+        "filename": "arrow-swing.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-swing.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-swing-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/arrow-down-outline",
+      "groups": ["marker"],
+      "label": { "en": "Downward Arrow", "de": "Pfeil nach unten" },
+      "tags": {
+        "en": ["arrow", "down", "direction", "outline", "symbol"],
+        "de": ["pfeil", "unten", "richtung", "umriss", "symbol"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/arrow-down-outline.png",
+        "thumbUri": "{{base_url}}/assets/arrow-down-outline-thumb.png",
+        "filename": "arrow-down-outline.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/arrow-down-outline.png",
+            "width": 1081,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/arrow-down-outline-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/line-2-white",
+      "groups": ["marker"],
+      "label": { "en": "Diagonal Line", "de": "Diagonale Linie" },
+      "tags": {
+        "en": ["line", "white", "diagonal", "graphic", "simple"],
+        "de": ["linie", "weiß", "diagonal", "grafik", "einfach"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/line-2-white.png",
+        "thumbUri": "{{base_url}}/assets/line-2-white-thumb.png",
+        "filename": "line-2-white.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1081,
+        "height": 1117
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/line-2-white.png",
+            "width": 1081,
+            "height": 1117
+          },
+          {
+            "uri": "{{base_url}}/assets/line-2-white-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/cube",
+      "groups": ["3dstickers"],
+      "label": { "en": "Rubik's Cube", "de": "Zauberwürfel" },
+      "tags": {
+        "en": ["cube", "puzzle", "colorful", "game", "toy"],
+        "de": ["würfel", "puzzle", "bunt", "spiel", "spielzeug"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/cube.png",
+        "thumbUri": "{{base_url}}/assets/cube-thumb.png",
+        "filename": "cube.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/cube.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/cube-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/astronaut",
+      "groups": ["3dstickers"],
+      "label": { "en": "Astronaut with laptop", "de": "Astronaut mit Laptop" },
+      "tags": {
+        "en": [
+          "astronaut",
+          "space",
+          "helmet",
+          "computer",
+          "technology",
+          "suit",
+          "exploration"
+        ],
+        "de": [
+          "astronaut",
+          "raum",
+          "helm",
+          "computer",
+          "technologie",
+          "anzug",
+          "erkundung"
+        ]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/astronaut.png",
+        "thumbUri": "{{base_url}}/assets/astronaut-thumb.png",
+        "filename": "astronaut.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/astronaut.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/astronaut-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/thunder",
+      "groups": ["3dstickers"],
+      "label": { "en": "Lightning Bolt", "de": "Blitz" },
+      "tags": {
+        "en": ["lightning", "bolt", "sticker", "electric", "energy"],
+        "de": ["blitz", "aufkleber", "elektrisch", "energie"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/thunder.png",
+        "thumbUri": "{{base_url}}/assets/thunder-thumb.png",
+        "filename": "thunder.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/thunder.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/thunder-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/brain",
+      "groups": ["3dstickers"],
+      "label": { "en": "Brain", "de": "Gehirn" },
+      "tags": {
+        "en": ["brain", "mind", "neurology", "organ", "intelligence"],
+        "de": ["gehirn", "verstand", "neurologie", "organ", "intelligenz"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/brain.png",
+        "thumbUri": "{{base_url}}/assets/brain-thumb.png",
+        "filename": "brain.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/brain.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/brain-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/megaphone",
+      "groups": ["3dstickers"],
+      "label": { "en": "Megaphone", "de": "Megafon" },
+      "tags": {
+        "en": [
+          "loudspeaker",
+          "announcement",
+          "public speaking",
+          "sound",
+          "voice amplifier"
+        ],
+        "de": [
+          "lautsprecher",
+          "durchsage",
+          "öffentliches sprechen",
+          "klang",
+          "stimmverstärker"
+        ]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/megaphone.png",
+        "thumbUri": "{{base_url}}/assets/megaphone-thumb.png",
+        "filename": "megaphone.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/megaphone.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/megaphone-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/light",
+      "groups": ["3dstickers"],
+      "label": {
+        "en": "Light bulb with glasses",
+        "de": "Glühbirne mit Brille"
+      },
+      "tags": {
+        "en": ["light bulb", "glasses", "cute", "smiling", "pink", "idea"],
+        "de": ["glühbirne", "brille", "niedlich", "lächeln", "rosa", "idee"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/light.png",
+        "thumbUri": "{{base_url}}/assets/light-thumb.png",
+        "filename": "light.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/light.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/light-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/pizza",
+      "groups": ["3dstickers"],
+      "label": { "en": "Pizza slice", "de": "Pizzastück" },
+      "tags": {
+        "en": [
+          "pizza",
+          "food",
+          "pepperoni",
+          "cheese",
+          "slice",
+          "Italian cuisine"
+        ],
+        "de": [
+          "pizza",
+          "essen",
+          "salami",
+          "käse",
+          "scheibe",
+          "italienische küche"
+        ]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/pizza.png",
+        "thumbUri": "{{base_url}}/assets/pizza-thumb.png",
+        "filename": "pizza.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/pizza.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/pizza-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/thumbs-up",
+      "groups": ["3dstickers"],
+      "label": { "en": "Thumbs Up", "de": "Daumen hoch" },
+      "tags": {
+        "en": ["thumbs up", "approval", "like", "hand gesture", "positive"],
+        "de": ["daumen hoch", "zustimmung", "mag ich", "handgeste", "positiv"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/thumbs-up.png",
+        "thumbUri": "{{base_url}}/assets/thumbs-up-thumb.png",
+        "filename": "thumbs-up.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/thumbs-up.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/thumbs-up-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    },
+    {
+      "id": "//ly.img.sticker.misc/rainbow",
+      "groups": ["3dstickers"],
+      "label": { "en": "Rainbow", "de": "Regenbogen" },
+      "tags": {
+        "en": ["rainbow", "clouds", "colorful", "art", "sticker"],
+        "de": ["regenbogen", "wolken", "bunt", "kunst", "aufkleber"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/assets/rainbow.png",
+        "thumbUri": "{{base_url}}/assets/rainbow-thumb.png",
+        "filename": "rainbow.png",
+        "kind": "sticker",
+        "fillType": "//ly.img.ubq/fill/image",
+        "width": 1080,
+        "height": 1080
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/assets/rainbow.png",
+            "width": 1080,
+            "height": 1080
+          },
+          {
+            "uri": "{{base_url}}/assets/rainbow-thumb.png",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      }
+    }
+  ]
+}
