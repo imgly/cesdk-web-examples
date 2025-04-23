@@ -1,0 +1,159 @@
+{
+  "version": "2.0.0",
+  "id": "ly.img.template",
+  "assets": [
+    {
+      "id": "ly.img.cesdk.templates.samples/blank_1",
+      "groups": [],
+      "label": {
+        "en": "Blank Document",
+        "de": "Leer Dokument"
+      },
+      "tags": {
+        "en": ["blank", "empty", "white", "template"],
+        "de": ["leer", "weiß", "Vorlage"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_blank_1.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_blank_1.png",
+        "filename": "blank_1.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.templates.samples/postcard_1",
+      "groups": [],
+      "label": {
+        "en": "Postcard Design",
+        "de": "Postkarte Design"
+      },
+      "tags": {
+        "en": ["postcard", "design", "template", "print"],
+        "de": ["Postkarte", "Design", "Vorlage", "Druck"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_postcard_1.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_postcard_1.jpg",
+        "filename": "postcard_1.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.templates.samples/postcard_2",
+      "groups": [],
+      "label": {
+        "en": "Postcard Tropical",
+        "de": "Postkarte Tropisch"
+      },
+      "tags": {
+        "en": ["postcard", "template", "print"],
+        "de": ["Postkarte", "Vorlage", "Druck"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_postcard_2.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_postcard_2.jpg",
+        "filename": "postcard_2.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.templates.samples/business_card_1",
+      "groups": [],
+      "label": {
+        "en": "Business card",
+        "de": "Visitenkarte"
+      },
+      "tags": {
+        "en": ["business", "card", "template", "print"],
+        "de": ["Visitenkarte", "Geschäft", "Vorlage", "Druck"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_business_card_1.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_business_card_1.jpg",
+        "filename": "business_card_1.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.templates.samples/instagram_photo_1",
+      "groups": [],
+      "label": {
+        "en": "Instagram photo",
+        "de": "Instagram Foto"
+      },
+      "tags": {
+        "en": ["instagram", "photo", "template", "square", "social media"],
+        "de": ["Instagram", "Foto", "Vorlage", "Quadratisch", "Soziale Medien"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_instagram_photo_1.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_instagram_photo_1.jpg",
+        "filename": "instagram_photo_1.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.templates.samples/instagram_story_1",
+      "groups": [],
+      "label": {
+        "en": "Instagram story",
+        "de": "Instagram Story"
+      },
+      "tags": {
+        "en": ["instagram", "story", "template", "social media"],
+        "de": ["Instagram", "Story", "Vorlage", "Soziale Medien"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_instagram_story_1.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_instagram_story_1.jpg",
+        "filename": "instagram_story_1.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.templates.samples/poster_1",
+      "groups": [],
+      "label": {
+        "en": "Poster",
+        "de": "Poster"
+      },
+      "tags": {
+        "en": ["poster", "template", "print", "digital"],
+        "de": ["Poster", "Vorlage", "Druck", "Digital"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_poster_1.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_poster_1.jpg",
+        "filename": "poster_1.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.templates.samples/presentation_4",
+      "groups": [],
+      "label": {
+        "en": "Presentation",
+        "de": "Präsentation"
+      },
+      "tags": {
+        "en": ["presentation", "template", "slide", "digital"],
+        "de": ["Präsentation", "Vorlage", "Folie", "Digital"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_presentation_1.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_presentation_1.jpg",
+        "filename": "presentation_4.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.templates.samples/collage_1",
+      "groups": [],
+      "label": {
+        "en": "Collage",
+        "de": "Collage"
+      },
+      "tags": {
+        "en": ["collage", "template", "print", "digital"],
+        "de": ["Collage", "Vorlage", "Druck", "Digital"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_collage_1.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_collage_1.jpg",
+        "filename": "collage_1.scene"
+      }
+    }
+  ]
+}

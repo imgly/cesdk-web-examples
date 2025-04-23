@@ -1,0 +1,88 @@
+{
+  "version": "2.0.0",
+  "id": "ly.img.video.template",
+  "assets": [
+    {
+      "id": "ly.img.cesdk.video.templates.samples/milli-surf-school",
+      "groups": [],
+      "label": {
+        "en": "Milli Surf School",
+        "de": "Milli Surf Schule"
+      },
+      "tags": {
+        "en": ["surf", "school", "summer", "vacation", "holiday"],
+        "de": ["Surf", "Schule", "Sommer", "Urlaub", "Ferien"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.video.template/templates/milli-surf-school.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.video.template/thumbnails/milli-surf-school.png",
+        "filename": "milli-surf-school.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.video.templates.samples/monthly-review",
+      "groups": [],
+      "label": {
+        "en": "Monthly Review",
+        "de": "Monatliche Übersicht"
+      },
+      "tags": {
+        "en": ["Diary", "Journal", "Review", "Monthly", "Yearly", "Memories"],
+        "de": [
+          "Tagebuch",
+          "Journal",
+          "Übersicht",
+          "Monatlich",
+          "Jährlich",
+          "Erinnerungen"
+        ]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.video.template/templates/monthly-review.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.video.template/thumbnails/monthly-review.png",
+        "filename": "monthly-review.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.video.templates.samples/my-plants",
+      "groups": [],
+      "label": {
+        "en": "My Plants",
+        "de": "Meine Pflanzen"
+      },
+      "tags": {
+        "en": ["Hobby", "Gardening", "Plants", "Flowers", "Nature", "Garden"],
+        "de": ["Hobby", "Gärtnern", "Pflanzen", "Blumen", "Natur", "Garten"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.video.template/templates/my-plants.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.video.template/thumbnails/my-plants.png",
+        "filename": "my-plants.scene"
+      }
+    },
+    {
+      "id": "ly.img.cesdk.video.templates.samples/red-dot",
+      "groups": [],
+      "label": {
+        "en": "Red Dot",
+        "de": "Roter Punkt"
+      },
+      "tags": {
+        "en": [
+          "Template",
+          "Commercial",
+          "Promo",
+          "Product",
+          "Sale",
+          "Discount"
+        ],
+        "de": ["Vorlage", "Werbung", "Promo", "Produkt", "Verkauf", "Rabatt"]
+      },
+      "meta": {
+        "uri": "https://cdn.img.ly/assets/demo/v2/ly.img.video.template/templates/red-dot.scene",
+        "thumbUri": "https://cdn.img.ly/assets/demo/v2/ly.img.video.template/thumbnails/red-dot.png",
+        "filename": "red-dot.scene"
+      }
+    }
+  ]
+}
