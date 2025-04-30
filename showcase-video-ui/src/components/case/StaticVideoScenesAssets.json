@@ -58,6 +58,39 @@
       }
     },
     {
+      "id": "06-museum-ad-educational",
+      "label": {
+        "en": "Faces · Museum Ad Story"
+      },
+      "meta": {
+        "uri": "{{base_url}}/06-museum-ad-educational/scene.scene",
+        "thumbUri": "{{base_url}}/06-museum-ad-educational.png",
+        "blockType": "//ly.img.ubq/scene"
+      }
+    },
+    {
+      "id": "07-sports-ad-commercial",
+      "label": {
+        "en": "Sports · Television Ad Story"
+      },
+      "meta": {
+        "uri": "{{base_url}}/07-sports-ad-commercial/scene.scene",
+        "thumbUri": "{{base_url}}/07-sports-ad-commercial.png",
+        "blockType": "//ly.img.ubq/scene"
+      }
+    },
+    {
+      "id": "08-ecommerce-fashion",
+      "label": {
+        "en": "Fashion · Ad Instagram Story"
+      },
+      "meta": {
+        "uri": "{{base_url}}/08-ecommerce-fashion/scene.scene",
+        "thumbUri": "{{base_url}}/08-ecommerce-fashion.png",
+        "blockType": "//ly.img.ubq/scene"
+      }
+    },
+    {
       "id": "motion",
       "label": {
         "en": "Motion · Landscape Example"
