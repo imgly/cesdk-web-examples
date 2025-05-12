@@ -1,10 +1,9 @@
-// highlight-setup
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.51.0-rc.2/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.31.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.51.0-rc.2/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -16,9 +15,7 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setWidth(page, 800);
   engine.block.setHeight(page, 600);
   engine.block.appendChild(scene, page);
-  // highlight-setup
 
-  // highlight-combine-union
   const circle1 = engine.block.create('graphic');
   engine.block.setShape(circle1, engine.block.createShape('ellipse'));
   engine.block.setFill(circle1, engine.block.createFill('color'));
@@ -47,9 +44,7 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.appendChild(page, circle3);
 
   const union = engine.block.combine([circle1, circle2, circle3], 'Union');
-  // highlight-combine-union
 
-  // highlight-combine-difference
   const text = engine.block.create('text');
   engine.block.replaceText(text, 'Removed text');
   engine.block.setPositionX(text, 10);
@@ -75,5 +70,4 @@ CreativeEngine.init(config).then(async (engine) => {
 
   engine.block.sendToBack(image);
   const difference = engine.block.combine([image, text], 'Difference');
-  // highlight-combine-difference
 });
