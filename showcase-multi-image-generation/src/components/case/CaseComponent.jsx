@@ -299,7 +299,10 @@ const CaseComponent = () => {
         <EditInstanceCESDK
           templateName={currentSceneData.label}
           restaurantData={restaurant}
-          sceneString={currentSceneData.sceneString}
+          sceneString={
+            reviewBlobs.find((blob) => blob.label === currentSceneData.label)
+              .sceneString
+          }
           onSave={async (sceneString) =>
             updateInstance(sceneString, currentSceneData)
           }

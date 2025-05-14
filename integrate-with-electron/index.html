@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Integrate CreativeEditor SDK with Electron</title>
+    <title>Integrate CE.SDK with Electron</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <style>
       body {
@@ -19,35 +18,29 @@
   </head>
 
   <body>
-    <!--// docs-integrate-electron-2-->
     <div id="cesdk_container" style="width: 100%; height: 100vh"></div>
-    <!--// docs-integrate-electron-2-->
 
-    <script>
-      // docs-integrate-electron-1
-      const CreativeEditorSDK = require('@cesdk/cesdk-js');
-      // docs-integrate-electron-1
+    <script type="module">
+      import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.51.0-rc.3/index.js';
+
       window.onload = function () {
-        // docs-integrate-electron-3
-        let config = {
+        const config = {
           license:
             'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-          // Serve assets from IMG.LY cdn or locally
-          baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/assets',
-          // Enable local uploads in Asset Library
-          callbacks: { onUpload: 'local' }
+          userId: 'guides-user',
+          baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.51.0-rc.3/assets',
+          callbacks: {
+            onUpload: 'local'
+          }
         };
 
         CreativeEditorSDK.create('#cesdk_container', config).then(
           async (instance) => {
-            // Do something with the instance of CreativeEditor SDK, for example:
-            // Populate the asset library with default / demo asset sources.
-            instance.addDefaultAssetSources();
-            instance.addDemoAssetSources({ sceneMode: 'Design' });
+            await instance.addDefaultAssetSources();
+            await instance.addDemoAssetSources({ sceneMode: 'Design' });
             await instance.createDesignScene();
           }
         );
-        // docs-integrate-electron-3
       };
     </script>
   </body>
