@@ -6,7 +6,6 @@ import FalAiImage from '@imgly/plugin-ai-image-generation-web/fal-ai';
 import Anthropic from '@imgly/plugin-ai-text-generation-web/anthropic';
 import FalAiVideo from '@imgly/plugin-ai-video-generation-web/fal-ai';
 
-import { supportsVideo, supportsVideoExport } from '@cesdk/cesdk-js';
 import CreativeEditor, {
   useConfig,
   useConfigure,
@@ -14,7 +13,7 @@ import CreativeEditor, {
 } from './lib/CreativeEditor';
 
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const SCENE_MODE_OPTIONS = [
   {
@@ -35,27 +34,12 @@ let ELEVENLABS_PROXY_URL = '';
 
 const CaseComponent = () => {
   const [cesdk, setCesdk] = useCreativeEditor();
-
-  const [currentSceneMode, setCurrentSceneMode] = useState(undefined);
-
-  useEffect(() => {
-    if (currentSceneMode != null) return;
-
-    (async function checkSupport() {
-      const supportVideo = supportsVideo();
-      const supportVideoExport = await supportsVideoExport();
-
-      setCurrentSceneMode(
-        supportVideo && supportVideoExport ? 'Video' : 'Design'
-      );
-    })();
-  }, [currentSceneMode]);
+  const [currentSceneMode, setCurrentSceneMode] = useState('Design');
 
   const config = useConfig(
     () => ({
-      ...SCENE_MODE_OPTIONS.find(
-        ({ name }) => name === (currentSceneMode ?? 'Design')
-      ).cesdkConfig,
+      ...SCENE_MODE_OPTIONS.find(({ name }) => name === currentSceneMode)
+        .cesdkConfig,
       license: process.env.NEXT_PUBLIC_LICENSE,
       featureFlags: {
         archiveSceneEnabled: true,
@@ -150,9 +134,6 @@ const CaseComponent = () => {
     [cesdk]
   );
 
-  if (currentSceneMode == null) {
-    return null;
-  }
   return (
     <div className="gap-sm flex flex-grow flex-col">
       <div className="flex  w-full flex-col items-center">
