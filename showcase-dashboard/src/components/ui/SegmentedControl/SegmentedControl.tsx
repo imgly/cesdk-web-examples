@@ -4,6 +4,7 @@ import styles from './SegmentedControl.module.css';
 interface IOption {
   label: string;
   value: string;
+  disabled?: boolean;
 }
 interface ISegmentedControl {
   options: IOption[];
@@ -45,7 +46,7 @@ const SegmentedControl = ({
                   [styles.labelWrapperActive]: isActive
                 }
               )}
-              disabled={disabled}
+              disabled={option.disabled ?? disabled}
               onClick={() => !isActive && onChange(option.value)}
             >
               {option.label}

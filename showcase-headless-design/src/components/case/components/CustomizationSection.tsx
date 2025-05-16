@@ -108,7 +108,7 @@ function CustomizationSection({
     engine.block.replaceText(
       messageBlock,
       (debouncedMessage ? `${debouncedMessage}\n` : '') +
-        (podcast ? podcast.collectionName : 'Example Podcast')
+        (podcast ? podcast.collectionName : (debouncedMessage ? '' : 'Example Podcast'))
     );
     const rgb =
       colorTheme === 'dark' ? { r: 1, g: 1, b: 1 } : { r: 0, g: 0, b: 0 };
