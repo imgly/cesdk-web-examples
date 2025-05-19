@@ -1,38 +1,27 @@
 'use client';
 
-import CreativeEditor, {
-  useConfig,
-  useConfigure,
-  useCreativeEditor
-} from './lib/CreativeEditor';
-import { useEffect, useState } from 'react';
-import classes from './CaseComponent.module.css';
-import FormSection from './FormSection';
-import { PRODUCT_SAMPLES } from './product';
-import {
-  createOrUpdateSceneByProduct,
-  switchProductView
-} from './ApparelEditorUIConfig';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 const CaseComponent = () => {
-  const product = PRODUCT_SAMPLES[0];
-  const [areaId, setAreaId] = useState(product.areas[0].id);
-  const [color, setColor] = useState(
-    product.colors.find((c) => c.isDefault === true) ?? {
-      id: 'white',
-      colorHex: '#FFFFFF'
-    }
-  );
-  const [instance, setInstance] = useCreativeEditor(null);
   const config = useConfig(
     () => ({
-      role: 'Adopter',
+      role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
-      featureFlags: {
-        singlePageMode: true
+      ui: {
+        elements: {
+          navigation: {
+            action: {
+              export: {
+                show: true,
+                format: ['application/pdf']
+              }
+            }
+          }
+        }
       },
       callbacks: {
+        onExport: 'download',
         onUpload: 'local'
       }
     }),
@@ -49,59 +38,32 @@ const CaseComponent = () => {
         .getDockOrder()
         .filter(({ key }) => !['ly.img.template'].includes(key))
     ]);
-    instance.engine.editor.setSettingBool('page/title/show', false);
-    // });
+    const engine = instance.engine;
+    engine.editor.setSettingBool('page/title/show', false);
+    // The loaded scene includes a backdrop graphic block that is a child of the scene and helps the user to see their design on the finished product.
+    // Such a scene can only be prepared using our API.
+    await instance.loadFromURL(
+      `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/apparel-editor-ui/tshirt.scene`
+    );
+
+    const pages = engine.block.findByType('page');
+    pages.forEach((page) => {
+      // temporary allow clipping
+      const oldScope = engine.block.isScopeEnabled(page, 'layer/clipping');
+      engine.block.setScopeEnabled(page, 'layer/clipping', true);
+      // This will clip off any content that is beyond the page.
+      engine.block.setClipped(page, true);
+      engine.block.setScopeEnabled(page, 'layer/clipping', oldScope);
+    });
   }, []);
 
-  // Sets the initial product as well as updates the scene when the product changes
-  useEffect(() => {
-    const updateScene = async () => {
-      if (instance && product) {
-        await createOrUpdateSceneByProduct(instance.engine, product);
-        switchProductView(
-          instance,
-          product.areas.find((a) => a.id === areaId).mockup,
-          areaId,
-          color
-        );
-      }
-    };
-    updateScene();
-  }, [instance, product]);
-  // Update the editor view when the selected area or color changes
-  useEffect(() => {
-    if (instance) {
-      switchProductView(
-        instance,
-        product.areas.find((a) => a.id === areaId).mockup,
-        areaId,
-        color
-      );
-    }
-  }, [areaId, color]);
-
   return (
-    <div className={classes.wrapper}>
-      <div className="cesdkWrapperStyle">
-        <CreativeEditor
-          style={{
-            '--ubq-InspectorBar-background': 'var(--ubq-canvas)'
-          }}
-          onInstanceChange={setInstance}
-          className="cesdkStyle"
-          config={config}
-          configure={configure}
-        />
-      </div>
-      <div className={classes.sidebar}>
-        <FormSection
-          areaId={areaId}
-          setAreaId={setAreaId}
-          color={color}
-          setColor={setColor}
-          cesdk={instance}
-        />
-      </div>
+    <div className="cesdkWrapperStyle">
+      <CreativeEditor
+        className="cesdkStyle"
+        config={config}
+        configure={configure}
+      />
     </div>
   );
 };
