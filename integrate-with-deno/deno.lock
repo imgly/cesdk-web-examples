@@ -1,0 +1,38 @@
+{
+  "version": "4",
+  "specifiers": {
+    "npm:@cesdk/node@*": "1.47.0"
+  },
+  "npm": {
+    "@cesdk/node@1.47.0": {
+      "integrity": "sha512-mpXJZ9H+P20VwND42gvbpxj1ObE8XFt5BlX4HyOGZjw3haFe59BzVSVMuksD+91rF4Y8S2vYyRgD/trZoE6ZQg==",
+      "dependencies": [
+        "node-fetch"
+      ]
+    },
+    "node-fetch@2.6.7": {
+      "integrity": "sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==",
+      "dependencies": [
+        "whatwg-url"
+      ]
+    },
+    "tr46@0.0.3": {
+      "integrity": "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw=="
+    },
+    "webidl-conversions@3.0.1": {
+      "integrity": "sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ=="
+    },
+    "whatwg-url@5.0.0": {
+      "integrity": "sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==",
+      "dependencies": [
+        "tr46",
+        "webidl-conversions"
+      ]
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@1"
+    ]
+  }
+}
