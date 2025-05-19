@@ -1,0 +1,9 @@
+{
+  "name": "imgly-node-js-plain",
+  "version": "1.0.0",
+  "author": "contact@img.ly",
+  "type": "module",
+  "dependencies": {
+    "@cesdk/node": "1.51.0-rc.5"
+  }
+}

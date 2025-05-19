@@ -30,7 +30,7 @@ function getGiphyEndpoint() {
 const CaseComponent = () => {
   const config = useConfig(
     () => ({
-      role: 'Adopter',
+      role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       i18n: {
