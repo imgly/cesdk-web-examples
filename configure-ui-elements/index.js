@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.31.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.52.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
@@ -29,7 +29,7 @@ const config = {
           custom: [
             {
               label: 'common.custom', // string or i18n key
-              iconName: 'default', // one of 'default', 'download', 'upload', or 'save'
+              iconName: '@imgly/icons/Essentials/Download', // icon id from our 'Essentials' set, or a custom icon id
               callback: () => {
                 // callback signature is `() => void | Promise<void>`
                 // place custom functionality here
@@ -59,29 +59,16 @@ const config = {
       // docs-ui-dock
       dock: {
         iconSize: 'large', // 'large' or 'normal'
-        hideLabels: false, // false or true
-        groups: [
-          {
-            id: 'ly.img.template', // string
-            entryIds: ['ly.img.template'] // string[]
-          },
-          {
-            id: 'ly.img.defaultGroup', // string
-            showOverview: true // true or false
-          }
-        ],
-        defaultGroupId: 'ly.img.defaultGroup' // string
+        hideLabels: false // false or true
       },
       // docs-ui-dock
       // docs-ui-libraries
       libraries: {
         insert: {
-          entries: (defaultEntries) => defaultEntries,
           floating: true, // true or false
           autoClose: false // true or false
         },
         replace: {
-          entries: (defaultEntries) => defaultEntries,
           floating: true, // true or false
           autoClose: false // true or false
         }
