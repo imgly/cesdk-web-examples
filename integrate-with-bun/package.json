@@ -1,0 +1,14 @@
+{
+  "name": "node-bun",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@cesdk/node": "1.53.0-rc.0"
+  }
+}
