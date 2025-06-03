@@ -370,11 +370,6 @@ async function setupPhotoEditingScene(
   engine.block.setScopeEnabled(page, 'fill/changeType', false);
   // Disable stroke of page, since it does not make sense with current wording and takes up to much space
   engine.block.setScopeEnabled(page, 'stroke/change', false);
-  engine.editor.setSettingBool(
-    'ubq://page/moveChildrenWhenCroppingFill' as SettingsBool,
-    true
-  );
-  engine.block.setClipped(page, true);
 
   // only allow resizing and moving of page in crop mode
   const unsubscribeStateChange = engine.editor.onStateChanged(() => {
