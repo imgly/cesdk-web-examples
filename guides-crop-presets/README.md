@@ -1,4 +1,4 @@
-# Create and Edit Video Captions in the CreativeEditor SDK
+# Configure Typefaces in the CreativeEditor SDK
 
 
 ## Running the sample

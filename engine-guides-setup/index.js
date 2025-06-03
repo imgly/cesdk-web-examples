@@ -1,13 +1,13 @@
 import CreativeEngine, {
   supportsWasm
-} from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.52.0/index.js';
+} from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0-rc.1/index.js';
 // Import a node module when you work with a bundler:
 // import CreativeEngine from '@cesdk/engine';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.52.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0-rc.1/assets'
 };
 
 if (
