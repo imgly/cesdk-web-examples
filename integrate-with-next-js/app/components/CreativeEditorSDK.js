@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.52.0/assets', // replace with a valid CE.SDK license key
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0/assets', // replace with a valid CE.SDK license key
   callbacks: { onUpload: 'local' } // enable local file uploads in the Asset Library
 };
 
