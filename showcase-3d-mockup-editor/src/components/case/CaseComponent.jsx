@@ -193,6 +193,9 @@ const CaseComponent = () => {
           .filter(({ key }) => key !== 'ly.img.template')
       ]);
       instance.engine.editor.setSettingBool('page/title/show', false);
+      // Hide 'Resize' button on the navigation bar
+      instance.feature.enable('ly.img.page.resize', false);
+      instance.feature.enable('ly.img.options', false);
       instance.loadFromURL(
         `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/3d-mockup-editor/${productConfig.assetsFolderName}/design.scene`
       );

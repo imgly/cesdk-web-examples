@@ -1,13 +1,10 @@
 import CreativeEditorSDK, {
   AssetResult,
   CreativeEngine,
-  DesignUnit,
   SettingsBool
 } from '@cesdk/cesdk-js';
 import { removeBackground } from '@imgly/background-removal';
 import APP_ASSETS from './Apps.json';
-import FORMAT_ASSETS from './CustomFormats.json';
-import { registerPageCropPanel, setTempSizeInMetadata } from './PageCropPanel';
 import { getImageSize } from './lib/CreativeEngineUtils';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
@@ -17,23 +14,9 @@ export async function initPhotoEditorUIConfig(
   photoUri: string
 ) {
   setupDock(instance);
+  // Hide 'Resize' button on the navigation bar
+  instance.feature.enable('ly.img.page.resize', false);
   const unsubscribeInspectorSetup = setupInspectorBar(instance);
-  loadAssetSourceFromContentJSON(
-    instance.engine,
-    FORMAT_ASSETS,
-    caseAssetPath(''),
-    createApplyFormatAsset(instance)
-  );
-  // setup translation for formats
-  instance.setTranslations({
-    en: {
-      'libraries.ly.img.formats.label': 'Size',
-      'libraries.ly.img.formats.custom.label': 'Custom',
-      'libraries.ly.img.formats.fixed-ratio.label': 'Fixed Ratio',
-      'libraries.ly.img.formats.social.label': 'Social',
-      'libraries.ly.img.formats.print.label': 'Print'
-    }
-  });
   loadAssetSourceFromContentJSON(
     instance.engine,
     APP_ASSETS,
@@ -52,13 +35,11 @@ export async function initPhotoEditorUIConfig(
     photoUri
   );
 
-  registerPageCropPanel(instance);
   instance.setTranslations({
     en: {
       'panel.ly.img.page-crop': 'Crop'
     }
   });
-  instance.ui.openPanel('ly.img.page-crop');
 
   return () => {
     unsubscribeInspectorSetup();
@@ -106,24 +87,32 @@ function setupDock(instance: CreativeEditorSDK) {
   instance.ui.registerComponent(
     'ly.img.crop.dock',
     ({ builder: { Button } }) => {
-      const isFormatAssetLibraryOpen =
-        instance.ui.isPanelOpen('ly.img.page-crop');
+      const isCropPanelOpen = instance.ui.isPanelOpen(
+        '//ly.img.panel/inspector/crop'
+      );
       Button('open-crop', {
         label: 'Crop',
         icon: ({ theme }) => caseAssetPath(`/crop-large-${theme}.svg`),
-        isSelected: isFormatAssetLibraryOpen,
+        isSelected: isCropPanelOpen,
         onClick: async () => {
-          if (isFormatAssetLibraryOpen) {
-            instance.ui.closePanel('ly.img.page-crop');
-            instance.engine.editor.setEditMode('Transform');
+          if (isCropPanelOpen) {
+            instance.ui.closePanel('//ly.img.panel/inspector/crop');
             return;
           }
+
+          // make sure only page is selected
+          const allSelectedBlocks = instance.engine.block.findAllSelected();
+          allSelectedBlocks.forEach((block) => {
+            if (instance.engine.block.getType(block) !== '//ly.img.ubq/page') {
+              instance.engine.block.setSelected(block, false);
+            }
+          });
+
           closeAllPanels(instance);
-          const page = instance.engine.scene.getCurrentPage();
-          instance.engine.block.select(page!);
+
+          // ensure update has occurred before opening the crop panel
           await new Promise((resolve) => setTimeout(resolve, 100));
-          instance.ui.openPanel('ly.img.page-crop');
-          instance.engine.editor.setEditMode('Crop');
+          instance.ui.openPanel('//ly.img.panel/inspector/crop');
         }
       });
     }
@@ -376,49 +365,6 @@ async function setupPhotoEditingScene(
   );
   engine.block.setClipped(page, true);
 
-  // only allow resizing and moving of page in crop mode
-  const unsubscribeStateChange = engine.editor.onStateChanged(() => {
-    const editMode = engine.editor.getEditMode();
-    const cropConstraint = getCropConstraintMetadata(engine);
-    if (editMode !== 'Crop') {
-      // close size preset panel
-      instance.ui.closePanel('ly.img.page-crop');
-      engine.editor.setSettingBool(
-        'ubq://page/allowResizeInteraction' as SettingsBool,
-        false
-      );
-      return;
-    }
-    if (cropConstraint === 'none') {
-      engine.editor.setSettingBool(
-        'ubq://page/restrictResizeInteractionToFixedAspectRatio' as SettingsBool,
-        false
-      );
-      engine.editor.setSettingBool(
-        'ubq://page/allowResizeInteraction' as SettingsBool,
-        true
-      );
-    } else if (cropConstraint === 'aspect-ratio') {
-      engine.editor.setSettingBool(
-        'ubq://page/restrictResizeInteractionToFixedAspectRatio' as SettingsBool,
-        true
-      );
-      engine.editor.setSettingBool(
-        'ubq://page/allowResizeInteraction' as SettingsBool,
-        true
-      );
-    } else if (cropConstraint === 'resolution') {
-      engine.editor.setSettingBool(
-        'ubq://page/allowResizeInteraction' as SettingsBool,
-        false
-      );
-      engine.editor.setSettingBool(
-        'ubq://page/restrictResizeInteractionToFixedAspectRatio' as SettingsBool,
-        false
-      );
-    }
-  });
-
   // If nothing is selected: select page by listening to selection changes
   const unsubscribeSelectionChange = engine.block.onSelectionChanged(() => {
     const selection = engine.block.findAllSelected();
@@ -432,68 +378,6 @@ async function setupPhotoEditingScene(
   engine.block.select(page);
   return () => {
     unsubscribeSelectionChange();
-    unsubscribeStateChange();
-  };
-}
-
-function createApplyFormatAsset(
-  instance: CreativeEditorSDK
-): (asset: AssetResult) => Promise<number | undefined> {
-  return async (asset) => {
-    const engine = instance.engine;
-    const page = engine.scene.getCurrentPage()!;
-    // Set fill mode to cover:
-    engine.block.setContentFillMode(page, 'Cover');
-    // Select it:
-    let newDesignUnit: DesignUnit | null = null;
-    let newWidth: number | null = null;
-    let newHeight: number | null = null;
-    // reset temp size in metadata
-    setTempSizeInMetadata(engine, page, null);
-    if (asset.id === 'page-sizes-custom') {
-      // Reset Page Size to original:
-      setCropConstraintMetadata(engine, 'none');
-      const originalSize = getOriginalSize(engine);
-      newWidth = originalSize.width;
-      newHeight = originalSize.height;
-      newDesignUnit = originalSize.designUnit;
-    } else if (asset.meta!.fixedResolution === 'true') {
-      if (!asset.meta?.formatWidth || !asset.meta?.formatHeight) {
-        console.error(
-          'Asset is missing properties meta.formatWidth or meta.formatHeight'
-        );
-        return;
-      }
-      newWidth = parseInt(asset.meta.formatWidth as string, 10);
-      newHeight = parseInt(asset.meta.formatHeight as string, 10);
-      newDesignUnit = asset.meta.designUnit as DesignUnit;
-      setCropConstraintMetadata(engine, 'resolution');
-    } else if (asset.meta?.aspectRatio) {
-      const aspectRatio = asset.meta.aspectRatio as string;
-      const [width, height] = aspectRatio.split(':').map(Number);
-      // adjust size to match aspect ratio
-      const { width: originalWidth, height: originalHeight } =
-        getOriginalSize(engine);
-      const originalAspectRatio = originalWidth / originalHeight;
-      const newAspectRatio = width / height;
-      if (originalAspectRatio > newAspectRatio) {
-        newWidth = originalHeight * newAspectRatio;
-        newHeight = originalHeight;
-      } else {
-        newWidth = originalWidth;
-        newHeight = originalWidth / newAspectRatio;
-      }
-      setCropConstraintMetadata(engine, 'aspect-ratio');
-    }
-    if (newDesignUnit) {
-      engine.scene.setDesignUnit(newDesignUnit);
-    }
-    if (newWidth && newHeight) {
-      engine.block.resizeContentAware([page], newWidth, newHeight);
-    }
-    // enter crop:
-    engine.editor.setEditMode('Crop');
-    return page;
   };
 }
 
@@ -538,45 +422,5 @@ function closeAllPanels(instance: CreativeEditorSDK) {
   // close inspector panels:
   instance.ui.closePanel('//ly.img.panel/inspector/adjustments');
   instance.ui.closePanel('//ly.img.panel/inspector/filters');
-}
-
-const ALL_CROP_CONSTRAINTS = ['none', 'aspect-ratio', 'resolution'] as const;
-type CropConstraint = (typeof ALL_CROP_CONSTRAINTS)[number];
-// We use custom metadata to store the currently active crop constraints
-export function setCropConstraintMetadata(
-  engine: CreativeEngine,
-  constraint: CropConstraint = 'none'
-) {
-  const page = engine.scene.getCurrentPage()!;
-  if (constraint === 'none') {
-    engine.block.setMetadata(page, 'cropConstraint', 'none');
-  } else if (constraint === 'aspect-ratio') {
-    engine.block.setMetadata(page, 'cropConstraint', 'aspect-ratio');
-  } else if (constraint === 'resolution') {
-    engine.block.setMetadata(page, 'cropConstraint', 'resolution');
-  }
-}
-export function getCropConstraintMetadata(
-  engine: CreativeEngine
-): CropConstraint {
-  const page = engine.scene.getCurrentPage();
-  if (!page || !engine.block.findAllMetadata(page).includes('cropConstraint')) {
-    return 'none';
-  }
-  return engine.block.getMetadata(page, 'cropConstraint') as CropConstraint;
-}
-export function getOriginalSize(engine: CreativeEngine): {
-  width: number;
-  height: number;
-  designUnit: DesignUnit;
-} {
-  const page = engine.scene.getCurrentPage()!;
-  const fill = engine.block.getFill(page);
-  const sourceSet = engine.block.getSourceSet(fill, 'fill/image/sourceSet');
-  const imageSource = sourceSet[0];
-  return {
-    width: imageSource.width,
-    height: imageSource.height,
-    designUnit: 'Pixel'
-  };
+  instance.ui.closePanel('//ly.img.panel/inspector/fill');
 }

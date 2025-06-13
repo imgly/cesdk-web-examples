@@ -44,6 +44,10 @@ const CaseComponent = () => {
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
+
+    // Hide 'Resize' button on the navigation bar
+    instance.feature.enable('ly.img.page.resize', false);
+    instance.feature.enable('ly.img.options', false);
     instance.ui.setDockOrder([
       ...instance.ui
         .getDockOrder()

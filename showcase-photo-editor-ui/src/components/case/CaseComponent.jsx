@@ -43,6 +43,16 @@ const CaseComponent = () => {
               }
             }
           }
+        },
+        cropPresetsLibraries: (engine) => {
+          const [selectedBlock] = engine.block.findAllSelected();
+          const isPage =
+            selectedBlock != null &&
+            engine.block.getType(selectedBlock) === '//ly.img.ubq/page';
+
+          if (isPage) return ['ly.img.crop.presets', 'ly.img.page.presets'];
+
+          return ['ly.img.crop.presets'];
         }
       },
       i18n: {
