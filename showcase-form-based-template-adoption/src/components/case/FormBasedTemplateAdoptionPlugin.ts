@@ -27,6 +27,8 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
       'ly.img.spacer',
       'ly.img.actions.navigationBar'
     ]);
+    // Hide 'Resize' button on the navigation bar
+    cesdk.feature.enable('ly.img.page.resize', false);
 
     cesdk.setTranslations({
       en: {

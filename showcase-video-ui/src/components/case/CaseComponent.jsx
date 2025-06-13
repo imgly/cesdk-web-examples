@@ -1,16 +1,10 @@
 'use client';
 
 import { UserInterfaceElements } from '@cesdk/cesdk-js';
-import {
-  PAGE_FORMATS_INSERT_ENTRY_DOCK,
-  PAGE_FORMATS_INSERT_ENTRY_ASSET,
-  formatAssetsToPresets,
-  pageFormatI18n
-} from './PageFormatAssetLibrary';
+import { formatAssetsToPresets } from './PageFormatAssetLibrary';
 import PAGE_FORMAT_ASSETS from './PageFormatAssets.json';
 import AUDIO_ASSETS from './StaticAudioAssets.json';
 import VIDEO_SCENES_ASSETS from './StaticVideoScenesAssets.json';
-import { createApplyFormatAsset } from './createApplyFormatAsset';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
@@ -36,12 +30,11 @@ const CaseComponent = () => {
       i18n: {
         en: {
           'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
-          ...pageFormatI18n(PAGE_FORMAT_ASSETS.assets),
           'libraries.ly.img.video.scene.label': 'Example Templates'
         }
       },
       ui: {
-        pageFormats: formatAssetsToPresets(PAGE_FORMAT_ASSETS),
+        pagePresetLibraries: formatAssetsToPresets(PAGE_FORMAT_ASSETS),
         elements: {
           view: 'default',
           panels: {
@@ -72,8 +65,6 @@ const CaseComponent = () => {
     });
 
     instance.ui.setDockOrder([
-      PAGE_FORMATS_INSERT_ENTRY_DOCK,
-      'ly.img.separator',
       {
         id: 'ly.img.assetLibrary.dock',
         key: 'examples',
@@ -91,8 +82,6 @@ const CaseComponent = () => {
       id: 'ly.img.video.scene',
       sourceIds: ['ly.img.video.scene']
     });
-
-    instance.ui.addAssetLibraryEntry(PAGE_FORMATS_INSERT_ENTRY_ASSET);
 
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
@@ -137,13 +126,6 @@ const CaseComponent = () => {
       engine,
       AUDIO_ASSETS,
       caseAssetPath('/audio')
-    );
-
-    loadAssetSourceFromContentJSON(
-      engine,
-      PAGE_FORMAT_ASSETS,
-      caseAssetPath('/page-formats'),
-      createApplyFormatAsset(engine)
     );
 
     // Load a different template based on the URL

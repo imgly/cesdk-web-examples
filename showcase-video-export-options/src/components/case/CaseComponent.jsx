@@ -21,7 +21,8 @@ const ExportOptionsCESDK = () => {
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
     instance.addPlugin(ExportVideoPanelPlugin());
-
+    // Hide 'Resize' button on the navigation bar
+    instance.feature.enable('ly.img.page.resize', false);
     instance.ui.setNavigationBarOrder([
       'ly.img.back.navigationBar',
       'ly.img.undoRedo.navigationBar',
