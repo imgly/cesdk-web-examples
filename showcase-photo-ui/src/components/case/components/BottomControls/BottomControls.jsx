@@ -79,7 +79,6 @@ const BottomControls = () => {
                   setSelectedMenuId(null);
                 } else {
                   if (key === 'Crop') {
-                    setSelectedMenuId(null);
                     engine.block.setSelected(currentPageBlockId, true);
                     engine.editor.setEditMode('Crop');
                   } else {
