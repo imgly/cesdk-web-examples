@@ -1,4 +1,4 @@
-import { MimeType, type CreativeEngine, EditorPlugin } from '@cesdk/cesdk-js';
+import { MimeType, type CreativeEngine, EditorPlugin, ImageMimeType } from '@cesdk/cesdk-js';
 
 const AVAILABLE_FORMATS = [MimeType.Jpeg, MimeType.Png, MimeType.Pdf] as const;
 
@@ -367,7 +367,7 @@ export const ExportDesignPanelPlugin = (): EditorPlugin => ({
 const exportDesign = async (
   engine: CreativeEngine,
   pageRange: string,
-  mimeType: MimeType,
+  mimeType: "application/pdf" | "application/octet-stream" | ImageMimeType | undefined,
   scale: number,
   qualityType: QualityType
 ) => {
