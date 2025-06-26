@@ -75,10 +75,7 @@ const CaseComponent = () => {
       gridItemHeight: 'auto',
       previewBackgroundType: 'contain',
       gridBackgroundType: 'contain',
-      cardLabel: (assetResult) => {
-        console.log('assetResult', assetResult);
-        return 'aaa';
-      },
+      cardLabel: (assetResult) => assetResult.label,
       cardLabelPosition: () => 'below'
     });
     loadAssetSourceFromContentJSON(
