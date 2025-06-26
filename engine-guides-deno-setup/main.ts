@@ -1,4 +1,4 @@
-import CreativeEngine, { MimeType } from '@cesdk/node';
+import CreativeEngine from '@cesdk/node';
 
 // Retrieve the license key from the .env file
 const license = Deno.env.get('CESDK_LICENSE');
@@ -14,7 +14,7 @@ CreativeEngine.init(config).then(async (engine) => {
     .loadFromURL(`file://${import.meta.dirname}/demo.scene`)
     .then(() => {
       const [page] = engine.block.findByType('page');
-      return engine.block.export(page, MimeType.Png);
+      return engine.block.export(page, { mimeType: 'image/png' });
     })
     .then((blob) => blob.arrayBuffer())
     .then((arrayBuffer) => {
