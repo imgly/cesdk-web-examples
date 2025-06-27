@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.55.0-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.55.0-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -74,23 +74,19 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setDuration(audio, 7);
 
   /* Export page as mp4 video. */
-  const mimeType = 'video/mp4';
-  const progressCallback = (renderedFrames, encodedFrames, totalFrames) => {
-    console.log(
-      'Rendered',
-      renderedFrames,
-      'frames and encoded',
-      encodedFrames,
-      'frames out of',
-      totalFrames
-    );
-  };
-  const blob = await engine.block.exportVideo(
-    page,
-    mimeType,
-    progressCallback,
-    {}
-  );
+  const blob = await engine.block.exportVideo(page, {
+    mimeType: 'video/mp4',
+    onProgress: (renderedFrames, encodedFrames, totalFrames) => {
+      console.log(
+        'Rendered',
+        renderedFrames,
+        'frames and encoded',
+        encodedFrames,
+        'frames out of',
+        totalFrames
+      );
+    }
+  });
 
   /* Download blob. */
   const anchor = document.createElement('a');
