@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.54.1-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.54.1-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -33,7 +33,8 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.editor.setSpotColorRGB('RDG_WHITE', 0.8, 0.8, 0.8);
 
   await block
-    .export(page, 'application/pdf', {
+    .export(page, {
+      mimeType: 'application/pdf',
       exportPdfWithUnderlayer: true,
       underlayerSpotColorName: 'RDG_WHITE',
       underlayerOffset: -2.0
