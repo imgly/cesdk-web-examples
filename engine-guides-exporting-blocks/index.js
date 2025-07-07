@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.55.0-rc.2/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.55.0-rc.2/assets'
 };
 
 const exportButton = document.getElementById('export_button');
@@ -20,12 +20,16 @@ CreativeEngine.init(config).then(async (engine) => {
   exportButton.onclick = async () => {
     /* Export scene as PNG image. */
     const scene = engine.scene.get();
-    const mimeType = 'image/png';
     /* Optionally, the maximum supported export size can be checked before exporting. */
     const maxExportSizeInPixels = engine.editor.getMaxExportSize();
     /* Optionally, the compression level and the target size can be specified. */
-    const options = { pngCompressionLevel: 9, targetWidth: null, targetHeight: null};
-    const blob = await engine.block.export(scene, mimeType, options);
+    const options = {
+      mimeType: 'image/png',
+      pngCompressionLevel: 9,
+      targetWidth: null,
+      targetHeight: null
+    };
+    const blob = await engine.block.export(scene, options);
 
     /* Download blob. */
     const anchor = document.createElement('a');
