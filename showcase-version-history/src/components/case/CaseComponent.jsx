@@ -37,7 +37,8 @@ function loadSnapshots() {
 async function createThumbnail(cesdk) {
   const engine = cesdk.engine;
   const scene = engine.scene.get();
-  return engine.block.export(scene, 'image/jpeg', {
+  return engine.block.export(scene, {
+    mimeType: 'image/jpeg',
     targetWidth: 168,
     targetHeight: 168
   });

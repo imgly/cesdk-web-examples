@@ -98,14 +98,11 @@ const FileProcessingContextProvider = ({
       );
       const result = await parser.parse();
       logger = result.logger;
-      imageBlob = await engine.block.export(
-        engine.scene.getPages()[0],
-        'image/png' as any,
-        {
-          targetHeight: 1000,
-          targetWidth: 1000
-        }
-      );
+      imageBlob = await engine.block.export(engine.scene.getPages()[0], {
+        mimeType: 'image/png',
+        targetHeight: 1000,
+        targetWidth: 1000
+      });
       sceneArchive = await engine.scene.saveToArchive();
     } catch (error) {
       console.error(error);

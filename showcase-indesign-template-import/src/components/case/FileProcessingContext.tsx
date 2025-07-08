@@ -101,8 +101,7 @@ const FileProcessingContextProvider = ({
       logger = result.logger;
       imageBlob = await engine.block.export(
         engine.scene.getPages()[0],
-        'image/png' as any,
-        {
+        {mimeType: 'image/png',
           targetHeight: 1000,
           targetWidth: 1000
         }
