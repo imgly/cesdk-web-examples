@@ -308,7 +308,7 @@ export const ExportVideoPanelPlugin = (
                   exportParameters: {
                     targetWidth: resolutionState.value.value.width,
                     targetHeight: resolutionState.value.value.height,
-                    fps: fpsState.value.value
+                    framerate: fpsState.value.value
                   }
                 });
                 if (result) onExport(result);
@@ -347,7 +347,7 @@ async function showExportDialog({
   exportParameters: {
     targetWidth: number;
     targetHeight: number;
-    fps: number;
+    framerate: number;
   };
 }): Promise<Blob | null> {
   const engine = cesdk.engine;
@@ -449,10 +449,9 @@ async function showExportDialog({
       throw new Error("Can't export video without a page to be exported");
     }
     return engine.block
-      .exportVideo(
-        page,
-        MimeType.Mp4,
-        (
+      .exportVideo(page, {
+        mimeType: 'video/mp4',
+        onProgress: (
           numberOfRenderedFrames,
           numberOfEncodedFrames,
           totalNumberOfFrames
@@ -464,11 +463,9 @@ async function showExportDialog({
             }
           });
         },
-        {
-          abortSignal: abortController.signal,
-          ...exportParameters
-        }
-      )
+        abortSignal: abortController.signal,
+        ...exportParameters
+      })
       .then((blob) => {
         cesdk.ui.updateDialog(exportProgressDialog, exportSuccessDialogOptions);
         resolve(blob);

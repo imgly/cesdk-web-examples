@@ -118,7 +118,9 @@ const CaseComponent = () => {
       Object.entries(allTemplates)
     )) {
       await fillTemplate(engine, template.sceneString, restaurantData);
-      const image = await engine.block.export(engine.scene.get(), 'image/jpeg');
+      const image = await engine.block.export(engine.scene.get(), {
+        mimeType: 'image/jpeg'
+      });
       const sceneString = await engine.scene.saveToString();
       setReviewBlobs((oldBlobs) => {
         oldBlobs[index] = {
@@ -161,7 +163,7 @@ const CaseComponent = () => {
       removeInstanceVariables(engine);
       const blob = await engine.block.export(
         engine.block.findByType('scene')[0],
-        currentTemplate.outputFormat
+        { mimeType: currentTemplate.outputFormat }
       );
       setAllTemplates({
         ...allTemplates,
@@ -184,7 +186,7 @@ const CaseComponent = () => {
       await engine.scene.loadFromString(sceneString);
       const newBlob = await engine.block.export(
         engine.block.findByType('scene')[0],
-        currentTemplate.outputFormat
+        { mimeType: currentTemplate.outputFormat }
       );
       setReviewBlobs(
         reviewBlobs.map((blob) =>

@@ -110,7 +110,8 @@ const CaseComponent = () => {
     let pageBlobs = [];
     // Render pages in sequence
     for (const blockId of cesdk.engine.block.findByType('page')) {
-      const pageBlob = await cesdk.engine.block.export(blockId, 'image/png', {
+      const pageBlob = await cesdk.engine.block.export(blockId, {
+        mimeType: 'image/png',
         // Reduce size for faster previews
         targetWidth: 1048,
         targetHeight: 1048

@@ -15,11 +15,9 @@ const TopBar = () => {
     setIsExporting(true);
     // Let react rerender
     await new Promise((resolve) => setTimeout(resolve, 0));
-    const blob = await engine.block.export(
-      engine.scene.get(),
-      'image/jpeg',
-      {}
-    );
+    const blob = await engine.block.export(engine.scene.get(), {
+      mimeType: 'image/jpeg'
+    });
     localDownload(blob, 'my-photo');
     setIsExporting(false);
   };
