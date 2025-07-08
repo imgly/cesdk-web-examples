@@ -44,9 +44,7 @@ const TopBar = () => {
     setIsExporting(true);
     // Let react rerender
     await new Promise((resolve) => setTimeout(resolve, 0));
-    const blob = await engine.block.export(currentPageBlockId, {
-      mimeType: 'image/png'
-    });
+    const blob = await engine.block.export(currentPageBlockId, 'image/png');
     localDownload(blob, 'my-design');
     setIsExporting(false);
   };
