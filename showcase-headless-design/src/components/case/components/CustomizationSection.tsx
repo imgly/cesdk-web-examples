@@ -108,11 +108,7 @@ function CustomizationSection({
     engine.block.replaceText(
       messageBlock,
       (debouncedMessage ? `${debouncedMessage}\n` : '') +
-        (podcast
-          ? podcast.collectionName
-          : debouncedMessage
-            ? ''
-            : 'Example Podcast')
+        (podcast ? podcast.collectionName : (debouncedMessage ? '' : 'Example Podcast'))
     );
     const rgb =
       colorTheme === 'dark' ? { r: 1, g: 1, b: 1 } : { r: 0, g: 0, b: 0 };
@@ -172,14 +168,16 @@ function CustomizationSection({
     const page = engine.scene.getCurrentPage() as number;
     fillTemplate(engine, page);
     if (type === 'image') {
-      blob = await engine.block.export(engine.scene.get() as number, {
-        mimeType: 'image/png',
-        targetWidth: size.width,
-        targetHeight: size.height
-      });
+      blob = await engine.block.export(
+        engine.scene.get() as number,
+        MimeType.Png,
+        {
+          targetWidth: size.width,
+          targetHeight: size.height
+        }
+      );
     } else {
-      blob = await engine.block.exportVideo(page, {
-        mimeType: 'video/mp4',
+      blob = await engine.block.exportVideo(page, MimeType.Mp4, () => {}, {
         targetWidth: size.width,
         targetHeight: size.height
       });
@@ -235,14 +233,12 @@ function CustomizationSection({
     fillTemplate(engine, page);
     let blob: Blob;
     if (type === 'image') {
-      blob = await engine.block.export(page, {
-        mimeType: 'image/png',
+      blob = await engine.block.export(page, MimeType.Png, {
         targetWidth: previewAsset.width,
         targetHeight: previewAsset.height
       });
     } else {
-      blob = await engine.block.exportVideo(page, {
-        mimeType: 'video/mp4',
+      blob = await engine.block.exportVideo(page, MimeType.Mp4, () => {}, {
         targetWidth: previewAsset.width,
         targetHeight: previewAsset.height
       });
