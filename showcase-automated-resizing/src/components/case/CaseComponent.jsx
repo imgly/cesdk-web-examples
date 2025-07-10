@@ -156,9 +156,7 @@ const CaseComponent = () => {
           size.meta.height
         );
 
-        const blob = await engine.block.export(engine.scene.get(), {
-          mimeType: 'image/png'
-        });
+        const blob = await engine.block.export(engine.scene.get(), 'image/png');
         const sceneString = await engine.scene.saveToString();
         setSizeImages((oldImages) => {
           oldImages[index] = {
@@ -188,9 +186,7 @@ const CaseComponent = () => {
     async (sceneString) => {
       const engine = engineRef.current;
       await engine.scene.loadFromString(sceneString);
-      const blob = await engine.block.export(engine.scene.get(), {
-        mimeType: 'image/png'
-      });
+      const blob = await engine.block.export(engine.scene.get(), 'image/png');
       const updatedTemplate = {
         ...template,
         sceneString,
@@ -292,9 +288,10 @@ const CaseComponent = () => {
             const engine = engineRef.current;
             // Render Scene from updated sceneString
             await engine.scene.loadFromString(sceneString);
-            const blob = await engine.block.export(engine.scene.get(), {
-              mimeType: 'image/png'
-            });
+            const blob = await engine.block.export(
+              engine.scene.get(),
+              'image/png'
+            );
             // Save updated scene and blob for this person
 
             updatedSizeImage.sceneString = sceneString;
