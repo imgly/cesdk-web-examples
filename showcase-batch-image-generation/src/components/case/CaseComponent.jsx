@@ -117,9 +117,10 @@ const CaseComponent = () => {
     // Render Scene from updated sceneString
     await cesdk.scene.loadFromString(sceneString);
     setInstanceVariables(cesdk, imageToUpdate.employee);
-    const blob = await cesdk.block.export(cesdk.block.findByType('scene')[0], {
-      mimeType: currentTemplate.outputFormat
-    });
+    const blob = await cesdk.block.export(
+      cesdk.block.findByType('scene')[0],
+      currentTemplate.outputFormat
+    );
     // Save updated scene and blob for this person
     imageToUpdate.sceneString = sceneString;
     imageToUpdate.src = URL.createObjectURL(blob);
@@ -135,7 +136,7 @@ const CaseComponent = () => {
       removeInstanceVariables(cesdk);
       const blob = await cesdk.block.export(
         cesdk.block.findByType('scene')[0],
-        { mimeType: currentTemplate.outputFormat }
+        currentTemplate.outputFormat
       );
       const updatedTemplate = {
         ...currentTemplate,
@@ -274,9 +275,10 @@ const renderInstance = async (cesdk, employee, outputFormat) => {
   replaceImages(cesdk, 'Photo', caseAssetPath(`/images/${employee.imagePath}`));
   setInstanceVariables(cesdk, employee);
 
-  const blob = await cesdk.block.export(cesdk.block.findByType('page')[0], {
-    mimeType: outputFormat
-  });
+  const blob = await cesdk.block.export(
+    cesdk.block.findByType('page')[0],
+    outputFormat
+  );
   const sceneString = await cesdk.scene.saveToString();
   return { blob, sceneString };
 };

@@ -49,19 +49,21 @@ export const EditInstanceCESDK = memo(
             },
             onSave: async (sceneString: string) => {
               const engine = engineRef.current;
-              await engine?.scene.loadFromString(sceneString);
+              await engine?.scene.loadFromString(sceneString)
               if (!engine) return '';
               let blob: Blob;
               if (asset.type === 'image') {
-                blob = await engine.block.export(engine.scene.get() as number, {
-                  mimeType: 'image/png',
-                  targetWidth: asset.width,
-                  targetHeight: asset.height
-                });
+                blob = await engine.block.export(
+                  engine.scene.get() as number,
+                  MimeType.Png,
+                  {
+                    targetWidth: asset.width,
+                    targetHeight: asset.height
+                  }
+                );
               } else {
                 const page = engine.scene.getCurrentPage() as number;
-                blob = await engine.block.exportVideo(page, {
-                  mimeType: 'video/mp4',
+                blob = await engine.block.exportVideo(page, MimeType.Mp4, () => {}, {
                   targetWidth: asset.width,
                   targetHeight: asset.height
                 });

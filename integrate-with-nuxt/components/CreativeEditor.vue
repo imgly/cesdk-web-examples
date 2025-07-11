@@ -6,12 +6,12 @@
 export default {
   name: 'CreativeEditor',
   mounted() {
-    import('https://cdn.img.ly/packages/imgly/cesdk-js/1.53.0/index.js')
+    import('https://cdn.img.ly/packages/imgly/cesdk-js/1.55.1/index.js')
       .then(async ({ default: CreativeEditorSDK }) => {
         const config = {
           license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
           userId: 'guides-user',
-          baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.53.0/assets',
+          baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.55.1/assets',
           callbacks: { onUpload: 'local' }
         };
 
