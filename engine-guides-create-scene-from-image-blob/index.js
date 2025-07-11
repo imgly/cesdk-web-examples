@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.56.0-rc.0/index.js';
 
 const blob = await fetch('https://img.ly/static/ubq_samples/sample_4.jpg').then(
   (response) => response.blob()
@@ -8,7 +8,7 @@ const objectURL = URL.createObjectURL(blob);
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.56.0-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {

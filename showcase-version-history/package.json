@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "1.55.1",
-    "@cesdk/engine": "1.55.1",
+    "@cesdk/cesdk-js": "1.56.0-rc.0",
+    "@cesdk/engine": "1.56.0-rc.0",
     "@google/model-viewer": "3.5.0",
     "@imgly/background-removal": "1.6.0",
     "@imgly/idml-importer": "1.1.9",
