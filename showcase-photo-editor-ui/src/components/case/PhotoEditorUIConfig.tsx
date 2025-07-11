@@ -41,9 +41,22 @@ export async function initPhotoEditorUIConfig(
     }
   });
 
+  const unsubscribeStateChange = instance.engine.editor.onStateChanged(() => {
+    const page = instance.engine.scene.getCurrentPage();
+    if (page == null) return;
+
+    const editMode = instance.engine.editor.getEditMode();
+    if (editMode === 'Crop') {
+      instance.engine.editor.setHighlightingEnabled(page, true);
+    } else {
+      instance.engine.editor.setHighlightingEnabled(page, false);
+    }
+  });
+
   return () => {
     unsubscribeInspectorSetup();
     unsubscribeSceneSetup();
+    unsubscribeStateChange();
   };
 }
 

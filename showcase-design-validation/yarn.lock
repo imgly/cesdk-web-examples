@@ -1063,17 +1063,17 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@cesdk/cesdk-js@1.54.0":
-  version "1.54.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.54.0.tgz#2036c8eeb465cfb436293f9806734a8eeb3c7ef1"
-  integrity sha512-+eAekvWWPUBPUQkoB7AdHRp09xYmN6C6qxsQ5EvtiDuoM/lZoL97vURqW7o7Upr/QlFF9CUw4p7ECys3yLQFVg==
+"@cesdk/cesdk-js@1.55.1":
+  version "1.55.1"
+  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.55.1.tgz#78c9ff553db4e511ac2cb4982b17f888ebf0058b"
+  integrity sha512-GzIDlaLdxs6n5VgjQxKnqRkyxxs2hu2eL7uYWlOv66kH9T8Ch6yFAH1y44v1iLrGEshye+ypgbpFZmUuQQ7P7A==
   dependencies:
-    "@cesdk/engine" "1.54.0"
+    "@cesdk/engine" "1.55.1"
 
-"@cesdk/engine@1.54.0":
-  version "1.54.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.54.0.tgz#df88ceb8b002b35b19acb8512f55fe0150a71f18"
-  integrity sha512-PVc1nZ5gZWUBGVLUSF+x0MwzUWCB5kHcbb8AsJ+UZ5tsatGf9NNu1NiGiw2CYwnhS01l6hBkvhMDEnIIerYlqQ==
+"@cesdk/engine@1.55.1":
+  version "1.55.1"
+  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.55.1.tgz#55dec98c4ff60382f0184a9b174ee01cea436448"
+  integrity sha512-AJW46x19+43TdV3oW40UmwYYPM6Jm4Sys4f2cQSZkxEQi5MjV2zUYBzUwuDKKFdlDsQ6znk9v0uRxSXMsPmLOA==
 
 "@changesets/apply-release-plan@^7.0.12":
   version "7.0.12"
