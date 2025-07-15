@@ -3,7 +3,6 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
 import CreativeEngine, {
   Configuration,
-  MimeType,
   RGBColor,
   supportsVideoExport
 } from '@cesdk/engine';

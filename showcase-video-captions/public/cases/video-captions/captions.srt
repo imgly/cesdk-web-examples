@@ -1,0 +1,75 @@
+1
+00:00:00,400 --> 00:00:01,200
+Hey Mark
+
+2
+00:00:01,201 --> 00:00:02,000
+thanks for your time today.
+
+3
+00:00:02,320 --> 00:00:04,456
+Let me quickly recap our chat.
+
+4
+00:00:04,457 --> 00:00:06,166
+Our Video Editor SDK
+
+5
+00:00:06,167 --> 00:00:07,776
+for Web makes it
+
+6
+00:00:07,777 --> 00:00:09,140
+easy to create sales
+
+7
+00:00:09,141 --> 00:00:10,233
+or explainer videos.
+
+8
+00:00:10,466 --> 00:00:11,166
+it allows
+
+9
+00:00:11,167 --> 00:00:12,776
+you to design templates
+
+10
+00:00:12,777 --> 00:00:15,166
+make them sleek or
+
+11
+00:00:15,167 --> 00:00:17,900
+fun. The choice is yours.
+
+12
+00:00:18,960 --> 00:00:21,456
+Templates come with placeholders, letting you
+
+13
+00:00:21,457 --> 00:00:24,040
+decide which elements users can tweak.
+
+14
+00:00:24,041 --> 00:00:27,390
+Then there's text variables to personalize videos, like
+
+15
+00:00:27,391 --> 00:00:30,878
+automatically adding your client's name like we did.
+
+16
+00:00:30,879 --> 00:00:33,966
+And yes, we made this video using our editor.
+
+17
+00:00:34,300 --> 00:00:35,542
+Hit the link below to tweak
+
+18
+00:00:35,543 --> 00:00:37,166
+our video with a live template
+
+19
+00:00:37,666 --> 00:00:39,188
+can't wait for your feedback
