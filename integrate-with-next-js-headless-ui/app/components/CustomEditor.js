@@ -17,7 +17,7 @@ export default function CustomEditor() {
       license:
         'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu', // replace it with your license key
       userId: 'guides-user',
-      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.53.0/assets'
+      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.56.0-rc.2/assets'
     };
 
     // initialize CreativeEngine in headless mode
