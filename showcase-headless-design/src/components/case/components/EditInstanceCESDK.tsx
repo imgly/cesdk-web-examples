@@ -1,6 +1,6 @@
 import React, { memo, useRef } from 'react';
 import { CESDKModal } from './CESDKModal';
-import CreativeEditorSDK, { CreativeEngine } from '@cesdk/cesdk-js';
+import CreativeEditorSDK, { CreativeEngine, MimeType } from '@cesdk/cesdk-js';
 import { GeneratedAsset } from './GeneratedAssetsSection';
 
 const localDownload = (data: Blob, filename: string) => {
