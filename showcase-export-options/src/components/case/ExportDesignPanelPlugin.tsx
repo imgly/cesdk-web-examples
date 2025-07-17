@@ -1,10 +1,6 @@
-import {
-  type CreativeEngine,
-  EditorPlugin,
-  ImageMimeType
-} from '@cesdk/cesdk-js';
+import { MimeType, type CreativeEngine, EditorPlugin, ImageMimeType } from '@cesdk/cesdk-js';
 
-const AVAILABLE_FORMATS = ['image/jpeg', 'image/png', 'application/pdf'] as const;
+const AVAILABLE_FORMATS = [MimeType.Jpeg, MimeType.Png, MimeType.Pdf] as const;
 
 type Formats = (typeof AVAILABLE_FORMATS)[number];
 
@@ -123,12 +119,12 @@ export const ExportDesignPanelPlugin = (): EditorPlugin => ({
     cesdk.setTranslations({
       en: {
         'panel.//ly.img.panel/export': 'Export Design',
-        ['formats/image/jpeg']: 'JPEG',
-        ['formats/image/png']: 'PNG',
-        ['formats/application/pdf']: 'PDF',
-        ['formats/application/pdf.description']: 'Best for Printing',
-        ['formats/image/jpeg.description']: 'Shareable web format',
-        ['formats/image/png.description']:
+        [`formats/${MimeType.Jpeg}`]: 'JPEG',
+        [`formats/${MimeType.Png}`]: 'PNG',
+        [`formats/${MimeType.Pdf}`]: 'PDF',
+        [`formats/${MimeType.Pdf}.description`]: 'Best for Printing',
+        [`formats/${MimeType.Jpeg}.description`]: 'Shareable web format',
+        [`formats/${MimeType.Png}.description`]:
           'Complex Images with Transparency',
         [`pages/all`]: 'All',
         [`pages/range`]: 'Range',
@@ -231,7 +227,7 @@ export const ExportDesignPanelPlugin = (): EditorPlugin => ({
           }
         });
 
-        if (formatState.value !== 'application/pdf') {
+        if (formatState.value !== MimeType.Pdf) {
           builder.Section('export-quality', {
             children: () => {
               builder.Select('quality', {
@@ -371,11 +367,7 @@ export const ExportDesignPanelPlugin = (): EditorPlugin => ({
 const exportDesign = async (
   engine: CreativeEngine,
   pageRange: string,
-  mimeType:
-    | 'application/pdf'
-    | 'application/octet-stream'
-    | ImageMimeType
-    | undefined,
+  mimeType: "application/pdf" | "application/octet-stream" | ImageMimeType | undefined,
   scale: number,
   qualityType: QualityType
 ) => {
@@ -391,7 +383,7 @@ const exportDesign = async (
     return;
   }
   // the export will create a single PDF and download it
-  if (mimeType === 'application/pdf') {
+  if (mimeType === MimeType.Pdf) {
     const hiddenPages = pages.filter(
       (id: number) => !filteredPages.includes(id)
     );
@@ -401,7 +393,7 @@ const exportDesign = async (
       engine.block.setVisible(id, false);
     });
 
-    const blob = await engine.block.export(scene, { mimeType: mimeType });
+    const blob = await engine.block.export(scene, mimeType);
 
     hiddenPages.forEach((id: number) => {
       engine.block.setVisible(id, true);
@@ -417,8 +409,7 @@ const exportDesign = async (
 
     // each page will be exported and downloaded separately
     for (let i = 0; i < filteredPages.length; i++) {
-      const blob = await engine.block.export(filteredPages[i], {
-        mimeType: mimeType,
+      const blob = await engine.block.export(filteredPages[i], mimeType, {
         targetWidth: exportPageWidth,
         targetHeight: exportPageHeight,
         jpegQuality: QualityJpeg[qualityType],

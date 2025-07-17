@@ -109,8 +109,7 @@ export const PagePreviewProvider = ({
         await new Promise((resolve) => requestAnimationFrame(resolve));
         if (engine.block.isValid(pageId)) {
           // @ts-ignore
-          const blob = await engine.block.export(pageId, {
-            mimeType: 'image/jpeg',
+          const blob = await engine.block.export(pageId, 'image/jpeg', {
             jpegQuality: 0.5
           });
           setPagePreviews((before) => {
