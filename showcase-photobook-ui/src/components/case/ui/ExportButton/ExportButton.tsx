@@ -41,9 +41,7 @@ const ExportButton = ({ fileName = 'my-postcard' }: ExportButtonProps) => {
     const scene = engine.scene.get()!;
     engine.block.setFloat(scene, 'scene/dpi', 72);
     // @ts-ignore
-    const blob = await engine.block.export(scene, {
-      mimeType: 'application/pdf'
-    });
+    const blob = await engine.block.export(scene, 'application/pdf');
     // Reset scene for editing
     engine.block.setFloat(scene, 'scene/dpi', 300);
     pages.forEach((block) =>
