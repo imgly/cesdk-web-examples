@@ -1,6 +1,7 @@
 import CreativeEditorSDK, {
   CreativeEngine,
   DesignUnit,
+  MimeType,
   Source
 } from '@cesdk/cesdk-js';
 
@@ -108,12 +109,9 @@ export async function exportDesigns(instance: CreativeEditorSDK) {
     }
     // Disable strokes for the pdf export
     engine.block.setStrokeEnabled(page, false);
-    const pdf = await engine.block.export(page, {
-      mimeType: 'application/pdf'
-    });
+    const pdf = await engine.block.export(page, MimeType.Pdf, {});
     pdfs[areaId] = pdf;
-    const thumbnail = await engine.block.export(page, {
-      mimeType: 'image/png',
+    const thumbnail = await engine.block.export(page, MimeType.Png, {
       targetWidth: EXPORT_THUMBNAIL_SIZE.width,
       targetHeight: EXPORT_THUMBNAIL_SIZE.height
     });
@@ -127,8 +125,7 @@ export async function exportDesigns(instance: CreativeEditorSDK) {
       const imageConfig =
         productData?.areas.find(({ id }) => id == engine.block.getName(page))
           ?.mockup?.images ?? [];
-      const preview = await engine.block.export(sceneBlock, {
-        mimeType: 'image/png',
+      const preview = await engine.block.export(sceneBlock, MimeType.Png, {
         targetWidth: imageConfig ? imageConfig[0].width : undefined,
         targetHeight: imageConfig ? imageConfig[0].height : undefined
       });

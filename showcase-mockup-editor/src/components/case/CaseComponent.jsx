@@ -106,8 +106,7 @@ const CaseComponent = () => {
     let pageBlobs = [];
     // Render pages in sequence
     for (const blockId of cesdk.engine.block.findByKind('page')) {
-      const pageBlob = await cesdk.engine.block.export(blockId, {
-        mimeType: 'image/png',
+      const pageBlob = await cesdk.engine.block.export(blockId, 'image/png', {
         // Reduce size for faster previews
         targetWidth: 512,
         targetHeight: 512
@@ -132,9 +131,7 @@ const CaseComponent = () => {
     const scene = engine.scene.get();
     const mockupScene = await engine.scene.saveToString();
     setCurrentMockupScene(mockupScene);
-    const mockupBlob = await engine.block.export(scene, {
-      mimeType: 'image/jpeg'
-    });
+    const mockupBlob = await engine.block.export(scene, 'image/jpeg');
     setCurrentMockupUrl(URL.createObjectURL(mockupBlob));
     setIsDirty(false);
     setMockupLoading(false);
