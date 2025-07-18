@@ -16,13 +16,13 @@ const CreativeEditor = ({ option, closeEditor }) => {
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
-        typefaceLibraries: ['ly.img.google-fonts'],
         elements: {
           navigation: {
             action: {
               close: true,
-              save: {
-                show: true
+              export: {
+                show: true,
+                format: ['video/mp4']
               }
             }
           }
@@ -100,7 +100,6 @@ const CreativeEditor = ({ option, closeEditor }) => {
           );
           instance.feature.enable('ly.img.page.resize', false);
           instance.ui.openPanel('//ly.img.panel/inspector/caption');
-          instance.ui.open;
         }
       );
     }

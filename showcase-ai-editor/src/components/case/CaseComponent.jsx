@@ -1,10 +1,6 @@
 'use client';
 
 import AiApps from '@imgly/plugin-ai-apps-web';
-import Elevenlabs from '@imgly/plugin-ai-audio-generation-web/elevenlabs';
-import FalAiImage from '@imgly/plugin-ai-image-generation-web/fal-ai';
-import Anthropic from '@imgly/plugin-ai-text-generation-web/anthropic';
-import FalAiVideo from '@imgly/plugin-ai-video-generation-web/fal-ai';
 
 import { supportsVideo, supportsVideoExport } from '@cesdk/cesdk-js';
 import CreativeEditor, {
@@ -15,6 +11,8 @@ import CreativeEditor, {
 
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
 import { useCallback, useEffect, useState } from 'react';
+import AiProviderPanel from './components/AiProviderPanel';
+import { createAIProviders } from './providers';
 
 const SCENE_MODE_OPTIONS = [
   {
@@ -27,16 +25,12 @@ const SCENE_MODE_OPTIONS = [
   }
 ];
 
-// Insert your proxys for your provider here
-let FAL_AI_PROXY_URL = '';
-let ANTHROPIC_PROXY_URL = '';
-let ELEVENLABS_PROXY_URL = '';
 
 
 const CaseComponent = () => {
   const [cesdk, setCesdk] = useCreativeEditor();
-
   const [currentSceneMode, setCurrentSceneMode] = useState(undefined);
+  const [aiProviders, setAiProviders] = useState(null);
 
   useEffect(() => {
     if (currentSceneMode != null) return;
@@ -82,6 +76,13 @@ const CaseComponent = () => {
     async (instance) => {
       await instance.addDefaultAssetSources();
       await instance.addDemoAssetSources({ sceneMode: currentSceneMode });
+      
+      // Initialize AI providers after instance is available
+      let currentAiProviders = aiProviders;
+      if (!currentAiProviders) {
+        currentAiProviders = createAIProviders(instance, currentSceneMode);
+        setAiProviders(currentAiProviders);
+      }
 
       instance.ui.setDockOrder([
         'ly.img.ai/apps.dock',
@@ -111,48 +112,121 @@ const CaseComponent = () => {
         );
       }
 
-
+      // Build provider configuration based on selected providers
+      const providerConfig = {};
+      
+      const getSelectedProvider = (category) => {
+        return currentAiProviders[category]?.providers.filter(p => p.selected && p.provider != null) || [];
+      };
+      
+      // Text to text
+      const text2textProvider = getSelectedProvider('text2text');
+      if (text2textProvider.length > 0) {
+        providerConfig.text2text = text2textProvider.map((p) => p.provider);
+      }
+      
+      // Text to image
+      const text2imageProvider = getSelectedProvider('text2image');
+      if (text2imageProvider.length > 0) {
+        providerConfig.text2image = text2imageProvider.map((p) => p.provider);
+      }
+      
+      // Image to image
+      const image2imageProvider = getSelectedProvider('image2image');
+      if (image2imageProvider.length > 0) {
+        providerConfig.image2image = image2imageProvider.map((p) => p.provider);
+      }
+      
+      // Text to video
+      const text2videoProvider = getSelectedProvider('text2video');
+      if (text2videoProvider.length > 0) {
+        providerConfig.text2video = text2videoProvider.map((p) => p.provider);
+      }
+      
+      // Image to video
+      const image2videoProvider = getSelectedProvider('image2video');
+      if (image2videoProvider.length > 0) {
+        providerConfig.image2video = image2videoProvider.map((p) => p.provider);
+      }
+      
+      // Text to speech
+      const text2speechProvider = getSelectedProvider('text2speech');
+      if (text2speechProvider.length > 0) {
+        providerConfig.text2speech = text2speechProvider.map((p) => p.provider);
+      }
+      
+      // Text to sound
+      const text2soundProvider = getSelectedProvider('text2sound');
+      if (text2soundProvider.length > 0) {
+        providerConfig.text2sound = text2soundProvider.map((p) => p.provider);
+      }
+      
+      // Text to sticker
+      const text2stickerProvider = getSelectedProvider('text2sticker');
+      if (text2stickerProvider.length > 0) {
+        providerConfig.text2sticker = text2stickerProvider.map((p) => p.provider);
+      }
+      
       instance.addPlugin(
         AiApps({
-          providers: {
-            text2text: Anthropic.AnthropicProvider({
-              proxyUrl: ANTHROPIC_PROXY_URL
-            }),
-            text2image: FalAiImage.RecraftV3({
-              proxyUrl: FAL_AI_PROXY_URL
-            }),
-            image2image: FalAiImage.GeminiFlashEdit({
-              proxyUrl: FAL_AI_PROXY_URL
-            }),
-            text2video: FalAiVideo.MinimaxVideo01Live({
-              proxyUrl: FAL_AI_PROXY_URL
-            }),
-            image2video: FalAiVideo.MinimaxVideo01LiveImageToVideo({
-              proxyUrl: FAL_AI_PROXY_URL
-            }),
-            text2speech: Elevenlabs.ElevenMultilingualV2({
-              proxyUrl: ELEVENLABS_PROXY_URL
-            }),
-            text2sound: Elevenlabs.ElevenSoundEffects({
-              proxyUrl: ELEVENLABS_PROXY_URL
-            })
-          }
+          providers: providerConfig
         })
       );
+
+      // Add AI image history to the default image asset library
+      const imageEntry = instance.ui.getAssetLibraryEntry('ly.img.image');
+      if (imageEntry != null) {
+        instance.ui.updateAssetLibraryEntry('ly.img.image', {
+          sourceIds: [...imageEntry.sourceIds, 'ly.img.ai.image-generation.history']
+        });
+      }
+
+      // Add AI video history to the default video asset library
+      const videoEntry = instance.ui.getAssetLibraryEntry('ly.img.video');
+      if (videoEntry != null) {
+        instance.ui.updateAssetLibraryEntry('ly.img.video', {
+          sourceIds: [...videoEntry.sourceIds, 'ly.img.ai.video-generation.history']
+        });
+      }
+
+      // Add AI audio history to the default audio asset library
+      const audioEntry = instance.ui.getAssetLibraryEntry('ly.img.audio');
+      if (audioEntry != null) {
+        instance.ui.updateAssetLibraryEntry('ly.img.audio', {
+          sourceIds: [...audioEntry.sourceIds, 'ly.img.ai.audio-generation.history']
+        });
+      }
+
+      // Add AI sticker history to the default sticker asset library
+      const stickerEntry = instance.ui.getAssetLibraryEntry('ly.img.sticker');
+      if (stickerEntry != null) {
+        instance.ui.updateAssetLibraryEntry('ly.img.sticker', {
+          sourceIds: [...stickerEntry.sourceIds, 'ly.img.ai.sticker-generation.history']
+        });
+      }
+
     },
-    [currentSceneMode]
+    [currentSceneMode, aiProviders]
   );
 
   const onSceneModeChange = useCallback(
     async (value) => {
       setCurrentSceneMode(value);
+      // Reset providers when scene mode changes
+      setAiProviders(null);
     },
     [cesdk]
   );
 
+  const handleApplyChanges = useCallback((newProviders) => {
+    // Apply new providers to live configuration
+    setAiProviders(newProviders);
+  }, []);
+
   if (currentSceneMode == null) {
     return null;
   }
+
   return (
     <div className="gap-sm flex flex-grow flex-col">
       <div className="flex  w-full flex-col items-center">
@@ -167,17 +241,25 @@ const CaseComponent = () => {
           size="md"
         />
       </div>
-      <div
-        className="cesdkWrapperStyle"
-        key={currentSceneMode}
-        style={{ minHeight: '820px' }}
-      >
-        <CreativeEditor
-          className="cesdkStyle"
-          config={config}
-          configure={configure}
-          onInstanceChange={setCesdk}
-        />
+      <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', height: '820px' }}>
+        <div
+          className="cesdkWrapperStyle"
+          key={currentSceneMode}
+          style={{ flex: 1 }}
+        >
+          <CreativeEditor
+            className="cesdkStyle"
+            config={config}
+            configure={configure}
+            onInstanceChange={setCesdk}
+          />
+        </div>
+        {aiProviders && (
+          <AiProviderPanel
+            providers={aiProviders}
+            onApplyChanges={handleApplyChanges}
+          />
+        )}
       </div>
     </div>
   );
