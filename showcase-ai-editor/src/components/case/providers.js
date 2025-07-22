@@ -67,7 +67,7 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         label: 'OpenAI', 
         selected: false,
         provider: OpenAiImage.GptImage1.Text2Image({ 
-          proxyUrl: FAL_AI_PROXY_URL,
+          proxyUrl: OPEN_AI_PROXY_URL,
         })
       }
     ]
