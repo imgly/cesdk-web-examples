@@ -169,6 +169,7 @@ export const CESDKModal = memo(({ asset, onClose }) => {
         }
       };
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config, containerRef]);
 
   return (

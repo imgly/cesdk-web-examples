@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: start;
+  align-items: flex-start;
   gap: 24px;
 }
 
@@ -37,10 +37,12 @@
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     opacity: 0.7;
   }
+
   50% {
     opacity: 0.3;
   }

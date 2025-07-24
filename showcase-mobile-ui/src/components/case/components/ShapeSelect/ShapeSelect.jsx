@@ -13,10 +13,30 @@ const ShapeSelect = ({ onClick, group }) => {
     if (group) {
       queryParameters.groups = [group];
     }
-    const results = await engine.asset.findAssets(
+    let results = await engine.asset.findAssets(
       SHAPE_ASSET_LIBRARY_ID,
       queryParameters
     );
+    let filtered = [];
+    results.assets.forEach((shape) => {
+      if (
+        !(
+          shape.groups &&
+          [
+            '//ly.img.cesdk.vectorpaths/category/gradient',
+            '//ly.img.cesdk.vectorpaths/category/image',
+            '//ly.img.cesdk.vectorpaths/category/abstract-gradient',
+            '//ly.img.cesdk.vectorpaths/category/abstract-image'
+          ].includes(shape.groups[0])
+        )
+      ) {
+        filtered.push(shape);
+      }
+    });
+    results = {
+      ...results,
+      assets: filtered
+    };
     return results;
   }, [group, engine]);
 

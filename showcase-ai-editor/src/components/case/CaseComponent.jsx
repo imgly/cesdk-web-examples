@@ -1,12 +1,7 @@
 'use client';
 
-import AiApps from '@imgly/plugin-ai-apps-web';
-import Elevenlabs from '@imgly/plugin-ai-audio-generation-web/elevenlabs';
-import FalAiImage from '@imgly/plugin-ai-image-generation-web/fal-ai';
-import Anthropic from '@imgly/plugin-ai-text-generation-web/anthropic';
-import FalAiVideo from '@imgly/plugin-ai-video-generation-web/fal-ai';
 
-import { supportsVideo, supportsVideoExport } from '@cesdk/cesdk-js';
+// import { supportsVideo, supportsVideoExport } from '@cesdk/cesdk-js';
 import CreativeEditor, {
   useConfig,
   useConfigure,
@@ -14,173 +9,149 @@ import CreativeEditor, {
 } from './lib/CreativeEditor';
 
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-
-const SCENE_MODE_OPTIONS = [
-  {
-    name: 'Design',
-    cesdkConfig: {}
-  },
-  {
-    name: 'Video',
-    cesdkConfig: {}
-  }
-];
-
-// Insert your proxys for your provider here
-let FAL_AI_PROXY_URL = '';
-let ANTHROPIC_PROXY_URL = '';
-let ELEVENLABS_PROXY_URL = '';
-
+import AiProviderPanel from './components/AiProviderPanel';
+import { createAIProviders } from './providers';
+import { MODE_OPTIONS } from './modes';
 
 const CaseComponent = () => {
   const [cesdk, setCesdk] = useCreativeEditor();
-
-  const [currentSceneMode, setCurrentSceneMode] = useState(undefined);
+  const [modeContext, setModeContext] = useState();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (currentSceneMode != null) return;
+    if (modeContext != null) {
+      return;
+    }
 
-    (async function checkSupport() {
-      const supportVideo = supportsVideo();
-      const supportVideoExport = await supportsVideoExport();
+    // Read scene mode from URL query parameter
+    const urlSceneMode = searchParams.get('mode');
 
-      setCurrentSceneMode(
-        supportVideo && supportVideoExport ? 'Video' : 'Design'
-      );
-    })();
-  }, [currentSceneMode]);
+    // Validate that the URL parameter is a valid scene mode
+    const validSceneModes = MODE_OPTIONS.map((option) => option.name);
+
+    if (urlSceneMode && validSceneModes.includes(urlSceneMode)) {
+      // URL parameter takes precedence
+      setModeContext({
+        providers: createAIProviders(urlSceneMode),
+        sceneMode: urlSceneMode
+      });
+    } else {
+      // No valid URL parameter, check video support
+      (async function checkSupport() {
+        // const supportVideo = supportsVideo();
+        // const supportVideoExport = await supportsVideoExport();
+        // const defaultMode = supportVideo && supportVideoExport ? 'Video' : 'Design';
+        const defaultMode = 'Design';
+        setModeContext({
+          providers: createAIProviders(defaultMode),
+          sceneMode: defaultMode
+        });
+
+        // Set the query parameter to match the auto-detected mode
+        const params = new URLSearchParams(searchParams);
+        params.set('mode', defaultMode);
+        router.replace(`?${params.toString()}`, { scroll: false });
+      })();
+    }
+  }, [searchParams, router]);
 
   const config = useConfig(
     () => ({
-      ...SCENE_MODE_OPTIONS.find(
-        ({ name }) => name === (currentSceneMode ?? 'Design')
-      ).cesdkConfig,
       license: process.env.NEXT_PUBLIC_LICENSE,
-      featureFlags: {
-        archiveSceneEnabled: true,
-        dangerouslyDisableVideoSupportCheck: false
-      },
-      callbacks: {
-        onUpload: 'local',
-        onExport: 'download'
-      },
-      ui: {
-        elements: {
-          navigation: {
-            action: {
-              export: true
-            }
-          }
-        }
-      }
+      ...MODE_OPTIONS.find(
+        ({ name }) => name === (modeContext?.sceneMode ?? 'Design')
+      ).cesdkConfig
     }),
-    [currentSceneMode]
+    [modeContext]
   );
 
   const configure = useConfigure(
     async (instance) => {
-      await instance.addDefaultAssetSources();
-      await instance.addDemoAssetSources({ sceneMode: currentSceneMode });
-
-      instance.ui.setDockOrder([
-        'ly.img.ai/apps.dock',
-        ...instance.ui.getDockOrder().filter(({ key }) => {
-          return key !== 'ly.img.video.template' && key !== 'ly.img.template';
-        })
-      ]);
-
-      instance.ui.setCanvasMenuOrder([
-        'ly.img.ai.text.canvasMenu',
-        `ly.img.ai.image.canvasMenu`,
-        ...instance.ui.getCanvasMenuOrder()
-      ]);
-
-      instance.feature.enable('ly.img.preview', false);
-      instance.feature.enable('ly.img.placeholder', false);
-
-      if (currentSceneMode === 'Video') {
-        // instance.createVideoScene();
-        await instance.engine.scene.loadFromArchiveURL(
-          `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/ai-editor/ai_editor_video.archive`
-        );
-      } else {
-        // instance.createDesignScene();
-        await instance.engine.scene.loadFromArchiveURL(
-          `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/ai-editor/ai_editor_design.archive`
-        );
-      }
-
-
-      instance.addPlugin(
-        AiApps({
-          providers: {
-            text2text: Anthropic.AnthropicProvider({
-              proxyUrl: ANTHROPIC_PROXY_URL
-            }),
-            text2image: FalAiImage.RecraftV3({
-              proxyUrl: FAL_AI_PROXY_URL
-            }),
-            image2image: FalAiImage.GeminiFlashEdit({
-              proxyUrl: FAL_AI_PROXY_URL
-            }),
-            text2video: FalAiVideo.MinimaxVideo01Live({
-              proxyUrl: FAL_AI_PROXY_URL
-            }),
-            image2video: FalAiVideo.MinimaxVideo01LiveImageToVideo({
-              proxyUrl: FAL_AI_PROXY_URL
-            }),
-            text2speech: Elevenlabs.ElevenMultilingualV2({
-              proxyUrl: ELEVENLABS_PROXY_URL
-            }),
-            text2sound: Elevenlabs.ElevenSoundEffects({
-              proxyUrl: ELEVENLABS_PROXY_URL
-            })
-          }
-        })
+      
+      const currentMode = MODE_OPTIONS.find(
+        ({ name }) => name === (modeContext?.sceneMode ?? 'Design')
       );
+      
+      
+      await currentMode.initialize(instance, modeContext, createMiddlewareFunc);
     },
-    [currentSceneMode]
+    [modeContext]
   );
 
   const onSceneModeChange = useCallback(
     async (value) => {
-      setCurrentSceneMode(value);
+      setModeContext({
+        providers: createAIProviders(value),
+        sceneMode: value
+      });
+
+      // Update URL query parameter
+      const params = new URLSearchParams(searchParams);
+      params.set('mode', value);
+      router.replace(`?${params.toString()}`, { scroll: false });
     },
-    [cesdk]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cesdk, searchParams, router]
   );
 
-  if (currentSceneMode == null) {
+  const handleApplyChanges = useCallback((newProviders) => {
+    // Apply new providers to live configuration
+    setModeContext((prev) => ({
+      ...prev,
+      providers: newProviders
+    }));
+  }, []);
+
+  if (modeContext?.sceneMode == null) {
     return null;
   }
   return (
     <div className="gap-sm flex flex-grow flex-col">
       <div className="flex  w-full flex-col items-center">
         <SegmentedControl
-          options={SCENE_MODE_OPTIONS.map(({ name }) => ({
+          options={MODE_OPTIONS.map(({ name }) => ({
             value: name,
             label: name
           }))}
-          value={currentSceneMode}
+          value={modeContext?.sceneMode}
           name="currentRole"
           onChange={onSceneModeChange}
           size="md"
         />
       </div>
       <div
-        className="cesdkWrapperStyle"
-        key={currentSceneMode}
-        style={{ minHeight: '820px' }}
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '1rem',
+          height: '820px'
+        }}
       >
-        <CreativeEditor
-          className="cesdkStyle"
-          config={config}
-          configure={configure}
-          onInstanceChange={setCesdk}
-        />
+        <div
+          className="cesdkWrapperStyle"
+          key={modeContext?.sceneMode}
+          style={{ flex: 1 }}
+        >
+          <CreativeEditor
+            className="cesdkStyle"
+            config={config}
+            configure={configure}
+            onInstanceChange={setCesdk}
+          />
+        </div>
+        {modeContext?.providers && (
+          <AiProviderPanel
+            providers={modeContext.providers}
+            onApplyChanges={handleApplyChanges}
+          />
+        )}
       </div>
     </div>
   );
 };
+
 
 export default CaseComponent;

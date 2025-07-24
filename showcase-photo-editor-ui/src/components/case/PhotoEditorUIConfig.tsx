@@ -61,7 +61,7 @@ export async function initPhotoEditorUIConfig(
 }
 
 // Find out more about changing the Inspector Bar in the documentation:
-// https://img.ly/docs/cesdk/ui/customization/api/inspectorBar/
+// https://img.ly/docs/cesdk/js/user-interface/customization/inspector-bar-8ca1cd/
 function setupInspectorBar(instance: CreativeEditorSDK) {
   const inspectorBarOrder = instance.ui.getInspectorBarOrder();
   // on selection change:
@@ -82,7 +82,8 @@ function setupInspectorBar(instance: CreativeEditorSDK) {
       isPage && 'ly.img.blur.inspectorBar',
       // Hide fill inspector if page is selected
       isPage && 'ly.img.fill.inspectorBar',
-      'ly.img.options.inspectorBar'
+      'ly.img.options.inspectorBar',
+      'ly.img.inspectorToggle.inspectorBar'
     ].filter(Boolean);
     instance.ui.setInspectorBarOrder([
       ...inspectorBarOrder.filter(
@@ -94,7 +95,7 @@ function setupInspectorBar(instance: CreativeEditorSDK) {
 }
 
 // Find out more about changing the Dock in the documentation:
-// https://img.ly/docs/cesdk/ui/customization/api/dock/
+// https://img.ly/docs/cesdk/js/user-interface/customization/dock-cb916c/
 function setupDock(instance: CreativeEditorSDK) {
   // crop button, should open the crop asset lib panel but also enter crop mode
   instance.ui.registerComponent(
