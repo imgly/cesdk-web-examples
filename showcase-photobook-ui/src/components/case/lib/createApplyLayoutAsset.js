@@ -92,7 +92,7 @@ const copyAssets = (engine, fromPageId, toPageId) => {
     try {
       const fromTypeface = engine.block.getTypeface(fromBlock);
       engine.block.setFont(toBlock, fromFontFileUri, fromTypeface);
-    } catch (e) {}
+    } catch {}
     const fromTextFillColor = engine.block.getColor(
       fromBlock,
       'fill/solid/color'

@@ -78,6 +78,7 @@ function CustomizationSection({
     return function shutdownCreativeEngine() {
       engineRef.current?.dispose();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fillTemplate = (engine: CreativeEngine, page: number) => {
@@ -288,6 +289,7 @@ function CustomizationSection({
     ) {
       setPodcast(podcastProp);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [podcastProp, assetsStillLoading]);
 
   useEffect(() => {
@@ -302,14 +304,17 @@ function CustomizationSection({
         loadPodcastAssets();
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [podcast]);
 
   useEffect(() => {
     if (engineRef.current) loadPodcastAssets();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedMessage, debouncedBackgroundColor, type]);
 
   useEffect(() => {
     onAssetsUpdate(finalAssets);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [finalAssets]);
 
   return (

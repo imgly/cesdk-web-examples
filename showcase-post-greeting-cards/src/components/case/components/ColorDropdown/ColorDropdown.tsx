@@ -61,7 +61,7 @@ const ColorDropdown = ({
                 try {
                   const color = hexToRgba(hex);
                   onClick(color);
-                } catch (e) {}
+                } catch {}
               }}
               value={rgbaToHex(activeColor)}
             >

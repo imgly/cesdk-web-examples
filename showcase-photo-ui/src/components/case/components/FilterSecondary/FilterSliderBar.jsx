@@ -57,6 +57,7 @@ const FilterSliderBar = ({ lutFilterConfig }) => {
 
   useEffect(() => {
     setFilterProperties(lutFilterIntensity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lutFilterConfig]);
 
   return (

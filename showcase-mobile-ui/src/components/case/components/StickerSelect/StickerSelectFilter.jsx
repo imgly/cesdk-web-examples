@@ -6,6 +6,8 @@ const LABELS = {
   '//ly.img.cesdk.stickers.doodle/category/doodle': 'Doodle',
   '//ly.img.cesdk.stickers.emoji/category/emoji': 'Emoji',
   '//ly.img.cesdk.stickers.emoticons/category/emoticons': 'Emoticons',
+  '//ly.img.cesdk.stickers.craft/category/craft': 'Craft',
+  '//ly.img.cesdk.stickers.3Dstickers/category/3Dstickers': '3D Grain',
   '//ly.img.cesdk.stickers.hand/category/hand': 'Hands',
   '//ly.img.cesdk.stickers/category/stickers': 'Stickers'
 };
