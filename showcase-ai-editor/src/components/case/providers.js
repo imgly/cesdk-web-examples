@@ -13,10 +13,7 @@ let OPEN_AI_PROXY_URL = '';
 let ELEVENLABS_PROXY_URL = '';
 
 
-// Middleware factory functions
-
-export const createAIProviders = (instance, sceneMode = 'Design') => {
-  
+export const createAIProviders = (sceneMode = 'Design') => {
   const allProviders = {
   text2text: {
     name: 'Text to Text',
@@ -26,7 +23,7 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         name: 'Claude Sonnet 3.7', 
         label: 'Anthropic', 
         selected: true,
-        provider: Anthropic.AnthropicProvider({ 
+        provider: (middleware) => Anthropic.AnthropicProvider({ 
           proxyUrl: ANTHROPIC_PROXY_URL,
           model: 'claude-3-7-sonnet-20250219'
         })
@@ -34,8 +31,8 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
       { 
         name: 'GPT-4o mini', 
         label: 'OpenAI', 
-        selected: false,
-        provider: OpenAIText.OpenAIProvider({ 
+        selected: true,
+        provider: (middleware) => OpenAIText.OpenAIProvider({ 
           proxyUrl: OPEN_AI_PROXY_URL,
           model: 'gpt-4o-mini'
         })
@@ -50,7 +47,7 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         name: 'Recraft V3', 
         label: 'Recraft', 
         selected: true,
-        provider: FalAiImage.RecraftV3({ 
+        provider: (middleware) => FalAiImage.RecraftV3({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       },
@@ -58,15 +55,15 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         name: 'Recraft 20B', 
         label: 'Recraft', 
         selected: false,
-        provider: FalAiImage.Recraft20b({ 
+        provider: (middleware) => FalAiImage.Recraft20b({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       },
       { 
         name: 'GPT Image 1', 
         label: 'OpenAI', 
-        selected: false,
-        provider: OpenAiImage.GptImage1.Text2Image({ 
+        selected: true,
+        provider: (middleware) => OpenAiImage.GptImage1.Text2Image({ 
           proxyUrl: OPEN_AI_PROXY_URL,
         })
       }
@@ -80,7 +77,7 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         name: 'Recraft 20B',
         label: 'Recraft',
         selected: true,
-        provider: FalAiSticker.Recraft20b({
+        provider: (middleware) => FalAiSticker.Recraft20b({
           proxyUrl: FAL_AI_PROXY_URL,
         })
       }
@@ -94,7 +91,7 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         name: 'Minimax Video-01 Live', 
         label: 'Minimax', 
         selected: true,
-        provider: FalAiVideo.MinimaxVideo01Live({ 
+        provider: (middleware) => FalAiVideo.MinimaxVideo01Live({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       },
@@ -102,23 +99,23 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         name: 'Pixverse V3.5', 
         label: 'Pixverse', 
         selected: false,
-        provider: FalAiVideo.PixverseV35TextToVideo({ 
+        provider: (middleware) => FalAiVideo.PixverseV35TextToVideo({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       },
       { 
         name: 'Kling Video V2.1 Master', 
         label: 'Kuaishou', 
-        selected: false,
-        provider: FalAiVideo.KlingVideoV21MasterTextToVideo({ 
+        selected: true,
+        provider: (middleware) => FalAiVideo.KlingVideoV21MasterTextToVideo({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       },
       { 
         name: 'Veo 3', 
         label: 'Google DeepMind', 
-        selected: false,
-        provider: FalAiVideo.Veo3TextToVideo({ 
+        selected: true,
+        provider: (middleware) => FalAiVideo.Veo3TextToVideo({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       }
@@ -132,7 +129,7 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         name: 'Multilingual V2',
         label: 'ElevenLabs',
         selected: true,
-        provider: Elevenlabs.ElevenMultilingualV2({
+        provider: (middleware) => Elevenlabs.ElevenMultilingualV2({
           proxyUrl: ELEVENLABS_PROXY_URL
         })
       }
@@ -146,7 +143,7 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         name: 'Sound Effects',
         label: 'ElevenLabs',
         selected: true,
-        provider: Elevenlabs.ElevenSoundEffects({
+        provider: (middleware) => Elevenlabs.ElevenSoundEffects({
           proxyUrl: ELEVENLABS_PROXY_URL
         })
       }
@@ -160,31 +157,31 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         name: 'Gemini Flash Edit', 
         label: 'Google', 
         selected: true,
-        provider: FalAiImage.GeminiFlashEdit({ 
+        provider: (middleware) => FalAiImage.GeminiFlashEdit({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       },
       { 
         name: 'GPT Image 1', 
         label: 'OpenAI', 
-        selected: false,
-        provider: OpenAiImage.GptImage1.Image2Image({ 
-          proxyUrl: FAL_AI_PROXY_URL,
+        selected: true,
+        provider: (middleware) => OpenAiImage.GptImage1.Image2Image({ 
+          proxyUrl: OPEN_AI_PROXY_URL,
         })
       },
       { 
         name: 'Flux Pro Kontext', 
         label: 'Black Forest', 
-        selected: false,
-        provider: FalAiImage.FluxProKontextEdit({ 
+        selected: true,
+        provider: (middleware) => FalAiImage.FluxProKontextEdit({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       },
       { 
         name: 'Flux Pro Kontext Max', 
         label: 'Black Forest', 
-        selected: false,
-        provider: FalAiImage.FluxProKontextMaxEdit({ 
+        selected: true,
+        provider: (middleware) => FalAiImage.FluxProKontextMaxEdit({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       }
@@ -198,15 +195,15 @@ export const createAIProviders = (instance, sceneMode = 'Design') => {
         name: 'Minimax Video-01 Live', 
         label: 'Minimax', 
         selected: true,
-        provider: FalAiVideo.MinimaxVideo01LiveImageToVideo({ 
+        provider: (middleware) => FalAiVideo.MinimaxVideo01LiveImageToVideo({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       },
       { 
         name: 'Kling Video V2.1 Master', 
         label: 'Kuaishou', 
-        selected: false,
-        provider: FalAiVideo.KlingVideoV21MasterImageToVideo({ 
+        selected: true,
+        provider: (middleware) => FalAiVideo.KlingVideoV21MasterImageToVideo({ 
           proxyUrl: FAL_AI_PROXY_URL,
         })
       }

@@ -15,10 +15,30 @@ const ShapeBar = ({
   const queryShapes = useCallback(async () => {
     const SHAPE_ASSET_LIBRARY_ID = 'ly.img.vectorpath';
     const queryParameters = { page: 0, perPage: 999 };
-    const results = await engine.asset.findAssets(
+    let results = await engine.asset.findAssets(
       SHAPE_ASSET_LIBRARY_ID,
       queryParameters
     );
+    let filtered: CompleteAssetResult[] = [];
+    results.assets.forEach((shape) => {
+      if (
+        !(
+          shape.groups &&
+          [
+            '//ly.img.cesdk.vectorpaths/category/gradient',
+            '//ly.img.cesdk.vectorpaths/category/image',
+            '//ly.img.cesdk.vectorpaths/category/abstract-gradient',
+            '//ly.img.cesdk.vectorpaths/category/abstract-image'
+          ].includes(shape.groups[0])
+        )
+      ) {
+        filtered.push(shape);
+      }
+    });
+    results = {
+      ...results,
+      assets: filtered
+    };
     return results;
   }, [engine]);
 

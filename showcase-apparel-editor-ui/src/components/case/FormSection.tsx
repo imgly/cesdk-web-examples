@@ -2,10 +2,7 @@ import classes from './FormSection.module.css';
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
 import { useMemo, useState } from 'react';
 import classNames from 'classnames';
-import {
-  exportDesigns,
-  ProductColor
-} from './ApparelEditorUIConfig';
+import { exportDesigns, ProductColor } from './ApparelEditorUIConfig';
 import { PRODUCT_SAMPLES } from './product';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
@@ -30,15 +27,17 @@ function FormSection({
   );
   const price = useMemo(
     () => (product.unitPrice * quantity.reduce((a, b) => a + b, 0)).toFixed(2),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [quantity]
   );
   const previewUrl = useMemo(() => {
-    const imageSource = product.areas.find(({ id }) => id === areaId)
-      ?.mockup?.images;
+    const imageSource = product.areas.find(({ id }) => id === areaId)?.mockup
+      ?.images;
     if (imageSource && imageSource.length > 0) {
       const newImageUrl = imageSource[0].uri.replace('{{color}}', color.id);
       return newImageUrl;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [areaId, color]);
 
   async function onAssetsDownload() {
@@ -47,10 +46,16 @@ function FormSection({
       localDownload(pdf, `scene-${new Date().toISOString()}-${areaId}.pdf`);
     }
     for (const [areaId, thumbnail] of Object.entries(thumbnails)) {
-      localDownload(thumbnail, `scene-thumbnail-${new Date().toISOString()}-${areaId}.png`);
+      localDownload(
+        thumbnail,
+        `scene-thumbnail-${new Date().toISOString()}-${areaId}.png`
+      );
     }
     for (const [areaId, preview] of Object.entries(previews)) {
-      localDownload(preview, `scene-preview-${new Date().toISOString()}-${areaId}.png`);
+      localDownload(
+        preview,
+        `scene-preview-${new Date().toISOString()}-${areaId}.png`
+      );
     }
     localDownload(archive, `scene-${new Date().toISOString()}.zip`);
   }

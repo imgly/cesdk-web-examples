@@ -387,7 +387,7 @@ const exportDesign = async (
   let filteredPages: number[] = pages;
   try {
     filteredPages = getPagesFromRange(pages, pageRange);
-  } catch (error) {
+  } catch {
     return;
   }
   // the export will create a single PDF and download it
