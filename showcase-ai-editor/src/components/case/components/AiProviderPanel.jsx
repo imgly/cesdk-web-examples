@@ -93,9 +93,9 @@ const AiProviderPanel = ({ providers, onApplyChanges }) => {
   return (
     <div className={styles.panel}>
       <div className={styles.header}>
-        <h2 className={styles.title}>AI Providers</h2>
+        <h2 className={styles.title}>AI Models</h2>
         <p className={styles.subtitle}>
-          Select which AI Providers you want to include in CE.SDK
+          Bring your own models. CE.SDK lets you integrate your model of choice.
         </p>
       </div>
       

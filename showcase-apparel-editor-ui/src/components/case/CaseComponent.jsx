@@ -71,6 +71,7 @@ const CaseComponent = () => {
       }
     };
     updateScene();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [instance, product]);
   // Update the editor view when the selected area or color changes
   useEffect(() => {
@@ -82,6 +83,7 @@ const CaseComponent = () => {
         color
       );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [areaId, color]);
 
   return (

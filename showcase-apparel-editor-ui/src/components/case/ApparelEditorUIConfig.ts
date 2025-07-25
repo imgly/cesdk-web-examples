@@ -434,20 +434,6 @@ function createAllMockupImageBlocks(
   return mockupImageBlocks;
 }
 
-/**
- * Retrieves the existing mockup image block from the scene.
- * @param engine - The CreativeEngine instance.
- * @returns The ID of the mockup image block, or undefined if not found.
- */
-function getMockupImageBlock(engine: CreativeEngine) {
-  const sceneBlock = engine.scene.get()!;
-  const sceneBlockChildren = engine.block.getChildren(sceneBlock);
-  return sceneBlockChildren.find((block) => {
-    const blockType = engine.block.getKind(block);
-    return blockType === MOCKUP_IMAGE_BLOCK_KIND;
-  });
-}
-
 const PRODUCT_METADATA_KEY = 'product_metadata';
 
 /**

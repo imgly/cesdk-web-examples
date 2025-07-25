@@ -17,6 +17,7 @@ export const useProperty = (
     } catch (error) {
       console.log(error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [block, engine, propertyName]);
 
   const [propertyValue, setPropertyValue] = useState(getSelectedProperty());
@@ -41,6 +42,7 @@ export const useProperty = (
         console.log(error);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [block, engine, propertyName, options]
   );
 
@@ -61,6 +63,7 @@ export const useProperty = (
       }
     });
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engine, propertyName, block, getSelectedProperty]);
 
   if (!block) {
@@ -74,7 +77,6 @@ export const useSelectedProperty = (
   propertyName: string,
   options = { shouldAddUndoStep: true }
 ) => {
-  const { engine } = useEngine();
   const { selection } = useSelection();
   const [propertyValue, setEnginePropertyValue] = useProperty(
     selection[0],

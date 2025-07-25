@@ -10,30 +10,34 @@ const CaseComponent = () => {
   const [selectedImage, setSelectedImage] = useState(IMAGE_URLS[0]);
   const [selectedCropPreset, setSelectedCropPreset] = useState(CROP_PRESETS[0]);
   const [selectedCropMode, setSelectedCropMode] = useState(CROP_MODES[0]);
-  const [appliedButtonClickCount, setAppliedButtonClickCount] = useState(0);
+  const [appliedButtonClickCount, setAppliedButtonClickCount] = useState(1);
 
   const config = useConfig(
     () => ({
-      role: 'Creator',
+      role: 'Adopter',
       theme: 'light',
       callbacks: {
         onExport: 'download',
-        onUpload: 'local',
-        onBack: () => {
-          setSelectedImage(null);
-        }
+        onUpload: 'local'
       },
       ui: {
         elements: {
           navigation: {
-            show: false
-          },
-          dock: {
-            show: false
+            action: {
+              export: {
+                show: true,
+                format: ['image/png']
+              }
+            }
           }
         }
       },
-      license: process.env.NEXT_PUBLIC_LICENSE
+      license: process.env.NEXT_PUBLIC_LICENSE,
+      i18n: {
+        en: {
+          'component.fileOperation.exportImage': 'Export Image'
+        }
+      }
     }),
     []
   );
@@ -42,6 +46,3 @@ const CaseComponent = () => {
     async (instance) => {
       await instance.addDefaultAssetSources();
       await instance.addDemoAssetSources({ sceneMode: 'Design' });
-      // Disable placeholder and preview features
-      instance.feature.enable('ly.img.placeholder', false);
-      instance.feature.enable('ly.img.preview', false);
