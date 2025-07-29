@@ -4,6 +4,6 @@
   "author": "contact@img.ly",
   "type": "module",
   "dependencies": {
-    "@cesdk/node": "1.53.0"
+    "@cesdk/node": "1.57.0-rc.0"
   }
 }

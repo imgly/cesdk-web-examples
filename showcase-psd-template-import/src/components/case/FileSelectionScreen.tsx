@@ -29,8 +29,8 @@ function FileSelectionScreen({ onFileSelected }: FileSelectionScreenProps) {
             thumbnailUrl: ''
           });
         }}
-        accept={['.psd']}
-        filetypeNotice="Supports .psd Format"
+        accept={['.psd', '.psb']}
+        filetypeNotice="Supports .psd and .psb Formats"
       >
         Upload Photoshop File
       </UploadZone>
