@@ -108,6 +108,7 @@ const CaseComponent = () => {
   if (modeContext?.sceneMode == null) {
     return null;
   }
+
   return (
     <div className="gap-sm flex flex-grow flex-col">
       <div className="flex  w-full flex-col items-center">
