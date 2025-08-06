@@ -37,7 +37,12 @@ const CaseComponent = () => {
     instance.feature.enable('ly.img.preview', false);
 
     instance.addPlugin(
-      CutoutLibraryPlugin({ ui: { locations: ['canvasMenu'] } })
+      CutoutLibraryPlugin({
+        ui: { locations: ['canvasMenu'] },
+        createCutoutFromBlocks: (blockIds, engine) => {
+          return engine.block.createCutoutFromBlocks(blockIds, 0, 2, true);
+        }
+      })
     );
     const cutoutAssetEntry = instance.ui.getAssetLibraryEntry(
       'ly.img.cutout.entry'
