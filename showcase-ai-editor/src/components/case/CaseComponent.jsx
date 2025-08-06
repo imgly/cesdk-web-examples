@@ -128,7 +128,7 @@ const CaseComponent = () => {
           display: 'flex',
           flexDirection: 'row',
           gap: '1rem',
-          height: '740px'
+          height: '820px'
         }}
       >
         <div
