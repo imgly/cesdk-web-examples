@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.57.0",
+    "@cesdk/cesdk-js": "^1.58.0-rc.0",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

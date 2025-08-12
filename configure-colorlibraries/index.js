@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.57.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.58.0-rc.0/index.js';
 
 const colors = [
   {
