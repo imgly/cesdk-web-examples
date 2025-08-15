@@ -151,7 +151,7 @@ export const createAIProviders = (sceneMode = 'Design') => {
   },
   image2image: {
     name: 'Image to Image',
-    supportedModes: ['Design', 'Video', 'Photo'],
+    supportedModes: ['Design', 'Video'],
     providers: [
       { 
         name: 'Gemini Flash Edit', 
