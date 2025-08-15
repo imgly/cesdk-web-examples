@@ -11,7 +11,7 @@
   const defaultConfig = {
     license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu', // replace it with your license key
     userId: 'guides-user',
-    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.57.0/assets',
+    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.57.1/assets',
     callbacks: { onUpload: 'local' } // enable local file uploads in the Asset Library
     // other default configs...
   };
