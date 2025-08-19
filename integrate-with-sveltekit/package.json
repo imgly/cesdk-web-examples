@@ -17,6 +17,6 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
-		"@cesdk/cesdk-js": "^1.57.0"
+		"@cesdk/cesdk-js": "^1.58.0"
 	}
 }
