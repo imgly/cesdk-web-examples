@@ -35,7 +35,7 @@ export function generateColorAbstractionTokensBackground(color: string) {
     '--ubq-canvas': chroma(color).css('hsl'),
     '--ubq-elevation-1': setLightness(color, '+0.05').css('hsl'),
     '--ubq-elevation-2': setLightness(color, '+0.1').css('hsl'),
-    '--ubq-elevation-3': setLightness(color, '+0.2').css('hsl'),
+    '--ubq-elevation-3': setLightness(color, '+0.15').css('hsl'),
     '--ubq-foreground-default': getContrastColor(color).alpha(0.9).css('hsl'),
     '--ubq-foreground-light': getContrastColor(color).alpha(0.7).css('hsl'),
     '--ubq-foreground-info': getContrastColor(color).alpha(0.5).css('hsl'),
