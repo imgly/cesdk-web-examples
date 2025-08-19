@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.57.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.58.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.57.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.58.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -35,7 +35,7 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setString(
     lutFilter,
     'effect/lut_filter/lutFileURI',
-    'https://cdn.img.ly/packages/imgly/cesdk-js/1.57.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png'
+    'https://cdn.img.ly/packages/imgly/cesdk-js/1.58.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png'
   );
 
   engine.block.setInt(lutFilter, 'effect/lut_filter/verticalTileCount', 5);
