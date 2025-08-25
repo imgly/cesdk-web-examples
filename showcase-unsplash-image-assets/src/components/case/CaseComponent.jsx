@@ -1,7 +1,7 @@
 'use client';
 
-import { unsplashAssetLibrary } from './unsplashAssetLibrary';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
+import { unsplashAssetLibrary } from './unsplashAssetLibrary';
 
 const CaseComponent = () => {
   const config = useConfig(
@@ -23,16 +23,18 @@ const CaseComponent = () => {
             }
           }
         }
-      },
-      i18n: {
-        en: {
-          'libraries.unsplash.label': 'Unsplash'
-        }
       }
     }),
     []
   );
   const configure = useConfigure(async (instance) => {
+    
+    instance.i18n.setTranslations({
+      en: {
+        'libraries.unsplash.label': 'Unsplash'
+      }
+    });
+
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
     // Disable placeholder and preview features

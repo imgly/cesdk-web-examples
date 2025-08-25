@@ -1,17 +1,17 @@
 'use client';
 
-import CreativeEngine from '@cesdk/engine';
-import React, { useEffect, useRef, useState, useCallback } from 'react';
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import CreativeEngine from '@cesdk/engine';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import classes from './CaseComponent.module.css';
+import { EditInstanceCESDK } from './components/EditInstanceCESDK';
+import { EditTemplateCESDK } from './components/EditTemplateCESDK';
+import EditIcon from './icons/Edit.svg';
 import {
   caseAssetPath,
   fillTemplate,
   removeInstanceVariables
 } from './lib/TemplateUtilities';
-import classes from './CaseComponent.module.css';
-import EditIcon from './icons/Edit.svg';
-import { EditTemplateCESDK } from './components/EditTemplateCESDK';
-import { EditInstanceCESDK } from './components/EditInstanceCESDK';
 import SCENES from './scenes.json';
 
 const EXAMPLES = [

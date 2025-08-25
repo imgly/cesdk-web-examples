@@ -120,7 +120,7 @@ export const ExportDesignPanelPlugin = (): EditorPlugin => ({
       }
     );
 
-    cesdk.setTranslations({
+    cesdk.i18n.setTranslations({
       en: {
         'panel.//ly.img.panel/export': 'Export Design',
         ['formats/image/jpeg']: 'JPEG',
