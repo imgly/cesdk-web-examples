@@ -24,7 +24,7 @@ export async function initPhotoEditorUIConfig(
     createApplyAppAsset(instance)
   );
   // setup translation for apps
-  instance.setTranslations({
+  instance.i18n.setTranslations({
     en: {
       'libraries.ly.img.apps.label': 'Apps'
     }
@@ -35,7 +35,7 @@ export async function initPhotoEditorUIConfig(
     photoUri
   );
 
-  instance.setTranslations({
+  instance.i18n.setTranslations({
     en: {
       'panel.ly.img.page-crop': 'Crop'
     }

@@ -1,19 +1,8 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.58.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.0-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  locale: 'fr',
-  i18n: {
-    fr: {
-      'common.back': 'Retour',
-      'meta.currentLanguage': 'Français'
-    },
-    it: {
-      'common.back': 'Indietro',
-      'meta.currentLanguage': 'Italiano'
-    }
-  },
   ui: {
     elements: {
       navigation: {
@@ -30,6 +19,21 @@ const config = {
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
+  // Set initial locale
+  instance.i18n.setLocale('fr');
+  
+  // Set initial translations using the new API
+  instance.i18n.setTranslations({
+    fr: {
+      'common.back': 'Retour',
+      'meta.currentLanguage': 'Français'
+    },
+    it: {
+      'common.back': 'Indietro',
+      'meta.currentLanguage': 'Italiano'
+    }
+  });
+
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
   instance.addDemoAssetSources({ sceneMode: 'Design' });
@@ -53,3 +57,4 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
     }
   });
 });
+

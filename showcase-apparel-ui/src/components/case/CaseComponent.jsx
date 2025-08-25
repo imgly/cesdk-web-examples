@@ -1,14 +1,14 @@
 'use client';
 
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import { useState } from 'react';
 import classes from './CaseComponent.module.css';
 import { EditorProvider } from './EditorContext';
-import createUnsplashSource from './lib/UnsplashSource';
 import ApparelUI from './components/ApparelUI/ApparelUI';
 import { EngineProvider } from './lib/EngineContext';
 import { SinglePageModeProvider } from './lib/SinglePageModeContext';
+import createUnsplashSource from './lib/UnsplashSource';
 import { SelectionProvider } from './lib/UseSelection';
-import { useState } from 'react';
 
 const CaseComponent = () => {
   const [engine, setEngine] = useState(null);

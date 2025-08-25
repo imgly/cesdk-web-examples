@@ -1,8 +1,8 @@
 'use client';
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
-import React, { useEffect, useRef, useState } from 'react';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
+import { useEffect, useRef, useState } from 'react';
 
 const ROLE_OPTIONS = [
   {

@@ -1,7 +1,4 @@
-import {
-  useEngineSelector,
-  withEngine
-} from '@cesdk/engine/integrations/react';
+import { useEngineSelector, withEngine } from '@cesdk/engine/react';
 
 const DisplaySelectedBlocks = withEngine(function DisplaySelectedBlocks({
   engine

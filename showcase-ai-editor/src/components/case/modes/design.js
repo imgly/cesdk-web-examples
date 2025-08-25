@@ -95,7 +95,7 @@ export default {
       );
     }
 
-    instance.addPlugin(
+    await instance.addPlugin(
       AiApps({
         providers: providerConfig
       })
