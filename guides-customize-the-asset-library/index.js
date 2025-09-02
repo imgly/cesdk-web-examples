@@ -1,18 +1,20 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.58.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.58.0/assets',
-  i18n: {
-    en: {
-      'libraries.empty-custom-asset-source.label': 'Empty'
-    }
-  },
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.0/assets',
   callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
+  
+  instance.i18n.setTranslations({
+    en: {
+      'libraries.empty-custom-asset-source.label': 'Empty'
+    }
+  });
+
   // Do something with the instance of CreativeEditor SDK, for example:
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
@@ -109,3 +111,4 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
 
   await instance.createDesignScene();
 });
+

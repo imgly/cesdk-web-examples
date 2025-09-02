@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import classes from './CaseComponent.module.css';
+import ASSETS from './Templates.json';
+import { CESDKModal } from './components/CESDKModal';
+import { SegmentedControl } from './components/SegmentedControl';
+import ChevronRightIcon from './icons/ChevronRight.svg';
 import {
   caseAssetPath,
   persistSelectedTemplateToURL
 } from './lib/TemplateUtilities';
-import classes from './CaseComponent.module.css';
-import ChevronRightIcon from './icons/ChevronRight.svg';
-import { CESDKModal } from './components/CESDKModal';
-import { SegmentedControl } from './components/SegmentedControl';
-import ASSETS from './Templates.json';
 
 const CATEGORIES = [
   { label: 'E-commerce', value: 'e-commerce' },

@@ -23,16 +23,18 @@ const CaseComponent = () => {
             }
           }
         }
-      },
-      i18n: {
-        en: {
-          'libraries.airtable.label': 'Airtable'
-        }
       }
     }),
     []
   );
   const configure = useConfigure(async (instance) => {
+    
+    instance.i18n.setTranslations({
+      en: {
+        'libraries.airtable.label': 'Airtable'
+      }
+    });
+
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
     // Disable placeholder and preview features
