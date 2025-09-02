@@ -8,11 +8,6 @@ const CaseComponent = () => {
     () => ({
       role: 'Creator',
       license: process.env.NEXT_PUBLIC_LICENSE,
-      i18n: {
-        en: {
-          [`libraries.${gettyImagesImageAssets.id}.label`]: 'Getty Images'
-        }
-      },
       callbacks: {
         onUpload: 'local'
       }
@@ -20,6 +15,13 @@ const CaseComponent = () => {
     []
   );
   const configure = useConfigure(async (instance) => {
+    
+    instance.i18n.setTranslations({
+      en: {
+        [`libraries.${gettyImagesImageAssets.id}.label`]: 'Getty Images'
+      }
+    });
+
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
     // Disable placeholder and preview features

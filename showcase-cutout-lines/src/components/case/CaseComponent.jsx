@@ -36,7 +36,7 @@ const CaseComponent = () => {
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
 
-    instance.addPlugin(
+    await instance.addPlugin(
       CutoutLibraryPlugin({
         ui: { locations: ['canvasMenu'] },
         createCutoutFromBlocks: (blockIds, engine) => {

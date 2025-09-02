@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "node index.js",
+    "build": "echo 'Node.js example - no build needed' && exit 0"
   },
-  "devDependencies": {
-    "vite": "^6.0.3"
+  "dependencies": {
+    "@cesdk/node": "^1.59.0"
   }
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import { useState } from 'react';
 import classes from './CaseComponent.module.css';
 import CUSTOM_LAYOUT_ASSET from './CustomLayout.json';
 import CUSTOM_STICKER_ASSETS from './CustomSticker.json';
@@ -10,11 +11,10 @@ import { EngineProvider } from './lib/EngineContext';
 import { PagePreviewProvider } from './lib/PagePreviewContext';
 import { SinglePageModeProvider } from './lib/SinglePageModeContext';
 import createUnsplashSource from './lib/UnsplashSource';
+import { SelectionProvider } from './lib/UseSelection';
 import { createApplyLayoutAsset } from './lib/createApplyLayoutAsset';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
-import { SelectionProvider } from './lib/UseSelection';
-import { useState } from 'react';
 
 const CaseComponent = () => {
   const [engine, setEngine] = useState(null);

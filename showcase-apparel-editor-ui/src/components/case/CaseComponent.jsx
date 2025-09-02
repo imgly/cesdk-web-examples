@@ -1,18 +1,18 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import {
+  createOrUpdateSceneByProduct,
+  switchProductView
+} from './ApparelEditorUIConfig';
+import classes from './CaseComponent.module.css';
+import FormSection from './FormSection';
 import CreativeEditor, {
   useConfig,
   useConfigure,
   useCreativeEditor
 } from './lib/CreativeEditor';
-import { useEffect, useState } from 'react';
-import classes from './CaseComponent.module.css';
-import FormSection from './FormSection';
 import { PRODUCT_SAMPLES } from './product';
-import {
-  createOrUpdateSceneByProduct,
-  switchProductView
-} from './ApparelEditorUIConfig';
 
 const CaseComponent = () => {
   const product = PRODUCT_SAMPLES[0];
@@ -71,7 +71,7 @@ const CaseComponent = () => {
       }
     };
     updateScene();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [instance, product]);
   // Update the editor view when the selected area or color changes
   useEffect(() => {
@@ -83,7 +83,7 @@ const CaseComponent = () => {
         color
       );
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [areaId, color]);
 
   return (

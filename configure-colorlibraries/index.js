@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.58.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.0/index.js';
 
 const colors = [
   {
@@ -53,12 +53,6 @@ const colors = [
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  locale: 'en',
-  i18n: {
-    en: {
-      'libraries.myCustomColors.label': 'Custom Color Library'
-    }
-  },
   ui: {
     colorLibraries: ['ly.img.colors.defaultPalette', 'myCustomColors'],
     elements: {
@@ -71,6 +65,15 @@ const config = {
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (cesdk) => {
+  // Set locale
+  cesdk.i18n.setLocale('en');
+  
+  cesdk.i18n.setTranslations({
+    en: {
+      'libraries.myCustomColors.label': 'Custom Color Library'
+    }
+  });
+
   cesdk.addDefaultAssetSources();
   cesdk.addDemoAssetSources();
 
@@ -81,3 +84,4 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (cesdk) => {
 
   cesdk.createDesignScene();
 });
+

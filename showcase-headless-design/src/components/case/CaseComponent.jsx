@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import classes from './CaseComponent.module.css';
-import PodcastSearchSection from './components/PodcastSearchSection';
 import CustomizationSection from './components/CustomizationSection';
 import GeneratedAssetsSection from './components/GeneratedAssetsSection';
+import PodcastSearchSection from './components/PodcastSearchSection';
 
 const CaseComponent = () => {
   const [currentPodcast, setCurrentPodcast] = useState(null);

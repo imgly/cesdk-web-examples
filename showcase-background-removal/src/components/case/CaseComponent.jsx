@@ -35,7 +35,7 @@ const CaseComponent = () => {
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
-    instance.addPlugin(
+    await instance.addPlugin(
       BackgroundRemovalPlugin({
         ui: {
           locations: ['canvasMenu']

@@ -1,9 +1,9 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.58.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.58.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.0/assets',
   callbacks: {
     onUnsupportedBrowser: () => {
       /* This is the default window alert which will be shown in case an unsupported
@@ -73,3 +73,4 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   instance.addDemoAssetSources({ sceneMode: 'Design' });
   await instance.createDesignScene();
 });
+

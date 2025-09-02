@@ -1,12 +1,15 @@
 <template>
-  <div id="cesdk_container" style="height: 100vh; width: 100vw"></div>
+  <CreativeEditor :config="config" :init="init" width="100vw" height="100vh" />
 </template>
 
 <script>
-import CreativeEditorSDK from '@cesdk/cesdk-js';
+import CreativeEditor from '@cesdk/cesdk-js/vue';
 
 export default {
-  name: 'CreativeEditor',
+  name: 'CreativeEditorWrapper',
+  components: {
+    CreativeEditor
+  },
   props: {
     config: {
       type: Object,
@@ -15,20 +18,12 @@ export default {
   },
   data() {
     return {
-      cesdkInstance: null
+      init: async (cesdk) => {
+        await cesdk.addDefaultAssetSources();
+        await cesdk.addDemoAssetSources({ sceneMode: 'Design' });
+        await cesdk.createDesignScene();
+      }
     };
-  },
-  async mounted() {
-    this.cesdkInstance = await CreativeEditorSDK.create('#cesdk_container', this.config);
-    await this.cesdkInstance.addDefaultAssetSources();
-    await this.cesdkInstance.addDemoAssetSources({ sceneMode: 'Design' });
-    await this.cesdkInstance.createDesignScene();
-  },
-  beforeUnmount() {
-    if (this.cesdkInstance) {
-      this.cesdkInstance.dispose();
-      this.cesdkInstance = null;
-    }
   }
 };
 </script>

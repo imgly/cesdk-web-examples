@@ -30,7 +30,7 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
     // Hide 'Resize' button on the navigation bar
     cesdk.feature.enable('ly.img.page.resize', false);
 
-    cesdk.setTranslations({
+    cesdk.i18n.setTranslations({
       en: {
         'panel.form-based-adaption': 'Edit Template'
       },

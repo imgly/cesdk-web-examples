@@ -39,18 +39,20 @@ const CaseComponent = () => {
             }
           }
         }
-      },
-      i18n: {
-        en: {
-          'libraries.ly.img.formats.label': 'Page Sizes',
-          'libraries.ly.img.formats.social.label': 'Social',
-          'libraries.ly.img.formats.print.label': 'Print'
-        }
       }
     }),
     []
   );
   const configure = useConfigure(async (instance) => {
+    
+    instance.i18n.setTranslations({
+      en: {
+        'libraries.ly.img.formats.label': 'Page Sizes',
+        'libraries.ly.img.formats.social.label': 'Social',
+        'libraries.ly.img.formats.print.label': 'Print'
+      }
+    });
+
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
     // Disable placeholder and preview features
