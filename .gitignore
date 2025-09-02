@@ -6,3 +6,6 @@ dist/
 .DS_Store
 build_github/
 build_guides/
+
+# Ignore yarn.lock files in all subdirectories
+**/yarn.lock

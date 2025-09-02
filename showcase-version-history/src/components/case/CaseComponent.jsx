@@ -107,17 +107,19 @@ const VersionHistoryCESDK = () => {
             }
           }
         }
-      },
-      i18n: {
-        en: {
-          'common.save': 'Save Snapshot'
-        }
       }
     }),
     []
   );
 
   const configure = useConfigure(async (instance) => {
+    
+    instance.i18n.setTranslations({
+      en: {
+        'common.save': 'Save Snapshot'
+      }
+    });
+
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
     instance.ui.setDockOrder([

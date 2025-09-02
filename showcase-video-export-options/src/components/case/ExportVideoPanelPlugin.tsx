@@ -138,7 +138,7 @@ export const ExportVideoPanelPlugin = (
     const onExport =
       options.onExport ?? ((blob) => localDownload(blob, 'exported-video'));
 
-    cesdk.setTranslations(translations);
+    cesdk.i18n.setTranslations(translations);
 
     cesdk.ui.registerComponent(
       'ly.img.export-options.navigationBar',
