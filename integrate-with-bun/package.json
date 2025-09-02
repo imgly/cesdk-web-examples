@@ -9,6 +9,6 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@cesdk/node": "1.58.0"
+    "@cesdk/node": "1.59.0"
   }
 }

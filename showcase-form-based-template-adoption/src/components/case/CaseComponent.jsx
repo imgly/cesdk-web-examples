@@ -34,7 +34,7 @@ const CaseComponent = () => {
   const configure = useConfigure(async (instance) => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
-    instance.addPlugin(FormBasedTemplateAdoptionPlugin());
+    await instance.addPlugin(FormBasedTemplateAdoptionPlugin());
     await instance.engine.scene.loadFromArchiveURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/form-based-template-adoption/scene.archive`
     );

@@ -55,11 +55,6 @@ const CaseComponent = () => {
           return ['ly.img.crop.presets'];
         }
       },
-      i18n: {
-        en: {
-          'component.fileOperation.exportImage': 'Export Image'
-        }
-      },
       callbacks: {
         onExport: 'download',
         onUpload: 'local'
@@ -68,6 +63,13 @@ const CaseComponent = () => {
     []
   );
   const configure = useConfigure(async (instance) => {
+    
+    instance.i18n.setTranslations({
+      en: {
+        'component.fileOperation.exportImage': 'Export Image'
+      }
+    });
+
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
     const cleanup = await initPhotoEditorUIConfig(

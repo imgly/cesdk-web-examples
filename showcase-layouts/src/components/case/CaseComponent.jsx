@@ -39,16 +39,18 @@ const CaseComponent = () => {
             }
           }
         }
-      },
-      i18n: {
-        en: {
-          'libraries.ly.img.layouts.label': 'Layouts'
-        }
       }
     }),
     []
   );
   const configure = useConfigure(async (instance) => {
+    
+    instance.i18n.setTranslations({
+      en: {
+        'libraries.ly.img.layouts.label': 'Layouts'
+      }
+    });
+
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
     // Disable placeholder and preview features

@@ -12,8 +12,8 @@ import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl'
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import AiProviderPanel from './components/AiProviderPanel';
-import { createAIProviders } from './providers';
 import { MODE_OPTIONS } from './modes';
+import { createAIProviders } from './providers';
 
 const CaseComponent = () => {
   const [cesdk, setCesdk] = useCreativeEditor();
@@ -70,12 +70,12 @@ const CaseComponent = () => {
 
   const configure = useConfigure(
     async (instance) => {
-      
+
       const currentMode = MODE_OPTIONS.find(
         ({ name }) => name === (modeContext?.sceneMode ?? 'Design')
       );
-      
-      
+
+
       await currentMode.initialize(instance, modeContext, createMiddlewareFunc);
     },
     [modeContext]

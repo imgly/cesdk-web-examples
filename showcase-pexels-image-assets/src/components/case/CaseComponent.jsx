@@ -23,11 +23,6 @@ const CaseComponent = () => {
             }
           }
         }
-      },
-      i18n: {
-        en: {
-          'libraries.pexels.label': 'Pexels'
-        }
       }
     }),
 
@@ -35,6 +30,13 @@ const CaseComponent = () => {
   );
 
   const configure = useConfigure(async (instance) => {
+    
+    instance.i18n.setTranslations({
+      en: {
+        'libraries.pexels.label': 'Pexels'
+      }
+    });
+
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
     // Disable placeholder and preview features

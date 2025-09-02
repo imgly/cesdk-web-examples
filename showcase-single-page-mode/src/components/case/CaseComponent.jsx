@@ -1,7 +1,7 @@
 'use client';
 
-import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import SINGLE_PAGE_TEMPLATE_ASSETS from './SinglePageTemplateAssets.json';
+import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 
 const CaseComponent = () => {

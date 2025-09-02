@@ -1,12 +1,12 @@
 'use client';
 
 import { UserInterfaceElements } from '@cesdk/cesdk-js';
+import { usePathname } from 'next/navigation';
 import AUDIO_ASSETS from './StaticAudioAssets.json';
 import VIDEO_SCENES_ASSETS from './StaticVideoScenesAssets.json';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
 import { caseAssetPath } from './util';
-import { usePathname } from 'next/navigation';
 
 const CaseComponent = () => {
   const config = useConfig(
@@ -14,12 +14,6 @@ const CaseComponent = () => {
       role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
-      i18n: {
-        en: {
-          'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
-          'libraries.ly.img.video.scene.label': 'Example Templates'
-        }
-      },
       ui: {
         elements: {
           view: 'default',
@@ -43,6 +37,14 @@ const CaseComponent = () => {
     []
   );
   const configure = useConfigure(async (instance) => {
+    
+    instance.i18n.setTranslations({
+      en: {
+        'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
+        'libraries.ly.img.video.scene.label': 'Example Templates'
+      }
+    });
+
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({
       sceneMode: 'Video',

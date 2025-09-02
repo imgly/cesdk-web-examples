@@ -63,15 +63,17 @@ export default {
 
         return ['ly.img.crop.presets'];
       }
-    },
-    i18n: {
+    }
+  },
+  initialize: async (instance, modeContext, createMiddleware) => {
+    
+    instance.i18n.setTranslations({
       en: {
         'component.fileOperation.exportImage': 'Export Image',
         'common.generate': 'Generate'
       }
-    }
-  },
-  initialize: async (instance, modeContext, createMiddleware) => {
+    });
+
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
 
@@ -189,7 +191,7 @@ async function setupPhotoAI(instance, modeContext, createMiddleware) {
   });
 
   // Setup translations
-  instance.setTranslations({
+  instance.i18n.setTranslations({
     en: {
       [`panel.${PANEL_ID}`]: 'AI Edit',
       [`${PLUGIN_ID}.dock`]: 'AI Edit'
