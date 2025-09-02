@@ -1,0 +1,238 @@
+{
+  "version": "3.0.0",
+  "id": "ly.img.textComponents",
+  "assets": [
+    {
+      "id": "//ly.img.textComponents/box",
+      "label": {
+        "en": "Box"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Box.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/box.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/breaking",
+      "label": {
+        "en": "Breaking"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Breaking.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/breaking.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/cinematic",
+      "label": {
+        "en": "Cinematic"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Cinematic.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/cinematic.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/glow",
+      "label": {
+        "en": "Glow"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Glow.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/glow.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/greetings",
+      "label": {
+        "en": "Greetings"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Greetings.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/greetings.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/promo",
+      "label": {
+        "en": "Promo"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Promo.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/promo.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/quote",
+      "label": {
+        "en": "Quote"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Quote.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/quote.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/speech",
+      "label": {
+        "en": "Speech"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Speech.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/speech.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/sunny",
+      "label": {
+        "en": "Sunny"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Sunny.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/sunny.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/thanks",
+      "label": {
+        "en": "Thanks"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Thanks.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/thanks.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/thanksp",
+      "label": {
+        "en": "Thanks"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Thanksp.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/thanksp.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/tilted",
+      "label": {
+        "en": "Tilted"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Tilted.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/tilted.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/travel",
+      "label": {
+        "en": "Travel"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Travel.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/travel.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/hugs",
+      "label": {
+        "en": "Hugs"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Hugs.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/hugs.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/nice",
+      "label": {
+        "en": "Nice"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Nice.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/nice.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/real",
+      "label": {
+        "en": "Real"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Real.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/real.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/serif",
+      "label": {
+        "en": "Serif"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Serif.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/serif.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/thankyou",
+      "label": {
+        "en": "Thank You"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Thankyou.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/thankyou.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/valentine",
+      "label": {
+        "en": "Valentine"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Valentine.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/valentine.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/handwriting",
+      "label": {
+        "en": "Handwriting"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Handwriting.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/handwriting.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    },
+    {
+      "id": "//ly.img.textComponents/lines",
+      "label": {
+        "en": "Lines"
+      },
+      "meta": {
+        "uri": "{{base_url}}/ly.img.textComponents/data/Lines.blocks",
+        "thumbUri": "{{base_url}}/ly.img.textComponents/thumbnails/lines.png",
+        "mimeType": "application/ubq-blocks-string"
+      }
+    }
+  ],
+  "blocks": []
+}
