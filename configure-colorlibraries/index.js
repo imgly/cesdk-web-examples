@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0-rc.0/index.js';
 
 const colors = [
   {
@@ -65,8 +65,9 @@ const config = {
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (cesdk) => {
-  // Set locale
+  // Set the locale using the new API
   cesdk.i18n.setLocale('en');
+  
   
   cesdk.i18n.setTranslations({
     en: {
@@ -84,4 +85,3 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (cesdk) => {
 
   cesdk.createDesignScene();
 });
-
