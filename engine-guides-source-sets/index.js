@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
