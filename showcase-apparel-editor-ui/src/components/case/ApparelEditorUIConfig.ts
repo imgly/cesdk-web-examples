@@ -62,10 +62,10 @@ const PAGE_STROKE_COLOR = {
 };
 const PAGE_STROKE_WIDTH_RATIO = 0.005;
 const ZOOM_PADDING = {
-  left: 30,
-  top: 5,
-  right: 30,
-  bottom: 58
+  left: 5,
+  top: 50,
+  right: 5,
+  bottom: 60
 };
 
 /**
@@ -219,8 +219,6 @@ export async function switchProductView(
       ZOOM_PADDING.right,
       ZOOM_PADDING.bottom
     );
-    // Zoom out a bit to fit the whole page and remove the scrollbars
-    engine.scene.setZoomLevel(engine.scene.getZoomLevel() * 0.9);
     // Save zoom level for smooth transition to other options
     engine.block.setMetadata(
       sceneBlock,

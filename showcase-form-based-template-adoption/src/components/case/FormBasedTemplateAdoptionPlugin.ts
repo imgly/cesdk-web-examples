@@ -290,8 +290,6 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
     );
 
     cesdk.ui.openPanel('form-based-adaption', { closableByUser: false });
-
-    return cesdk;
   }
 });
 

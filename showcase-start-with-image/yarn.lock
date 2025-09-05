@@ -893,17 +893,17 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.27.1"
 
-"@cesdk/cesdk-js@1.58.0":
-  version "1.58.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.58.0.tgz#a448853679d0fed0350ef751a8d2a75ed7c39902"
-  integrity sha512-TPladIiAUjdxP3t+Hku+za8C+0U+ZEzMbyEPnv9g+uD10aOEHIc/EpoPyAG3cQAzP52ECTBRnwaeMwzVAlZz2A==
+"@cesdk/cesdk-js@1.59.0":
+  version "1.59.0"
+  resolved "https://registry.yarnpkg.com/@cesdk/cesdk-js/-/cesdk-js-1.59.0.tgz#0fbc463e8e323fce8eae1c0c51264fb47987cede"
+  integrity sha512-HoYYLgjCcte8CA4qgXz8SXWvQA8t4Dhc8hPgsvN3VPw7oHpOx+DbwGXpdW6x/BO+dNdoBOOEyDBwrOy+Zc18vw==
   dependencies:
-    "@cesdk/engine" "1.58.0"
+    "@cesdk/engine" "1.59.0"
 
-"@cesdk/engine@1.58.0":
-  version "1.58.0"
-  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.58.0.tgz#eefce00c28c59e0d31aaedf504a120931dfdd641"
-  integrity sha512-PA9EhkqRaF+uzIzu1tceCmAXmMWtBAH19StW8gO9vLW1flGsZFy6TJfqwb8SRrZArdEJ83ayGme8xXdSwtDXAQ==
+"@cesdk/engine@1.59.0":
+  version "1.59.0"
+  resolved "https://registry.yarnpkg.com/@cesdk/engine/-/engine-1.59.0.tgz#dd83f8909a412e99b325eccc2422adde62129e87"
+  integrity sha512-09wcg9SN6q0V8v1oH45/i1HVnGr907t3RA71ZUhMihhajupZKyOqY8p9YdJGUxbrzPKjdtHgcZARvWGMZl1N2w==
 
 "@emnapi/core@^1.4.3":
   version "1.4.5"
@@ -1191,10 +1191,10 @@
   dependencies:
     "@imgly/vectorizer" "1.0.0"
 
-"@imgly/psd-importer@0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@imgly/psd-importer/-/psd-importer-0.0.10.tgz#c52141225ba2ead9ae1787356e8f2fa17572a055"
-  integrity sha512-QAUbLpQ8C7Jzho5dZ80whgXIMgitC1hv4lXvxO7Y+86v4J0NAPcu14GFe3qgUxSAWWZfbcpP0XCdH+2m+FMB7g==
+"@imgly/psd-importer@0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@imgly/psd-importer/-/psd-importer-0.0.11.tgz#137413ff44ba928e054cabb77b08dea225cb6ebd"
+  integrity sha512-5hxjmA65GjbuQNvBdQkr75Vpbr7j0M8erwdWoAUSkHt2dMiCGirCy3dCbjKJoJbo+Bsx8xvPO2MJff+G+nDsLg==
   dependencies:
     "@imgly/psd" "^0.4.0-imgly.1"
     opentype.js "^1.3.4"

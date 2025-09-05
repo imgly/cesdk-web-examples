@@ -103,29 +103,25 @@ function CustomizationSection({
         `/podcast-badge-${colorTheme === 'light' ? 'black' : 'white'}.png`
       )
     );
-    // set texts
-    const [messageBlock] = engine.block.findByName('Message & Name');
-    engine.block.replaceText(
-      messageBlock,
-      (debouncedMessage ? `${debouncedMessage}\n` : '') +
-        (podcast
-          ? podcast.collectionName
-          : debouncedMessage
-            ? ''
-            : 'Example Podcast')
-    );
-    const rgb =
+    // set text variables
+    engine.variable.setString('Message', debouncedMessage || '');
+    engine.variable.setString(
+      'PodcastName',
+      podcast ? podcast.collectionName : '')
+      // set text colors based on background theme
+      const [messageBlock] = engine.block.findByName('Message & Name');
+      const rgb =
       colorTheme === 'dark' ? { r: 1, g: 1, b: 1 } : { r: 0, g: 0, b: 0 };
-    engine.block.setTextColor(
+      engine.block.setTextColor(
       messageBlock,
       { ...rgb, a: 0.75 },
       0,
-      debouncedMessage.length
+      "{{Message}}".length
     );
     engine.block.setTextColor(
       messageBlock,
       { ...rgb, a: 1.0 },
-      debouncedMessage.length
+       "{{Message}}".length
     );
   };
 

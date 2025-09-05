@@ -23,7 +23,7 @@
     <!--highlight-2-->
 
     <script type="module">
-      import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.0/index.js';
+      import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0-rc.0/index.js';
 
       fetch(
         'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
@@ -32,7 +32,6 @@
         .then((scene) => {
           let config = {
             locale: 'en',
-            theme: 'light',
             role: 'Adopter',
             callbacks: {
               onUpload: 'local',
@@ -58,6 +57,8 @@
 
           CreativeEditorSDK.create('#cesdk_container', config).then(
             (instance) => {
+              // Set theme using the new API - 'system' adapts to OS preference
+              instance.ui.setTheme('system');
               instance.loadFromString(scene);
             }
           );
