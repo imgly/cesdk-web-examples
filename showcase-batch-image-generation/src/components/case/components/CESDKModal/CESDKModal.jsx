@@ -23,20 +23,20 @@ const CESDKModal = ({ config, configure, onOutsideClick }) => {
   useEffect(() => {
     if (containerRef.current && !instanceRef.current) {
       CreativeEditorSDK.create(containerRef.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
+        async (cesdk) => {
+          cesdk.addDefaultAssetSources();
+          cesdk.addDemoAssetSources({ sceneMode: 'Design' });
           if (configure) {
-            await configure(instance);
+            await configure(cesdk);
           }
-          instanceRef.current = instance;
+          instanceRef.current = cesdk;
           // change the position of the close button to the left
           const closeComponentId = 'ly.img.close.navigationBar';
-          const navBarOrder = instance.ui.getNavigationBarOrder();
+          const navBarOrder = cesdk.ui.getNavigationBarOrder();
           let trimmedNavBarOrder = navBarOrder.filter(
             (item) => item.id !== closeComponentId
           );
-          instance.ui.setNavigationBarOrder(
+          cesdk.ui.setNavigationBarOrder(
             [{ id: closeComponentId }].concat(trimmedNavBarOrder)
           );
         }
