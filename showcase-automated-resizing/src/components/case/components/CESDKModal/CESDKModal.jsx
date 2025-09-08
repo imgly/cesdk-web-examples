@@ -24,17 +24,17 @@ const CESDKModal = ({ config, configure, onOutsideClick }) => {
     config.license = process.env.NEXT_PUBLIC_LICENSE;
     if (containerRef.current && !instanceRef.current) {
       CreativeEditorSDK.create(containerRef.current, config).then(
-        async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({
+        async (cesdk) => {
+          cesdk.addDefaultAssetSources();
+          cesdk.addDemoAssetSources({
             sceneMode: 'Design',
             excludeAssetSourceIds: ['ly.img.template']
           });
 
           if (configure) {
-            await configure(instance);
+            await configure(cesdk);
           }
-          instanceRef.current = instance;
+          instanceRef.current = cesdk;
         }
       );
       return () => {
