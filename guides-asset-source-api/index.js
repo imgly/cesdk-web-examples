@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0-rc.1/index.js';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
@@ -61,7 +61,7 @@ const findUnsplashAssets = async (queryData) => {
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0-rc.1/assets',
   assetSources: {
     unsplash: {
       findAssets: findUnsplashAssets,
@@ -77,12 +77,8 @@ const config = {
   }
 };
 
-async function initializeCESDK() {
-  const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);
-  await cesdk.createDesignScene();
-}
-
-initializeCESDK();
+const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);
+await cesdk.createDesignScene();
 
 function translateToAssetResult(image) {
   const artistName = image?.user?.name;
@@ -121,4 +117,3 @@ function translateToAssetResult(image) {
     }
   };
 }
-
