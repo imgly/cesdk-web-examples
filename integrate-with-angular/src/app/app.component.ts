@@ -16,16 +16,13 @@ export class AppComponent implements AfterViewInit {
       license:
         'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu', // Replace with your actual CE.SDK license key
       userId: 'guides-user',
-      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/assets',
-      callbacks: {
-        onUpload: 'local'
-      }
+      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0-rc.1/assets'
     };
 
     CreativeEditorSDK.create(this.containerRef.nativeElement, config).then(
       async (instance: any) => {
         instance.addDefaultAssetSources();
-        instance.addDemoAssetSources({ sceneMode: 'Design' });
+        instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
         await instance.createDesignScene();
       }
     );
