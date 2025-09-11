@@ -23,13 +23,13 @@ const CESDKModal = ({ config, configure, onOutsideClick }) => {
   useEffect(() => {
     if (containerRef.current && !instanceRef.current) {
       CreativeEditorSDK.create(containerRef.current, config).then(
-        async (cesdk) => {
-          cesdk.addDefaultAssetSources();
-          cesdk.addDemoAssetSources({ sceneMode: 'Design' });
+        async (instance) => {
+          instance.addDefaultAssetSources();
+          instance.addDemoAssetSources({ sceneMode: 'Design' });
           if (configure) {
-            await configure(cesdk);
+            await configure(instance);
           }
-          instanceRef.current = cesdk;
+          instanceRef.current = instance;
         }
       );
       return () => {

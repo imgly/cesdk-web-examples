@@ -16,7 +16,7 @@ export class AppComponent implements AfterViewInit {
       license:
         'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu', // Replace with your actual CE.SDK license key
       userId: 'guides-user',
-      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/assets',
+      baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.2-rc.0/assets',
       callbacks: {
         onUpload: 'local'
       }
