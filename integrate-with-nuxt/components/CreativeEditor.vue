@@ -16,7 +16,7 @@ export default {
         license:
           'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
         userId: 'guides-user',
-        baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/assets',
+        baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.2/assets',
         callbacks: { onUpload: 'local' }
       },
       init: async (cesdk) => {

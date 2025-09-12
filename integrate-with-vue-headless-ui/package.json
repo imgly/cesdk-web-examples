@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cesdk/engine": "^1.59.1",
+    "@cesdk/engine": "^1.59.2",
     "vue": "^3.5.13"
   },
   "devDependencies": {
