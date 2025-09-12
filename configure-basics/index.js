@@ -1,9 +1,9 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.2/index.js';
 
 const config = {
   license: 'YOUR_API_KEY',
   userId: 'USER_ID',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.2/assets',
   theme: 'light', // 'dark'
   role: 'Creator', // 'Adopter' 'Viewer'
   callbacks: { onUpload: 'local' }, // Enable local uploads in Asset Library.
