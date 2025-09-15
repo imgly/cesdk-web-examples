@@ -20,7 +20,10 @@ export default {
     return {
       init: async (cesdk) => {
         await cesdk.addDefaultAssetSources();
-        await cesdk.addDemoAssetSources({ sceneMode: 'Design' });
+        await cesdk.addDemoAssetSources({
+          sceneMode: 'Design',
+          withUploadAssetSources: true
+        });
         await cesdk.createDesignScene();
       }
     };
