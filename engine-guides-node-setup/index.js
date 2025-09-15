@@ -1,10 +1,11 @@
 const fs = require('fs/promises');
 const CreativeEngine = require('@cesdk/node');
 
+
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.59.1/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.60.0-rc.2/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -25,4 +26,3 @@ CreativeEngine.init(config).then(async (engine) => {
       engine.dispose();
     });
 });
-

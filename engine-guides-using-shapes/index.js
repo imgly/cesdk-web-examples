@@ -1,16 +1,16 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.60.0-rc.2/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.60.0-rc.2/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
   document.getElementById('cesdk_container').append(engine.element);
 
   const scene = engine.scene.create();
-  engine.editor.setSettingBool('page/dimOutOfPageAreas', false);
+  engine.editor.setSettingBool('page/dimOutOfPageAreas',  false);
 
   const graphic = engine.block.create('graphic');
   const imageFill = engine.block.createFill('image');
@@ -25,6 +25,7 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.appendChild(scene, graphic);
 
   engine.scene.zoomToBlock(graphic, 40, 40, 40, 40);
+
 
   engine.block.supportsShape(graphic); // Returns true
   const text = engine.block.create('text');
@@ -44,4 +45,3 @@ CreativeEngine.init(config).then(async (engine) => {
   const allShapeProperties = engine.block.findAllProperties(starShape);
   engine.block.setInt(starShape, 'shape/star/points', 6);
 });
-

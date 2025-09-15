@@ -11,12 +11,10 @@ export default {
   data() {
     return {
       editorConfig: {
-        license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+        license:
+          'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
         userId: 'guides-user',
-        baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/assets',
-        callbacks: {
-          onUpload: 'local'
-        }
+        baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0-rc.2/assets'
       }
     };
   }
