@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0-rc.3/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
@@ -12,32 +12,7 @@ const config = {
       // docs-ui-navigation
       navigation: {
         show: true, // 'false' to hide the navigation completely
-        position: 'top', // 'top' or 'bottom'
-        // docs-ui-actions
-        action: {
-          close: true, // true or false
-          back: true, // true or false
-          load: true, // true or false
-          save: true, // true or false
-          export: {
-            show: true,
-            format: ['application/pdf']
-          },
-          download: true, // true  or false
-          // docs-ui-actions
-          // docs-ui-custom-actions
-          custom: [
-            {
-              label: 'common.custom', // string or i18n key
-              iconName: '@imgly/icons/Essentials/Download', // icon id from our 'Essentials' set, or a custom icon id
-              callback: () => {
-                // callback signature is `() => void | Promise<void>`
-                // place custom functionality here
-              }
-            }
-          ]
-          // docs-ui-custom-actions
-        }
+        position: 'top' // 'top' or 'bottom'
       },
       // docs-ui-navigation
       // docs-ui-panels
@@ -96,14 +71,65 @@ const config = {
       // docs-ui-blocks
     }
     // docs-ui-elements
-  },
-  callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
+  }
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
+  // docs-ui-actions
+  // Configure navigation bar actions using the new API
+
+  // Back button
+  instance.ui.insertNavigationBarOrderComponent(
+    'first',
+    {
+      id: 'ly.img.back.navigationBar',
+      onClick: () => {
+        // Handle back action
+      }
+    },
+    'before'
+  );
+
+  // Actions group with save, load, export, and download
+  instance.ui.insertNavigationBarOrderComponent('last', {
+    id: 'ly.img.actions.navigationBar',
+    children: [
+      'ly.img.importScene.navigationBar', // Load
+      'ly.img.saveScene.navigationBar', // Save
+      {
+        id: 'ly.img.exportPDF.navigationBar',
+        exportOptions: {
+          mimeType: 'application/pdf'
+        }
+      },
+      'ly.img.exportScene.navigationBar' // Download
+    ]
+  });
+
+  // Close button
+  instance.ui.insertNavigationBarOrderComponent('last', {
+    id: 'ly.img.close.navigationBar',
+    onClick: () => {
+      // Handle close action
+    }
+  });
+
+  // docs-ui-custom-actions
+  // Custom action
+  instance.ui.insertNavigationBarOrderComponent('last', {
+    id: 'custom-action',
+    label: 'common.custom',
+    iconName: '@imgly/icons/Essentials/Download',
+    onClick: () => {
+      // place custom functionality here
+    }
+  });
+  // docs-ui-custom-actions
+  // docs-ui-actions
+
   // Do something with the instance of CreativeEditor SDK, for example:
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design' });
+  instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
   await instance.createDesignScene();
 });

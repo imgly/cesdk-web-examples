@@ -1,11 +1,11 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0-rc.3/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0-rc.3/assets',
   userId: 'guides-user',
   ui: {
-    scale: 'normal',
+    // Scale is now set via API after initialization
     stylesheets: {
       /* ... */
     },
@@ -17,15 +17,16 @@ const config = {
       // 'ly.img.page.presets.video',
       'my-custom-formats'
     ]
-  },
-  callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
+  }
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Do something with the instance of CreativeEditor SDK
+  // Set scale using the new API
+  instance.ui.setScale('normal');
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design' });
+  instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
 
   // Add a custom page preset asset source.
   instance.engine.asset.addLocalSource('my-custom-formats');
@@ -54,4 +55,3 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
 
   await instance.createDesignScene();
 });
-
