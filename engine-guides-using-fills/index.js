@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.60.0-rc.4/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.60.0-rc.4/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -67,6 +67,7 @@ CreativeEngine.init(config).then(async (engine) => {
   // /* We could now assign this fill to another block. */
   // engine.block.destroy(manualDuplicateFill);
 
+
   const sharedFillBlock = engine.block.create('graphic');
   engine.block.setShape(sharedFillBlock, engine.block.createShape('rect'));
   engine.block.setPositionX(sharedFillBlock, 350);
@@ -77,4 +78,3 @@ CreativeEngine.init(config).then(async (engine) => {
 
   engine.block.setFill(sharedFillBlock, engine.block.getFill(block));
 });
-

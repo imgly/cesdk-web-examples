@@ -14,6 +14,6 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
-    "@cesdk/engine": "^1.59.1"
+    "@cesdk/engine": "^1.60.0-rc.4"
   }
 }

@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.60.0-rc.4/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.60.0-rc.4/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -34,6 +34,7 @@ CreativeEngine.init(config).then(async (engine) => {
   const allColors = engine.block.getTextColors(text);
   const colorsInRange = engine.block.getTextColors(text, 2, 5);
 
+
   engine.block.setBool(text, 'backgroundColor/enabled', true);
 
   var color = engine.block.getColor(text, 'backgroundColor/color');
@@ -51,6 +52,7 @@ CreativeEngine.init(config).then(async (engine) => {
 
   engine.block.setInAnimation(text, animation)
   engine.block.setOutAnimation(text, animation)
+
 
   engine.block.setTextCase(text, 'Titlecase');
 
@@ -108,4 +110,3 @@ CreativeEngine.init(config).then(async (engine) => {
 
   const fontStyles = engine.block.getTextFontStyles(text);
 });
-
