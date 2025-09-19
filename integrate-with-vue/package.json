@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "1.59.1",
+    "@cesdk/cesdk-js": "1.60.0-rc.4",
     "core-js": "^3.8.3",
     "vue": "^3.2.13"
   },

@@ -55,9 +55,9 @@ export const CESDKModal = memo(({ asset, onClose }) => {
               if (!asset.meta || !asset.meta.uri)
                 throw new Error('Asset does not have a uri');
               if (asset.groups.includes('free')) {
-                await cesdk.engine.scene.loadFromURL(asset.meta.uri);
+                await instance.engine.scene.loadFromURL(asset.meta.uri);
               } else {
-                await cesdk.engine.scene.loadFromArchiveURL(
+                await instance.engine.scene.loadFromArchiveURL(
                   asset.meta.uri.replace('design.zip', `${asset.id}.zip`)
                 );
                 persistSelectedTemplateToURL(asset.id);
@@ -65,9 +65,9 @@ export const CESDKModal = memo(({ asset, onClose }) => {
             }
           );
           // Add demo templates as free templates
-          cesdk.engine.asset.onAssetSourceUpdated(async (sourceID) => {
+          instance.engine.asset.onAssetSourceUpdated(async (sourceID) => {
             if (sourceID === 'ly.img.template') {
-              cesdk.engine.asset
+              instance.engine.asset
                 .findAssets('ly.img.template', {
                   page: 0,
                   perPage: 100
@@ -75,7 +75,10 @@ export const CESDKModal = memo(({ asset, onClose }) => {
                 .then(async (data) => {
                   data.assets.forEach((asset) => {
                     asset.groups = ['free'];
-                    cesdk.engine.asset.addAssetToSource(assetSourceId, asset);
+                    instance.engine.asset.addAssetToSource(
+                      assetSourceId,
+                      asset
+                    );
                   });
                   // Add premium templates after the free templates
                   assets.forEach((asset) => {
@@ -93,14 +96,17 @@ export const CESDKModal = memo(({ asset, onClose }) => {
                         }
                       });
                     }
-                    cesdk.engine.asset.addAssetToSource(assetSourceId, asset);
+                    instance.engine.asset.addAssetToSource(
+                      assetSourceId,
+                      asset
+                    );
                   });
                 });
             }
           });
 
           // Clean up the dock
-          cesdk.ui.setDockOrder([
+          instance.ui.setDockOrder([
             {
               id: 'ly.img.assetLibrary.dock',
               key: 'premium-templates',
@@ -108,7 +114,7 @@ export const CESDKModal = memo(({ asset, onClose }) => {
               icon: '@imgly/Template',
               entries: ['ly.img.templates.premium']
             },
-            ...cesdk.ui
+            ...instance.ui
               .getDockOrder()
               .filter((item) =>
                 [
@@ -120,7 +126,7 @@ export const CESDKModal = memo(({ asset, onClose }) => {
                 ].includes(item.key)
               )
           ]);
-          cesdk.i18n.setTranslations({
+          instance.i18n.setTranslations({
             en: {
               'libraries.ly.img.templates.premium.label': 'Templates',
               'libraries.ly.img.templates.premium.free.label': 'Free',
@@ -133,15 +139,15 @@ export const CESDKModal = memo(({ asset, onClose }) => {
               'libraries.ly.img.templates.premium.socials.label': 'Socials'
             }
           });
-          cesdk.ui.addAssetLibraryEntry({
+          instance.ui.addAssetLibraryEntry({
             id: 'ly.img.templates.premium',
             sourceIds: [assetSourceId],
             previewBackgroundType: 'contain',
             cardLabel: (asset) => asset.label,
             cardLabelPosition: () => 'below'
           });
-          cesdk.engine.editor.setSettingBool('page/title/show', false);
-          await cesdk.engine.scene.loadFromArchiveURL(asset.meta.uri);
+          instance.engine.editor.setSettingBool('page/title/show', false);
+          await instance.engine.scene.loadFromArchiveURL(asset.meta.uri);
         }
       );
 
@@ -163,7 +169,7 @@ export const CESDKModal = memo(({ asset, onClose }) => {
         }
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config, containerRef]);
 
   return (

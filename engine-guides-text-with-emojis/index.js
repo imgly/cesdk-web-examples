@@ -1,23 +1,23 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.60.0-rc.4/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.60.0-rc.4/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
   document.getElementById('cesdk_container').append(engine.element);
 
-  let uri = engine.editor.getSettingString('ubq://defaultEmojiFontFileUri');
+  let uri = engine.editor.getSetting('defaultEmojiFontFileUri');
   // From a bundle
-  engine.editor.setSettingString(
-    'ubq://defaultEmojiFontFileUri',
+  engine.editor.setSetting(
+    'defaultEmojiFontFileUri',
     'bundle://ly.img.cesdk/fonts/NotoColorEmoji.ttf'
   );
   // From a URL
-  engine.editor.setSettingString(
-    'ubq://defaultEmojiFontFileUri',
+  engine.editor.setSetting(
+    'defaultEmojiFontFileUri',
     'https://cdn.img.ly/assets/v2/emoji/NotoColorEmoji.ttf'
   );
 
@@ -36,4 +36,3 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setHeightMode(text, 'Auto');
   engine.block.appendChild(page, text);
 });
-
