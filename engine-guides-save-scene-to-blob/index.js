@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.60.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.60.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -25,4 +25,3 @@ CreativeEngine.init(config).then(async (engine) => {
       console.error('Save failed', error);
     });
 });
-

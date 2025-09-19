@@ -16,12 +16,14 @@ export default {
         license:
           'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
         userId: 'guides-user',
-        baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/assets',
-        callbacks: { onUpload: 'local' }
+        baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0/assets'
       },
       init: async (cesdk) => {
         await cesdk.addDefaultAssetSources();
-        await cesdk.addDemoAssetSources({ sceneMode: 'Design' });
+        await cesdk.addDemoAssetSources({
+          sceneMode: 'Design',
+          withUploadAssetSources: true
+        });
         await cesdk.createDesignScene();
       }
     };
