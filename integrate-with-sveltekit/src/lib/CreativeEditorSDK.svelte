@@ -11,8 +11,7 @@
   const defaultConfig = {
     license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu', // replace it with your license key
     userId: 'guides-user',
-    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.59.1/assets',
-    callbacks: { onUpload: 'local' } // enable local file uploads in the Asset Library
+    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0-rc.0/assets'
     // other default configs...
   };
 
@@ -38,7 +37,7 @@
           // the asset library with default / demo asset sources)
           await Promise.all([
             cesdk.addDefaultAssetSources(),
-            cesdk.addDemoAssetSources({ sceneMode: 'Design' })
+            cesdk.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true })
           ]);
 
           // create a new design scene in the editor
