@@ -1,14 +1,13 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/assets',
-  callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0-rc.0/assets'
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
-  instance.addDemoAssetSources({ sceneMode: 'Design' });
+  instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
   instance.engine.asset.addLocalSource(
     'my-templates',
     undefined,
@@ -44,4 +43,3 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   ]);
   instance.createDesignScene();
 });
-

@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
@@ -24,19 +24,19 @@ const config = {
         unit: 'Inch'
       }
     },
-    scale: 'normal',
     stylesheets: {
       /* ... */
     },
     elements: {
       /* ... */
     }
-  },
-  callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
+  }
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
-  
+  // Set the UI scale using the new API method
+  instance.ui.setScale('normal');
+
   instance.i18n.setTranslations({
     en: {
       'libraries.myDefaultPalette.label': 'My Default Palette'
@@ -46,7 +46,7 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Do something with the instance of CreativeEditor SDK
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design' });
+  instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
   // Add an asset source with your own colors:
   instance.engine.asset.addLocalSource('myDefaultPalette');
   instance.engine.asset.addAssetToSource('myDefaultPalette', {
@@ -64,4 +64,3 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   });
   await instance.createDesignScene();
 });
-

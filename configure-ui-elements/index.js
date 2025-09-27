@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
@@ -7,54 +7,14 @@ const config = {
     // docs-ui-elements
     elements: {
       // docs-ui-view
-      view: 'default', // 'default' or 'advanced'
       // docs-ui-view
       // docs-ui-navigation
       navigation: {
         show: true, // 'false' to hide the navigation completely
-        position: 'top', // 'top' or 'bottom'
-        // docs-ui-actions
-        action: {
-          close: true, // true or false
-          back: true, // true or false
-          load: true, // true or false
-          save: true, // true or false
-          export: {
-            show: true,
-            format: ['application/pdf']
-          },
-          download: true, // true  or false
-          // docs-ui-actions
-          // docs-ui-custom-actions
-          custom: [
-            {
-              label: 'common.custom', // string or i18n key
-              iconName: '@imgly/icons/Essentials/Download', // icon id from our 'Essentials' set, or a custom icon id
-              callback: () => {
-                // callback signature is `() => void | Promise<void>`
-                // place custom functionality here
-              }
-            }
-          ]
-          // docs-ui-custom-actions
-        }
+        position: 'top' // 'top' or 'bottom'
       },
       // docs-ui-navigation
       // docs-ui-panels
-      panels: {
-        inspector: {
-          show: true, // true or false
-          position: 'left', // 'left' or 'right'
-          floating: false // true or false
-        },
-        assetLibrary: {
-          show: true, // true or false
-          position: 'left' // 'left' or 'right'
-        },
-        settings: {
-          show: true // true or false
-        }
-      },
       // docs-ui-panels
       // docs-ui-dock
       dock: {
@@ -65,45 +25,111 @@ const config = {
       // docs-ui-libraries
       libraries: {
         insert: {
-          floating: true, // true or false
           autoClose: false // true or false
         },
         replace: {
-          floating: true, // true or false
           autoClose: false // true or false
         }
       },
       // docs-ui-libraries
-      // docs-ui-blocks
-      blocks: {
-        opacity: false, // true  or false
-        transform: false, // true  or false
-        '//ly.img.ubq/graphic': {
-          adjustments: true, // true  or false
-          filters: false, // true  or false
-          effects: false, // true  or false
-          blur: true, // true  or false
-          crop: false // true  or false
-        },
-        // docs-ui-pages
-        '//ly.img.ubq/page': {
-          manage: true,
-          format: true,
-          maxDuration: 30 * 60
-        }
-        // docs-ui-pages
-      }
-      // docs-ui-blocks
     }
     // docs-ui-elements
-  },
-  callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
+  }
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
+  // Set the editor view mode
+  instance.ui.setView('default');
+
+  // docs-ui-panels
+  // Configure panels using the new feature and panel APIs
+
+  // Enable inspector panel and configure position/floating
+  instance.feature.enable('ly.img.inspector', () => true);
+  instance.ui.setPanelPosition('//ly.img.panel/inspector', 'left');
+  instance.ui.setPanelFloating('//ly.img.panel/inspector', false);
+
+  // Enable asset library panel and configure position
+  instance.feature.enable('ly.img.assetLibrary', () => true);
+  instance.ui.setPanelPosition('//ly.img.panel/assetLibrary', 'left');
+  instance.ui.setPanelFloating('//ly.img.panel/assetLibrary', true);
+  instance.ui.setPanelFloating('//ly.img.panel/replaceAssetLibrary', true);
+
+  // Enable settings panel
+  instance.feature.enable('ly.img.settings', () => true);
+  // docs-ui-panels
+
+  // Configure block features using the Feature API
+  instance.feature.enable('ly.img.opacity', false);
+  instance.feature.enable('ly.img.transform.position', false);
+  instance.feature.enable('ly.img.transform.size', false);
+  instance.feature.enable('ly.img.transform.rotation', false);
+  instance.feature.enable('ly.img.transform.flip', false);
+  instance.feature.enable('ly.img.adjustment');
+  instance.feature.enable('ly.img.filter', false);
+  instance.feature.enable('ly.img.effect', false);
+  instance.feature.enable('ly.img.blur');
+  instance.feature.enable('ly.img.crop', false);
+  instance.feature.enable('ly.img.page.add');
+  instance.feature.enable('ly.img.page.move');
+  instance.feature.enable('ly.img.duplicate');
+  instance.feature.enable('ly.img.page.resize');
+  
+  // docs-ui-actions
+  // Configure navigation bar actions using the new API
+
+  // Back button
+  instance.ui.insertNavigationBarOrderComponent(
+    'first',
+    {
+      id: 'ly.img.back.navigationBar',
+      onClick: () => {
+        // Handle back action
+      }
+    },
+    'before'
+  );
+
+  // Actions group with save, load, export, and download
+  instance.ui.insertNavigationBarOrderComponent('last', {
+    id: 'ly.img.actions.navigationBar',
+    children: [
+      'ly.img.importScene.navigationBar', // Load
+      'ly.img.saveScene.navigationBar', // Save
+      {
+        id: 'ly.img.exportPDF.navigationBar',
+        exportOptions: {
+          mimeType: 'application/pdf'
+        }
+      },
+      'ly.img.exportScene.navigationBar' // Download
+    ]
+  });
+
+  // Close button
+  instance.ui.insertNavigationBarOrderComponent('last', {
+    id: 'ly.img.close.navigationBar',
+    onClick: () => {
+      // Handle close action
+    }
+  });
+
+  // docs-ui-custom-actions
+  // Custom action
+  instance.ui.insertNavigationBarOrderComponent('last', {
+    id: 'custom-action',
+    label: 'common.custom',
+    iconName: '@imgly/icons/Essentials/Download',
+    onClick: () => {
+      // place custom functionality here
+    }
+  });
+  // docs-ui-custom-actions
+  // docs-ui-actions
+
   // Do something with the instance of CreativeEditor SDK, for example:
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design' });
+  instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
   await instance.createDesignScene();
 });
