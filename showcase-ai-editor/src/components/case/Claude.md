@@ -103,7 +103,7 @@ export default {
    - Merges mode-specific `cesdkConfig`
 
 3. **CE.SDK Initialization**
-   - Sets global `cyGlobals` for testing (if enabled)
+   - Sets global `imgly` for testing (if enabled)
    - Delegates to mode's `initialize` function
    - Passes `createMiddleware` function for rate limiting
 
