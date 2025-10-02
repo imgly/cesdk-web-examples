@@ -1,7 +1,6 @@
 import CreativeEditorSDK, {
   AssetResult,
-  CreativeEngine,
-  SettingsBool
+  CreativeEngine
 } from '@cesdk/cesdk-js';
 import { removeBackground } from '@imgly/background-removal';
 import APP_ASSETS from './Apps.json';
@@ -349,7 +348,7 @@ async function setupPhotoEditingScene(
   }
   const { width, height } = size;
   // hide page title:
-  engine.editor.setSettingBool('page/title/show', false);
+  engine.editor.setSetting('page/title/show', false);
 
   const scene = engine.scene.create('Free');
   engine.scene.setDesignUnit('Pixel');
@@ -373,10 +372,7 @@ async function setupPhotoEditingScene(
   engine.block.setScopeEnabled(page, 'fill/changeType', false);
   // Disable stroke of page, since it does not make sense with current wording and takes up to much space
   engine.block.setScopeEnabled(page, 'stroke/change', false);
-  engine.editor.setSettingBool(
-    'ubq://page/moveChildrenWhenCroppingFill' as SettingsBool,
-    true
-  );
+  engine.editor.setSetting('page/moveChildrenWhenCroppingFill', true);
   engine.block.setClipped(page, true);
 
   // If nothing is selected: select page by listening to selection changes
