@@ -1,19 +1,11 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.59.1/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0/assets',
   // docs-theming-theme
-  theme: 'light', // 'light' or 'dark'
   ui: {
-    scale: ({ containerWidth, isTouch }) => {
-      if (containerWidth < 600 || isTouch) {
-        return 'large';
-      } else {
-        return 'normal';
-      }
-    }, // or 'normal' or 'large'
     // docs-theming-theme
     // docs-theming-generator
     elements: {
@@ -22,14 +14,25 @@ const config = {
       }
     }
     // docs-theming-generator
-  },
-  callbacks: { onUpload: 'local' } // Enable local uploads in Asset Library.
+  }
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Do something with the instance of CreativeEditor SDK, for example:
+  // Set theme and scale after initialization
+  instance.ui.setTheme('light'); // 'light' or 'dark' or 'system'
+  
+  // Set scale dynamically based on viewport
+  instance.ui.setScale(({ containerWidth, isTouch }) => {
+    if (containerWidth < 600 || isTouch) {
+      return 'large';
+    } else {
+      return 'normal';
+    }
+  }); // or simply 'normal' or 'large'
+  
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design' });
+  instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
   await instance.createDesignScene();
 });

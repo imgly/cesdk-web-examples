@@ -7,6 +7,6 @@
     "build": "echo 'Node.js example - no build needed' && exit 0"
   },
   "dependencies": {
-    "@cesdk/node": "^1.59.1"
+    "@cesdk/node": "^1.60.0"
   }
 }
