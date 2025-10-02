@@ -442,6 +442,7 @@ export const uploadFile = (() => {
 
 function relocateResourcesToBlobURLs(engine: CreativeEngine) {
   engine.editor.findAllTransientResources().forEach((resource) => {
+    // @ts-ignore
     const uri = resource.URL;
     if (uri.includes('bundle://ly.img.cesdk/')) return;
 
