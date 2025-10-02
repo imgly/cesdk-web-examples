@@ -17,7 +17,7 @@
         // Do something with the instance of CreativeEditor SDK, for example:
         // Populate the asset library with default / demo asset sources.
         cesdk.addDefaultAssetSources();
-        cesdk.addDemoAssetSources({ sceneMode: 'Design' });
+        cesdk.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
         await cesdk.createDesignScene();
       });
     } catch (err) {
