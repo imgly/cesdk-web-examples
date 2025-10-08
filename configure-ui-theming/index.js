@@ -1,23 +1,23 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/assets',
   // docs-theming-theme
   ui: {
     // docs-theming-theme
     // docs-theming-generator
     elements: {
-      panels: {
-        settings: true
-      }
     }
     // docs-theming-generator
   }
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
+  // Enable settings panel
+  instance.feature.enable('ly.img.settings', () => true);
+
   // Do something with the instance of CreativeEditor SDK, for example:
   // Set theme and scale after initialization
   instance.ui.setTheme('light'); // 'light' or 'dark' or 'system'
