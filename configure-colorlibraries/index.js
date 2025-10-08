@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
 
 const colors = [
   {
@@ -56,15 +56,17 @@ const config = {
   ui: {
     colorLibraries: ['ly.img.colors.defaultPalette', 'myCustomColors'],
     elements: {
-      view: 'default',
-      panels: {
-        settings: true
-      }
     }
   }
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (cesdk) => {
+  // Enable settings panel
+  cesdk.feature.enable('ly.img.settings', () => true);
+
+  // Set the editor view mode
+  cesdk.ui.setView('default');
+  
   // Set the locale using the new API
   cesdk.i18n.setLocale('en');
   

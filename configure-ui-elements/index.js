@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
@@ -7,7 +7,6 @@ const config = {
     // docs-ui-elements
     elements: {
       // docs-ui-view
-      view: 'default', // 'default' or 'advanced'
       // docs-ui-view
       // docs-ui-navigation
       navigation: {
@@ -16,20 +15,6 @@ const config = {
       },
       // docs-ui-navigation
       // docs-ui-panels
-      panels: {
-        inspector: {
-          show: true, // true or false
-          position: 'left', // 'left' or 'right'
-          floating: false // true or false
-        },
-        assetLibrary: {
-          show: true, // true or false
-          position: 'left' // 'left' or 'right'
-        },
-        settings: {
-          show: true // true or false
-        }
-      },
       // docs-ui-panels
       // docs-ui-dock
       dock: {
@@ -40,41 +25,56 @@ const config = {
       // docs-ui-libraries
       libraries: {
         insert: {
-          floating: true, // true or false
           autoClose: false // true or false
         },
         replace: {
-          floating: true, // true or false
           autoClose: false // true or false
         }
       },
       // docs-ui-libraries
-      // docs-ui-blocks
-      blocks: {
-        opacity: false, // true  or false
-        transform: false, // true  or false
-        '//ly.img.ubq/graphic': {
-          adjustments: true, // true  or false
-          filters: false, // true  or false
-          effects: false, // true  or false
-          blur: true, // true  or false
-          crop: false // true  or false
-        },
-        // docs-ui-pages
-        '//ly.img.ubq/page': {
-          manage: true,
-          format: true,
-          maxDuration: 30 * 60
-        }
-        // docs-ui-pages
-      }
-      // docs-ui-blocks
     }
     // docs-ui-elements
   }
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
+  // Set the editor view mode
+  instance.ui.setView('default');
+
+  // docs-ui-panels
+  // Configure panels using the new feature and panel APIs
+
+  // Enable inspector panel and configure position/floating
+  instance.feature.enable('ly.img.inspector', () => true);
+  instance.ui.setPanelPosition('//ly.img.panel/inspector', 'left');
+  instance.ui.setPanelFloating('//ly.img.panel/inspector', false);
+
+  // Enable asset library panel and configure position
+  instance.feature.enable('ly.img.assetLibrary', () => true);
+  instance.ui.setPanelPosition('//ly.img.panel/assetLibrary', 'left');
+  instance.ui.setPanelFloating('//ly.img.panel/assetLibrary', true);
+  instance.ui.setPanelFloating('//ly.img.panel/replaceAssetLibrary', true);
+
+  // Enable settings panel
+  instance.feature.enable('ly.img.settings', () => true);
+  // docs-ui-panels
+
+  // Configure block features using the Feature API
+  instance.feature.enable('ly.img.opacity', false);
+  instance.feature.enable('ly.img.transform.position', false);
+  instance.feature.enable('ly.img.transform.size', false);
+  instance.feature.enable('ly.img.transform.rotation', false);
+  instance.feature.enable('ly.img.transform.flip', false);
+  instance.feature.enable('ly.img.adjustment');
+  instance.feature.enable('ly.img.filter', false);
+  instance.feature.enable('ly.img.effect', false);
+  instance.feature.enable('ly.img.blur');
+  instance.feature.enable('ly.img.crop', false);
+  instance.feature.enable('ly.img.page.add');
+  instance.feature.enable('ly.img.page.move');
+  instance.feature.enable('ly.img.duplicate');
+  instance.feature.enable('ly.img.page.resize');
+  
   // docs-ui-actions
   // Configure navigation bar actions using the new API
 
