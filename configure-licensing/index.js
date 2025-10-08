@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.60.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
 
 let config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',

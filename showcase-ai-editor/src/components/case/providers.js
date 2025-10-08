@@ -64,15 +64,6 @@ export const createAIProviders = (sceneMode = 'Design') => {
             })
         },
         {
-          name: 'Seedream V4',
-          label: 'ByteDance',
-          selected: true,
-          provider: (middleware) =>
-            FalAiImage.SeedreamV4({
-              proxyUrl: FAL_AI_PROXY_URL,
-            })
-        },
-        {
           name: 'NanoBanana',
           label: 'Google',
           selected: true,
@@ -207,15 +198,6 @@ export const createAIProviders = (sceneMode = 'Design') => {
           selected: true,
           provider: (middleware) =>
             FalAiImage.GeminiFlashEdit({
-              proxyUrl: FAL_AI_PROXY_URL,
-            })
-        },
-        {
-          name: 'Seedream V4 Edit',
-          label: 'ByteDance',
-          selected: true,
-          provider: (middleware) =>
-            FalAiImage.SeedreamV4Edit({
               proxyUrl: FAL_AI_PROXY_URL,
             })
         },

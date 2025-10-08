@@ -10,6 +10,9 @@
     "vue",
     "electron"
   ],
+  "resolutions": {
+    "debug": "^4.0.0 <4.4.2 || >4.4.2"
+  },
   "scripts": {
     "deploy": "codesandbox deploy",
     "test:e2e": "cypress open"
