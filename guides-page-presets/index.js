@@ -1,22 +1,16 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.0/assets',
   userId: 'guides-user',
   ui: {
-    // Scale is now set via API after initialization
     stylesheets: {
       /* ... */
     },
     elements: {
       /* ... */
-    },
-    pagePresetLibraries: [
-      // 'ly.img.page.presets',
-      // 'ly.img.page.presets.video',
-      'my-custom-formats'
-    ]
+    }
   }
 };
 
@@ -52,6 +46,15 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
       }
     }
   );
+
+  // Update page presets library entry
+  instance.ui.updateAssetLibraryEntry('ly.img.pagePresets', {
+    sourceIds: [
+      // 'ly.img.page.presets',
+      // 'ly.img.page.presets.video',
+      'my-custom-formats'
+    ]
+  });
 
   await instance.createDesignScene();
 });

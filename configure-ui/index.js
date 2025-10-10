@@ -1,29 +1,9 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
   ui: {
-    colorLibraries: ['myDefaultPalette'],
-    pageFormats: {
-      'din-a6': {
-        default: true,
-        width: 148,
-        height: 105,
-        unit: 'Millimeter',
-        fixedOrientation: false
-      },
-      'twitter-profile': {
-        width: 400,
-        height: 400,
-        unit: 'Pixel'
-      },
-      'american-letter': {
-        width: 8.5,
-        height: 11,
-        unit: 'Inch'
-      }
-    },
     stylesheets: {
       /* ... */
     },
@@ -62,5 +42,72 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
       }
     }
   });
+
+  // Update color library entry with custom source ID
+  instance.ui.updateAssetLibraryEntry('ly.img.colors', {
+    sourceIds: ['myDefaultPalette']
+  });
+
+  // Create custom page format source and add formats
+  instance.engine.asset.addLocalSource('myPageFormats');
+
+  // Add din-a6 format
+  instance.engine.asset.addAssetToSource('myPageFormats', {
+    id: 'din-a6',
+    label: { en: 'DIN A6' },
+    meta: {
+      vectorPath: 'M10 10 H138 V95 H10 Z',
+      fixedOrientation: false,
+      default: true
+    },
+    payload: {
+      transformPreset: {
+        type: 'FixedSize',
+        width: 148,
+        height: 105,
+        designUnit: 'Millimeter'
+      }
+    }
+  });
+
+  // Add twitter-profile format
+  instance.engine.asset.addAssetToSource('myPageFormats', {
+    id: 'twitter-profile',
+    label: { en: 'Twitter Profile' },
+    meta: {
+      vectorPath: 'M10 10 H390 V390 H10 Z'
+    },
+    payload: {
+      transformPreset: {
+        type: 'FixedSize',
+        width: 400,
+        height: 400,
+        designUnit: 'Pixel'
+      }
+    }
+  });
+
+  // Add american-letter format
+  instance.engine.asset.addAssetToSource('myPageFormats', {
+    id: 'american-letter',
+    label: { en: 'American Letter' },
+    meta: {
+      vectorPath: 'M10 10 H8.5 V11 H10 Z'
+    },
+    payload: {
+      transformPreset: {
+        type: 'FixedSize',
+        width: 8.5,
+        height: 11,
+        designUnit: 'Inch'
+      }
+    }
+  });
+
+  // Update page presets entry to use custom formats
+  instance.ui.updateAssetLibraryEntry('ly.img.pagePresets', {
+    sourceIds: ['myPageFormats']
+  });
+
   await instance.createDesignScene();
 });
