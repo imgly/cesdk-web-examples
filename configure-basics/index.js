@@ -1,9 +1,9 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.0/index.js';
 
 const config = {
   license: 'YOUR_API_KEY',
   userId: 'USER_ID',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/assets',
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.0/assets',
   role: 'Creator', // 'Adopter' 'Viewer'
   logger: (message, logLevel) => {
     console.log(`${logLevel}: ${message}}`);

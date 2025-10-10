@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.0/index.js';
 
 const colors = [
   {
@@ -54,7 +54,6 @@ const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
   ui: {
-    colorLibraries: ['ly.img.colors.defaultPalette', 'myCustomColors'],
     elements: {
     }
   }
@@ -66,11 +65,11 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (cesdk) => {
 
   // Set the editor view mode
   cesdk.ui.setView('default');
-  
+
   // Set the locale using the new API
   cesdk.i18n.setLocale('en');
-  
-  
+
+
   cesdk.i18n.setTranslations({
     en: {
       'libraries.myCustomColors.label': 'Custom Color Library'
@@ -84,6 +83,11 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (cesdk) => {
   for (const asset of colors) {
     cesdk.engine.asset.addAssetToSource('myCustomColors', asset);
   }
+
+  // Update color library entry with custom source IDs
+  cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
+    sourceIds: ['ly.img.colors.defaultPalette', 'myCustomColors']
+  });
 
   cesdk.createDesignScene();
 });

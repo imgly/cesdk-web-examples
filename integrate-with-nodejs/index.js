@@ -7,7 +7,7 @@ const { MimeType } = CreativeEngine;
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.61.0/assets'
+  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.62.0-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -21,7 +21,7 @@ CreativeEngine.init(config).then(async (engine) => {
 
     const [page] = engine.block.findByType('page');
 
-    const blob = await engine.block.export(page, MimeType.Png);
+    const blob = await engine.block.export(page, { mimeType: 'image/png' });
     const arrayBuffer = await blob.arrayBuffer();
 
     await fs.writeFile('./example-output.png', Buffer.from(arrayBuffer));

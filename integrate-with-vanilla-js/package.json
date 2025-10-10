@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.61.0"
+    "@cesdk/cesdk-js": "^1.62.0-rc.0"
   },
   "devDependencies": {
     "vite": "^6.2.0"

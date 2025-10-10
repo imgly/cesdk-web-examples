@@ -1,0 +1,10 @@
+# Environment variables
+.env.local
+.env
+
+# Build output
+dist/
+node_modules/
+
+# Temp files
+*.log
