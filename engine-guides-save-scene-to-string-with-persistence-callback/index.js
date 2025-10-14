@@ -1,20 +1,20 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0-rc.1/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/assets'
+  userId: 'guides-user'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0-rc.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
-  var alreadyPersistedUris = {};
+  const alreadyPersistedUris = {};
   engine.scene
     .saveToString(['http', 'https'], async (uri, hash) => {
-      var persistedUri = alreadyPersistedUris[hash];
+      let persistedUri = alreadyPersistedUris[hash];
       if (!persistedUri) {
-        persistedUri = 'http://example.com/' + uri.split('://')[1];
+        persistedUri = `http://example.com/${uri.split('://')[1]}`;
         alreadyPersistedUris[hash] = persistedUri;
-        editor.getResourceData(uri, 10000000, async (blob) => {
+        engine.getResourceData(uri, 10000000, async (blob) => {
           try {
             await fetch(persistedUri, {
               mode: 'no-cors',

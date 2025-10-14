@@ -1,0 +1,9 @@
+dist/
+build/
+node_modules/
+*.min.js
+tests/
+nuxt.config.ts
+vite.config.ts
+.nuxt/
+.output/
