@@ -21,3 +21,7 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Lock files (use npm ci in CI)
+yarn.lock
+tsconfig.tsbuildinfo

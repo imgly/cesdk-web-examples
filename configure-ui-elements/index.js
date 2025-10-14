@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.1/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
@@ -30,7 +30,7 @@ const config = {
         replace: {
           autoClose: false // true or false
         }
-      },
+      }
       // docs-ui-libraries
     }
     // docs-ui-elements
@@ -74,7 +74,7 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   instance.feature.enable('ly.img.page.move');
   instance.feature.enable('ly.img.duplicate');
   instance.feature.enable('ly.img.page.resize');
-  
+
   // docs-ui-actions
   // Configure navigation bar actions using the new API
 
@@ -130,6 +130,9 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Do something with the instance of CreativeEditor SDK, for example:
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
+  instance.addDemoAssetSources({
+    sceneMode: 'Design',
+    withUploadAssetSources: true
+  });
   await instance.createDesignScene();
 });
