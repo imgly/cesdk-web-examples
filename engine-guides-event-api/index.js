@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0-rc.2/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/assets'
+  userId: 'guides-user'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0-rc.2/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -18,9 +18,9 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setFill(block, engine.block.createFill('color'));
   engine.block.appendChild(page, block);
 
-  let unsubscribe = engine.event.subscribe([block], (events) => {
-    for (var i = 0; i < events.length; i++) {
-      let event = events[i];
+  const unsubscribe = engine.event.subscribe([block], (events) => {
+    for (let i = 0; i < events.length; i++) {
+      const event = events[i];
       console.log('Event:', event.type, event.block);
       if (engine.block.isValid(event.block)) {
         console.log('Block type:', engine.block.getType(event.block));

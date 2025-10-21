@@ -1,11 +1,11 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.2/index.js';
 
 window.onload = async () => {
   const config = {
     license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
     userId: 'guides-user',
     theme: 'light',
-    baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/assets',
+    // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.2/assets',
     ui: {
       elements: {
         navigation: {
@@ -35,7 +35,10 @@ window.onload = async () => {
   });
 
   cesdk.addDefaultAssetSources();
-  cesdk.addDemoAssetSources({ sceneMode: 'Video', withUploadAssetSources: true });
+  cesdk.addDemoAssetSources({
+    sceneMode: 'Video',
+    withUploadAssetSources: true
+  });
   cesdk.ui.setBackgroundTrackAssetLibraryEntries([
     'ly.img.image',
     'ly.img.video'

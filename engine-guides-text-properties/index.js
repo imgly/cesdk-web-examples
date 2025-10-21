@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0-rc.2/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/assets'
+  userId: 'guides-user'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0-rc.2/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -34,25 +34,28 @@ CreativeEngine.init(config).then(async (engine) => {
   const allColors = engine.block.getTextColors(text);
   const colorsInRange = engine.block.getTextColors(text, 2, 5);
 
-
   engine.block.setBool(text, 'backgroundColor/enabled', true);
 
-  var color = engine.block.getColor(text, 'backgroundColor/color');
-  engine.block.setColor(text, 'backgroundColor/color', { r: 0.0, g: 0.0, b: 1.0, a: 1.0 });
-  
+  const color = engine.block.getColor(text, 'backgroundColor/color');
+  engine.block.setColor(text, 'backgroundColor/color', {
+    r: 0.0,
+    g: 0.0,
+    b: 1.0,
+    a: 1.0
+  });
+
   engine.block.setFloat(text, 'backgroundColor/paddingLeft', 1);
   engine.block.setFloat(text, 'backgroundColor/paddingTop', 2);
   engine.block.setFloat(text, 'backgroundColor/paddingRight', 3);
   engine.block.setFloat(text, 'backgroundColor/paddingBottom', 4);
-  
+
   engine.block.setFloat(text, 'backgroundColor/cornerRadius', 5);
 
   const animation = engine.block.createAnimation('slide');
   engine.block.setEnum(animation, 'textAnimationWritingStyle', 'Block');
 
-  engine.block.setInAnimation(text, animation)
-  engine.block.setOutAnimation(text, animation)
-
+  engine.block.setInAnimation(text, animation);
+  engine.block.setOutAnimation(text, animation);
 
   engine.block.setTextCase(text, 'Titlecase');
 

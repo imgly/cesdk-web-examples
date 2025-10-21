@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0-rc.2/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/assets'
+  userId: 'guides-user'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0-rc.2/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -13,12 +13,12 @@ CreativeEngine.init(config).then(async (engine) => {
   const sceneUrl =
     'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene';
 
-  let scene = await engine.scene
+  const scene = await engine.scene
     .loadFromURL(sceneUrl)
     .then(() => {
       console.log('Load succeeded');
 
-      let text = engine.block.findByType('text')[0];
+      const text = engine.block.findByType('text')[0];
       engine.block.setDropShadowEnabled(text, true);
     })
     .catch((error) => {

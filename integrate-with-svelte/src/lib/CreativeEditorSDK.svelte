@@ -1,51 +1,74 @@
-<!-- docs-integrate-svelte-3 -->
 <script>
-  // docs-integrate-svelte-1
-  import CreativeEditorSDK from '@cesdk/cesdk-js';
-  // docs-integrate-svelte-1
-  import { onDestroy, onMount } from 'svelte';
+  import CreativeEditorSDK from "@cesdk/cesdk-js";
+  import { onDestroy, onMount } from "svelte";
 
+  // reference to the container HTML element where CE.SDK will be initialized
   let container;
+  // where to keep track of the CE.SDK instance
   let cesdk = null;
+  export let config = {};
 
-  // docs-integrate-svelte-4
+  // default CreativeEditor SDK configuration
+  const defaultConfig = {
+    license: "YOUR_LICENSE_KEY", // replace it with a valid CE.SDK license key
+    callbacks: { onUpload: "local"}, // enable local file uploads in the Asset Library
+    // other default configs...
+  };
+
+  // accessing the component's props
+  //const { el, children, class: _, config, ...props } = $props();
+
+  // hook to initialize the CreativeEditorSDK component
   onMount(() => {
-    const { el, children, class: _, config, ...props } = $$props;
+    // integrate the configs read from props with the default ones
+    const ceSDKConfig = {
+      ...defaultConfig,
+      ...config,
+    }
+
     try {
-      CreativeEditorSDK.create(container, config).then(async (instance) => {
+      // initialize the CreativeEditorSDK instance in the container element
+      // using the given config
+      CreativeEditorSDK.create(container, ceSDKConfig).then(async (instance) => {
         cesdk = instance;
-        // Do something with the instance of CreativeEditor SDK, for example:
-        // Populate the asset library with default / demo asset sources.
-        cesdk.addDefaultAssetSources();
-        cesdk.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
+
+        // Do something with the instance of CreativeEditor SDK (e.g., populate
+        // the asset library with default / demo asset sources)
+        await Promise.all([
+          cesdk.addDefaultAssetSources(),
+          cesdk.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true })
+        ]);
+
+        // Create a new design scene in the editor
         await cesdk.createDesignScene();
       });
     } catch (err) {
       console.warn(`CreativeEditor SDK failed to mount.`, { err });
     }
   });
-  // docs-integrate-svelte-4
 
+  // hook to clean up when the component unmounts
   onDestroy(() => {
     try {
+      // dispose of the CE.SDK instance if it exists
       if (cesdk) {
         cesdk.dispose();
         cesdk = null;
       }
     } catch (err) {
+      // log error if CreativeEditor SDK fails to unmount
       console.warn(`CreativeEditor SDK failed to unmount.`, { err });
     }
   });
 </script>
 
-<!-- docs-integrate-svelte-2 -->
-<div id="cesdk_container" bind:this={container} />
+<!-- the container HTML element where the CE.SDK editor will be mounted -->
+<div id="cesdk_container" bind:this={container}></div>
 
-<!-- docs-integrate-svelte-2 -->
 <style>
+  /* styling for the CE.SDK container element to take full viewport size */
   #cesdk_container {
     height: 100vh;
     width: 100vw;
   }
 </style>
-<!-- docs-integrate-svelte-3 -->

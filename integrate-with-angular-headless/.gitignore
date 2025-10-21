@@ -40,3 +40,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Lock files (use npm ci in CI)
+yarn.lock
+tsconfig.tsbuildinfo
