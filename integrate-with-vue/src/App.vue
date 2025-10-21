@@ -14,7 +14,7 @@ export default {
         license:
           'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
         userId: 'guides-user',
-        baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/assets'
+        // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.2/assets'
       }
     };
   }

@@ -1,9 +1,9 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.2/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/assets'
+  userId: 'guides-user'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0-rc.2/assets'
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
@@ -16,7 +16,10 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Do something with the instance of CreativeEditor SDK, for example:
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
+  instance.addDemoAssetSources({
+    sceneMode: 'Design',
+    withUploadAssetSources: true
+  });
 
   instance.engine.asset.addSource({
     id: 'emptySource',
@@ -71,10 +74,10 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
     icon: 'https://img.ly/static/cesdk/guides/icon-normal-dark.svg'
   });
 
-  instance.ui.updateAssetLibraryEntry('ly.img.image', {
-    ...instance.ui.getAssetLibraryEntry('ly.img.image'),
+  instance.ui.updateAssetLibraryEntry('ly.img.image', ({ entry }) => ({
+    ...entry,
     gridColumns: 4
-  });
+  }));
 
   instance.ui.setReplaceAssetLibraryEntries(
     ({ defaultEntryIds, selectedBlocks }) => {

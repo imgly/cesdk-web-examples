@@ -1,12 +1,12 @@
 // other imports...
-import { default as CreativeEditorSDK } from "./components/CreativeEditorSDKNoSSR";
+import CreativeEditorSDKComponent from './components/CreativeEditorSDK';
 
 export default function Home() {
   return (
     <div>
       <main>
         {/* other components.. */}
-        <CreativeEditorSDK />
+        <CreativeEditorSDKComponent />
         {/* other components.. */}
       </main>
     </div>
