@@ -5,7 +5,7 @@ import {
 } from '@imgly/plugin-ai-generation-web';
 import { initPhotoEditorUIConfig } from '../lib/PhotoEditorUIConfig';
 
-export default {
+const photoMode = {
   name: 'Photo',
   sceneMode: 'Design',
   cesdkConfig: {
@@ -380,3 +380,5 @@ const iconSprite = `
   </symbol>
 </svg>
 `;
+
+export default photoMode;
