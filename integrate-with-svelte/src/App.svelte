@@ -6,4 +6,6 @@
   };
 </script>
 
-<CreativeEditorSDK {config} />
+<main>
+<CreativeEditorSDK />
+</main>

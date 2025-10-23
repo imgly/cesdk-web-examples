@@ -1,11 +1,10 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user',
   ui: {
-    elements: {
-    }
+    elements: {}
   }
 };
 
@@ -43,7 +42,10 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
 
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
+  instance.addDemoAssetSources({
+    sceneMode: 'Design',
+    withUploadAssetSources: true
+  });
   await instance.createDesignScene();
 
   const currentLocale = instance.i18n.getLocale();
@@ -63,4 +65,7 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
       'meta.currentLanguage': 'Svenska'
     }
   });
+
+  const availableLocales = instance.i18n.listLocales({ matcher: '*' });
+  console.log('Available locales:', availableLocales);
 });

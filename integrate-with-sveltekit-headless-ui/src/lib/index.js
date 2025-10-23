@@ -1,2 +1,2 @@
 // place files you want to import through the `$lib` alias in this folder.
-export { default as CustomEditor } from "./CustomEditor.svelte";
+export { default as CustomEditor } from './CustomEditor.svelte';

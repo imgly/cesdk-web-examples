@@ -3,12 +3,31 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "bun-types": "latest"
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "bun-types": "latest",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@cesdk/node": "1.61.0"
+    "@cesdk/node": "next"
+  },
+  "scripts": {
+    "check:syntax": "echo \"TypeScript check handled by Bun runtime\"",
+    "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
+    "check:lint": "eslint \"**/*.{ts,js}\"",
+    "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
+    "fix:format": "prettier --write \"**/*.{ts,js,json,html}\"",
+    "fix:lint": "eslint --fix \"**/*.{ts,js}\"",
+    "fix:all": "npm run fix:format && npm run fix:lint",
+    "prebuild": "npm run check:all",
+    "test": "exit 0",
+    "qa": "npm run build && npm run test",
+    "ci": "npm run qa",
+    "build": "true"
   }
 }

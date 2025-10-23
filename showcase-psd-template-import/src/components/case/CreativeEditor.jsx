@@ -9,43 +9,43 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
 
   useEffect(() => {
     const config = {
+      featureFlags: {
+        archiveSceneEnabled: true
+      },
+      role: 'Creator',
+      theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
-        typefaceLibraries: ['ly.img.google-fonts']
+        typefaceLibraries: ['ly.img.google-fonts'],
+        elements: {
+          view: 'advanced',
+          navigation: {
+            action: {
+              back: true,
+              export: {
+                show: true,
+                format: ['image/png', 'application/pdf']
+              }
+            }
+          }
+        }
+      },
+      callbacks: {
+        onBack: () => closeEditor(),
+        onExport: 'download',
+        onUpload: 'local'
       }
     };
     let cesdk;
     if (cesdkContainer.current) {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
-          instance.engine.editor.setRole('Creator');
-          instance.ui.setView('advanced');
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({ sceneMode: 'Design' });
           instance.engine.editor.setSettingBool('page/title/show', false);
           await instance.engine.scene.loadFromArchiveURL(sceneArchiveUrl);
           await addGoogleFontsAssetLibrary(instance.engine);
           cesdk = instance;
-
-          // Add a back button at the beginning
-          cesdk.ui.insertNavigationBarOrderComponent(
-            'first',
-            {
-              id: 'ly.img.back.navigationBar',
-              onClick: () => closeEditor()
-            },
-            'before'
-          );
-
-          // Add export buttons at the end
-          cesdk.ui.insertNavigationBarOrderComponent('last', {
-            id: 'ly.img.actions.navigationBar',
-            children: [
-              'ly.img.exportImage.navigationBar',
-              'ly.img.exportPDF.navigationBar',
-              'ly.img.exportArchive.navigationBar'
-            ]
-          });
         }
       );
     }

@@ -170,3 +170,7 @@ dist
 
 # IntelliJ based IDEs
 .idea
+
+# Lock files (use npm ci in CI)
+yarn.lock
+tsconfig.tsbuildinfo

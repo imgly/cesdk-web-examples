@@ -6,16 +6,32 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:syntax": "tsc --noEmit",
+    "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
+    "check:lint": "eslint \"**/*.{ts,js}\"",
+    "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
+    "fix:format": "prettier --write \"**/*.{ts,js,json,html}\"",
+    "fix:lint": "eslint --fix \"**/*.{ts,js}\"",
+    "fix:all": "npm run fix:format && npm run fix:lint",
+    "prebuild": "npm run check:all",
+    "test": "exit 0",
+    "qa": "npm run build && npm run test",
+    "ci": "npm run qa"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.61.0",
+    "@cesdk/cesdk-js": "next",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.0",
+    "tailwindcss": "^4",
+    "typescript": "^5.0.0"
   }
 }

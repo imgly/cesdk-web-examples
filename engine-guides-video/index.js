@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/assets'
+  userId: 'guides-user'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -74,7 +74,7 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setDuration(audio, 7);
 
   /* Export page as mp4 video. */
-  const blob = await engine.block.exportVideo(page, {
+  const videoBlob = await engine.block.exportVideo(page, {
     mimeType: 'video/mp4',
     onProgress: (renderedFrames, encodedFrames, totalFrames) => {
       console.log(
@@ -88,9 +88,30 @@ CreativeEngine.init(config).then(async (engine) => {
     }
   });
 
-  /* Download blob. */
-  const anchor = document.createElement('a');
-  anchor.href = URL.createObjectURL(blob);
+  /* Download video blob. */
+  let anchor = document.createElement('a');
+  anchor.href = URL.createObjectURL(videoBlob);
   anchor.download = 'exported-video.mp4';
+  anchor.click();
+
+  /* Export page audio as an WAV audio. */
+  const audioBlob = await engine.block.exportAudio(page, {
+    mimeType: 'audio/wav',
+    onProgress: (renderedFrames, encodedFrames, totalFrames) => {
+      console.log(
+        'Rendered',
+        renderedFrames,
+        'frames and encoded',
+        encodedFrames,
+        'frames out of',
+        totalFrames
+      );
+    }
+  });
+
+  /* Download audio blob. */
+  anchor = document.createElement('a');
+  anchor.href = URL.createObjectURL(audioBlob);
+  anchor.download = 'exported-audio.wav';
   anchor.click();
 });
