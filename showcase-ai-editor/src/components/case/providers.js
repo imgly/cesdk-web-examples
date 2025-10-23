@@ -158,10 +158,19 @@ export const createAIProviders = (sceneMode = 'Design') => {
         },
         {
           name: 'Veo 3',
-          label: 'Google DeepMind',
+          label: 'Google',
           selected: true,
           provider: (middleware) =>
             FalAiVideo.Veo3TextToVideo({
+              proxyUrl: FAL_AI_PROXY_URL,
+            })
+        },
+        {
+          name: 'Veo 3.1',
+          label: 'Google',
+          selected: false,
+          provider: (middleware) =>
+            FalAiVideo.Veo31FastTextToVideo({
               proxyUrl: FAL_AI_PROXY_URL,
             })
         }
@@ -312,6 +321,24 @@ export const createAIProviders = (sceneMode = 'Design') => {
           selected: true,
           provider: (middleware) =>
             FalAiVideo.MinimaxHailuo02StandardImageToVideo({
+              proxyUrl: FAL_AI_PROXY_URL,
+            })
+        },
+        {
+          name: 'Veo 3.1',
+          label: 'Google',
+          selected: false,
+          provider: (middleware) =>
+            FalAiVideo.Veo31FastImageToVideo({
+              proxyUrl: FAL_AI_PROXY_URL,
+            })
+        },
+        {
+          name: 'Veo 3.1 First/Last Frame',
+          label: 'Google',
+          selected: false,
+          provider: (middleware) =>
+            FalAiVideo.Veo31FastFirstLastFrameToVideo({
               proxyUrl: FAL_AI_PROXY_URL,
             })
         }

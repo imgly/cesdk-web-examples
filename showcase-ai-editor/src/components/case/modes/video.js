@@ -1,6 +1,6 @@
 import AiApps from '@imgly/plugin-ai-apps-web';
 
-export default {
+const videoMode = {
   name: 'Video',
   sceneMode: 'Video',
   cesdkConfig: {
@@ -178,3 +178,5 @@ export default {
     }
   }
 };
+
+export default videoMode;

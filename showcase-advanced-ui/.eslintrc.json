@@ -1,25 +1,19 @@
 {
-  "extends": ["eslint:recommended"],
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
-  },
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
+  "extends": "next",
+  "root": true,
   "rules": {
-    "no-alert": "off",
-    "no-console": "off",
-    "no-unused-vars": "warn",
-    "import/extensions": "off",
-    "@typescript-eslint/no-floating-promises": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-explicit-any": "off",
-    "react/jsx-filename-extension": "off"
-  }
+    "@next/next/no-img-element": "off",
+    "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  },
+  "plugins": ["unused-imports"]
 }

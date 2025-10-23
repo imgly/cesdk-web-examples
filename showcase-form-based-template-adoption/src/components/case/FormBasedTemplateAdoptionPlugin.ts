@@ -449,7 +449,7 @@ function relocateResourcesToBlobURLs(engine: CreativeEngine) {
     const length = engine.editor.getBufferLength(uri);
     const data = engine.editor.getBufferData(uri, 0, length);
 
-    const blob = new Blob([data as BlobPart]);
+    const blob = new Blob([data as unknown as ArrayBuffer]);
     const blobURL = URL.createObjectURL(blob);
     engine.editor.relocateResource(uri, blobURL);
   });
