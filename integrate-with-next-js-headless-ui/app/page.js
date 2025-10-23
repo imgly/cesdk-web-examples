@@ -1,5 +1,5 @@
 // other imports...
-import { default as CustomEditor } from "./components/CustomEditorNoSSR";
+import { default as CustomEditor } from './components/CustomEditorNoSSR';
 
 export default function Home() {
   return (

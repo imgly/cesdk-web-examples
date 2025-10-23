@@ -1,21 +1,16 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.61.0/assets',
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0/assets',
   userId: 'guides-user',
   ui: {
-    // Scale is now set via API after initialization
     stylesheets: {
       /* ... */
     },
     elements: {
       /* ... */
-    },
-    pagePresetLibraries: [
-      // 'ly.img.crop.presets',
-      'my-custom-crop-presets'
-    ]
+    }
   }
 };
 
@@ -25,7 +20,10 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   instance.ui.setScale('normal');
   // Populate the asset library with default / demo asset sources.
   instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true });
+  instance.addDemoAssetSources({
+    sceneMode: 'Design',
+    withUploadAssetSources: true
+  });
 
   // Add a custom crop preset asset source.
   instance.engine.asset.addLocalSource('my-custom-crop-presets');
@@ -94,6 +92,14 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
       }
     }
   );
+
+  // Update crop presets library entry
+  instance.ui.updateAssetLibraryEntry('ly.img.cropPresets', {
+    sourceIds: [
+      // 'ly.img.crop.presets',
+      'my-custom-crop-presets'
+    ]
+  });
 
   await instance.createDesignScene();
 });

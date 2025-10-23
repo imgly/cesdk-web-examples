@@ -9,3 +9,4 @@ build_guides/
 
 # Ignore yarn.lock files in all subdirectories
 **/yarn.lock
+logs/

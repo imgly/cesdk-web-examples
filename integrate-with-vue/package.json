@@ -5,21 +5,36 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "check:syntax": "tsc --noEmit",
+    "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
+    "check:lint": "eslint \"**/*.{ts,js}\" --ignore-pattern \"**/*.vue\"",
+    "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
+    "fix:format": "prettier --write \"**/*.{ts,js,json,html}\"",
+    "fix:lint": "eslint --fix \"**/*.{ts,js}\"",
+    "fix:all": "npm run fix:format && npm run fix:lint",
+    "prebuild": "npm run check:all",
+    "test": "exit 0",
+    "qa": "npm run build && npm run test",
+    "ci": "npm run qa"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "1.61.0",
+    "@cesdk/cesdk-js": "next",
     "core-js": "^3.8.3",
     "vue": "^3.2.13"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
+    "eslint-plugin-vue": "^8.0.3",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
   },
   "eslintConfig": {
     "root": true,
@@ -31,7 +46,8 @@
       "eslint:recommended"
     ],
     "parserOptions": {
-      "parser": "@babel/eslint-parser"
+      "parser": "@babel/eslint-parser",
+      "requireConfigFile": false
     },
     "rules": {}
   },

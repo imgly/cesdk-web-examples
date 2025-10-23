@@ -1,9 +1,9 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0/index.js';
 
 const config = {
   license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
-  userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.61.0/assets'
+  userId: 'guides-user'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
@@ -15,7 +15,7 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setHeight(page, 1080);
   engine.block.appendChild(scene, page);
 
-  engine.editor.setSetting('clearColor',  { r: 0.2, g: 0.2, b: 0.2, a: 1 });
+  engine.editor.setSetting('clearColor', { r: 0.2, g: 0.2, b: 0.2, a: 1 });
 
   const graphic = engine.block.create('graphic');
   const imageFill = engine.block.createFill('image');
@@ -53,11 +53,19 @@ CreativeEngine.init(config).then(async (engine) => {
   /* The following line would also destroy all currently attached animations */
   // engine.block.destroy(graphic);
 
-  const allAnimationProperties = engine.block.findAllProperties(slideInAnimation);
-  engine.block.setFloat(slideInAnimation, 'animation/slide/direction', 0.5 * Math.PI);
+  const allAnimationProperties =
+    engine.block.findAllProperties(slideInAnimation);
+  engine.block.setFloat(
+    slideInAnimation,
+    'animation/slide/direction',
+    0.5 * Math.PI
+  );
   engine.block.setDuration(slideInAnimation, 0.6);
   engine.block.setEnum(slideInAnimation, 'animationEasing', 'EaseOut');
-  console.log("Available easing options:", engine.block.getEnumValues('animationEasing'));
+  console.log(
+    'Available easing options:',
+    engine.block.getEnumValues('animationEasing')
+  );
 
   const text = engine.block.create('text');
   const textAnimation = engine.block.createAnimation('baseline');
@@ -67,7 +75,10 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setPositionY(text, 100);
   engine.block.setWidthMode(text, 'Auto');
   engine.block.setHeightMode(text, 'Auto');
-  engine.block.replaceText(text, "You can animate text\nline by line,\nword by word,\nor character by character\nwith CE.SDK");
+  engine.block.replaceText(
+    text,
+    'You can animate text\nline by line,\nword by word,\nor character by character\nwith CE.SDK'
+  );
   engine.block.setEnum(textAnimation, 'textAnimationWritingStyle', 'Word');
   engine.block.setDuration(textAnimation, 2.0);
   engine.block.setEnum(textAnimation, 'animationEasing', 'EaseOut');
@@ -80,7 +91,10 @@ CreativeEngine.init(config).then(async (engine) => {
   engine.block.setPositionY(text2, 500);
   engine.block.setWidth(text2, 500);
   engine.block.setHeightMode(text2, 'Auto');
-  engine.block.replaceText(text2, "You can use the textAnimationOverlap property to control the overlap between text animation segments.");
+  engine.block.replaceText(
+    text2,
+    'You can use the textAnimationOverlap property to control the overlap between text animation segments.'
+  );
   engine.block.setFloat(textAnimation2, 'textAnimationOverlap', 0.4);
   engine.block.setDuration(textAnimation2, 1.0);
   engine.block.setEnum(textAnimation2, 'animationEasing', 'EaseOut');
