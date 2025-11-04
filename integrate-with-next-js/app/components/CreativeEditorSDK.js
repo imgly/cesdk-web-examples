@@ -4,7 +4,7 @@ import CreativeEditor from '@cesdk/cesdk-js/react';
 
 // Configure CreativeEditor SDK
 const config = {
-  license: 'YOUR_LICENSE_KEY' // Replace with a valid CE.SDK license key
+  // license: process.env.NEXT_PUBLIC_LICENSE
 };
 
 // Initialization function called after SDK instance is created

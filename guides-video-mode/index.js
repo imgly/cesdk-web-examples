@@ -1,11 +1,11 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0-rc.4/index.js';
 
 window.onload = async () => {
   const config = {
-    license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+    // license: import.meta.env.VITE_CESDK_LICENSE,
     userId: 'guides-user',
     theme: 'light',
-    // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0/assets',
+    // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0-rc.4/assets',
     ui: {
       elements: {
         navigation: {
@@ -18,7 +18,7 @@ window.onload = async () => {
   const cesdk = await CreativeEditorSDK.create('#cesdk_container', config);
 
   // Enable settings panel
-  cesdk.feature.enable('ly.img.settings', () => true);
+  cesdk.feature.enable('ly.img.settings');
 
   // Set the editor view mode
   cesdk.ui.setView('default');

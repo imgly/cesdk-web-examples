@@ -3,7 +3,7 @@ import './index.css';
 import CreativeEditor from '@cesdk/cesdk-js/react';
 
 const config = {
-  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  // license: 'YOUR_CESDK_LICENSE_KEY',
   userId: 'guides-user'
 };
 
@@ -12,7 +12,10 @@ const init = async (cesdk) => {
   // Populate the asset library with default / demo asset sources.
   await Promise.all([
     cesdk.addDefaultAssetSources(),
-    cesdk.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true })
+    cesdk.addDemoAssetSources({
+      sceneMode: 'Design',
+      withUploadAssetSources: true
+    })
   ]);
   await cesdk.createDesignScene();
 };

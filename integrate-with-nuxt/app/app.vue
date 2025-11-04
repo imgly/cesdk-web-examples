@@ -8,9 +8,9 @@
 import CreativeEditor from '~/components/CreativeEditor.vue';
 
 const editorConfig = {
-    license: 'YOUR_LICENSE_KEY', // Replace with your CE.SDK license key
+    // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your CE.SDK license key
     baseURL:
-        'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0/assets',
+        'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0-rc.4/assets',
     callbacks: {
         onUpload: 'local',
     },

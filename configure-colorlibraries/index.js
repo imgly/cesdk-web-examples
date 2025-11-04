@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0-rc.4/index.js';
 
 const colors = [
   {
@@ -51,7 +51,7 @@ const colors = [
 ];
 
 const config = {
-  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  // license: import.meta.env.VITE_CESDK_LICENSE,
   userId: 'guides-user',
   ui: {
     elements: {}
@@ -60,7 +60,7 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (cesdk) => {
   // Enable settings panel
-  cesdk.feature.enable('ly.img.settings', () => true);
+  cesdk.feature.enable('ly.img.settings');
 
   // Set the editor view mode
   cesdk.ui.setView('default');

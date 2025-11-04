@@ -1,7 +1,7 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0-rc.4/index.js';
 
 const config = {
-  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
+  // license: import.meta.env.VITE_CESDK_LICENSE,
   userId: 'guides-user',
   ui: {
     // docs-ui-elements
@@ -45,31 +45,31 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Configure panels using the new feature and panel APIs
 
   // Enable inspector panel and configure position/floating
-  instance.feature.enable('ly.img.inspector', () => true);
+  instance.feature.enable('ly.img.inspector.panel');
   instance.ui.setPanelPosition('//ly.img.panel/inspector', 'left');
   instance.ui.setPanelFloating('//ly.img.panel/inspector', false);
 
   // Enable asset library panel and configure position
-  instance.feature.enable('ly.img.assetLibrary', () => true);
+  instance.feature.enable('ly.img.library.panel');
   instance.ui.setPanelPosition('//ly.img.panel/assetLibrary', 'left');
   instance.ui.setPanelFloating('//ly.img.panel/assetLibrary', true);
   instance.ui.setPanelFloating('//ly.img.panel/replaceAssetLibrary', true);
 
   // Enable settings panel
-  instance.feature.enable('ly.img.settings', () => true);
+  instance.feature.enable('ly.img.settings');
   // docs-ui-panels
 
   // Configure block features using the Feature API
-  instance.feature.enable('ly.img.opacity', false);
-  instance.feature.enable('ly.img.transform.position', false);
-  instance.feature.enable('ly.img.transform.size', false);
-  instance.feature.enable('ly.img.transform.rotation', false);
-  instance.feature.enable('ly.img.transform.flip', false);
+  instance.feature.disable('ly.img.opacity');
+  instance.feature.disable('ly.img.transform.position');
+  instance.feature.disable('ly.img.transform.size');
+  instance.feature.disable('ly.img.transform.rotation');
+  instance.feature.disable('ly.img.transform.flip');
   instance.feature.enable('ly.img.adjustment');
-  instance.feature.enable('ly.img.filter', false);
-  instance.feature.enable('ly.img.effect', false);
+  instance.feature.disable('ly.img.filter');
+  instance.feature.disable('ly.img.effect');
   instance.feature.enable('ly.img.blur');
-  instance.feature.enable('ly.img.crop', false);
+  instance.feature.disable('ly.img.crop');
   instance.feature.enable('ly.img.page.add');
   instance.feature.enable('ly.img.page.move');
   instance.feature.enable('ly.img.duplicate');

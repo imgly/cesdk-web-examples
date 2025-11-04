@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>Integrate CreativeEditor SDK with Vanilla JS</title>
@@ -23,7 +23,7 @@
     <!--highlight-2-->
 
     <script type="module">
-      import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.0/index.js';
+      import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0-rc.4/index.js';
 
       fetch(
         'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
@@ -42,7 +42,7 @@
           CreativeEditorSDK.create('#cesdk_container', config).then(
             async (instance) => {
               // Enable settings panel
-              instance.feature.enable('ly.img.settings', () => true);
+              instance.feature.enable('ly.img.settings');
 
               // Set theme using the new API - 'system' adapts to OS preference
               instance.ui.setTheme('system');
