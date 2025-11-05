@@ -32,7 +32,7 @@ const EditInstanceCESDK = memo(
       <CESDKModal
         onOutsideClick={onClose}
         configure={async (instance) => {
-          instance.engine.editor.setSettingBool('page/title/show', false);
+          instance.engine.editor.setSetting('page/title/show', false);
           instance.engine.variable.setString('Department', department);
           instance.engine.variable.setString('FirstName', firstName);
           instance.engine.variable.setString('LastName', lastName);

@@ -41,7 +41,7 @@ const CaseComponent = () => {
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
-    instance.engine.editor.setSettingBool('page/title/show', false);
+    instance.engine.editor.setSetting('page/title/show', false);
 
     // Add previous and next page navigation icons
     instance.ui.addIconSet(

@@ -47,7 +47,7 @@ const CaseComponent = () => {
     );
     const engine = instance.engine;
     // hide the title of the page:
-    engine.editor.setSettingBool('page/title/show', false);
+    engine.editor.setSetting('page/title/show', false);
 
     // Select the first image on canvas to highlight background removal option:
     const image = engine.block.findByName('FirstImage')[0];

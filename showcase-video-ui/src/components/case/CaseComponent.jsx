@@ -105,7 +105,7 @@ const CaseComponent = () => {
 
 
     const engine = instance.engine;
-    engine.editor.setSettingBool('page/title/show', false);
+    engine.editor.setSetting('page/title/show', false);
 
     loadAssetSourceFromContentJSON(
       engine,
