@@ -117,7 +117,7 @@ const CaseComponent = () => {
     CreativeEngine.init(config).then(async (instance) => {
       instance.addDefaultAssetSources();
       instance.addDemoAssetSources({ sceneMode: 'Design' });
-      instance.editor.setSetting('page/title/show', false);
+      instance.editor.setSettingBool('page/title/show', false);
       await instance.scene.loadFromURL(template.sceneUrl);
       engineRef.current = instance;
       setInitialized(true);

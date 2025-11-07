@@ -1,6 +1,6 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
-import { calculateGridLayout } from './utils';
 import packageJson from './package.json';
+import { calculateGridLayout } from './utils';
 
 /**
  * CE.SDK Plugin: Gradient Fills Guide

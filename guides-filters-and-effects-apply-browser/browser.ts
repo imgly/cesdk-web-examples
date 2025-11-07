@@ -1,6 +1,6 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
-import { calculateGridLayout, hexToRgba } from './utils';
 import packageJson from './package.json';
+import { calculateGridLayout, hexToRgba } from './utils';
 
 /**
  * CE.SDK Plugin: Filters and Effects Guide
