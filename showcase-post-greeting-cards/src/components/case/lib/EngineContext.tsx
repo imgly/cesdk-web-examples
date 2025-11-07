@@ -32,8 +32,8 @@ export const EngineProvider = ({
         localEngine.dispose();
         return;
       }
-      localEngine.editor.setSettingBool('mouse/enableScroll', false);
-      localEngine.editor.setSettingBool('mouse/enableZoom', false);
+      localEngine.editor.setSetting('mouse/enableScroll', false);
+      localEngine.editor.setSetting('mouse/enableZoom', false);
       if (configure) {
         await configure(localEngine);
       }

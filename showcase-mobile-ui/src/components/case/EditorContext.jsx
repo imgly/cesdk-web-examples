@@ -80,14 +80,14 @@ export const EditorProvider = ({ children }) => {
         engine.dispose();
         return;
       }
-      engine.editor.setSettingBool('mouse/enableScroll', false);
-      engine.editor.setSettingBool('mouse/enableZoom', false);
+      engine.editor.setSetting('mouse/enableScroll', false);
+      engine.editor.setSetting('mouse/enableZoom', false);
 
       engine.addDefaultAssetSources();
       engine.addDemoAssetSources({
         sceneMode: 'Design'
       });
-      engine.editor.setSettingBool('page/title/show', false);
+      engine.editor.setSetting('page/title/show', false);
       engine.editor.onStateChanged(() => editorUpdateCallbackRef.current());
       engine.event.subscribe([], (events) =>
         engineEventCallbackRef.current(events)

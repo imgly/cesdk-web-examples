@@ -79,6 +79,8 @@ export const getPartiallyHiddenTexts = (cesdk) => {
       const elementsLayingAbove = getBlockIdsAbove(cesdk, elementBlockId);
       const elementBBOverlapping = elementsLayingAbove.filter(
         (blockId) =>
+          // Skip groups since text inside groups shouldn't be considered hidden
+          cesdk.engine.block.getType(blockId) !== '//ly.img.ubq/group' &&
           getElementOverlap(
             getElementBoundingBox(cesdk, elementBlockId),
             getElementBoundingBox(cesdk, blockId)

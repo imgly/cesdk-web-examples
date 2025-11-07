@@ -11,7 +11,7 @@ const EditMockupCESDK = ({
     <CESDKModal
       onOutsideClick={onClose}
       configure={async (instance) => {
-        instance.engine.editor.setSettingBool('page/title/show', false);
+        instance.engine.editor.setSetting('page/title/show', false);
         if (sceneString) {
           await instance.engine.scene.loadFromString(sceneString);
         } else {

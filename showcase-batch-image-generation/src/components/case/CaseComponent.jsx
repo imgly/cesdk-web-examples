@@ -50,7 +50,7 @@ const CaseComponent = () => {
     CreativeEngine.init(config).then(async (engine) => {
       engine.addDefaultAssetSources();
       engine.addDemoAssetSources({ sceneMode: 'Design' });
-      engine.editor.setSettingBool('page/title/show', false);
+      engine.editor.setSetting('page/title/show', false);
       await engine.scene.loadFromString(currentTemplate.sceneString);
       engineRef.current = engine;
       setInitialized(true);

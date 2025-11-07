@@ -87,7 +87,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
     if (currentStep === 'edit') {
       setEnabled(true);
       engine.element!.style.pointerEvents = 'all';
-      engine.editor.setSettingBool('page/dimOutOfPageAreas', true);
+      engine.editor.setSetting('page/dimOutOfPageAreas', true);
       engine.block.setClipped(currentPageBlockId, false);
       engine.block.setBool(currentPageBlockId, 'fill/enabled', true);
     } else if (currentStep === 'preview') {
@@ -109,7 +109,7 @@ export const EditorProvider = ({ children }: { children: React.ReactNode }) => {
       engine.block.findAllSelected().forEach((block) => {
         engine.block.setSelected(block, false);
       });
-      engine.editor.setSettingBool('page/dimOutOfPageAreas', false);
+      engine.editor.setSetting('page/dimOutOfPageAreas', false);
       engine.block.setClipped(currentPageBlockId, true);
       engine.block.setBool(currentPageBlockId, 'fill/enabled', false);
     }

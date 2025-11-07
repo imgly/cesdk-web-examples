@@ -193,7 +193,7 @@ const CaseComponent = () => {
           .getDockOrder()
           .filter(({ key }) => key !== 'ly.img.template')
       ]);
-      instance.engine.editor.setSettingBool('page/title/show', false);
+      instance.engine.editor.setSetting('page/title/show', false);
       // Hide 'Resize' button on the navigation bar
       instance.feature.enable('ly.img.page.resize', false);
       instance.feature.enable('ly.img.options', false);

@@ -57,7 +57,7 @@ const CaseComponent = () => {
       return [gettyImagesImageAssets.id];
     });
     instance.engine.asset.addSource(gettyImagesImageAssets);
-    instance.engine.editor.setSettingBool('page/title/show', false);
+    instance.engine.editor.setSetting('page/title/show', false);
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/getty-images-image-assets/getty-images.scene`
     );

@@ -70,7 +70,7 @@ const CaseComponent = () => {
       return ['unsplash'];
     });
     instance.engine.asset.addSource(unsplashAssetLibrary);
-    instance.engine.editor.setSettingBool('page/title/show', false);
+    instance.engine.editor.setSetting('page/title/show', false);
 
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/unsplash-image-assets/unsplash.scene`
