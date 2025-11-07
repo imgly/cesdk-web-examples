@@ -10,38 +10,34 @@
   let imageBlockId = null;
 
   onMount(async () => {
-    // your CE.SDK configurations
+
     const config = {
       // license: import.meta.env.VITE_CESDK_LICENSE,
+      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.64.0-rc.0/assets',
       userId: 'guides-user',
-      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
     };
 
-    // initialize CreativeEngine in headless mode
     engine = await CreativeEngine.init(config);
 
-    // append CE.SDK canvas to the DOM (optional)
+    // Attach engine element to DOM if needed
     if (canvasContainer && engine.element) {
       canvasContainer.appendChild(engine.element);
     }
 
-    // get the current scene or create a new one
-    let scene = engine.scene.get();
-    if (!scene) {
-      scene = engine.scene.create();
-      const page = engine.block.create('page');
-      engine.block.appendChild(scene, page);
-    }
+    // Create a scene programmatically
+    const scene = await engine.scene.create();
 
-    // get the first page block
-    const [page] = engine.block.findByType('page');
+    // Add blocks and manipulate content
+    const page = engine.block.create('page');
+    engine.block.setWidth(page, 800);
+    engine.block.setHeight(page, 600);
+    engine.block.appendChild(scene, page);
 
-    // append a block to show an image on the page
+    // Add content to the scene
     const imageBlock = engine.block.create('graphic');
     imageBlockId = imageBlock;
     engine.block.setShape(imageBlock, engine.block.createShape('rect'));
 
-    // fill the block with an image from a public source
     const imageFill = engine.block.createFill('image');
     engine.block.setSourceSet(imageFill, 'fill/image/sourceSet', [
       {
@@ -53,16 +49,13 @@
     engine.block.setFill(imageBlock, imageFill);
     engine.block.appendChild(page, imageBlock);
 
-    // zoom to fit the page in the editor view
     engine.scene.zoomToBlock(page);
   });
 
   // callback to change the opacity of the image
   function changeOpacity() {
     if (engine && imageBlockId != null) {
-      // get the current opacity value of the image
       const currentOpacity = engine.block.getOpacity(imageBlockId);
-      // reduce the opacity of the image by 20% at each click
       engine.block.setOpacity(imageBlockId, currentOpacity * 0.8);
     }
   }

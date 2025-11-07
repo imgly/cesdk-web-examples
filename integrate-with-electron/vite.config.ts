@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { defineConfig } from 'vite';
 import electron from 'vite-plugin-electron/simple';
+import renderer from 'vite-plugin-electron-renderer';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,6 +24,7 @@ export default defineConfig({
           ? // https://github.com/electron-vite/vite-plugin-electron-renderer/issues/78#issuecomment-2053600808
             undefined
           : {}
-    })
+    }),
+    renderer()
   ]
 });

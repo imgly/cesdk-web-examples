@@ -10,7 +10,7 @@ const { MimeType } = CreativeEngine as any;
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY',
   userId: 'guides-user'
-  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.63.0/assets'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.64.0-rc.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {

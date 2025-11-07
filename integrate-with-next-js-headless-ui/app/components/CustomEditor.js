@@ -12,14 +12,11 @@ export default function CustomEditor() {
   const imageBlockIdRef = useRef(null);
 
   useEffect(() => {
-    // your CE.SDK configurations
     const config = {
-      // license: process.env.NEXT_PUBLIC_LICENSE,
       userId: 'guides-user'
-      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
+      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.64.0-rc.0/assets'
     };
 
-    // initialize CreativeEngine in headless mode
     CreativeEngine.init(config).then((engine) => {
       // to avoid initializing CreativeEngine twice in strict mode
       if (!engineRef.current) {
@@ -30,18 +27,16 @@ export default function CustomEditor() {
           canvasRef.current.appendChild(engine.element);
         }
 
-        // get the current scene or create a new one
-        let scene = engine.scene.get();
-        if (!scene) {
-          scene = engine.scene.create();
-          const page = engine.block.create('page');
-          engine.block.appendChild(scene, page);
-        }
+        // Create a scene programmatically
+        const scene = engine.scene.create();
 
-        // get the first page block
-        const [page] = engine.block.findByType('page');
+        // Add blocks and manipulate content
+        const page = engine.block.create('page');
+        engine.block.setWidth(page, 800);
+        engine.block.setHeight(page, 600);
+        engine.block.appendChild(scene, page);
 
-        // appen a block to show an image on the page
+        // Add content to the scene
         const imageBlockId = engine.block.create('graphic');
         imageBlockIdRef.current = imageBlockId;
         engine.block.setShape(imageBlockId, engine.block.createShape('rect'));
