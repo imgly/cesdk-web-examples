@@ -1,12 +1,12 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.1/index.js';
 
 const config = {
-  // license: import.meta.env.VITE_CESDK_LICENSE,
+  license: 'YOUR_API_KEY',
   userId: 'USER_ID',
-  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/assets',
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.62.1/assets',
   role: 'Creator', // 'Adopter' 'Viewer'
   logger: (message, logLevel) => {
-    console.log(`${logLevel}: ${message}`);
+    console.log(`${logLevel}: ${message}}`);
   }
 };
 

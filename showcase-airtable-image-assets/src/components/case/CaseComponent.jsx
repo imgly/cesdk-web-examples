@@ -70,7 +70,7 @@ const CaseComponent = () => {
       return ['airtable'];
     });
     instance.engine.asset.addSource(airtableAssetLibrary);
-    instance.engine.editor.setSetting('page/title/show', false);
+    instance.engine.editor.setSettingBool('page/title/show', false);
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/airtable-image-assets/airtable.scene`
     );

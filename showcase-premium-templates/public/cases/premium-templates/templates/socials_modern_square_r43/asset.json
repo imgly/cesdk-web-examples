@@ -1,0 +1,15 @@
+{
+    "id": "socials_modern_square_r43",
+    "label": {
+      "en": "New Burger Menu"
+    },
+    "tags": {
+      "en": ["social-media", "post", "business", "food", "new-menu", "modern"]
+    },
+    "groups": ["socials"],
+    "meta": {
+      "uri": "{{base_uri}}/socials_socials_modern_square_r43/design.zip",
+      "thumbUri": "{{base_uri}}/socials_modern_square_r43/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

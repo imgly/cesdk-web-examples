@@ -1,0 +1,15 @@
+{
+    "id": "socials_business_square_r29",
+    "label": {
+      "en": "New Business Podcast Episode"
+    },
+    "tags": {
+      "en": ["social-media", "post", "business", "podcast", "new-episode", "updates"]
+    },
+    "groups": ["socials"],
+    "meta": {
+      "uri": "{{base_uri}}/socials_business_square_r29/design.zip",
+      "thumbUri": "{{base_uri}}/socials_business_square_r29/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

@@ -22,8 +22,8 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
     "electron": "^35.0.3",
     "eslint": "^8.50.0",
     "prettier": "^3.0.0",

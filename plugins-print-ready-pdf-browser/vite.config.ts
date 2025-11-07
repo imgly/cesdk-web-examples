@@ -6,8 +6,18 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// eslint-disable-next-line no-empty-pattern
-export default defineConfig(({}) => {
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+
+  // Validate license in production builds
+  if (mode === 'production' && !env.VITE_CESDK_LICENSE) {
+    console.warn(
+      '\x1b[33m%s\x1b[0m',
+      'Warning: VITE_CESDK_LICENSE environment variable is required for production builds.\n' +
+        'Get a license at: https://img.ly/forms/free-trial'
+    );
+  }
+
   const buildConfig = {
     server: {
       port: 3000,
@@ -23,7 +33,7 @@ export default defineConfig(({}) => {
     },
     plugins: [
       (() => {
-        let resolvedConfig: any = null;
+        let resolvedConfig = null;
 
         return {
           name: 'copy-plugin-assets',

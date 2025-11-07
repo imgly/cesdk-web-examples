@@ -3,9 +3,9 @@ const CreativeEngine = require('@cesdk/node');
 
 
 const config = {
-  // license: import.meta.env.VITE_CESDK_LICENSE,
+  license: 'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
   userId: 'guides-user'
-  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.63.0/assets'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.62.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {

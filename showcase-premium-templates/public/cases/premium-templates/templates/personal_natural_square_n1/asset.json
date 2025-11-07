@@ -1,0 +1,15 @@
+{
+    "id": "personal_natural_square_n1",
+    "label": {
+      "en": "Travel Carousel"
+    },
+    "tags": {
+      "en": ["travel", "collage", "nature", "carousel"]
+    },
+    "groups": ["personal"],
+    "meta": {
+      "uri": "{{base_uri}}/personal_natural_square_n1/design.zip",
+      "thumbUri": "{{base_uri}}/personal_natural_square_n1/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

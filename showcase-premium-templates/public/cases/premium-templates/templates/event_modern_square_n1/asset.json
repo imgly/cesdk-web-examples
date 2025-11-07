@@ -1,0 +1,15 @@
+{
+    "id": "event_modern_square_n1",
+    "label": {
+      "en": "Conference Ad"
+    },
+    "tags": {
+      "en": ["conference", "sign up", "doodle", "ad"]
+    },
+    "groups": ["event"],
+    "meta": {
+      "uri": "{{base_uri}}/design.zip",
+      "thumbUri": "{{base_uri}}/event_modern_square_n1/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

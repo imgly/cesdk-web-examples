@@ -1,0 +1,1627 @@
+{
+  "version": "2.0.0",
+  "id": "ly.img.template.premium1",
+  "assets": [
+    {
+      "id": "e-commerce_retro_story_n99",
+      "label": {
+        "en": "70s Retro Sale"
+      },
+      "tags": {
+        "en": ["70s", "retro", "fashion", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce-retro-story-n99/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce-retro-story-n99/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_artistic_story_n3",
+      "label": {
+        "en": "Delivery Promo"
+      },
+      "tags": {
+        "en": ["food", "delivery", "promo", "doodles"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_artistic_story_n/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_artistic_story_n/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_bold_square_n50",
+      "label": {
+        "en": "Online Store Promo"
+      },
+      "tags": {
+        "en": ["promo", "yellow", "3D", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_bold_square_n50/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_bold_square_n50/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_bold_square_n51",
+      "label": {
+        "en": "Kitsch Summer Sale"
+      },
+      "tags": {
+        "en": ["kitsch", "summer", "sale", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_bold_square_n51/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_bold_square_n51/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_business_square_r10",
+      "label": {
+        "en": "Interior Furniture Sale"
+      },
+      "tags": {
+        "en": [
+          "interior",
+          "product",
+          "business",
+          "modern",
+          "online-store",
+          "sale",
+          "showcase"
+        ]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_business_square_r10/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_business_square_r10/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_business_square_r5",
+      "label": {
+        "en": "Business Online Store"
+      },
+      "tags": {
+        "en": ["business", "product", "professional", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_business_square_r5/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_business_square_r5/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_classy_square_n40",
+      "label": {
+        "en": "Fashion Sale"
+      },
+      "tags": {
+        "en": ["fashion", "product", "stylish", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_classy_square_n40/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_classy_square_n40/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_classy_square_n55",
+      "label": {
+        "en": "Fashion Sleek Sale"
+      },
+      "tags": {
+        "en": ["fashion", "product", "modern", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_classy_square_n55/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_classy_square_n55/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_futuristic_square_m1",
+      "label": {
+        "en": "Sneaker Promo"
+      },
+      "tags": {
+        "en": ["fashion", "product", "modern", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_futuristic_square_m1/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_futuristic_square_m1/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_minimal_story_n30",
+      "label": {
+        "en": "Beauty Promo"
+      },
+      "tags": {
+        "en": ["beauty", "product", "skincare", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_minimal_story_n30/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_minimal_story_n30/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_square_n1",
+      "label": {
+        "en": "Giveaway"
+      },
+      "tags": {
+        "en": ["fashion", "giveaway", "colorful", "win"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_square_n1/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_square_n1/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_square_n2",
+      "label": {
+        "en": "Frame Sale"
+      },
+      "tags": {
+        "en": ["sale", "product", "glasses", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_square_n2/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_square_n2/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_square_n3",
+      "label": {
+        "en": "Neon Sale"
+      },
+      "tags": {
+        "en": ["fashion", "sale", "shoes", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_square_n3/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_square_n3/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_square_r",
+      "label": {
+        "en": "Modern Fashion Store"
+      },
+      "tags": {
+        "en": ["fashion", "product", "modern", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_square_r/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_square_r/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_square_r1",
+      "label": {
+        "en": "Audio E-Commerce Coming Soon"
+      },
+      "tags": {
+        "en": [
+          "technology",
+          "product",
+          "headphones",
+          "online-store",
+          "coming-soon"
+        ]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_square_r1/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_square_r1/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_square_r3",
+      "label": {
+        "en": "Urban Fashion Sale"
+      },
+      "tags": {
+        "en": ["fashion", "product", "modern", "bold", "sale", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_square_r3/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_square_r3/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_square_r38",
+      "label": {
+        "en": "Modern Product Showcase"
+      },
+      "tags": {
+        "en": ["fashion", "product", "modern", "wallet", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_square_r38/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_square_r38/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_square_r40",
+      "label": {
+        "en": "New Arrivals Modern Fashion Store"
+      },
+      "tags": {
+        "en": ["fashion", "product", "modern", "online-store", "new-arrivals"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_square_r40/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_square_r40/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_square_r6",
+      "label": {
+        "en": "Neon Fashion Sale"
+      },
+      "tags": {
+        "en": [
+          "fashion",
+          "product",
+          "modern",
+          "online-store",
+          "sale",
+          "new-arrivals",
+          "neon"
+        ]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_square_r6/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_square_r6/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_square_r7",
+      "label": {
+        "en": "Audio E-Commerce Sale"
+      },
+      "tags": {
+        "en": [
+          "technology",
+          "product",
+          "modern",
+          "online-store",
+          "sale",
+          "headphones"
+        ]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_square_r7/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_square_r7/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_story_r39",
+      "label": {
+        "en": "Moon Readings"
+      },
+      "tags": {
+        "en": ["moon", "product", "modern", "online-store", "readings"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_story_r39/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_story_r39/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_modern_story_r41",
+      "label": {
+        "en": "Limited Offer On Yoga Classes"
+      },
+      "tags": {
+        "en": ["limited-offer", "yoga-class", "modern", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_modern_story_r41/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_modern_story_r41/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_natural_square_n2",
+      "label": {
+        "en": "Astro Ad"
+      },
+      "tags": {
+        "en": ["astrology", "tarot", "offer", "buy"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_natural_square_n2/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_natural_square_n2/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_natural_square_n35",
+      "label": {
+        "en": "Skincare Promo"
+      },
+      "tags": {
+        "en": ["skincare", "product", "promo", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_natural_square_n35/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_natural_square_n35/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_natural_square_r2",
+      "label": {
+        "en": "Fall Fashion Collection Promo"
+      },
+      "tags": {
+        "en": ["fashion", "product", "natural", "online-store", "promo", "fall"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_natural_square_r2/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_natural_square_r2/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_natural_square_r4",
+      "label": {
+        "en": "Natural Skincare Sale"
+      },
+      "tags": {
+        "en": [
+          "skincare",
+          "product",
+          "natural",
+          "online-store",
+          "sale",
+          "coupon-code"
+        ]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_natural_square_r4/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_natural_square_r4/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_natural_story_n2",
+      "label": {
+        "en": "Beauty Product Ad"
+      },
+      "tags": {
+        "en": ["product", "beauty", "sale", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_natural_story_n2/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_natural_story_n2/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_natural_story_n38",
+      "label": {
+        "en": "Skincare Promo"
+      },
+      "tags": {
+        "en": ["skincare", "promotion", "ad", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_natural_story_n38/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_natural_story_n38/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_natural_story_r8",
+      "label": {
+        "en": "Bestseller Beauty Sale"
+      },
+      "tags": {
+        "en": [
+          "beauty",
+          "product",
+          "natural",
+          "online-store",
+          "sale",
+          "promo",
+          "coupon-code"
+        ]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_natural_story_r8/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_natural_story_r8/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_natural_story_r9",
+      "label": {
+        "en": "New Beauty Arrivals"
+      },
+      "tags": {
+        "en": [
+          "beauty",
+          "product",
+          "natural",
+          "online-store",
+          "promo",
+          "limited-edition"
+        ]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_natural_story_r9/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_natural_story_r9/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_retro_square_n27",
+      "label": {
+        "en": "Retro Sale"
+      },
+      "tags": {
+        "en": ["fashion", "product", "promo", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_retro_square_n27/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_retro_square_n27/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_retro_square_n28",
+      "label": {
+        "en": "Eyewear Sale"
+      },
+      "tags": {
+        "en": ["easter", "sale", "product", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_retro_square_n28/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_retro_square_n28/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_retro_story_n57",
+      "label": {
+        "en": "Experimental Sale"
+      },
+      "tags": {
+        "en": ["sale", "retro", "experimental", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_retro_story_n57/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_retro_story_n57/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_urban_square_n19",
+      "label": {
+        "en": "New Post"
+      },
+      "tags": {
+        "en": ["fashion", "new", "announcement", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_urban_square_n19/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_urban_square_n19/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_urban_square_n26",
+      "label": {
+        "en": "Fashion Promo"
+      },
+      "tags": {
+        "en": ["fashion", "promo", "new", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_urban_square_n26/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_urban_square_n26/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "e-commerce_urban_square_n56",
+      "label": {
+        "en": "Cozy Fashion Sale"
+      },
+      "tags": {
+        "en": ["fashion", "product", "modern", "online-store"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/e-commerce_urban_square_n56/design.zip",
+        "thumbUri": "{{base_url}}/e-commerce_urban_square_n56/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_artistic_square_n9",
+      "label": {
+        "en": "Education Event"
+      },
+      "tags": {
+        "en": ["art", "promo", "education", "event"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_artistic_square_n9/design.zip",
+        "thumbUri": "{{base_url}}/event_artistic_square_n9/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_artistic_story_n14",
+      "label": {
+        "en": "Restaurant Opening"
+      },
+      "tags": {
+        "en": ["restaurant", "imbiss", "opening", "invite"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/event_artistic_story_n14/design.zip",
+        "thumbUri": "{{base_url}}/event_artistic_story_n14/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_bold_square_n37",
+      "label": {
+        "en": "Anniversary Celebration"
+      },
+      "tags": {
+        "en": ["store", "event", "promo", "vintage"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_bold_square_n37/design.zip",
+        "thumbUri": "{{base_url}}/event_bold_square_n37/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_modern_ad_n1",
+      "label": {
+        "en": "Food Event"
+      },
+      "tags": {
+        "en": ["food", "vector", "info", "event"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_modern_ad_n1/design.zip",
+        "thumbUri": "{{base_url}}/event_modern_ad_n1/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_modern_square_32",
+      "label": {
+        "en": "Bakery Opening"
+      },
+      "tags": {
+        "en": ["bakery", "opening", "rustical", "shop"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_modern_square_32/design.zip",
+        "thumbUri": "{{base_url}}/event_modern_square_32/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_modern_square_n5",
+      "label": {
+        "en": "Food Info Ad"
+      },
+      "tags": {
+        "en": ["food", "vector", "event", "infographic"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_modern_square_n/design.zip",
+        "thumbUri": "{{base_url}}/event_modern_square_n/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_modern_square_n1",
+      "label": {
+        "en": "Conference Ad"
+      },
+      "tags": {
+        "en": ["conference", "sign up", "doodle", "ad"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_modern_square_n1/design.zip",
+        "thumbUri": "{{base_url}}/event_modern_square_n1/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_modern_square_n7",
+      "label": {
+        "en": "Brunch Promo"
+      },
+      "tags": {
+        "en": ["brunch", "restaurant", "dinner", "Ad"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_modern_square_n7/design.zip",
+        "thumbUri": "{{base_url}}/event_modern_square_n7/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_modern_square_r35",
+      "label": {
+        "en": "Spring Picnic Meetup"
+      },
+      "tags": {
+        "en": ["event", "modern", "spring", "picnic", "Meetup"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_modern_square_r35/design.zip",
+        "thumbUri": "{{base_url}}/event_modern_square_r35/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_modern_square_r37",
+      "label": {
+        "en": "Follower Milestone Celebration"
+      },
+      "tags": {
+        "en": ["event", "modern", "follower", "celebration", "party"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_modern_square_r37/design.zip",
+        "thumbUri": "{{base_url}}/event_modern_square_r37/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_natural_square_n16",
+      "label": {
+        "en": "Happy Holidays"
+      },
+      "tags": {
+        "en": ["holiday", "greetings", "seasonal", "card"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_natural_square_n/design.zip",
+        "thumbUri": "{{base_url}}/event_natural_square_n/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_natural_square_n8",
+      "label": {
+        "en": "Fall Event"
+      },
+      "tags": {
+        "en": ["fall", "autumn", "event", "invitation"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_natural_square_n8/design.zip",
+        "thumbUri": "{{base_url}}/event_natural_square_n8/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_natural_square_r33",
+      "label": {
+        "en": "Christmas Quote"
+      },
+      "tags": {
+        "en": [
+          "event",
+          "natural",
+          "winter",
+          "quote",
+          "christmas",
+          "illustrated"
+        ]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_natural_square_r33/design.zip",
+        "thumbUri": "{{base_url}}/event_natural_square_r33/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_natural_square_r42",
+      "label": {
+        "en": "Book Club Event"
+      },
+      "tags": {
+        "en": ["event", "books", "natural", "meetup"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_natural_square_r42/design.zip",
+        "thumbUri": "{{base_url}}/event_natural_square_r42/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_retro_square_n29",
+      "label": {
+        "en": "Anniversary Promo"
+      },
+      "tags": {
+        "en": ["promo", "anniversary", "event", "dinosaur"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_retro_square_n29/design.zip",
+        "thumbUri": "{{base_url}}/event_retro_square_n29/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_retro_square_r36",
+      "label": {
+        "en": "Winter Party Announcement"
+      },
+      "tags": {
+        "en": ["event", "retro", "announcement", "party", "winter"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_retro_square_r36/design.zip",
+        "thumbUri": "{{base_url}}/event_retro_square_r36/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "event_retro_story_r34",
+      "label": {
+        "en": "Autumn Greetings"
+      },
+      "tags": {
+        "en": ["event", "retro", "greetings", "autumn", "message"]
+      },
+      "groups": ["event"],
+      "meta": {
+        "uri": "{{base_url}}/event_retro_story_r34/design.zip",
+        "thumbUri": "{{base_url}}/event_retro_story_r34/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_artistic_square_n1",
+      "label": {
+        "en": "Sweet Quote"
+      },
+      "tags": {
+        "en": ["quote", "inspirational", "artwork", "drawing"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_artistic_square_n1/design.zip",
+        "thumbUri": "{{base_url}}/personal_artistic_square_n1/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_artistic_square_n12",
+      "label": {
+        "en": "Painting Quote"
+      },
+      "tags": {
+        "en": ["quote", "painting", "drawing", "inspirational"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_artistic_square_n12/design.zip",
+        "thumbUri": "{{base_url}}/personal_artistic_square_n12/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_artistic_square_n44",
+      "label": {
+        "en": "Motivational Watercolor"
+      },
+      "tags": {
+        "en": ["watercolor", "quote", "inspirational", "painting"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_artistic_square_n44/design.zip",
+        "thumbUri": "{{base_url}}/personal_artistic_square_n44/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_classy_square_n18",
+      "label": {
+        "en": "Chic Inspiration"
+      },
+      "tags": {
+        "en": ["fashion", "quote", "inspiration", "black"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_classy_square_n18/design.zip",
+        "thumbUri": "{{base_url}}/personal_classy_square_n18/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_natural_square_n1",
+      "label": {
+        "en": "Travel Carousel"
+      },
+      "tags": {
+        "en": ["travel", "collage", "nature", "carousel"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_natural_square_n1/design.zip",
+        "thumbUri": "{{base_url}}/personal_natural_square_n1/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_natural_square_n21",
+      "label": {
+        "en": "Travel Getaway"
+      },
+      "tags": {
+        "en": ["travel", "nature", "carousel", "ocean"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_natural_square_n21/design.zip",
+        "thumbUri": "{{base_url}}/personal_natural_square_n21/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_natural_story_r18",
+      "label": {
+        "en": "Personal Photo Collage Natural"
+      },
+      "tags": {
+        "en": ["personal", "post", "travel", "natural", "pictures", "collage"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_natural_story_r18/design.zip",
+        "thumbUri": "{{base_url}}/personal_natural_story_r18/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_pastel_square_r30",
+      "label": {
+        "en": "Personal Summer Post"
+      },
+      "tags": {
+        "en": ["personal", "post", "travel", "pastel", "vacation", "summer"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_pastel_square_r30/design.zip",
+        "thumbUri": "{{base_url}}/personal_pastel_square_r30/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_urban_square_n1",
+      "label": {
+        "en": "Travel Greetings"
+      },
+      "tags": {
+        "en": ["travel", "greetings", "socials", "architecture"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_urban_square_n1/design.zip",
+        "thumbUri": "{{base_url}}/personal_urban_square_n1/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_urban_story_n31",
+      "label": {
+        "en": "Fitness Inspiration"
+      },
+      "tags": {
+        "en": ["fitness", "gym", "collage", "photos"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_urban_story_n31/design.zip",
+        "thumbUri": "{{base_url}}/personal_urban_story_n31/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "personal_urbanl_square_r31",
+      "label": {
+        "en": "Personal City Trip Post"
+      },
+      "tags": {
+        "en": ["personal", "post", "travel", "urban", "vacation", "city"]
+      },
+      "groups": ["personal"],
+      "meta": {
+        "uri": "{{base_url}}/personal_urbanl_square_r31/design.zip",
+        "thumbUri": "{{base_url}}/personal_urbanl_square_r31/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_artistic_ad_n11",
+      "label": {
+        "en": "Art Inspiration"
+      },
+      "tags": {
+        "en": ["quote", "art", "gradient", "pink"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_artistic_ad_n11/design.zip",
+        "thumbUri": "{{base_url}}/professional_artistic_ad_n11/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_bold_square_n20",
+      "label": {
+        "en": "Bold Hiring"
+      },
+      "tags": {
+        "en": ["hiring", "HR", "business", "company"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_bold_square_n20/design.zip",
+        "thumbUri": "{{base_url}}/professional_bold_square_n20/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_bold_square_n22",
+      "label": {
+        "en": "Professional Growth"
+      },
+      "tags": {
+        "en": ["workshop", "HR", "workshop", "booking"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_bold_square_n22/design.zip",
+        "thumbUri": "{{base_url}}/professional_bold_square_n22/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_bold_story_n36",
+      "label": {
+        "en": "Podcast Promo"
+      },
+      "tags": {
+        "en": ["podcast", "promo", "episode", "series"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_bold_story_n36/design.zip",
+        "thumbUri": "{{base_url}}/professional_bold_story_n36/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_business_square_n39",
+      "label": {
+        "en": "Hiring Post"
+      },
+      "tags": {
+        "en": ["hiring", "HR", "company", "hire"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_business_square_n39/design.zip",
+        "thumbUri": "{{base_url}}/professional_business_square_n39/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_business_square_n52",
+      "label": {
+        "en": "Series Illustration"
+      },
+      "tags": {
+        "en": ["episode", "cartoon", "illustration", "series"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_business_square_n52/design.zip",
+        "thumbUri": "{{base_url}}/professional_business_square_n52/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_business_square_n8",
+      "label": {
+        "en": "Professional Quote"
+      },
+      "tags": {
+        "en": ["inspiration", "quote", "people", "mindful"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_business_square_n8/design.zip",
+        "thumbUri": "{{base_url}}/professional_business_square_n8/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_business_square_r12",
+      "label": {
+        "en": "Hiring Sales Manager"
+      },
+      "tags": {
+        "en": ["hiring", "professional", "business", "sales-manager", "career"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_business_square_r12/design.zip",
+        "thumbUri": "{{base_url}}/professional_business_square_r12/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_business_square_r13",
+      "label": {
+        "en": "Hiring Art Director & Storyteller"
+      },
+      "tags": {
+        "en": [
+          "hiring",
+          "professional",
+          "business",
+          "art-director",
+          "storyteller",
+          "career"
+        ]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_business_square_r13/design.zip",
+        "thumbUri": "{{base_url}}/professional_business_square_r13/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_business_square_r15",
+      "label": {
+        "en": "Project Proposal Business"
+      },
+      "tags": {
+        "en": ["project-proposal", "professional", "business", "corporate"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_business_square_r15/design.zip",
+        "thumbUri": "{{base_url}}/professional_business_square_r15/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_business_square_r16",
+      "label": {
+        "en": "Business Report"
+      },
+      "tags": {
+        "en": [
+          "business-report",
+          "professional",
+          "business",
+          "growth",
+          "project",
+          "corporate"
+        ]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_business_square_r16/design.zip",
+        "thumbUri": "{{base_url}}/professional_business_square_r16/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_business_square_r199",
+      "label": {
+        "en": "Quote of The Day"
+      },
+      "tags": {
+        "en": ["quote", "inspiration", "branding", "leadership"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_business_square_r199/design.zip",
+        "thumbUri": "{{base_url}}/professional_business_square_r199/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_business_story_n1",
+      "label": {
+        "en": "Inspirational Quote"
+      },
+      "tags": {
+        "en": ["quote", "people", "inspiration", "typography"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_business_story_n1/design.zip",
+        "thumbUri": "{{base_url}}/professional_business_story_n1/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_futuristic_square_n25",
+      "label": {
+        "en": "Streamer Promo"
+      },
+      "tags": {
+        "en": ["streamer", "gaming", "fantasy", "twitch"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_futuristic_square_n25/design.zip",
+        "thumbUri": "{{base_url}}/professional_futuristic_square_n25/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_modern_square_n1",
+      "label": {
+        "en": "Marketing Agency Ad"
+      },
+      "tags": {
+        "en": ["agency", "ad", "offer", "personal branding"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_modern_square_n1/design.zip",
+        "thumbUri": "{{base_url}}/professional_modern_square_n1/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_modern_square_n6",
+      "label": {
+        "en": "Wild Workshop"
+      },
+      "tags": {
+        "en": ["workshop", "sign up", "youth", "education"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_modern_square_n6/design.zip",
+        "thumbUri": "{{base_url}}/professional_modern_square_n6/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_modern_square_r11",
+      "label": {
+        "en": "Hiring Modern Café"
+      },
+      "tags": {
+        "en": ["hiring", "professional", "modern", "cafe", "barista", "career"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_modern_square_r11/design.zip",
+        "thumbUri": "{{base_url}}/professional_modern_square_r11/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_modern_square_r14",
+      "label": {
+        "en": "Hiring Spokesperson"
+      },
+      "tags": {
+        "en": ["hiring", "professional", "modern", "spokesperson", "career"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_modern_square_r14/design.zip",
+        "thumbUri": "{{base_url}}/professional_modern_square_r14/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_modern_story_r16",
+      "label": { "en": "Campaign Overview" },
+      "tags": {
+        "en": ["marketing", "professional", "modern", "campaign"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_uri}}/design.zip",
+        "thumbUri": "{{base_uri}}/thumbnail.png",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_modern_story_r17",
+      "label": {
+        "en": "Hiring Modern Café Story"
+      },
+      "tags": {
+        "en": ["hiring", "professional", "modern", "cafe", "barista", "career"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_modern_story_r17/design.zip",
+        "thumbUri": "{{base_url}}/professional_modern_story_r17/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_retro_square_n23",
+      "label": {
+        "en": "Yoga Course Promo"
+      },
+      "tags": {
+        "en": ["yoga", "class", "promo", "workshop"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_retro_square_n23/design.zip",
+        "thumbUri": "{{base_url}}/professional_retro_square_n23/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "professional_urban_square_n24",
+      "label": {
+        "en": "Introduction Post"
+      },
+      "tags": {
+        "en": ["fashion", "product", "modern", "online-store"]
+      },
+      "groups": ["professional"],
+      "meta": {
+        "uri": "{{base_url}}/professional_urban_square_n24/design.zip",
+        "thumbUri": "{{base_url}}/professional_urban_square_n24/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_business_landscape_r19",
+      "label": {
+        "en": "New Business Podcast Episode Landscape"
+      },
+      "tags": {
+        "en": [
+          "social-media",
+          "post",
+          "business",
+          "podcast",
+          "new-episode",
+          "updates"
+        ]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_business_landscape_r19/design.zip",
+        "thumbUri": "{{base_url}}/socials_business_landscape_r19/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_business_square_r29",
+      "label": {
+        "en": "New Business Podcast Episode"
+      },
+      "tags": {
+        "en": [
+          "social-media",
+          "post",
+          "business",
+          "podcast",
+          "new-episode",
+          "updates"
+        ]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_business_square_r29/design.zip",
+        "thumbUri": "{{base_url}}/socials_business_square_r29/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_business_square_r44",
+      "label": {
+        "en": "Business Growth Program"
+      },
+      "tags": {
+        "en": [
+          "social-media",
+          "post",
+          "business",
+          "growth",
+          "sign-up",
+          "program"
+        ]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_business_square_r44/design.zip",
+        "thumbUri": "{{base_url}}/socials_business_square_r44/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_modern_square_r23",
+      "label": {
+        "en": "New Episode"
+      },
+      "tags": {
+        "en": ["series", "podcast", "new", "show"]
+      },
+      "groups": ["e-commerce"],
+      "meta": {
+        "uri": "{{base_url}}/socials_modern_square_r23/design.zip",
+        "thumbUri": "{{base_url}}/socials_modern_square_r23/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_modern_square_r24",
+      "label": {
+        "en": "Modern Quote"
+      },
+      "tags": {
+        "en": ["social-media", "post", "modern", "design", "quote"]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_modern_square_r24/design.zip",
+        "thumbUri": "{{base_url}}/socials_modern_square_r24/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_modern_square_r27",
+      "label": {
+        "en": "Modern Social Post"
+      },
+      "tags": {
+        "en": ["social-media", "post", "modern", "people", "updates"]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_modern_square_r27/design.zip",
+        "thumbUri": "{{base_url}}/socials_modern_square_r27/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_modern_square_r43",
+      "label": {
+        "en": "New Burger Menu"
+      },
+      "tags": {
+        "en": ["social-media", "post", "business", "food", "new-menu", "modern"]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_modern_square_r43/design.zip",
+        "thumbUri": "{{base_url}}/socials_modern_square_r43/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_modern_square_r45",
+      "label": {
+        "en": "Fitness Studio Announcement"
+      },
+      "tags": {
+        "en": ["social-media", "post", "business", "modern", "announcement"]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_modern_square_r45/design.zip",
+        "thumbUri": "{{base_url}}/socials_modern_square_r45/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_modern_story_r20",
+      "label": {
+        "en": "Modern Quote Story"
+      },
+      "tags": {
+        "en": ["social-media", "post", "modern", "design", "quote"]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_modern_story_r20/design.zip",
+        "thumbUri": "{{base_url}}/socials_modern_story_r20/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_modern_story_r22",
+      "label": {
+        "en": "Pasta Fact"
+      },
+      "tags": {
+        "en": [
+          "social-media",
+          "post",
+          "fact",
+          "knowledge",
+          "pasta",
+          "modern",
+          "illustrated"
+        ]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_modern_story_r22/design.zip",
+        "thumbUri": "{{base_url}}/socials_modern_story_r22/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_modern_story_r26",
+      "label": {
+        "en": "Modern Social Story"
+      },
+      "tags": {
+        "en": ["social-media", "post", "modern", "people", "updates"]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_modern_story_r26/design.zip",
+        "thumbUri": "{{base_url}}/socials_modern_story_r26/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_natural_square_r21",
+      "label": {
+        "en": "Natural Motivational Quote"
+      },
+      "tags": {
+        "en": [
+          "social-media",
+          "post",
+          "natural",
+          "quote",
+          "motivational",
+          "illustrated"
+        ]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_natural_square_r21/design.zip",
+        "thumbUri": "{{base_url}}/socials_natural_square_r21/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_natural_square_r25",
+      "label": {
+        "en": "Natural Motivational Quote"
+      },
+      "tags": {
+        "en": [
+          "social-media",
+          "post",
+          "natural",
+          "design",
+          "quote",
+          "illustrated",
+          "motivational"
+        ]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_natural_square_r25/design.zip",
+        "thumbUri": "{{base_url}}/socials_natural_square_r25/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    },
+    {
+      "id": "socials_natural_square_r28",
+      "label": {
+        "en": "Relaxation Tipps"
+      },
+      "tags": {
+        "en": [
+          "social-media",
+          "post",
+          "natural",
+          "tipps",
+          "guide",
+          "relaxation"
+        ]
+      },
+      "groups": ["socials"],
+      "meta": {
+        "uri": "{{base_url}}/socials_natural_square_r28/design.zip",
+        "thumbUri": "{{base_url}}/socials_natural_square_r28/thumbnail.jpg",
+        "mimeType": "scene/zip"
+      }
+    }
+  ]
+}

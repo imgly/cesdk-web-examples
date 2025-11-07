@@ -1,0 +1,15 @@
+{
+    "id": "socials_modern_square_r24",
+    "label": {
+      "en": "Modern Quote"
+    },
+    "tags": {
+      "en": ["social-media", "post", "modern", "design", "quote"]
+    },
+    "groups": ["socials"],
+    "meta": {
+      "uri": "{{base_uri}}/socials_modern_square_r24/design.zip",
+      "thumbUri": "{{base_uri}}/socials_modern_square_r24/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

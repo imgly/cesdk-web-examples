@@ -27,6 +27,6 @@
     "codesandbox": "^2.2.3"
   },
   "devDependencies": {
-    "cypress": "^15.5.0"
+    "cypress": "^12.0.2"
   }
 }

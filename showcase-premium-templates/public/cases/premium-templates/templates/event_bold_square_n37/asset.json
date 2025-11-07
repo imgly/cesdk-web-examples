@@ -1,0 +1,15 @@
+{
+    "id": "event_bold_square_n37",
+    "label": {
+      "en": "Anniversary Celebration"
+    },
+    "tags": {
+      "en": ["store", "event", "promo", "vintage"]
+    },
+    "groups": ["event"],
+    "meta": {
+      "uri": "{{base_uri}}/event_bold_square_n37/design.zip",
+      "thumbUri": "{{base_uri}}/event_bold_square_n37/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

@@ -1,12 +1,14 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { memo, useEffect, useRef } from 'react';
+import classes from './CESDKModal.module.css';
 import {
-  getTemplateBaseURL,
+  caseAssetPath,
   persistSelectedTemplateToURL
 } from '../lib/TemplateUtilities';
-import classes from './CESDKModal.module.css';
+import ASSETS from '../Templates.json';
 
 export const CESDKModal = memo(({ asset, onClose }) => {
+  const { assets, id: assetSourceId } = ASSETS;
   const containerRef = useRef(null);
   const instanceRef = useRef(null);
   const config = {
@@ -33,49 +35,8 @@ export const CESDKModal = memo(({ asset, onClose }) => {
     if (containerRef.current && !instanceRef.current) {
       CreativeEditorSDK.create(containerRef.current, config).then(
         async (cesdk) => {
-          const baseURL = getTemplateBaseURL();
-          const engine = cesdk.engine;
-
-          // Fetch and prepare asset source with replaced base URLs
-          const assetSourcePromise = baseURL
-            ? (async () => {
-                const response = await fetch(
-                  `${baseURL}/dist/templates/content.json`
-                );
-                const assetSourceData = await response.json();
-
-                // Replace {{base_url}} placeholders in the JSON
-                const assetSourceString = JSON.stringify(assetSourceData);
-                const replacedString = assetSourceString.replace(
-                  /\{\{base_url\}\}/g,
-                  `${baseURL}/dist`
-                );
-                const modifiedAssetSource = JSON.parse(replacedString);
-
-                // Extract assets and create source without them
-                const { assets, id } = modifiedAssetSource;
-
-                // Add local source without assets
-                engine.asset.addLocalSource(id, [], async (asset) => {
-                  await engine.scene.loadFromArchiveURL(asset.meta.uri);
-                  persistSelectedTemplateToURL(asset.id);
-                });
-
-                // Add each asset individually to the source
-                if (assets && Array.isArray(assets)) {
-                  for (const asset of assets) {
-                    engine.asset.addAssetToSource(id, asset);
-                  }
-                }
-              })()
-            : Promise.resolve();
-
-          await Promise.all([
-            cesdk.addDefaultAssetSources(),
-            cesdk.addDemoAssetSources({ sceneMode: 'Design' }),
-            assetSourcePromise
-          ]);
-
+          cesdk.addDefaultAssetSources();
+          cesdk.addDemoAssetSources({ sceneMode: 'Design' });
           instanceRef.current = cesdk;
           // Change the position of the close button to the left
           const closeComponentId = 'ly.img.close.navigationBar';
@@ -86,38 +47,101 @@ export const CESDKModal = memo(({ asset, onClose }) => {
           cesdk.ui.setNavigationBarOrder(
             [{ id: closeComponentId }].concat(trimmedNavBarOrder)
           );
-
-          cesdk.i18n.setTranslations({
-            en: {
-              'libraries.ly.img.template.ly.img.template.premium1.label':
-                'Templates',
-              'libraries.ly.img.template.ly.img.template.premium1.e-commerce.label':
-                'E-Commerce',
-              'libraries.ly.img.template.ly.img.template.premium1.event.label':
-                'Event',
-              'libraries.ly.img.template.ly.img.template.premium1.personal.label':
-                'Personal',
-              'libraries.ly.img.template.ly.img.template.premium1.professional.label':
-                'Professional',
-              'libraries.ly.img.template.ly.img.template.premium1.socials.label':
-                'Socials'
+          // Populate the premium templates asset source
+          cesdk.engine.asset.addLocalSource(
+            assetSourceId,
+            undefined,
+            async (asset) => {
+              if (!asset.meta || !asset.meta.uri)
+                throw new Error('Asset does not have a uri');
+              if (asset.groups.includes('free')) {
+                await cesdk.engine.scene.loadFromURL(asset.meta.uri);
+              } else {
+                await cesdk.engine.scene.loadFromArchiveURL(
+                  asset.meta.uri.replace('design.zip', `${asset.id}.zip`)
+                );
+                persistSelectedTemplateToURL(asset.id);
+              }
+            }
+          );
+          // Add demo templates as free templates
+          cesdk.engine.asset.onAssetSourceUpdated(async (sourceID) => {
+            if (sourceID === 'ly.img.template') {
+              cesdk.engine.asset
+                .findAssets('ly.img.template', {
+                  page: 0,
+                  perPage: 100
+                })
+                .then(async (data) => {
+                  data.assets.forEach((asset) => {
+                    asset.groups = ['free'];
+                    cesdk.engine.asset.addAssetToSource(assetSourceId, asset);
+                  });
+                  // Add premium templates after the free templates
+                  assets.forEach((asset) => {
+                    if (asset.meta) {
+                      Object.entries(asset.meta).forEach(([key, value]) => {
+                        const stringValue = value.toString();
+                        if (stringValue.includes('{{base_url}}')) {
+                          const updated = stringValue.replace(
+                            '{{base_url}}',
+                            caseAssetPath('/templates')
+                          );
+                          if (asset.meta) {
+                            asset.meta[key] = updated;
+                          }
+                        }
+                      });
+                    }
+                    cesdk.engine.asset.addAssetToSource(assetSourceId, asset);
+                  });
+                });
             }
           });
-          cesdk.ui.updateAssetLibraryEntry('ly.img.template', {
-            sourceIds: ['ly.img.template.premium1'],
+
+          // Clean up the dock
+          cesdk.ui.setDockOrder([
+            {
+              id: 'ly.img.assetLibrary.dock',
+              key: 'premium-templates',
+              label: 'libraries.ly.img.templates.premium.label',
+              icon: '@imgly/Template',
+              entries: ['ly.img.templates.premium']
+            },
+            ...cesdk.ui
+              .getDockOrder()
+              .filter((item) =>
+                [
+                  'ly.img.upload',
+                  'ly.img.image',
+                  'ly.img.text',
+                  'ly.img.vectorpath',
+                  'ly.img.sticker'
+                ].includes(item.key)
+              )
+          ]);
+          cesdk.i18n.setTranslations({
+            en: {
+              'libraries.ly.img.templates.premium.label': 'Templates',
+              'libraries.ly.img.templates.premium.free.label': 'Free',
+              'libraries.ly.img.templates.premium.e-commerce.label':
+                'E-Commerce',
+              'libraries.ly.img.templates.premium.event.label': 'Event',
+              'libraries.ly.img.templates.premium.personal.label': 'Personal',
+              'libraries.ly.img.templates.premium.professional.label':
+                'Professional',
+              'libraries.ly.img.templates.premium.socials.label': 'Socials'
+            }
+          });
+          cesdk.ui.addAssetLibraryEntry({
+            id: 'ly.img.templates.premium',
+            sourceIds: [assetSourceId],
             previewBackgroundType: 'contain',
             cardLabel: (asset) => asset.label,
-            cardLabelPosition: () => 'below',
-            promptBeforeApply: false
+            cardLabelPosition: () => 'below'
           });
-          cesdk.engine.editor.setSetting('page/title/show', false);
-          const archiveURL = asset.meta.uri.replace(
-            '{{base_url}}',
-            `${baseURL}/dist`
-          );
-          if (baseURL) {
-            await cesdk.engine.scene.loadFromArchiveURL(archiveURL);
-          }
+          cesdk.engine.editor.setSettingBool('page/title/show', false);
+          await cesdk.engine.scene.loadFromArchiveURL(asset.meta.uri);
         }
       );
 

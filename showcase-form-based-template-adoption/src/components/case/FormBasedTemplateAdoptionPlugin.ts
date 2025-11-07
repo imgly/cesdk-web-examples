@@ -14,9 +14,9 @@ export const FormBasedTemplateAdoptionPlugin = (): EditorPlugin => ({
 
     const engine = cesdk.engine;
 
-    engine.editor.setSetting('page/title/show', false);
-    engine.editor.setSetting('mouse/enableScroll', false);
-    engine.editor.setSetting('mouse/enableZoom', false);
+    engine.editor.setSettingBool('page/title/show', false);
+    engine.editor.setSettingBool('mouse/enableScroll', false);
+    engine.editor.setSettingBool('mouse/enableZoom', false);
 
     // Hide all UI elements
     cesdk.ui.setInspectorBarOrder([]);
@@ -449,7 +449,7 @@ function relocateResourcesToBlobURLs(engine: CreativeEngine) {
     const length = engine.editor.getBufferLength(uri);
     const data = engine.editor.getBufferData(uri, 0, length);
 
-    const blob = new Blob([data as unknown as ArrayBuffer]);
+    const blob = new Blob([data as BlobPart]);
     const blobURL = URL.createObjectURL(blob);
     engine.editor.relocateResource(uri, blobURL);
   });

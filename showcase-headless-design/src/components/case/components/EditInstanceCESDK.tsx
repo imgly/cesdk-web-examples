@@ -30,7 +30,7 @@ export const EditInstanceCESDK = memo(
       <CESDKModal
         type={asset.type}
         configure={async (instance: CreativeEditorSDK) => {
-          instance.engine.editor.setSetting('page/title/show', false);
+          instance.engine.editor.setSettingBool('page/title/show', false);
           engineRef.current = instance.engine;
           await instance.engine.scene.loadFromString(
             asset.sceneString as string

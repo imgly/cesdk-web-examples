@@ -1,0 +1,15 @@
+{
+    "id": "personal_artistic_square_n12",
+    "label": {
+      "en": "Painting Quote"
+    },
+    "tags": {
+      "en": ["quote", "painting", "drawing", "inspirational"]
+    },
+    "groups": ["personal"],
+    "meta": {
+      "uri": "{{base_uri}}/personal_artistic_square_n12/design.zip",
+      "thumbUri": "{{base_uri}}/personal_artistic_square_n12/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

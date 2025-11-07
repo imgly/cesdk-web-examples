@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_modern_square_r1",
+    "label": {
+      "en": "Audio E-Commerce Coming Soon"
+    },
+    "tags": {
+      "en": ["technology", "product", "headphones", "online-store", "coming-soon"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_modern_square_r1/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_modern_square_r1/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

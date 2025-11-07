@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_bold_square_n50",
+    "label": {
+      "en": "Online Store Promo"
+    },
+    "tags": {
+      "en": ["promo", "yellow", "3D", "online-store"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_bold_square_n50/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_bold_square_n50/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

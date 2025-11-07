@@ -14,9 +14,10 @@ export default function CustomEditor() {
   useEffect(() => {
     // your CE.SDK configurations
     const config = {
-      // license: process.env.NEXT_PUBLIC_LICENSE,
+      license:
+        'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu', // replace it with your license key
       userId: 'guides-user'
-      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
+      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.1/assets'
     };
 
     // initialize CreativeEngine in headless mode

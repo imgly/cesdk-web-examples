@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_modern_story_r39",
+    "label": {
+      "en": "Moon Readings"
+    },
+    "tags": {
+      "en": ["moon", "product", "modern", "online-store", "readings"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_modern_story_r39/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_modern_story_r39/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

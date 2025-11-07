@@ -10,7 +10,7 @@
 
   // default CreativeEditor SDK configuration
   const defaultConfig = {
-    // license: "YOUR_LICENSE_KEY", // replace it with a valid CE.SDK license key
+    license: "YOUR_LICENSE_KEY", // replace it with a valid CE.SDK license key
     callbacks: { onUpload: "local"}, // enable local file uploads in the Asset Library
     // other default configs...
   };

@@ -1,0 +1,15 @@
+{
+    "id": "professional_urban_square_n24",
+    "label": {
+      "en": "Introduction Post"
+    },
+    "tags": {
+      "en": ["fashion", "product", "modern", "online-store"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_urban_square_n24/design.zip",
+      "thumbUri": "{{base_uri}}/professional_urban_square_n24/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

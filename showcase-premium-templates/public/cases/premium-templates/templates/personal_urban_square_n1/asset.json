@@ -1,0 +1,15 @@
+{
+    "id": "personal_urban_square_n1",
+    "label": {
+      "en": "Travel Greetings"
+    },
+    "tags": {
+      "en": ["travel", "greetings", "socials", "architecture"]
+    },
+    "groups": ["personal"],
+    "meta": {
+      "uri": "{{base_uri}}/personal_urban_square_n1/design.zip",
+      "thumbUri": "{{base_uri}}/personal_urban_square_n1/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

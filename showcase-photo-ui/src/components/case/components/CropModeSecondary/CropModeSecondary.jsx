@@ -84,18 +84,24 @@ const CropModeSecondary = () => {
   useEffect(function setupCropHandles() {
     const { r, g, b } = DEFAULT_HIGHLIGHT_COLOR;
 
-    engine.editor.setSetting(
+    engine.editor.setSettingColorRGBA(
       'highlightColor',
-      { r: r / 255, g: g / 255, b: b / 255, a: 1 }
+      r / 255,
+      g / 255,
+      b / 255,
+      1
     );
     engine.block.setSelected(currentPageBlockId, true);
     engine.editor.setGlobalScope('design/arrange', 'Allow');
     engine.editor.setEditMode('Crop');
     return () => {
       const { r, g, b } = CANVAS_COLOR;
-      engine.editor?.setSetting(
+      engine.editor?.setSettingColorRGBA(
         'highlightColor',
-        { r: r / 255, g: g / 255, b: b / 255, a: 1 }
+        r / 255,
+        g / 255,
+        b / 255,
+        1
       );
       engine.editor?.setGlobalScope('design/arrange', 'Deny');
       engine.editor?.setEditMode('Transform');

@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_retro_square_n27",
+    "label": {
+      "en": "Retro Sale"
+    },
+    "tags": {
+      "en": ["fashion", "product", "promo", "online-store"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_retro_square_n27/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_retro_square_n27/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 import classes from './CaseComponent.module.css';
+import ASSETS from './Templates.json';
 import { CESDKModal } from './components/CESDKModal';
 import { SegmentedControl } from './components/SegmentedControl';
 import ChevronRightIcon from './icons/ChevronRight.svg';
 import {
-  getTemplateBaseURL,
+  caseAssetPath,
   persistSelectedTemplateToURL
 } from './lib/TemplateUtilities';
 
@@ -19,52 +20,21 @@ const CATEGORIES = [
 ];
 
 const CaseComponent = () => {
-  const [assets, setAssets] = useState([]);
-
-  useEffect(() => {
-    const fetchAssets = async () => {
-      const baseURL = getTemplateBaseURL();
-      if (!baseURL) {
-        setAssets([]);
-        return;
-      }
-
-      try {
-        const response = await fetch(`${baseURL}/dist/templates/content.json`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setAssets(data.assets || []);
-      } catch (error) {
-        console.error('Failed to fetch assets:', error);
-        setAssets([]);
-      }
-    };
-
-    fetchAssets();
-  }, []);
+  const { assets } = ASSETS;
   const [currentCategory, setCurrentCategory] = useState(CATEGORIES[0].value);
-  const [currentAsset, setCurrentAsset] = useState(undefined);
+  const [currentAsset, setCurrentAsset] = useState(
+    assets.find(
+      (asset) =>
+        asset.id === new URL(window.location.href).searchParams.get('template')
+    ) ?? undefined
+  );
   const containerRef = useRef(null);
-
-  // Check URL for template parameter after assets are loaded
-  useEffect(() => {
-    if (assets.length > 0) {
-      const templateId = new URL(window.location.href).searchParams.get(
-        'template'
-      );
-      if (templateId) {
-        const asset = assets.find((a) => a.id === templateId);
-        if (asset) {
-          setCurrentAsset(asset);
-        }
-      }
-    }
-  }, [assets]);
 
   useEffect(() => {
     if (containerRef.current && currentAsset) {
+      currentAsset.meta.uri = currentAsset.meta.uri
+        .replace('design.zip', `${currentAsset.id}.zip`)
+        .replace('{{base_url}}', caseAssetPath(`/templates`));
       persistSelectedTemplateToURL(currentAsset.id);
       // prevent background scrolling when modal is open
       document.body.classList.add('no-scroll');
@@ -107,7 +77,7 @@ const CaseComponent = () => {
                     <img
                       src={asset.meta.thumbUri.replace(
                         '{{base_url}}',
-                        getTemplateBaseURL() + '/dist'
+                        caseAssetPath('/templates')
                       )}
                       alt={asset.label.en}
                     />

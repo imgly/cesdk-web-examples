@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_modern_square_r",
+    "label": {
+      "en": "Modern Fashion Store"
+    },
+    "tags": {
+      "en": ["fashion", "product", "modern", "online-store"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_modern_square_r/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_modern_square_r/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

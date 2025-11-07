@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_modern_story_r41",
+    "label": {
+      "en": "Limited Offer On Yoga Classes"
+    },
+    "tags": {
+      "en": ["limited-offer", "yoga-class", "modern", "online-store"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_modern_story_r41/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_modern_story_r41/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

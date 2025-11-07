@@ -1,0 +1,15 @@
+{
+    "id": "e-commerce_retro_square_n28",
+    "label": {
+      "en": "Eyewear Sale"
+    },
+    "tags": {
+      "en": ["easter", "sale", "product", "online-store"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/e-commerce_retro_square_n28/design.zip",
+      "thumbUri": "{{base_uri}}/e-commerce_retro_square_n28/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

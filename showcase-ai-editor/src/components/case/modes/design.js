@@ -1,6 +1,6 @@
 import AiApps from '@imgly/plugin-ai-apps-web';
 
-const designMode = {
+export default {
   name: 'Design',
   sceneMode: 'Design',
   cesdkConfig: {
@@ -124,5 +124,3 @@ const designMode = {
     }
   }
 };
-
-export default designMode;

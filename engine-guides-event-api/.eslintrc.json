@@ -1,7 +1,5 @@
 {
-  "root": true,
   "extends": ["eslint:recommended"],
-  "plugins": ["@typescript-eslint"],
   "env": {
     "browser": true,
     "es2021": true,

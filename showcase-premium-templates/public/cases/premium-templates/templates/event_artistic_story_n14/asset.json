@@ -1,0 +1,15 @@
+{
+    "id": "event_artistic_story_n14",
+    "label": {
+      "en": "Restaurant Opening"
+    },
+    "tags": {
+      "en": ["restaurant", "imbiss", "opening", "invite"]
+    },
+    "groups": ["e-commerce"],
+    "meta": {
+      "uri": "{{base_uri}}/event_artistic_story_n14/design.zip",
+      "thumbUri": "{{base_uri}}/event_artistic_story_n14/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

@@ -56,7 +56,6 @@ const CaseComponent = () => {
         router.replace(`?${params.toString()}`, { scroll: false });
       })();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, router]);
 
   const config = useConfig(

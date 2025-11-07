@@ -16,9 +16,10 @@ export class CustomEditorComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const config = {
-      // license: 'YOUR_CESDK_LICENSE_KEY',
+      license:
+        'vERESgSXbYj5Rs-FF4DzkMvhdQLh0Mxe6AD8V-doP6wqe_gmYmx_oUKqIlMkwpMu',
       userId: 'guides-user'
-      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
+      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.62.1/assets'
     };
 
     CreativeEngine.init(config).then((engine: any) => {

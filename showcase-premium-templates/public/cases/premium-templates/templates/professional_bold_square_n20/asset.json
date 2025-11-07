@@ -1,0 +1,15 @@
+{
+    "id": "professional_bold_square_n20",
+    "label": {
+      "en": "Bold Hiring"
+    },
+    "tags": {
+      "en": ["hiring", "HR", "business", "company"]
+    },
+    "groups": ["professional"],
+    "meta": {
+      "uri": "{{base_uri}}/professional_bold_square_n20/design.zip",
+      "thumbUri": "{{base_uri}}/professional_bold_square_n20/thumbnail.png",
+      "mimeType": "scene/zip"
+    }
+}

@@ -32,8 +32,6 @@ async function init() {
 
   // Load default scene
   await cesdk.createDesignScene();
-  await cesdk.addDefaultAssetSources();
-  await cesdk.addDemoAssetSources();
 }
 
 async function exportPrintReadyPDF() {
