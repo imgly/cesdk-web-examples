@@ -6,7 +6,7 @@ export const EditTemplateCESDK = memo(
     return (
       <CESDKModal
         configure={async (instance) => {
-          instance.engine.editor.setSetting('page/title/show', false);
+          instance.engine.editor.setSettingBool('page/title/show', false);
           await instance.engine.scene.loadFromString(sceneString);
           instance.engine.variable.setString('Name', 'Restaurant Name');
           instance.engine.variable.setString('$$', '$$');

@@ -1,0 +1,28 @@
+{
+  "name": "cesdk-export-audio-browser",
+  "version": "1.0.0",
+  "description": "CE.SDK example demonstrating audio export and caption generation",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "next"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": [
+    "cesdk",
+    "audio",
+    "export",
+    "captions",
+    "transcription",
+    "creative-editor-sdk"
+  ],
+  "author": "IMG.LY",
+  "license": "MIT"
+}

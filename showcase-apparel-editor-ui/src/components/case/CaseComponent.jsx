@@ -53,7 +53,7 @@ const CaseComponent = () => {
         .getDockOrder()
         .filter(({ key }) => !['ly.img.template'].includes(key))
     ]);
-    instance.engine.editor.setSetting('page/title/show', false);
+    instance.engine.editor.setSettingBool('page/title/show', false);
     // });
   }, []);
 

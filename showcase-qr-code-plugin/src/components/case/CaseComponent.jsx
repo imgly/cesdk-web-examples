@@ -63,7 +63,7 @@ const CaseComponent = () => {
       engine.block.select(qrCode);
     }
     // hide the title of the page:
-    engine.editor.setSetting('page/title/show', false);
+    engine.editor.setSettingBool('page/title/show', false);
   });
 
   return (

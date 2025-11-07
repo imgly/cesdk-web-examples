@@ -89,9 +89,9 @@ export const EditorProvider = ({ children }) => {
       };
 
       engine = await CreativeEngine.init(config);
-      engine.editor.setSetting('mouse/enableScroll', false);
-      engine.editor.setSetting('mouse/enableZoom', false);
-      engine.editor.setSetting('page/title/show', false);
+      engine.editor.setSettingBool('mouse/enableScroll', false);
+      engine.editor.setSettingBool('mouse/enableZoom', false);
+      engine.editor.setSettingBool('page/title/show', false);
       setEngine(engine);
     };
     loadEditor();
@@ -155,9 +155,9 @@ export const useEditor = () => {
  * @param {string} imageUrl
  */
 async function setupPhotoScene(engine, src) {
-  engine.editor.setSetting('page/dimOutOfPageAreas', false);
-  engine.editor.setSetting('highlightColor', { r: 1, g: 1, b: 1, a: 1 });
-  engine.editor.setSetting('cropOverlayColor', { r: 1, g: 1, b: 1, a: 0.55 });
+  engine.editor.setSettingBool('page/dimOutOfPageAreas', false);
+  engine.editor.setSettingColorRGBA('highlightColor', 1, 1, 1, 1);
+  engine.editor.setSettingColorRGBA('cropOverlayColor', 1, 1, 1, 0.55);
   engine.editor.setGlobalScope('design/arrange', 'Allow');
 
   // We recreate the scene to discard all changes
@@ -177,6 +177,8 @@ async function setupPhotoScene(engine, src) {
 
   await setImageSource(engine, page, src);
   await engine.block.setClipped(page, false);
+
+  engine.editor.setSettingBool('doubleClickToCropEnabled', false);
 }
 
 /**
@@ -194,5 +196,4 @@ const setImageSource = async (engine, pageBlock, imageSrc) => {
   await engine.block.setString(imageFill, 'fill/image/imageFileURI', imageSrc);
   engine.block.resetCrop(pageBlock);
   engine.editor.setGlobalScope('design/arrange', 'Deny');
-  engine.editor.setSetting('doubleClickToCropEnabled', false);
 };

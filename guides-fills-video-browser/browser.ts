@@ -1,7 +1,10 @@
-import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
-import type { CreativeEngine } from '@cesdk/cesdk-js';
-import { calculateGridLayout } from './utils';
+import type {
+  CreativeEngine,
+  EditorPlugin,
+  EditorPluginContext
+} from '@cesdk/cesdk-js';
 import packageJson from './package.json';
+import { calculateGridLayout } from './utils';
 
 /**
  * CE.SDK Plugin: Video Fills Guide
