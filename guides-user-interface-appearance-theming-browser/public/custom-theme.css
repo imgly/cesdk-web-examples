@@ -1,0 +1,375 @@
+/**
+ * Example Custom Theme for CE.SDK
+ *
+ * This file demonstrates how to create a custom theme using CSS custom properties.
+ *
+ * Theme Structure:
+ * - .ubq-public: Root class that scopes all CE.SDK UI
+ * - [data-ubq-theme]: Attribute for theme variant (light/dark)
+ * - [data-ubq-scale]: Attribute for scale mode (normal/large/modern)
+ *
+ * Theme Variables:
+ * - Colors: canvas, elevation, foreground, interactive, input, borders, etc.
+ * - Typography: headline, label, body, input, button styles
+ */
+
+/* highlight-custom-theme */
+/* Dark Theme with Normal Scale */
+/* Higher specificity to override CE.SDK's built-in themes */
+html .ubq-public[data-ubq-theme='dark'][data-ubq-scale='normal'] {
+  /* Canvas and Elevation */
+  --ubq-canvas: hsl(230.27, 52.11%, 13.92%);
+  --ubq-elevation-1: hsl(230.4, 52.08%, 18.82%);
+  --ubq-elevation-2: hsl(229.69, 52.46%, 23.92%);
+
+  /* Foreground Colors */
+  --ubq-foreground-default: hsla(0, 0%, 100%, 0.9);
+  --ubq-foreground-light: hsla(0, 0%, 100%, 0.7);
+  --ubq-foreground-info: hsla(0, 0%, 100%, 0.5);
+
+  /* Interactive States */
+  --ubq-interactive-default: hsl(229.87, 52.38%, 28.82%);
+  --ubq-interactive-hover: hsl(229.69, 52.46%, 23.92%);
+  --ubq-interactive-pressed: hsl(230.45, 52.38%, 16.47%);
+
+  /* Input Elements */
+  --ubq-input-default: hsl(234, 50%, 3.92%);
+  --ubq-input-hover: hsl(228, 55.56%, 1.76%);
+
+  /* Borders and Strokes */
+  --ubq-border-default: hsla(230, 52.17%, 63.92%, 0.1);
+  --ubq-stroke-contrast-1: hsla(230, 52.17%, 63.92%, 0.08);
+  --ubq-stroke-contrast-2: hsla(230, 52.17%, 63.92%, 0.25);
+
+  /* Focus and Overlay */
+  --ubq-focus-outline: hsl(230.27, 52.11%, 13.92%);
+  --ubq-overlay-default: hsla(230.27, 52.11%, 13.92%, 0.8);
+
+  /* Active States */
+  --ubq-foreground-active: hsla(210, 30%, 10%, 0.9);
+  --ubq-interactive-active-default: linear-gradient(
+      to bottom,
+      hsla(0, 0%, 100%, 1),
+      hsla(0, 0%, 100%, 0)
+    ),
+    hsla(0, 0%, 100%, 0.88);
+  --ubq-interactive-active-hover: linear-gradient(
+      to bottom,
+      hsla(0, 0%, 100%, 1),
+      hsla(0, 0%, 100%, 0)
+    ),
+    hsla(210, 100%, 95%, 0.98);
+  --ubq-interactive-active-pressed: linear-gradient(
+      to bottom,
+      hsla(0, 0%, 100%, 1),
+      hsla(0, 0%, 100%, 0)
+    ),
+    hsla(0, 0%, 100%, 0.5);
+
+  /* Notices */
+  --ubq-notice-info: hsla(0, 0%, 100%, 1);
+  --ubq-notice-warning: hsl(37.45, 0%, 93.5%);
+  --ubq-notice-error: hsl(311.23, 0%, 88.9%);
+  --ubq-notice-success: hsl(166.23, 0%, 92.19%);
+
+  /* Accent Colors */
+  --ubq-foreground-accent: hsl(0, 0%, 0%);
+  --ubq-interactive-accent-default: hsl(0, 0%, 100%);
+  --ubq-interactive-accent-hover: hsl(0, 0%, 100%);
+  --ubq-interactive-accent-pressed: hsl(0, 0%, 95%);
+  --ubq-focus-default: hsl(288.99, 0%, 92.5%);
+
+  /* Typography - Headline Large */
+  --ubq-typography-headline-l-size: 16px;
+  --ubq-typography-headline-l-line_height: 20px;
+  --ubq-typography-headline-l-letter_spacing: 0.01em;
+  --ubq-typography-headline-l-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-headline-l-weight: 600;
+
+  /* Typography - Headline Medium */
+  --ubq-typography-headline-m-size: 12px;
+  --ubq-typography-headline-m-line_height: 16px;
+  --ubq-typography-headline-m-letter_spacing: 0.03em;
+  --ubq-typography-headline-m-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-headline-m-weight: 600;
+
+  /* Typography - Label Medium */
+  --ubq-typography-label-m-size: 12px;
+  --ubq-typography-label-m-line_height: 16px;
+  --ubq-typography-label-m-letter_spacing: 0.02em;
+  --ubq-typography-label-m-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-label-m-weight: normal;
+
+  /* Typography - Label Small */
+  --ubq-typography-label-s-size: 10px;
+  --ubq-typography-label-s-line_height: 14px;
+  --ubq-typography-label-s-letter_spacing: 0.02em;
+  --ubq-typography-label-s-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-label-s-weight: normal;
+
+  /* Typography - Body Medium */
+  --ubq-typography-body-m-size: 12px;
+  --ubq-typography-body-m-line_height: 18px;
+  --ubq-typography-body-m-letter_spacing: 0.02em;
+  --ubq-typography-body-m-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-body-m-weight: normal;
+
+  /* Typography - Input Medium */
+  --ubq-typography-input-m-size: 12px;
+  --ubq-typography-input-m-line_height: 16px;
+  --ubq-typography-input-m-letter_spacing: 0.02em;
+  --ubq-typography-input-m-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-input-m-weight: unset;
+
+  /* Typography - Button Medium */
+  --ubq-typography-button-m-size: 12px;
+  --ubq-typography-button-m-line_height: 16px;
+  --ubq-typography-button-m-letter_spacing: 0.02em;
+  --ubq-typography-button-m-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-button-m-weight: unset;
+}
+/* highlight-custom-theme */
+
+/* Light Theme with Green & Olive Nature Colors */
+/* Higher specificity to override CE.SDK's built-in themes */
+html .ubq-public[data-ubq-theme='light'][data-ubq-scale='normal'] {
+  /* Canvas and Elevation - Soft sage greens */
+  --ubq-canvas: hsl(95, 25%, 88%) !important;
+  --ubq-elevation-1: hsl(92, 22%, 83%) !important;
+  --ubq-elevation-2: hsl(88, 20%, 78%) !important;
+  --ubq-elevation-3: hsl(85, 18%, 73%) !important;
+
+  /* Foreground Colors */
+  --ubq-foreground-default: hsla(100, 40%, 20%, 0.95) !important;
+  --ubq-foreground-light: hsla(95, 35%, 30%, 0.8) !important;
+  --ubq-foreground-info: hsla(90, 30%, 40%, 0.7) !important;
+  --ubq-foreground-active: hsla(105, 45%, 18%, 0.95) !important;
+  --ubq-foreground-accent: hsl(110, 60%, 25%) !important;
+
+  /* Interactive States - Muted olive */
+  --ubq-interactive-default: hsl(88, 20%, 82%) !important;
+  --ubq-interactive-hover: hsl(88, 24%, 75%) !important;
+  --ubq-interactive-pressed: hsl(88, 28%, 68%) !important;
+
+  /* Interactive Accent States - Rich forest green */
+  --ubq-interactive-accent-default: hsl(135, 45%, 48%) !important;
+  --ubq-interactive-accent-hover: hsl(135, 50%, 43%) !important;
+  --ubq-interactive-accent-pressed: hsl(135, 55%, 38%) !important;
+
+  /* Active States */
+  --ubq-interactive-active-default: linear-gradient(
+      to bottom,
+      hsla(95, 40%, 95%, 1),
+      hsla(95, 40%, 95%, 0)
+    ),
+    hsla(100, 35%, 60%, 0.88) !important;
+  --ubq-interactive-active-hover: linear-gradient(
+      to bottom,
+      hsla(95, 40%, 90%, 1),
+      hsla(95, 40%, 90%, 0)
+    ),
+    hsla(100, 40%, 55%, 0.98) !important;
+  --ubq-interactive-active-pressed: linear-gradient(
+      to bottom,
+      hsla(95, 40%, 85%, 1),
+      hsla(95, 40%, 85%, 0)
+    ),
+    hsla(100, 45%, 50%, 0.7) !important;
+
+  /* Input Elements */
+  --ubq-input-default: hsl(90, 18%, 98%) !important;
+  --ubq-input-hover: hsl(90, 20%, 96%) !important;
+
+  /* Borders and Strokes */
+  --ubq-border-default: hsla(100, 30%, 30%, 0.15) !important;
+  --ubq-stroke-contrast-1: hsla(100, 30%, 30%, 0.1) !important;
+  --ubq-stroke-contrast-2: hsla(100, 30%, 30%, 0.3) !important;
+  --ubq-stroke-contrast-3: hsla(100, 30%, 30%, 0.5) !important;
+
+  /* Focus and Overlay */
+  --ubq-focus-default: hsl(135, 50%, 45%) !important;
+  --ubq-focus-outline: hsl(95, 20%, 97%) !important;
+  --ubq-overlay-default: hsla(100, 25%, 15%, 0.6) !important;
+
+  /* Effect Properties */
+  --ubq-effect-shadow: hsla(100, 25%, 15%, 0.15) !important;
+  --ubq-effect-focus: hsla(135, 50%, 45%, 0.4) !important;
+
+  /* Notices */
+  --ubq-notice-info: hsl(200, 45%, 88%) !important;
+  --ubq-notice-warning: hsl(45, 70%, 85%) !important;
+  --ubq-notice-error: hsl(350, 65%, 88%) !important;
+  --ubq-notice-success: hsl(140, 48%, 82%) !important;
+
+  /* Danger States */
+  --ubq-foreground-danger: hsl(350, 65%, 40%) !important;
+  --ubq-interactive-danger-default: hsl(350, 65%, 92%) !important;
+  --ubq-interactive-danger-hover: hsl(350, 70%, 88%) !important;
+  --ubq-interactive-danger-pressed: hsl(350, 75%, 84%) !important;
+
+  /* Group States */
+  --ubq-foreground-group: hsla(95, 35%, 20%, 0.8) !important;
+  --ubq-interactive-group-default: hsl(92, 18%, 90%) !important;
+  --ubq-interactive-group-hover: hsl(92, 22%, 86%) !important;
+  --ubq-interactive-group-pressed: hsl(92, 26%, 82%) !important;
+
+  /* Template States */
+  --ubq-foreground-template: hsla(90, 35%, 20%, 0.85) !important;
+  --ubq-interactive-template-default: hsl(88, 18%, 90%) !important;
+  --ubq-interactive-template-hover: hsl(88, 22%, 86%) !important;
+  --ubq-interactive-template-pressed: hsl(88, 26%, 82%) !important;
+
+  /* Progress */
+  --ubq-interactive-progress: hsl(135, 48%, 48%) !important;
+
+  /* Typography - Headline Large */
+  --ubq-typography-headline-l-size: 16px;
+  --ubq-typography-headline-l-line_height: 20px;
+  --ubq-typography-headline-l-letter_spacing: 0.01em;
+  --ubq-typography-headline-l-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-headline-l-weight: 600;
+
+  /* Typography - Headline Medium */
+  --ubq-typography-headline-m-size: 12px;
+  --ubq-typography-headline-m-line_height: 16px;
+  --ubq-typography-headline-m-letter_spacing: 0.03em;
+  --ubq-typography-headline-m-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-headline-m-weight: 600;
+
+  /* Typography - Label Medium */
+  --ubq-typography-label-m-size: 12px;
+  --ubq-typography-label-m-line_height: 16px;
+  --ubq-typography-label-m-letter_spacing: 0.02em;
+  --ubq-typography-label-m-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-label-m-weight: 450;
+
+  /* Typography - Label Small */
+  --ubq-typography-label-s-size: 10px;
+  --ubq-typography-label-s-line_height: 14px;
+  --ubq-typography-label-s-letter_spacing: 0.02em;
+  --ubq-typography-label-s-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-label-s-weight: 450;
+
+  /* Typography - Body Medium */
+  --ubq-typography-body-m-size: 12px;
+  --ubq-typography-body-m-line_height: 18px;
+  --ubq-typography-body-m-letter_spacing: 0.02em;
+  --ubq-typography-body-m-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-body-m-weight: 450;
+
+  /* Typography - Input Medium */
+  --ubq-typography-input-m-size: 12px;
+  --ubq-typography-input-m-line_height: 16px;
+  --ubq-typography-input-m-letter_spacing: 0.02em;
+  --ubq-typography-input-m-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-input-m-weight: 450;
+
+  /* Typography - Button Medium */
+  --ubq-typography-button-m-size: 12px;
+  --ubq-typography-button-m-line_height: 16px;
+  --ubq-typography-button-m-letter_spacing: 0.02em;
+  --ubq-typography-button-m-font_family: var(
+    --ubq-typography-font_family,
+    'Inter',
+    sans-serif
+  );
+  --ubq-typography-button-m-weight: 450;
+
+  /* Spacing and Measurements (Normal Scale - 4px base) */
+  --ubq-scale-base: 4px;
+  --ubq-measurements-margin-s: 4px;
+  --ubq-measurements-margin-m: 8px;
+  --ubq-measurements-margin-l: 12px;
+  --ubq-measurements-border_radius-s: 4px;
+  --ubq-measurements-border_radius-m: 8px;
+  --ubq-measurements-border_radius-l: 12px;
+}
+
+/* Light Theme with Green & Olive Nature Colors - Modern Scale */
+/* Modern is the default scale, so we need this variant too */
+html .ubq-public[data-ubq-theme='light'][data-ubq-scale='modern'] {
+  /* Copy all the same green/olive colors from normal scale */
+  --ubq-canvas: hsl(95, 25%, 88%) !important;
+  --ubq-elevation-1: hsl(92, 22%, 83%) !important;
+  --ubq-elevation-2: hsl(88, 20%, 78%) !important;
+  --ubq-elevation-3: hsl(85, 18%, 73%) !important;
+  --ubq-foreground-default: hsla(100, 40%, 20%, 0.95) !important;
+  --ubq-foreground-light: hsla(95, 35%, 30%, 0.8) !important;
+  --ubq-foreground-info: hsla(90, 30%, 40%, 0.7) !important;
+  --ubq-foreground-active: hsla(105, 45%, 18%, 0.95) !important;
+  --ubq-foreground-accent: hsl(110, 60%, 25%) !important;
+  --ubq-interactive-default: hsl(88, 20%, 82%) !important;
+  --ubq-interactive-hover: hsl(88, 24%, 75%) !important;
+  --ubq-interactive-pressed: hsl(88, 28%, 68%) !important;
+  --ubq-interactive-accent-default: hsl(135, 45%, 48%) !important;
+  --ubq-interactive-accent-hover: hsl(135, 50%, 43%) !important;
+  --ubq-interactive-accent-pressed: hsl(135, 55%, 38%) !important;
+  --ubq-input-default: hsl(90, 18%, 98%) !important;
+  --ubq-input-hover: hsl(90, 20%, 96%) !important;
+  --ubq-border-default: hsla(100, 30%, 30%, 0.15) !important;
+  --ubq-stroke-contrast-1: hsla(100, 30%, 30%, 0.1) !important;
+  --ubq-stroke-contrast-2: hsla(100, 30%, 30%, 0.3) !important;
+  --ubq-stroke-contrast-3: hsla(100, 30%, 30%, 0.5) !important;
+  --ubq-focus-default: hsl(135, 50%, 45%) !important;
+  --ubq-focus-outline: hsl(95, 20%, 97%) !important;
+  --ubq-overlay-default: hsla(100, 25%, 15%, 0.6) !important;
+  --ubq-effect-shadow: hsla(100, 25%, 15%, 0.15) !important;
+  --ubq-effect-focus: hsla(135, 50%, 45%, 0.4) !important;
+  --ubq-notice-info: hsl(200, 45%, 88%) !important;
+  --ubq-notice-warning: hsl(45, 70%, 85%) !important;
+  --ubq-notice-error: hsl(350, 65%, 88%) !important;
+  --ubq-notice-success: hsl(140, 48%, 82%) !important;
+  --ubq-interactive-progress: hsl(135, 48%, 48%) !important;
+}

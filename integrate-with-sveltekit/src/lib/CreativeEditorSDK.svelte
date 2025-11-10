@@ -1,5 +1,16 @@
 <script>
   import CreativeEditorSDK from '@cesdk/cesdk-js';
+  // import {
+  //   DesignEditorConfig
+  //   // VideoEditorConfig,
+  //   // PhotoEditorConfig
+  // } from '@cesdk/cesdk-js/configs';
+
+  // import {
+  //    FiltersAssetSource,
+  //    EffectsAssetSource,
+  //    ColorPaletteAssetSource
+  // } from '@cesdk/cesdk-js/plugins';
   import { onDestroy, onMount } from 'svelte';
 
   // reference to the container HTML element where CE.SDK will be initialized
@@ -11,7 +22,7 @@
   const defaultConfig = {
     // license: import.meta.env.VITE_CESDK_LICENSE, // replace it with your license key
     userId: 'guides-user',
-    // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
+    // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.64.0-rc.1/assets'
     // other default configs...
   };
 
@@ -19,7 +30,7 @@
   const { el, children, class: _, config, ...props } = $props();
 
   // hook to initialize the CreativeEditorSDK component
-  onMount(() => {
+  onMount(async () => {
     // integrate the configs read from props with the default ones
     const ceSDKConfig = {
       ...defaultConfig,
@@ -29,21 +40,22 @@
     try {
       // initialize the CreativeEditorSDK instance in the container element
       // using the given config
-      CreativeEditorSDK.create(container, ceSDKConfig).then(
-        async (instance) => {
-          cesdk = instance;
+      const instance = await CreativeEditorSDK.create(container, ceSDKConfig);
+      cesdk = instance;
 
-          // do something with the instance of CreativeEditor SDK (e.g., populate
-          // the asset library with default / demo asset sources)
-          await Promise.all([
-            cesdk.addDefaultAssetSources(),
-            cesdk.addDemoAssetSources({ sceneMode: 'Design', withUploadAssetSources: true })
-          ]);
+      // TODO: Uncomment when configs/plugins are released
+      // Configure the editor
+      // await cesdk.addPlugin(new DesignEditorConfig());
+      // await cesdk.addPlugin(new VideoEditorConfig());
+      // await cesdk.addPlugin(new PhotoEditorConfig());
 
-          // create a new design scene in the editor
-          await cesdk.createDesignScene();
-        }
-      );
+      // Configure the asset sources
+      // await cesdk.addPlugin(new FiltersAssetSource());
+      // await cesdk.addPlugin(new EffectsAssetSource());
+      // await cesdk.addPlugin(new ColorPaletteAssetSource());
+
+      // Create the scene
+      await cesdk.createDesignScene();
     } catch (err) {
       console.warn(`CreativeEditor SDK failed to mount.`, { err });
     }

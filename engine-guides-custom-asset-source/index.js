@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.64.0-rc.1/index.js';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
@@ -81,7 +81,7 @@ const getUnsplashUrl = async (unsplashResult) => {
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
   userId: 'guides-user'
-  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.64.0-rc.1/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
