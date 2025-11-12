@@ -241,7 +241,7 @@ export async function createOrUpdateSceneByProduct(
   // Check if we have a scene or create it
   const scene = engine.scene.get() ?? engine.scene.create('Free');
   // Disables dimming of out-of-page areas in the editor
-  engine.editor.setSetting('page/dimOutOfPageAreas', false);
+  engine.editor.setSettingBool('page/dimOutOfPageAreas', false);
   // Sets the design unit for the scene
   const designUnit = product.designUnit;
   engine.scene.setDesignUnit(designUnit);
