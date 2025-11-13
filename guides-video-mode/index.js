@@ -1,11 +1,11 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.1/index.js';
 
 window.onload = async () => {
   const config = {
     // license: import.meta.env.VITE_CESDK_LICENSE,
     userId: 'guides-user',
     theme: 'light',
-    // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/assets',
+    // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.1/assets',
     ui: {
       elements: {
         navigation: {

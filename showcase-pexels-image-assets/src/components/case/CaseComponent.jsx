@@ -72,7 +72,7 @@ const CaseComponent = () => {
       return ['pexels'];
     });
     instance.engine.asset.addSource(pexelsAssetLibrary);
-    instance.engine.editor.setSetting('page/title/show', false);
+    instance.engine.editor.setSettingBool('page/title/show', false);
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/pexels-image-assets/pexels.scene`
     );

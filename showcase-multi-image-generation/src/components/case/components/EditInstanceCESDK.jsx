@@ -24,7 +24,7 @@ export const EditInstanceCESDK = memo(
     return (
       <CESDKModal
         configure={async (instance) => {
-          instance.engine.editor.setSetting('page/title/show', false);
+          instance.engine.editor.setSettingBool('page/title/show', false);
           fillTemplate(instance.engine, sceneString, restaurantData);
         }}
         config={{

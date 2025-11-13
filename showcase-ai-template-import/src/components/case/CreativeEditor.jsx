@@ -42,7 +42,7 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
         async (instance) => {
           instance.addDefaultAssetSources();
           instance.addDemoAssetSources({ sceneMode: 'Design' });
-          instance.engine.editor.setSetting('page/title/show', false);
+          instance.engine.editor.setSettingBool('page/title/show', false);
           await instance.engine.scene.loadFromArchiveURL(sceneArchiveUrl);
           await addGoogleFontsAssetLibrary(instance.engine);
           cesdk = instance;
