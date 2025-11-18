@@ -13,7 +13,7 @@ export default {
       editorConfig: {
         // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your actual CE.SDK license key
         userId: 'guides-user',
-        // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/assets'
+        // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.64.0-rc.2/assets'
       }
     };
   }
