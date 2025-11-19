@@ -1,16 +1,16 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/index.js';
+import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.64.0-rc.3/index.js';
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
   userId: 'guides-user'
-  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.64.0-rc.3/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
   document.getElementById('cesdk_container').append(engine.element);
 
   const scene = engine.scene.create();
-  engine.editor.setSettingBool('page/dimOutOfPageAreas', false);
+  engine.editor.setSetting('page/dimOutOfPageAreas', false);
 
   const graphic = engine.block.create('graphic');
   const imageFill = engine.block.createFill('image');

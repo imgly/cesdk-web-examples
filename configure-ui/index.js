@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.64.0-rc.3/index.js';
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
@@ -76,7 +76,7 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Add twitter-profile format
   instance.engine.asset.addAssetToSource('myPageFormats', {
     id: 'twitter-profile',
-    label: { en: 'Twitter Profile' },
+    label: { en: 'X Profile' },
     meta: {
       vectorPath: 'M10 10 H390 V390 H10 Z'
     },

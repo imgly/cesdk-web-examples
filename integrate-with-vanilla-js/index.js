@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.64.0-rc.3/index.js';
 
 // Expose CE.SDK globally
 window.CreativeEditorSDK = CreativeEditorSDK;
@@ -6,7 +6,7 @@ window.CreativeEditorSDK = CreativeEditorSDK;
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE, // Replace with a valid license key
   userId: 'guides-user'
-  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/assets'
+  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.64.0-rc.3/assets'
 };
 
 // Initialize CE.SDK

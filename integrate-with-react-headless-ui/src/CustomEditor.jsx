@@ -10,12 +10,13 @@ export default function CustomEditor() {
   const imageBlockIdRef = useRef(null);
 
   useEffect(() => {
-    // your CE.SDK configurations
-    const config = {
-      // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your actual CE.SDK license key
-      userId: 'guides-user'
-      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
-    };
+    const initEngine = async () => {
+      if (!canvasRef.current) return;
+
+      const config = {
+        userId: 'guides-user',
+        // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.64.0-rc.3/assets'
+      };
 
     // initialize CreativeEngine in headless mode
     CreativeEngine.init(config).then((engine) => {
@@ -60,6 +61,9 @@ export default function CustomEditor() {
         engine.scene.zoomToBlock(page);
       }
     });
+    };
+
+    initEngine();
   }, []);
 
   const changeOpacity = useCallback(() => {

@@ -1,4 +1,4 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/index.js';
+import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.64.0-rc.3/index.js';
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
