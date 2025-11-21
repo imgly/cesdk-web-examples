@@ -76,10 +76,8 @@ const CaseComponent = () => {
         ({ name }) => name === (modeContext?.sceneMode ?? 'Design')
       );
 
-      await currentMode.initialize(
-        instance,
-        modeContext,
-      );
+
+      await currentMode.initialize(instance, modeContext, createMiddlewareFunc);
     },
     [modeContext]
   );
