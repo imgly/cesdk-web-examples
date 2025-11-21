@@ -75,9 +75,18 @@ export const createAIProviders = (sceneMode = 'Design') => {
         {
           name: 'NanoBanana',
           label: 'Google',
-          selected: true,
+          selected: false,
           provider: (middleware) =>
             FalAiImage.NanoBanana({
+              proxyUrl: FAL_AI_PROXY_URL,
+            })
+        },
+        {
+          name: 'NanoBanana Pro',
+          label: 'Google',
+          selected: true,
+          provider: (middleware) =>
+            FalAiImage.NanoBananaPro({
               proxyUrl: FAL_AI_PROXY_URL,
             })
         },
@@ -231,9 +240,18 @@ export const createAIProviders = (sceneMode = 'Design') => {
         {
           name: 'NanoBanana Edit',
           label: 'Google',
-          selected: true,
+          selected: false,
           provider: (middleware) =>
             FalAiImage.NanoBananaEdit({
+              proxyUrl: FAL_AI_PROXY_URL,
+            })
+        },
+        {
+          name: 'NanoBanana Pro Edit',
+          label: 'Google',
+          selected: true,
+          provider: (middleware) =>
+            FalAiImage.NanoBananaProEdit({
               proxyUrl: FAL_AI_PROXY_URL,
             })
         },
