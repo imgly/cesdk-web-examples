@@ -18,6 +18,10 @@ const EditTemplateCESDK = memo(
           } else {
             await instance.engine.scene.loadFromURL(sceneUrl);
           }
+          // Zoom auto-fit to page
+          instance.actions.run('zoom.toPage', {
+            autoFit: true
+          });
         }}
         config={{
           theme: 'dark',

@@ -1,0 +1,32 @@
+{
+  "name": "openai-apps-minimal-nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "secrets": "bash scripts/setup-secrets.sh",
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "test": "exit 0",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
+    "ci": "exit 0"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "dev",
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "mcp-handler": "^1.0.2",
+    "next": "15.5.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

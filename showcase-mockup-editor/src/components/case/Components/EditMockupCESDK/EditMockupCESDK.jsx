@@ -17,6 +17,10 @@ const EditMockupCESDK = ({
         } else {
           await instance.engine.scene.loadFromUrl(sceneUrl);
         }
+        // Zoom auto-fit to page
+        instance.actions.run('zoom.toPage', {
+          autoFit: true
+        });
       }}
       config={{
         license: process.env.NEXT_PUBLIC_LICENSE,

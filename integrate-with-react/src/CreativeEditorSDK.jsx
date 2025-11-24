@@ -2,21 +2,38 @@ import './index.css';
 
 import CreativeEditor from '@cesdk/cesdk-js/react';
 
+// import {
+//   DesignEditorConfig,
+//   // VideoEditorConfig,
+//   // PhotoEditorConfig
+// } from '@cesdk/cesdk-js/configs';
+
+// import {
+//   FiltersAssetSource,
+//   EffectsAssetSource,
+//   ColorPaletteAssetSource
+// } from '@cesdk/cesdk-js/plugins';
+
 const config = {
-  // license: 'YOUR_CESDK_LICENSE_KEY',
-  userId: 'guides-user'
+  userId: 'guides-user',
+  // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`,
+  // When using local packages, load assets from the dev server
+  ...(import.meta.env.CESDK_USE_LOCAL && { baseURL: '/assets/' })
 };
 
 const init = async (cesdk) => {
-  // Do something with the instance of CreativeEditor SDK, for example:
-  // Populate the asset library with default / demo asset sources.
-  await Promise.all([
-    cesdk.addDefaultAssetSources(),
-    cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    })
-  ]);
+  // TODO: Uncomment when configs/plugins are released
+  // Configure the editor
+  // await cesdk.addPlugin(new DesignEditorConfig());
+  // await cesdk.addPlugin(new VideoEditorConfig());
+  // await cesdk.addPlugin(new PhotoEditorConfig());
+
+  // Configure the asset sources
+  // await cesdk.addPlugin(new FiltersAssetSource());
+  // await cesdk.addPlugin(new EffectsAssetSource());
+  // await cesdk.addPlugin(new ColorPaletteAssetSource());
+
+  // Create the scene
   await cesdk.createDesignScene();
 };
 

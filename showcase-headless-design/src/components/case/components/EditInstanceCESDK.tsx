@@ -35,6 +35,10 @@ export const EditInstanceCESDK = memo(
           await instance.engine.scene.loadFromString(
             asset.sceneString as string
           );
+          // Zoom auto-fit to page
+          instance.actions.run('zoom.toPage', {
+            autoFit: true
+          });
         }}
         config={{
           license: process.env.NEXT_PUBLIC_LICENSE,

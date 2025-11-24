@@ -8,6 +8,10 @@ export const EditTemplateCESDK = memo(
         configure={async (instance) => {
           instance.engine.editor.setSetting('page/title/show', false);
           await instance.engine.scene.loadFromString(sceneString);
+          // Zoom auto-fit to page
+          instance.actions.run('zoom.toPage', {
+            autoFit: true
+          });
           instance.engine.variable.setString('Name', 'Restaurant Name');
           instance.engine.variable.setString('$$', '$$');
           instance.engine.variable.setString('Count', '100');

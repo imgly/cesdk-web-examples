@@ -4,7 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "dev": "ng serve",
+    "dev:local": "CESDK_USE_LOCAL=true ng serve",
     "build": "ng build",
+    "build:local": "CESDK_USE_LOCAL=true ng build",
     "watch": "ng build --watch --configuration development",
     "test": "exit 0",
     "check:syntax": "tsc --noEmit",
@@ -16,7 +19,10 @@
     "fix:all": "npm run fix:format && npm run fix:lint",
     "prebuild": "npm run check:all",
     "qa": "npm run build && npm run test",
-    "ci": "npm run qa"
+    "qa:local": "npm run build:local && npm run test",
+    "ci": "npm run qa:local",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs"
   },
   "private": true,
   "dependencies": {
@@ -27,7 +33,7 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
-    "@cesdk/cesdk-js": "next",
+    "@cesdk/cesdk-js": "latest",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

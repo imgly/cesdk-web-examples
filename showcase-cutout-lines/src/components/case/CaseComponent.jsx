@@ -62,6 +62,10 @@ const CaseComponent = () => {
     await instance.engine.scene.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/cutout-lines/example.scene`
     );
+    // Zoom auto-fit to page
+    instance.actions.run('zoom.toPage', {
+      autoFit: true
+    });
   });
 
   return (

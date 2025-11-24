@@ -37,7 +37,6 @@ const CaseComponent = () => {
     []
   );
   const configure = useConfigure(async (instance) => {
-    
     instance.i18n.setTranslations({
       en: {
         'libraries.ly.img.audio.ly.img.audio.label': 'Soundstripe',
@@ -96,6 +95,10 @@ const CaseComponent = () => {
         if (!asset.meta || !asset.meta.uri)
           throw new Error('Asset does not have a uri');
         await engine.scene.loadFromURL(asset.meta.uri);
+        // Zoom auto-fit to page
+        instance.actions.run('zoom.toPage', {
+          autoFit: true
+        });
         persistSelectedTemplateToURL(asset.id);
       }
     );

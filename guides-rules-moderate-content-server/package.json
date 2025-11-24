@@ -1,0 +1,31 @@
+{
+  "name": "guides-rules-moderate-content-server",
+  "version": "1.0.0",
+  "description": "Content Moderation Server Guide - Demonstrates automated content moderation for images and text in CE.SDK Node.js",
+  "main": "index.js",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "check:format": "prettier --check \"**/*.{js,json}\"",
+    "check:all": "npm run check:format",
+    "fix:format": "prettier --write \"**/*.{js,json}\"",
+    "fix:all": "npm run fix:format"
+  },
+  "keywords": [
+    "cesdk",
+    "content-moderation",
+    "validation",
+    "nodejs"
+  ],
+  "dependencies": {
+    "@cesdk/node": "latest"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "guides-text-language-support-browser",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "vite --mode local",
+    "build": "vite build",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:lint": "eslint .",
+    "postinstall": "node scripts/generate-empty-tsconfig-local.mjs",
+    "tsconfig:local": "node ../../../scripts/generate-tsconfig-local.mjs --project @cesdk/cesdk-js"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "latest"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.50.0",
+    "playwright": "^1.49.1",
+    "prettier": "^3.0.0",
+    "sharp": "^0.33.5",
+    "typescript": "^5.0.0",
+    "vite": "^6.0.3"
+  }
+}

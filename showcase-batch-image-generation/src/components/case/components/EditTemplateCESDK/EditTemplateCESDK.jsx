@@ -12,6 +12,10 @@ const EditTemplateCESDK = memo(
           instance.engine.variable.setString('LastName', 'Lastname');
           instance.engine.variable.setString('Department', 'Department');
           await instance.engine.scene.loadFromString(sceneString);
+          // Zoom auto-fit to page
+          instance.actions.run('zoom.toPage', {
+            autoFit: true
+          });
         }}
         config={{
           license: process.env.NEXT_PUBLIC_LICENSE,

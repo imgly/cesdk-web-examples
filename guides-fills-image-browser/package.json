@@ -5,10 +5,14 @@
   "scripts": {
     "secrets": "bash scripts/setup-secrets.sh",
     "dev": "vite",
+    "dev:local": "CESDK_USE_LOCAL=true vite",
     "prebuild": "npm run check:all",
     "build": "vite build",
+    "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
-    "check:syntax": "tsc --noEmit",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
     "check:lint": "eslint \"**/*.{ts,js}\"",
     "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
@@ -21,10 +25,12 @@
     "test:e2e": "exit 0",
     "test:all": "npm run test:unit && npm run test:integration && npm run test:component && npm run test:e2e",
     "qa": "npm run build && npm run test:all",
+    "qa:local": "npm run build:local && npm run test:all",
+    "ci": "npm run qa:local",
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "next"
+    "@cesdk/cesdk-js": "latest"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

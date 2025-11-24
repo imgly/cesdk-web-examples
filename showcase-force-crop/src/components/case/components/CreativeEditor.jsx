@@ -296,6 +296,11 @@ async function setupPhotoEditingScene(instance, image) {
   engine.editor.setSetting('page/moveChildrenWhenCroppingFill', true);
   engine.block.setClipped(page, true);
 
+  // Zoom auto-fit to page
+  instance.actions.run('zoom.toPage', {
+    autoFit: true
+  });
+
   // If nothing is selected: select page by listening to selection changes
   const unsubscribeSelectionChange = engine.block.onSelectionChanged(() => {
     const selection = engine.block.findAllSelected();
