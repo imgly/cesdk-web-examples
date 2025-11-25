@@ -37,6 +37,10 @@ const CaseComponent = () => {
       instance.feature.enable('ly.img.placeholder', false);
       instance.feature.enable('ly.img.preview', false);
       await instance.engine.scene.createFromVideo(video.full);
+      // Zoom auto-fit to page
+      instance.actions.run('zoom.toPage', {
+        autoFit: true
+      });
     },
     [video]
   );

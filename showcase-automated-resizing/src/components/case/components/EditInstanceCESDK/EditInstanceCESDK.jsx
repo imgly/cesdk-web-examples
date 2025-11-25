@@ -12,6 +12,10 @@ const EditInstanceCESDK = memo(({ sceneString, onClose, onSave }) => {
             .filter(({ key }) => key !== 'ly.img.template')
         ]);
         await instance.engine.scene.loadFromString(sceneString);
+        // Zoom auto-fit to page
+        instance.actions.run('zoom.toPage', {
+          autoFit: true
+        });
       }}
       config={{
         callbacks: {
