@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/index.js';
+import CreativeEngine from '@cesdk/engine';
 
 const blob = await fetch('https://img.ly/static/ubq_samples/sample_4.jpg').then(
   (response) => response.blob()
@@ -7,8 +7,11 @@ const objectURL = URL.createObjectURL(blob);
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
-  userId: 'guides-user'
-  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
+  userId: 'guides-user',
+  // Use local assets when developing with local packages
+  ...(import.meta.env.CESDK_USE_LOCAL && {
+    baseURL: '/assets/'
+  })
 };
 
 CreativeEngine.init(config).then(async (engine) => {

@@ -25,7 +25,7 @@ onMounted(async () => {
   const config = {
     // license: import.meta.env.VITE_CESDK_LICENSE,
     userId: 'guides-user',
-    // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
+    // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.65.0-rc.1/assets'
   }
 
   // initialize CreativeEngine in headless mode
@@ -107,7 +107,9 @@ function changeOpacity() {
   background-color: #ffffff;
   color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s, box-shadow 0.25s;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   width: 150px;
 }

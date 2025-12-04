@@ -66,6 +66,7 @@ const photoMode = {
     }
   },
   initialize: async (instance, modeContext, createMiddleware) => {
+    
     instance.i18n.setTranslations({
       en: {
         'component.fileOperation.exportImage': 'Export Image',
@@ -184,15 +185,10 @@ async function setupPhotoAI(instance, modeContext, createMiddleware) {
     })
   );
 
-  const result = await initializeProviders(
-    'image',
-    providers,
-    {
-      cesdk: instance,
-      engine: instance.engine
-    },
-    {}
-  );
+  const result = await initializeProviders('image', providers, {
+    cesdk: instance,
+    engine: instance.engine
+  });
 
   // Setup translations
   instance.i18n.setTranslations({

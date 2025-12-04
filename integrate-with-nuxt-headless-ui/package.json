@@ -4,10 +4,12 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "build:local": "CESDK_USE_LOCAL=true nuxt build",
     "dev": "nuxt dev",
+    "dev:local": "CESDK_USE_LOCAL=true nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
+    "postinstall": "npm run tsconfig:local || true",
     "check:syntax": "echo \"TypeScript check handled by Nuxt build\"",
     "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
     "check:lint": "eslint \"pages/**/*.{ts,js,vue}\" \"components/**/*.{ts,js,vue}\" \"app.vue\" --max-warnings=0 || true",
@@ -18,10 +20,12 @@
     "prebuild": "npm run check:all",
     "test": "exit 0",
     "qa": "npm run build && npm run test",
-    "ci": "npm run qa"
+    "qa:local": "npm run build:local && npm run test",
+    "ci": "npm run qa:local",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs"
   },
   "dependencies": {
-    "@cesdk/engine": "next",
+    "@cesdk/engine": "latest",
     "nuxt": "^3.16.2",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"

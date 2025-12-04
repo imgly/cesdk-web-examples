@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:local": "CESDK_USE_LOCAL=true vite",
     "build": "vite build",
+    "build:local": "CESDK_USE_LOCAL=true vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "check:syntax": "echo \"Skipping TypeScript check due to upstream type errors\"",
@@ -18,10 +20,13 @@
     "prebuild": "npm run check:all",
     "test": "exit 0",
     "qa": "npm run build && npm run test",
-    "ci": "npm run qa"
+    "qa:local": "npm run build:local && npm run test",
+    "ci": "npm run qa:local",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs"
   },
   "dependencies": {
-    "@cesdk/engine": "next",
+    "@cesdk/engine": "latest",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -29,8 +34,8 @@
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",

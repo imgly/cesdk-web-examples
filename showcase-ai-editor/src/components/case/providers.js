@@ -20,23 +20,23 @@ export const createAIProviders = (sceneMode = 'Design') => {
       supportedModes: ['Design', 'Video'],
       providers: [
         {
-          name: 'Claude Sonnet 4.5',
+          name: 'Claude Sonnet 3.7',
           label: 'Anthropic',
           selected: true,
           provider: (middleware) =>
             Anthropic.AnthropicProvider({
               proxyUrl: ANTHROPIC_PROXY_URL,
-              model: 'claude-sonnet-4-5-20250929'
+              model: 'claude-3-7-sonnet-20250219'
             })
         },
         {
-          name: 'GPT-4.1 Nano',
+          name: 'GPT-4o mini',
           label: 'OpenAI',
           selected: true,
           provider: (middleware) =>
             OpenAIText.OpenAIProvider({
               proxyUrl: OPEN_AI_PROXY_URL,
-              model: 'gpt-4.1-nano-2025-04-14'
+              model: 'gpt-4o-mini'
             })
         }
       ]

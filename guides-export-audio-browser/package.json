@@ -2,18 +2,42 @@
   "name": "cesdk-export-audio-browser",
   "version": "1.0.0",
   "description": "CE.SDK example demonstrating audio export and caption generation",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
+    "dev:local": "CESDK_USE_LOCAL=true vite",
+    "prebuild": "npm run check:all",
     "build": "vite build",
-    "preview": "vite preview"
+    "build:local": "CESDK_USE_LOCAL=true vite build",
+    "preview": "vite preview",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
+    "check:lint": "eslint \"**/*.{ts,js}\"",
+    "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
+    "fix:format": "prettier --write \"**/*.{ts,js,json,html}\"",
+    "fix:lint": "eslint --fix \"**/*.{ts,js}\"",
+    "fix:all": "npm run fix:format && npm run fix:lint",
+    "test": "exit 0",
+    "qa": "npm run build && npm run test",
+    "qa:local": "npm run build:local && npm run test",
+    "ci": "npm run qa:local",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "next"
+    "@cesdk/cesdk-js": "latest"
   },
   "devDependencies": {
-    "vite": "^5.0.0"
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.50.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "eslint-plugin-jsdoc": "^46.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^6.0.3"
   },
   "keywords": [
     "cesdk",
