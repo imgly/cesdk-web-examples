@@ -1,0 +1,8 @@
+node_modules
+dist
+tsconfig.local.json
+output
+*.png
+*.jpg
+*.mp4
+*.pdf

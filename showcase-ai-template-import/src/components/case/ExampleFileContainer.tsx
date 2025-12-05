@@ -26,8 +26,11 @@ function ExampleFileContainer({
   selectedFileName
 }: ExampleFileContainerProps) {
   return (
-    <div className={classes.sampleImagesWrapper}>
-      <span>Compare example files:</span>
+    <div
+      className={classes.sampleImagesWrapper}
+      data-testid="ai-compare-examples-section"
+    >
+      <span data-testid="ai-compare-heading">Compare example files:</span>
 
       <div className={classes.sampleImages}>
         {files.map((file) => (
@@ -41,6 +44,7 @@ function ExampleFileContainer({
             <button
               key={file.name}
               className={classes.sampleImage}
+              data-testid="ai-compare-example"
               onClick={() => {
                 onClick(file);
               }}

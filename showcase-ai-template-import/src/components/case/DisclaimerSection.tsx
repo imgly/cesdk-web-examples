@@ -7,7 +7,10 @@ import PsdFileIcon from './icons/PsdFile.svg';
 
 function DisclaimerSection() {
   return (
-    <div className={classes.wrapper}>
+    <div
+      className={classes.wrapper}
+      data-testid="ai-disclaimer-section"
+    >
       {/* Sub Section 1 */}
       <div className={classes.subSection}>
         <div className={classes.diagram}>

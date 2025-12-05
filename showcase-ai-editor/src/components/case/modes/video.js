@@ -119,14 +119,6 @@ const videoMode = {
       );
     }
 
-    // Text to sticker
-    const text2stickerProvider = getSelectedProvider('text2sticker');
-    if (text2stickerProvider.length > 0) {
-      providerConfig.text2sticker = text2stickerProvider.map((p) =>
-        p.provider(middlewares)
-      );
-    }
-
     await instance.addPlugin(
       AiApps({
         providers: providerConfig
@@ -162,17 +154,6 @@ const videoMode = {
         sourceIds: [
           ...audioEntry.sourceIds,
           'ly.img.ai.audio-generation.history'
-        ]
-      });
-    }
-
-    // Add AI sticker history to the default sticker asset library
-    const stickerEntry = instance.ui.getAssetLibraryEntry('ly.img.sticker');
-    if (stickerEntry != null) {
-      instance.ui.updateAssetLibraryEntry('ly.img.sticker', {
-        sourceIds: [
-          ...stickerEntry.sourceIds,
-          'ly.img.ai.sticker-generation.history'
         ]
       });
     }

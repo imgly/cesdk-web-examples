@@ -1,0 +1,30 @@
+module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    project: './tsconfig.base.json'
+  },
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  plugins: ['@typescript-eslint', 'deprecation'],
+  rules: {
+    'deprecation/deprecation': 'error',
+    'no-console': 'off',
+    '@typescript-eslint/no-explicit-any': 'off'
+  },
+  env: {
+    browser: true,
+    es2020: true,
+    node: true
+  },
+  ignorePatterns: [
+    'dist/**',
+    'coverage/**',
+    'node_modules/**',
+    '*.config.js',
+    '*.config.ts',
+    'scripts/**',
+    '.eslintrc.js'
+  ]
+};

@@ -4,10 +4,10 @@
   "author": "contact@img.ly",
   "type": "module",
   "dependencies": {
-    "@cesdk/node": "next"
+    "@cesdk/node": "latest"
   },
   "scripts": {
-    "check:syntax": "tsc --noEmit",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
     "check:lint": "eslint \"**/*.{ts,js}\"",
     "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
@@ -17,14 +17,23 @@
     "prebuild": "npm run check:all",
     "test": "exit 0",
     "qa": "npm run build && npm run test",
-    "ci": "npm run qa",
-    "build": "true"
+    "qa:local": "npm run build:local && npm run test",
+    "ci": "npm run qa:local",
+    "build": "true",
+    "build:local": "CESDK_USE_LOCAL=true vite build",
+    "dev": "node index.js",
+    "dev:local": "CESDK_USE_LOCAL=true vite-node index.js",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
     "eslint": "^8.50.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "prettier": "^3.0.0"
+    "patch-package": "^8.0.0",
+    "prettier": "^3.0.0",
+    "vite": "^6.0.3",
+    "vite-node": "^2.0.0"
   }
 }

@@ -187,35 +187,6 @@ function setupDock(instance: CreativeEditorSDK) {
       });
     }
   );
-  // create a custom button for the sticker asset library entry
-  instance.ui.registerComponent(
-    'ly.img.sticker.dock',
-    ({ builder: { Button } }) => {
-      const stickerLibraryPayload = {
-        entries: ['ly.img.sticker'],
-        title: 'libraries.ly.img.sticker.label'
-      };
-      const isStickerAssetLibraryOpen = instance.ui.isPanelOpen(
-        '//ly.img.panel/assetLibrary',
-        { payload: stickerLibraryPayload }
-      );
-      Button('open-sticker', {
-        label: 'Sticker',
-        icon: '@imgly/Sticker',
-        isSelected: isStickerAssetLibraryOpen,
-        onClick: () => {
-          if (isStickerAssetLibraryOpen) {
-            instance.ui.closePanel('//ly.img.panel/assetLibrary');
-          } else {
-            closeAllPanels(instance);
-            instance.ui.openPanel('//ly.img.panel/assetLibrary', {
-              payload: stickerLibraryPayload
-            });
-          }
-        }
-      });
-    }
-  );
   // create a custom button for the apps asset library entry
   instance.ui.registerComponent(
     'ly.img.apps.dock',
@@ -330,7 +301,6 @@ function setupDock(instance: CreativeEditorSDK) {
     // This way we can ensure to close the other panels when opening the text asset library
     'ly.img.text.dock',
     'ly.img.vectorpath.dock',
-    'ly.img.sticker.dock',
     'ly.img.spacer',
     'ly.img.apps.dock'
   ]);

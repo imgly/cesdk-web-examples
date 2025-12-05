@@ -60,8 +60,8 @@ export default {
   - Sets canvas menu order for AI text and image options
   - Disables preview and placeholder features
   - Loads design scene archive
-  - Configures all AI providers (text2text, text2image, image2image, text2sticker)
-  - Adds AI generation history to asset libraries (image, sticker)
+  - Configures all AI providers (text2text, text2image, image2image)
+  - Adds AI generation history to asset libraries (image)
 
 #### 2. Video Mode (`modes/video.js`)
 - **Name**: 'Video'
@@ -84,7 +84,7 @@ export default {
 - **Initialization**:
   - Adds default and demo asset sources
   - Initializes photo editing scene with Unsplash image
-  - Sets up custom dock with crop, adjustment, filter, text, shapes, sticker, and apps buttons
+  - Sets up custom dock with crop, adjustment, filter, text, shapes, and apps buttons
   - Configures inspector bar to hide/show based on selection
   - Loads background removal app from Apps.json
   - Sets up photo-specific UI translations and interactions
@@ -127,7 +127,6 @@ export default {
 - **image2video**: Video generation from images (Video mode only)
 - **text2speech**: Speech synthesis (Video mode only)
 - **text2sound**: Sound effect generation (Video mode only)
-- **text2sticker**: Sticker generation from text
 
 #### Provider Configuration
 - Providers are created by `createAIProviders()` function
@@ -140,7 +139,6 @@ export default {
 #### Common Features (Both Modes)
 - AI-powered text generation and editing
 - AI image generation and transformation
-- AI sticker generation
 - Asset library integration with generation history
 - Export functionality
 - Provider selection and configuration
@@ -178,7 +176,7 @@ The Photo mode represents a complete integration of the photo-editor-ui showcase
 
 #### Photo Mode Features
 - **Scene Creation**: Dynamically creates photo editing scene from image URL instead of loading archives
-- **Custom Dock**: Crop, Adjustments, Filters, Text, Shapes, Stickers, and Apps buttons
+- **Custom Dock**: Crop, Adjustments, Filters, Text, Shapes, and Apps buttons
 - **Background Removal**: Integrated `@imgly/background-removal` library via Apps system
 - **Smart Inspector**: Context-aware inspector bar that shows/hides panels based on selection
 - **Crop Integration**: Custom crop button that enters crop mode and opens crop panel

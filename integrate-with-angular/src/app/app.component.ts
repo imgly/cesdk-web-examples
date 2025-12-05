@@ -1,5 +1,16 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import CreativeEditorSDK, { Configuration } from '@cesdk/cesdk-js';
+// import {
+//   DesignEditorConfig,
+//   // VideoEditorConfig,
+//   // PhotoEditorConfig
+// } from '@cesdk/cesdk-js/configs';
+
+// import {
+//   FiltersAssetSource,
+//   EffectsAssetSource,
+//   ColorPaletteAssetSource
+// } from '@cesdk/cesdk-js/plugins';
 
 @Component({
   selector: 'app-root',
@@ -11,22 +22,32 @@ export class AppComponent implements AfterViewInit {
 
   title = 'Integrate CreativeEditor SDK with Angular';
 
-  ngAfterViewInit(): void {
+  async ngAfterViewInit() {
+    if (!this.containerRef?.nativeElement) return;
+
     const config: Configuration = {
-      // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your actual CE.SDK license key
+      // license: 'YOUR_CESDK_LICENSE_KEY',
       userId: 'guides-user'
-      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/assets'
+      // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`
     };
 
-    CreativeEditorSDK.create(this.containerRef.nativeElement, config).then(
-      async (instance: any) => {
-        instance.addDefaultAssetSources();
-        instance.addDemoAssetSources({
-          sceneMode: 'Design',
-          withUploadAssetSources: true
-        });
-        await instance.createDesignScene();
-      }
+    const cesdk = await CreativeEditorSDK.create(
+      this.containerRef.nativeElement,
+      config
     );
+
+    // TODO: Uncomment when configs/plugins are released
+    // Configure the editor
+    // await cesdk.addPlugin(new DesignEditorConfig());
+    // await cesdk.addPlugin(new VideoEditorConfig());
+    // await cesdk.addPlugin(new PhotoEditorConfig());
+
+    // Configure the asset sources
+    // await cesdk.addPlugin(new FiltersAssetSource());
+    // await cesdk.addPlugin(new EffectsAssetSource());
+    // await cesdk.addPlugin(new ColorPaletteAssetSource());
+
+    // Create the scene
+    await cesdk.createDesignScene();
   }
 }

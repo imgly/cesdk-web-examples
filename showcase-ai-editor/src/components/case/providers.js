@@ -1,7 +1,6 @@
 import Elevenlabs from '@imgly/plugin-ai-audio-generation-web/elevenlabs';
 import FalAiImage from '@imgly/plugin-ai-image-generation-web/fal-ai';
 import OpenAiImage from '@imgly/plugin-ai-image-generation-web/open-ai';
-import FalAiSticker from '@imgly/plugin-ai-sticker-generation-web/fal-ai';
 import Anthropic from '@imgly/plugin-ai-text-generation-web/anthropic';
 import OpenAIText from '@imgly/plugin-ai-text-generation-web/open-ai';
 import FalAiVideo from '@imgly/plugin-ai-video-generation-web/fal-ai';
@@ -105,21 +104,6 @@ export const createAIProviders = (sceneMode = 'Design') => {
           selected: true,
           provider: (middleware) =>
             FalAiImage.IdeogramV3({
-              proxyUrl: FAL_AI_PROXY_URL,
-            })
-        }
-      ]
-    },
-    text2sticker: {
-      name: 'Text to Sticker',
-      supportedModes: ['Design', 'Video'],
-      providers: [
-        {
-          name: 'Recraft 20B',
-          label: 'Recraft',
-          selected: true,
-          provider: (middleware) =>
-            FalAiSticker.Recraft20b({
               proxyUrl: FAL_AI_PROXY_URL,
             })
         }

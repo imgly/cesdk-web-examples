@@ -1,0 +1,32 @@
+{
+  "name": "guides-rules-lock-content-server-js",
+  "version": "1.0.0",
+  "description": "Lock Content Server Guide - Demonstrates how to use scopes to lock design elements in CE.SDK Node.js",
+  "main": "index.js",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "check:format": "prettier --check \"**/*.{js,json}\"",
+    "check:all": "npm run check:format",
+    "fix:format": "prettier --write \"**/*.{js,json}\"",
+    "fix:all": "npm run fix:format"
+  },
+  "keywords": [
+    "cesdk",
+    "lock-content",
+    "scopes",
+    "permissions",
+    "nodejs"
+  ],
+  "dependencies": {
+    "@cesdk/node": "latest"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
