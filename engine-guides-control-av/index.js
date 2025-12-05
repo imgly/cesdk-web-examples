@@ -1,9 +1,12 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/$UBQ_VERSION$/index.js';
+import CreativeEngine from '@cesdk/engine';
 
 const config = {
   license: 'insert-your-license',
   userId: 'guides-user',
-  baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/$UBQ_VERSION$/assets'
+  // Use local assets when developing with local packages
+  ...(import.meta.env.CESDK_USE_LOCAL && {
+    baseURL: '/assets/'
+  }),
 };
 
 async function controlAudioVideo() {

@@ -1,14 +1,28 @@
-import { defineConfig, loadEnv } from 'vite';
 import { copyFileSync, existsSync, mkdirSync, readdirSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { defineConfig, type ResolvedConfig } from 'vite';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// eslint-disable-next-line no-empty-pattern
-export default defineConfig(({}) => {
-  const buildConfig = {
+// Conditionally import local dev plugin when CESDK_USE_LOCAL is set
+// This allows the example to work in both monorepo and standalone contexts
+export default defineConfig(async () => {
+  const plugins = [];
+
+  if (process.env.CESDK_USE_LOCAL) {
+    try {
+      const { cesdkLocal } = await import(
+        '../shared/vite-config-cesdk-local.js'
+      );
+      plugins.push(cesdkLocal());
+    } catch {
+      // Silently fail in standalone repos where shared folder doesn't exist
+    }
+  }
+
+  return {
     server: {
       port: 3000,
       open: true
@@ -22,19 +36,20 @@ export default defineConfig(({}) => {
       exclude: ['@imgly/plugin-print-ready-pdfs-web']
     },
     plugins: [
+      ...plugins,
       (() => {
-        let resolvedConfig: any = null;
+        let resolvedConfig: ResolvedConfig | null = null;
 
         return {
           name: 'copy-plugin-assets',
-          apply: 'build',
-          configResolved(config) {
+          apply: 'build' as const,
+          configResolved(config: ResolvedConfig) {
             resolvedConfig = config;
           },
           async closeBundle() {
             try {
               // Find the plugin dist folder (works with both npm and pnpm structures)
-              let pluginPath = null;
+              let pluginPath: string | null = null;
 
               // Try npm/yarn structure first
               const npmPath = join(
@@ -67,6 +82,10 @@ export default defineConfig(({}) => {
                 );
               }
 
+              if (!resolvedConfig) {
+                throw new Error('Vite config not resolved');
+              }
+
               // Use the resolved config which includes CLI flags like --outDir
               const outDir = resolvedConfig.build.outDir;
               const assetsDir = resolvedConfig.build.assetsDir;
@@ -80,8 +99,11 @@ export default defineConfig(({}) => {
                 'sRGB_IEC61966-2-1.icc'
               ];
 
+              // At this point pluginPath is guaranteed to be non-null due to the check above
+              const resolvedPluginPath = pluginPath;
+
               files.forEach((file) => {
-                const sourcePath = join(pluginPath, file);
+                const sourcePath = join(resolvedPluginPath, file);
                 const destPath = join(targetPath, file);
 
                 if (existsSync(sourcePath)) {
@@ -99,6 +121,4 @@ export default defineConfig(({}) => {
       })()
     ]
   };
-
-  return buildConfig;
 });

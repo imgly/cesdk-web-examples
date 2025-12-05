@@ -17,7 +17,8 @@
     "deploy": "codesandbox deploy",
     "test:e2e": "cypress open",
     "qa": "node scripts/run-qa-all.js",
-    "ci": "node scripts/run-qa-all.js",
+    "qa:local": "node scripts/run-qa-all.js --local",
+    "ci": "node scripts/run-ci-all.js",
     "fix:all": "node scripts/run-fix-all.js"
   },
   "author": "IMG.LY GmbH <contact@img.ly>",
