@@ -168,13 +168,12 @@ export async function switchProductView(
   }
 
   // Always zoom to fit the mockup image within the view
-  await engine.scene.zoomToBlock(
-    mockupImageBlock,
-    ZOOM_PADDING.left,
-    ZOOM_PADDING.top,
-    ZOOM_PADDING.right,
-    ZOOM_PADDING.bottom
-  );
+  // Using zoom.toBlock action with autoFit enables automatic zoom adjustment when viewport resizes
+  await instance.actions.run('zoom.toBlock', mockupImageBlock, {
+    padding: ZOOM_PADDING,
+    animate: false,
+    autoFit: true
+  });
 }
 
 /**

@@ -46,7 +46,7 @@ const CaseComponent = () => {
         ui: { locations: 'canvasMenu' }
       })
     );
-    await instance.engine.scene.loadFromArchiveURL(
+    await instance.loadFromArchiveURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/vectorizer-plugin/scene.archive`
     );
     const engine = instance.engine;
