@@ -15,7 +15,7 @@ export class AppComponent implements AfterViewInit {
     const config: Configuration = {
       // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your actual CE.SDK license key
       userId: 'guides-user'
-      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/assets'
+      // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`
     };
 
     CreativeEditorSDK.create(this.containerRef.nativeElement, config).then(

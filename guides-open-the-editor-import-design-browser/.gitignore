@@ -1,0 +1,14 @@
+# Environment variables
+.env.local
+.env
+
+# Build output
+dist/
+node_modules/
+
+# Editor
+.vscode/
+.idea/
+
+# TypeScript
+tsconfig.local.json

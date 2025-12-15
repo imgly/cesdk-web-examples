@@ -4,3 +4,4 @@ node_modules/
 *.min.js
 tests/
 .next/
+public/

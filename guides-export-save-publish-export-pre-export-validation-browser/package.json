@@ -1,0 +1,34 @@
+{
+  "name": "guides-export-save-publish-export-pre-export-validation-browser",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "CESDK_USE_LOCAL=true vite",
+    "build": "vite build",
+    "build:local": "CESDK_USE_LOCAL=true vite build",
+    "preview": "vite preview",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:lint": "eslint *.ts",
+    "capture:hero": "node scripts/capture-hero.mjs"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.4.0",
+    "@typescript-eslint/parser": "^8.4.0",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "playwright": "^1.48.0",
+    "prettier": "^3.3.3",
+    "sharp": "^0.33.5",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2"
+  }
+}
