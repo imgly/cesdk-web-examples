@@ -9,6 +9,7 @@ const config = {
   // Get a free trial license at https://img.ly/forms/free-trial to remove it.
   // Uncomment the line below and add your license key:
   // license: 'your-license-key-here',
+  // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`,
 };
 
 async function init() {

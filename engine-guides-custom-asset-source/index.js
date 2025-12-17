@@ -1,4 +1,4 @@
-import CreativeEngine from 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/index.js';
+import CreativeEngine from '@cesdk/engine';
 
 import * as unsplash from './vendor/unsplash-js.esm.js';
 
@@ -80,8 +80,11 @@ const getUnsplashUrl = async (unsplashResult) => {
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
-  userId: 'guides-user'
-  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
+  userId: 'guides-user',
+  // Use local assets when developing with local packages
+  ...(import.meta.env.CESDK_USE_LOCAL && {
+    baseURL: '/assets/'
+  })
 };
 
 CreativeEngine.init(config).then(async (engine) => {
