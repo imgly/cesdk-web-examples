@@ -1,0 +1,167 @@
+---
+titleMeta: Move Videos
+title: Move Videos
+description: Position video elements precisely using absolute or percentage-based coordinates for exact placement and responsive layouts.
+status: published
+---
+
+<Intro>
+  Position video blocks programmatically using coordinates, percentage-based modes, and group movements for precise control over video layouts.
+</Intro>
+
+![Video positioning demonstration](./assets/browser.hero.webp)
+
+<div>
+  <TutorialHeader
+    readingTimeMinutes="10"
+    downloadLink="https://github.com/imgly/cesdk-web-examples/archive/refs/heads/main.zip"
+    stackBlitzLink="https://stackblitz.com/~/github.com/imgly/cesdk-web-examples/tree/main/guides-create-video-transform-move-browser"
+    githubLink="https://github.com/imgly/cesdk-web-examples/tree/main/guides-create-video-transform-move-browser"
+    liveExampleUrl="/examples/guides-create-video-transform-move-browser/"
+  />
+</div>
+
+Video positioning in CE.SDK allows precise control over where video blocks appear on the canvas. You can use absolute pixel coordinates for exact placement or percentage-based positioning for responsive layouts.
+
+```typescript file=@cesdk_web_examples/guides-create-video-transform-move-browser/browser.ts reference-only
+
+```
+
+This guide covers absolute and percentage positioning modes, programmatic position control, group positioning, relative movements, and positioning constraints for template protection.
+
+## Positioning Modes
+
+CE.SDK supports two primary positioning modes that determine how position values are interpreted.
+
+### Absolute Positioning
+
+Absolute positioning uses pixel values relative to the parent block. The coordinate system origin is at the top-left corner (0,0).
+
+```typescript highlight=highlight-absolute-positioning
+
+```
+
+Use absolute positioning when you need pixel-perfect layouts or fixed video positions independent of parent dimensions.
+
+### Percentage Positioning
+
+Percentage positioning uses values between 0 and 1, where 0 represents the start edge, 0.5 the center, and 1 the end edge relative to the parent container.
+
+```typescript highlight=highlight-percentage-positioning
+
+```
+
+Switch to percentage mode using `setPositionXMode()` and `setPositionYMode()`. Percentage positioning creates responsive layouts that adapt to different container sizes.
+
+## Programmatic Positioning
+
+### Basic Position Control
+
+Set and read position values programmatically using the block API.
+
+```typescript highlight=highlight-get-position
+
+```
+
+Position values are interpreted based on the current positioning mode. Read the mode using `getPositionXMode()` and `getPositionYMode()` before setting position values.
+
+### Relative Movement
+
+Move blocks relative to their current position by reading the current value and adding an offset.
+
+```typescript highlight=highlight-relative-movement
+
+```
+
+Relative movement (nudging) is useful for implementing keyboard shortcuts, fine adjustments, or incremental positioning tools in custom UIs.
+
+## Group Positioning
+
+Group multiple video blocks to move them together while maintaining their relative positions.
+
+```typescript highlight=highlight-group-positioning
+
+```
+
+When you reposition a group, all child blocks maintain their relative spacing and alignment. This preserves the internal layout structure of multi-element compositions.
+
+## Positioning Constraints
+
+Control positioning permissions using scopes and transform locks to protect template designs.
+
+### Scope-Based Restrictions
+
+Disable the `layer/move` scope to prevent UI drag-and-drop positioning while allowing programmatic control.
+
+```typescript highlight=highlight-scope-constraints
+
+```
+
+Scope restrictions apply only to UI interactions. Programmatic positioning through the API always works regardless of scope settings.
+
+### Transform Locking
+
+Lock all transform operations (position, rotation, scale, flip) completely.
+
+```typescript highlight=highlight-transform-locked
+
+```
+
+When transform locking is enabled, both UI and programmatic positioning attempts are ignored. Use transform locks to protect critical template elements from any modifications.
+
+## Coordinate System
+
+All positions are relative to the parent block's coordinate space, with the origin at the top-left corner.
+
+```typescript highlight=highlight-coordinate-system
+
+```
+
+When working with nested structures, position values are always interpreted relative to the immediate parent block, not the root scene or page.
+
+## UI-Based Positioning
+
+Users can position videos interactively by dragging them in the canvas. The built-in editor provides visual feedback with alignment guides and snapping to help achieve precise positioning.
+
+Programmatic positioning and UI-based positioning work together - changes made through the API are immediately reflected in the editor interface, and vice versa.
+
+## API Reference
+
+### Position Methods
+
+- `setPositionX(id, value)` - Set X position
+- `setPositionY(id, value)` - Set Y position  
+- `getPositionX(id)` - Get X position
+- `getPositionY(id)` - Get Y position
+
+### Position Mode Methods
+
+- `setPositionXMode(id, mode)` - Set X positioning mode ('Absolute', 'Percent', 'Auto')
+- `setPositionYMode(id, mode)` - Set Y positioning mode ('Absolute', 'Percent', 'Auto')
+- `getPositionXMode(id)` - Get X positioning mode
+- `getPositionYMode(id)` - Get Y positioning mode
+
+### Group Methods
+
+- `group(ids[])` - Group blocks together
+- `ungroup(id)` - Ungroup blocks
+- `isGroupable(ids[])` - Check if blocks can be grouped
+
+### Constraint Methods
+
+- `setScopeEnabled(id, scope, enabled)` - Enable/disable positioning permissions
+- `setTransformLocked(id, locked)` - Lock/unlock all transform operations
+
+## Best Practices
+
+Choose absolute positioning for pixel-perfect layouts where exact placement is critical. Use percentage positioning for responsive designs that adapt to different screen sizes or parent containers.
+
+When working with groups, position the group instead of individual children to maintain relative spacing. For template protection, combine scope restrictions (to prevent UI modifications) with transform locks (to prevent all changes).
+
+## Next Steps
+
+<Link id="1e0de3">Scale Videos</Link> — Resize videos while maintaining proportions
+
+<Link id="4f688b">Trim Videos</Link> — Control which portion of video plays
+
+<Link id="23cf92">Rotate Videos</Link> — Adjust video orientation and angles

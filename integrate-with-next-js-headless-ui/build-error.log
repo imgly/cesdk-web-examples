@@ -1,0 +1,57 @@
+
+> my-nextjs-app@0.1.0 prebuild
+> npm run check:all
+
+
+> my-nextjs-app@0.1.0 check:all
+> npm run check:syntax && npm run check:format && npm run check:lint
+
+
+> my-nextjs-app@0.1.0 check:syntax
+> tsc --project tsconfig.base.json --noEmit
+
+
+> my-nextjs-app@0.1.0 check:format
+> prettier --check "**/*.{ts,js,json,html}"
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> my-nextjs-app@0.1.0 check:lint
+> eslint "**/*.{ts,js}"
+
+
+> my-nextjs-app@0.1.0 build
+> next build
+
+ ⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   ▲ Next.js 15.2.4
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   
+Your tsconfig.json extends another configuration, which means we cannot add the Next.js TypeScript plugin automatically. To improve your development experience, we recommend adding the Next.js plugin (`"plugins": [{ "name": "next" }]`) manually to your TypeScript configuration. Learn more: https://nextjs.org/docs/app/api-reference/config/typescript#the-typescript-plugin
+
+
+ ⚠ The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
+   Collecting page data ...
+   Generating static pages (0/5) ...
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at y (.next/server/chunks/548.js:6:1351)
+Error occurred prerendering page "/404". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at K (/Users/elia/img.ly/ubq/elia-docs-update-baseurl-references/apps/cesdk_web_examples/integrate-with-next-js-headless-ui/node_modules/next/dist/compiled/next-server/pages.runtime.prod.js:16:6526)
+    at y (/Users/elia/img.ly/ubq/elia-docs-update-baseurl-references/apps/cesdk_web_examples/integrate-with-next-js-headless-ui/.next/server/chunks/548.js:6:1351)
+    at Object.react_stack_bottom_frame (/Users/elia/img.ly/ubq/elia-docs-update-baseurl-references/apps/cesdk_web_examples/integrate-with-next-js-headless-ui/node_modules/react-dom/cjs/react-dom-server.edge.development.js:10313:18)
+    at renderWithHooks (/Users/elia/img.ly/ubq/elia-docs-update-baseurl-references/apps/cesdk_web_examples/integrate-with-next-js-headless-ui/node_modules/react-dom/cjs/react-dom-server.edge.development.js:5399:19)
+    at renderElement (/Users/elia/img.ly/ubq/elia-docs-update-baseurl-references/apps/cesdk_web_examples/integrate-with-next-js-headless-ui/node_modules/react-dom/cjs/react-dom-server.edge.development.js:5834:23)
+    at retryNode (/Users/elia/img.ly/ubq/elia-docs-update-baseurl-references/apps/cesdk_web_examples/integrate-with-next-js-headless-ui/node_modules/react-dom/cjs/react-dom-server.edge.development.js:6765:31)
+    at renderNodeDestructive (/Users/elia/img.ly/ubq/elia-docs-update-baseurl-references/apps/cesdk_web_examples/integrate-with-next-js-headless-ui/node_modules/react-dom/cjs/react-dom-server.edge.development.js:6715:11)
+    at renderElement (/Users/elia/img.ly/ubq/elia-docs-update-baseurl-references/apps/cesdk_web_examples/integrate-with-next-js-headless-ui/node_modules/react-dom/cjs/react-dom-server.edge.development.js:5820:11)
+    at retryNode (/Users/elia/img.ly/ubq/elia-docs-update-baseurl-references/apps/cesdk_web_examples/integrate-with-next-js-headless-ui/node_modules/react-dom/cjs/react-dom-server.edge.development.js:6765:31)
+    at renderNodeDestructive (/Users/elia/img.ly/ubq/elia-docs-update-baseurl-references/apps/cesdk_web_examples/integrate-with-next-js-headless-ui/node_modules/react-dom/cjs/react-dom-server.edge.development.js:6715:11)
+Export encountered an error on /_error: /404, exiting the build.
+ ⨯ Next.js build worker exited with code: 1 and signal: null

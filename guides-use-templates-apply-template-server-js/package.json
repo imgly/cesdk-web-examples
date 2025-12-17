@@ -1,0 +1,28 @@
+{
+  "name": "guides-use-templates-apply-template-server-js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite-node server-js.ts",
+    "dev:local": "LOCAL_PACKAGE_PATH=../../.. vite-node server-js.ts",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:lint": "eslint .",
+    "postinstall": "node scripts/generate-empty-tsconfig-local.mjs",
+    "tsconfig:local": "sh ../../../scripts/examples/update-tsconfig-local.sh"
+  },
+  "dependencies": {
+    "@cesdk/node": "latest",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.1",
+    "vite-node": "^2.1.8"
+  }
+}

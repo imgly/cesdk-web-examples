@@ -3,6 +3,7 @@
   "extends": ["eslint:recommended"],
   "plugins": ["@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
+  "ignorePatterns": ["node_modules", ".next", "out", "public"],
   "env": {
     "browser": true,
     "es2021": true,

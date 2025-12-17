@@ -14,7 +14,7 @@
     const config = {
       // license: import.meta.env.VITE_CESDK_LICENSE,
       userId: 'guides-user',
-      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.63.0/assets'
+      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.66.1-rc.0/assets'
     };
 
     // initialize CreativeEngine in headless mode

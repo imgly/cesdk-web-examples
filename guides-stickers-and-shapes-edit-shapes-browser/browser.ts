@@ -1,0 +1,64 @@
+import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+import packageJson from './package.json';
+
+class Example implements EditorPlugin {
+  name = packageJson.name;
+  version = packageJson.version;
+
+  async initialize({ cesdk }: EditorPluginContext): Promise<void> {
+    if (!cesdk) {
+      throw new Error('CE.SDK instance is required for this plugin');
+    }
+
+    await cesdk.addDefaultAssetSources();
+    await cesdk.addDemoAssetSources({
+      sceneMode: 'Design',
+      withUploadAssetSources: true,
+    });
+    await cesdk.createDesignScene();
+
+    const engine = cesdk.engine;
+    const page = engine.block.findByType('page')[0];
+
+    const graphic = engine.block.create('graphic');
+    const imageFill = engine.block.createFill('image');
+    engine.block.setString(
+      imageFill,
+      'fill/image/imageFileURI',
+      'https://img.ly/static/ubq_samples/sample_1.jpg'
+    );
+    engine.block.setFill(graphic, imageFill);
+    engine.block.setWidth(graphic, 100);
+    engine.block.setHeight(graphic, 100);
+    engine.block.appendChild(page, graphic);
+
+    // Set page size to match graphic and position at origin
+    engine.block.setWidth(page, 100);
+    engine.block.setHeight(page, 100);
+    engine.block.setPositionX(graphic, 0);
+    engine.block.setPositionY(graphic, 0);
+
+    await engine.scene.zoomToBlock(page, { padding: 40 });
+
+    engine.block.supportsShape(graphic); // Returns true
+    const text = engine.block.create('text');
+    engine.block.supportsShape(text); // Returns false
+
+    const rectShape = engine.block.createShape('rect');
+    engine.block.setShape(graphic, rectShape);
+
+    const shape = engine.block.getShape(graphic);
+    const shapeType = engine.block.getType(shape);
+
+    const starShape = engine.block.createShape('star');
+    engine.block.destroy(engine.block.getShape(graphic));
+    engine.block.setShape(graphic, starShape);
+    /* The following line would also destroy the currently attached starShape */
+    // engine.block.destroy(graphic);
+
+    const allShapeProperties = engine.block.findAllProperties(starShape);
+    engine.block.setInt(starShape, 'shape/star/points', 5);
+  }
+}
+
+export default Example;
