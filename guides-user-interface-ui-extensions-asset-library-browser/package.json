@@ -1,0 +1,29 @@
+{
+  "name": "guides-user-interface-ui-extensions-asset-library-browser",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "vite --config vite.config.ts",
+    "build": "tsc --project tsconfig.base.json && vite build",
+    "preview": "vite preview",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "postinstall": "node scripts/generate-empty-tsconfig-local.mjs",
+    "tsconfig:local": "node scripts/generate-empty-tsconfig-local.mjs"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "latest",
+    "puppeteer": "^24.30.0",
+    "unsplash-js": "^7.0.19"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-deprecation": "^2.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.3.4"
+  }
+}

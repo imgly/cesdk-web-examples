@@ -174,3 +174,6 @@ dist
 # Lock files (use npm ci in CI)
 yarn.lock
 tsconfig.tsbuildinfo
+
+# Auto-generated TypeScript config for local development
+tsconfig.local.json

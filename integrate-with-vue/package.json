@@ -2,11 +2,15 @@
   "name": "cesdk-vue-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "check:syntax": "tsc --noEmit",
+    "dev": "vite",
+    "dev:local": "CESDK_USE_LOCAL=true vite",
+    "build": "vite build",
+    "build:local": "CESDK_USE_LOCAL=true vite build",
+    "preview": "vite preview",
+    "serve": "vite preview --port 8080",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
     "check:lint": "eslint \"**/*.{ts,js}\" --ignore-pattern \"**/*.vue\"",
     "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
@@ -16,25 +20,25 @@
     "prebuild": "npm run check:all",
     "test": "exit 0",
     "qa": "npm run build && npm run test",
-    "ci": "npm run qa"
+    "qa:local": "npm run build:local && npm run test",
+    "ci": "npm run qa:local",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "next",
+    "@cesdk/cesdk-js": "latest",
     "core-js": "^3.8.3",
     "vue": "^3.2.13"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "eslint": "^8.50.0",
+    "eslint-plugin-vue": "^9.0.0",
     "prettier": "^3.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vite": "^6.2.0"
   },
   "eslintConfig": {
     "root": true,
@@ -45,9 +49,11 @@
       "plugin:vue/vue3-essential",
       "eslint:recommended"
     ],
+    "parser": "vue-eslint-parser",
     "parserOptions": {
-      "parser": "@babel/eslint-parser",
-      "requireConfigFile": false
+      "parser": "@typescript-eslint/parser",
+      "ecmaVersion": 2020,
+      "sourceType": "module"
     },
     "rules": {}
   },

@@ -1,0 +1,30 @@
+{
+  "name": "guides-use-templates-programmatic-browser",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "LOCAL_PACKAGE_PATH=../../.. vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:lint": "eslint .",
+    "postinstall": "node scripts/generate-empty-tsconfig-local.mjs",
+    "tsconfig:local": "sh ../../../scripts/examples/update-tsconfig-local.sh"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "playwright": "^1.56.1",
+    "sharp": "^0.34.5",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.1"
+  }
+}

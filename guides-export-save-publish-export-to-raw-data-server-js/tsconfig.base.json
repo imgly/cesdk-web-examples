@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "types": ["vite/client"],
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": ["ES2022"],
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "output"]
+}

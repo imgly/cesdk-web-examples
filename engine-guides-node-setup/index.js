@@ -1,11 +1,11 @@
-const fs = require('fs/promises');
-const CreativeEngine = require('@cesdk/node');
+import fs from 'fs/promises';
+import { Buffer } from 'buffer';
+import CreativeEngine from '@cesdk/node';
 
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
   userId: 'guides-user'
-  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-node/1.63.0/assets'
 };
 
 CreativeEngine.init(config).then(async (engine) => {
