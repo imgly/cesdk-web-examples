@@ -1,0 +1,23 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+#cesdk-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* highlight-set-font */
+/* Apply system monospace font to all CE.SDK UI elements */
+.ubq-public {
+  --ubq-typography-font_family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+    Consolas, 'DejaVu Sans Mono', monospace;
+  /* Adjust small label size and weight for better readability with monospace fonts */
+  --ubq-typography-label-s-size: 9px;
+  --ubq-typography-label-s-weight: bold;
+}
+/* highlight-set-font */

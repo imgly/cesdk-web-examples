@@ -1,13 +1,17 @@
-import CreativeEditorSDK from 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/index.js';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
-  userId: 'guides-user'
-  // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/assets'
+  userId: 'guides-user',
+  // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`,
+  // Use local assets when developing with local packages
+  ...(import.meta.env.CESDK_USE_LOCAL && {
+    baseURL: '/assets/'
+  })
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then((instance) => {
-  /** This will return 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/assets/banana.jpg'. */
+  /** This will return 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/banana.jpg'. */
   instance.engine.editor.getAbsoluteURI('/banana.jpg');
 
   /** Replace all .jpg files with the IMG.LY logo! * */
@@ -34,6 +38,6 @@ CreativeEditorSDK.create('#cesdk_container', config).then((instance) => {
   /** Removes the previously set resolver. */
   instance.engine.editor.setURIResolver(null);
 
-  /** Since we've removed the custom resolver, this will return 'https://cdn.img.ly/packages/imgly/cesdk-js/1.63.0/assets/banana.jpg' like before. */
+  /** Since we've removed the custom resolver, this will return 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/banana.jpg' like before. */
   instance.engine.editor.getAbsoluteURI('/banana.jpg');
 });

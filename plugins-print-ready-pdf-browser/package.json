@@ -4,8 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev:local": "CESDK_USE_LOCAL=true vite",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
     "prebuild": "npm run check:all",
     "build": "vite build",
+    "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
     "check:syntax": "tsc --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
@@ -19,7 +23,9 @@
     "test:component": "exit 0",
     "test:e2e": "exit 0",
     "test:all": "npm run test:unit && npm run test:integration && npm run test:component && npm run test:e2e",
-    "qa": "npm run build && npm run test:all"
+    "qa": "npm run build && npm run test:all",
+    "qa:local": "npm run build:local && npm run test:all",
+    "ci": "npm run qa:local"
   },
   "dependencies": {
     "@cesdk/cesdk-js": "next",

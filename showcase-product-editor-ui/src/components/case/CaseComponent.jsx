@@ -27,9 +27,6 @@ const CaseComponent = () => {
   );
   const [instance, setInstance] = useCreativeEditor(null);
   const isFirstRender = useRef(true);
-  // Ref to access current color in CE.SDK component callbacks without stale closures
-  const colorRef = useRef(color);
-  colorRef.current = color;
   const config = useConfig(
     () => ({
       role: 'Adopter',
@@ -84,7 +81,6 @@ const CaseComponent = () => {
         instance.ui.registerComponent(
           'product-area-select',
           ({ builder, engine }) => {
-            // Read from engine for visual state - CE.SDK reactivity handles re-renders
             const currentPage = engine.scene.getCurrentPage();
             const currentAreaId = currentPage
               ? engine.block.getName(currentPage)
@@ -97,9 +93,9 @@ const CaseComponent = () => {
                     label: area.label,
                     isActive: currentAreaId === area.id,
                     onClick: () => {
-                      // Directly switch view in engine - CE.SDK reactivity updates the UI
-                      // Using colorRef.current to get latest color without stale closure
-                      switchProductView(instance, area.id, colorRef.current);
+                      if (currentAreaId !== area.id) {
+                        setAreaId(area.id);
+                      }
                     }
                   });
                 });
@@ -129,7 +125,7 @@ const CaseComponent = () => {
     }, 0);
 
     return () => clearTimeout(timeoutId);
-  }, [instance, product]);
+  }, [instance, product, setAreaId]);
 
   // Reset area and color when product changes
   useEffect(() => {
@@ -175,9 +171,7 @@ const CaseComponent = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [instance, productId]);
 
-  // Update the editor view when the selected color changes (but not product)
-  // Note: Area changes from button clicks go directly through switchProductView,
-  // this effect handles color changes from the sidebar
+  // Update the editor view when the selected area or color changes (but not product)
   useEffect(() => {
     // Skip on first render - initial view is set by the product change effect
     if (isFirstRender.current) {
