@@ -16,7 +16,7 @@ export default function CustomEditor() {
     const config = {
       // license: process.env.NEXT_PUBLIC_LICENSE,
       userId: 'guides-user'
-      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.66.1/assets'
+      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.67.0-rc.0/assets'
     };
 
     // initialize CreativeEngine in headless mode

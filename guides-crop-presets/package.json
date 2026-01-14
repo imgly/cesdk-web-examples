@@ -21,7 +21,8 @@
     "ci": "npm run qa:local",
     "dev:local": "CESDK_USE_LOCAL=true vite",
     "postinstall": "npm run tsconfig:local || true",
-    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs"
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
+    "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "devDependencies": {
     "vite": "^6.0.3",
@@ -29,7 +30,9 @@
     "eslint": "^8.50.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "playwright": "^1.40.0",
+    "sharp": "^0.33.0"
   },
   "dependencies": {
     "@cesdk/cesdk-js": "latest"

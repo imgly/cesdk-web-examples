@@ -19,6 +19,8 @@ const config = {
 };
 
 CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
+  // Expose for hero image capture
+  window.cesdk = instance;
   // Do something with the instance of CreativeEditor SDK
   // Set scale using the new API
   instance.ui.setScale('normal');
@@ -106,4 +108,40 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   });
 
   await instance.createDesignScene();
+
+  // Add an image and enable crop mode to show the presets
+  const engine = instance.engine;
+  const page = engine.scene.getCurrentPage();
+
+  // Get page dimensions for relative sizing
+  const pageWidth = engine.block.getWidth(page);
+  const pageHeight = engine.block.getHeight(page);
+
+  // Create an image block at ~50% of page size
+  const imageBlock = engine.block.create('graphic');
+  engine.block.appendChild(page, imageBlock);
+
+  const rectShape = engine.block.createShape('rect');
+  engine.block.setShape(imageBlock, rectShape);
+
+  const imageWidth = pageWidth * 0.5;
+  const imageHeight = pageHeight * 0.5;
+  engine.block.setWidth(imageBlock, imageWidth);
+  engine.block.setHeight(imageBlock, imageHeight);
+
+  // Center the image on the page
+  engine.block.setPositionX(imageBlock, (pageWidth - imageWidth) / 2);
+  engine.block.setPositionY(imageBlock, (pageHeight - imageHeight) / 2);
+
+  const imageFill = engine.block.createFill('image');
+  engine.block.setString(
+    imageFill,
+    'fill/image/imageFileURI',
+    'https://img.ly/static/ubq_samples/sample_1.jpg'
+  );
+  engine.block.setFill(imageBlock, imageFill);
+
+  // Select the image and enter crop mode
+  engine.block.select(imageBlock);
+  engine.editor.setEditMode('Crop');
 });

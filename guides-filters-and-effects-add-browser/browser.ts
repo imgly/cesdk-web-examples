@@ -54,9 +54,9 @@ class Example implements EditorPlugin {
       label: { en: 'MY CUSTOM FILTER' },
       tags: { en: ['custom', 'brand'] },
       meta: {
-        uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+        uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
         thumbUri:
-          'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+          'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
         horizontalTileCount: '5',
         verticalTileCount: '5',
         blockType: '//ly.img.ubq/effect/lut_filter'
@@ -84,9 +84,9 @@ class Example implements EditorPlugin {
             label: 'Vintage Warm',
             tags: ['vintage', 'warm', 'retro'],
             meta: {
-              uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+              uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               thumbUri:
-                'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+                'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               horizontalTileCount: '5',
               verticalTileCount: '5',
               blockType: '//ly.img.ubq/effect/lut_filter'
@@ -97,9 +97,9 @@ class Example implements EditorPlugin {
             label: 'Cool Cinema',
             tags: ['cinema', 'cool', 'film'],
             meta: {
-              uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+              uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               thumbUri:
-                'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+                'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               horizontalTileCount: '5',
               verticalTileCount: '5',
               blockType: '//ly.img.ubq/effect/lut_filter'
@@ -110,9 +110,9 @@ class Example implements EditorPlugin {
             label: 'B&W Classic',
             tags: ['black and white', 'classic', 'monochrome'],
             meta: {
-              uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+              uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               thumbUri:
-                'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+                'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               horizontalTileCount: '5',
               verticalTileCount: '5',
               blockType: '//ly.img.ubq/effect/lut_filter'
@@ -176,9 +176,9 @@ class Example implements EditorPlugin {
           tags: { en: ['warm', 'sunset', 'golden'] },
           groups: ['Warm Tones'],
           meta: {
-            uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+            uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
             thumbUri:
-              'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+              'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
             horizontalTileCount: '5',
             verticalTileCount: '5',
             blockType: '//ly.img.ubq/effect/lut_filter'
@@ -190,9 +190,9 @@ class Example implements EditorPlugin {
           tags: { en: ['cool', 'blue', 'ocean'] },
           groups: ['Cool Tones'],
           meta: {
-            uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+            uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
             thumbUri:
-              'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+              'https://cdn.img.ly/packages/imgly/cesdk-js/1.67.0-rc.0/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
             horizontalTileCount: '5',
             verticalTileCount: '5',
             blockType: '//ly.img.ubq/effect/lut_filter'
