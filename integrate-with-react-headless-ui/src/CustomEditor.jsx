@@ -14,7 +14,7 @@ export default function CustomEditor() {
     const config = {
       // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your actual CE.SDK license key
       userId: 'guides-user'
-      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.66.1/assets'
+      // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.67.0-rc.1/assets'
     };
 
     // initialize CreativeEngine in headless mode

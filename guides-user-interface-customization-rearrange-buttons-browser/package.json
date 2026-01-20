@@ -1,0 +1,28 @@
+{
+  "name": "@ubq/guide-user-interface-customization-rearrange-buttons-browser",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "vite --config vite.local.config.ts",
+    "build": "tsc && vite build",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:lint": "eslint . --ext .ts",
+    "capture:hero_image": "node scripts/capture-hero.mjs"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "latest"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.52.0",
+    "@playwright/test": "^1.52.0",
+    "@typescript-eslint/parser": "^8.32.0",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-unicorn": "^59.0.1",
+    "sharp": "^0.34.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.4"
+  }
+}

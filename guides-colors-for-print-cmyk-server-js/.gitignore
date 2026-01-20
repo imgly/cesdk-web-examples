@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+.env
+tsconfig.local.json
+*.log
+output/
+*.png
+*.jpg
+*.pdf
