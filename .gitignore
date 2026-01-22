@@ -9,4 +9,10 @@ build_guides/
 
 # Ignore yarn.lock files in all subdirectories
 **/yarn.lock
+
+# Ignore package-lock.json files in all subdirectories except showcases-app and tests
+**/package-lock.json
+!showcases-app/package-lock.json
+!tests/package-lock.json
+
 logs/

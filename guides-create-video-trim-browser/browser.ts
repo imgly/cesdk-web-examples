@@ -149,6 +149,11 @@ class Example implements EditorPlugin {
     // Enable looping so the 3-second segment repeats
     engine.block.setLooping(loopingTrimFill, true);
 
+    // Verify looping is enabled
+    const isLooping = engine.block.isLooping(loopingTrimFill);
+    // eslint-disable-next-line no-console
+    console.log('Looping enabled:', isLooping);
+
     // Set duration longer than trim length - the trim will loop to fill it
     engine.block.setDuration(loopingTrimVideo, 9.0);
 

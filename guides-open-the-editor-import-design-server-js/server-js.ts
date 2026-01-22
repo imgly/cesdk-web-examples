@@ -153,7 +153,7 @@ try {
 
   // Create a scene configured for video editing
   const videoUrl =
-    'https://cdn.img.ly/assets/demo/v2/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barreling-a-wave-18069232.mp4';
+    'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barreling-a-wave-18069232.mp4';
 
   // Create a video scene with timeline support
   await engine.scene.createFromVideo(videoUrl);
