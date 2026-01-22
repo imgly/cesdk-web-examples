@@ -9,11 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "1.66.1",
-    "@cesdk/engine": "1.66.1",
+    "@cesdk/cesdk-js": "1.67.0",
+    "@cesdk/engine": "1.67.0",
     "@google/model-viewer": "3.5.0",
     "@imgly/background-removal": "1.7.0",
-    "@imgly/idml-importer": "1.1.11",
+    "@imgly/idml-importer": "1.2.0",
     "@imgly/plugin-ai-apps-web": "0.2.14",
     "@imgly/plugin-ai-audio-generation-web": "0.2.14",
     "@imgly/plugin-ai-generation-web": "0.2.14",
@@ -25,7 +25,7 @@
     "@imgly/plugin-qr-code-web": "0.1.2",
     "@imgly/plugin-remote-asset-source-web": "0.2.0",
     "@imgly/plugin-vectorizer-web": "1.0.2",
-    "@imgly/psd-importer": "0.0.11",
+    "@imgly/psd-importer": "0.1.0",
     "airtable": "^0.12.1",
     "chroma-js": "^3.1.2",
     "classnames": "^2.3.2",

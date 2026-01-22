@@ -1,0 +1,19 @@
+import CreativeEditorSDK from '@cesdk/cesdk-js';
+import Example from './browser';
+
+const config = {
+  userId: 'guides-user'
+};
+
+CreativeEditorSDK.create('#cesdk_container', config)
+  .then(async (cesdk) => {
+
+    // Expose cesdk for debugging and hero screenshot capture
+    (window as any).cesdk = cesdk;
+
+    // Load the example plugin
+    await cesdk.addPlugin(new Example());
+  })
+  .catch((error) => {
+    console.error('Failed to initialize CE.SDK:', error);
+  });
