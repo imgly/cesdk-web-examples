@@ -12,7 +12,7 @@ export default class CustomizeBehaviorExample implements EditorPlugin {
   async initialize({ cesdk, engine }: EditorPluginContext) {
     // Load a simple scene for demonstration
     await engine.scene.loadFromURL(
-      'https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_postcard_1.scene'
+      'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
     // Show welcome dialog first, then run demonstrations after user confirms

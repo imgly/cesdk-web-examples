@@ -1,5 +1,6 @@
-import { createReadStream, existsSync, readFileSync } from 'fs';
+import { createReadStream, existsSync } from 'fs';
 import { resolve } from 'path';
+import { execFileSync } from 'child_process';
 import type { Plugin, UserConfig, ConfigEnv } from 'vite';
 
 export interface CesdkLocalOptions {
@@ -50,50 +51,59 @@ export function parseOverrides(
 }
 
 /**
- * Validate that required build artifacts exist for selected packages
+ * Validate that required build artifacts exist for selected packages.
+ * If builds are missing, automatically runs the web:build:development command.
  *
  * @param overrides - Set of packages to validate
  * @param repoRoot - Absolute path to monorepo root
- * @throws Error if build artifacts are missing with helpful build instructions
  */
 export function validateBuildArtifacts(
   overrides: Set<PackageOverride>,
   repoRoot: string
 ): void {
-  const errors: string[] = [];
+  const missingBuilds: PackageOverride[] = [];
 
   if (overrides.has('cesdk')) {
     const buildPath = resolve(repoRoot, 'apps/cesdk_web/build/index.js');
     if (!existsSync(buildPath)) {
-      errors.push(
-        `cesdk_web not built. Run: cd apps/cesdk_web && yarn build:development`
-      );
+      missingBuilds.push('cesdk');
     }
   }
 
   if (overrides.has('engine')) {
     const buildPath = resolve(repoRoot, 'bindings/wasm/js_web/build/index.js');
     if (!existsSync(buildPath)) {
-      errors.push(
-        `js_web not built. Run: yarn js_web:build:production (or yarn js_web:build:development)`
-      );
+      missingBuilds.push('engine');
     }
   }
 
   if (overrides.has('node')) {
     const buildPath = resolve(repoRoot, 'bindings/wasm/js_node/build/index.js');
     if (!existsSync(buildPath)) {
-      errors.push(
-        `js_node not built. Run: yarn js_node:build:production (or yarn js_node:build:development)`
-      );
+      missingBuilds.push('node');
     }
   }
 
-  if (errors.length > 0) {
+  if (missingBuilds.length === 0) {
+    return;
+  }
+
+  console.log(`\n🔨 Local package builds missing: ${missingBuilds.join(', ')}`);
+  console.log('   Running build automatically...\n');
+
+  try {
+    // web:build:development builds js_web, js_node, and cesdk_web
+    console.log('📦 Building web packages (yarn web:build:development)...');
+    execFileSync('yarn', ['web:build:development'], {
+      cwd: repoRoot,
+      stdio: 'inherit'
+    });
+
+    console.log('\n✅ Build completed successfully!\n');
+  } catch (error) {
     throw new Error(
-      `Local package builds missing:\n${errors
-        .map((e) => `  - ${e}`)
-        .join('\n')}`
+      `Failed to build local packages. You can try running manually:\n` +
+      `  yarn web:build:development\n`
     );
   }
 }
@@ -221,7 +231,7 @@ export function cesdkLocal(options: CesdkLocalOptions = {}): Plugin {
       if (verbose) {
         console.log('\nℹ️  Configured aliases:');
         for (const [key, value] of Object.entries(aliasMap)) {
-          const relativePath = value.replace(absoluteRepoRoot + '/', '');
+          const relativePath = value.replace(`${absoluteRepoRoot}/`, '');
           console.log(`   ${key} → ${relativePath}`);
         }
       }
@@ -232,7 +242,10 @@ export function cesdkLocal(options: CesdkLocalOptions = {}): Plugin {
     configureServer(server) {
       if (overrides.size === 0) return;
 
-      const absoluteRepoRoot = resolve(__dirname, repoRoot);
+      // Use the absoluteRepoRoot computed in config hook, or compute if not set
+      if (!absoluteRepoRoot) {
+        absoluteRepoRoot = resolve(__dirname, repoRoot);
+      }
 
       // Serve assets from the local build directory
       // This makes /assets/* requests serve from apps/cesdk_web/build/assets/*
