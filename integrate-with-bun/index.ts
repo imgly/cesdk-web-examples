@@ -6,7 +6,11 @@ const { MimeType } = CreativeEngine as any;
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY',
-  userId: 'guides-user'
+  userId: 'guides-user',
+  // Use local assets when developing with local packages
+  ...(import.meta.env.CESDK_USE_LOCAL && {
+    baseURL: '/assets/'
+  })
 };
 
 // Initialize CE.SDK Engine
