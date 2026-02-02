@@ -7,6 +7,7 @@
     "dev": "vite",
     "dev:local": "vite --config vite.config.ts",
     "build": "tsc --project tsconfig.base.json && vite build",
+    "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
     "check:syntax": "tsc --project tsconfig.base.json --noEmit",
     "check:lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

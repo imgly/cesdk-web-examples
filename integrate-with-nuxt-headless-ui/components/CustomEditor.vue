@@ -25,7 +25,7 @@ onMounted(async () => {
   const config = {
     // license: import.meta.env.VITE_CESDK_LICENSE,
     userId: 'guides-user',
-    // baseURL: 'https://cdn.img.ly/packages/imgly/cesdk-engine/1.66.1/assets'
+    // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-engine/${CreativeEngine.version}/assets`
   }
 
   // initialize CreativeEngine in headless mode

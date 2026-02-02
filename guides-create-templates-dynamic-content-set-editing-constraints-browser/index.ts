@@ -3,7 +3,11 @@ import Example from './browser';
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
-  userId: 'guides-user'
+  userId: 'guides-user',
+  // Use local assets when developing with local packages
+  ...(import.meta.env.CESDK_USE_LOCAL && {
+    baseURL: "/assets/",
+  }),
 };
 
 CreativeEditorSDK.create('#cesdk_container', config)
