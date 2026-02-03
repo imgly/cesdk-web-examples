@@ -5,6 +5,10 @@ const container = document.getElementById('cesdk-container') as HTMLDivElement;
 
 CreativeEditorSDK.create(container, {
   // license: (import.meta as any).env?.VITE_CESDK_LICENSE,
+  // Use local assets when developing with local packages
+  ...(import.meta.env.CESDK_USE_LOCAL && {
+    baseURL: '/assets/'
+  })
 }).then(async (cesdk) => {
   // Expose cesdk to window for hero screenshots
   (window as any).cesdk = cesdk;

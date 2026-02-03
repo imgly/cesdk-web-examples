@@ -1,0 +1,105 @@
+import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+import CutoutLibraryPlugin from '@imgly/plugin-cutout-library-web';
+import packageJson from './package.json';
+
+class Example implements EditorPlugin {
+  name = packageJson.name;
+  version = packageJson.version;
+
+  async initialize({ cesdk }: EditorPluginContext): Promise<void> {
+    if (!cesdk) {
+      throw new Error('CE.SDK instance is required for this plugin');
+    }
+
+    // Load assets and create scene
+    await cesdk.addDefaultAssetSources();
+    await cesdk.addDemoAssetSources({
+      sceneMode: 'Design',
+      withUploadAssetSources: true,
+    });
+
+    // Add cutout library plugin for UI-based cutout creation
+    await cesdk.addPlugin(
+      CutoutLibraryPlugin({
+        ui: { locations: ['canvasMenu'] },
+      }),
+    );
+
+    // Add cutout library to dock as the last entry
+    const cutoutAssetEntry = cesdk.ui.getAssetLibraryEntry(
+      'ly.img.cutout.entry',
+    );
+    cesdk.ui.setDockOrder([
+      ...cesdk.ui
+        .getDockOrder()
+        .filter(({ key }) => key !== 'ly.img.template'),
+      {
+        id: 'ly.img.assetLibrary.dock',
+        label: 'Cutouts',
+        key: 'ly.img.assetLibrary.dock',
+        icon: cutoutAssetEntry?.icon,
+        entries: ['ly.img.cutout.entry'],
+      },
+    ]);
+
+    // Open cutout library panel on startup
+    cesdk.ui.openPanel('//ly.img.panel/assetLibrary', {
+      payload: {
+        entries: ['ly.img.cutout.entry'],
+      },
+    });
+
+    await cesdk.createDesignScene();
+
+    const engine = cesdk.engine;
+    const page = engine.block.findByType('page')[0];
+
+    // Set page dimensions
+    engine.block.setWidth(page, 800);
+    engine.block.setHeight(page, 600);
+
+    // Create a circular cutout from SVG path (scaled up for visibility)
+    const circle = engine.block.createCutoutFromPath(
+      'M 0,75 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0 Z',
+    );
+    engine.block.appendChild(page, circle);
+    engine.block.setPositionX(circle, 200);
+    engine.block.setPositionY(circle, 225);
+
+    // Set cutout type to Dashed for perforated cut line
+    engine.block.setEnum(circle, 'cutout/type', 'Dashed');
+
+    // Set cutout offset distance from source path
+    engine.block.setFloat(circle, 'cutout/offset', 5.0);
+
+    // Create a square cutout with solid type (scaled up for visibility)
+    const square = engine.block.createCutoutFromPath(
+      'M 0,0 H 150 V 150 H 0 Z',
+    );
+    engine.block.appendChild(page, square);
+    engine.block.setPositionX(square, 450);
+    engine.block.setPositionY(square, 225);
+    engine.block.setFloat(square, 'cutout/offset', 8.0);
+
+    // Combine cutouts using Union operation
+    const combined = engine.block.createCutoutFromOperation(
+      [circle, square],
+      'Union',
+    );
+    engine.block.appendChild(page, combined);
+    engine.block.setPositionX(combined, 200);
+    engine.block.setPositionY(combined, 225);
+
+    // Destroy original cutouts to avoid duplicate cuts
+    engine.block.destroy(circle);
+    engine.block.destroy(square);
+
+    // Customize spot color RGB for rendering (bright blue for visibility)
+    engine.editor.setSpotColorRGB('CutContour', 0.0, 0.4, 0.9);
+
+    // Zoom to fit all cutouts
+    await engine.scene.zoomToBlock(page, { padding: 40 });
+  }
+}
+
+export default Example;

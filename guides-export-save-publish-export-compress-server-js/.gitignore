@@ -1,0 +1,27 @@
+# Environment variables (may contain license keys and secrets)
+.env.local
+.env
+
+# Build output
+dist/
+node_modules/
+output/
+
+# Export files
+*.webp
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.mp4
+
+# Temp files
+*.log
+
+# Lock files (use npm ci in CI)
+package-lock.json
+yarn.lock
+tsconfig.tsbuildinfo
+
+# Auto-generated TypeScript config for local development
+tsconfig.local.json
