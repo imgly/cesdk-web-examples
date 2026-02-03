@@ -222,6 +222,9 @@ class Example implements EditorPlugin {
     // Select the first block so users can see the fill in action
     engine.block.setSelected(basicBlock, true);
 
+    // Set playback time to 2 seconds to show video content
+    engine.block.setPlaybackTime(page, 2);
+
     // Start playback automatically
     try {
       engine.block.setPlaying(page, true);
