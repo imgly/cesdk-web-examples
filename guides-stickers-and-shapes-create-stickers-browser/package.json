@@ -7,6 +7,7 @@
     "dev": "vite",
     "dev:local": "vite --config vite.config.ts --mode development-local",
     "build": "vite build",
+    "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
     "check:syntax": "tsc --project tsconfig.base.json --noEmit",
     "check:lint": "eslint \"**/*.{ts,js}\"",
