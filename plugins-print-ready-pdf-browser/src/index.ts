@@ -16,7 +16,7 @@ async function init() {
   // Initialize CE.SDK
   cesdk = await CreativeEditorSDK.create('#cesdk-container', config);
 
-  cesdk.ui.insertNavigationBarOrderComponent('last', {
+  cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
     id: 'ly.img.actions.navigationBar',
     children: [
       {

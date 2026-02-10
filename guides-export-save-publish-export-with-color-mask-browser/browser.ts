@@ -101,7 +101,7 @@ class Example implements EditorPlugin {
     });
 
     // Add export button to navigation bar
-    cesdk.ui.insertNavigationBarOrderComponent('last', {
+    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
       id: 'ly.img.actions.navigationBar',
       children: ['ly.img.exportImage.navigationBar']
     });

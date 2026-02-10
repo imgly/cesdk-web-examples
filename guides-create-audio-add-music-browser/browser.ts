@@ -53,7 +53,7 @@ class Example implements EditorPlugin {
 
     // Set the audio source file
     const audioUri =
-      'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/far_from_home.m4a';
+      'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/far_from_home.m4a';
     engine.block.setString(audioBlock, 'audio/fileURI', audioUri);
 
     // Append audio to the page (makes it part of the timeline)

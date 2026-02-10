@@ -56,12 +56,12 @@ class Example implements EditorPlugin {
 
     // Query available LUT and Duotone filters from asset sources
     // These filters are provided by the demo asset sources loaded above
-    const lutResults = await engine.asset.findAssets('ly.img.filter.lut', {
+    const lutResults = await engine.asset.findAssets('ly.img.filter', {
       page: 0,
       perPage: 10
     });
     const duotoneResults = await engine.asset.findAssets(
-      'ly.img.filter.duotone',
+      'ly.img.filter',
       {
         page: 0,
         perPage: 10

@@ -46,7 +46,7 @@ class Example implements EditorPlugin {
 
     // Use sample audio from demo assets
     const audioUri =
-      'https://cdn.img.ly/assets/demo/v1/ly.img.audio/audios/far_from_home.m4a';
+      'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/far_from_home.m4a';
 
     // Create a basic audio block
     const audioBlock = engine.block.create('audio')!;

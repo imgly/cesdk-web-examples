@@ -44,7 +44,7 @@ class Example implements EditorPlugin {
     );
 
     // Reorder dock to show AI Apps button prominently
-    cesdk.ui.setDockOrder(['ly.img.ai.apps.dock', ...cesdk.ui.getDockOrder()]);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, ['ly.img.ai.apps.dock', ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })]);
 
     // Add AI audio generation history to the audio asset library
     const audioEntry = cesdk.ui.getAssetLibraryEntry('ly.img.audio');

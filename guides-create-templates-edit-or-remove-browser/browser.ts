@@ -66,8 +66,8 @@ class Example implements EditorPlugin {
     });
 
     // Add a spacer to push "My Templates" to the bottom of the dock
-    cesdk.ui.setDockOrder([
-      ...cesdk.ui.getDockOrder(),
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
       'ly.img.spacer',
       {
         id: 'ly.img.assetLibrary.dock',

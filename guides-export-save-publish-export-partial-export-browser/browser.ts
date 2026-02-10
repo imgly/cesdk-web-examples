@@ -340,7 +340,7 @@ class Example implements EditorPlugin {
     };
 
     // Configure navigation bar layout
-    cesdk.ui.setNavigationBarOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
       'ly.img.undoRedo.navigationBar',
       'ly.img.spacer',
       {

@@ -124,8 +124,8 @@ class Example implements EditorPlugin {
       });
     });
 
-    cesdk.ui.setDockOrder([
-      ...cesdk.ui.getDockOrder(),
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
       'ly.img.spacer',
       'template-form-panel-btn-component'
     ]);

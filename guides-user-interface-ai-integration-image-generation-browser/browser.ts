@@ -59,9 +59,9 @@ class Example implements EditorPlugin {
     );
 
     // Reorder dock to show AI Apps button prominently
-    cesdk.ui.setDockOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       'ly.img.ai.apps.dock',
-      ...cesdk.ui.getDockOrder()
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })
     ]);
 
     // Alternative: Configure with single provider

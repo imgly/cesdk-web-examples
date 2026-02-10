@@ -85,12 +85,12 @@ class Example implements EditorPlugin {
     );
 
     // Reorder dock to show AI Apps button prominently
-    cesdk.ui.setDockOrder(['ly.img.ai.apps.dock', ...cesdk.ui.getDockOrder()]);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, ['ly.img.ai.apps.dock', ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })]);
 
     // Configure canvas menu to show AI text quick actions
-    cesdk.ui.setCanvasMenuOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.canvas.menu' }, [
       'ly.img.ai.text.canvasMenu',
-      ...cesdk.ui.getCanvasMenuOrder()
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.canvas.menu' })
     ]);
 
     // Customize UI labels for AI text generation features

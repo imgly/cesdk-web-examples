@@ -60,14 +60,14 @@ export async function setupAudioScene(cesdk) {
   cesdk.engine.block.setDuration(page, 30); // 30 seconds
 
   // Enable timeline view for audio tracks
-  cesdk.ui.setDockOrder([
+  cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
     {
       id: 'ly.img.timeline',
       label: 'Timeline',
       icon: '@imgly/Timeline',
       entries: []
     },
-    ...cesdk.ui.getDockOrder()
+    ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })
   ]);
 
   return { scene, page };

@@ -129,6 +129,110 @@ Company: {{company}}`;
     // eslint-disable-next-line no-console
     console.log('Final variables in scene:', finalVariables);
     // Expected: ['firstName', 'lastName', 'email', 'company', 'title']
+
+    // Build a custom Variables Manager panel
+    // CE.SDK doesn't include a built-in UI for creating/managing variables,
+    // so you can build one using the Panel Builder API
+    cesdk.ui.registerPanel(
+      'ly.img.variablesManager',
+      ({ builder, engine: panelEngine, state }) => {
+        const { Section, TextInput, Button } = builder;
+
+        // State for creating new variables
+        const newVariableName = state('newVariableName', '');
+        const newVariableValue = state('newVariableValue', '');
+
+        // Section: Create New Variable
+        Section('create-variable', {
+          title: 'Create New Variable',
+          children: () => {
+            TextInput('new-name', {
+              inputLabel: 'Variable Name',
+              ...newVariableName
+            });
+
+            TextInput('new-value', {
+              inputLabel: 'Default Value',
+              ...newVariableValue
+            });
+
+            Button('create-btn', {
+              label: 'Create Variable',
+              color: 'accent',
+              isDisabled: !newVariableName.value.trim(),
+              onClick: () => {
+                const name = newVariableName.value.trim();
+                if (name) {
+                  panelEngine.variable.setString(name, newVariableValue.value);
+                  newVariableName.setValue('');
+                  newVariableValue.setValue('');
+                }
+              }
+            });
+          }
+        });
+
+        // Section: Existing Variables
+        const variables = panelEngine.variable.findAll();
+        Section('existing-variables', {
+          title: `Manage Variables (${variables.length})`,
+          children: () => {
+            if (variables.length === 0) {
+              builder.Text('no-vars', { content: 'No variables defined yet.' });
+              return;
+            }
+
+            variables.forEach((varName) => {
+              TextInput(`var-${varName}`, {
+                inputLabel: varName,
+                value: panelEngine.variable.getString(varName),
+                setValue: (value) => {
+                  panelEngine.variable.setString(varName, value);
+                },
+                suffix: {
+                  icon: '@imgly/TrashBin',
+                  tooltip: 'Delete variable',
+                  onClick: () => {
+                    panelEngine.variable.remove(varName);
+                  }
+                }
+              });
+            });
+          }
+        });
+      }
+    );
+
+    // Set the panel title
+    cesdk.i18n.setTranslations({
+      en: {
+        'panel.ly.img.variablesManager': 'Custom Variables Panel'
+      }
+    });
+
+    // Add a dock button to open the panel
+    cesdk.ui.registerComponent('variablesManager.dock', ({ builder: b }) => {
+      const isPanelOpen = cesdk.ui.isPanelOpen('ly.img.variablesManager');
+      b.Button('variables-dock-btn', {
+        label: 'Variables',
+        icon: '@imgly/Text',
+        onClick: () => {
+          if (isPanelOpen) {
+            cesdk.ui.closePanel('ly.img.variablesManager');
+          } else {
+            cesdk.ui.openPanel('ly.img.variablesManager');
+          }
+        },
+        isActive: isPanelOpen
+      });
+    });
+
+    // Add button to dock
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
+      'ly.img.spacer',
+      'variablesManager.dock'
+    ]);
   }
 }
 

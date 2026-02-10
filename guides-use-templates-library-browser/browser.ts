@@ -49,7 +49,7 @@ class Example implements EditorPlugin {
       groups: ['cards'],
       meta: {
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_postcard_1.jpg',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_postcard_1.jpg',
         uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene'
       }
     });
@@ -61,7 +61,7 @@ class Example implements EditorPlugin {
       groups: ['business'],
       meta: {
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_postcard_2.jpg',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_postcard_2.jpg',
         uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.scene'
       }
     });
@@ -77,7 +77,7 @@ class Example implements EditorPlugin {
     });
 
     // Configure the dock to show ONLY the custom template library
-    cesdk.ui.setDockOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       {
         id: 'ly.img.assetLibrary.dock',
         key: 'custom-templates',

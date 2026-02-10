@@ -50,15 +50,24 @@ export function getLocalPackageAliasesTurbopack(exampleDir) {
   // Resolve monorepo root (3 levels up from example dir)
   const repoRoot = resolve(exampleDir, '../../..');
 
+  const cesdkWebBuild = relative(exampleDir, resolve(repoRoot, 'apps/cesdk_web/build'));
+  const engineBuild = relative(exampleDir, resolve(repoRoot, 'bindings/wasm/js_web/build'));
+  const nodeBuild = relative(exampleDir, resolve(repoRoot, 'bindings/wasm/js_node/build'));
+
   const aliases = {
     // Point @cesdk/cesdk-js to local build output (relative path)
-    '@cesdk/cesdk-js': relative(exampleDir, resolve(repoRoot, 'apps/cesdk_web/build/')),
+    // Use explicit index.js to avoid directory resolution issues
+    '@cesdk/cesdk-js': `${cesdkWebBuild}/index.js`,
+    '@cesdk/cesdk-js/react': `${cesdkWebBuild}/react/index.js`,
+    '@cesdk/cesdk-js/vue': `${cesdkWebBuild}/vue/index.js`,
 
     // Point @cesdk/engine to local build output (relative path)
-    '@cesdk/engine': relative(exampleDir, resolve(repoRoot, 'bindings/wasm/js_web/build/')),
+    // Use explicit index.js to avoid directory resolution issues
+    '@cesdk/engine': `${engineBuild}/index.js`,
+    '@cesdk/engine/react': `${engineBuild}/integrations/react.js`,
 
     // Point @cesdk/node to local build output (relative path)
-    '@cesdk/node': relative(exampleDir, resolve(repoRoot, 'bindings/wasm/js_node/build/'))
+    '@cesdk/node': `${nodeBuild}/index.js`
   };
 
   console.log('✅ Using local @cesdk packages from monorepo (turbopack aliases)');

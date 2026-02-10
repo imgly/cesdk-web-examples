@@ -191,7 +191,7 @@ class Example implements EditorPlugin {
     });
 
     // Set dock to show both Unsplash and Uploads panels
-    cesdk.ui.setDockOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       {
         id: 'ly.img.assetLibrary.dock',
         key: 'unsplash-images',

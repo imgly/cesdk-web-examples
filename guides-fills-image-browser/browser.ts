@@ -36,7 +36,7 @@ class Example implements EditorPlugin {
     // Calculate responsive grid layout for demonstrations
     const pageWidth = engine.block.getWidth(page);
     const pageHeight = engine.block.getHeight(page);
-    const layout = calculateGridLayout(pageWidth, pageHeight, 9);
+    const layout = calculateGridLayout(pageWidth, pageHeight, 7);
     const { blockWidth, blockHeight, getPosition } = layout;
 
     const imageUri = 'https://img.ly/static/ubq_samples/sample_1.jpg';
@@ -154,32 +154,7 @@ class Example implements EditorPlugin {
     engine.block.setFill(dataUriBlock, dataUriFill);
     engine.block.appendChild(page, dataUriBlock);
 
-    // ===== Section 6: Sharing Fills =====
-    // Create one fill and share it between multiple blocks
-    const sharedFill = engine.block.createFill('image');
-    engine.block.setString(
-      sharedFill,
-      'fill/image/imageFileURI',
-      'https://img.ly/static/ubq_samples/sample_5.jpg'
-    );
-
-    // Apply to first block
-    const sharedBlock1 = engine.block.create('graphic');
-    engine.block.setShape(sharedBlock1, engine.block.createShape('rect'));
-    engine.block.setWidth(sharedBlock1, blockWidth);
-    engine.block.setHeight(sharedBlock1, blockHeight);
-    engine.block.setFill(sharedBlock1, sharedFill);
-    engine.block.appendChild(page, sharedBlock1);
-
-    // Apply to second block (shares the same fill)
-    const sharedBlock2 = engine.block.create('graphic');
-    engine.block.setShape(sharedBlock2, engine.block.createShape('rect'));
-    engine.block.setWidth(sharedBlock2, blockWidth);
-    engine.block.setHeight(sharedBlock2, blockHeight);
-    engine.block.setFill(sharedBlock2, sharedFill);
-    engine.block.appendChild(page, sharedBlock2);
-
-    // ===== Section 7: Opacity =====
+    // ===== Section 6: Opacity =====
     // Control opacity for transparency effects
     const opacityBlock = await engine.block.addImage(
       'https://img.ly/static/ubq_samples/sample_6.jpg',
@@ -198,9 +173,7 @@ class Example implements EditorPlugin {
       containBlock, // Position 3
       responsiveBlock, // Position 4
       dataUriBlock, // Position 5
-      sharedBlock1, // Position 6
-      sharedBlock2, // Position 7
-      opacityBlock // Position 8
+      opacityBlock // Position 6
     ];
 
     blocks.forEach((block, index) => {

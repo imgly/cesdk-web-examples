@@ -64,7 +64,7 @@ class Example implements EditorPlugin {
     const image = await engine.asset.defaultApplyAsset({
       id: 'ly.img.cesdk.images.samples/sample.1',
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v1/ly.img.image/images/sample_1.jpg',
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.image/images/sample_1.jpg',
         width: 2500,
         height: 1667
       }

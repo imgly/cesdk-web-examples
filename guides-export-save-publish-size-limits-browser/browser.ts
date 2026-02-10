@@ -25,7 +25,7 @@ class Example implements EditorPlugin {
     engine.block.setHeight(page, 600);
 
     // Add export image action to navigation bar
-    cesdk.ui.insertNavigationBarOrderComponent('last', {
+    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
       id: 'ly.img.actions.navigationBar',
       children: ['ly.img.exportImage.navigationBar']
     });
