@@ -31,7 +31,13 @@ class Example implements EditorPlugin {
       sceneMode: 'Video',
       withUploadAssetSources: true
     });
-    await cesdk.createVideoScene();
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.instagram.story'
+      }
+    });
 
     const engine = cesdk.engine;
     const scene = engine.scene.get();
@@ -40,7 +46,7 @@ class Example implements EditorPlugin {
 
     // Use a sample audio file
     const audioUri =
-      'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/dance_harder.m4a';
+      'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/dance_harder.m4a';
 
     // Create an audio block and load the audio file
     const audioBlock = engine.block.create('audio');

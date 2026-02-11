@@ -28,17 +28,16 @@ class Example implements EditorPlugin {
       sceneMode: 'Video',
       withUploadAssetSources: true
     });
-    await cesdk.createVideoScene();
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 1920, height: 1080, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.scene.getCurrentPage();
     if (!page) {
       throw new Error('No page found in scene');
     }
-
-    // Set page dimensions for video (16:9)
-    engine.block.setWidth(page, 1920);
-    engine.block.setHeight(page, 1080);
 
     // Set page duration for timeline
     engine.block.setDuration(page, 30);
@@ -53,7 +52,7 @@ class Example implements EditorPlugin {
 
     // Set the audio source file
     const audioUri =
-      'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/far_from_home.m4a';
+      'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/far_from_home.m4a';
     engine.block.setString(audioBlock, 'audio/fileURI', audioUri);
 
     // Append audio to the page (makes it part of the timeline)

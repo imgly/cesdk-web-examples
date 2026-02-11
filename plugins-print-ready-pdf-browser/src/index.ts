@@ -16,7 +16,7 @@ async function init() {
   // Initialize CE.SDK
   cesdk = await CreativeEditorSDK.create('#cesdk-container', config);
 
-  cesdk.ui.insertNavigationBarOrderComponent('last', {
+  cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
     id: 'ly.img.actions.navigationBar',
     children: [
       {
@@ -32,7 +32,7 @@ async function init() {
   });
 
   // Load default scene
-  await cesdk.createDesignScene();
+  await cesdk.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
   await cesdk.addDefaultAssetSources();
   await cesdk.addDemoAssetSources();
 }

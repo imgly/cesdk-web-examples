@@ -21,7 +21,12 @@ window.CreativeEditorSDK.create('#cesdk_container', config).then(
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await editor.createDesignScene();
+    await editor.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     // Access the engine via global variable
     window.editorEngine = editor.engine;

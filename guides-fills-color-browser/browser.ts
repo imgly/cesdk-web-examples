@@ -23,7 +23,9 @@ class Example implements EditorPlugin {
     }
 
     // Create a design scene using CE.SDK cesdk method
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
 
@@ -33,10 +35,6 @@ class Example implements EditorPlugin {
     if (!page) {
       throw new Error('No page found');
     }
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Set page background to light gray
     const pageFill = engine.block.getFill(page);

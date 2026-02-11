@@ -24,7 +24,7 @@ class Example implements EditorPlugin {
 
     // Load a template scene from a remote URL
     await engine.scene.loadFromURL(
-      'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
+      'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
     // Get the page
@@ -129,7 +129,7 @@ class Example implements EditorPlugin {
     };
 
     // Configure navigation bar with export buttons
-    cesdk.ui.setNavigationBarOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
       'ly.img.undoRedo.navigationBar',
       'ly.img.spacer',
       {

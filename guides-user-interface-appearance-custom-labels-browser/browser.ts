@@ -33,16 +33,14 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    // Set page dimensions
-    const pageWidth = 800;
-    const pageHeight = 600;
-    engine.block.setWidth(page, pageWidth);
-    engine.block.setHeight(page, pageHeight);
+    const pageWidth = engine.block.getWidth(page);
+    const pageHeight = engine.block.getHeight(page);
 
     // ===== Custom Label Translations =====
     // Apply all custom label translations in a single call

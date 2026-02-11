@@ -15,13 +15,12 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true,
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 300, height: 200, unit: 'Pixel' },
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    engine.block.setWidth(page, 300);
-    engine.block.setHeight(page, 200);
 
     const testGraphic = engine.block.create('graphic');
     engine.block.supportsShape(testGraphic); // Returns true

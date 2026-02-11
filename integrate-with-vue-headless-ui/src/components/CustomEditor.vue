@@ -10,8 +10,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
-import CreativeEngine from "@cesdk/engine"
+import { ref, onMounted } from 'vue';
+import CreativeEngine from '@cesdk/engine';
 
 // DOM reference to hold the CE.SDK canvas
 const canvasRef = ref(null);
@@ -33,7 +33,7 @@ onMounted(async () => {
   };
 
   // initialize CreativeEngine in headless mode
-  engine = await CreativeEngine.init(config)
+  engine = await CreativeEngine.init(config);
 
   // attach CE.SDK canvas to the DOM (optional)
   if (canvasRef.value) {
@@ -49,7 +49,7 @@ onMounted(async () => {
   }
 
   // get the first page block
-  const [page] = engine.block.findByType("page")
+  const [page] = engine.block.findByType('page');
 
   // create a graphic block and set its shape
   imageBlockId = engine.block.create('graphic');
@@ -68,8 +68,8 @@ onMounted(async () => {
   engine.block.appendChild(page, imageBlockId);
 
   // zoom to fit the page in the canvas
-  engine.scene.zoomToBlock(page)
-})
+  engine.scene.zoomToBlock(page);
+});
 
 // reduce the image opacity by 20% each click
 function changeOpacity() {

@@ -23,7 +23,9 @@ class Example implements EditorPlugin {
     await cesdk.addDefaultAssetSources();
 
     // Create a design scene using CE.SDK method
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 1200, height: 800, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     engine.editor.setRole('Adopter');
@@ -36,10 +38,8 @@ class Example implements EditorPlugin {
     }
 
     // Set page dimensions for horizontal layout
-    const pageWidth = 1200;
-    const pageHeight = 800;
-    engine.block.setWidth(page, pageWidth);
-    engine.block.setHeight(page, pageHeight);
+    const pageWidth = engine.block.getWidth(page);
+    const pageHeight = engine.block.getHeight(page);
 
     // Set page background to light gray
     const pageFill = engine.block.getFill(page);

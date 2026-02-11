@@ -22,7 +22,9 @@ class Example implements EditorPlugin {
     }
 
     // Create a design scene using CE.SDK cesdk method
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
 
@@ -32,10 +34,6 @@ class Example implements EditorPlugin {
     if (!page) {
       throw new Error('No page found');
     }
-
-    // Set page dimensions for demo (smaller for reasonable export sizes)
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Set page background to light gray
     const pageFill = engine.block.getFill(page);
@@ -183,7 +181,9 @@ class Example implements EditorPlugin {
             : engine.block.group(selectedBlocks);
         // eslint-disable-next-line no-console
         console.log(
-          `✅ Exporting selected block(s): ${selectedBlocks.length === 1 ? 'single block' : 'grouped blocks'}`
+          `✅ Exporting selected block(s): ${
+            selectedBlocks.length === 1 ? 'single block' : 'grouped blocks'
+          }`
         );
       } else {
         // No selection - export current page
@@ -239,7 +239,9 @@ class Example implements EditorPlugin {
 
       // eslint-disable-next-line no-console
       console.log(
-        `✅ Individual block exported - size: ${(individualBlob.size / 1024).toFixed(2)} KB`
+        `✅ Individual block exported - size: ${(
+          individualBlob.size / 1024
+        ).toFixed(2)} KB`
       );
 
       // Close the export dialog
@@ -340,7 +342,7 @@ class Example implements EditorPlugin {
     };
 
     // Configure navigation bar layout
-    cesdk.ui.setNavigationBarOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
       'ly.img.undoRedo.navigationBar',
       'ly.img.spacer',
       {

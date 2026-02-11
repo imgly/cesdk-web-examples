@@ -1,6 +1,6 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
-import { calculateGridLayout } from './utils';
 import packageJson from './package.json';
+import { calculateGridLayout } from './utils';
 
 class Example implements EditorPlugin {
   name = packageJson.name;
@@ -15,16 +15,15 @@ class Example implements EditorPlugin {
     await cesdk.addDefaultAssetSources();
     await cesdk.addDemoAssetSources({
       sceneMode: 'Design',
-      withUploadAssetSources: true,
+      withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
 
-    // Set page dimensions before grid calculation
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Calculate responsive grid layout for demonstrations
     const pageWidth = engine.block.getWidth(page);
@@ -33,7 +32,7 @@ class Example implements EditorPlugin {
       cols: 2,
       rows: 2,
       spacing: 20,
-      margin: 20,
+      margin: 20
     });
     const { blockWidth, blockHeight, getPosition } = layout;
 
@@ -43,14 +42,14 @@ class Example implements EditorPlugin {
     const unionCircle1 = engine.block.create('graphic');
     engine.block.setShape(
       unionCircle1,
-      engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+      engine.block.createShape('//ly.img.ubq/shape/ellipse')
     );
     const unionFill1 = engine.block.createFill('color');
     engine.block.setColor(unionFill1, 'fill/color/value', {
       r: 1.0,
       g: 0.4,
       b: 0.4,
-      a: 1.0,
+      a: 1.0
     });
     engine.block.setFill(unionCircle1, unionFill1);
     engine.block.setWidth(unionCircle1, circleSize);
@@ -60,14 +59,14 @@ class Example implements EditorPlugin {
     const unionCircle2 = engine.block.create('graphic');
     engine.block.setShape(
       unionCircle2,
-      engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+      engine.block.createShape('//ly.img.ubq/shape/ellipse')
     );
     const unionFill2 = engine.block.createFill('color');
     engine.block.setColor(unionFill2, 'fill/color/value', {
       r: 0.4,
       g: 1.0,
       b: 0.4,
-      a: 1.0,
+      a: 1.0
     });
     engine.block.setFill(unionCircle2, unionFill2);
     engine.block.setWidth(unionCircle2, circleSize);
@@ -77,14 +76,14 @@ class Example implements EditorPlugin {
     const unionCircle3 = engine.block.create('graphic');
     engine.block.setShape(
       unionCircle3,
-      engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+      engine.block.createShape('//ly.img.ubq/shape/ellipse')
     );
     const unionFill3 = engine.block.createFill('color');
     engine.block.setColor(unionFill3, 'fill/color/value', {
       r: 0.4,
       g: 0.4,
       b: 1.0,
-      a: 1.0,
+      a: 1.0
     });
     engine.block.setFill(unionCircle3, unionFill3);
     engine.block.setWidth(unionCircle3, circleSize);
@@ -96,13 +95,13 @@ class Example implements EditorPlugin {
     const imageBlock = engine.block.create('graphic');
     engine.block.setShape(
       imageBlock,
-      engine.block.createShape('//ly.img.ubq/shape/rect'),
+      engine.block.createShape('//ly.img.ubq/shape/rect')
     );
     const imageFill = engine.block.createFill('image');
     engine.block.setString(
       imageFill,
       'fill/image/imageFileURI',
-      'https://img.ly/static/ubq_samples/sample_1.jpg',
+      'https://img.ly/static/ubq_samples/sample_1.jpg'
     );
     engine.block.setFill(imageBlock, imageFill);
     engine.block.setWidth(imageBlock, blockWidth * 0.9);
@@ -122,14 +121,14 @@ class Example implements EditorPlugin {
     const intersectCircle1 = engine.block.create('graphic');
     engine.block.setShape(
       intersectCircle1,
-      engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+      engine.block.createShape('//ly.img.ubq/shape/ellipse')
     );
     const intersectFill1 = engine.block.createFill('color');
     engine.block.setColor(intersectFill1, 'fill/color/value', {
       r: 1.0,
       g: 0.6,
       b: 0.2,
-      a: 1.0,
+      a: 1.0
     });
     engine.block.setFill(intersectCircle1, intersectFill1);
     engine.block.setWidth(intersectCircle1, intersectCircleSize);
@@ -139,14 +138,14 @@ class Example implements EditorPlugin {
     const intersectCircle2 = engine.block.create('graphic');
     engine.block.setShape(
       intersectCircle2,
-      engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+      engine.block.createShape('//ly.img.ubq/shape/ellipse')
     );
     const intersectFill2 = engine.block.createFill('color');
     engine.block.setColor(intersectFill2, 'fill/color/value', {
       r: 1.0,
       g: 0.6,
       b: 0.2,
-      a: 1.0,
+      a: 1.0
     });
     engine.block.setFill(intersectCircle2, intersectFill2);
     engine.block.setWidth(intersectCircle2, intersectCircleSize);
@@ -158,14 +157,14 @@ class Example implements EditorPlugin {
     const xorCircle1 = engine.block.create('graphic');
     engine.block.setShape(
       xorCircle1,
-      engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+      engine.block.createShape('//ly.img.ubq/shape/ellipse')
     );
     const xorFill1 = engine.block.createFill('color');
     engine.block.setColor(xorFill1, 'fill/color/value', {
       r: 1.0,
       g: 0.8,
       b: 0.2,
-      a: 1.0,
+      a: 1.0
     });
     engine.block.setFill(xorCircle1, xorFill1);
     engine.block.setWidth(xorCircle1, 140);
@@ -175,14 +174,14 @@ class Example implements EditorPlugin {
     const xorCircle2 = engine.block.create('graphic');
     engine.block.setShape(
       xorCircle2,
-      engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+      engine.block.createShape('//ly.img.ubq/shape/ellipse')
     );
     const xorFill2 = engine.block.createFill('color');
     engine.block.setColor(xorFill2, 'fill/color/value', {
       r: 0.2,
       g: 0.8,
       b: 1.0,
-      a: 1.0,
+      a: 1.0
     });
     engine.block.setFill(xorCircle2, xorFill2);
     engine.block.setWidth(xorCircle2, 140);
@@ -198,24 +197,47 @@ class Example implements EditorPlugin {
     const halfCircle = circleSize / 2;
     // Top vertex
     engine.block.setPositionX(unionCircle1, unionCenterX - halfCircle);
-    engine.block.setPositionY(unionCircle1, unionCenterY - triangleRadius - halfCircle);
+    engine.block.setPositionY(
+      unionCircle1,
+      unionCenterY - triangleRadius - halfCircle
+    );
     // Bottom-right vertex (angle -30°)
-    engine.block.setPositionX(unionCircle2, unionCenterX + triangleRadius * 0.866 - halfCircle);
-    engine.block.setPositionY(unionCircle2, unionCenterY + triangleRadius * 0.5 - halfCircle);
+    engine.block.setPositionX(
+      unionCircle2,
+      unionCenterX + triangleRadius * 0.866 - halfCircle
+    );
+    engine.block.setPositionY(
+      unionCircle2,
+      unionCenterY + triangleRadius * 0.5 - halfCircle
+    );
     // Bottom-left vertex (angle 210°)
-    engine.block.setPositionX(unionCircle3, unionCenterX - triangleRadius * 0.866 - halfCircle);
-    engine.block.setPositionY(unionCircle3, unionCenterY + triangleRadius * 0.5 - halfCircle);
+    engine.block.setPositionX(
+      unionCircle3,
+      unionCenterX - triangleRadius * 0.866 - halfCircle
+    );
+    engine.block.setPositionY(
+      unionCircle3,
+      unionCenterY + triangleRadius * 0.5 - halfCircle
+    );
 
     // Center image in top-right quadrant, then center text on image
     const diffPos = getPosition(1);
-    const imageX = diffPos.x + (blockWidth - engine.block.getWidth(imageBlock)) / 2;
-    const imageY = diffPos.y + (blockHeight - engine.block.getHeight(imageBlock)) / 2;
+    const imageX =
+      diffPos.x + (blockWidth - engine.block.getWidth(imageBlock)) / 2;
+    const imageY =
+      diffPos.y + (blockHeight - engine.block.getHeight(imageBlock)) / 2;
     engine.block.setPositionX(imageBlock, imageX);
     engine.block.setPositionY(imageBlock, imageY);
 
     // Center text on the image block (not the quadrant)
-    const textX = imageX + (engine.block.getWidth(imageBlock) - engine.block.getWidth(textBlock)) / 2;
-    const textY = imageY + (engine.block.getHeight(imageBlock) - engine.block.getHeight(textBlock)) / 2;
+    const textX =
+      imageX +
+      (engine.block.getWidth(imageBlock) - engine.block.getWidth(textBlock)) /
+        2;
+    const textY =
+      imageY +
+      (engine.block.getHeight(imageBlock) - engine.block.getHeight(textBlock)) /
+        2;
     engine.block.setPositionX(textBlock, textX);
     engine.block.setPositionY(textBlock, textY);
 
@@ -225,10 +247,22 @@ class Example implements EditorPlugin {
     const intersectCenterY = intersectPos.y + blockHeight / 2;
     const halfIntersectCircle = intersectCircleSize / 2;
     // Position circles to overlap vertically by about 50% (72px offset for 144px circles)
-    engine.block.setPositionX(intersectCircle1, intersectCenterX - halfIntersectCircle);
-    engine.block.setPositionY(intersectCircle1, intersectCenterY - halfIntersectCircle - 36);
-    engine.block.setPositionX(intersectCircle2, intersectCenterX - halfIntersectCircle);
-    engine.block.setPositionY(intersectCircle2, intersectCenterY - halfIntersectCircle + 36);
+    engine.block.setPositionX(
+      intersectCircle1,
+      intersectCenterX - halfIntersectCircle
+    );
+    engine.block.setPositionY(
+      intersectCircle1,
+      intersectCenterY - halfIntersectCircle - 36
+    );
+    engine.block.setPositionX(
+      intersectCircle2,
+      intersectCenterX - halfIntersectCircle
+    );
+    engine.block.setPositionY(
+      intersectCircle2,
+      intersectCenterY - halfIntersectCircle + 36
+    );
 
     // Center XOR circles in bottom-right quadrant
     const xorPos = getPosition(3);
@@ -244,12 +278,12 @@ class Example implements EditorPlugin {
     const canCombineUnion = engine.block.isCombinable([
       unionCircle1,
       unionCircle2,
-      unionCircle3,
+      unionCircle3
     ]);
     const canCombineDiff = engine.block.isCombinable([imageBlock, textBlock]);
     const canCombineIntersect = engine.block.isCombinable([
       intersectCircle1,
-      intersectCircle2,
+      intersectCircle2
     ]);
     const canCombineXor = engine.block.isCombinable([xorCircle1, xorCircle2]);
 
@@ -267,7 +301,10 @@ class Example implements EditorPlugin {
 
     // Extract overlapping area using Intersection operation
     if (canCombineIntersect) {
-      engine.block.combine([intersectCircle1, intersectCircle2], 'Intersection');
+      engine.block.combine(
+        [intersectCircle1, intersectCircle2],
+        'Intersection'
+      );
     }
 
     // Create exclusion pattern using XOR operation

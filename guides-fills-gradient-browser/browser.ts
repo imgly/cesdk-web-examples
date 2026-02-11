@@ -29,7 +29,9 @@ class Example implements EditorPlugin {
     console.log('Fill feature enabled:', isFillEnabled);
 
     // Create a design scene using CE.SDK cesdk method
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 1200, height: 900, unit: 'Pixel' }
+    });
 
     // Get the page
     const pages = engine.block.findByType('page');
@@ -37,10 +39,6 @@ class Example implements EditorPlugin {
     if (!page) {
       throw new Error('No page found');
     }
-
-    // Set page dimensions
-    engine.block.setWidth(page, 1200);
-    engine.block.setHeight(page, 900);
 
     // Set page background to light gray
     const pageFill = engine.block.getFill(page);

@@ -75,6 +75,7 @@ try {
   // Discover what properties are available on a shape
   const exampleStarShape = engine.block.createShape('star');
   const properties = engine.block.findAllProperties(exampleStarShape);
+  console.log('Available star shape properties:', properties);
   // Returns: ['shape/star/points', 'shape/star/innerDiameter', 'type', ...]
   engine.block.destroy(exampleStarShape);
 

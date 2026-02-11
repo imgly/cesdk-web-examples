@@ -9,7 +9,7 @@ const fashionAdArchiveUrl =
   'https://cdn.img.ly/assets/templates/starterkits/16-9-fashion-ad.zip';
 
 const postcardSceneUrl =
-  'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene';
+  'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
 /**
  * CE.SDK Plugin: Import Templates
@@ -48,7 +48,7 @@ class Example implements EditorPlugin {
     }
 
     // Configure navigation bar with template loading buttons
-    cesdk.ui.setNavigationBarOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
       'ly.img.undoRedo.navigationBar',
       'ly.img.spacer',
       {

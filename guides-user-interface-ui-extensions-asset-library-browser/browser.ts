@@ -106,7 +106,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Create a design scene to work with
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
 
     // Create an Unsplash asset source with remote API fetching
     engine.asset.addSource({
@@ -191,7 +191,7 @@ class Example implements EditorPlugin {
     });
 
     // Set dock to show both Unsplash and Uploads panels
-    cesdk.ui.setDockOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       {
         id: 'ly.img.assetLibrary.dock',
         key: 'unsplash-images',

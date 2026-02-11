@@ -10,8 +10,7 @@ export default {
   components: { CreativeEditor },
   data() {
     return {
-      editorConfig: {
-        // license: 'YOUR_CESDK_LICENSE_KEY', // Replace with your actual CE.SDK license key
+      config: {
         userId: 'guides-user',
         // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`,
         // Use local assets when developing with local packages

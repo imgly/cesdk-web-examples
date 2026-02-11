@@ -23,15 +23,14 @@ class Example implements EditorPlugin {
       sceneMode: 'Video',
       withUploadAssetSources: true
     });
-    await cesdk.createVideoScene();
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 800, height: 500, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const pages = engine.block.findByType('page');
     const page = pages.length > 0 ? pages[0] : engine.scene.get();
-
-    // Set page dimensions and fill color
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 500);
 
     // Enable fill and set page fill color to #6686FF
     engine.block.setFillEnabled(page, true);
@@ -81,12 +80,16 @@ class Example implements EditorPlugin {
     engine.block.setPositionX(explanation1, 0);
     engine.block.setPositionY(explanation1, 345);
     engine.block.setFillEnabled(explanation1, true);
-    engine.block.setColor(engine.block.getFill(explanation1), 'fill/color/value', {
-      r: 1,
-      g: 1,
-      b: 1,
-      a: 1
-    });
+    engine.block.setColor(
+      engine.block.getFill(explanation1),
+      'fill/color/value',
+      {
+        r: 1,
+        g: 1,
+        b: 1,
+        a: 1
+      }
+    );
     engine.block.appendChild(page, explanation1);
 
     // Demo 2: Percentage Positioning - Responsive layout
@@ -134,12 +137,16 @@ class Example implements EditorPlugin {
     engine.block.setPositionX(explanation2, 300);
     engine.block.setPositionY(explanation2, 345);
     engine.block.setFillEnabled(explanation2, true);
-    engine.block.setColor(engine.block.getFill(explanation2), 'fill/color/value', {
-      r: 1,
-      g: 1,
-      b: 1,
-      a: 1
-    });
+    engine.block.setColor(
+      engine.block.getFill(explanation2),
+      'fill/color/value',
+      {
+        r: 1,
+        g: 1,
+        b: 1,
+        a: 1
+      }
+    );
     engine.block.appendChild(page, explanation2);
 
     // Demo 3: Locked Video - Cannot be moved, rotated, or scaled
@@ -184,12 +191,16 @@ class Example implements EditorPlugin {
     engine.block.setPositionX(explanation3, 550);
     engine.block.setPositionY(explanation3, 345);
     engine.block.setFillEnabled(explanation3, true);
-    engine.block.setColor(engine.block.getFill(explanation3), 'fill/color/value', {
-      r: 1,
-      g: 1,
-      b: 1,
-      a: 1
-    });
+    engine.block.setColor(
+      engine.block.getFill(explanation3),
+      'fill/color/value',
+      {
+        r: 1,
+        g: 1,
+        b: 1,
+        a: 1
+      }
+    );
     engine.block.appendChild(page, explanation3);
 
     // Get current position values

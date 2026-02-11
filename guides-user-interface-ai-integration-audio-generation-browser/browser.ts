@@ -17,7 +17,13 @@ class Example implements EditorPlugin {
     await cesdk.addDemoAssetSources({ sceneMode: 'Video' });
 
     // Create a video scene to demonstrate audio generation
-    await cesdk.createVideoScene();
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.instagram.story'
+      }
+    });
 
     // Configure the audio generation plugin
     // NOTE: In production, provide a secure proxy URL that forwards
@@ -44,7 +50,10 @@ class Example implements EditorPlugin {
     );
 
     // Reorder dock to show AI Apps button prominently
-    cesdk.ui.setDockOrder(['ly.img.ai.apps.dock', ...cesdk.ui.getDockOrder()]);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      'ly.img.ai.apps.dock',
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })
+    ]);
 
     // Add AI audio generation history to the audio asset library
     const audioEntry = cesdk.ui.getAssetLibraryEntry('ly.img.audio');

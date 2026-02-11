@@ -24,7 +24,7 @@ onMounted(async () => {
   );
   await cesdkInstance.addDefaultAssetSources();
   await cesdkInstance.addDemoAssetSources({ sceneMode: 'Design' });
-  await cesdkInstance.createDesignScene();
+  await cesdkInstance.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
 });
 // Dispose of the editor when done
 onUnmounted(() => {

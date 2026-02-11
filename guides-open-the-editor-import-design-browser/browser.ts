@@ -1,6 +1,6 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
-import { calculateGridLayout } from './utils';
 import packageJson from './package.json';
+import { calculateGridLayout } from './utils';
 
 class Example implements EditorPlugin {
   name = packageJson.name;
@@ -19,7 +19,12 @@ class Example implements EditorPlugin {
     });
 
     // Start with a blank design scene
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     const engine = cesdk.engine;
 
@@ -27,7 +32,7 @@ class Example implements EditorPlugin {
     // URL to a saved CE.SDK scene file
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const sceneUrl =
-      'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene';
+      'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
     // Load the scene from remote URL
     // await engine.scene.loadFromURL(sceneUrl);

@@ -36,7 +36,12 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
@@ -64,7 +69,7 @@ class Example implements EditorPlugin {
     const image = await engine.asset.defaultApplyAsset({
       id: 'ly.img.cesdk.images.samples/sample.1',
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v1/ly.img.image/images/sample_1.jpg',
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.image/images/sample_1.jpg',
         width: 2500,
         height: 1667
       }

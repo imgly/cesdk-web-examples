@@ -35,7 +35,7 @@ class Example implements EditorPlugin {
     // This loads only the scene structure - assets must be accessible via URLs
     // Uncomment to try:
     // await engine.scene.loadFromURL(
-    //   'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
+    //   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     // );
 
     // Alternative: Apply template while preserving current page dimensions
@@ -43,14 +43,12 @@ class Example implements EditorPlugin {
     // with specific dimensions
     // Uncomment to try:
     // // First create a scene with specific dimensions
-    // await cesdk.createDesignScene();
+    // await cesdk.actions.run('scene.create', { page: { width: 1920, height: 1080, unit: 'Pixel' } });
     // const page = engine.block.findByType('page')[0];
-    // engine.block.setWidth(page, 1920);
-    // engine.block.setHeight(page, 1080);
     //
     // // Now apply template - content will be adjusted to fit
     // await engine.scene.applyTemplateFromURL(
-    //   'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_instagram_photo_1.scene'
+    //   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene'
     // );
 
     // Get the loaded scene

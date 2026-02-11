@@ -15,14 +15,13 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 450, height: 250, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
 
-    // Set page dimensions
-    engine.block.setWidth(page, 450);
-    engine.block.setHeight(page, 250);
 
     // ===== Section 1: Using Convenience API =====
     // Create sticker using the convenient addImage() method

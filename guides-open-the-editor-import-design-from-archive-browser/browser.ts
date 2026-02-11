@@ -1,6 +1,6 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
-import { calculateGridLayout } from './utils';
 import packageJson from './package.json';
+import { calculateGridLayout } from './utils';
 
 class Example implements EditorPlugin {
   name = packageJson.name;
@@ -19,7 +19,9 @@ class Example implements EditorPlugin {
     });
 
     // Start with a blank design scene
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 1920, height: 1080, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
 
@@ -109,10 +111,6 @@ class Example implements EditorPlugin {
 
     // Create a visual demonstration showing the archive loading workflow
     const page = engine.block.findByType('page')[0];
-
-    // Set page dimensions
-    engine.block.setWidth(page, 1920);
-    engine.block.setHeight(page, 1080);
 
     const layout = calculateGridLayout(1920, 1080, 3, {
       spacing: 40,

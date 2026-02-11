@@ -1,7 +1,7 @@
 import type {
+  CreativeEngine,
   EditorPlugin,
-  EditorPluginContext,
-  CreativeEngine
+  EditorPluginContext
 } from '@cesdk/cesdk-js';
 import packageJson from './package.json';
 
@@ -24,13 +24,12 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 1200, height: 800, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    engine.block.setWidth(page, 1200);
-    engine.block.setHeight(page, 800);
 
     // Create sample content to demonstrate locking
     // Layout: 2x2 grid centered on page (1200x800)

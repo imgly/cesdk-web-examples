@@ -20,7 +20,7 @@ const init = async (cesdk) => {
   ]);
 
   // Create a new design scene in the editor
-  await cesdk.createDesignScene();
+  await cesdk.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
 };
 
 export default function CreativeEditorSDKComponent() {

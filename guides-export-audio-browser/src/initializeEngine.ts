@@ -37,7 +37,7 @@ export async function initializeCESDK(container) {
   });
 
   // Initialize with video scene for audio capabilities
-  await cesdk.createVideoScene();
+  await cesdk.actions.run('scene.create', { mode: 'Video', page: { width: 1920, height: 1080, unit: 'Pixel' } });
 
   console.log('CE.SDK initialized successfully with audio features');
   return cesdk;
@@ -51,23 +51,21 @@ export async function setupAudioScene(cesdk) {
   const page = cesdk.engine.scene.getCurrentPage();
 
   // Set page to 16:9 format (1920x1080)
-  const width = 1920;
-  const height = 1080;
-  cesdk.engine.block.setWidth(page, width);
-  cesdk.engine.block.setHeight(page, height);
+  const width = cesdk.engine.block.getWidth(page);
+  const height = cesdk.engine.block.getHeight(page);
 
   // Set page duration for timeline
   cesdk.engine.block.setDuration(page, 30); // 30 seconds
 
   // Enable timeline view for audio tracks
-  cesdk.ui.setDockOrder([
+  cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
     {
       id: 'ly.img.timeline',
       label: 'Timeline',
       icon: '@imgly/Timeline',
       entries: []
     },
-    ...cesdk.ui.getDockOrder()
+    ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })
   ]);
 
   return { scene, page };

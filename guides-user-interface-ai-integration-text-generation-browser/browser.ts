@@ -18,7 +18,12 @@ class Example implements EditorPlugin {
     await cesdk.addDemoAssetSources({ sceneMode: 'Design' });
 
     // Create a design scene
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0]!;
@@ -85,12 +90,15 @@ class Example implements EditorPlugin {
     );
 
     // Reorder dock to show AI Apps button prominently
-    cesdk.ui.setDockOrder(['ly.img.ai.apps.dock', ...cesdk.ui.getDockOrder()]);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      'ly.img.ai.apps.dock',
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })
+    ]);
 
     // Configure canvas menu to show AI text quick actions
-    cesdk.ui.setCanvasMenuOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.canvas.menu' }, [
       'ly.img.ai.text.canvasMenu',
-      ...cesdk.ui.getCanvasMenuOrder()
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.canvas.menu' })
     ]);
 
     // Customize UI labels for AI text generation features

@@ -27,7 +27,10 @@ class Example implements EditorPlugin {
       sceneMode: 'Video',
       withUploadAssetSources: true
     });
-    await cesdk.createVideoScene();
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 1280, height: 720, unit: 'Pixel' }
+    });
 
     // Enable video and audio features
     cesdk.feature.enable('ly.img.video');
@@ -39,14 +42,11 @@ class Example implements EditorPlugin {
     const pages = engine.block.findByType('page');
     const page = pages.length > 0 ? pages[0] : scene;
 
-    // Set page dimensions and duration
-    engine.block.setWidth(page, 1280);
-    engine.block.setHeight(page, 720);
     engine.block.setDuration(page, 30); // 30 second timeline
 
     // Use sample audio from demo assets
     const audioUri =
-      'https://cdn.img.ly/assets/demo/v1/ly.img.audio/audios/far_from_home.m4a';
+      'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/far_from_home.m4a';
 
     // Create a basic audio block
     const audioBlock = engine.block.create('audio')!;
