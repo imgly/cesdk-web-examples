@@ -15,20 +15,21 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
 
-    // Set page dimensions to match image display size for safe export
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
-
     // Add export image action to navigation bar
-    cesdk.ui.insertNavigationBarOrderComponent('last', {
-      id: 'ly.img.actions.navigationBar',
-      children: ['ly.img.exportImage.navigationBar']
-    });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: ['ly.img.exportImage.navigationBar']
+      }
+    );
 
     const imageUri = 'https://img.ly/static/ubq_samples/sample_1.jpg';
 
@@ -113,7 +114,9 @@ class Example implements EditorPlugin {
       if (exportWidth > safeTextureSize || exportHeight > safeTextureSize) {
         cesdk.ui.showNotification({
           type: 'warning',
-          message: `Export dimensions (${Math.round(exportWidth)}×${Math.round(exportHeight)}) exceed safe GPU limit (${safeTextureSize}×${safeTextureSize})`
+          message: `Export dimensions (${Math.round(exportWidth)}×${Math.round(
+            exportHeight
+          )}) exceed safe GPU limit (${safeTextureSize}×${safeTextureSize})`
         });
       } else {
         cesdk.ui.showNotification({

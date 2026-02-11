@@ -16,7 +16,13 @@ class Example implements EditorPlugin {
       sceneMode: 'Video',
       withUploadAssetSources: false
     });
-    await cesdk.createVideoScene();
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.instagram.story'
+      }
+    });
 
     const engine = cesdk.engine;
 
@@ -65,11 +71,11 @@ class Example implements EditorPlugin {
       id: 'dance-harder',
       label: { en: 'Dance Harder' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/dance_harder.m4a', // Full audio file
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/dance_harder.m4a', // Full audio file
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/thumbnails/dance_harder.jpg', // Waveform visualization (image, UI-only)
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/thumbnails/dance_harder.jpg', // Waveform visualization (image, UI-only)
         previewUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/dance_harder.m4a', // Preview clip - set as block property on canvas
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/dance_harder.m4a', // Preview clip - set as block property on canvas
         mimeType: 'audio/x-m4a', // Required for audio preview to work
         blockType: '//ly.img.ubq/audio',
         duration: '212.531995'
@@ -80,11 +86,11 @@ class Example implements EditorPlugin {
       id: 'far-from-home',
       label: { en: 'Far From Home' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/far_from_home.m4a',
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/far_from_home.m4a',
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/thumbnails/audio-wave.png',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/thumbnails/audio-wave.png',
         previewUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/far_from_home.m4a',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/far_from_home.m4a',
         mimeType: 'audio/x-m4a',
         blockType: '//ly.img.ubq/audio',
         duration: '98.716009'
@@ -95,11 +101,11 @@ class Example implements EditorPlugin {
       id: 'elsewhere',
       label: { en: 'Elsewhere' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/elsewhere.m4a',
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/elsewhere.m4a',
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/thumbnails/elsewhere.jpg',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/thumbnails/elsewhere.jpg',
         previewUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/elsewhere.m4a',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/elsewhere.m4a',
         mimeType: 'audio/x-m4a',
         blockType: '//ly.img.ubq/audio',
         duration: '121.2'

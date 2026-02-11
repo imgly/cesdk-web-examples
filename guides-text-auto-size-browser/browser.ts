@@ -25,14 +25,13 @@ class Example implements EditorPlugin {
     await cesdk.addDemoAssetSources({
       sceneMode: 'Design'
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
 
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Create text with Auto width and height - grows to fit content
     const autoText = engine.block.create('text');

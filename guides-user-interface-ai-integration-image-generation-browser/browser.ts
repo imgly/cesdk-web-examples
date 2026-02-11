@@ -18,7 +18,12 @@ class Example implements EditorPlugin {
     await cesdk.addDemoAssetSources({ sceneMode: 'Design' });
 
     // Create a design scene
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     const engine = cesdk.engine;
 
@@ -40,7 +45,7 @@ class Example implements EditorPlugin {
             FalAiImage.SeedreamV4({ proxyUrl }),
             FalAiImage.FluxProKontextEdit({ proxyUrl }),
             FalAiImage.FluxProKontextMaxEdit({ proxyUrl }),
-            OpenAiImage.GptImage1.Text2Image({ proxyUrl }),
+            OpenAiImage.GptImage1.Text2Image({ proxyUrl })
           ],
           image2image: [
             FalAiImage.GeminiFlashEdit({ proxyUrl }),
@@ -49,8 +54,8 @@ class Example implements EditorPlugin {
             FalAiImage.QwenImageEdit({ proxyUrl }),
             FalAiImage.NanoBananaEdit({ proxyUrl }),
             FalAiImage.SeedreamV4Edit({ proxyUrl }),
-            OpenAiImage.GptImage1.Image2Image({ proxyUrl }),
-          ],
+            OpenAiImage.GptImage1.Image2Image({ proxyUrl })
+          ]
         },
         // IMPORTANT: dryRun mode simulates generation without API calls
         // Perfect for testing and development
@@ -59,9 +64,9 @@ class Example implements EditorPlugin {
     );
 
     // Reorder dock to show AI Apps button prominently
-    cesdk.ui.setDockOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       'ly.img.ai.apps.dock',
-      ...cesdk.ui.getDockOrder()
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })
     ]);
 
     // Alternative: Configure with single provider

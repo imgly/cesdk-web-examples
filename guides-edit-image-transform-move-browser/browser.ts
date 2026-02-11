@@ -19,14 +19,12 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 500, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 500);
 
     // Demo 1: Movable Image - Can be freely repositioned by user
     const movableImage = await engine.block.addImage(

@@ -15,14 +15,12 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     const pageWidth = engine.block.getWidth(page);
     const pageHeight = engine.block.getHeight(page);
@@ -101,10 +99,13 @@ class Example implements EditorPlugin {
     });
 
     // Add export button to navigation bar
-    cesdk.ui.insertNavigationBarOrderComponent('last', {
-      id: 'ly.img.actions.navigationBar',
-      children: ['ly.img.exportImage.navigationBar']
-    });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: ['ly.img.exportImage.navigationBar']
+      }
+    );
 
     // Log completion
     console.log('Export with Color Mask example loaded successfully');

@@ -1,10 +1,10 @@
 import type {
-  EditorPlugin,
-  EditorPluginContext,
-  AssetSource,
   AssetQueryData,
+  AssetResult,
+  AssetSource,
   AssetsQueryResult,
-  AssetResult
+  EditorPlugin,
+  EditorPluginContext
 } from '@cesdk/cesdk-js';
 import packageJson from './package.json';
 
@@ -34,14 +34,13 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
 
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Enable filters in the inspector panel using the Feature API
     cesdk.feature.enable('ly.img.filter');
@@ -54,9 +53,9 @@ class Example implements EditorPlugin {
       label: { en: 'MY CUSTOM FILTER' },
       tags: { en: ['custom', 'brand'] },
       meta: {
-        uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+        uri: 'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
         thumbUri:
-          'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+          'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
         horizontalTileCount: '5',
         verticalTileCount: '5',
         blockType: '//ly.img.ubq/effect/lut_filter'
@@ -84,9 +83,9 @@ class Example implements EditorPlugin {
             label: 'Vintage Warm',
             tags: ['vintage', 'warm', 'retro'],
             meta: {
-              uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+              uri: 'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               thumbUri:
-                'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+                'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               horizontalTileCount: '5',
               verticalTileCount: '5',
               blockType: '//ly.img.ubq/effect/lut_filter'
@@ -97,9 +96,9 @@ class Example implements EditorPlugin {
             label: 'Cool Cinema',
             tags: ['cinema', 'cool', 'film'],
             meta: {
-              uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+              uri: 'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               thumbUri:
-                'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+                'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               horizontalTileCount: '5',
               verticalTileCount: '5',
               blockType: '//ly.img.ubq/effect/lut_filter'
@@ -110,9 +109,9 @@ class Example implements EditorPlugin {
             label: 'B&W Classic',
             tags: ['black and white', 'classic', 'monochrome'],
             meta: {
-              uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+              uri: 'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               thumbUri:
-                'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+                'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
               horizontalTileCount: '5',
               verticalTileCount: '5',
               blockType: '//ly.img.ubq/effect/lut_filter'
@@ -176,9 +175,9 @@ class Example implements EditorPlugin {
           tags: { en: ['warm', 'sunset', 'golden'] },
           groups: ['Warm Tones'],
           meta: {
-            uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+            uri: 'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
             thumbUri:
-              'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+              'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
             horizontalTileCount: '5',
             verticalTileCount: '5',
             blockType: '//ly.img.ubq/effect/lut_filter'
@@ -190,9 +189,9 @@ class Example implements EditorPlugin {
           tags: { en: ['cool', 'blue', 'ocean'] },
           groups: ['Cool Tones'],
           meta: {
-            uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+            uri: 'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
             thumbUri:
-              'https://cdn.img.ly/packages/imgly/cesdk-js/1.66.1/assets/extensions/ly.img.cesdk.filters.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
+              'https://cdn.img.ly/assets/v4/ly.img.filter.lut/LUTs/imgly_lut_ad1920_5_5_128.png',
             horizontalTileCount: '5',
             verticalTileCount: '5',
             blockType: '//ly.img.ubq/effect/lut_filter'
@@ -202,8 +201,9 @@ class Example implements EditorPlugin {
     });
 
     // Create asset source from JSON string
-    const jsonSourceId =
-      await engine.asset.addLocalAssetSourceFromJSONString(filterConfigJSON);
+    const jsonSourceId = await engine.asset.addLocalAssetSourceFromJSONString(
+      filterConfigJSON
+    );
     // eslint-disable-next-line no-console
     console.log('Created JSON-based filter source:', jsonSourceId);
 

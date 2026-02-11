@@ -37,7 +37,13 @@ class Example implements EditorPlugin {
       sceneMode: 'Video',
       withUploadAssetSources: true
     });
-    await cesdk.createVideoScene();
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.instagram.story'
+      }
+    });
 
     const engine = cesdk.engine as CreativeEngine;
     const pages = engine.block.findByType('page');
@@ -221,6 +227,9 @@ class Example implements EditorPlugin {
 
     // Select the first block so users can see the fill in action
     engine.block.setSelected(basicBlock, true);
+
+    // Set playback time to 2 seconds to show video content
+    engine.block.setPlaybackTime(page, 2);
 
     // Start playback automatically
     try {

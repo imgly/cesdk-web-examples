@@ -10,13 +10,12 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required');
     }
 
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 600, height: 800, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    engine.block.setWidth(page, 600);
-    engine.block.setHeight(page, 800);
 
     await this.createTemplate(engine, page);
 
@@ -124,8 +123,8 @@ class Example implements EditorPlugin {
       });
     });
 
-    cesdk.ui.setDockOrder([
-      ...cesdk.ui.getDockOrder(),
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
       'ly.img.spacer',
       'template-form-panel-btn-component'
     ]);

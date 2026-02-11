@@ -32,16 +32,15 @@ class Example implements EditorPlugin {
       sceneMode: 'Video',
       withUploadAssetSources: true
     });
-    await cesdk.createVideoScene();
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 1920, height: 1080, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const scene = engine.scene.get();
     const pages = engine.block.findByType('page');
     const page = pages.length > 0 ? pages[0] : scene;
-
-    // Set page dimensions before calculating grid layout
-    engine.block.setWidth(page, 1920);
-    engine.block.setHeight(page, 1080);
 
     // Set white background color for the page
     // First check if page supports fill, if not or doesn't have one, create one

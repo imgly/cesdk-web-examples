@@ -13,9 +13,11 @@ class Example implements EditorPlugin {
     await cesdk.addDefaultAssetSources();
     await cesdk.addDemoAssetSources({
       sceneMode: 'Design',
-      withUploadAssetSources: true,
+      withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 100, height: 100, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
@@ -31,10 +33,6 @@ class Example implements EditorPlugin {
     engine.block.setWidth(graphic, 100);
     engine.block.setHeight(graphic, 100);
     engine.block.appendChild(page, graphic);
-
-    // Set page size to match graphic and position at origin
-    engine.block.setWidth(page, 100);
-    engine.block.setHeight(page, 100);
     engine.block.setPositionX(graphic, 0);
     engine.block.setPositionY(graphic, 0);
 

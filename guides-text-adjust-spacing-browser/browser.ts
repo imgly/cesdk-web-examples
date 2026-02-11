@@ -24,14 +24,13 @@ class Example implements EditorPlugin {
     await cesdk.addDemoAssetSources({
       sceneMode: "Design",
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run("scene.create", {
+      page: { width: 800, height: 600, unit: "Pixel" },
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType("page")[0];
 
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Text block 1: Letter Spacing Demo
     const textLetterSpacing = engine.block.create("text");
@@ -50,7 +49,7 @@ class Example implements EditorPlugin {
     // Read current letter spacing value
     const letterSpacing = engine.block.getFloat(
       textLetterSpacing,
-      "text/letterSpacing",
+      "text/letterSpacing"
     );
     console.log("Letter spacing:", letterSpacing);
 
@@ -61,7 +60,10 @@ class Example implements EditorPlugin {
     engine.block.setPositionY(textLineHeight, 150);
     engine.block.setWidth(textLineHeight, 700);
     engine.block.setHeightMode(textLineHeight, "Auto");
-    engine.block.replaceText(textLineHeight, "Design your ideas\nBring them to life");
+    engine.block.replaceText(
+      textLineHeight,
+      "Design your ideas\nBring them to life"
+    );
     engine.block.setTextFontSize(textLineHeight, 48);
 
     // Set line height - controls vertical distance between lines
@@ -79,7 +81,10 @@ class Example implements EditorPlugin {
     engine.block.setPositionY(textParagraphSpacing, 350);
     engine.block.setWidth(textParagraphSpacing, 700);
     engine.block.setHeightMode(textParagraphSpacing, "Auto");
-    engine.block.replaceText(textParagraphSpacing, "Start Creating\nJoin Today");
+    engine.block.replaceText(
+      textParagraphSpacing,
+      "Start Creating\nJoin Today"
+    );
     engine.block.setTextFontSize(textParagraphSpacing, 48);
 
     // Set paragraph spacing - adds space after paragraph breaks
@@ -88,7 +93,7 @@ class Example implements EditorPlugin {
     // Read current paragraph spacing value
     const paragraphSpacing = engine.block.getFloat(
       textParagraphSpacing,
-      "text/paragraphSpacing",
+      "text/paragraphSpacing"
     );
     console.log("Paragraph spacing:", paragraphSpacing);
 

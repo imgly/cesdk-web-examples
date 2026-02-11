@@ -4,15 +4,20 @@ import type {
   EditorPluginContext
 } from '@cesdk/cesdk-js';
 import type { BlockEvent } from '@cesdk/cesdk-js';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 export default class CustomizeBehaviorExample implements EditorPlugin {
   name = 'CustomizeBehaviorExample';
   version = '1.0.0';
 
   async initialize({ cesdk, engine }: EditorPluginContext) {
+    if (!cesdk) {
+      throw new Error('CE.SDK not available');
+    }
+
     // Load a simple scene for demonstration
     await engine.scene.loadFromURL(
-      'https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_postcard_1.scene'
+      'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
     // Show welcome dialog first, then run demonstrations after user confirms
@@ -93,7 +98,10 @@ export default class CustomizeBehaviorExample implements EditorPlugin {
     }, 2000);
   }
 
-  private demonstrateDialogs(cesdk: any, engine: CreativeEngine): void {
+  private demonstrateDialogs(
+    cesdk: CreativeEditorSDK,
+    engine: CreativeEngine
+  ): void {
     // Show welcome dialog immediately
     cesdk.ui.showDialog({
       type: 'info',

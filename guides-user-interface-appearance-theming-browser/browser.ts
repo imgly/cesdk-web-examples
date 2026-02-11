@@ -76,7 +76,9 @@ class Example implements EditorPlugin {
     console.log('Current scale:', currentScale);
 
     // Create a design scene
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     // Add asset sources
     await cesdk.addDefaultAssetSources();
@@ -93,10 +95,6 @@ class Example implements EditorPlugin {
     if (!page) {
       throw new Error('No page found');
     }
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Add a visual element to demonstrate the theme
     const imageUri = 'https://img.ly/static/ubq_samples/sample_1.jpg';

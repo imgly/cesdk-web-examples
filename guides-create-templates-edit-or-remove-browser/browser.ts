@@ -36,12 +36,12 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
     const engine = cesdk.engine;
 
     const page = engine.block.findByType('page')[0];
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
     const pageWidth = engine.block.getWidth(page);
     const pageHeight = engine.block.getHeight(page);
 
@@ -66,8 +66,8 @@ class Example implements EditorPlugin {
     });
 
     // Add a spacer to push "My Templates" to the bottom of the dock
-    cesdk.ui.setDockOrder([
-      ...cesdk.ui.getDockOrder(),
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
       'ly.img.spacer',
       {
         id: 'ly.img.assetLibrary.dock',

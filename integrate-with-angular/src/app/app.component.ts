@@ -25,7 +25,7 @@ export class AppComponent implements AfterViewInit {
           sceneMode: 'Design',
           withUploadAssetSources: true
         });
-        await instance.createDesignScene();
+        await instance.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
       }
     );
   }

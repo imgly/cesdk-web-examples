@@ -18,14 +18,12 @@ class LocalizationExample implements EditorPlugin {
     });
 
     // Create a design scene
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0]!;
-
-    // Set page dimensions
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     // Get the currently active locale
     const currentLocale = cesdk.i18n.getLocale();

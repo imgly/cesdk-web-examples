@@ -22,9 +22,9 @@ class Example implements EditorPlugin {
 
     // Hide UI elements using ordering APIs (alternative method)
     // Setting empty array removes all components
-    cesdk.ui.setDockOrder([]);
-    cesdk.ui.setCanvasBarOrder([], 'top');
-    cesdk.ui.setCanvasMenuOrder([]);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, []);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.canvas.bar', at: 'top' }, []);
+    cesdk.ui.setComponentOrder({ in: 'ly.img.canvas.menu' }, []);
 
     // Close all panels using wildcard pattern
     cesdk.ui.closePanel('//ly.img.panel/*');
@@ -66,7 +66,12 @@ class Example implements EditorPlugin {
       sceneMode: 'Design',
       withUploadAssetSources: true
     });
-    await cesdk.createDesignScene();
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
