@@ -9,4 +9,25 @@ build_guides/
 
 # Ignore yarn.lock files in all subdirectories
 **/yarn.lock
+
+# Ignore package-lock.json files in all subdirectories except showcases-app and tests
+**/package-lock.json
+!showcases-app/package-lock.json
+!tests/package-lock.json
+
+# Ignore bun lockfiles created by bun install in example directories
+**/bun.lockb
+**/bun.lock
+
 logs/
+
+# Starterkit release directories - copied content (templates are tracked)
+starterkit-*/release/index.html
+starterkit-*/release/src/imgly/
+starterkit-*/release/public/
+starterkit-*/release/README.md
+starterkit-*/release/.gitignore
+starterkit-*/release/.env.example
+starterkit-*/release/.eslintrc.js
+starterkit-*/release/LICENSE
+starterkit-*/release/hero.webp

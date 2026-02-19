@@ -1,21 +1,24 @@
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
+// Conditionally import local dev plugin when CESDK_USE_LOCAL is set
+// This allows the example to work in both monorepo and standalone contexts
+export default defineConfig(async () => {
+  const plugins = [];
+
+  if (process.env.CESDK_USE_LOCAL) {
+    try {
+      const { cesdkLocal } =
+        await import('../shared/vite-config-cesdk-local.js');
+      plugins.push(cesdkLocal());
+    } catch {
+      // Silently fail in standalone repos where shared folder doesn't exist
+    }
+  }
 
   return {
-    define: {
-      'import.meta.env.VITE_CESDK_LICENSE': JSON.stringify(
-        env.VITE_CESDK_LICENSE || '',
-      ),
-    },
+    plugins,
     server: {
       port: 5173,
-      open: true,
-    },
-    build: {
-      outDir: 'dist',
-      sourcemap: true,
     },
   };
 });
