@@ -4,6 +4,10 @@ import Example from './browser';
 const config = {
   userId: 'guides-user',
   // license: import.meta.env.VITE_CESDK_LICENSE
+  // Use local assets when developing with local packages
+  ...(import.meta.env.CESDK_USE_LOCAL && {
+    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
+  }),
   featureFlags: {
     exportWorker: true
   }

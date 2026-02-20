@@ -1,4 +1,21 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import AiApps from '@imgly/plugin-ai-apps-web';
 import FalAiImage from '@imgly/plugin-ai-image-generation-web/fal-ai';
 import OpenAiImage from '@imgly/plugin-ai-image-generation-web/open-ai';
@@ -13,12 +30,39 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Load asset sources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({ sceneMode: 'Design' });
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    // Create a design scene
-    await cesdk.createDesignScene();
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     const engine = cesdk.engine;
 
@@ -40,7 +84,7 @@ class Example implements EditorPlugin {
             FalAiImage.SeedreamV4({ proxyUrl }),
             FalAiImage.FluxProKontextEdit({ proxyUrl }),
             FalAiImage.FluxProKontextMaxEdit({ proxyUrl }),
-            OpenAiImage.GptImage1.Text2Image({ proxyUrl }),
+            OpenAiImage.GptImage1.Text2Image({ proxyUrl })
           ],
           image2image: [
             FalAiImage.GeminiFlashEdit({ proxyUrl }),
@@ -49,8 +93,8 @@ class Example implements EditorPlugin {
             FalAiImage.QwenImageEdit({ proxyUrl }),
             FalAiImage.NanoBananaEdit({ proxyUrl }),
             FalAiImage.SeedreamV4Edit({ proxyUrl }),
-            OpenAiImage.GptImage1.Image2Image({ proxyUrl }),
-          ],
+            OpenAiImage.GptImage1.Image2Image({ proxyUrl })
+          ]
         },
         // IMPORTANT: dryRun mode simulates generation without API calls
         // Perfect for testing and development
@@ -59,9 +103,9 @@ class Example implements EditorPlugin {
     );
 
     // Reorder dock to show AI Apps button prominently
-    cesdk.ui.setDockOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       'ly.img.ai.apps.dock',
-      ...cesdk.ui.getDockOrder()
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' })
     ]);
 
     // Alternative: Configure with single provider
