@@ -1,6 +1,7 @@
 import CreativeEngine from '@cesdk/node';
 import { config } from 'dotenv';
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { mkdirSync, writeFileSync } from 'fs';
+import path from 'path';
 
 // Load environment variables
 config();
@@ -76,15 +77,15 @@ try {
   const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
   writeFileSync('output/temp-archive.zip', archiveBuffer);
 
-  // In server environments, you might load archives from the filesystem
-  // or from a URL. Here we demonstrate loading from a file
+  // In server environments, load archives using file:// URLs
+  // This works the same as loading from HTTP/HTTPS URLs
 
-  // Read the archive file
-  const archiveData = readFileSync('output/temp-archive.zip');
-  const archiveBlob2 = new Blob([archiveData], { type: 'application/zip' });
+  // Convert filesystem path to file:// URL
+  const archivePath = path.resolve('output/temp-archive.zip');
+  const archiveFileUrl = `file://${archivePath}`;
 
-  // Load the archive using loadFromArchive
-  await engine.scene.loadFromArchive(archiveBlob2);
+  // Load the archive using loadFromArchiveURL
+  await engine.scene.loadFromArchiveURL(archiveFileUrl);
 
   // Archives include all assets, making them portable across environments
   // No external asset URLs need to be accessible
@@ -97,7 +98,7 @@ try {
 
   // URL to a saved CE.SDK scene file
   const sceneUrl =
-    'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene';
+    'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
   // Load the scene from remote URL
   await engine.scene.loadFromURL(sceneUrl);
@@ -153,7 +154,7 @@ try {
 
   // Create a scene configured for video editing
   const videoUrl =
-    'https://cdn.img.ly/assets/demo/v2/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barreling-a-wave-18069232.mp4';
+    'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barreling-a-wave-18069232.mp4';
 
   // Create a video scene with timeline support
   await engine.scene.createFromVideo(videoUrl);

@@ -41,7 +41,7 @@ const FilterSliderBar = ({ lutFilterConfig }) => {
     lutFilterConfig;
 
   const uri = engine.editor.defaultURIResolver(
-    `ly.img.filter.lut/${lutImage}`
+    `extensions/ly.img.cesdk.filters.lut/${lutImage}`
   );
 
   const setFilterProperties = useCallback(
