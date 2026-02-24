@@ -8,7 +8,7 @@ import ChevronRightIcon from './icons/ChevronRight.svg';
 import {
   getTemplateBaseURL,
   persistSelectedTemplateToURL
-} from './lib/TemplateUtilities';
+} from './lib/PremiumTemplateUtilities';
 
 const CATEGORIES = [
   { label: 'E-commerce', value: 'e-commerce' },

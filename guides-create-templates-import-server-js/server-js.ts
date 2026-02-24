@@ -20,7 +20,7 @@ const fashionAdArchiveUrl =
   'https://cdn.img.ly/assets/templates/starterkits/16-9-fashion-ad.zip';
 
 const postcardSceneUrl =
-  'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene';
+  'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
 // For loadFromString: read the scene file content
 const businessCardSceneString = readFileSync(

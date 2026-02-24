@@ -2,6 +2,7 @@
 
 import { gettyImagesImageAssets } from './gettyImagesAssetLibrary';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
+import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const CaseComponent = () => {
   const config = useConfig(
@@ -15,7 +16,7 @@ const CaseComponent = () => {
     []
   );
   const configure = useConfigure(async (instance) => {
-    
+
     instance.i18n.setTranslations({
       en: {
         [`libraries.${gettyImagesImageAssets.id}.label`]: 'Getty Images'
@@ -24,6 +25,7 @@ const CaseComponent = () => {
 
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    await addPremiumTemplatesAssetSource(instance);
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);

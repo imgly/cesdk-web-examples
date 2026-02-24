@@ -114,15 +114,26 @@ const CaseComponent = () => {
         });
       }
     });
-    instance.ui.insertNavigationBarOrderComponent('last', {
-      id: 'ly.img.actions.navigationBar',
-      children: ['ly.img.exportVideo.navigationBar']
-    });
-    instance.i18n.setTranslations({
-      en: {
-        'component.fileOperation.exportVideo': 'Export using CE.SDK Renderer'
+    instance.ui.setNavigationBarOrder([
+      'ly.img.back.navigationBar',
+      'ly.img.undoRedo.navigationBar',
+      'ly.img.spacer',
+      'ly.img.zoom.navigationBar',
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-using-renderer',
+            label: 'Export using CE.SDK Renderer',
+            icon: '@imgly/Video',
+            onClick: () => instance.actions.run('exportDesign')
+          },
+          'ly.img.importArchive.navigationBar',
+          'ly.img.importScene.navigationBar'
+        ]
       }
-    });
+    ]);
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/export-using-renderer/example-video-motion.scene`
     );

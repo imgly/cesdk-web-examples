@@ -3,6 +3,7 @@
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef, useState } from 'react';
+import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const ROLE_OPTIONS = [
   {
@@ -85,8 +86,11 @@ const CaseComponent = () => {
             return;
           }
           _cesdk = instance;
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          await Promise.all([
+            instance.addDefaultAssetSources(),
+            instance.addDemoAssetSources({ sceneMode: 'Design' }),
+            addPremiumTemplatesAssetSource(instance)
+          ]);
           cesdkRef.current = instance;
           if (currentScene) {
             await instance.loadFromString(currentScene);

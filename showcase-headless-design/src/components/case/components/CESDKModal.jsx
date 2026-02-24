@@ -1,6 +1,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import classes from './CESDKModal.module.css';
+import { addPremiumTemplatesAssetSource } from '../lib/PremiumTemplateUtilities';
 
 export const CESDKModal = ({ config, configure, type }) => {
   const containerRef = useRef(null);
@@ -9,10 +10,14 @@ export const CESDKModal = ({ config, configure, type }) => {
     if (containerRef.current && !instanceRef.current) {
       CreativeEditorSDK.create(containerRef.current, config).then(
         async (cesdk) => {
-          cesdk.addDefaultAssetSources();
-          cesdk.addDemoAssetSources({
-            sceneMode: type === 'image' ? 'Design' : 'Video'
-          });
+          await Promise.all([
+            cesdk.addDefaultAssetSources(),
+            cesdk.addDemoAssetSources({
+              sceneMode: type === 'image' ? 'Design' : 'Video'
+            }),
+            // Only add premium templates for Design scenes, not Video
+            ...(type === 'image' ? [addPremiumTemplatesAssetSource(cesdk)] : [])
+          ]);
           if (configure) {
             await configure(cesdk);
           }

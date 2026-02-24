@@ -2,6 +2,7 @@
 
 import { ExportDesignPanelPlugin } from './ExportDesignPanelPlugin';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
+import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const ExportOptionsCESDK = () => {
   const config = useConfig(
@@ -17,6 +18,7 @@ const ExportOptionsCESDK = () => {
   const configure = useConfigure(async (instance) => {
     await instance.addDefaultAssetSources();
     await instance.addDemoAssetSources({ sceneMode: 'Design' });
+    await addPremiumTemplatesAssetSource(instance);
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);

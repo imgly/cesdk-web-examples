@@ -4,6 +4,7 @@ import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl'
 import { useCallback, useRef, useState } from 'react';
 
 import CreativeEditor from '@cesdk/cesdk-js/react';
+import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const config = {
   role: 'Creator',
@@ -40,7 +41,8 @@ const CaseComponent = () => {
     // the asset library with default / demo asset sources)
     await Promise.all([
       instance.addDefaultAssetSources(),
-      instance.addDemoAssetSources({ sceneMode: 'Design' })
+      instance.addDemoAssetSources({ sceneMode: 'Design' }),
+      addPremiumTemplatesAssetSource(instance)
     ]);
 
     // create a new design scene in the editor

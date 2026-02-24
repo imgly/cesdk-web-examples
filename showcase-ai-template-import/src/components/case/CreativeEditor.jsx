@@ -2,6 +2,7 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { useEffect, useRef } from 'react';
 import classes from './CreativeEditor.module.css';
 import { addGoogleFontsAssetLibrary } from '@imgly/psd-importer';
+import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
   const cesdkContainer = useRef(null);
@@ -40,8 +41,11 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
     if (cesdkContainer.current) {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
-          instance.addDefaultAssetSources();
-          instance.addDemoAssetSources({ sceneMode: 'Design' });
+          await Promise.all([
+            instance.addDefaultAssetSources(),
+            instance.addDemoAssetSources({ sceneMode: 'Design' }),
+            addPremiumTemplatesAssetSource(instance)
+          ]);
           instance.engine.editor.setSetting('page/title/show', false);
           await instance.engine.scene.loadFromArchiveURL(sceneArchiveUrl);
           await addGoogleFontsAssetLibrary(instance.engine);

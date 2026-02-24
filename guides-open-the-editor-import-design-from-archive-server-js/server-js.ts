@@ -1,6 +1,7 @@
 import CreativeEngine from '@cesdk/node';
 import { config } from 'dotenv';
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { mkdirSync, writeFileSync } from 'fs';
+import path from 'path';
 
 // Load environment variables
 config();
@@ -9,9 +10,8 @@ config();
  * CE.SDK Server Guide: Import Design from Archive
  *
  * Demonstrates different methods to import archive files in headless mode:
- * - Loading archives from URLs
- * - Loading archives from the filesystem
- * - Loading archives from blobs/buffers
+ * - Loading archives from URLs (remote storage)
+ * - Loading archives from the filesystem using file:// URLs
  * - Understanding archive portability
  */
 
@@ -40,7 +40,8 @@ try {
 
   // Save the archive to filesystem for demonstration
   const archiveBuffer = Buffer.from(await demoArchiveBlob.arrayBuffer());
-  writeFileSync('output/demo-archive.zip', archiveBuffer);
+  const archivePath = path.resolve('output/demo-archive.zip');
+  writeFileSync(archivePath, archiveBuffer);
 
   console.log('✓ Created demo archive: output/demo-archive.zip');
 
@@ -48,39 +49,36 @@ try {
   // Demonstration 1: Load Archive from Filesystem
   // ========================================
 
-  // In Node.js environments, you often load archives from the filesystem
+  // In Node.js environments, load archives from the filesystem using file:// URLs
   // This is common for batch processing or server-side workflows
 
-  // Read the archive file from disk
-  const archiveData = readFileSync('output/demo-archive.zip');
+  // Convert filesystem path to file:// URL
+  const archiveFileUrl = `file://${archivePath}`;
 
-  // Convert to Blob for loading
-  const archiveBlob = new Blob([archiveData], { type: 'application/zip' });
-
-  // Load the archive
-  await engine.scene.loadFromArchive(archiveBlob);
+  // Load the archive using the file URL
+  await engine.scene.loadFromArchiveURL(archiveFileUrl);
 
   console.log('✓ Archive loaded from filesystem successfully');
 
   // ========================================
-  // Demonstration 2: Load Archive from Blob
+  // Demonstration 2: Load Archive from Remote URL
   // ========================================
 
-  // When you have an archive as a Blob (from fetch, API, or database),
-  // you can load it directly
+  // When you have an archive hosted on a remote server, CDN, or cloud storage,
+  // load it directly using its URL
 
-  const loadArchiveFromBlob = async (blob: Blob): Promise<void> => {
+  const loadArchiveFromUrl = async (url: string): Promise<void> => {
     try {
-      await engine.scene.loadFromArchive(blob);
-      console.log('✓ Archive loaded from blob successfully');
+      await engine.scene.loadFromArchiveURL(url);
+      console.log('✓ Archive loaded from URL successfully');
     } catch (error) {
-      console.error('Failed to load archive from blob:', error);
+      console.error('Failed to load archive from URL:', error);
       throw error;
     }
   };
 
-  // Demonstrate loading from the archive blob we created earlier
-  await loadArchiveFromBlob(demoArchiveBlob);
+  // Demonstrate loading from the local file URL we created earlier
+  await loadArchiveFromUrl(archiveFileUrl);
 
   // ========================================
   // Demonstration 3: Verify Archive Contents

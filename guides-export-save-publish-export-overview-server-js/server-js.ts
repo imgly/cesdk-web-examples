@@ -64,7 +64,7 @@ try {
 
   // Load a template scene from a remote URL
   await engine.scene.loadFromURL(
-    'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
+    'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
   const page = engine.block.findByType('page')[0];
