@@ -13,7 +13,7 @@ const ShapeBar = ({
   const [shapes, setShapes] = useState<CompleteAssetResult[]>([]);
 
   const queryShapes = useCallback(async () => {
-    const SHAPE_ASSET_LIBRARY_ID = 'ly.img.vectorpath';
+    const SHAPE_ASSET_LIBRARY_ID = 'ly.img.vector.shape';
     const queryParameters = { page: 0, perPage: 999 };
     let results = await engine.asset.findAssets(
       SHAPE_ASSET_LIBRARY_ID,
@@ -25,10 +25,10 @@ const ShapeBar = ({
         !(
           shape.groups &&
           [
-            '//ly.img.cesdk.vectorpaths/category/gradient',
-            '//ly.img.cesdk.vectorpaths/category/image',
-            '//ly.img.cesdk.vectorpaths/category/abstract-gradient',
-            '//ly.img.cesdk.vectorpaths/category/abstract-image'
+            '//ly.img.cesdk.vector.shape/category/gradient',
+            '//ly.img.cesdk.vector.shape/category/image',
+            '//ly.img.cesdk.vector.shape/category/abstract-gradient',
+            '//ly.img.cesdk.vector.shape/category/abstract-image'
           ].includes(shape.groups[0])
         )
       ) {

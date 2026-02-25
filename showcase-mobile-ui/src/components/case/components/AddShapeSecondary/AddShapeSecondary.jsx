@@ -10,7 +10,7 @@ const AddShapeSecondary = ({ onClose }) => {
   const { engine } = useEditor();
 
   const addShape = (asset) => {
-    engine.asset.apply('ly.img.vectorpath', asset);
+    engine.asset.apply('ly.img.vector.shape', asset);
   };
 
   return (

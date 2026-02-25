@@ -75,9 +75,7 @@ function setupInspectorBar(instance: CreativeEditorSDK) {
     const hiddenInspectorBarItems = [
       'ly.img.crop.inspectorBar',
       // Hide adjustments inspector if page is selected
-      isPage && 'ly.img.adjustment.inspectorBar',
-      isPage && 'ly.img.filter.inspectorBar',
-      isPage && 'ly.img.effect.inspectorBar',
+      isPage && 'ly.img.appearance.inspectorBar',
       isPage && 'ly.img.blur.inspectorBar',
       // Hide fill inspector if page is selected
       isPage && 'ly.img.fill.inspectorBar',
@@ -164,15 +162,15 @@ function setupDock(instance: CreativeEditorSDK) {
     'ly.img.vectorpath.dock',
     ({ builder: { Button } }) => {
       const vectorPathLibraryPayload = {
-        entries: ['ly.img.vectorpath'],
-        title: 'libraries.ly.img.vectorpath.label'
+        entries: ['ly.img.vector.shape'],
+        title: 'libraries.ly.img.vector.shape.label'
       };
       const isVectorPathAssetLibraryOpen = instance.ui.isPanelOpen(
         '//ly.img.panel/assetLibrary',
         { payload: vectorPathLibraryPayload }
       );
       Button('open-vectorpath', {
-        label: 'libraries.ly.img.vectorpath.label',
+        label: 'libraries.ly.img.vector.shape.label',
         icon: '@imgly/Shapes',
         isSelected: isVectorPathAssetLibraryOpen,
         onClick: () => {

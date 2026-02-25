@@ -1,4 +1,20 @@
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import { DesignEditorConfig } from '../../lib/design-editor/plugin';
+
 import { useEffect, useRef } from 'react';
 import classes from './CESDKModal.module.css';
 
@@ -25,12 +41,31 @@ const CESDKModal = ({ config, configure, onOutsideClick }) => {
     if (containerRef.current && !instanceRef.current) {
       CreativeEditorSDK.create(containerRef.current, config).then(
         async (cesdk) => {
-          cesdk.addDefaultAssetSources();
-          cesdk.addDemoAssetSources({
-            sceneMode: 'Design',
-            excludeAssetSourceIds: ['ly.img.template']
-          });
+          // Add the design editor configuration plugin first
+          await cesdk.addPlugin(new DesignEditorConfig());
 
+          // Asset Source Plugins (replaces addDefaultAssetSources)
+          await cesdk.addPlugin(new ColorPaletteAssetSource());
+          await cesdk.addPlugin(new TypefaceAssetSource());
+          await cesdk.addPlugin(new TextAssetSource());
+          await cesdk.addPlugin(new TextComponentAssetSource());
+          await cesdk.addPlugin(new VectorShapeAssetSource());
+          await cesdk.addPlugin(new StickerAssetSource());
+          await cesdk.addPlugin(new EffectsAssetSource());
+          await cesdk.addPlugin(new FiltersAssetSource());
+          await cesdk.addPlugin(new BlurAssetSource());
+          await cesdk.addPlugin(new PagePresetsAssetSource());
+          await cesdk.addPlugin(new CropPresetsAssetSource());
+          await cesdk.addPlugin(
+            new UploadAssetSources({
+              include: ['ly.img.image.upload']
+            })
+          );
+
+          cesdk.ui.removeOrderComponent({
+            in: 'ly.img.dock',
+            match: (item) => item.key === 'ly.img.templates'
+          });
           if (configure) {
             await configure(cesdk);
           }

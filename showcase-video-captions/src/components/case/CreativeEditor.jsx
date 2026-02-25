@@ -1,4 +1,22 @@
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import { VideoEditorConfig } from './lib/video-editor/plugin';
+
 import { useEffect, useRef } from 'react';
 import classes from './CreativeEditor.module.css';
 import { caseAssetPath } from './util';
@@ -38,17 +56,53 @@ const CreativeEditor = ({ option, closeEditor }) => {
     if (cesdkContainer.current) {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
-          instance.addDefaultAssetSources();
-          await instance.addDemoAssetSources({ sceneMode: 'Video' });
+          // Add the video editor configuration plugin first
+          await instance.addPlugin(new VideoEditorConfig());
+
+          // Asset Source Plugins (replaces addDefaultAssetSources)
+          await instance.addPlugin(new ColorPaletteAssetSource());
+          await instance.addPlugin(new TypefaceAssetSource());
+          await instance.addPlugin(new TextAssetSource());
+          await instance.addPlugin(new TextComponentAssetSource());
+          await instance.addPlugin(new VectorShapeAssetSource());
+          await instance.addPlugin(new StickerAssetSource());
+          await instance.addPlugin(new EffectsAssetSource());
+          await instance.addPlugin(new FiltersAssetSource());
+          await instance.addPlugin(new BlurAssetSource());
+          await instance.addPlugin(new PagePresetsAssetSource());
+          await instance.addPlugin(new CaptionPresetsAssetSource());
+          await instance.addPlugin(new CropPresetsAssetSource());
+          await instance.addPlugin(
+            new UploadAssetSources({
+              include: [
+                'ly.img.image.upload',
+                'ly.img.video.upload',
+                'ly.img.audio.upload'
+              ]
+            })
+          );
+
+          // Demo assets (replaces addDemoAssetSources)
+          await instance.addPlugin(
+            new DemoAssetSources({
+              include: [
+                'ly.img.templates.video.*',
+                'ly.img.image.*',
+                'ly.img.video.*',
+                'ly.img.audio.*'
+              ]
+            })
+          );
+
           cesdk = instance;
           const engine = instance.engine;
           let page;
           switch (option) {
             case 'blank':
-              await instance.createVideoScene();
-              page = engine.scene.getCurrentPage();
-              engine.block.setWidth(page, 1280);
-              engine.block.setHeight(page, 720);
+              await cesdk.actions.run('scene.create', {
+                mode: 'Video',
+                page: { width: 1280, height: 720, unit: 'Pixel' }
+              });
               engine.block.setColor(
                 engine.block.getFill(page),
                 'fill/color/value',

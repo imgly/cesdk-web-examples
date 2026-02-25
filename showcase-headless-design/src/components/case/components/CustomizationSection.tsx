@@ -63,8 +63,6 @@ function CustomizationSection({
       license: process.env.NEXT_PUBLIC_LICENSE
     };
     CreativeEngine.init(config).then(async (engine) => {
-      engine.addDefaultAssetSources();
-      engine.addDemoAssetSources({ sceneMode: 'Design' });
       engineRef.current = engine;
       async function getSupportsVideoExport() {
         const supported = await supportsVideoExport();
@@ -77,7 +75,7 @@ function CustomizationSection({
     return function shutdownCreativeEngine() {
       engineRef.current?.dispose();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fillTemplate = (engine: CreativeEngine, page: number) => {
@@ -107,21 +105,22 @@ function CustomizationSection({
     engine.variable.setString('Message', debouncedMessage || '');
     engine.variable.setString(
       'PodcastName',
-      podcast ? podcast.collectionName : '')
-      // set text colors based on background theme
-      const [messageBlock] = engine.block.findByName('Message & Name');
-      const rgb =
+      podcast ? podcast.collectionName : ''
+    );
+    // set text colors based on background theme
+    const [messageBlock] = engine.block.findByName('Message & Name');
+    const rgb =
       colorTheme === 'dark' ? { r: 1, g: 1, b: 1 } : { r: 0, g: 0, b: 0 };
-      engine.block.setTextColor(
+    engine.block.setTextColor(
       messageBlock,
       { ...rgb, a: 0.75 },
       0,
-      "{{Message}}".length
+      '{{Message}}'.length
     );
     engine.block.setTextColor(
       messageBlock,
       { ...rgb, a: 1.0 },
-       "{{Message}}".length
+      '{{Message}}'.length
     );
   };
 
@@ -284,7 +283,7 @@ function CustomizationSection({
     ) {
       setPodcast(podcastProp);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [podcastProp, assetsStillLoading]);
 
   useEffect(() => {
@@ -299,17 +298,17 @@ function CustomizationSection({
         loadPodcastAssets();
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [podcast]);
 
   useEffect(() => {
     if (engineRef.current) loadPodcastAssets();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedMessage, debouncedBackgroundColor, type]);
 
   useEffect(() => {
     onAssetsUpdate(finalAssets);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [finalAssets]);
 
   return (

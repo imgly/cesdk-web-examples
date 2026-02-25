@@ -48,8 +48,6 @@ const CaseComponent = () => {
       }
     };
     CreativeEngine.init(config).then(async (engine) => {
-      engine.addDefaultAssetSources();
-      engine.addDemoAssetSources({ sceneMode: 'Design' });
       engine.editor.setSetting('page/title/show', false);
       await engine.scene.loadFromString(currentTemplate.sceneString);
       engineRef.current = engine;

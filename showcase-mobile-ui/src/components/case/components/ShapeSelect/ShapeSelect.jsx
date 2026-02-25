@@ -8,7 +8,7 @@ const ShapeSelect = ({ onClick, group }) => {
   const [shapes, setShapes] = useState([]);
 
   const queryShapes = useCallback(async () => {
-    const SHAPE_ASSET_LIBRARY_ID = 'ly.img.vectorpath';
+    const SHAPE_ASSET_LIBRARY_ID = 'ly.img.vector.shape';
     const queryParameters = { page: 0, perPage: 9999 };
     if (group) {
       queryParameters.groups = [group];

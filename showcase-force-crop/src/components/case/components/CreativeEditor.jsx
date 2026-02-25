@@ -1,4 +1,20 @@
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import { DesignEditorConfig } from '../lib/design-editor/plugin';
+
 import { useEffect, useRef, useState } from 'react';
 import classes from './CreativeEditor.module.css';
 
@@ -18,8 +34,34 @@ const CreativeEditor = ({ preset, cropMode, image, closeEditor }) => {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
           setCesdkInstance(instance);
-          await instance.addDefaultAssetSources();
-          await instance.addDemoAssetSources({ sceneMode: 'Design' });
+
+          // Add the design editor configuration plugin first
+          await instance.addPlugin(new DesignEditorConfig());
+
+          // Asset Source Plugins (replaces addDefaultAssetSources)
+          await instance.addPlugin(new ColorPaletteAssetSource());
+          await instance.addPlugin(new TypefaceAssetSource());
+          await instance.addPlugin(new TextAssetSource());
+          await instance.addPlugin(new TextComponentAssetSource());
+          await instance.addPlugin(new VectorShapeAssetSource());
+          await instance.addPlugin(new StickerAssetSource());
+          await instance.addPlugin(new EffectsAssetSource());
+          await instance.addPlugin(new FiltersAssetSource());
+          await instance.addPlugin(new BlurAssetSource());
+          await instance.addPlugin(new PagePresetsAssetSource());
+          await instance.addPlugin(
+            new UploadAssetSources({
+              include: ['ly.img.image.upload']
+            })
+          );
+
+          // Demo assets (replaces addDemoAssetSources)
+          await instance.addPlugin(
+            new DemoAssetSources({
+              include: ['ly.img.image.*', 'ly.img.templates.blank.*']
+            })
+          );
+
           const engine = instance.engine;
           engine.editor.setRole('Adopter');
           // change the position of the close button to the left
@@ -194,15 +236,15 @@ function setupDock(instance) {
     'ly.img.vectorpath.dock',
     ({ builder: { Button } }) => {
       const vectorPathLibraryPayload = {
-        entries: ['ly.img.vectorpath'],
-        title: 'libraries.ly.img.vectorpath.label'
+        entries: ['ly.img.vector.shape'],
+        title: 'libraries.ly.img.vector.shape.label'
       };
       const isVectorPathAssetLibraryOpen = instance.ui.isPanelOpen(
         '//ly.img.panel/assetLibrary',
         { payload: vectorPathLibraryPayload }
       );
       Button('open-vectorpath', {
-        label: 'libraries.ly.img.vectorpath.label',
+        label: 'libraries.ly.img.vector.shape.label',
         icon: '@imgly/Shapes',
         isSelected: isVectorPathAssetLibraryOpen,
         onClick: () => {
@@ -244,6 +286,7 @@ function setupInspectorBar(instance) {
     const hiddenInspectorBarItems = [
       'ly.img.crop.inspectorBar',
       // Hide adjustments inspector if page is selected
+      isPage && 'ly.img.appearance.inspectorBar',
       isPage && 'ly.img.adjustment.inspectorBar',
       isPage && 'ly.img.filter.inspectorBar',
       isPage && 'ly.img.effect.inspectorBar',

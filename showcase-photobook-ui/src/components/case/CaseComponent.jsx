@@ -1,6 +1,18 @@
 'use client';
 
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
+import {
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 import { useState } from 'react';
 import classes from './CaseComponent.module.css';
 import CUSTOM_LAYOUT_ASSET from './CustomLayout.json';
@@ -35,14 +47,27 @@ const CaseComponent = () => {
             configure={async (engine) => {
               setEngine(engine);
               engine.editor.setSetting('page/title/show', false);
-              await engine.addDefaultAssetSources({
-                excludeAssetSourceIds: ['ly.img.sticker']
-              });
-              await engine.addDemoAssetSources({
-                sceneMode: 'Design',
-                withUploadAssetSources: true,
-                exclude: ['ly.img.image']
-              });
+
+              await engine.addPlugin(new ColorPaletteAssetSource());
+              await engine.addPlugin(new TypefaceAssetSource());
+              await engine.addPlugin(new TextAssetSource());
+              await engine.addPlugin(new TextComponentAssetSource());
+              await engine.addPlugin(new VectorShapeAssetSource());
+              await engine.addPlugin(new EffectsAssetSource());
+              await engine.addPlugin(new FiltersAssetSource());
+              await engine.addPlugin(new CropPresetsAssetSource());
+              await engine.addPlugin(new PagePresetsAssetSource());
+
+              await engine.addPlugin(
+                new UploadAssetSources({
+                  include: [
+                    'ly.img.image.upload',
+                    'ly.img.video.upload',
+                    'ly.img.audio.upload'
+                  ]
+                })
+              );
+
               loadAssetSourceFromContentJSON(
                 engine,
                 CUSTOM_STICKER_ASSETS,

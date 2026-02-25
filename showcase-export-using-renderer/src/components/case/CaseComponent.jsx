@@ -1,6 +1,23 @@
 'use client';
 
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import { VideoEditorConfig } from './lib/video-editor/plugin';
+
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 let RENDERER_PROXY_URL = '';
@@ -90,8 +107,35 @@ const CaseComponent = () => {
     []
   );
   const configure = useConfigure(async (instance) => {
-    await instance.addDefaultAssetSources();
-    await instance.addDemoAssetSources({ sceneMode: 'Video' });
+    // Add the video editor configuration plugin first
+    await instance.addPlugin(new VideoEditorConfig());
+
+    // Asset Source Plugins (replaces addDefaultAssetSources)
+    await instance.addPlugin(new ColorPaletteAssetSource());
+    await instance.addPlugin(new TypefaceAssetSource());
+    await instance.addPlugin(new TextAssetSource());
+    await instance.addPlugin(new TextComponentAssetSource());
+    await instance.addPlugin(new VectorShapeAssetSource());
+    await instance.addPlugin(new StickerAssetSource());
+    await instance.addPlugin(new EffectsAssetSource());
+    await instance.addPlugin(new FiltersAssetSource());
+    await instance.addPlugin(new BlurAssetSource());
+    await instance.addPlugin(new PagePresetsAssetSource());
+    await instance.addPlugin(new CaptionPresetsAssetSource());
+    await instance.addPlugin(new CropPresetsAssetSource());
+
+    // Demo assets (replaces addDemoAssetSources)
+    await instance.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.video.*',
+          'ly.img.audio.*'
+        ]
+      })
+    );
+
     // Disable placeholder and preview features
     instance.feature.set('ly.img.placeholder', false);
     instance.feature.set('ly.img.preview', false);
@@ -114,15 +158,26 @@ const CaseComponent = () => {
         });
       }
     });
-    instance.ui.insertNavigationBarOrderComponent('last', {
-      id: 'ly.img.actions.navigationBar',
-      children: ['ly.img.exportVideo.navigationBar']
-    });
-    instance.i18n.setTranslations({
-      en: {
-        'component.fileOperation.exportVideo': 'Export using CE.SDK Renderer'
+    instance.ui.setNavigationBarOrder([
+      'ly.img.back.navigationBar',
+      'ly.img.undoRedo.navigationBar',
+      'ly.img.spacer',
+      'ly.img.zoom.navigationBar',
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-using-renderer',
+            label: 'Export using CE.SDK Renderer',
+            icon: '@imgly/Video',
+            onClick: () => instance.actions.run('exportDesign')
+          },
+          'ly.img.importArchive.navigationBar',
+          'ly.img.importScene.navigationBar'
+        ]
       }
-    });
+    ]);
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/export-using-renderer/example-video-motion.scene`
     );
