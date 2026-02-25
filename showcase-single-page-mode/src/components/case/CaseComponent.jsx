@@ -3,6 +3,7 @@
 import SINGLE_PAGE_TEMPLATE_ASSETS from './SinglePageTemplateAssets.json';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import loadAssetSourceFromContentJSON from './lib/loadAssetSourceFromContentJSON';
+import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const CaseComponent = () => {
   const config = useConfig(
@@ -38,6 +39,7 @@ const CaseComponent = () => {
       sceneMode: 'Design',
       excludeAssetSourceIds: ['ly.img.template']
     });
+    await addPremiumTemplatesAssetSource(instance);
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);

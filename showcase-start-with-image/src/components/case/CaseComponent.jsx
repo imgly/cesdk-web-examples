@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import classes from './CaseComponent.module.css';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
+import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const CaseComponent = () => {
   const [image, setImage] = useState();
@@ -41,6 +42,7 @@ const CaseComponent = () => {
     async (instance) => {
       await instance.addDefaultAssetSources();
       await instance.addDemoAssetSources({ sceneMode: 'Design' });
+      await addPremiumTemplatesAssetSource(instance);
       // Disable placeholder and preview features
       instance.feature.enable('ly.img.placeholder', false);
       instance.feature.enable('ly.img.preview', false);

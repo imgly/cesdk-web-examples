@@ -19,7 +19,7 @@ CreativeEngine.init(config).then(async (engine) => {
     await engine.addDefaultAssetSources();
 
     await engine.scene.loadFromURL(
-      'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_instagram_photo_1.scene'
+      'https://cdn.img.ly/assets/demo/v4/ly.img.templates/social/instagram_photo_1.scene'
     );
 
     const [page] = engine.block.findByType('page');

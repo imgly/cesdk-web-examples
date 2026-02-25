@@ -5,20 +5,25 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:local": "CESDK_USE_LOCAL=true vite",
+    "prebuild": "npm run check:all",
     "build": "vite build",
+    "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
-    "check:syntax": "tsc --noEmit",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
+    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
     "check:lint": "eslint \"**/*.{ts,js}\"",
     "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
     "fix:format": "prettier --write \"**/*.{ts,js,json,html}\"",
     "fix:lint": "eslint --fix \"**/*.{ts,js}\"",
     "fix:all": "npm run fix:format && npm run fix:lint",
-    "prebuild": "npm run check:all",
-    "test": "exit 0",
-    "qa": "npm run build && npm run test",
-    "ci": "npm run qa",
-    "capture-hero": "node scripts/capture-hero.mjs"
+    "test:all": "exit 0",
+    "qa": "npm run build && npm run test:all",
+    "qa:local": "npm run build:local && npm run test:all",
+    "ci": "npm run qa:local",
+    "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
     "@cesdk/cesdk-js": "latest"
