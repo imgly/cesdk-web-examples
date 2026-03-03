@@ -1,20 +1,3 @@
-import {
-  BlurAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
-import { VideoEditorConfig } from '../lib/video-editor/plugin';
-
 import AiApps from '@imgly/plugin-ai-apps-web';
 
 const videoMode = {
@@ -40,45 +23,13 @@ const videoMode = {
     }
   },
   initialize: async (instance, modeContext, createMiddleware) => {
-    // Add the video editor configuration plugin first
-    await instance.addPlugin(new VideoEditorConfig());
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Video' });
 
-    // Asset Source Plugins (replaces addDefaultAssetSources)
-    await instance.addPlugin(new ColorPaletteAssetSource());
-    await instance.addPlugin(new TypefaceAssetSource());
-    await instance.addPlugin(new TextAssetSource());
-    await instance.addPlugin(new TextComponentAssetSource());
-    await instance.addPlugin(new VectorShapeAssetSource());
-    await instance.addPlugin(new StickerAssetSource());
-    await instance.addPlugin(new EffectsAssetSource());
-    await instance.addPlugin(new FiltersAssetSource());
-    await instance.addPlugin(new BlurAssetSource());
-    await instance.addPlugin(new PagePresetsAssetSource());
-    await instance.addPlugin(new CropPresetsAssetSource());
-    await instance.addPlugin(
-      new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
-      })
-    );
-
-    // Demo assets (replaces addDemoAssetSources)
-    await instance.addPlugin(
-      new DemoAssetSources({
-        include: [
-          'ly.img.templates.video.*',
-          'ly.img.image.*',
-          'ly.img.video.*',
-          'ly.img.audio.*'
-        ]
-      })
-    );
-
-    // Use setComponentOrder (new API) instead of setDockOrder (deprecated)
-    const currentDockOrder = instance.ui.getComponentOrder({ in: 'ly.img.dock' });
-    instance.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+    instance.ui.setDockOrder([
       'ly.img.ai/apps.dock',
-      ...currentDockOrder.filter((item) => {
-        return item.key !== 'ly.img.templates';
+      ...instance.ui.getDockOrder().filter(({ key }) => {
+        return key !== 'ly.img.templates';
       })
     ]);
 
@@ -174,18 +125,12 @@ const videoMode = {
       })
     );
 
-    // Helper to resolve sourceIds (can be array or function in v1.69.0+)
-    const resolveSourceIds = (entry) =>
-      typeof entry?.sourceIds === 'function'
-        ? entry.sourceIds({ engine: instance.engine, cesdk: instance })
-        : entry?.sourceIds ?? [];
-
     // Add AI image history to the default image asset library
     const imageEntry = instance.ui.getAssetLibraryEntry('ly.img.image');
     if (imageEntry != null) {
       instance.ui.updateAssetLibraryEntry('ly.img.image', {
         sourceIds: [
-          ...resolveSourceIds(imageEntry),
+          ...imageEntry.sourceIds,
           'ly.img.ai.image-generation.history'
         ]
       });
@@ -196,7 +141,7 @@ const videoMode = {
     if (videoEntry != null) {
       instance.ui.updateAssetLibraryEntry('ly.img.video', {
         sourceIds: [
-          ...resolveSourceIds(videoEntry),
+          ...videoEntry.sourceIds,
           'ly.img.ai.video-generation.history'
         ]
       });
@@ -207,7 +152,7 @@ const videoMode = {
     if (audioEntry != null) {
       instance.ui.updateAssetLibraryEntry('ly.img.audio', {
         sourceIds: [
-          ...resolveSourceIds(audioEntry),
+          ...audioEntry.sourceIds,
           'ly.img.ai.audio-generation.history'
         ]
       });

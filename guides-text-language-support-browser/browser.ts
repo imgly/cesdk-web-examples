@@ -1,4 +1,21 @@
 import type { EditorPlugin, EditorPluginContext, CreativeEngine } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 // Typeface definitions
@@ -97,10 +114,6 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
-
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({ sceneMode: 'Design' });
-
     // Add custom multilingual fonts to asset library
     cesdk.engine.asset.addLocalSource('multilingual-typefaces');
 

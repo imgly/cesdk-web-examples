@@ -1,8 +1,0 @@
-{
-  "imports": {
-    "@cesdk/node": "npm:@cesdk/node@latest"
-  },
-  "tasks": {
-    "start": "deno run --env-file --allow-env --allow-read --allow-write --allow-net main.ts"
-  }
-}

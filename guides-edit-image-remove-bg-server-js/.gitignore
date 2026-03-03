@@ -1,0 +1,21 @@
+# Output directory
+output/
+
+# Environment variables
+.env
+.env.local
+
+# Build output
+dist/
+node_modules/
+
+# Temp files
+*.log
+
+# Lock files
+package-lock.json
+yarn.lock
+tsconfig.tsbuildinfo
+
+# Auto-generated TypeScript config
+tsconfig.local.json

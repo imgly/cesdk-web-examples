@@ -1,0 +1,5 @@
+node_modules
+output
+.env
+.env.local
+tsconfig.local.json

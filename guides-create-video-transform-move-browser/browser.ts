@@ -3,6 +3,24 @@ import CreativeEditorSDK, {
   type EditorPluginContext
 } from '@cesdk/cesdk-js';
 
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
+
 class Example implements EditorPlugin {
   name = 'guides-create-video-transform-move-browser';
 
@@ -17,21 +35,58 @@ class Example implements EditorPlugin {
     cesdk.feature.enable('ly.img.video');
     cesdk.feature.enable('ly.img.timeline');
     cesdk.feature.enable('ly.img.playback');
+    await cesdk.addPlugin(new VideoEditorConfig());
 
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Video',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.audio.*',
+          'ly.img.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: { width: 800, height: 500, unit: 'Pixel' }
     });
-    await cesdk.createVideoScene();
 
     const engine = cesdk.engine;
     const pages = engine.block.findByType('page');
     const page = pages.length > 0 ? pages[0] : engine.scene.get();
-
-    // Set page dimensions and fill color
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 500);
 
     // Enable fill and set page fill color to #6686FF
     engine.block.setFillEnabled(page, true);
@@ -81,12 +136,16 @@ class Example implements EditorPlugin {
     engine.block.setPositionX(explanation1, 0);
     engine.block.setPositionY(explanation1, 345);
     engine.block.setFillEnabled(explanation1, true);
-    engine.block.setColor(engine.block.getFill(explanation1), 'fill/color/value', {
-      r: 1,
-      g: 1,
-      b: 1,
-      a: 1
-    });
+    engine.block.setColor(
+      engine.block.getFill(explanation1),
+      'fill/color/value',
+      {
+        r: 1,
+        g: 1,
+        b: 1,
+        a: 1
+      }
+    );
     engine.block.appendChild(page, explanation1);
 
     // Demo 2: Percentage Positioning - Responsive layout
@@ -134,12 +193,16 @@ class Example implements EditorPlugin {
     engine.block.setPositionX(explanation2, 300);
     engine.block.setPositionY(explanation2, 345);
     engine.block.setFillEnabled(explanation2, true);
-    engine.block.setColor(engine.block.getFill(explanation2), 'fill/color/value', {
-      r: 1,
-      g: 1,
-      b: 1,
-      a: 1
-    });
+    engine.block.setColor(
+      engine.block.getFill(explanation2),
+      'fill/color/value',
+      {
+        r: 1,
+        g: 1,
+        b: 1,
+        a: 1
+      }
+    );
     engine.block.appendChild(page, explanation2);
 
     // Demo 3: Locked Video - Cannot be moved, rotated, or scaled
@@ -184,12 +247,16 @@ class Example implements EditorPlugin {
     engine.block.setPositionX(explanation3, 550);
     engine.block.setPositionY(explanation3, 345);
     engine.block.setFillEnabled(explanation3, true);
-    engine.block.setColor(engine.block.getFill(explanation3), 'fill/color/value', {
-      r: 1,
-      g: 1,
-      b: 1,
-      a: 1
-    });
+    engine.block.setColor(
+      engine.block.getFill(explanation3),
+      'fill/color/value',
+      {
+        r: 1,
+        g: 1,
+        b: 1,
+        a: 1
+      }
+    );
     engine.block.appendChild(page, explanation3);
 
     // Get current position values

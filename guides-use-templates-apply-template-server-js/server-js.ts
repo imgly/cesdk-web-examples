@@ -44,7 +44,7 @@ async function run() {
 
     // Apply a template from URL - content adjusts to fit current page dimensions
     const templateUrl =
-      'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene';
+      'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
     await engine.scene.applyTemplateFromURL(templateUrl);
     console.log('✓ Template applied from URL');
@@ -67,7 +67,7 @@ async function run() {
 
     // Demonstrate applying a different template while keeping dimensions
     const alternativeTemplateUrl =
-      'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_2.scene';
+      'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_2.scene';
 
     await engine.scene.applyTemplateFromURL(alternativeTemplateUrl);
     console.log('✓ Switched to alternative template');
