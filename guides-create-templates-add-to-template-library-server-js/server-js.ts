@@ -42,9 +42,9 @@ try {
     id: 'template-postcard',
     label: { en: 'Postcard' },
     meta: {
-      uri: 'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene',
+      uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene',
       thumbUri:
-        'https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_postcard_1.jpg'
+        'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_postcard_1.jpg'
     }
   });
 
@@ -53,9 +53,9 @@ try {
     id: 'template-business-card',
     label: { en: 'Business Card' },
     meta: {
-      uri: 'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_business_card_1.scene',
+      uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_business_card_1.scene',
       thumbUri:
-        'https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_business_card_1.jpg'
+        'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_business_card_1.jpg'
     }
   });
 
@@ -63,15 +63,15 @@ try {
     id: 'template-social-media',
     label: { en: 'Social Media Post' },
     meta: {
-      uri: 'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_instagram_post_1.scene',
+      uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_post_1.scene',
       thumbUri:
-        'https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_instagram_post_1.jpg'
+        'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_instagram_post_1.jpg'
     }
   });
 
   // Load the first template
   await engine.scene.loadFromURL(
-    'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
+    'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
   // Ask user how to save the template

@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+coverage/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Auto-generated TypeScript config for local development
+tsconfig.local.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

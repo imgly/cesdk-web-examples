@@ -43,14 +43,14 @@ await engine.scene.loadFromArchiveURL(
 ### Load from Scene URL
 ```typescript
 await engine.scene.loadFromURL(
-  'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
+  'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
 );
 ```
 
 ### Apply Template (Preserve Dimensions)
 ```typescript
 await engine.scene.applyTemplateFromURL(
-  'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_instagram_photo_1.scene'
+  'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene'
 );
 ```
 

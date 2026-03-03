@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+#cesdk_container {
+  width: 100vw;
+  height: 100vh;
+}

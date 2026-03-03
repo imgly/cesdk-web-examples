@@ -66,7 +66,7 @@ async function main() {
     // This loads only the scene structure - assets must be accessible via URLs
     // Uncomment to try:
     // await engine.scene.loadFromURL(
-    //   'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
+    //   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     // );
     //
     // // Export the loaded scene
@@ -90,7 +90,7 @@ async function main() {
     //
     // // Now apply template - content will be adjusted to fit
     // await engine.scene.applyTemplateFromURL(
-    //   'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_instagram_photo_1.scene'
+    //   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene'
     // );
     //
     // // Export the scene with applied template

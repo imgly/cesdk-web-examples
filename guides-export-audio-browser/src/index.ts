@@ -24,6 +24,9 @@ async function initializeApp() {
     cesdk = await initializeCESDK('#cesdk-container');
     await setupAudioScene(cesdk);
 
+    // Expose cesdk to window for hero image capture
+    (window as any).cesdk = cesdk;
+
     statusText.textContent = 'CE.SDK initialized successfully';
 
     // Enable buttons

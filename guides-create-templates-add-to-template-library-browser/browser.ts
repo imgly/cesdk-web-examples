@@ -1,4 +1,21 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -22,13 +39,6 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    // Add default and demo asset sources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    });
-
     // Create a local asset source for templates
     engine.asset.addLocalSource('my-templates', undefined, async (asset) => {
       // Apply the selected template to the current scene
@@ -43,9 +53,9 @@ class Example implements EditorPlugin {
       id: 'template-postcard',
       label: { en: 'Postcard' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene',
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene',
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_postcard_1.jpg'
+          'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_postcard_1.jpg'
       }
     });
 
@@ -54,9 +64,9 @@ class Example implements EditorPlugin {
       id: 'template-business-card',
       label: { en: 'Business Card' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_business_card_1.scene',
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_business_card_1.scene',
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_business_card_1.jpg'
+          'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_business_card_1.jpg'
       }
     });
 
@@ -64,9 +74,9 @@ class Example implements EditorPlugin {
       id: 'template-social-media',
       label: { en: 'Social Media Post' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_instagram_post_1.scene',
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_post_1.scene',
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_instagram_post_1.jpg'
+          'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_instagram_post_1.jpg'
       }
     });
 
@@ -88,8 +98,8 @@ class Example implements EditorPlugin {
     });
 
     // Add template library to the dock
-    cesdk.ui.setDockOrder([
-      ...cesdk.ui.getDockOrder(),
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
       'ly.img.spacer',
       {
         id: 'ly.img.assetLibrary.dock',
@@ -102,7 +112,7 @@ class Example implements EditorPlugin {
 
     // Load the first template
     await engine.scene.loadFromURL(
-      'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene'
+      'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
     // Set zoom to auto-fit
@@ -139,7 +149,7 @@ class Example implements EditorPlugin {
     engine.asset.removeAssetFromSource('my-templates', 'template-social-media');
     console.log('Removed template-social-media from library');
 
-    cesdk.ui.insertNavigationBarOrderComponent('last', {
+    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
       id: 'ly.img.actions.navigationBar',
       children: [
         'ly.img.saveScene.navigationBar',

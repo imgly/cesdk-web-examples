@@ -1,0 +1,7 @@
+dist/
+output/
+node_modules/
+*.log
+package-lock.json
+yarn.lock
+tsconfig.local.json

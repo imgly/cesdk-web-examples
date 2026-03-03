@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "My Image Generator API",
+    "version": "1.0.0"
+  },
+  "components": {
+    "schemas": {
+      "GenerationInput": {
+        "type": "object",
+        "required": ["prompt"],
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "title": "Description",
+            "description": "Describe the image you want to generate",
+            "x-imgly-builder": {
+              "component": "TextArea"
+            }
+          },
+          "width": {
+            "type": "integer",
+            "title": "Width",
+            "default": 512,
+            "enum": [256, 512, 768, 1024],
+            "x-imgly-builder": {
+              "component": "Select"
+            }
+          },
+          "height": {
+            "type": "integer",
+            "title": "Height",
+            "default": 512,
+            "enum": [256, 512, 768, 1024],
+            "x-imgly-builder": {
+              "component": "Select"
+            }
+          },
+          "style": {
+            "type": "string",
+            "title": "Style",
+            "default": "photorealistic",
+            "enum": ["photorealistic", "cartoon", "sketch", "painting"],
+            "x-imgly-builder": {
+              "component": "Select"
+            }
+          }
+        },
+        "x-order-properties": ["prompt", "width", "height", "style"]
+      }
+    }
+  }
+}

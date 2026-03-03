@@ -1,4 +1,21 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -30,18 +47,39 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Initialize CE.SDK with Design mode and create a scene
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
     });
-    await cesdk.createDesignScene();
     const engine = cesdk.engine;
 
     const page = engine.block.findByType('page')[0];
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
     const pageWidth = engine.block.getWidth(page);
     const pageHeight = engine.block.getHeight(page);
 
@@ -66,8 +104,8 @@ class Example implements EditorPlugin {
     });
 
     // Add a spacer to push "My Templates" to the bottom of the dock
-    cesdk.ui.setDockOrder([
-      ...cesdk.ui.getDockOrder(),
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
       'ly.img.spacer',
       {
         id: 'ly.img.assetLibrary.dock',

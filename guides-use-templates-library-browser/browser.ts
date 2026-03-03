@@ -1,4 +1,21 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -21,11 +38,35 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    // Load default asset sources (fonts, etc.)
-    await cesdk.addDefaultAssetSources();
+    // Create a design scene to work with    await cesdk.addPlugin(new DesignEditorConfig());
 
-    // Create a design scene to work with
-    await cesdk.createDesignScene();
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+
+    await cesdk.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
 
     // Create a custom template source with an apply callback
     // The callback handles what happens when a user clicks a template
@@ -49,7 +90,7 @@ class Example implements EditorPlugin {
       groups: ['cards'],
       meta: {
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_postcard_1.jpg',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_postcard_1.jpg',
         uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene'
       }
     });
@@ -61,7 +102,7 @@ class Example implements EditorPlugin {
       groups: ['business'],
       meta: {
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.template/thumbnails/cesdk_postcard_2.jpg',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_postcard_2.jpg',
         uri: 'https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_2.scene'
       }
     });
@@ -77,7 +118,7 @@ class Example implements EditorPlugin {
     });
 
     // Configure the dock to show ONLY the custom template library
-    cesdk.ui.setDockOrder([
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       {
         id: 'ly.img.assetLibrary.dock',
         key: 'custom-templates',

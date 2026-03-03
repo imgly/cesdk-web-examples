@@ -1,4 +1,21 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import { calculateGridLayout } from './utils';
 import packageJson from './package.json';
 
@@ -10,16 +27,39 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    // Load default asset sources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
     });
-
-    // Start with a blank design scene
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
 
@@ -27,7 +67,7 @@ class Example implements EditorPlugin {
     // URL to a saved CE.SDK scene file
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const sceneUrl =
-      'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_postcard_1.scene';
+      'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
     // Load the scene from remote URL
     // await engine.scene.loadFromURL(sceneUrl);

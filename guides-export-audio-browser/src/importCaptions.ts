@@ -164,8 +164,8 @@ async function applyComicPresetToCaptions(cesdk, captionBlocks) {
   if (captionBlocks.length === 0) return;
 
   // The Comic preset asset ID from the caption presets source
-  const comicPresetId = '//ly.img.captionPresets/comic';
-  const captionPresetsSourceId = 'ly.img.captionPresets';
+  const comicPresetId = 'ly.img.caption.presets.comic';
+  const captionPresetsSourceId = 'ly.img.caption.presets';
 
   try {
     // Query assets to find the Comic preset

@@ -1,0 +1,129 @@
+import CreativeEngine from '@cesdk/node';
+import { config } from 'dotenv';
+
+// Load environment variables
+config();
+
+/**
+ * CE.SDK Server Guide: Join and Arrange Video Clips
+ *
+ * Demonstrates combining multiple video clips into sequences:
+ * - Creating video scenes and tracks
+ * - Adding clips to tracks for sequential playback
+ * - Reordering clips within a track
+ * - Controlling clip timing with time offsets
+ * - Creating multi-track compositions
+ */
+
+// Initialize CE.SDK engine in headless mode
+const engine = await CreativeEngine.init({
+  // license: process.env.CESDK_LICENSE, // Optional (trial mode available)
+});
+
+try {
+  // Create a video scene - required for timeline-based editing
+  await engine.scene.createVideo();
+
+  const page = engine.block.findByType('page')[0];
+
+  // Set page to 16:9 landscape (1920x1080 is standard HD video resolution)
+  engine.block.setWidth(page, 1920);
+  engine.block.setHeight(page, 1080);
+
+  // Set page duration to accommodate all clips (15 seconds total)
+  engine.block.setDuration(page, 15);
+
+  // Sample video URL for the demonstration
+  const videoUrl =
+    'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barrelling-a-wave-12715991.mp4';
+
+  // Create video clips using the addVideo helper method
+  // Each clip is sized to fill the canvas (1920x1080 is standard video resolution)
+  const clipA = await engine.block.addVideo(videoUrl, 1920, 1080, {
+    timeline: { duration: 5, timeOffset: 0 },
+  });
+
+  const clipB = await engine.block.addVideo(videoUrl, 1920, 1080, {
+    timeline: { duration: 5, timeOffset: 5 },
+  });
+
+  const clipC = await engine.block.addVideo(videoUrl, 1920, 1080, {
+    timeline: { duration: 5, timeOffset: 10 },
+  });
+
+  // Create a track and add it to the page
+  // Tracks organize clips for sequential playback on the timeline
+  const track = engine.block.create('track');
+  engine.block.appendChild(page, track);
+
+  // Add clips to the track
+  engine.block.appendChild(track, clipA);
+  engine.block.appendChild(track, clipB);
+  engine.block.appendChild(track, clipC);
+
+  // Resize all track children to fill the page dimensions
+  engine.block.fillParent(track);
+
+  // Query track children to verify order
+  const trackClips = engine.block.getChildren(track);
+  console.log('Track clip count:', trackClips.length, 'clips');
+
+  // Set durations for each clip
+  engine.block.setDuration(clipA, 5);
+  engine.block.setDuration(clipB, 5);
+  engine.block.setDuration(clipC, 5);
+
+  // Set time offsets to position clips sequentially on the timeline
+  engine.block.setTimeOffset(clipA, 0);
+  engine.block.setTimeOffset(clipB, 5);
+  engine.block.setTimeOffset(clipC, 10);
+
+  console.log('Track offsets set: Clip A: 0s, Clip B: 5s, Clip C: 10s');
+
+  // Reorder clips: move Clip C to the beginning (index 0)
+  // This demonstrates using insertChild for precise positioning
+  engine.block.insertChild(track, clipC, 0);
+
+  // After reordering, update time offsets to reflect the new sequence
+  engine.block.setTimeOffset(clipC, 0);
+  engine.block.setTimeOffset(clipA, 5);
+  engine.block.setTimeOffset(clipB, 10);
+
+  console.log('After reorder - updated offsets: C=0s, A=5s, B=10s');
+
+  // Get all clips in the track to verify arrangement
+  const finalClips = engine.block.getChildren(track);
+  console.log('Final track arrangement:');
+  finalClips.forEach((clipId, index) => {
+    const offset = engine.block.getTimeOffset(clipId);
+    const duration = engine.block.getDuration(clipId);
+    console.log(`  Clip ${index + 1}: offset=${offset}s, duration=${duration}s`);
+  });
+
+  // Create a second track for layered compositions
+  // Track order determines z-index: last track renders on top
+  const overlayTrack = engine.block.create('track');
+  engine.block.appendChild(page, overlayTrack);
+
+  // Create an overlay clip for picture-in-picture effect (1/4 size)
+  const overlayClip = await engine.block.addVideo(videoUrl, 1920 / 4, 1080 / 4, {
+    timeline: { duration: 5, timeOffset: 2 },
+  });
+  engine.block.appendChild(overlayTrack, overlayClip);
+
+  // Position overlay in bottom-right corner with padding
+  engine.block.setPositionX(overlayClip, 1920 - 1920 / 4 - 40);
+  engine.block.setPositionY(overlayClip, 1080 - 1080 / 4 - 40);
+
+  console.log('Multi-track composition created with overlay starting at 2s');
+
+  console.log('');
+  console.log('Join and Arrange guide complete.');
+  console.log('Video scene created with:');
+  console.log('  - Main track: 3 clips (C, A, B) playing sequentially');
+  console.log('  - Overlay track: 1 clip for picture-in-picture effect');
+  console.log('  - Total duration: 15 seconds');
+} finally {
+  // Always dispose of the engine to free resources
+  engine.dispose();
+}

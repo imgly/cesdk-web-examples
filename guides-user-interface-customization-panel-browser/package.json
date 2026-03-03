@@ -32,7 +32,7 @@
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "next"
+    "@cesdk/cesdk-js": "latest"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
