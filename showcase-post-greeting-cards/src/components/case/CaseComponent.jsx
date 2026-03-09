@@ -1,20 +1,6 @@
 'use client';
 
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
-import {
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
 import { useState } from 'react';
 import classes from './CaseComponent.module.css';
 import { EditorProvider } from './EditorContext';
@@ -43,38 +29,12 @@ const CaseComponent = () => {
             configure={async (engine) => {
               setEngine(engine);
               engine.editor.setSetting('page/title/show', false);
-
-              // Add default asset sources via plugins
-              await engine.addPlugin(new ColorPaletteAssetSource());
-              await engine.addPlugin(new TypefaceAssetSource());
-              await engine.addPlugin(new TextAssetSource());
-              await engine.addPlugin(new TextComponentAssetSource());
-              await engine.addPlugin(new VectorShapeAssetSource());
-              await engine.addPlugin(new StickerAssetSource());
-              await engine.addPlugin(new EffectsAssetSource());
-              await engine.addPlugin(new FiltersAssetSource());
-              await engine.addPlugin(new CropPresetsAssetSource());
-              await engine.addPlugin(new PagePresetsAssetSource());
-
-              // Add demo asset sources via plugins
-              await engine.addPlugin(
-                new UploadAssetSources({
-                  include: [
-                    'ly.img.image.upload',
-                    'ly.img.video.upload',
-                    'ly.img.audio.upload'
-                  ]
-                })
-              );
-              await engine.addPlugin(
-                new DemoAssetSources({
-                  include: [
-                    'ly.img.templates.design.*',
-                    'ly.img.audio.*',
-                    'ly.img.video.*'
-                  ]
-                })
-              );
+              await engine.addDefaultAssetSources({});
+              await engine.addDemoAssetSources({
+                sceneMode: 'Design',
+                withUploadAssetSources: true,
+                exclude: ['ly.img.image']
+              });
 
               engine.editor.setGlobalScope('lifecycle/destroy', 'Defer');
 
@@ -86,7 +46,10 @@ const CaseComponent = () => {
                 perPage: 9999
               });
               stickers.assets.forEach((sticker) => {
-                if (sticker.groups[0] !== 'emoticons') {
+                if (
+                  sticker.groups[0] !==
+                  '//ly.img.cesdk.stickers.emoticons/category/emoticons'
+                ) {
                   engine.asset.removeAssetFromSource(
                     'ly.img.sticker',
                     sticker.id

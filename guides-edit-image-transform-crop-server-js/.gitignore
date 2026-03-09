@@ -1,0 +1,8 @@
+node_modules/
+dist/
+output/
+*.png
+*.jpg
+*.webp
+.env
+tsconfig.local.json

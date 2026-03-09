@@ -71,7 +71,7 @@ const FilterSecondary = () => {
             id={filter.id}
             key={filter.id}
             thumbUrl={engine.editor.defaultURIResolver(
-              `ly.img.filter/${filter.thumbPath}`
+              `ly.img.filter.lut/${filter.thumbPath}`
             )}
             onClick={() => {
               setActiveFilterId(filter.id);

@@ -4,15 +4,63 @@ import type {
   EditorPluginContext
 } from '@cesdk/cesdk-js';
 import type { BlockEvent } from '@cesdk/cesdk-js';
+import CreativeEditorSDK from '@cesdk/cesdk-js';
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 
 export default class CustomizeBehaviorExample implements EditorPlugin {
   name = 'CustomizeBehaviorExample';
   version = '1.0.0';
 
   async initialize({ cesdk, engine }: EditorPluginContext) {
+    if (!cesdk) {
+      throw new Error('CE.SDK not available');
+    }
+
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
     // Load a simple scene for demonstration
     await engine.scene.loadFromURL(
-      'https://cdn.img.ly/assets/demo/v2/ly.img.template/templates/cesdk_postcard_1.scene'
+      'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
     // Show welcome dialog first, then run demonstrations after user confirms
@@ -93,7 +141,10 @@ export default class CustomizeBehaviorExample implements EditorPlugin {
     }, 2000);
   }
 
-  private demonstrateDialogs(cesdk: any, engine: CreativeEngine): void {
+  private demonstrateDialogs(
+    cesdk: CreativeEditorSDK,
+    engine: CreativeEngine
+  ): void {
     // Show welcome dialog immediately
     cesdk.ui.showDialog({
       type: 'info',

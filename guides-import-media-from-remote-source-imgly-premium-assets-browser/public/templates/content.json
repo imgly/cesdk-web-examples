@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "id": "imgly-premium-templates",
+  "assets": [
+    {
+      "id": "social-media-story-1",
+      "label": {
+        "en": "Modern Social Media Story",
+        "de": "Moderne Social-Media-Story"
+      },
+      "tags": {
+        "en": ["social", "story", "modern", "instagram"],
+        "de": ["sozial", "story", "modern", "instagram"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/social-media-story-1/design.zip",
+        "thumbUri": "https://img.ly/static/ubq_samples/sample_1.jpg",
+        "kind": "template",
+        "width": 1080,
+        "height": 1920
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/social-media-story-1/thumbnail.jpg",
+            "width": 400,
+            "height": 711
+          }
+        ]
+      }
+    },
+    {
+      "id": "business-flyer-1",
+      "label": {
+        "en": "Professional Business Flyer",
+        "de": "Professioneller Business-Flyer"
+      },
+      "tags": {
+        "en": ["business", "flyer", "professional", "corporate"],
+        "de": ["business", "flyer", "professionell", "unternehmen"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/business-flyer-1/design.zip",
+        "thumbUri": "https://img.ly/static/ubq_samples/sample_2.jpg",
+        "kind": "template",
+        "width": 2480,
+        "height": 3508
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/business-flyer-1/thumbnail.jpg",
+            "width": 283,
+            "height": 400
+          }
+        ]
+      }
+    },
+    {
+      "id": "ecommerce-banner-1",
+      "label": {
+        "en": "E-Commerce Sale Banner",
+        "de": "E-Commerce-Verkaufsbanner"
+      },
+      "tags": {
+        "en": ["ecommerce", "banner", "sale", "marketing"],
+        "de": ["ecommerce", "banner", "verkauf", "marketing"]
+      },
+      "meta": {
+        "uri": "{{base_url}}/ecommerce-banner-1/design.zip",
+        "thumbUri": "https://img.ly/static/ubq_samples/sample_3.jpg",
+        "kind": "template",
+        "width": 1200,
+        "height": 628
+      },
+      "payload": {
+        "sourceSet": [
+          {
+            "uri": "{{base_url}}/ecommerce-banner-1/thumbnail.jpg",
+            "width": 400,
+            "height": 209
+          }
+        ]
+      }
+    }
+  ]
+}
