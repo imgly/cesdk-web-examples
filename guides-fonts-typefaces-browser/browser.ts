@@ -57,17 +57,16 @@ class CustomFontsExample implements EditorPlugin {
     const engine = cesdk.engine;
     const orbitronTypeface = createOrbitronTypeface();
 
-    // Create a custom local typeface source and add the Orbitron typeface
-    engine.asset.addLocalSource('my-custom-typefaces');
-    engine.asset.addAssetToSource('my-custom-typefaces', {
+    const sourceId = 'my-custom-typefaces';
+    engine.asset.addLocalSource(sourceId);
+
+    await engine.asset.addAssetToSource(sourceId, {
       id: 'orbitron',
-      label: { en: 'Orbitron' },
       payload: {
         typeface: orbitronTypeface
       }
     });
 
-    // Update the typeface library to show custom fonts in the font dropdown
     cesdk.ui.updateAssetLibraryEntry('ly.img.typefaces', {
       sourceIds: ['my-custom-typefaces']
     });

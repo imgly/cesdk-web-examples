@@ -1,3 +1,4 @@
+import CreativeEditorSDK from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
@@ -14,7 +15,8 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import CreativeEditorSDK from '@cesdk/cesdk-js';
+import AutocaptionPlugin from '@imgly/plugin-autocaption-web';
+import { ElevenLabsScribeV2 } from '@imgly/plugin-autocaption-web/fal-ai';
 import { VideoEditorConfig } from './lib/video-editor/plugin';
 
 import { useEffect, useRef } from 'react';
@@ -98,36 +100,55 @@ const CreativeEditor = ({ option, closeEditor }) => {
           const engine = instance.engine;
           let page;
           switch (option) {
+            case 'autocaption': {
+              await instance.addPlugin(
+                AutocaptionPlugin({
+                  provider: ElevenLabsScribeV2({
+                    proxyUrl: FAL_AI_PROXY_URL
+                  })
+                })
+              );
+              await instance.loadFromArchiveURL(
+                caseAssetPath('/autocaption.archive.zip')
+              );
+              page = engine.scene.getCurrentPage();
+              engine.block.setPlaybackTime(page, 0);
+              break;
+            }
             case 'blank':
               await cesdk.actions.run('scene.create', {
                 mode: 'Video',
                 page: { width: 1280, height: 720, unit: 'Pixel' }
               });
-              engine.block.setColor(
-                engine.block.getFill(page),
-                'fill/color/value',
-                {
-                  r: 1,
-                  g: 1,
-                  b: 1,
-                  a: 1
-                }
+              // scene.create resets the navigation bar, so reorder the close
+              // button to the left here as well.
+              instance.ui.setNavigationBarOrder(
+                [{ id: 'ly.img.close.navigationBar' }].concat(
+                  instance.ui
+                    .getNavigationBarOrder()
+                    .filter(
+                      (item) =>
+                        ![
+                          'ly.img.close.navigationBar',
+                          'ly.img.preview.navigationBar'
+                        ].includes(item.id)
+                    )
+                )
               );
-              engine.block.setSelected(page, false);
               break;
             case 'import':
-              await engine.scene.loadFromArchiveURL(
+              await instance.loadFromArchiveURL(
                 caseAssetPath('/captions.archive')
               );
               page = engine.scene.getCurrentPage();
-              engine.block.setPlaybackTime(page, 1);
+              engine.block.setPlaybackTime(page, 0);
               break;
             case 'pre-captioned':
-              await engine.scene.loadFromArchiveURL(
+              await instance.loadFromArchiveURL(
                 caseAssetPath('/captions-pre-captioned.archive')
               );
               page = engine.scene.getCurrentPage();
-              engine.block.setPlaybackTime(page, 1);
+              engine.block.setPlaybackTime(page, 0);
               const captionTrack = engine.block.findByType('captionTrack')[0];
               engine.block.findAllSelected().forEach((block) => {
                 engine.block.setSelected(block, false);

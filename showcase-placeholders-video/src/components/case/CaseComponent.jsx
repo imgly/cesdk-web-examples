@@ -136,7 +136,9 @@ const CaseComponent = () => {
         })
       );
 
-      instance.feature.enable('ly.img.placeholder*');
+      if (currentRole === 'Creator') {
+        instance.feature.enable('ly.img.placeholder*');
+      }
 
       if (currentScene) {
         await instance.loadFromString(currentScene);
