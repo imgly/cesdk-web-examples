@@ -6,7 +6,11 @@ const { MimeType } = CreativeEngine as any;
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY',
-  userId: 'guides-user'
+  userId: 'guides-user',
+  // Use local assets when developing with local packages
+  ...(import.meta.env.CESDK_USE_LOCAL && {
+    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
+  })
 };
 
 // Initialize CE.SDK Engine
@@ -19,7 +23,7 @@ CreativeEngine.init(config).then(async (engine) => {
 
     // Load a scene from a URL
     await engine.scene.loadFromURL(
-      'https://cdn.img.ly/assets/demo/v1/ly.img.template/templates/cesdk_instagram_photo_1.scene'
+      'https://cdn.img.ly/assets/demo/v4/ly.img.templates/social/instagram_photo_1.scene'
     );
 
     // Find the first page in the scene

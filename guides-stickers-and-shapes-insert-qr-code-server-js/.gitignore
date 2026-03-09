@@ -1,0 +1,11 @@
+.env
+dist/
+node_modules/
+tsconfig.local.json
+output/
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.mp4
+*.mov

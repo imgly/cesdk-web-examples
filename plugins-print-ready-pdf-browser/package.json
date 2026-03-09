@@ -28,7 +28,7 @@
     "ci": "npm run qa:local"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "next",
+    "@cesdk/cesdk-js": "latest",
     "@imgly/plugin-print-ready-pdfs-web": "0.1.0-rc.2"
   },
   "devDependencies": {
