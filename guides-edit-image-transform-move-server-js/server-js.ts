@@ -1,5 +1,5 @@
 import CreativeEngine from '@cesdk/node';
-import { writeFileSync } from 'fs';
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { config } from 'dotenv';
 
 // Load environment variables
@@ -103,11 +103,16 @@ async function moveImagesExample() {
     // engine.block.setPositionX(movableImage, offsetX + 50);
     // engine.block.setPositionY(movableImage, offsetY + 50);
 
-    // Export the result as PNG
-    const blob = await engine.block.export(page, { mimeType: 'image/png' });
-    const buffer = Buffer.from(await blob.arrayBuffer());
-    writeFileSync('move-images-output.png', buffer);
-    console.log('✅ Successfully exported move-images-output.png');
+    // Save the scene for later use or rendering
+    const sceneString = await engine.scene.saveToString();
+
+    // Ensure output directory exists
+    if (!existsSync('output')) {
+      mkdirSync('output');
+    }
+
+    writeFileSync('output/move-images-scene.json', sceneString);
+    console.log('Saved to output/move-images-scene.json');
   } catch (error) {
     console.error('Error:', error);
     throw error;

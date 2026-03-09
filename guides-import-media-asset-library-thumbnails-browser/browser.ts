@@ -1,4 +1,22 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -10,13 +28,57 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new VideoEditorConfig());
 
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Video',
-      withUploadAssetSources: false
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.video.*',
+          'ly.img.image.*',
+          'ly.img.audio.*',
+          'ly.img.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(
+      new PagePresetsAssetSource({
+        include: [
+          'ly.img.page.presets.instagram.*',
+          'ly.img.page.presets.facebook.*',
+          'ly.img.page.presets.x.*',
+          'ly.img.page.presets.linkedin.*',
+          'ly.img.page.presets.pinterest.*',
+          'ly.img.page.presets.tiktok.*',
+          'ly.img.page.presets.youtube.*',
+          'ly.img.page.presets.video.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      mode: 'Video',
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.instagram.story'
+      }
     });
-    await cesdk.createVideoScene();
 
     const engine = cesdk.engine;
 
@@ -65,11 +127,11 @@ class Example implements EditorPlugin {
       id: 'dance-harder',
       label: { en: 'Dance Harder' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/dance_harder.m4a', // Full audio file
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/dance_harder.m4a', // Full audio file
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/thumbnails/dance_harder.jpg', // Waveform visualization (image, UI-only)
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/thumbnails/dance_harder.jpg', // Waveform visualization (image, UI-only)
         previewUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/dance_harder.m4a', // Preview clip - set as block property on canvas
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/dance_harder.m4a', // Preview clip - set as block property on canvas
         mimeType: 'audio/x-m4a', // Required for audio preview to work
         blockType: '//ly.img.ubq/audio',
         duration: '212.531995'
@@ -80,11 +142,11 @@ class Example implements EditorPlugin {
       id: 'far-from-home',
       label: { en: 'Far From Home' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/far_from_home.m4a',
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/far_from_home.m4a',
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/thumbnails/audio-wave.png',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/thumbnails/audio-wave.png',
         previewUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/far_from_home.m4a',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/far_from_home.m4a',
         mimeType: 'audio/x-m4a',
         blockType: '//ly.img.ubq/audio',
         duration: '98.716009'
@@ -95,11 +157,11 @@ class Example implements EditorPlugin {
       id: 'elsewhere',
       label: { en: 'Elsewhere' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/elsewhere.m4a',
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/elsewhere.m4a',
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/thumbnails/elsewhere.jpg',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/thumbnails/elsewhere.jpg',
         previewUri:
-          'https://cdn.img.ly/assets/demo/v2/ly.img.audio/audios/elsewhere.m4a',
+          'https://cdn.img.ly/assets/demo/v3/ly.img.audio/audios/elsewhere.m4a',
         mimeType: 'audio/x-m4a',
         blockType: '//ly.img.ubq/audio',
         duration: '121.2'

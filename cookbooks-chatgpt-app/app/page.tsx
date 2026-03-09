@@ -1048,7 +1048,7 @@ export default function Home() {
                     restoredFromPendingRef.current = true;
                     console.debug('[CE.SDK] Scene restored successfully');
                   } else {
-                    await instance.createDesignScene();
+                    await instance.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
                     restoredFromPendingRef.current = false;
                   }
                 } catch (error) {
@@ -1069,7 +1069,7 @@ export default function Home() {
 
                   // Try to create default scene as fallback
                   try {
-                    await instance.createDesignScene();
+                    await instance.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
                   } catch (fallbackError) {
                     console.error(
                       '[CE.SDK] CRITICAL: Cannot create design scene',

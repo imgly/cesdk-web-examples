@@ -2,11 +2,40 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { parseOverrides, validateBuildArtifacts, cesdkLocal } from './vite-config-cesdk-local';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as childProcess from 'child_process';
+import type { Plugin, UserConfig, ConfigEnv, ViteDevServer } from 'vite';
 
 // Mock fs module
 vi.mock('fs', () => ({
   existsSync: vi.fn()
 }));
+
+// Mock child_process module
+vi.mock('child_process', () => ({
+  execFileSync: vi.fn()
+}));
+
+// Helper to call plugin config hook (handles both function and object forms)
+function callConfigHook(plugin: Plugin, config: UserConfig, env: ConfigEnv) {
+  const hook = plugin.config;
+  if (typeof hook === 'function') {
+    return hook.call({} as any, config, env);
+  } else if (hook && typeof hook === 'object' && 'handler' in hook) {
+    return hook.handler.call({} as any, config, env);
+  }
+  return undefined;
+}
+
+// Helper to call plugin configureServer hook
+function callConfigureServerHook(plugin: Plugin, server: ViteDevServer) {
+  const hook = plugin.configureServer;
+  if (typeof hook === 'function') {
+    return hook.call({} as any, server);
+  } else if (hook && typeof hook === 'object' && 'handler' in hook) {
+    return hook.handler.call({} as any, server);
+  }
+  return undefined;
+}
 
 describe('parseOverrides', () => {
   it('should return empty set for undefined', () => {
@@ -14,19 +43,19 @@ describe('parseOverrides', () => {
   });
 
   it('should parse "true" as all packages', () => {
-    expect(parseOverrides('true')).toEqual(new Set(['cesdk', 'engine']));
+    expect(parseOverrides('true')).toEqual(new Set(['cesdk', 'engine', 'node']));
   });
 
   it('should parse "True" (case insensitive) as all packages', () => {
-    expect(parseOverrides('True')).toEqual(new Set(['cesdk', 'engine']));
+    expect(parseOverrides('True')).toEqual(new Set(['cesdk', 'engine', 'node']));
   });
 
   it('should parse "1" as all packages', () => {
-    expect(parseOverrides('1')).toEqual(new Set(['cesdk', 'engine']));
+    expect(parseOverrides('1')).toEqual(new Set(['cesdk', 'engine', 'node']));
   });
 
   it('should parse "all" as all packages', () => {
-    expect(parseOverrides('all')).toEqual(new Set(['cesdk', 'engine']));
+    expect(parseOverrides('all')).toEqual(new Set(['cesdk', 'engine', 'node']));
   });
 
   it('should parse "cesdk" as cesdk only', () => {
@@ -47,7 +76,7 @@ describe('parseOverrides', () => {
 
   it('should handle whitespace in values', () => {
     expect(parseOverrides(' cesdk ')).toEqual(new Set(['cesdk']));
-    expect(parseOverrides(' true ')).toEqual(new Set(['cesdk', 'engine']));
+    expect(parseOverrides(' true ')).toEqual(new Set(['cesdk', 'engine', 'node']));
   });
 
   it('should return empty set for empty string', () => {
@@ -64,61 +93,116 @@ describe('validateBuildArtifacts', () => {
     vi.clearAllMocks();
   });
 
-  it('should throw if cesdk build missing', () => {
+  it('should run web build if cesdk build missing', () => {
     const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
     mockExistsSync.mockReturnValue(false);
+
+    validateBuildArtifacts(new Set(['cesdk']), '/fake/path');
+
+    expect(mockExecFileSync).toHaveBeenCalledWith(
+      'yarn',
+      ['web:build:development'],
+      expect.objectContaining({ cwd: '/fake/path', stdio: 'inherit' })
+    );
+  });
+
+  it('should run web build if engine build missing', () => {
+    const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
+    mockExistsSync.mockReturnValue(false);
+
+    validateBuildArtifacts(new Set(['engine']), '/fake/path');
+
+    expect(mockExecFileSync).toHaveBeenCalledWith(
+      'yarn',
+      ['web:build:development'],
+      expect.objectContaining({ cwd: '/fake/path', stdio: 'inherit' })
+    );
+  });
+
+  it('should run web build once if both cesdk and engine missing', () => {
+    const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
+    mockExistsSync.mockReturnValue(false);
+
+    validateBuildArtifacts(new Set(['cesdk', 'engine']), '/fake/path');
+
+    // Should only call web:build:development once (not twice)
+    expect(mockExecFileSync).toHaveBeenCalledTimes(1);
+    expect(mockExecFileSync).toHaveBeenCalledWith(
+      'yarn',
+      ['web:build:development'],
+      expect.objectContaining({ cwd: '/fake/path', stdio: 'inherit' })
+    );
+  });
+
+  it('should run web build if node build missing', () => {
+    const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
+    mockExistsSync.mockReturnValue(false);
+
+    validateBuildArtifacts(new Set(['node']), '/fake/path');
+
+    // web:build:development includes js_node
+    expect(mockExecFileSync).toHaveBeenCalledWith(
+      'yarn',
+      ['web:build:development'],
+      expect.objectContaining({ cwd: '/fake/path', stdio: 'inherit' })
+    );
+  });
+
+  it('should throw if build command fails', () => {
+    const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
+    mockExistsSync.mockReturnValue(false);
+    mockExecFileSync.mockImplementation(() => {
+      throw new Error('Build failed');
+    });
 
     expect(() => validateBuildArtifacts(new Set(['cesdk']), '/fake/path'))
-      .toThrow(/cesdk_web package not built/);
-  });
-
-  it('should throw if engine build missing', () => {
-    const mockExistsSync = vi.mocked(fs.existsSync);
-    mockExistsSync.mockReturnValue(false);
-
-    expect(() => validateBuildArtifacts(new Set(['engine']), '/fake/path'))
-      .toThrow(/js_web package not built/);
-  });
-
-  it('should throw with both error messages if both builds missing', () => {
-    const mockExistsSync = vi.mocked(fs.existsSync);
-    mockExistsSync.mockReturnValue(false);
-
-    expect(() => validateBuildArtifacts(new Set(['cesdk', 'engine']), '/fake/path'))
-      .toThrow(/cesdk_web package not built[\s\S]*js_web package not built/);
+      .toThrow(/Failed to build local packages/);
   });
 
   it('should pass if cesdk build exists', () => {
     const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
     mockExistsSync.mockReturnValue(true);
 
-    expect(() => validateBuildArtifacts(new Set(['cesdk']), '/fake/path'))
-      .not.toThrow();
+    validateBuildArtifacts(new Set(['cesdk']), '/fake/path');
+
+    expect(mockExecFileSync).not.toHaveBeenCalled();
   });
 
   it('should pass if engine build exists', () => {
     const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
     mockExistsSync.mockReturnValue(true);
 
-    expect(() => validateBuildArtifacts(new Set(['engine']), '/fake/path'))
-      .not.toThrow();
+    validateBuildArtifacts(new Set(['engine']), '/fake/path');
+
+    expect(mockExecFileSync).not.toHaveBeenCalled();
   });
 
   it('should pass if both builds exist', () => {
     const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
     mockExistsSync.mockReturnValue(true);
 
-    expect(() => validateBuildArtifacts(new Set(['cesdk', 'engine']), '/fake/path'))
-      .not.toThrow();
+    validateBuildArtifacts(new Set(['cesdk', 'engine']), '/fake/path');
+
+    expect(mockExecFileSync).not.toHaveBeenCalled();
   });
 
   it('should not check builds if no overrides', () => {
     const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
     mockExistsSync.mockReturnValue(false);
 
-    expect(() => validateBuildArtifacts(new Set(), '/fake/path'))
-      .not.toThrow();
+    validateBuildArtifacts(new Set(), '/fake/path');
+
     expect(mockExistsSync).not.toHaveBeenCalled();
+    expect(mockExecFileSync).not.toHaveBeenCalled();
   });
 
   it('should check correct paths for cesdk build', () => {
@@ -156,26 +240,34 @@ describe('cesdkLocal plugin', () => {
     process.env.CESDK_USE_LOCAL = originalEnv;
   });
 
-  it('should not apply aliases in build mode', () => {
+  it('should apply aliases in build mode when env var set', () => {
     process.env.CESDK_USE_LOCAL = 'true';
     const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
     mockExistsSync.mockReturnValue(true);
+    mockExecFileSync.mockReturnValue(Buffer.from(''));
 
     const plugin = cesdkLocal();
-    const config = plugin.config?.({}, { command: 'build' });
+    const config = callConfigHook(plugin, {}, { command: 'build', mode: 'production' });
 
-    expect(config?.resolve?.alias).toBeUndefined();
+    // Build mode now supports local packages
+    expect(config?.resolve?.alias?.['@cesdk/cesdk-js']).toContain('cesdk_web/build');
+    expect(config?.resolve?.alias?.['@cesdk/engine']).toContain('js_web/build');
   });
 
-  it('should warn in build mode when env var set', () => {
-    const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+  it('should log info in build mode when env var set', () => {
+    const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
     process.env.CESDK_USE_LOCAL = 'true';
+    const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
+    mockExistsSync.mockReturnValue(true);
+    mockExecFileSync.mockReturnValue(Buffer.from(''));
 
     const plugin = cesdkLocal();
-    plugin.config?.({}, { command: 'build' });
+    callConfigHook(plugin, {}, { command: 'build', mode: 'production' });
 
     expect(consoleSpy).toHaveBeenCalledWith(
-      expect.stringContaining('CESDK_USE_LOCAL is set but building')
+      expect.stringContaining('Building with local packages')
     );
 
     consoleSpy.mockRestore();
@@ -187,7 +279,7 @@ describe('cesdkLocal plugin', () => {
     mockExistsSync.mockReturnValue(true);
 
     const plugin = cesdkLocal();
-    const config = plugin.config?.({}, { command: 'serve' });
+    const config = callConfigHook(plugin, {}, { command: 'serve', mode: 'development' });
 
     expect(config?.resolve?.alias?.['@cesdk/cesdk-js']).toContain('cesdk_web/build');
   });
@@ -198,7 +290,7 @@ describe('cesdkLocal plugin', () => {
     mockExistsSync.mockReturnValue(true);
 
     const plugin = cesdkLocal();
-    const config = plugin.config?.({}, { command: 'serve' });
+    const config = callConfigHook(plugin, {}, { command: 'serve', mode: 'development' });
 
     expect(config?.resolve?.alias?.['@cesdk/engine']).toContain('js_web/build');
   });
@@ -209,7 +301,7 @@ describe('cesdkLocal plugin', () => {
     mockExistsSync.mockReturnValue(true);
 
     const plugin = cesdkLocal();
-    const config = plugin.config?.({}, { command: 'serve' });
+    const config = callConfigHook(plugin, {}, { command: 'serve', mode: 'development' });
 
     expect(config?.resolve?.alias?.['@cesdk/cesdk-js']).toContain('cesdk_web/build');
     expect(config?.resolve?.alias?.['@cesdk/engine']).toContain('js_web/build');
@@ -219,7 +311,7 @@ describe('cesdkLocal plugin', () => {
     delete process.env.CESDK_USE_LOCAL;
 
     const plugin = cesdkLocal();
-    const config = plugin.config?.({}, { command: 'serve' });
+    const config = callConfigHook(plugin, {}, { command: 'serve', mode: 'development' });
 
     expect(config?.resolve?.alias?.['@cesdk/cesdk-js']).toBeUndefined();
     expect(config?.resolve?.alias?.['@cesdk/engine']).toBeUndefined();
@@ -231,7 +323,7 @@ describe('cesdkLocal plugin', () => {
     mockExistsSync.mockReturnValue(true);
 
     const plugin = cesdkLocal();
-    const config = plugin.config?.({}, { command: 'serve' });
+    const config = callConfigHook(plugin, {}, { command: 'serve', mode: 'development' });
 
     expect(config?.define?.['import.meta.env.CESDK_USE_LOCAL']).toBe('"cesdk"');
   });
@@ -246,14 +338,18 @@ describe('cesdkLocal plugin', () => {
       watcher: { add: vi.fn() },
       middlewares: { use: vi.fn() }
     };
-    plugin.configureServer?.(mockServer as any);
+    callConfigureServerHook(plugin, mockServer as any);
 
-    expect(mockServer.watcher.add).toHaveBeenCalledTimes(2);
+    // 'all' includes cesdk, engine, and node (3 watchers)
+    expect(mockServer.watcher.add).toHaveBeenCalledTimes(3);
     expect(mockServer.watcher.add).toHaveBeenCalledWith(
       expect.stringContaining('cesdk_web/build')
     );
     expect(mockServer.watcher.add).toHaveBeenCalledWith(
       expect.stringContaining('js_web/build')
+    );
+    expect(mockServer.watcher.add).toHaveBeenCalledWith(
+      expect.stringContaining('js_node/build')
     );
   });
 
@@ -262,7 +358,7 @@ describe('cesdkLocal plugin', () => {
 
     const plugin = cesdkLocal();
     const mockServer = { watcher: { add: vi.fn() } };
-    plugin.configureServer?.(mockServer as any);
+    callConfigureServerHook(plugin, mockServer as any);
 
     expect(mockServer.watcher.add).not.toHaveBeenCalled();
   });
@@ -277,7 +373,7 @@ describe('cesdkLocal plugin', () => {
       watcher: { add: vi.fn() },
       middlewares: { use: vi.fn() }
     };
-    plugin.configureServer?.(mockServer as any);
+    callConfigureServerHook(plugin, mockServer as any);
 
     expect(mockServer.watcher.add).toHaveBeenCalledTimes(1);
     expect(mockServer.watcher.add).toHaveBeenCalledWith(
@@ -285,15 +381,36 @@ describe('cesdkLocal plugin', () => {
     );
   });
 
-  it('should throw if build artifacts missing in dev mode', () => {
+  it('should run build automatically if artifacts missing in dev mode', () => {
     process.env.CESDK_USE_LOCAL = 'true';
     const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
     mockExistsSync.mockReturnValue(false);
+    mockExecFileSync.mockReturnValue(Buffer.from('')); // Simulate successful build
+
+    const plugin = cesdkLocal();
+    callConfigHook(plugin, {}, { command: 'serve', mode: 'development' });
+
+    expect(mockExecFileSync).toHaveBeenCalledWith(
+      'yarn',
+      ['web:build:development'],
+      expect.objectContaining({ stdio: 'inherit' })
+    );
+  });
+
+  it('should throw if build command fails in dev mode', () => {
+    process.env.CESDK_USE_LOCAL = 'true';
+    const mockExistsSync = vi.mocked(fs.existsSync);
+    const mockExecFileSync = vi.mocked(childProcess.execFileSync);
+    mockExistsSync.mockReturnValue(false);
+    mockExecFileSync.mockImplementation(() => {
+      throw new Error('Build failed');
+    });
 
     const plugin = cesdkLocal();
 
-    expect(() => plugin.config?.({}, { command: 'serve' }))
-      .toThrow(/Local package builds missing/);
+    expect(() => callConfigHook(plugin, {}, { command: 'serve', mode: 'development' }))
+      .toThrow(/Failed to build local packages/);
   });
 
   it('should log verbose messages when verbose option enabled', () => {
@@ -301,7 +418,7 @@ describe('cesdkLocal plugin', () => {
     delete process.env.CESDK_USE_LOCAL;
 
     const plugin = cesdkLocal({ verbose: true });
-    plugin.config?.({}, { command: 'serve' });
+    callConfigHook(plugin, {}, { command: 'serve', mode: 'development' });
 
     expect(consoleSpy).toHaveBeenCalledWith(
       expect.stringContaining('Using published packages')

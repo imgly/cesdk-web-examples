@@ -1,4 +1,21 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
 /**
@@ -22,21 +39,39 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+    await cesdk.addPlugin(new DesignEditorConfig());
 
-    // Initialize CE.SDK with Design mode and load asset sources
-    await cesdk.addDefaultAssetSources();
-    await cesdk.addDemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
+    // Add asset source plugins
+    await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ColorPaletteAssetSource());
+    await cesdk.addPlugin(new CropPresetsAssetSource());
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: [
+          'ly.img.templates.blank.*',
+          'ly.img.templates.presentation.*',
+          'ly.img.templates.print.*',
+          'ly.img.templates.social.*',
+          'ly.img.image.*'
+        ]
+      })
+    );
+    await cesdk.addPlugin(new EffectsAssetSource());
+    await cesdk.addPlugin(new FiltersAssetSource());
+    await cesdk.addPlugin(new PagePresetsAssetSource());
+    await cesdk.addPlugin(new StickerAssetSource());
+    await cesdk.addPlugin(new TextAssetSource());
+    await cesdk.addPlugin(new TextComponentAssetSource());
+    await cesdk.addPlugin(new TypefaceAssetSource());
+    await cesdk.addPlugin(new VectorShapeAssetSource());
+
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
     });
-    await cesdk.createDesignScene();
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
-
-    // Set page dimensions for consistent layout
-    engine.block.setWidth(page, 800);
-    engine.block.setHeight(page, 600);
 
     const pageWidth = engine.block.getWidth(page);
     const pageHeight = engine.block.getHeight(page);
@@ -129,6 +164,110 @@ Company: {{company}}`;
     // eslint-disable-next-line no-console
     console.log('Final variables in scene:', finalVariables);
     // Expected: ['firstName', 'lastName', 'email', 'company', 'title']
+
+    // Build a custom Variables Manager panel
+    // CE.SDK doesn't include a built-in UI for creating/managing variables,
+    // so you can build one using the Panel Builder API
+    cesdk.ui.registerPanel(
+      'ly.img.variablesManager',
+      ({ builder, engine: panelEngine, state }) => {
+        const { Section, TextInput, Button } = builder;
+
+        // State for creating new variables
+        const newVariableName = state('newVariableName', '');
+        const newVariableValue = state('newVariableValue', '');
+
+        // Section: Create New Variable
+        Section('create-variable', {
+          title: 'Create New Variable',
+          children: () => {
+            TextInput('new-name', {
+              inputLabel: 'Variable Name',
+              ...newVariableName
+            });
+
+            TextInput('new-value', {
+              inputLabel: 'Default Value',
+              ...newVariableValue
+            });
+
+            Button('create-btn', {
+              label: 'Create Variable',
+              color: 'accent',
+              isDisabled: !newVariableName.value.trim(),
+              onClick: () => {
+                const name = newVariableName.value.trim();
+                if (name) {
+                  panelEngine.variable.setString(name, newVariableValue.value);
+                  newVariableName.setValue('');
+                  newVariableValue.setValue('');
+                }
+              }
+            });
+          }
+        });
+
+        // Section: Existing Variables
+        const variables = panelEngine.variable.findAll();
+        Section('existing-variables', {
+          title: `Manage Variables (${variables.length})`,
+          children: () => {
+            if (variables.length === 0) {
+              builder.Text('no-vars', { content: 'No variables defined yet.' });
+              return;
+            }
+
+            variables.forEach(varName => {
+              TextInput(`var-${varName}`, {
+                inputLabel: varName,
+                value: panelEngine.variable.getString(varName),
+                setValue: value => {
+                  panelEngine.variable.setString(varName, value);
+                },
+                suffix: {
+                  icon: '@imgly/TrashBin',
+                  tooltip: 'Delete variable',
+                  onClick: () => {
+                    panelEngine.variable.remove(varName);
+                  }
+                }
+              });
+            });
+          }
+        });
+      }
+    );
+
+    // Set the panel title
+    cesdk.i18n.setTranslations({
+      en: {
+        'panel.ly.img.variablesManager': 'Custom Variables Panel'
+      }
+    });
+
+    // Add a dock button to open the panel
+    cesdk.ui.registerComponent('variablesManager.dock', ({ builder: b }) => {
+      const isPanelOpen = cesdk.ui.isPanelOpen('ly.img.variablesManager');
+      b.Button('variables-dock-btn', {
+        label: 'Variables',
+        icon: '@imgly/Text',
+        onClick: () => {
+          if (isPanelOpen) {
+            cesdk.ui.closePanel('ly.img.variablesManager');
+          } else {
+            cesdk.ui.openPanel('ly.img.variablesManager');
+          }
+        },
+        isActive: isPanelOpen
+      });
+    });
+
+    // Add button to dock
+    cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
+      ...cesdk.ui.getComponentOrder({ in: 'ly.img.dock' }),
+      'ly.img.spacer',
+      'variablesManager.dock'
+    ]);
   }
 }
 

@@ -1,0 +1,6 @@
+dist/
+output/
+node_modules/
+*.config.js
+*.config.ts
+scripts/

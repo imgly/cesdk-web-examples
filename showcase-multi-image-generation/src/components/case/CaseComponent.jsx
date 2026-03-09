@@ -13,21 +13,6 @@ import {
   removeInstanceVariables
 } from './lib/TemplateUtilities';
 import SCENES from './scenes.json';
-import {
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource,
-  BlurAssetSource,
-} from '@cesdk/cesdk-js/plugins';
 
 const EXAMPLES = [
   {
@@ -107,44 +92,8 @@ const CaseComponent = () => {
       license: process.env.NEXT_PUBLIC_LICENSE
     };
     CreativeEngine.init(config).then(async (engine) => {
-
-      await engine.addPlugin(new ColorPaletteAssetSource());
-      await engine.addPlugin(new TypefaceAssetSource());
-      await engine.addPlugin(new TextAssetSource());
-      await engine.addPlugin(new TextComponentAssetSource());
-      await engine.addPlugin(new VectorShapeAssetSource());
-      await engine.addPlugin(new StickerAssetSource());
-      await engine.addPlugin(new EffectsAssetSource());
-      await engine.addPlugin(new FiltersAssetSource());
-      await engine.addPlugin(new BlurAssetSource());
-      await engine.addPlugin(
-        new PagePresetsAssetSource({
-          include: [
-            'ly.img.page.presets.instagram.*',
-            'ly.img.page.presets.facebook.*',
-            'ly.img.page.presets.x.*',
-            'ly.img.page.presets.linkedin.*',
-            'ly.img.page.presets.pinterest.*',
-            'ly.img.page.presets.tiktok.*',
-            'ly.img.page.presets.youtube.*',
-          ]
-        })
-      );
-      await engine.addPlugin(new CropPresetsAssetSource());
-      await engine.addPlugin(
-        new UploadAssetSources({
-          include: [
-            'ly.img.image.upload',
-          ]
-        })
-      );
-      await engine.addPlugin(
-        new DemoAssetSources({
-          include: [
-            'ly.img.image.*',
-          ]
-        })
-      );      
+      engine.addDefaultAssetSources();
+      engine.addDemoAssetSources({ sceneMode: 'Design' });
       engineRef.current = engine;
     });
 

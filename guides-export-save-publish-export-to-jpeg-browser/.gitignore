@@ -1,0 +1,13 @@
+.env.local
+.env
+
+dist/
+node_modules/
+
+*.log
+
+package-lock.json
+yarn.lock
+tsconfig.tsbuildinfo
+
+tsconfig.local.json

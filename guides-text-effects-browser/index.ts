@@ -6,7 +6,7 @@ const config = {
   userId: 'guides-user',
   // Use local assets when developing with local packages
   ...(import.meta.env.CESDK_USE_LOCAL && {
-    baseURL: '/assets/'
+    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
   })
 };
 
