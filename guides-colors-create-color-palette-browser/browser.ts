@@ -95,12 +95,26 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
+    // Create a local asset source and add each color
+    const sourceId = 'my-brand-colors';
+    engine.asset.addLocalSource(sourceId);
+
+    for (const color of colors) {
+      await engine.asset.addAssetToSource(sourceId, color);
+    }
+
     // Set labels for the color library using i18n
     cesdk.i18n.setTranslations({
       en: {
         'libraries.my-brand-colors.label': 'Brand Colors'
       }
     });
+
+    // Configure the color picker to show custom colors first, then defaults
+    cesdk.ui.updateAssetLibraryEntry('ly.img.color.palette', {
+      sourceIds: ['my-brand-colors', 'ly.img.color.palette']
+    });
+
     await cesdk.addPlugin(new DesignEditorConfig());
 
     // Add asset source plugins

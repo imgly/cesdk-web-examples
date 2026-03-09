@@ -134,6 +134,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     'ly.img.duplicate' /* Duplicate button and copy/paste */,
     'ly.img.group' /* Group and Ungroup buttons */,
     'ly.img.replace' /* Replace button in Canvas Menu and Fill Panel */,
+    'ly.img.replace.fill' /* Replace image/video fill content */,
+    'ly.img.replace.shape' /* Replace block shape */,
+    'ly.img.replace.audio' /* Replace audio block content */,
     // #endregion
 
     // ============================================================================

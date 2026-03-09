@@ -240,6 +240,19 @@ export function setupSettings(engine: CreativeEngine): void {
   // #endregion
 
   // ============================================================================
+  // COLOR PICKER SETTINGS
+  // Configure color picker behavior
+  // ============================================================================
+
+  // #region Color Picker Settings
+  // Restrict color picker to a specific color mode:
+  // - 'Any': Allow both RGB and CMYK (default)
+  // - 'RGB': Restrict to RGB colors only
+  // - 'CMYK': Restrict to CMYK colors only
+  engine.editor.setSetting('colorPicker/colorMode', 'Any');
+  // #endregion
+
+  // ============================================================================
   // COLOR SETTINGS
   // Customize UI colors for branding and theming
   // ============================================================================

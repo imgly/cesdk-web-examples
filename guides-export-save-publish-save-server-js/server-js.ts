@@ -1,4 +1,5 @@
 import CreativeEngine from '@cesdk/node';
+import { CompressionFormat, CompressionLevel } from '@cesdk/node';
 import { writeFileSync, readFileSync, mkdirSync, existsSync } from 'fs';
 import { createInterface } from 'readline';
 import { config } from 'dotenv';
@@ -76,6 +77,19 @@ try {
     writeFileSync(`${outputDir}/scene.scene`, sceneString);
     console.log(
       `✅ Scene saved: output/scene.scene (${(sceneString.length / 1024).toFixed(1)} KB)`
+    );
+
+    // Example: Save with compression (requires local build)
+    // To run with compression: npm run dev:local
+    const compressed = await engine.scene.saveToString(
+      undefined, // allowedResourceSchemes
+      undefined, // onDisallowedResourceScheme
+      CompressionFormat.Zstd,    // compression format
+      CompressionLevel.Default   // compression level
+    );
+    writeFileSync(`${outputDir}/scene-compressed.scene`, compressed);
+    console.log(
+      `✅ Compressed scene saved: output/scene-compressed.scene (${(compressed.length / 1024).toFixed(1)} KB, ${((1 - compressed.length / sceneString.length) * 100).toFixed(1)}% smaller)`
     );
   }
 

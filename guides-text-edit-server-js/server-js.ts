@@ -99,6 +99,20 @@ try {
     console.log("First line bounds:", lineBounds);
   }
 
+  // Get raw font metrics from a font file URI
+  const fontFileUri = typeface.fonts[0].uri;
+  const metrics = await engine.editor.getFontMetrics(fontFileUri);
+  console.log("Ascender:", metrics.ascender);
+  console.log("Descender:", metrics.descender);
+  console.log("Units per em:", metrics.unitsPerEm);
+  console.log("Line Gap:", metrics.lineGap);
+  console.log("Cap Height:", metrics.capHeight);
+  console.log("x-Height:", metrics.xHeight);
+  console.log("Underline Offset:", metrics.underlineOffset);
+  console.log("Underline Size:", metrics.underlineSize);
+  console.log("Strikeout Offset:", metrics.strikeoutOffset);
+  console.log("Strikeout Size:", metrics.strikeoutSize);
+
   // Zoom to fit the page
   engine.scene.zoomToBlock(page);
 
