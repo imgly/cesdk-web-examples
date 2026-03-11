@@ -127,6 +127,10 @@ const CaseComponent = () => {
 
           await addPremiumTemplatesAssetSource(instance);
 
+          if (currentRole === 'Creator') {
+            instance.feature.enable('ly.img.placeholder*');
+          }
+
           cesdkRef.current = instance;
           if (currentScene) {
             await instance.loadFromString(currentScene);

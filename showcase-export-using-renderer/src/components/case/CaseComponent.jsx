@@ -66,7 +66,7 @@ async function exportUsingRenderer(archiveBlob, cesdk, notificationId) {
     }
     const progress = Math.round(100.0 * (event.loaded / event.total));
     cesdk.ui.updateNotification(notificationId, {
-      message: `Downloading the exported video... (${progress}% complete)`,
+      message: `Downloading the export... (${progress}% complete)`,
       duration: 'infinite',
       type: 'loading'
     });
@@ -89,7 +89,7 @@ async function exportUsingRenderer(archiveBlob, cesdk, notificationId) {
     xhr.send(payload);
   });
   cesdk.ui.updateNotification(notificationId, {
-    message: `Video downloaded, server render took ${Math.round((renderFinished - uploadFinished) / 100.0) / 10.0} seconds`,
+    message: `Export downloaded, server render took ${Math.round((renderFinished - uploadFinished) / 100.0) / 10.0} seconds`,
     duration: 'infinite',
     type: 'success'
   });
@@ -158,11 +158,41 @@ const CaseComponent = () => {
         });
       }
     });
-    instance.ui.setNavigationBarOrder([
+    instance.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
       'ly.img.back.navigationBar',
       'ly.img.undoRedo.navigationBar',
+      'ly.img.pageResize.navigationBar',
       'ly.img.spacer',
       'ly.img.zoom.navigationBar',
+      {
+        id: 'ly.img.action.navigationBar',
+        key: 'new-design',
+        label: 'New Design',
+        icon: '@imgly/Image',
+        onClick: () => {
+          void instance.actions.run('scene.create', {
+            page: {
+              sourceId: 'ly.img.page.presets',
+              assetId: 'ly.img.page.presets.instagram.story'
+            }
+          });
+        }
+      },
+      {
+        id: 'ly.img.action.navigationBar',
+        key: 'new-video',
+        label: 'New Video',
+        icon: '@imgly/Video',
+        onClick: () => {
+          void instance.actions.run('scene.create', {
+            mode: 'Video',
+            page: {
+              sourceId: 'ly.img.page.presets',
+              assetId: 'ly.img.page.presets.instagram.story'
+            }
+          });
+        }
+      },
       {
         id: 'ly.img.actions.navigationBar',
         children: [
@@ -174,7 +204,9 @@ const CaseComponent = () => {
             onClick: () => instance.actions.run('exportDesign')
           },
           'ly.img.importArchive.navigationBar',
-          'ly.img.importScene.navigationBar'
+          'ly.img.importScene.navigationBar',
+          'ly.img.exportScene.navigationBar',
+          'ly.img.exportArchive.navigationBar'
         ]
       }
     ]);

@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 48px;
+  padding: 40px;
   border-radius: 0.75rem;
   background: white;
   box-shadow:
@@ -40,10 +40,8 @@
 .comparisonWrapper {
   display: grid;
   width: 100%;
-  grid-auto-flow: column;
-  grid-gap: 24px;
-  grid-template-columns: 1fr 1px 1fr 1px 1fr;
-  grid-template-rows: max-content 1fr max-content;
+  grid-gap: 80px;
+  grid-template-columns: 1fr 1fr;
   text-align: center;
 }
 
@@ -72,10 +70,15 @@
   line-height: 20px; /* 142.857% */
 }
 
-.divider {
-  width: 1px;
-  background-color: #d9d9d9;
-  grid-row: span 3;
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.cardText {
+  text-align: center;
 }
 
 .preview {
@@ -106,7 +109,7 @@
 }
 
 .comparisonImage {
-  width: 100%;
+  width: 72%;
   object-fit: contain;
   border-radius: 4px;
   box-shadow:
