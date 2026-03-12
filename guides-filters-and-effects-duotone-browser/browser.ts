@@ -94,7 +94,7 @@ class Example implements EditorPlugin {
 
     // Query duotone presets from the asset library
     const duotoneResults = await engine.asset.findAssets(
-      'ly.img.filter.duotone',
+      'ly.img.filter',
       { page: 0, perPage: 10 }
     );
     const duotonePresets = duotoneResults.assets;
