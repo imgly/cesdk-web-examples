@@ -38,55 +38,48 @@ export async function addPremiumTemplatesAssetSource(
   const { assets, id } = modifiedAssetSource;
 
   const engine = cesdk.engine;
-
-  // Check if the source already exists
-  const existingSources = engine.asset.findAllSources();
-  const sourceAlreadyExists = existingSources.includes(id);
-
-  if (!sourceAlreadyExists) {
-    // Add local source without assets
-    engine.asset.addLocalSource(id, [], async (asset) => {
-      if (!asset.meta?.uri) {
-        return undefined;
-      }
-      await engine.scene.loadFromArchiveURL(asset.meta.uri);
-      // Deselect any selected blocks
-      engine.block.findAllSelected().forEach((selectedBlock) => {
-        engine.block.setSelected(selectedBlock, false);
-      });
-      const firstPage = engine.scene.getPages()[0];
-      await cesdk.actions.run('zoom.toBlock', firstPage, {
-        autoFit: false,
-        animate: false
-      });
-      if (persistURL) persistSelectedTemplateToURL(asset.id);
+  // Add local source without assets
+  engine.asset.addLocalSource(id, [], async (asset) => {
+    if (!asset.meta?.uri) {
+      return undefined;
+    }
+    await engine.scene.loadFromArchiveURL(asset.meta.uri);
+    // Deselect any selected blocks
+    engine.block.findAllSelected().forEach((selectedBlock) => {
+      engine.block.setSelected(selectedBlock, false);
     });
+    const firstPage = engine.scene.getPages()[0];
+    await cesdk.actions.run('zoom.toBlock', firstPage, {
+      autoFit: false,
+      animate: false
+    });
+    if (persistURL) persistSelectedTemplateToURL(asset.id);
+  });
 
-    // Add each asset individually to the source
-    if (assets && Array.isArray(assets)) {
-      for (const asset of assets) {
-        engine.asset.addAssetToSource(id, asset);
-      }
+  // Add each asset individually to the source
+  if (assets && Array.isArray(assets)) {
+    for (const asset of assets) {
+      engine.asset.addAssetToSource(id, asset);
     }
   }
 
   cesdk.i18n.setTranslations({
     en: {
-      'libraries.ly.img.templates.ly.img.template.premium1.label': 'Templates',
-      'libraries.ly.img.templates.ly.img.template.premium1.e-commerce.label':
+      'libraries.ly.img.template.ly.img.template.premium1.label': 'Templates',
+      'libraries.ly.img.template.ly.img.template.premium1.e-commerce.label':
         'E-Commerce',
-      'libraries.ly.img.templates.ly.img.template.premium1.event.label': 'Event',
-      'libraries.ly.img.templates.ly.img.template.premium1.personal.label':
+      'libraries.ly.img.template.ly.img.template.premium1.event.label': 'Event',
+      'libraries.ly.img.template.ly.img.template.premium1.personal.label':
         'Personal',
-      'libraries.ly.img.templates.ly.img.template.premium1.professional.label':
+      'libraries.ly.img.template.ly.img.template.premium1.professional.label':
         'Professional',
-      'libraries.ly.img.templates.ly.img.template.premium1.socials.label':
+      'libraries.ly.img.template.ly.img.template.premium1.socials.label':
         'Socials'
     }
   });
 
-  cesdk.ui.updateAssetLibraryEntry('ly.img.templates', {
-    sourceIds: ({ currentIds }) => [...new Set([...currentIds, id])],
+  cesdk.ui.updateAssetLibraryEntry('ly.img.template', {
+    sourceIds: ['ly.img.template.premium1'],
     previewBackgroundType: 'contain',
     cardLabel: (asset) => asset.label,
     cardLabelPosition: () => 'below',

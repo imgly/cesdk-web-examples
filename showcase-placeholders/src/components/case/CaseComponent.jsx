@@ -2,22 +2,6 @@
 
 import SegmentedControl from '@/components/ui/SegmentedControl/SegmentedControl';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import {
-  BlurAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from './lib/design-editor/plugin';
 import { useEffect, useRef, useState } from 'react';
 import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
@@ -102,35 +86,11 @@ const CaseComponent = () => {
             return;
           }
           _cesdk = instance;
-          // Add the design editor configuration plugin first
-          await instance.addPlugin(new DesignEditorConfig());
-
-          // Add default asset sources via plugins
-          await instance.addPlugin(new ColorPaletteAssetSource());
-          await instance.addPlugin(new TypefaceAssetSource());
-          await instance.addPlugin(new TextAssetSource());
-          await instance.addPlugin(new TextComponentAssetSource());
-          await instance.addPlugin(new StickerAssetSource());
-          await instance.addPlugin(new VectorShapeAssetSource());
-          await instance.addPlugin(new FiltersAssetSource());
-          await instance.addPlugin(new EffectsAssetSource());
-          await instance.addPlugin(new BlurAssetSource());
-          await instance.addPlugin(new CropPresetsAssetSource());
-          await instance.addPlugin(new PagePresetsAssetSource());
-          await instance.addPlugin(new UploadAssetSources());
-          // Add demo asset sources
-          await instance.addPlugin(
-            new DemoAssetSources({
-              include: ['ly.img.image.*']
-            })
-          );
-
-          await addPremiumTemplatesAssetSource(instance);
-
-          if (currentRole === 'Creator') {
-            instance.feature.enable('ly.img.placeholder*');
-          }
-
+          await Promise.all([
+            instance.addDefaultAssetSources(),
+            instance.addDemoAssetSources({ sceneMode: 'Design' }),
+            addPremiumTemplatesAssetSource(instance)
+          ]);
           cesdkRef.current = instance;
           if (currentScene) {
             await instance.loadFromString(currentScene);

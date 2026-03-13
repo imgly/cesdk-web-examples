@@ -28,16 +28,13 @@ async function main(): Promise<void> {
       `${DEFAULT_ASSETS_URL}ly.img.sticker/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEFAULT_ASSETS_URL}ly.img.vectorpath/content.json`
+      `${DEFAULT_ASSETS_URL}ly.img.vector.shape/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEFAULT_ASSETS_URL}ly.img.colors.defaultPalette/content.json`
+      `${DEFAULT_ASSETS_URL}ly.img.color.palette/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEFAULT_ASSETS_URL}ly.img.filter.lut/content.json`
-    );
-    await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEFAULT_ASSETS_URL}ly.img.filter.duotone/content.json`
+      `${DEFAULT_ASSETS_URL}ly.img.filter/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
       `${DEFAULT_ASSETS_URL}ly.img.effect/content.json`
@@ -54,9 +51,6 @@ async function main(): Promise<void> {
     await engine.asset.addLocalAssetSourceFromJSONURI(
       `${DEFAULT_ASSETS_URL}ly.img.page.presets/content.json`
     );
-    await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEFAULT_ASSETS_URL}ly.img.page.presets.video/content.json`
-    );
 
     // Load demo asset sources (sample content for testing)
     await engine.asset.addLocalAssetSourceFromJSONURI(
@@ -69,13 +63,10 @@ async function main(): Promise<void> {
       `${DEMO_ASSETS_URL}ly.img.audio/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEMO_ASSETS_URL}ly.img.template/content.json`
+      `${DEMO_ASSETS_URL}ly.img.templates/content.json`
     );
     await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEMO_ASSETS_URL}ly.img.video.template/content.json`
-    );
-    await engine.asset.addLocalAssetSourceFromJSONURI(
-      `${DEMO_ASSETS_URL}ly.img.textComponents/content.json`
+      `${DEMO_ASSETS_URL}ly.img.text.components/content.json`
     );
 
     // List registered asset sources
@@ -100,7 +91,7 @@ async function main(): Promise<void> {
     // Define the three assets to add: star shape, sticker, and image
     const assetsToAdd = [
       {
-        sourceId: 'ly.img.vectorpath',
+        sourceId: 'ly.img.vector.shape',
         assetId: '//ly.img.ubq/shapes/star/filled'
       },
       {

@@ -1,23 +1,6 @@
 'use client';
 
-import {
-  BlurAssetSource,
-  CaptionPresetsAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { VideoEditorConfig } from './lib/video-editor/plugin';
-
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 
 let RENDERER_PROXY_URL = '';
@@ -66,7 +49,7 @@ async function exportUsingRenderer(archiveBlob, cesdk, notificationId) {
     }
     const progress = Math.round(100.0 * (event.loaded / event.total));
     cesdk.ui.updateNotification(notificationId, {
-      message: `Downloading the export... (${progress}% complete)`,
+      message: `Downloading the exported video... (${progress}% complete)`,
       duration: 'infinite',
       type: 'loading'
     });
@@ -89,7 +72,7 @@ async function exportUsingRenderer(archiveBlob, cesdk, notificationId) {
     xhr.send(payload);
   });
   cesdk.ui.updateNotification(notificationId, {
-    message: `Export downloaded, server render took ${Math.round((renderFinished - uploadFinished) / 100.0) / 10.0} seconds`,
+    message: `Video downloaded, server render took ${Math.round((renderFinished - uploadFinished) / 100.0) / 10.0} seconds`,
     duration: 'infinite',
     type: 'success'
   });
@@ -107,35 +90,8 @@ const CaseComponent = () => {
     []
   );
   const configure = useConfigure(async (instance) => {
-    // Add the video editor configuration plugin first
-    await instance.addPlugin(new VideoEditorConfig());
-
-    // Asset Source Plugins (replaces addDefaultAssetSources)
-    await instance.addPlugin(new ColorPaletteAssetSource());
-    await instance.addPlugin(new TypefaceAssetSource());
-    await instance.addPlugin(new TextAssetSource());
-    await instance.addPlugin(new TextComponentAssetSource());
-    await instance.addPlugin(new VectorShapeAssetSource());
-    await instance.addPlugin(new StickerAssetSource());
-    await instance.addPlugin(new EffectsAssetSource());
-    await instance.addPlugin(new FiltersAssetSource());
-    await instance.addPlugin(new BlurAssetSource());
-    await instance.addPlugin(new PagePresetsAssetSource());
-    await instance.addPlugin(new CaptionPresetsAssetSource());
-    await instance.addPlugin(new CropPresetsAssetSource());
-
-    // Demo assets (replaces addDemoAssetSources)
-    await instance.addPlugin(
-      new DemoAssetSources({
-        include: [
-          'ly.img.templates.video.*',
-          'ly.img.image.*',
-          'ly.img.video.*',
-          'ly.img.audio.*'
-        ]
-      })
-    );
-
+    await instance.addDefaultAssetSources();
+    await instance.addDemoAssetSources({ sceneMode: 'Video' });
     // Disable placeholder and preview features
     instance.feature.set('ly.img.placeholder', false);
     instance.feature.set('ly.img.preview', false);
@@ -158,41 +114,11 @@ const CaseComponent = () => {
         });
       }
     });
-    instance.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
+    instance.ui.setNavigationBarOrder([
       'ly.img.back.navigationBar',
       'ly.img.undoRedo.navigationBar',
-      'ly.img.pageResize.navigationBar',
       'ly.img.spacer',
       'ly.img.zoom.navigationBar',
-      {
-        id: 'ly.img.action.navigationBar',
-        key: 'new-design',
-        label: 'New Design',
-        icon: '@imgly/Image',
-        onClick: () => {
-          void instance.actions.run('scene.create', {
-            page: {
-              sourceId: 'ly.img.page.presets',
-              assetId: 'ly.img.page.presets.instagram.story'
-            }
-          });
-        }
-      },
-      {
-        id: 'ly.img.action.navigationBar',
-        key: 'new-video',
-        label: 'New Video',
-        icon: '@imgly/Video',
-        onClick: () => {
-          void instance.actions.run('scene.create', {
-            mode: 'Video',
-            page: {
-              sourceId: 'ly.img.page.presets',
-              assetId: 'ly.img.page.presets.instagram.story'
-            }
-          });
-        }
-      },
       {
         id: 'ly.img.actions.navigationBar',
         children: [
@@ -204,9 +130,7 @@ const CaseComponent = () => {
             onClick: () => instance.actions.run('exportDesign')
           },
           'ly.img.importArchive.navigationBar',
-          'ly.img.importScene.navigationBar',
-          'ly.img.exportScene.navigationBar',
-          'ly.img.exportArchive.navigationBar'
+          'ly.img.importScene.navigationBar'
         ]
       }
     ]);

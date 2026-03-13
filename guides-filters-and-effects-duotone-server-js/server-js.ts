@@ -22,14 +22,14 @@ async function main(): Promise<void> {
   });
 
   try {
-    // Add default asset sources to access duotone presets
-    // Note: This may fail in some environments if assets are not available
+    // Load the filter asset source to access duotone presets
+    const defaultAssetsUrl = `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets/v4/`;
     let hasAssetSources = false;
     try {
-      await engine.addDefaultAssetSources();
+      await engine.asset.addLocalAssetSourceFromJSONURI(`${defaultAssetsUrl}ly.img.filter/content.json`);
       hasAssetSources = true;
     } catch {
-      console.warn('Default asset sources not available, skipping presets');
+      console.warn('Filter asset source not available, skipping presets');
     }
 
     // Create a scene with a page
@@ -58,7 +58,7 @@ async function main(): Promise<void> {
 
     // Query duotone presets from the asset library
     const duotoneResults = hasAssetSources
-      ? await engine.asset.findAssets('ly.img.filter.duotone', {
+      ? await engine.asset.findAssets('ly.img.filter', {
           page: 0,
           perPage: 10
         })

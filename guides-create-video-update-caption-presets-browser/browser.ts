@@ -193,13 +193,13 @@ class Example implements EditorPlugin {
     // Example content.json entry for the custom preset
     // This shows the structure needed to add the preset to content.json
     const contentJsonEntry = {
-      id: '//ly.img.captionPresets/neon-glow',
+      id: '//ly.img.caption.presets/neon-glow',
       label: {
         en: 'Neon Glow'
       },
       meta: {
-        uri: '{{base_url}}/ly.img.captionPresets/presets/neon-glow.preset',
-        thumbUri: '{{base_url}}/ly.img.captionPresets/thumbnails/neon-glow.png',
+        uri: '{{base_url}}/ly.img.caption.presets/presets/neon-glow.preset',
+        thumbUri: '{{base_url}}/ly.img.caption.presets/thumbnails/neon-glow.png',
         mimeType: 'application/ubq-blocks-string'
       },
       payload: {
@@ -236,7 +236,7 @@ class Example implements EditorPlugin {
     // Example of a complete content.json file structure
     const completeContentJson = {
       version: '3.0.0',
-      id: 'ly.img.captionPresets',
+      id: 'ly.img.caption.presets',
       assets: [contentJsonEntry]
     };
 
