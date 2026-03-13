@@ -9,9 +9,6 @@ const config = {
   ...(import.meta.env.CESDK_USE_LOCAL && {
     baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
   }),
-  callbacks: {
-    onUpload: 'local'
-  }
 };
 
 CreativeEditorSDK.create(container, config)

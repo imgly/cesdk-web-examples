@@ -100,7 +100,7 @@ const CaseComponent = () => {
       },
       ...instance.ui
         .getDockOrder()
-        .filter(({ key }) => key !== 'ly.img.templates')
+        .filter(({ key }) => key !== 'ly.img.template')
     ]);
     await instance.engine.scene.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/cutout-lines/example.scene`

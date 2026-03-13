@@ -9,9 +9,6 @@ CreativeEditorSDK.create(container, {
   ...(import.meta.env.CESDK_USE_LOCAL && {
     baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
   }),
-  callbacks: {
-    onUpload: 'local'
-  }
 }).then(async (cesdk) => {
   // Expose for hero image capture
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

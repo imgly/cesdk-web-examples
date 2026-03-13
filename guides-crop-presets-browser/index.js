@@ -1,4 +1,18 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TypefaceAssetSource,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
@@ -25,11 +39,21 @@ CreativeEditorSDK.create('#cesdk_container', config).then(async (instance) => {
   // Set scale using the new API
   instance.ui.setScale('normal');
   // Populate the asset library with default / demo asset sources.
-  instance.addDefaultAssetSources();
-  instance.addDemoAssetSources({
+  instance.addPlugin(new BlurAssetSource());
+  instance.addPlugin(new CaptionPresetsAssetSource());
+  instance.addPlugin(new ColorPaletteAssetSource());
+  instance.addPlugin(new CropPresetsAssetSource());
+  instance.addPlugin(new EffectsAssetSource());
+  instance.addPlugin(new FiltersAssetSource());
+  instance.addPlugin(new PagePresetsAssetSource());
+  instance.addPlugin(new StickerAssetSource());
+  instance.addPlugin(new TextAssetSource());
+  instance.addPlugin(new TypefaceAssetSource());
+  instance.addPlugin(new VectorShapeAssetSource());
+  instance.addPlugin(new DemoAssetSources({
     sceneMode: 'Design',
     withUploadAssetSources: true
-  });
+  }));
 
   // Add a custom crop preset asset source.
   instance.engine.asset.addLocalSource('my-custom-crop-presets');

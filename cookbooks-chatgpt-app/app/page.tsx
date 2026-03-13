@@ -1003,27 +1003,47 @@ export default function Home() {
             config={{
               theme: 'light',
               role: 'Creator',
-              callbacks: {
-                onExport: handleExport,
-                onUpload: 'local'
-              },
               ui: {
-                elements: {
-                  navigation: {
-                    action: {
-                      export: {
-                        show: true,
-                        format: editorState.exports as any
-                      }
-                    }
-                  }
-                }
+                elements: {}
               }
             }}
             onReady={(instance) => {
               editorRef.current = instance;
               setEditorReady(false);
               restoredFromPendingRef.current = false;
+
+              // Register export action
+              instance.actions.register(
+                'exportDesign',
+                async (exportOptions: any) => {
+                  const { blobs, options } = await instance.utils.export(
+                    exportOptions
+                  );
+                  await handleExport(blobs, options);
+                }
+              );
+
+              // Add export buttons via Order API
+              const exportChildren = [
+                ...new Set(
+                  (editorState?.exports ?? []).map((mime: string) => {
+                    if (mime.includes('video'))
+                      return 'ly.img.exportVideo.navigationBar';
+                    if (mime.includes('pdf'))
+                      return 'ly.img.exportPDF.navigationBar';
+                    return 'ly.img.exportImage.navigationBar';
+                  })
+                )
+              ];
+              if (exportChildren.length > 0) {
+                instance.ui.insertOrderComponent(
+                  { in: 'ly.img.navigation.bar', position: 'end' },
+                  {
+                    id: 'ly.img.actions.navigationBar',
+                    children: exportChildren
+                  }
+                );
+              }
 
               console.debug('[CE.SDK] CreativeEditor ready callback', {
                 widgetKey,
@@ -1048,7 +1068,12 @@ export default function Home() {
                     restoredFromPendingRef.current = true;
                     console.debug('[CE.SDK] Scene restored successfully');
                   } else {
-                    await instance.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
+                    await instance.actions.run('scene.create', {
+                      page: {
+                        sourceId: 'ly.img.page.presets',
+                        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+                      }
+                    });
                     restoredFromPendingRef.current = false;
                   }
                 } catch (error) {
@@ -1069,7 +1094,12 @@ export default function Home() {
 
                   // Try to create default scene as fallback
                   try {
-                    await instance.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
+                    await instance.actions.run('scene.create', {
+                      page: {
+                        sourceId: 'ly.img.page.presets',
+                        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+                      }
+                    });
                   } catch (fallbackError) {
                     console.error(
                       '[CE.SDK] CRITICAL: Cannot create design scene',

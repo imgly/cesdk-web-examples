@@ -1,0 +1,8 @@
+dist/
+build/
+node_modules/
+*.min.js
+coverage/
+.next/
+.nuxt/
+tsconfig.local.json

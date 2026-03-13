@@ -86,7 +86,7 @@ class Example implements EditorPlugin {
     // Add a custom filter to the built-in LUT filter source
     // The ID must follow the format //ly.img.cesdk.filters.lut/{name}
     // for the UI to display the label correctly
-    engine.asset.addAssetToSource('ly.img.filter.lut', {
+    engine.asset.addAssetToSource('ly.img.filter', {
       id: '//ly.img.cesdk.filters.lut/mycustomfilter',
       label: { en: 'MY CUSTOM FILTER' },
       tags: { en: ['custom', 'brand'] },
