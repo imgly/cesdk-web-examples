@@ -166,6 +166,12 @@ export function cesdkLocal(options: CesdkLocalOptions = {}): Plugin {
       absoluteRepoRoot = resolve(__dirname, repoRoot);
       validateBuildArtifacts(overrides, absoluteRepoRoot);
 
+      // Default the assets base URL to '/assets/' for local dev since
+      // the middleware below serves from apps/cesdk_web/build/assets/*
+      if (!process.env.VITE_CESDK_ASSETS_BASE_URL) {
+        process.env.VITE_CESDK_ASSETS_BASE_URL = '/assets/';
+      }
+
       // Build alias configuration using directory aliases (like webpack)
       // Instead of mapping individual exports, map the package root to build dir
       aliasMap = {};

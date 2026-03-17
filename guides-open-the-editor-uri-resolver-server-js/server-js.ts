@@ -45,7 +45,7 @@ try {
 
   // Test resolution without loading assets
   const relativeURI = '/images/photo.jpg';
-  const resolvedURI = engine.editor.getAbsoluteURI(relativeURI);
+  const resolvedURI = await engine.editor.getAbsoluteURI(relativeURI);
   console.log('Default resolution:');
   console.log(`  Input:  ${relativeURI}`);
   console.log(`  Output: ${resolvedURI}`);
@@ -87,7 +87,7 @@ try {
 
   // Test authentication with a protected URI
   const protectedURI = 'https://your-server/image-stable-links/abc123';
-  engine.editor.getAbsoluteURI(protectedURI);
+  await engine.editor.getAbsoluteURI(protectedURI);
 
   // ========================================
   // Section 3: Removing a Custom Resolver

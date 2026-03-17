@@ -16,8 +16,6 @@ CreativeEngine.init(config).then(async (engine) => {
   console.log('CE.SDK Engine initialized (Deno)');
 
   try {
-    await engine.addDefaultAssetSources();
-
     await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v4/ly.img.templates/social/instagram_photo_1.scene'
     );

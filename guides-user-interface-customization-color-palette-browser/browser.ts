@@ -327,7 +327,7 @@ class Example implements EditorPlugin {
         'brandSecondaryColors',
         'brandNeutralColors',
         'accentColors'
-        // Note: 'ly.img.colors.defaultPalette' is intentionally omitted
+        // Note: 'ly.img.color.palette' is intentionally omitted
         // to replace the default palette completely
       ]
     });

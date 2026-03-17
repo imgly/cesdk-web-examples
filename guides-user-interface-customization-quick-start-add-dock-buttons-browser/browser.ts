@@ -81,7 +81,7 @@ class Example implements EditorPlugin {
       {
         id: 'ly.img.assetLibrary.dock',
         key: 'elements',
-        entries: ['ly.img.sticker', 'ly.img.vectorpath'],
+        entries: ['ly.img.sticker', 'ly.img.vector.shape'],
         label: 'Elements',
         icon: '@imgly/Shapes'
       }
@@ -130,7 +130,7 @@ class Example implements EditorPlugin {
       {
         id: 'ly.img.assetLibrary.dock',
         key: 'templates',
-        entries: ['ly.img.template'],
+        entries: ['ly.img.templates'],
         label: 'Templates',
         icon: '@imgly/Template'
       }

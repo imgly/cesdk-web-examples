@@ -144,8 +144,8 @@ class Example implements EditorPlugin {
 
     // Apply a caption preset for consistent styling
     // Caption presets provide pre-configured styles (fonts, colors, backgrounds)
-    const captionPresetsSourceId = 'ly.img.captionPresets';
-    const comicPresetId = '//ly.img.captionPresets/comic';
+    const captionPresetsSourceId = 'ly.img.caption.presets';
+    const comicPresetId = '//ly.img.caption.presets/comic';
 
     // Fetch the preset asset
     const comicPreset = await engine.asset.fetchAsset(
