@@ -231,7 +231,7 @@ class LocalizationExample implements EditorPlugin {
         'libraries.ly.img.text.title.label': 'Titolo',
         'libraries.ly.img.text.headline.label': 'Intestazione',
         'libraries.ly.img.text.paragraph.label': 'Paragrafo',
-        'libraries.ly.img.vectorpath.label': 'Forme',
+        'libraries.ly.img.vector.shape.label': 'Forme',
         'libraries.ly.img.sticker.label': 'Adesivi',
         'libraries.ly.img.upload.label': 'Caricamenti',
         'libraries.ly.img.template.label': 'Modelli',

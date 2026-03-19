@@ -329,7 +329,7 @@ class Example implements EditorPlugin {
     // Add PSD library to the dock and remove the default Templates entry
     const existingDockOrder = cesdk.ui.getComponentOrder({ in: 'ly.img.dock' });
     const filteredDockOrder = existingDockOrder.filter(
-      (entry) => entry.key !== 'ly.img.template'
+      (entry) => entry.key !== 'ly.img.templates'
     );
     cesdk.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       {

@@ -1,4 +1,18 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TypefaceAssetSource,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 
 export async function initializeCESDK(container) {
   const cesdk = await CreativeEditorSDK.create(container, {
@@ -30,11 +44,21 @@ export async function initializeCESDK(container) {
   cesdk.feature.enable('ly.img.playback');
 
   // Load asset sources
-  await cesdk.addDefaultAssetSources();
-  await cesdk.addDemoAssetSources({
+  await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new CaptionPresetsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
+  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await cesdk.addPlugin(new EffectsAssetSource());
+  await cesdk.addPlugin(new FiltersAssetSource());
+  await cesdk.addPlugin(new PagePresetsAssetSource());
+  await cesdk.addPlugin(new StickerAssetSource());
+  await cesdk.addPlugin(new TextAssetSource());
+  await cesdk.addPlugin(new TypefaceAssetSource());
+  await cesdk.addPlugin(new VectorShapeAssetSource());
+  await cesdk.addPlugin(new DemoAssetSources({
     sceneMode: 'Video',
     withUploadAssetSources: true
-  });
+  }));
 
   // Initialize with video scene for audio capabilities
   await cesdk.actions.run('scene.create', { mode: 'Video', page: { width: 1920, height: 1080, unit: 'Pixel' } });

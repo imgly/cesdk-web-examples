@@ -43,9 +43,6 @@ export const getProtrudingBlocks = (cesdk) => {
 
 const findParentPage = (cesdk, blockId) => {
   const parent = cesdk.engine.block.getParent(blockId);
-  if (parent == null) {
-    return null;
-  }
   if (cesdk.engine.block.getKind(parent) === 'page') {
     return parent;
   }
@@ -56,7 +53,6 @@ export const getOutsideBlocks = (cesdk) => {
   return getRelevantBlocks(cesdk)
     .map((elementBlockId) => {
       const parentPage = findParentPage(cesdk, elementBlockId);
-      if (parentPage == null) return false;
       const overlapWithPage = getElementOverlap(
         getElementBoundingBox(cesdk, elementBlockId),
         getElementBoundingBox(cesdk, parentPage)
@@ -154,14 +150,6 @@ export const millimeterToPx = (mm, dpi) => (mm * dpi) / 25.4;
 export const inchToPx = (inches, dpi) => inches * dpi;
 
 export const getImageBlockQuality = async (engine, imageId) => {
-  const fill = engine.block.getFill(imageId);
-  const imageFileURI = engine.block.getString(fill, 'fill/image/imageFileURI');
-
-  // Skip quality check for internal buffer:// URIs (embedded images in archives)
-  if (!imageFileURI || imageFileURI.startsWith('buffer://')) {
-    return 1;
-  }
-
   const [frameWidthDesignUnit, frameHeightDesignUnit] = [
     engine.block.getFrameWidth(imageId),
     engine.block.getFrameHeight(imageId)
@@ -175,7 +163,10 @@ export const getImageBlockQuality = async (engine, imageId) => {
     transformToPixel(pageUnit, frameWidthDesignUnit, pageDPI),
     transformToPixel(pageUnit, frameHeightDesignUnit, pageDPI)
   ];
-  const { width, height } = await fetchImageResolution(imageFileURI);
+  const fill = engine.block.getFill(imageId);
+  const { width, height } = await fetchImageResolution(
+    engine.block.getString(fill, 'fill/image/imageFileURI')
+  );
   // Currently scaleX and scaleY are the same
   const scaleY = engine.block.getCropScaleY(imageId) || 1;
   const imageQuality = getImageQuality(
@@ -208,7 +199,7 @@ export const fetchImageResolution = (url) => {
       resolutionCache[url] = imageResolution;
       resolve(imageResolution);
     };
-    img.onerror = () => reject(new Error(`Failed to load image: ${url}`));
+    img.onerror = () => reject();
     img.src = url;
   });
 };

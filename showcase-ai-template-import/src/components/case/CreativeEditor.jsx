@@ -72,11 +72,7 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
           await instance.addPlugin(new BlurAssetSource());
           await instance.addPlugin(new CropPresetsAssetSource());
           await instance.addPlugin(new PagePresetsAssetSource());
-          await instance.addPlugin(
-            new UploadAssetSources({
-              include: ['ly.img.image.upload']
-            })
-          );
+          await instance.addPlugin(new UploadAssetSources());
           // Add demo asset sources
           await instance.addPlugin(
             new DemoAssetSources({

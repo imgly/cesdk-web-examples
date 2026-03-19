@@ -40,7 +40,6 @@ const engine = await CreativeEngine.init({
 
 try {
   let done = showProgress('Loading scene...');
-  await engine.addDefaultAssetSources();
   await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );

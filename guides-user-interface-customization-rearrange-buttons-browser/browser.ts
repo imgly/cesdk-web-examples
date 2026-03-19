@@ -51,7 +51,7 @@ class Example implements EditorPlugin {
         key: 'shapes',
         label: 'Shapes',
         icon: '@imgly/Shapes',
-        entries: ['ly.img.vectorpath']
+        entries: ['ly.img.vector.shape']
       },
       'ly.img.separator',
       {
