@@ -1,6 +1,20 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 // @ts-expect-error - Plugin types will be available in future release
 import { convertToPDFX3 } from '@imgly/plugin-print-ready-pdfs-web';
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TypefaceAssetSource,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 
 let cesdk: CreativeEditorSDK;
 
@@ -37,8 +51,18 @@ async function init() {
 
   // Load default scene
   await cesdk.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
-  await cesdk.addDefaultAssetSources();
-  await cesdk.addDemoAssetSources();
+  await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new CaptionPresetsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
+  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await cesdk.addPlugin(new EffectsAssetSource());
+  await cesdk.addPlugin(new FiltersAssetSource());
+  await cesdk.addPlugin(new PagePresetsAssetSource());
+  await cesdk.addPlugin(new StickerAssetSource());
+  await cesdk.addPlugin(new TextAssetSource());
+  await cesdk.addPlugin(new TypefaceAssetSource());
+  await cesdk.addPlugin(new VectorShapeAssetSource());
+  await cesdk.addPlugin(new DemoAssetSources());
 }
 
 async function exportPrintReadyPDF() {

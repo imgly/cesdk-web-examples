@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+#cesdk_container {
+  width: 100vw;
+  height: 100vh;
+}

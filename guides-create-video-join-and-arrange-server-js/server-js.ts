@@ -21,10 +21,10 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene - required for timeline-based editing
-  await engine.scene.createVideo();
-
-  const page = engine.block.findByType('page')[0];
+  // Create a scene with a page
+  const scene = engine.scene.create();
+  const page = engine.block.create('page');
+  engine.block.appendChild(scene, page);
 
   // Set page to 16:9 landscape (1920x1080 is standard HD video resolution)
   engine.block.setWidth(page, 1920);

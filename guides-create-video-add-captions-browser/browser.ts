@@ -39,10 +39,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable video editing features including captions
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -88,7 +84,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 
@@ -144,8 +139,8 @@ class Example implements EditorPlugin {
 
     // Apply a caption preset for consistent styling
     // Caption presets provide pre-configured styles (fonts, colors, backgrounds)
-    const captionPresetsSourceId = 'ly.img.captionPresets';
-    const comicPresetId = '//ly.img.captionPresets/comic';
+    const captionPresetsSourceId = 'ly.img.caption.presets';
+    const comicPresetId = '//ly.img.caption.presets/comic';
 
     // Fetch the preset asset
     const comicPreset = await engine.asset.fetchAsset(

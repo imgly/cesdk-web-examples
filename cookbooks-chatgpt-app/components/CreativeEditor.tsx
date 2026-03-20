@@ -2,6 +2,19 @@
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import CreativeEditor from '@cesdk/cesdk-js/react';
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TypefaceAssetSource,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 
 interface CreativeEditorWrapperProps {
   config?: Parameters<typeof CreativeEditor>[0]['config'];
@@ -17,7 +30,17 @@ export default function CreativeEditorWrapper({
       config={config || {}}
       init={async (cesdk) => {
         try {
-          await cesdk.addDefaultAssetSources();
+          await cesdk.addPlugin(new BlurAssetSource());
+          await cesdk.addPlugin(new CaptionPresetsAssetSource());
+          await cesdk.addPlugin(new ColorPaletteAssetSource());
+          await cesdk.addPlugin(new CropPresetsAssetSource());
+          await cesdk.addPlugin(new EffectsAssetSource());
+          await cesdk.addPlugin(new FiltersAssetSource());
+          await cesdk.addPlugin(new PagePresetsAssetSource());
+          await cesdk.addPlugin(new StickerAssetSource());
+          await cesdk.addPlugin(new TextAssetSource());
+          await cesdk.addPlugin(new TypefaceAssetSource());
+          await cesdk.addPlugin(new VectorShapeAssetSource());
         } catch (error) {
           console.error('[CE.SDK] Failed to load default asset sources', {
             error,

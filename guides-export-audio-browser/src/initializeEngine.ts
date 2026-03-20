@@ -1,4 +1,20 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import {
+  BlurAssetSource,
+  CaptionPresetsAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
+import { VideoEditorConfig } from '../video-editor/plugin';
 
 export async function initializeCESDK(container) {
   const cesdk = await CreativeEditorSDK.create(container, {
@@ -9,7 +25,7 @@ export async function initializeCESDK(container) {
     ...(import.meta.env.CESDK_USE_LOCAL && {
       baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
     }),
-    // Enable video mode for timeline and audio features
+    // Configure UI for timeline and audio features
     ui: {
       elements: {
         panels: {
@@ -24,20 +40,37 @@ export async function initializeCESDK(container) {
     }
   });
 
-  // Enable video features (required for video/audio blocks)
-  cesdk.feature.enable('ly.img.video');
-  cesdk.feature.enable('ly.img.timeline');
-  cesdk.feature.enable('ly.img.playback');
+  await cesdk.addPlugin(new VideoEditorConfig());
 
-  // Load asset sources
-  await cesdk.addDefaultAssetSources();
-  await cesdk.addDemoAssetSources({
-    sceneMode: 'Video',
-    withUploadAssetSources: true
-  });
+  // Load asset source plugins
+  await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new CaptionPresetsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
+  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await cesdk.addPlugin(new EffectsAssetSource());
+  await cesdk.addPlugin(new FiltersAssetSource());
+  await cesdk.addPlugin(new PagePresetsAssetSource());
+  await cesdk.addPlugin(new StickerAssetSource());
+  await cesdk.addPlugin(new TextAssetSource());
+  await cesdk.addPlugin(new TypefaceAssetSource());
+  await cesdk.addPlugin(new VectorShapeAssetSource());
+  await cesdk.addPlugin(
+    new UploadAssetSources({
+      include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+    })
+  );
+  await cesdk.addPlugin(
+    new DemoAssetSources({
+      include: [
+        'ly.img.image.*',
+        'ly.img.audio.*',
+        'ly.img.video.*'
+      ]
+    })
+  );
 
   // Initialize with video scene for audio capabilities
-  await cesdk.actions.run('scene.create', { mode: 'Video', page: { width: 1920, height: 1080, unit: 'Pixel' } });
+  await cesdk.actions.run('scene.create', { page: { width: 1920, height: 1080, unit: 'Pixel' } });
 
   console.log('CE.SDK initialized successfully with audio features');
   return cesdk;

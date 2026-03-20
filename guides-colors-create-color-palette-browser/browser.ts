@@ -142,12 +142,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    // Create a local asset source and add color assets to it
-    engine.asset.addLocalSource('my-brand-colors');
-    for (const color of colors) {
-      engine.asset.addAssetToSource('my-brand-colors', color);
-    }
-
     // Configure the color picker to show custom colors alongside the defaults
     cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {
       sourceIds: ['my-brand-colors', 'ly.img.color.palette']
