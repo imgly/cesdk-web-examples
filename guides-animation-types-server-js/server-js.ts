@@ -11,8 +11,8 @@ async function main() {
   });
 
   try {
-    // Create a video scene - required for animations
-    const scene = engine.scene.createVideo();
+    // Create a scene with a page
+    const scene = engine.scene.create();
     const page = engine.block.create('page');
     engine.block.appendChild(scene, page);
     engine.block.setWidth(page, 1920);

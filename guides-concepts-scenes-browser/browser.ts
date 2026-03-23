@@ -105,10 +105,6 @@ class Example implements EditorPlugin {
     // eslint-disable-next-line no-console
     console.log('Scene layout:', layout);
 
-    // Check scene mode (Design or Video)
-    const mode = engine.scene.getMode();
-    // eslint-disable-next-line no-console
-    console.log('Scene mode:', mode);
 
     // Access pages within the scene
     const pages = engine.scene.getPages();

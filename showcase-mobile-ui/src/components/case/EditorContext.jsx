@@ -5,11 +5,19 @@ import { useSinglePageFocus } from './lib/UseSinglePageFocus';
 import { caseAssetPath } from './util';
 import { SelectionProvider } from './lib/UseSelection';
 import {
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
   DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
   StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
   TypefaceAssetSource,
   UploadAssetSources,
-  VectorShapeAssetSource
+  VectorShapeAssetSource,
+  BlurAssetSource
 } from '@cesdk/cesdk-js/plugins';
 
 const EditorContext = createContext();
@@ -90,13 +98,29 @@ export const EditorProvider = ({ children }) => {
       engine.editor.setSetting('mouse/enableScroll', false);
       engine.editor.setSetting('mouse/enableZoom', false);
 
+      await engine.addPlugin(new ColorPaletteAssetSource());
       await engine.addPlugin(new TypefaceAssetSource());
+      await engine.addPlugin(new TextAssetSource());
+      await engine.addPlugin(new TextComponentAssetSource());
+      await engine.addPlugin(new VectorShapeAssetSource());
+      await engine.addPlugin(new StickerAssetSource());
+      await engine.addPlugin(new EffectsAssetSource());
+      await engine.addPlugin(new FiltersAssetSource());
+      await engine.addPlugin(new BlurAssetSource());
       await engine.addPlugin(
-        new VectorShapeAssetSource({
-          include: ['ly.img.vector.shape.filled.*']
+        new PagePresetsAssetSource({
+          include: [
+            'ly.img.page.presets.instagram.*',
+            'ly.img.page.presets.facebook.*',
+            'ly.img.page.presets.x.*',
+            'ly.img.page.presets.linkedin.*',
+            'ly.img.page.presets.pinterest.*',
+            'ly.img.page.presets.tiktok.*',
+            'ly.img.page.presets.youtube.*'
+          ]
         })
       );
-      await engine.addPlugin(new StickerAssetSource());
+      await engine.addPlugin(new CropPresetsAssetSource());
       await engine.addPlugin(
         new UploadAssetSources({
           include: ['ly.img.image.upload']

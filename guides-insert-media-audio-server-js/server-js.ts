@@ -19,8 +19,7 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene with a page
-  // Audio blocks require a video scene mode
+  // Create a scene with a page
   engine.scene.create();
   const page = engine.block.create('page');
   engine.block.setWidth(page, 1920);

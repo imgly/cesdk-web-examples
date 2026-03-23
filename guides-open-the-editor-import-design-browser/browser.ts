@@ -114,7 +114,7 @@ class Example implements EditorPlugin {
     const videoUrl =
       'https://img.ly/static/ubq_samples/videos/pexels-drone-footage-of-a-surfer-by-ben-chewar-5368886_360p.mp4';
 
-    // Create a scene configured for video mode
+    // Create a scene from an existing video
     // await engine.scene.createFromVideo(videoUrl);
 
     // The scene is set up with timeline controls for video editing

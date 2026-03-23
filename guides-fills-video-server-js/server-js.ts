@@ -9,24 +9,18 @@ async function main() {
   });
 
   try {
-    // Create a video scene (required for video fills)
-    // Video fills only work in Video mode, not Design mode
-    engine.scene.createVideo({
-      page: { size: { width: 800, height: 600 } }
-    });
-    const page = engine.block.findByType('page')[0];
+    // Create a scene with a page
+    const scene = engine.scene.create();
+    const page = engine.block.create('page');
+    engine.block.setWidth(page, 800);
+    engine.block.setHeight(page, 600);
+    engine.block.appendChild(scene, page);
 
     // Check if block supports fills before accessing fill APIs
     const testBlock = engine.block.create('graphic');
     const canHaveFill = engine.block.supportsFill(testBlock);
     console.log('Block supports fills:', canHaveFill);
 
-    // Verify we're in Video mode (required for video fills)
-    const sceneMode = engine.scene.getMode();
-    console.log('Scene mode:', sceneMode); // "Video"
-    if (sceneMode !== 'Video') {
-      throw new Error('Video fills require Video mode.');
-    }
     engine.block.destroy(testBlock);
 
     const videoUri = 'https://img.ly/static/ubq_video_samples/bbb.mp4';
