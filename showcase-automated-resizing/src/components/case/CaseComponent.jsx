@@ -1,6 +1,21 @@
 'use client';
 
 import CreativeEngine from '@cesdk/engine';
+import {
+  BlurAssetSource,
+  ColorPaletteAssetSource,
+  CropPresetsAssetSource,
+  DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
+  StickerAssetSource,
+  TextAssetSource,
+  TextComponentAssetSource,
+  TypefaceAssetSource,
+  UploadAssetSources,
+  VectorShapeAssetSource
+} from '@cesdk/cesdk-js/plugins';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import classes from './CaseComponent.module.css';
 import EditInstanceCESDK from './components/EditInstanceCESDK/EditInstanceCESDK';
@@ -115,8 +130,35 @@ const CaseComponent = () => {
       }
     };
     CreativeEngine.init(config).then(async (instance) => {
-      instance.addDefaultAssetSources();
-      instance.addDemoAssetSources({ sceneMode: 'Design' });
+      // Asset Source Plugins (replaces addDefaultAssetSources)
+      await instance.addPlugin(new ColorPaletteAssetSource());
+      await instance.addPlugin(new TypefaceAssetSource());
+      await instance.addPlugin(new TextAssetSource());
+      await instance.addPlugin(new TextComponentAssetSource());
+      await instance.addPlugin(new VectorShapeAssetSource());
+      await instance.addPlugin(new StickerAssetSource());
+      await instance.addPlugin(new EffectsAssetSource());
+      await instance.addPlugin(new FiltersAssetSource());
+      await instance.addPlugin(new BlurAssetSource());
+      await instance.addPlugin(new PagePresetsAssetSource());
+      await instance.addPlugin(new CropPresetsAssetSource());
+      await instance.addPlugin(
+        new UploadAssetSources({
+          include: ['ly.img.image.upload']
+        })
+      );
+      // Demo assets (replaces addDemoAssetSources)
+      await instance.addPlugin(
+        new DemoAssetSources({
+          include: [
+            'ly.img.templates.blank.*',
+            'ly.img.templates.presentation.*',
+            'ly.img.templates.print.*',
+            'ly.img.templates.social.*',
+            'ly.img.image.*'
+          ]
+        })
+      );
       instance.editor.setSetting('page/title/show', false);
       await instance.scene.loadFromURL(template.sceneUrl);
       engineRef.current = instance;

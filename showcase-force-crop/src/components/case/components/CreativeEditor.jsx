@@ -15,25 +15,30 @@ import {
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { DesignEditorConfig } from '../lib/design-editor/plugin';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import classes from './CreativeEditor.module.css';
 
 const CreativeEditor = ({ preset, cropMode, image, closeEditor }) => {
   const cesdkContainer = useRef(null);
   const overlayContainer = useRef(null);
-  const [cesdkInstance, setCesdkInstance] = useState(null);
 
   useEffect(() => {
     const config = {
       license: process.env.NEXT_PUBLIC_LICENSE
     };
+    let disposed = false;
+    let _cesdk = null;
     let unsubscribeInspectorSetup = null;
     let unsubscribeSceneSetup = null;
     let unsubscribeStateChange = null;
     if (cesdkContainer.current) {
       CreativeEditorSDK.create(cesdkContainer.current, config).then(
         async (instance) => {
-          setCesdkInstance(instance);
+          if (disposed) {
+            instance.dispose();
+            return;
+          }
+          _cesdk = instance;
 
           // Add the design editor configuration plugin first
           await instance.addPlugin(new DesignEditorConfig());
@@ -112,14 +117,13 @@ const CreativeEditor = ({ preset, cropMode, image, closeEditor }) => {
       );
     }
     return () => {
-      if (cesdkInstance) {
-        unsubscribeInspectorSetup();
-        unsubscribeSceneSetup();
-        unsubscribeStateChange();
-        cesdkInstance.dispose();
-      }
+      disposed = true;
+      unsubscribeInspectorSetup?.();
+      unsubscribeSceneSetup?.();
+      unsubscribeStateChange?.();
+      _cesdk?.dispose();
     };
-  }, [cesdkContainer, closeEditor]);
+  }, [closeEditor, preset, cropMode, image]);
 
   return (
     <div

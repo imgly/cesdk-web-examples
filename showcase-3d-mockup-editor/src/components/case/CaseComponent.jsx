@@ -234,7 +234,7 @@ const CaseComponent = () => {
       instance.ui.setDockOrder([
         ...instance.ui
           .getDockOrder()
-          .filter(({ key }) => key !== 'ly.img.template')
+          .filter(({ key }) => key !== 'ly.img.templates')
       ]);
       instance.engine.editor.setSetting('page/title/show', false);
       // Hide 'Resize' button on the navigation bar

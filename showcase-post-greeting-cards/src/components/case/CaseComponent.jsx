@@ -3,11 +3,7 @@
 import LoadingSpinner from '@/components/ui/LoadingSpinner/LoadingSpinner';
 import {
   ColorPaletteAssetSource,
-  CropPresetsAssetSource,
   DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -49,12 +45,12 @@ const CaseComponent = () => {
               await engine.addPlugin(new TypefaceAssetSource());
               await engine.addPlugin(new TextAssetSource());
               await engine.addPlugin(new TextComponentAssetSource());
-              await engine.addPlugin(new VectorShapeAssetSource());
+              await engine.addPlugin(
+                new VectorShapeAssetSource({
+                  include: ['ly.img.vector.shape.filled.*']
+                })
+              );
               await engine.addPlugin(new StickerAssetSource());
-              await engine.addPlugin(new EffectsAssetSource());
-              await engine.addPlugin(new FiltersAssetSource());
-              await engine.addPlugin(new CropPresetsAssetSource());
-              await engine.addPlugin(new PagePresetsAssetSource());
 
               // Add demo asset sources via plugins
               await engine.addPlugin(

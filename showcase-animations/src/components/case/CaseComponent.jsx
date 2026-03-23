@@ -153,6 +153,9 @@ const CaseComponent = () => {
       AUDIO_ASSETS,
       caseAssetPath('/audio')
     );
+    instance.ui.updateAssetLibraryEntry('ly.img.audio', {
+      sourceIds: ({ currentIds }) => [...currentIds, 'ly.img.audio']
+    });
 
     await instance
       .loadFromURL(

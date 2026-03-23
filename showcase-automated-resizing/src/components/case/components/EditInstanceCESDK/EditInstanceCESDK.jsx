@@ -9,7 +9,7 @@ const EditInstanceCESDK = memo(({ sceneString, onClose, onSave }) => {
         instance.ui.setDockOrder([
           ...instance.ui
             .getDockOrder()
-            .filter(({ key }) => key !== 'ly.img.template')
+            .filter(({ key }) => key !== 'ly.img.templates')
         ]);
         await instance.engine.scene.loadFromString(sceneString);
         // Zoom auto-fit to page

@@ -19,26 +19,6 @@ const ShapeBar = ({
       SHAPE_ASSET_LIBRARY_ID,
       queryParameters
     );
-    let filtered: CompleteAssetResult[] = [];
-    results.assets.forEach((shape) => {
-      if (
-        !(
-          shape.groups &&
-          [
-            '//ly.img.cesdk.vector.shape/category/gradient',
-            '//ly.img.cesdk.vector.shape/category/image',
-            '//ly.img.cesdk.vector.shape/category/abstract-gradient',
-            '//ly.img.cesdk.vector.shape/category/abstract-image'
-          ].includes(shape.groups[0])
-        )
-      ) {
-        filtered.push(shape);
-      }
-    });
-    results = {
-      ...results,
-      assets: filtered
-    };
     return results;
   }, [engine]);
 

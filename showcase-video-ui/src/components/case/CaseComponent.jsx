@@ -183,6 +183,9 @@ const CaseComponent = () => {
       AUDIO_ASSETS,
       caseAssetPath('/audio')
     );
+    instance.ui.updateAssetLibraryEntry('ly.img.audio', {
+      sourceIds: ({ currentIds }) => [...currentIds, 'ly.img.audio']
+    });
 
     // Load a different template based on the URL
     const templateAsset =

@@ -1,7 +1,7 @@
 'use client';
 
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import classes from './CaseComponent.module.css';
 import { SegmentedControl } from './components/SegmentedControl';
 import CreativeEditor from './components/CreativeEditor';
@@ -11,6 +11,7 @@ const CaseComponent = () => {
   const [selectedCropPreset, setSelectedCropPreset] = useState(CROP_PRESETS[0]);
   const [selectedCropMode, setSelectedCropMode] = useState(CROP_MODES[0]);
   const [editorOpen, setEditorOpen] = useState(false);
+  const closeEditor = useCallback(() => setEditorOpen(false), []);
 
   return (
     <>
@@ -125,9 +126,7 @@ const CaseComponent = () => {
           preset={selectedCropPreset}
           cropMode={selectedCropMode}
           image={selectedImage}
-          closeEditor={() => {
-            setEditorOpen(false);
-          }}
+          closeEditor={closeEditor}
         />
       )}
     </>

@@ -293,6 +293,11 @@ function setupPageForArea(
     engine.block.resizeContentAware([pageBlock], width, height);
   }
 
+  // Pages in Free layout are auto-positioned next to their siblings.
+  // Pin each page to the origin so that mockup overlays align correctly.
+  engine.block.setPositionX(pageBlock, 0);
+  engine.block.setPositionY(pageBlock, 0);
+
   // Only update stroke width if it's changed
   const currentStrokeWidth = engine.block.getStrokeWidth(pageBlock);
   if (currentStrokeWidth !== strokeWidth) {

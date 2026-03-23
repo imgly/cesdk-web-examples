@@ -212,13 +212,9 @@ export async function switchProductView(
     }
   } else {
     // Sets the zoom level to fit the entire mockup image within the view.
-    await engine.scene.zoomToBlock(
-      mockupImageBlock,
-      ZOOM_PADDING.left,
-      ZOOM_PADDING.top,
-      ZOOM_PADDING.right,
-      ZOOM_PADDING.bottom
-    );
+    await instance.actions.run('zoom.toBlock', mockupImageBlock, {
+      padding: ZOOM_PADDING
+    });
     // Save zoom level for smooth transition to other options
     engine.block.setMetadata(
       sceneBlock,
@@ -318,6 +314,10 @@ function setupPageForArea(
   const height = productArea.pageSize.height;
   engine.block.setWidth(pageBlock, width);
   engine.block.setHeight(pageBlock, height);
+  // Pages in Free layout are auto-positioned next to their siblings.
+  // Pin each page to the origin so that mockup overlays align correctly.
+  engine.block.setPositionX(pageBlock, 0);
+  engine.block.setPositionY(pageBlock, 0);
   // Set the stroke width to .05 of the page size
   engine.block.setStrokeWidth(pageBlock, PAGE_STROKE_WIDTH_RATIO * width);
   // Set the name of the page block to the product area ID

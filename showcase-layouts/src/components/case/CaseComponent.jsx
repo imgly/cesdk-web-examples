@@ -113,7 +113,7 @@ const CaseComponent = () => {
       'ly.img.separator',
       ...instance.ui
         .getDockOrder()
-        .filter(({ key }) => !['ly.img.template'].includes(key))
+        .filter(({ key }) => !['ly.img.templates'].includes(key))
     ]);
     instance.ui.addAssetLibraryEntry({
       id: 'ly.img.layouts',
