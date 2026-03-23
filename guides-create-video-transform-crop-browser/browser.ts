@@ -73,7 +73,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 720, height: 1280, unit: 'Pixel' }
     });
 
