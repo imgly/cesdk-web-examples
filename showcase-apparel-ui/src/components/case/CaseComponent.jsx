@@ -11,7 +11,11 @@ import createUnsplashSource from './lib/UnsplashSource';
 import { SelectionProvider } from './lib/UseSelection';
 import {
   ColorPaletteAssetSource,
+  CropPresetsAssetSource,
   DemoAssetSources,
+  EffectsAssetSource,
+  FiltersAssetSource,
+  PagePresetsAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -43,11 +47,11 @@ const CaseComponent = () => {
               await engine.addPlugin(new TypefaceAssetSource());
               await engine.addPlugin(new TextAssetSource());
               await engine.addPlugin(new TextComponentAssetSource());
-              await engine.addPlugin(
-                new VectorShapeAssetSource({
-                  include: ['ly.img.vector.shape.filled.*']
-                })
-              );
+              await engine.addPlugin(new VectorShapeAssetSource());
+              await engine.addPlugin(new EffectsAssetSource());
+              await engine.addPlugin(new FiltersAssetSource());
+              await engine.addPlugin(new CropPresetsAssetSource());
+              await engine.addPlugin(new PagePresetsAssetSource());
               await engine.addPlugin(
                 new UploadAssetSources({
                   include: [

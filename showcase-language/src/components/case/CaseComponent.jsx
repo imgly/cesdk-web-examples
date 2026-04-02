@@ -83,7 +83,7 @@ const CaseComponent = () => {
     await addPremiumTemplatesAssetSource(instance);
 
     // create a new design scene in the editor
-    await instance.actions.run('scene.create');
+    await instance.createDesignScene();
 
     cesdkRef.current = instance;
     // Disable placeholder and preview features

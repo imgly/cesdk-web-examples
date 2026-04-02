@@ -84,14 +84,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
+      layout: 'DepthStack',
       page: { width: 1280, height: 720, unit: 'Pixel' }
     });
-
-    // Enable video and audio features
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
 
     const engine = cesdk.engine;
     const scene = engine.scene.get()!;

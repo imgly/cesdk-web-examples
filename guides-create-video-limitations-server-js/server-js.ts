@@ -21,7 +21,7 @@ const engine = await CreativeEngine.init({
 
 try {
   // Create a scene to query environment capabilities
-  engine.scene.create();
+  engine.scene.create('DepthStack');
 
   // Query the maximum export dimensions supported by this environment
   const maxExportSize = engine.editor.getMaxExportSize();
