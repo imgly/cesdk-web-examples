@@ -87,6 +87,12 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
       'ly.img.spacer',
 
       // ============================
+      // Page Resize
+      // ============================
+      'ly.img.pageResize.inspectorBar',
+      'ly.img.separator',
+
+      // ============================
       // Media Controls
       // ============================
       'ly.img.video.caption.inspectorBar',
@@ -177,7 +183,7 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
   // #region Inspector Bar - Trim Mode
   cesdk.ui.setComponentOrder(
     { in: 'ly.img.inspector.bar', when: { editMode: 'Trim' } },
-    ['ly.img.spacer', 'ly.img.trimControls.inspectorBar', 'ly.img.spacer']
+    ['ly.img.trimControls.inspectorBar']
   );
   // #endregion
 
@@ -189,7 +195,28 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
   // #region Inspector Bar - Crop Mode
   cesdk.ui.setComponentOrder(
     { in: 'ly.img.inspector.bar', when: { editMode: 'Crop' } },
-    ['ly.img.spacer', 'ly.img.cropControls.inspectorBar', 'ly.img.spacer']
+    ['ly.img.cropControls.inspectorBar']
+  );
+  // #endregion
+
+  // ============================================================================
+  // INSPECTOR BAR - VECTOR MODE
+  // Controls for editing vector paths
+  // ============================================================================
+
+  // #region Inspector Bar - Vector Mode
+  cesdk.ui.setComponentOrder(
+    { in: 'ly.img.inspector.bar', when: { editMode: 'Vector' } },
+    [
+      'ly.img.vectorEdit.moveMode.inspectorBar',
+      'ly.img.vectorEdit.addMode.inspectorBar',
+      'ly.img.vectorEdit.deleteMode.inspectorBar',
+      'ly.img.separator',
+      'ly.img.vectorEdit.bendMode.inspectorBar',
+      'ly.img.vectorEdit.mirrorMode.inspectorBar',
+      'ly.img.separator',
+      'ly.img.vectorEdit.done.inspectorBar'
+    ]
   );
   // #endregion
 }

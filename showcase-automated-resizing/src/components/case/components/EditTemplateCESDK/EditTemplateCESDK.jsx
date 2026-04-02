@@ -10,7 +10,7 @@ const EditTemplateCESDK = memo(
           instance.ui.setDockOrder([
             ...instance.ui
               .getDockOrder()
-              .filter(({ key }) => key !== 'ly.img.templates')
+              .filter(({ key }) => key !== 'ly.img.template')
           ]);
           instance.engine.editor.setSetting('page/title/show', false);
           if (sceneString) {
