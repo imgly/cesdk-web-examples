@@ -19,9 +19,8 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene with a page
-  // Audio blocks require a video scene mode
-  engine.scene.create();
+  // Create a scene with a page
+  engine.scene.create('DepthStack');
   const page = engine.block.create('page');
   engine.block.setWidth(page, 1920);
   engine.block.setHeight(page, 1080);

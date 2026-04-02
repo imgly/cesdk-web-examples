@@ -84,9 +84,6 @@ async function main() {
     const layout = engine.scene.getLayout();
     console.log('Scene layout:', layout);
 
-    // Check scene mode (Design or Video)
-    const mode = engine.scene.getMode();
-    console.log('Scene mode:', mode);
 
     // Access pages within the scene
     const pages = engine.scene.getPages();

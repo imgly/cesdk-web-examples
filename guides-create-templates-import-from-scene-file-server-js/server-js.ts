@@ -48,9 +48,6 @@ async function main() {
     const pages = engine.scene.getPages();
     console.log(`Scene has ${pages.length} page(s)`);
 
-    // Get scene mode (Design or Video)
-    const sceneMode = engine.scene.getMode();
-    console.log('Scene mode:', sceneMode);
 
     // Get design unit (Pixel, Millimeter, Inch)
     const designUnit = engine.scene.getDesignUnit();

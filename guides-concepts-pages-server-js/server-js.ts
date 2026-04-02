@@ -125,9 +125,6 @@ async function main(): Promise<void> {
     const pagesByType = engine.block.findByType('page');
     console.log('Pages found by type:', pagesByType);
 
-    // Check the scene mode (Design vs Video)
-    const sceneMode = engine.scene.getMode();
-    console.log('Scene mode:', sceneMode);
 
     // Export each page to demonstrate the result
     const outputDir = './output';

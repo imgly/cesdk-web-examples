@@ -26,9 +26,12 @@ async function main() {
 
   const engine = await CreativeEngine.init(config);
 
-  // Create a Video mode scene - required for the addVideo() convenience API
-  engine.scene.createVideo();
-  const page = engine.scene.getCurrentPage()!;
+  // Create a scene
+  const scene = engine.scene.create('DepthStack');
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 1920);
+  engine.block.setHeight(page, 1080);
+  engine.block.appendChild(scene, page);
 
   try {
     // Video URL for demonstration
@@ -36,7 +39,7 @@ async function main() {
       'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-drone-footage-of-a-surfer-702788.mp4';
 
     // Using the convenience API - creates a graphic block with video fill automatically
-    // This API only works in Video mode scenes
+    // Creates a graphic block with video fill automatically
     const videoBlock = await engine.block.addVideo(videoUrl, 800, 450);
 
     // Position the video on the canvas
@@ -45,7 +48,7 @@ async function main() {
 
     console.log('Added video using convenience API');
 
-    // Manual video construction - works in both Design and Video modes
+    // Manual video construction - for more control over block setup
     // Create a graphic block container
     const manualBlock = engine.block.create('graphic');
 
