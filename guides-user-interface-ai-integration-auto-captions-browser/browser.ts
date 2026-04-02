@@ -34,11 +34,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable video editing features
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
-
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins for the video editor
@@ -100,7 +95,6 @@ class Example implements EditorPlugin {
 
     // Create a video scene and add a video clip with spoken audio
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 

@@ -1,0 +1,5 @@
+<svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="3.49805" y="3" width="11" height="11" rx="1" stroke="currentColor" stroke-opacity="0.65" />
+  <path opacity="0.75" fill-rule="evenodd" clip-rule="evenodd" d="M13.998 12V13C13.998 13.2746 13.7767 13.4975 13.5026 13.5H6.99805L10.582 8.12402C10.7799 7.82715 11.2162 7.82715 11.4141 8.12402L13.998 12Z" fill="currentColor" fill-opacity="0.65" />
+  <path opacity="0.75" d="M6.99805 8C7.82647 8 8.49805 7.32843 8.49805 6.5C8.49805 5.67157 7.82647 5 6.99805 5C6.16962 5 5.49805 5.67157 5.49805 6.5C5.49805 7.32843 6.16962 8 6.99805 8Z" fill="currentColor" fill-opacity="0.65" />
+</svg>

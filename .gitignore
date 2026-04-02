@@ -24,6 +24,7 @@ logs/
 # Starterkit release directories - copied content (templates are tracked)
 starterkit-*/release/index.html
 starterkit-*/release/src/imgly/
+starterkit-*/release/src/app/
 starterkit-*/release/public/
 starterkit-*/release/README.md
 starterkit-*/release/.gitignore
@@ -31,3 +32,4 @@ starterkit-*/release/.env.example
 starterkit-*/release/.eslintrc.js
 starterkit-*/release/LICENSE
 starterkit-*/release/hero.webp
+starterkit-*/release/src/app/

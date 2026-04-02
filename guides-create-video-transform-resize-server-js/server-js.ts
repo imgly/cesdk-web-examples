@@ -25,7 +25,7 @@ const engine = await CreativeEngine.init({
 
 try {
   // Create a video scene with specific page dimensions
-  engine.scene.create('VerticalStack', {
+  engine.scene.create('DepthStack', {
     page: { size: { width: 1920, height: 1080 } }
   });
   const page = engine.block.findByType('page')[0];

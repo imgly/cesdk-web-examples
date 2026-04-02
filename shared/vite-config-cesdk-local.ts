@@ -1,7 +1,7 @@
+import { execFileSync } from 'child_process';
 import { createReadStream, existsSync } from 'fs';
 import { resolve } from 'path';
-import { execFileSync } from 'child_process';
-import type { Plugin, UserConfig, ConfigEnv } from 'vite';
+import type { ConfigEnv, Plugin, UserConfig } from 'vite';
 
 export interface CesdkLocalOptions {
   /** Relative path from example to monorepo root. Default: '../../..' */
@@ -12,7 +12,6 @@ export interface CesdkLocalOptions {
 }
 
 type PackageOverride = 'cesdk' | 'engine' | 'node';
-
 
 /**
  * Parse CESDK_USE_LOCAL environment variable into package overrides
@@ -103,7 +102,7 @@ export function validateBuildArtifacts(
   } catch (error) {
     throw new Error(
       `Failed to build local packages. You can try running manually:\n` +
-      `  yarn web:build:development\n`
+        `  yarn web:build:development\n`
     );
   }
 }
@@ -148,7 +147,6 @@ export function cesdkLocal(options: CesdkLocalOptions = {}): Plugin {
     enforce: 'pre', // Run before vite:import-analysis
 
     config(config: UserConfig, { command }: ConfigEnv) {
-
       // No overrides - use published packages
       if (overrides.size === 0) {
         if (verbose) {
@@ -183,15 +181,25 @@ export function cesdkLocal(options: CesdkLocalOptions = {}): Plugin {
       }
 
       if (overrides.has('engine')) {
-        const buildDir = resolve(absoluteRepoRoot, 'bindings/wasm/js_web/build');
+        const buildDir = resolve(
+          absoluteRepoRoot,
+          'bindings/wasm/js_web/build'
+        );
         aliasMap['@cesdk/engine'] = buildDir;
-        console.log('✅ Using local @cesdk/engine from bindings/wasm/js_web/build');
+        console.log(
+          '✅ Using local @cesdk/engine from bindings/wasm/js_web/build'
+        );
       }
 
       if (overrides.has('node')) {
-        const buildDir = resolve(absoluteRepoRoot, 'bindings/wasm/js_node/build');
+        const buildDir = resolve(
+          absoluteRepoRoot,
+          'bindings/wasm/js_node/build'
+        );
         aliasMap['@cesdk/node'] = buildDir;
-        console.log('✅ Using local @cesdk/node from bindings/wasm/js_node/build');
+        console.log(
+          '✅ Using local @cesdk/node from bindings/wasm/js_node/build'
+        );
       }
 
       const result = {
@@ -199,7 +207,10 @@ export function cesdkLocal(options: CesdkLocalOptions = {}): Plugin {
         resolve: {
           ...config.resolve,
           alias: {
-            ...(typeof config.resolve?.alias === 'object' && !Array.isArray(config.resolve.alias) ? config.resolve.alias : {}),
+            ...(typeof config.resolve?.alias === 'object' &&
+            !Array.isArray(config.resolve.alias)
+              ? config.resolve.alias
+              : {}),
             ...aliasMap
           }
         },
@@ -207,9 +218,9 @@ export function cesdkLocal(options: CesdkLocalOptions = {}): Plugin {
         define: {
           ...config.define,
           'import.meta.env.CESDK_USE_LOCAL': JSON.stringify(useLocal || ''),
-          // Expose assets base URL for production builds (PR previews, etc.)
+          // Expose assets base URL for local dev and production builds
           'import.meta.env.VITE_CESDK_ASSETS_BASE_URL': JSON.stringify(
-            process.env.VITE_CESDK_ASSETS_BASE_URL || ''
+            process.env.VITE_CESDK_ASSETS_BASE_URL
           ),
           // Define globals required by cesdk_web source code
           IMGLY_VERSION: JSON.stringify(

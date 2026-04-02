@@ -1,0 +1,18 @@
+.root {
+  /* z-index has to be higher then ExportModal since this component will have position fixed */
+  z-index: 10000;
+}
+
+.popover {
+  display: flex;
+  padding: 8px 12px;
+  background: #000000;
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: var(--font-family-ibm-sans);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 20px;
+}

@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  letter-spacing: 0.02em;
+  color: rgba(22, 22, 23, 0.65);
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
