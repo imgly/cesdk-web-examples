@@ -1,4 +1,5 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+import Example from './browser';
 
 const config = {
   // license: import.meta.env.VITE_CESDK_LICENSE,
