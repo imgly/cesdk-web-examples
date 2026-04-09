@@ -147,6 +147,7 @@ const CaseComponent = () => {
           include: ['ly.img.image.upload']
         })
       );
+
       // Demo assets (replaces addDemoAssetSources)
       await instance.addPlugin(
         new DemoAssetSources({
@@ -159,6 +160,7 @@ const CaseComponent = () => {
           ]
         })
       );
+
       instance.editor.setSetting('page/title/show', false);
       await instance.scene.loadFromURL(template.sceneUrl);
       engineRef.current = instance;

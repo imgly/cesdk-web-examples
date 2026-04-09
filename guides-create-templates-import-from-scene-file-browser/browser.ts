@@ -105,10 +105,6 @@ class Example implements EditorPlugin {
       // eslint-disable-next-line no-console
       console.log(`Scene has ${pages.length} page(s)`);
 
-      // Get scene mode
-      const sceneMode = engine.scene.getMode();
-      // eslint-disable-next-line no-console
-      console.log('Scene mode:', sceneMode);
 
       // Get design unit
       const designUnit = engine.scene.getDesignUnit();
