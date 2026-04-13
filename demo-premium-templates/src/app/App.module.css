@@ -1,0 +1,139 @@
+/**
+ * App Component Styles
+ */
+
+/* ============================================================================
+ * Showcase-equivalent CSS Reset
+ * Matches showcases-app css-reset.css + root.css for iframe parity
+ * ============================================================================ */
+
+:global(html) {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.45;
+}
+
+:global(*),
+:global(*::before),
+:global(*::after) {
+  border-style: solid;
+  border-width: 0;
+  box-sizing: border-box;
+}
+
+:global(body),
+:global(blockquote),
+:global(dl),
+:global(dd),
+:global(h1),
+:global(h2),
+:global(h3),
+:global(h4),
+:global(h5),
+:global(h6),
+:global(hr),
+:global(figure),
+:global(p),
+:global(pre) {
+  margin: 0;
+}
+
+:global(button) {
+  background-color: transparent;
+  padding: 0;
+}
+
+:global(button),
+:global([role='button']) {
+  cursor: pointer;
+}
+
+:global(button::-moz-focus-inner) {
+  border: 0 !important;
+}
+
+:global(h1),
+:global(h2),
+:global(h3),
+:global(h4),
+:global(h5),
+:global(h6) {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+:global(button),
+:global(input),
+:global(optgroup),
+:global(select),
+:global(textarea) {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:global(img),
+:global(svg),
+:global(video),
+:global(canvas),
+:global(audio),
+:global(iframe),
+:global(embed),
+:global(object) {
+  display: block;
+}
+
+:global(img),
+:global(video) {
+  height: auto;
+  max-width: 100%;
+}
+
+:global(a) {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+:global(*:focus) {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* ============================================================================
+ * Global Layout
+ * ============================================================================ */
+
+:global(html),
+:global(body) {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  overscroll-behavior: auto;
+  font-family:
+    'IBM Plex Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+}
+
+:global(#root) {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================================================
+ * Component Styles
+ * ============================================================================ */
+
+.app {
+  width: 100%;
+  height: 100%;
+}

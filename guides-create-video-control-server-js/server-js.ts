@@ -23,11 +23,12 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene with page - required for timeline-based editing
-  engine.scene.createVideo({
-    page: { size: { width: 1920, height: 1080 } }
-  });
-  const page = engine.block.findByType('page')[0];
+  // Create a scene with a page
+  const scene = engine.scene.create('DepthStack');
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 1920);
+  engine.block.setHeight(page, 1080);
+  engine.block.appendChild(scene, page);
 
   // Set page duration to accommodate our video content
   engine.block.setDuration(page, 15);
