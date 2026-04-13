@@ -45,6 +45,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.navigation.undoRedo', /* "Undo" and "Redo" buttons */
     // 'ly.img.navigation.zoom', /* Zoom controls */
     // 'ly.img.navigation.actions', /* Actions dropdown */
+    // 'ly.img.navigation.documentSettings', /* Document settings button */
     // #endregion
 
     // ============================================================================
@@ -58,7 +59,11 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.text.typeface', /* Typeface dropdown */
     // 'ly.img.text.fontSize', /* Font Size input */
     // 'ly.img.text.fontStyle', /* Bold and Italic toggles */
+    // 'ly.img.text.decoration', /* Underline and Strikethrough toggles */
     // 'ly.img.text.alignment', /* Text Horizontal Alignment */
+    // 'ly.img.text.list', /* List style (bullets/numbered) */
+    // 'ly.img.text.list.unordered', /* Bulleted list */
+    // 'ly.img.text.list.ordered', /* Numbered list */
     // 'ly.img.text.advanced', /* Advanced text controls */
     // 'ly.img.text.background', /* Text background controls */
     // #endregion
@@ -156,10 +161,13 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // ============================================================================
 
     // #region Page Features
-    'ly.img.page.move' /* Move Up/Down/Left/Right buttons */,
-    'ly.img.page.add' /* Add Page button in Canvas Bar */,
-    'ly.img.page.resize' /* Resize button and page formats */,
-    'ly.img.page.clipContent' /* Clip content on/off toggle */,
+    'ly.img.page' /* Enables all page children below */,
+    // 'ly.img.page.move', /* Move Up/Down/Left/Right buttons */
+    // 'ly.img.page.add', /* Add Page button in Canvas Bar */
+    // 'ly.img.page.resize', /* Resize button and page formats */
+    // 'ly.img.page.settings', /* Read-only page dimensions, unit, and resolution */
+    // 'ly.img.page.bleedMargin', /* Bleed margin controls */
+    // 'ly.img.page.clipContent', /* Clip content on/off toggle */
     // #endregion
 
     // ============================================================================
@@ -180,9 +188,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // ============================================================================
 
     // #region Styling Features
-    'ly.img.fill' /* Fill button and Fill Panel */,
-    // 'ly.img.fill.color', /* Solid and gradient fill controls */
-    // 'ly.img.fill.image', /* Image fill controls and crop */
+    // 'ly.img.fill' /* Fill button and Fill Panel */,
+    'ly.img.fill.color' /* Solid and gradient fill controls */,
+    'ly.img.fill.image' /* Image fill controls and crop */,
     // 'ly.img.fill.video', /* Video fill, trim, volume, speed */
     'ly.img.stroke' /* Stroke controls (Color, Width) */,
     // 'ly.img.stroke.color', /* Stroke color picker */
@@ -193,6 +201,14 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     'ly.img.opacity' /* Opacity controls */,
     'ly.img.blendMode' /* Blend mode controls */,
     'ly.img.shape.options' /* Shape Options dropdown */,
+    // 'ly.img.shape.edit', /* Edit Path button in Shape Options (advanced editors only) */
+    // 'ly.img.vectorEdit', /* Vector edit controls (parent) */
+    // 'ly.img.vectorEdit.moveMode', /* Move/select mode toggle */
+    // 'ly.img.vectorEdit.addMode', /* Add node mode toggle */
+    // 'ly.img.vectorEdit.deleteMode', /* Delete node mode toggle */
+    // 'ly.img.vectorEdit.bendMode', /* Bend mode toggle */
+    // 'ly.img.vectorEdit.mirrorMode', /* Handle mirror mode dropdown */
+    // 'ly.img.vectorEdit.done', /* Exit vector edit button */
     // 'ly.img.shape.options.cornerRadius', /* Corner radius (rect/polygon) */
     // 'ly.img.shape.options.points', /* Star point count */
     // 'ly.img.shape.options.innerDiameter', /* Star inner diameter */
@@ -304,5 +320,12 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // #region Development Features
     // 'ly.img.settings', /* Quick settings menu for development */
     // #endregion
+
+    // ============================================================================
+    // GRID & RULERS
+    // Uncomment to enable rulers and grid overlay
+    // ============================================================================
+
+    // 'ly.img.rulers', /* Grid overlay, snap-to-grid, and canvas rulers */
   ]);
 }
