@@ -42,8 +42,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Initialize CE.SDK with Video mode (required for video resources)
-    cesdk.feature.enable('ly.img.video');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -89,7 +87,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
         assetId: 'ly.img.page.presets.instagram.story'

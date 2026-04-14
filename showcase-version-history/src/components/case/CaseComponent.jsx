@@ -166,7 +166,7 @@ const VersionHistoryCESDK = () => {
     instance.ui.setDockOrder([
       ...instance.ui
         .getDockOrder()
-        .filter(({ key }) => key !== 'ly.img.templates')
+        .filter(({ key }) => key !== 'ly.img.template')
     ]);
     await instance.loadFromURL(caseAssetPath('/snapshots/1/scene.scene'));
   }, []);
