@@ -1,0 +1,237 @@
+/**
+ * Illustrator Template Import Starterkit - Global Styles
+ *
+ * Design system variables and base styles for the application.
+ */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.45;
+}
+
+*,
+*::before,
+*::after {
+  border-style: solid;
+  border-width: 0;
+  box-sizing: border-box;
+}
+
+body,
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+button {
+  background-color: transparent;
+  padding: 0;
+}
+
+button,
+[role='button'] {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+a {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+*:focus {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* ============================================================================
+ * CSS Variables
+ * ============================================================================ */
+
+:root {
+  --imgly-primary-color: #471aff;
+  --imgly-primary-hover: #3d15d9;
+  --imgly-black-color: #161617;
+  --imgly-black-light-color: rgba(22, 22, 23, 0.65);
+  --imgly-white-color: #ffffff;
+  --imgly-grey-50: rgba(22, 22, 23, 0.05);
+  --imgly-grey-100: rgba(22, 22, 23, 0.1);
+  --imgly-grey-200: rgba(22, 22, 23, 0.2);
+  --imgly-grey-300: rgba(22, 22, 23, 0.3);
+  --imgly-grey-500: rgba(22, 22, 23, 0.5);
+  --imgly-grey-700: rgba(22, 22, 23, 0.7);
+  --imgly-warning-color: #f59e0b;
+  --imgly-error-color: #ef4444;
+  --imgly-success-color: #10b981;
+  --imgly-font-family:
+    'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+  --imgly-border-radius: 0.5rem;
+  --imgly-card-shadow:
+    0px 0px 2px rgba(22, 22, 23, 0.25), 0px 4px 6px -2px rgba(22, 22, 23, 0.12),
+    0px 2px 2.5px -2px rgba(22, 22, 23, 0.12),
+    0px 1px 1.75px -2px rgba(22, 22, 23, 0.12);
+}
+
+/* ============================================================================
+ * Global Layout
+ * ============================================================================ */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: var(--imgly-font-family);
+  background: var(--imgly-grey-50);
+  color: var(--imgly-black-color);
+  overflow-x: hidden;
+}
+
+html.demo-preview,
+html.demo-preview body {
+  background: transparent;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--imgly-border-radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-family: var(--imgly-font-family);
+}
+
+.btn-primary {
+  background: var(--imgly-primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--imgly-primary-hover);
+}
+
+.btn-primary img {
+  filter: brightness(0) invert(1);
+}
+
+.btn-secondary {
+  background: var(--imgly-white-color);
+  color: var(--imgly-black-color);
+  border: 1px solid var(--imgly-grey-200);
+}
+
+.btn-secondary:hover {
+  background: var(--imgly-grey-50);
+}
+
+.btn-plain {
+  background: transparent;
+  color: var(--imgly-grey-500);
+  border: none;
+  padding: 8px 12px;
+}
+
+.btn-plain:hover {
+  color: var(--imgly-black-color);
+}
+
+.btn svg,
+.btn img {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+/* Small Button Variant */
+.btn-small {
+  padding: 0.3125rem 0.5rem;
+  gap: 0;
+}
+
+.btn-small > span {
+  display: flex;
+  padding: 0rem 0.25rem;
+}
+
+.btn-small svg,
+.btn-small img {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
