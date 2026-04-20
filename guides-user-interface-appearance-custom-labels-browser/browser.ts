@@ -39,7 +39,7 @@ class Example implements EditorPlugin {
     }
 
     // Enable features to demonstrate various UI labels
-    cesdk.feature.enable('ly.img.fill');
+    cesdk.feature.enable(['ly.img.fill.color', 'ly.img.fill.image']);
     cesdk.feature.enable('ly.img.adjustment');
     cesdk.feature.enable('ly.img.layer');
     cesdk.feature.enable('ly.img.settings');

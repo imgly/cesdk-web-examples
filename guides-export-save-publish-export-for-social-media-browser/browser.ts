@@ -84,8 +84,7 @@ class Example implements EditorPlugin {
 
     // Create a vertical video scene (9:16) for Instagram Reels, TikTok, YouTube Shorts
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
-      page: { width: 1080, height: 1920, unit: 'Pixel' }
+      page: { width: 1080, height: 1920, unit: 'Pixel', color: { r: 0, g: 0, b: 0, a: 1 } }
     });
 
     const page = engine.scene.getCurrentPage();
