@@ -8,6 +8,7 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
+  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -21,7 +22,6 @@ import { useState } from 'react';
 import classes from './CaseComponent.module.css';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import { DesignEditorConfig } from './lib/design-editor/plugin';
-import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const CaseComponent = () => {
   const [image, setImage] = useState();
@@ -78,6 +78,7 @@ const CaseComponent = () => {
         })
       );
 
+      await instance.addPlugin(new PremiumTemplatesAssetSource());
       // Demo assets (replaces addDemoAssetSources)
       await instance.addPlugin(
         new DemoAssetSources({
@@ -85,7 +86,6 @@ const CaseComponent = () => {
         })
       );
 
-      await addPremiumTemplatesAssetSource(instance);
       // Disable placeholder and preview features
       instance.feature.enable('ly.img.placeholder', false);
       instance.feature.enable('ly.img.preview', false);

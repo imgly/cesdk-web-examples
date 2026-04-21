@@ -251,6 +251,25 @@ export function setupSettings(engine: CreativeEngine): void {
   // #endregion
 
   // ============================================================================
+  // COLOR PICKER SETTINGS
+  // Configure color picker behavior
+  // ============================================================================
+
+  // #region Grid Settings
+  // Enable background grid and snap-to-grid for precise alignment
+  // engine.editor.setSettingBool('grid/enabled', true);
+  // engine.editor.setSettingBool('grid/snapEnabled', true);
+  // #endregion
+
+  // #region Color Picker Settings
+  // Restrict color picker to a specific color mode:
+  // - 'Any': Allow both RGB and CMYK (default)
+  // - 'RGB': Restrict to RGB colors only (used for video editing)
+  // - 'CMYK': Restrict to CMYK colors only
+  engine.editor.setSetting('colorPicker/colorMode', 'RGB');
+  // #endregion
+
+  // ============================================================================
   // COLOR SETTINGS
   // Customize UI colors for branding and theming
   // ============================================================================

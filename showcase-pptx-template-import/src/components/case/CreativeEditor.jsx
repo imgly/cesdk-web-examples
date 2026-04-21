@@ -17,7 +17,7 @@ import {
 import { DesignEditorConfig } from './lib/design-editor/plugin';
 import { useEffect, useRef } from 'react';
 import classes from './CreativeEditor.module.css';
-import { addGoogleFontsAssetLibrary } from '@imgly/pptx-importer';
+import { addGfontsAssetLibrary } from '@imgly/pptx-importer';
 
 const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
   const cesdkContainer = useRef(null);
@@ -32,7 +32,7 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
-        typefaceLibraries: ['ly.img.google-fonts'],
+        typefaceLibraries: ['ly.img.gfonts'],
         elements: {
           view: 'advanced',
           navigation: {
@@ -79,12 +79,18 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
           // Add demo asset sources
           await instance.addPlugin(
             new DemoAssetSources({
-              include: ['ly.img.templates.*', 'ly.img.image.*']
+              include: [
+                'ly.img.templates.blank.*',
+                'ly.img.templates.presentation.*',
+                'ly.img.templates.print.*',
+                'ly.img.templates.social.*',
+                'ly.img.image.*'
+              ]
             })
           );
           instance.engine.editor.setSettingBool('page/title/show', false);
           await instance.engine.scene.loadFromArchiveURL(sceneArchiveUrl);
-          await addGoogleFontsAssetLibrary(instance.engine);
+          await addGfontsAssetLibrary(instance.engine);
           // Zoom auto-fit to page
           instance.actions.run('zoom.toPage', {
             autoFit: true

@@ -88,16 +88,20 @@ const CaseComponent = () => {
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);
 
-    // Hide 'Resize' button on the navigation bar
-    instance.feature.enable('ly.img.page.resize', false);
-    instance.feature.enable('ly.img.options', false);
+    instance.feature.disable('ly.img.page');
+    instance.feature.disable('ly.img.options');
+    instance.feature.disable('ly.img.settings');
+    instance.ui.removeOrderComponent({
+      in: 'ly.img.navigation.bar',
+      match: 'ly.img.documentSettings.navigationBar'
+    });
     instance.ui.setDockOrder([
       ...instance.ui
         .getDockOrder()
         .filter(({ key }) => !['ly.img.templates'].includes(key))
     ]);
     instance.engine.editor.setSetting('page/title/show', false);
-    // });
+    instance.engine.editor.setSetting('page/selectWhenNoBlocksSelected', false);
   }, []);
 
   // Sets the initial product as well as updates the scene when the product changes

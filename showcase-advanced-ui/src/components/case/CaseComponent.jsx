@@ -8,6 +8,7 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
+  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -18,7 +19,6 @@ import {
 
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 import { DesignEditorConfig } from './lib/design-editor/plugin';
-import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const CaseComponent = () => {
   const config = useConfig(
@@ -80,6 +80,7 @@ const CaseComponent = () => {
       })
     );
 
+    await instance.addPlugin(new PremiumTemplatesAssetSource());
     // Demo assets (replaces addDemoAssetSources)
     await instance.addPlugin(
       new DemoAssetSources({
@@ -87,10 +88,37 @@ const CaseComponent = () => {
       })
     );
 
-    await addPremiumTemplatesAssetSource(instance);
     // Disable placeholder and preview features
-    instance.feature.enable('ly.img.placeholder', false);
-    instance.feature.enable('ly.img.preview', false);
+    instance.feature.enable('ly.img.placeholder');
+    instance.feature.disable('ly.img.preview');
+    // Enable vector path editing
+    instance.feature.enable('ly.img.shape.edit');
+    instance.feature.enable('ly.img.vectorEdit');
+    instance.feature.enable('ly.img.vectorEdit.moveMode');
+    instance.feature.enable('ly.img.vectorEdit.addMode');
+    instance.feature.enable('ly.img.vectorEdit.deleteMode');
+    instance.feature.enable('ly.img.vectorEdit.bendMode');
+    instance.feature.enable('ly.img.vectorEdit.mirrorMode');
+    instance.feature.enable('ly.img.vectorEdit.done');
+    // Add archive actions as dropdown items on the primary export button
+    instance.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
+      'ly.img.undoRedo.navigationBar',
+      'ly.img.spacer',
+      'ly.img.title.navigationBar',
+      'ly.img.spacer',
+      'ly.img.zoom.navigationBar',
+      'ly.img.preview.navigationBar',
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          'ly.img.exportImage.navigationBar',
+          'ly.img.exportPDF.navigationBar',
+          'ly.img.separator',
+          'ly.img.exportArchive.navigationBar',
+          'ly.img.importArchive.navigationBar'
+        ]
+      }
+    ]);
     await instance.loadFromURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/example-1.scene`
     );

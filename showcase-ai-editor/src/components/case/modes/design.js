@@ -24,19 +24,6 @@ const designMode = {
     featureFlags: {
       archiveSceneEnabled: true,
       dangerouslyDisableVideoSupportCheck: false
-    },
-    callbacks: {
-      onUpload: 'local',
-      onExport: 'download'
-    },
-    ui: {
-      elements: {
-        navigation: {
-          action: {
-            export: true
-          }
-        }
-      }
     }
   },
   initialize: async (instance, modeContext, createMiddleware) => {
@@ -75,7 +62,9 @@ const designMode = {
     );
 
     // Use setComponentOrder (new API) instead of setDockOrder (deprecated)
-    const currentDockOrder = instance.ui.getComponentOrder({ in: 'ly.img.dock' });
+    const currentDockOrder = instance.ui.getComponentOrder({
+      in: 'ly.img.dock'
+    });
     instance.ui.setComponentOrder({ in: 'ly.img.dock' }, [
       'ly.img.ai/apps.dock',
       ...currentDockOrder.filter((item) => {
@@ -90,10 +79,20 @@ const designMode = {
       ...instance.ui.getCanvasMenuOrder()
     ]);
 
+    instance.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          'ly.img.exportImage.navigationBar',
+          'ly.img.exportPDF.navigationBar'
+        ]
+      }
+    );
     instance.feature.enable('ly.img.preview', false);
     instance.feature.enable('ly.img.placeholder', false);
 
-    await instance.engine.scene.loadFromArchiveURL(
+    await instance.loadFromArchiveURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/ai-editor/ai_editor_design_v3.archive`
     );
 
@@ -149,7 +148,7 @@ const designMode = {
       const imageSourceIds =
         typeof imageEntry.sourceIds === 'function'
           ? imageEntry.sourceIds({ engine: instance.engine, cesdk: instance })
-          : imageEntry.sourceIds ?? [];
+          : (imageEntry.sourceIds ?? []);
       instance.ui.updateAssetLibraryEntry('ly.img.image', {
         sourceIds: [...imageSourceIds, 'ly.img.ai.image-generation.history']
       });

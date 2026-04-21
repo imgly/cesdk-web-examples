@@ -7,6 +7,7 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
+  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -17,7 +18,6 @@ import {
 import { DesignEditorConfig } from './lib/design-editor/plugin';
 import { useEffect, useRef } from 'react';
 import classes from './CreativeEditor.module.css';
-import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
   const cesdkContainer = useRef(null);
@@ -75,6 +75,7 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
               include: ['ly.img.image.upload']
             })
           );
+          await instance.addPlugin(new PremiumTemplatesAssetSource());
           // Add demo asset sources
           await instance.addPlugin(
             new DemoAssetSources({
@@ -82,7 +83,6 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
             })
           );
 
-          await addPremiumTemplatesAssetSource(instance);
 
           await instance.engine.scene.loadFromArchiveURL(sceneArchiveUrl);
           // Zoom auto-fit to page

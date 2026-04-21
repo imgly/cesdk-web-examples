@@ -7,6 +7,7 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
+  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -20,7 +21,7 @@ import { VideoEditorConfig } from '../lib/video-editor/plugin';
 
 import { useEffect, useRef } from 'react';
 import classes from './CESDKModal.module.css';
-import { addPremiumTemplatesAssetSource } from '../lib/PremiumTemplateUtilities';
+
 
 export const CESDKModal = ({ config, configure, type }) => {
   const containerRef = useRef(null);
@@ -63,6 +64,7 @@ export const CESDKModal = ({ config, configure, type }) => {
             })
           );
 
+          await cesdk.addPlugin(new PremiumTemplatesAssetSource());
           // Demo assets (replaces addDemoAssetSources)
           await cesdk.addPlugin(
             new DemoAssetSources({
@@ -77,9 +79,7 @@ export const CESDKModal = ({ config, configure, type }) => {
             })
           );
 
-          if (isDesign) {
-            addPremiumTemplatesAssetSource(cesdk);
-          }
+
           if (configure) {
             await configure(cesdk);
           }

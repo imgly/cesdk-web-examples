@@ -10,6 +10,7 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
+  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -19,7 +20,6 @@ import {
 } from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './lib/design-editor/plugin';
 import { useEffect, useRef, useState } from 'react';
-import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const ROLE_OPTIONS = [
   {
@@ -118,6 +118,7 @@ const CaseComponent = () => {
           await instance.addPlugin(new CropPresetsAssetSource());
           await instance.addPlugin(new PagePresetsAssetSource());
           await instance.addPlugin(new UploadAssetSources());
+          await instance.addPlugin(new PremiumTemplatesAssetSource());
           // Add demo asset sources
           await instance.addPlugin(
             new DemoAssetSources({
@@ -125,7 +126,6 @@ const CaseComponent = () => {
             })
           );
 
-          await addPremiumTemplatesAssetSource(instance);
 
           if (currentRole === 'Creator') {
             instance.feature.enable('ly.img.placeholder*');

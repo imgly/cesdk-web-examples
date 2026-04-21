@@ -13,8 +13,8 @@ export async function initPhotoEditorUIConfig(
   photoUri: string
 ) {
   setupDock(instance);
-  // Hide 'Resize' button on the navigation bar
   instance.feature.enable('ly.img.page.resize', false);
+  instance.ui.removeOrderComponent({ in: 'ly.img.navigation.bar', match: 'ly.img.documentSettings.navigationBar' });
   const unsubscribeInspectorSetup = setupInspectorBar(instance);
   loadAssetSourceFromContentJSON(
     instance.engine,

@@ -13,7 +13,7 @@ import {
   UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from '../lib/design-editor/plugin';
+import { PhotoEditorConfig } from '../lib/photo-editor/plugin';
 
 import {
   CommonProperties,
@@ -90,8 +90,8 @@ const photoMode = {
       }
     });
 
-    // Add the design editor configuration plugin first
-    await instance.addPlugin(new DesignEditorConfig());
+    // Add the photo editor configuration plugin first
+    await instance.addPlugin(new PhotoEditorConfig());
 
     // Asset Source Plugins (replaces addDefaultAssetSources)
     await instance.addPlugin(new ColorPaletteAssetSource());

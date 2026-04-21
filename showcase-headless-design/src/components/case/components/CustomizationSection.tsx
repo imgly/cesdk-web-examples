@@ -111,16 +111,19 @@ function CustomizationSection({
     const [messageBlock] = engine.block.findByName('Message & Name');
     const rgb =
       colorTheme === 'dark' ? { r: 1, g: 1, b: 1 } : { r: 0, g: 0, b: 0 };
-    engine.block.setTextColor(
-      messageBlock,
-      { ...rgb, a: 0.75 },
-      0,
-      '{{Message}}'.length
-    );
+    const messageLength = (debouncedMessage || '').length;
+    if (messageLength > 0) {
+      engine.block.setTextColor(
+        messageBlock,
+        { ...rgb, a: 0.75 },
+        0,
+        messageLength
+      );
+    }
     engine.block.setTextColor(
       messageBlock,
       { ...rgb, a: 1.0 },
-      '{{Message}}'.length
+      messageLength
     );
   };
 

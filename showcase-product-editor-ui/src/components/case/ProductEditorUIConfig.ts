@@ -174,6 +174,12 @@ export async function switchProductView(
     animate: false,
     autoFit: true
   });
+
+  // Deselect any blocks that were auto-selected by switchPage
+  engine.block.findAllSelected().forEach((block) => {
+    engine.block.setSelected(block, false);
+  });
+  
 }
 
 /**
@@ -221,6 +227,7 @@ export async function createOrUpdateSceneByProduct(
       }
 
       setupPageForArea(engine, pageBlock, area);
+      engine.block.setSelected(pageBlock, false);
 
       return pageBlock;
     });

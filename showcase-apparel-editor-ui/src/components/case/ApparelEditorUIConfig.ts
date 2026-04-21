@@ -192,6 +192,10 @@ export async function switchProductView(
   // Switches the editor view to the specified page block
   await instance.unstable_switchPage(pageBlock);
 
+  engine.block.findAllSelected().forEach((block) => {
+    engine.block.setSelected(block, false);
+  });
+
   const currentVisibleMockupBlock = engine.block
     .findByKind(MOCKUP_IMAGE_BLOCK_KIND)
     .find((block) => engine.block.isVisible(block));

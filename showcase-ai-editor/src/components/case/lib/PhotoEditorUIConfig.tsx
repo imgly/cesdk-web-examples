@@ -13,8 +13,8 @@ export async function initPhotoEditorUIConfig(
   photoUri: string
 ) {
   setupDock(instance);
-  // Hide 'Resize' button on the navigation bar
   instance.feature.enable('ly.img.page.resize', false);
+  instance.ui.removeOrderComponent({ in: 'ly.img.navigation.bar', match: 'ly.img.documentSettings.navigationBar' });
   const unsubscribeInspectorSetup = setupInspectorBar(instance);
   loadAssetSourceFromContentJSON(
     instance.engine,
@@ -76,9 +76,11 @@ function setupInspectorBar(instance: CreativeEditorSDK) {
       'ly.img.crop.inspectorBar',
       // Hide adjustments inspector if page is selected
       isPage && 'ly.img.appearance.inspectorBar',
+      isPage && 'ly.img.blur.inspectorBar',
       // Hide fill inspector if page is selected
       isPage && 'ly.img.fill.inspectorBar',
-      'ly.img.options.inspectorBar'
+      'ly.img.options.inspectorBar',
+      'ly.img.inspectorToggle.inspectorBar'
     ].filter(Boolean);
     instance.ui.setInspectorBarOrder([
       ...inspectorBarOrder.filter(

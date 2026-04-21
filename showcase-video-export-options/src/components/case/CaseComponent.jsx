@@ -24,6 +24,9 @@ import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
 const ExportOptionsCESDK = () => {
   const config = useConfig(
     () => ({
+      featureFlags: {
+        useLegacySceneModeChecks: true
+      },
       role: 'Creator',
       license: process.env.NEXT_PUBLIC_LICENSE,
       callbacks: {

@@ -30,6 +30,9 @@ const ROLE_OPTIONS = [
   {
     name: 'Creator',
     cesdkConfig: {
+      featureFlags: {
+        useLegacySceneModeChecks: true
+      },
       theme: 'dark',
       role: 'Creator',
       callbacks: {
@@ -63,6 +66,9 @@ const ROLE_OPTIONS = [
   {
     name: 'Adopter',
     cesdkConfig: {
+      featureFlags: {
+        useLegacySceneModeChecks: true
+      },
       theme: 'light',
       role: 'Adopter',
       callbacks: {

@@ -41,6 +41,9 @@ export const EditInstanceCESDK = memo(
           });
         }}
         config={{
+          featureFlags: {
+            useLegacySceneModeChecks: true
+          },
           license: process.env.NEXT_PUBLIC_LICENSE,
           callbacks: {
             onExport: (blobs: Blob[]) => {

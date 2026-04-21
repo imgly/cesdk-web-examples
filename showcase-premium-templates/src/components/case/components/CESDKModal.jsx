@@ -6,6 +6,7 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
+  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -17,10 +18,7 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 import { DesignEditorConfig } from '../lib/design-editor/plugin';
 
 import { memo, useEffect, useRef } from 'react';
-import {
-  getTemplateBaseURL,
-  addPremiumTemplatesAssetSource
-} from '../lib/PremiumTemplateUtilities';
+import { getTemplateBaseURL } from '../lib/PremiumTemplateUtilities';
 import classes from './CESDKModal.module.css';
 
 export const CESDKModal = memo(({ asset, onClose }) => {
@@ -73,6 +71,7 @@ export const CESDKModal = memo(({ asset, onClose }) => {
             })
           );
 
+          await cesdk.addPlugin(new PremiumTemplatesAssetSource());
           // Demo assets (replaces addDemoAssetSources) + asset source promise
           await cesdk.addPlugin(
             new DemoAssetSources({
@@ -80,7 +79,6 @@ export const CESDKModal = memo(({ asset, onClose }) => {
             })
           );
 
-          await addPremiumTemplatesAssetSource(cesdk, true);
 
           instanceRef.current = cesdk;
           // Change the position of the close button to the left

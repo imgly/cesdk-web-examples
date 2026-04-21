@@ -3,7 +3,7 @@ import {
   PSDParser,
   LogMessage,
   Logger,
-  addGoogleFontsAssetLibrary,
+  addGfontsAssetLibrary,
   createWebEncodeBufferToPNG
 } from '@imgly/psd-importer';
 import {
@@ -90,7 +90,7 @@ const FileProcessingContextProvider = ({
         license: process.env.NEXT_PUBLIC_LICENSE
       });
       setStatus('processing');
-      await addGoogleFontsAssetLibrary(engine);
+      await addGfontsAssetLibrary(engine);
       const parser = await PSDParser.fromFile(
         engine as any,
         blobBuffer,
