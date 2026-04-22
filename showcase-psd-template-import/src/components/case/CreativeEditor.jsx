@@ -7,7 +7,6 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
-  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -18,7 +17,8 @@ import {
 import { DesignEditorConfig } from './lib/design-editor/plugin';
 import { useEffect, useRef } from 'react';
 import classes from './CreativeEditor.module.css';
-import { addGfontsAssetLibrary } from '@imgly/psd-importer';
+import { addGoogleFontsAssetLibrary } from '@imgly/psd-importer';
+import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
   const cesdkContainer = useRef(null);
@@ -28,7 +28,7 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
     const config = {
       license: process.env.NEXT_PUBLIC_LICENSE,
       ui: {
-        typefaceLibraries: ['ly.img.gfonts']
+        typefaceLibraries: ['ly.img.google-fonts']
       }
     };
     let cesdk;
@@ -57,7 +57,6 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
               include: ['ly.img.image.upload']
             })
           );
-          await instance.addPlugin(new PremiumTemplatesAssetSource());
           // Add demo asset sources
           await instance.addPlugin(
             new DemoAssetSources({
@@ -65,10 +64,11 @@ const CreativeEditor = ({ sceneArchiveUrl, closeEditor }) => {
             })
           );
 
+          await addPremiumTemplatesAssetSource(instance);
 
           instance.engine.editor.setSetting('page/title/show', false);
           await instance.engine.scene.loadFromArchiveURL(sceneArchiveUrl);
-          await addGfontsAssetLibrary(instance.engine);
+          await addGoogleFontsAssetLibrary(instance.engine);
           // Zoom auto-fit to page
           instance.actions.run('zoom.toPage', {
             autoFit: true

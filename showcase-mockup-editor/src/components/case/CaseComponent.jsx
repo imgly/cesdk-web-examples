@@ -263,9 +263,9 @@ const CaseComponent = () => {
           .getDockOrder()
           .filter(({ key }) => key !== 'ly.img.templates')
       ]);
+      // Hide 'Resize' button on the navigation bar
       instance.feature.enable('ly.img.page.resize', false);
       instance.feature.enable('ly.img.options', false);
-      instance.ui.removeOrderComponent({ in: 'ly.img.navigation.bar', match: 'ly.img.documentSettings.navigationBar' });
       await instance.loadFromURL(
         `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/mockup-editor/${productConfig.scenePath}`
       );

@@ -1,0 +1,5 @@
+.env
+.env.local
+dist/
+node_modules/
+tsconfig.local.json

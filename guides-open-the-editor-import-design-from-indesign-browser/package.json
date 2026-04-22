@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@cesdk/cesdk-js": "latest",
-    "@imgly/idml-importer": "latest"
+    "@imgly/idml-importer": "1.2.2"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

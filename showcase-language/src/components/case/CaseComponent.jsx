@@ -12,7 +12,6 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
-  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -21,6 +20,7 @@ import {
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './lib/design-editor/plugin';
+import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 
 const config = {
   role: 'Creator',
@@ -73,7 +73,6 @@ const CaseComponent = () => {
         include: ['ly.img.image.upload']
       })
     );
-    await instance.addPlugin(new PremiumTemplatesAssetSource());
     // Add demo asset sources
     await instance.addPlugin(
       new DemoAssetSources({
@@ -81,6 +80,7 @@ const CaseComponent = () => {
       })
     );
 
+    await addPremiumTemplatesAssetSource(instance);
 
     // create a new design scene in the editor
     await instance.actions.run('scene.create');

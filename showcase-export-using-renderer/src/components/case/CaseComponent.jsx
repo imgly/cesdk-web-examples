@@ -100,9 +100,6 @@ async function exportUsingRenderer(archiveBlob, cesdk, notificationId) {
 const CaseComponent = () => {
   const config = useConfig(
     () => ({
-      featureFlags: {
-        useLegacySceneModeChecks: true
-      },
       role: 'Creator',
       theme: 'light',
       license: process.env.NEXT_PUBLIC_LICENSE

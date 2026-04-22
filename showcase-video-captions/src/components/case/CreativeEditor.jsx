@@ -30,8 +30,7 @@ const CreativeEditor = ({ option, closeEditor }) => {
   useEffect(() => {
     const config = {
       featureFlags: {
-        archiveSceneEnabled: true,
-        useLegacySceneModeChecks: true
+        archiveSceneEnabled: true
       },
       role: 'Creator',
       theme: 'light',

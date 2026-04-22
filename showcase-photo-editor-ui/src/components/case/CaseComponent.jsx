@@ -18,7 +18,7 @@ import {
 
 import { initPhotoEditorUIConfig } from './PhotoEditorUIConfig';
 import CreativeEditor, { useConfig, useConfigure } from './lib/CreativeEditor';
-import { PhotoEditorConfig } from './lib/photo-editor/plugin';
+import { DesignEditorConfig } from './lib/design-editor/plugin';
 
 const CaseComponent = () => {
   const config = useConfig(
@@ -80,8 +80,8 @@ const CaseComponent = () => {
     []
   );
   const configure = useConfigure(async (instance) => {
-    // Add the photo editor configuration plugin first
-    await instance.addPlugin(new PhotoEditorConfig());
+    // Add the design editor configuration plugin first
+    await instance.addPlugin(new DesignEditorConfig());
 
     instance.i18n.setTranslations({
       en: {

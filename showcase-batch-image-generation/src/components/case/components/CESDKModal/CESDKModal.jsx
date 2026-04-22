@@ -6,7 +6,6 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
-  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -19,7 +18,7 @@ import { DesignEditorConfig } from '../../lib/design-editor/plugin';
 
 import { useEffect, useRef } from 'react';
 import classes from './CESDKModal.module.css';
-
+import { addPremiumTemplatesAssetSource } from '../../lib/PremiumTemplateUtilities';
 
 const useOnClickOutside = (ref, callback) => {
   const handleClick = (e) => {
@@ -64,7 +63,6 @@ const CESDKModal = ({ config, configure, onOutsideClick }) => {
             })
           );
 
-          await cesdk.addPlugin(new PremiumTemplatesAssetSource());
           // Demo assets (replaces addDemoAssetSources)
           await cesdk.addPlugin(
             new DemoAssetSources({
@@ -72,6 +70,7 @@ const CESDKModal = ({ config, configure, onOutsideClick }) => {
             })
           );
 
+          await addPremiumTemplatesAssetSource(cesdk);
 
           if (configure) {
             await configure(cesdk);

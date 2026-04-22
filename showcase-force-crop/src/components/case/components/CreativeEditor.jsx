@@ -13,7 +13,7 @@ import {
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { PhotoEditorConfig } from '../lib/photo-editor/plugin';
+import { DesignEditorConfig } from '../lib/design-editor/plugin';
 
 import { useEffect, useRef } from 'react';
 import classes from './CreativeEditor.module.css';
@@ -40,8 +40,8 @@ const CreativeEditor = ({ preset, cropMode, image, closeEditor }) => {
           }
           _cesdk = instance;
 
-          // Add the photo editor configuration plugin first
-          await instance.addPlugin(new PhotoEditorConfig());
+          // Add the design editor configuration plugin first
+          await instance.addPlugin(new DesignEditorConfig());
 
           // Asset Source Plugins (replaces addDefaultAssetSources)
           await instance.addPlugin(new ColorPaletteAssetSource());
@@ -316,8 +316,8 @@ async function setupPhotoEditingScene(instance, image) {
   // Disable placeholder and preview features
   instance.feature.enable('ly.img.placeholder', false);
   instance.feature.enable('ly.img.preview', false);
+  // Hide 'Resize' button on the navigation bar
   instance.feature.enable('ly.img.page.resize', false);
-  instance.ui.removeOrderComponent({ in: 'ly.img.navigation.bar', match: 'ly.img.documentSettings.navigationBar' });
   const scene = engine.scene.create('Free');
   engine.scene.setDesignUnit('Pixel');
   const page = engine.block.create('page');

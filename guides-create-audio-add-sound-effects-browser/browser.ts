@@ -246,10 +246,11 @@ class Example implements EditorPlugin {
 
     // Create a video scene (audio blocks require timeline support)
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
+      layout: 'DepthStack',
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
     });
 

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Premium Templates Editor - CE.SDK Solution</title>
+    <script>
+      if (
+        new URLSearchParams(window.location.search).get('demoPreview') === 'true'
+      ) {
+        document.documentElement.classList.add('demo-preview');
+      }
+    </script>
+    <style>
+      html.demo-preview,
+      html.demo-preview body,
+      html.demo-preview #root {
+        background: transparent;
+        background-color: transparent;
+      }
+    </style>
+    <style>
+      html,
+      body {
+        background: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="src/index.tsx"></script>
+  </body>
+</html>

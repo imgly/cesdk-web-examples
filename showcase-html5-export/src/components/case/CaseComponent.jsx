@@ -84,7 +84,7 @@ const Html5ExportCESDK = () => {
           (item) =>
             item.key !== 'ly.img.video' &&
             item.key !== 'ly.img.audio' &&
-            item.key !== 'ly.img.templates'
+            item.key !== 'ly.img.template'
         )
         .map((item) => {
           if (item.key === 'ly.img.elements' && Array.isArray(item.entries)) {
@@ -94,7 +94,7 @@ const Html5ExportCESDK = () => {
                 (entry) =>
                   entry !== 'ly.img.video' &&
                   entry !== 'ly.img.audio' &&
-                  entry !== 'ly.img.templates'
+                  entry !== 'ly.img.template'
               )
             };
           }

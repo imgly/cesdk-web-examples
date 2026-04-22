@@ -23,8 +23,7 @@ const videoMode = {
   cesdkConfig: {
     featureFlags: {
       archiveSceneEnabled: true,
-      dangerouslyDisableVideoSupportCheck: false,
-      useLegacySceneModeChecks: true
+      dangerouslyDisableVideoSupportCheck: false
     },
     callbacks: {
       onUpload: 'local',
@@ -93,7 +92,7 @@ const videoMode = {
     instance.feature.enable('ly.img.preview', false);
     instance.feature.enable('ly.img.placeholder', false);
 
-    await instance.loadFromArchiveURL(
+    await instance.engine.scene.loadFromArchiveURL(
       `${process.env.NEXT_PUBLIC_URL_HOSTNAME}${process.env.NEXT_PUBLIC_URL}/cases/ai-editor/ai_editor_video.archive`
     );
 

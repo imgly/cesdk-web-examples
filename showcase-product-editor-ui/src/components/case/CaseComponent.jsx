@@ -95,17 +95,16 @@ const CaseComponent = () => {
       instance.feature.enable('ly.img.placeholder', false);
       instance.feature.enable('ly.img.preview', false);
 
-      instance.feature.disable('ly.img.page');
-      instance.feature.disable('ly.img.options',);
-      instance.feature.disable('ly.img.settings');
-      instance.ui.removeOrderComponent({ in: 'ly.img.navigation.bar', match: 'ly.img.documentSettings.navigationBar' });
+      // Hide 'Resize' button on the navigation bar
+      instance.feature.enable('ly.img.page.resize', false);
+      instance.feature.enable('ly.img.options', false);
+      instance.feature.enable('ly.img.settings', false);
       instance.ui.setDockOrder([
         ...instance.ui
           .getDockOrder()
           .filter(({ key }) => !['ly.img.templates'].includes(key))
       ]);
       instance.engine.editor.setSetting('page/title/show', false);
-      instance.engine.editor.setSetting('page/selectWhenNoBlocksSelected', false);
 
       // Create initial scene with the first product
       // Note: We don't call switchProductView here because the product update
