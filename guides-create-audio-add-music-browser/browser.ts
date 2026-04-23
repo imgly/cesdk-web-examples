@@ -84,7 +84,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
+      layout: 'DepthStack',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 
@@ -99,8 +99,8 @@ class Example implements EditorPlugin {
 
     // Enable audio and timeline features for the UI
     cesdk.feature.enable('ly.img.video.timeline');
-    cesdk.feature.enable('ly.img.video.audio');
-    cesdk.feature.enable('ly.img.video.controls.playback');
+    cesdk.feature.enable('ly.img.video.timeline.audio');
+    cesdk.feature.enable('ly.img.video.timeline.controls.playback');
 
     // Create an audio block for background music
     const audioBlock = engine.block.create('audio');

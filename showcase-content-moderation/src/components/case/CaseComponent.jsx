@@ -8,7 +8,6 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
-  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -25,6 +24,7 @@ import CreativeEditor, {
   useCreativeEditor
 } from './lib/CreativeEditor';
 import { DesignEditorConfig } from './lib/design-editor/plugin';
+import { addPremiumTemplatesAssetSource } from './lib/PremiumTemplateUtilities';
 import RefreshIcon from './refresh.svg';
 import { checkImageContent, selectAllBlocks } from './restrictionsUtility';
 
@@ -88,7 +88,6 @@ const ImageComplianceCESDK = () => {
       })
     );
 
-    await instance.addPlugin(new PremiumTemplatesAssetSource());
     // Demo assets (replaces addDemoAssetSources)
     await instance.addPlugin(
       new DemoAssetSources({
@@ -96,6 +95,7 @@ const ImageComplianceCESDK = () => {
       })
     );
 
+    await addPremiumTemplatesAssetSource(instance);
     // Disable placeholder and preview features
     instance.feature.enable('ly.img.placeholder', false);
     instance.feature.enable('ly.img.preview', false);

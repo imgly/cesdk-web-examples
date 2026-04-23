@@ -3,7 +3,7 @@ import {
   IDMLParser,
   LogMessage,
   Logger,
-  addGfontsAssetLibrary
+  addGoogleFontsAssetLibrary
 } from '@imgly/idml-importer';
 import {
   createContext,
@@ -89,7 +89,7 @@ const FileProcessingContextProvider = ({
         license: process.env.NEXT_PUBLIC_LICENSE
       });
       setStatus('processing');
-      await addGfontsAssetLibrary(engine);
+      await addGoogleFontsAssetLibrary(engine);
       const parser = await IDMLParser.fromFile(
         engine as any,
         blob,

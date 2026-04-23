@@ -1,8 +1,7 @@
 /**
- * Dock Configuration - Asset Panel
+ * Dock Configuration - Left Side Asset Panel
  *
  * Configure the asset dock to control which asset libraries appear.
- * The dock can be positioned at `'left'`, `'right'`, or `'bottom'` using the `at` option.
  *
  * ## `'ly.img.assetLibrary.dock'`
  *

@@ -26,9 +26,6 @@ const CaseComponent = () => {
 
   const config = useConfig(
     () => ({
-      featureFlags: {
-        useLegacySceneModeChecks: true
-      },
       role: 'Creator',
       theme: 'light',
       callbacks: {
