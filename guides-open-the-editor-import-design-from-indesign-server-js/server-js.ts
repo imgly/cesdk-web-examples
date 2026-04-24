@@ -1,6 +1,6 @@
 import CreativeEngine from '@cesdk/node';
 import type { TypefaceResolver } from '@imgly/idml-importer';
-import { IDMLParser, addGoogleFontsAssetLibrary } from '@imgly/idml-importer';
+import { IDMLParser, addGfontsAssetLibrary } from '@imgly/idml-importer';
 import { JSDOM } from 'jsdom';
 import { config } from 'dotenv';
 import { promises as fs } from 'fs';
@@ -74,7 +74,7 @@ async function convertIdml(
 
   // Parse the IDML file using JSDOM for XML parsing
   // Server-side import requires JSDOM since DOMParser is browser-only
-  // The addGoogleFontsAssetLibrary() call enables automatic font matching
+  // The addGfontsAssetLibrary() call enables automatic font matching
   // For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const parser = await IDMLParser.fromFile(
@@ -158,7 +158,7 @@ async function batchConvertIdmls(
   try {
     // Configure Google Fonts for text element support
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await addGoogleFontsAssetLibrary(engine as any);
+    await addGfontsAssetLibrary(engine as any);
 
     let successCount = 0;
     let failCount = 0;
@@ -263,7 +263,7 @@ async function main(): Promise<void> {
 
   try {
     // Configure Google Fonts for text element support
-    await addGoogleFontsAssetLibrary(engine as any);
+    await addGfontsAssetLibrary(engine as any);
 
     // Create a sample scene to demonstrate the export format
     // In production, this would be replaced by actual IDML conversion

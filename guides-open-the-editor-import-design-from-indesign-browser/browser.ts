@@ -22,7 +22,7 @@ import type {
   AssetsQueryResult
 } from '@cesdk/engine';
 import type { TypefaceResolver } from '@imgly/idml-importer';
-import { IDMLParser, addGoogleFontsAssetLibrary } from '@imgly/idml-importer';
+import { IDMLParser, addGfontsAssetLibrary } from '@imgly/idml-importer';
 import packageJson from './package.json';
 
 /**
@@ -128,7 +128,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     // Register Google Fonts before parsing IDML files for best font matching
-    await addGoogleFontsAssetLibrary(engine);
+    await addGfontsAssetLibrary(engine);
 
     // Optional: Create a custom font resolver for advanced font mapping
     // Use this when you need to map InDesign fonts to specific alternatives,
@@ -202,7 +202,7 @@ class Example implements EditorPlugin {
       }
 
       // Parse the IDML file using the IDML importer
-      // The addGoogleFontsAssetLibrary() call above enables automatic font matching
+      // The addGfontsAssetLibrary() call above enables automatic font matching
       // For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
       const parser = await IDMLParser.fromFile(
         engine,

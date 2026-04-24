@@ -148,9 +148,6 @@ class Example implements EditorPlugin {
     const pagesByType = engine.block.findByType('page');
     console.log('Pages found by type:', pagesByType);
 
-    // Check the scene mode (Design vs Video)
-    const sceneMode = engine.scene.getMode();
-    console.log('Scene mode:', sceneMode);
 
     // Select the first page and zoom to fit
     engine.block.select(firstPage);

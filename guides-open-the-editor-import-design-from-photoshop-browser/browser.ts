@@ -24,7 +24,7 @@ import type {
 import type { TypefaceResolver } from '@imgly/psd-importer';
 import {
   PSDParser,
-  addGoogleFontsAssetLibrary,
+  addGfontsAssetLibrary,
   createWebEncodeBufferToPNG
 } from '@imgly/psd-importer';
 import packageJson from './package.json';
@@ -131,7 +131,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     // Register Google Fonts before parsing PSD files for best font matching
-    await addGoogleFontsAssetLibrary(engine);
+    await addGfontsAssetLibrary(engine);
 
     // Optional: Create a custom font resolver for advanced font mapping
     // Use this when you need to map Photoshop fonts to specific alternatives,
@@ -205,7 +205,7 @@ class Example implements EditorPlugin {
       }
 
       // Parse the PSD file using the PSD importer
-      // The addGoogleFontsAssetLibrary() call above enables automatic font matching
+      // The addGfontsAssetLibrary() call above enables automatic font matching
       // For custom font mapping, pass fontResolver in options (see customFontResolver example)
       const parser = await PSDParser.fromFile(
         engine,

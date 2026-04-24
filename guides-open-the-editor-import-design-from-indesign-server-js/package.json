@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@cesdk/node": "latest",
-    "@imgly/idml-importer": "latest",
+    "@imgly/idml-importer": "1.4.0",
     "dotenv": "^16.0.0",
     "jsdom": "^24.0.0"
   },

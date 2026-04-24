@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@cesdk/cesdk-js": "latest",
-    "@imgly/psd-importer": "^0.1.0"
+    "@imgly/psd-importer": "^0.2.1"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
