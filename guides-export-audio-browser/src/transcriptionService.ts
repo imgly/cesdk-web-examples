@@ -90,7 +90,7 @@ export async function transcribeAudio(audioBlob: Blob, options: any = {}) {
 
 // Mock transcription service that returns sample SRT content
 // Returns different transcriptions based on the audio source name
-function mockTranscriptionService(audioBlob, sourceName) {
+function mockTranscriptionService(audioBlob: Blob, sourceName?: string) {
   console.log(
     `Mock transcribing audio blob of size: ${audioBlob.size} bytes from source: "${sourceName}"`
   );
@@ -145,7 +145,7 @@ function mockTranscriptionService(audioBlob, sourceName) {
 }
 
 // Real AssemblyAI integration example
-async function transcribeWithAssemblyAI(audioBlob, apiKey) {
+async function transcribeWithAssemblyAI(audioBlob: Blob, apiKey: string) {
   // Step 1: Upload audio to AssemblyAI
   const uploadResponse = await fetch('https://api.assemblyai.com/v2/upload', {
     method: 'POST',
@@ -190,7 +190,7 @@ async function transcribeWithAssemblyAI(audioBlob, apiKey) {
   return pollTranscriptionStatus(transcript.id, apiKey);
 }
 
-async function pollTranscriptionStatus(transcriptId, apiKey) {
+async function pollTranscriptionStatus(transcriptId: string, apiKey: string) {
   const statusUrl = `https://api.assemblyai.com/v2/transcript/${transcriptId}`;
 
   while (true) {
@@ -229,7 +229,7 @@ async function pollTranscriptionStatus(transcriptId, apiKey) {
   }
 }
 
-export function validateSRTFormat(srtContent) {
+export function validateSRTFormat(srtContent: string) {
   const lines = srtContent.trim().split('\n');
   const timestampRegex =
     /^\d{2}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}$/;

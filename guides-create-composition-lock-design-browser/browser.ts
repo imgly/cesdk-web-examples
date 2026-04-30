@@ -32,7 +32,9 @@ class LockDesign implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [

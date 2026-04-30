@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 
 // Conditionally import local dev plugin when CESDK_USE_LOCAL is set
 export default defineConfig(async () => {
-  const plugins = [];
+  const plugins: any[] = [];
 
   if (process.env.CESDK_USE_LOCAL) {
     try {

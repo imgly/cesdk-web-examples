@@ -33,7 +33,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -114,7 +116,7 @@ class Example implements EditorPlugin {
     const videoUrl =
       'https://img.ly/static/ubq_samples/videos/pexels-drone-footage-of-a-surfer-by-ben-chewar-5368886_360p.mp4';
 
-    // Create a scene configured for video mode
+    // Create a scene from an existing video
     // await engine.scene.createFromVideo(videoUrl);
 
     // The scene is set up with timeline controls for video editing

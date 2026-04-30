@@ -8,7 +8,7 @@
     "dev:local": "vite --config vite.local.config.ts",
     "build": "tsc && vite build",
     "build:local": "CESDK_USE_LOCAL=true vite build",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:lint": "eslint . --ext .ts",
     "capture:hero_image": "node scripts/capture-hero.mjs",
     "postinstall": "npm run tsconfig:local || true",

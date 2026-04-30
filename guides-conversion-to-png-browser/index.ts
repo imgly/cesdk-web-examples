@@ -7,7 +7,7 @@ CreativeEditorSDK.create(container, {
   // license: (import.meta as any).env?.VITE_CESDK_LICENSE,
   // Use local assets when developing with local packages
   ...(import.meta.env.CESDK_USE_LOCAL && {
-    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL,
+    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
   })
 }).then(async (cesdk) => {
   // Expose for hero image capture

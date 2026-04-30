@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite';
 
 // Conditionally import local dev plugin when CESDK_USE_LOCAL is set
 export default defineConfig(async () => {
@@ -6,9 +6,8 @@ export default defineConfig(async () => {
 
   if (process.env.CESDK_USE_LOCAL) {
     try {
-      const { cesdkLocal } = await import(
-        "../shared/vite-config-cesdk-local.js"
-      );
+      const { cesdkLocal } =
+        await import('../shared/vite-config-cesdk-local.js');
       plugins.push(cesdkLocal());
     } catch {
       // Silently fail in standalone repos where shared folder doesn't exist
@@ -19,11 +18,11 @@ export default defineConfig(async () => {
     plugins,
     build: {
       ssr: true,
-      target: "node18",
+      target: 'node18',
       rollupOptions: {
-        input: "server-js.ts",
-        external: ["@cesdk/node"],
-      },
-    },
+        input: 'server-js.ts',
+        external: ['@cesdk/node']
+      }
+    }
   };
 });

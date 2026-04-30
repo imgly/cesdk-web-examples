@@ -1,21 +1,6 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import {
-  BlurAssetSource,
-  CaptionPresetsAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
+import { CaptionPresetsAssetSource } from '@cesdk/cesdk-js/plugins';
 import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
@@ -39,6 +24,9 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+
+    await cesdk.addPlugin(new VideoEditorConfig());
+    await cesdk.addPlugin(new CaptionPresetsAssetSource());
 
     // Load a video template scene for demonstration
     await cesdk.loadFromURL(
@@ -271,7 +259,9 @@ class Example implements EditorPlugin {
     ]);
 
     // eslint-disable-next-line no-console
-    console.log('Compression guide initialized. Use the dropdown menu to export in different formats.');
+    console.log(
+      'Compression guide initialized. Use the dropdown menu to export in different formats.'
+    );
   }
 }
 

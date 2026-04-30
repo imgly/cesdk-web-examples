@@ -19,7 +19,7 @@ const engine = await CreativeEngine.init({});
 
 try {
   // Create a scene with a page for audio content
-  engine.scene.create();
+  engine.scene.create('DepthStack');
   const page = engine.block.create('page');
   engine.block.setWidth(page, 1920);
   engine.block.setHeight(page, 1080);
@@ -69,7 +69,8 @@ try {
 
   // Load and configure the second audio
   await engine.block.forceLoadAVResource(secondAudioBlock);
-  const secondDuration = engine.block.getAVResourceTotalDuration(secondAudioBlock);
+  const secondDuration =
+    engine.block.getAVResourceTotalDuration(secondAudioBlock);
 
   // Start second audio after the first one ends, at lower volume
   engine.block.setTimeOffset(secondAudioBlock, playbackDuration);
