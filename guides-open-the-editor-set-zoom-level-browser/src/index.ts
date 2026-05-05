@@ -12,7 +12,7 @@ const config = {
 };
 
 CreativeEditorSDK.create('#cesdk_container', config)
-  .then(async cesdk => {
+  .then(async (cesdk) => {
     // CRITICAL: Expose cesdk to window for hero screenshot generation
     // The scripts/capture-hero.mjs script relies on window.cesdk to set themes
     (window as any).cesdk = cesdk;
@@ -20,6 +20,6 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // Instantiate and load the example plugin
     await cesdk.addPlugin(new Example());
   })
-  .catch(error => {
+  .catch((error) => {
     console.error('Failed to initialize CE.SDK:', error);
   });

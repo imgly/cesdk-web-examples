@@ -54,7 +54,10 @@ try {
   engine.block.setPositionY(textLineHeight, 150);
   engine.block.setWidth(textLineHeight, 700);
   engine.block.setHeightMode(textLineHeight, "Auto");
-  engine.block.replaceText(textLineHeight, "Design your ideas\nBring them to life");
+  engine.block.replaceText(
+    textLineHeight,
+    "Design your ideas\nBring them to life",
+  );
   engine.block.setTextFontSize(textLineHeight, 48);
 
   // Set line height - controls vertical distance between lines

@@ -1,20 +1,5 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import {
-  BlurAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
@@ -38,6 +23,7 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
+    await cesdk.addPlugin(new DesignEditorConfig());
     const engine = cesdk.engine;
 
     // Create a scene with VerticalStack layout for multi-page designs
@@ -147,10 +133,6 @@ class Example implements EditorPlugin {
     // Alternative: Find pages using block API
     const pagesByType = engine.block.findByType('page');
     console.log('Pages found by type:', pagesByType);
-
-    // Check the scene mode (Design vs Video)
-    const sceneMode = engine.scene.getMode();
-    console.log('Scene mode:', sceneMode);
 
     // Select the first page and zoom to fit
     engine.block.select(firstPage);

@@ -167,7 +167,9 @@ async function main(): Promise<void> {
     const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
     writeFileSync(archivePath, archiveBuffer);
     console.log(`Saved archive to: ${archivePath}`);
-    console.log('Extract this archive to create the data/customTitle/ directory');
+    console.log(
+      'Extract this archive to create the data/customTitle/ directory'
+    );
 
     // Save the thumbnail
     const thumbnailPath = `${thumbnailsDir}/customTitle.png`;
@@ -239,7 +241,9 @@ async function main(): Promise<void> {
 
     // Save the promo component as an archive
     const promoArchiveBlob = await engine.block.saveToArchive([promoComponent]);
-    const promoArchiveBuffer = Buffer.from(await promoArchiveBlob.arrayBuffer());
+    const promoArchiveBuffer = Buffer.from(
+      await promoArchiveBlob.arrayBuffer()
+    );
     writeFileSync(`${dataDir}/promo.zip`, promoArchiveBuffer);
     console.log(`Saved promo archive to: ${dataDir}/promo.zip`);
 
@@ -249,7 +253,9 @@ async function main(): Promise<void> {
       targetWidth: 400,
       targetHeight: 320
     });
-    const promoThumbnailBuffer = Buffer.from(await promoThumbnail.arrayBuffer());
+    const promoThumbnailBuffer = Buffer.from(
+      await promoThumbnail.arrayBuffer()
+    );
     writeFileSync(`${thumbnailsDir}/promo.png`, promoThumbnailBuffer);
     console.log(`Saved promo thumbnail to: ${thumbnailsDir}/promo.png`);
 

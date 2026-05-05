@@ -129,7 +129,11 @@ try {
     externalReference: ''
   };
   const { fill: lightTintFill } = createColorBlock(560, 50, 150, 150);
-  engine.block.setColor(lightTintFill, 'fill/color/value', brandAccentLightTint);
+  engine.block.setColor(
+    lightTintFill,
+    'fill/color/value',
+    brandAccentLightTint
+  );
 
   // Apply spot colors to strokes and shadows
   const { block: strokeBlock, fill: strokeBlockFill } = createColorBlock(

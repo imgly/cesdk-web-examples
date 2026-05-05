@@ -44,7 +44,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -132,17 +134,20 @@ class Example implements EditorPlugin {
     });
 
     // Register middleware to apply formats to existing pages instead of creating new ones
-    engine.asset.registerApplyMiddleware(async (sourceId, asset) => {
-      if (sourceId === 'my-custom-formats') {
-        const pages = engine.block.findByType('page');
-        if (pages.length > 0) {
-          await engine.asset.applyToBlock(sourceId, asset, pages[0]);
-          await engine.scene.zoomToBlock(pages[0]);
+    engine.asset.registerApplyMiddleware(
+      async (sourceId, assetResult, apply, context) => {
+        if (sourceId === 'my-custom-formats') {
+          const pages = engine.block.findByType('page');
+          if (pages.length > 0) {
+            await engine.asset.applyToBlock(sourceId, assetResult, pages[0]);
+            await engine.scene.zoomToBlock(pages[0]);
+            return pages[0];
+          }
+          return undefined;
         }
-        return true;
+        return apply(sourceId, assetResult, context);
       }
-      return false;
-    });
+    );
 
     await cesdk.actions.run('scene.create', {
       page: {

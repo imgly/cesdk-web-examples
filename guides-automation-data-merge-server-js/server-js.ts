@@ -73,7 +73,11 @@ try {
     const photoBlock = engine.block.create('graphic');
     engine.block.setShape(photoBlock, engine.block.createShape('rect'));
     const photoFill = engine.block.createFill('image');
-    engine.block.setString(photoFill, 'fill/image/imageFileURI', record.photoUrl);
+    engine.block.setString(
+      photoFill,
+      'fill/image/imageFileURI',
+      record.photoUrl
+    );
     engine.block.setFill(photoBlock, photoFill);
     engine.block.setWidth(photoBlock, 150);
     engine.block.setHeight(photoBlock, 150);
@@ -119,7 +123,9 @@ try {
   }
 
   // eslint-disable-next-line no-console
-  console.log(`\n✓ Batch complete: ${outputs.length} designs exported to ${outputDir}/`);
+  console.log(
+    `\n✓ Batch complete: ${outputs.length} designs exported to ${outputDir}/`
+  );
 } finally {
   // Always dispose the engine to free resources
   engine.dispose();

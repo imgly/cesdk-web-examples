@@ -127,7 +127,11 @@ async function main() {
     engine.block.setHeight(dataUriBlock, 150);
 
     const dataUriFill = engine.block.createFill('image');
-    engine.block.setString(dataUriFill, 'fill/image/imageFileURI', imageDataUri);
+    engine.block.setString(
+      dataUriFill,
+      'fill/image/imageFileURI',
+      imageDataUri
+    );
     engine.block.setFill(dataUriBlock, dataUriFill);
     engine.block.appendChild(page, dataUriBlock);
 

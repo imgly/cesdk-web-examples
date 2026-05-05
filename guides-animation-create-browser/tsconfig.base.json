@@ -15,6 +15,6 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["index.ts", "browser.ts"],
+  "include": ["index.ts", "browser.ts", "utils.ts"],
   "exclude": ["*.mjs", "vite.config.ts", "node_modules", "dist"]
 }

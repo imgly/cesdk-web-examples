@@ -42,7 +42,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -99,9 +101,9 @@ class Example implements EditorPlugin {
     });
 
     // Extend default predicate with additional condition
-    cesdk.feature.set('ly.img.delete', ({ defaultPredicate }) => {
-      // Only allow delete in design mode
-      return defaultPredicate() && engine.scene.getMode() === 'Design';
+    cesdk.feature.set('ly.img.delete', ({ defaultPredicate, engine }) => {
+      // Only allow delete when a block is selected
+      return defaultPredicate() && engine.block.findAllSelected().length > 0;
     });
 
     // Chain multiple predicates using isPreviousEnable
