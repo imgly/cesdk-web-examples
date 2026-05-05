@@ -36,7 +36,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -109,7 +111,7 @@ class Example implements EditorPlugin {
               model: 'claude-sonnet-4-5-20250929',
               properties: {
                 temperature: { default: 0.7 },
-                max_tokens: { default: 500 }
+                maxTokens: { default: 500 }
               }
             }) as any,
             OpenAI.OpenAIProvider({
@@ -117,7 +119,7 @@ class Example implements EditorPlugin {
               model: 'gpt-4.1-nano-2025-04-14',
               properties: {
                 temperature: { default: 0.7 },
-                max_tokens: { default: 500 }
+                maxTokens: { default: 500 }
               }
             }) as any
           ]
@@ -162,7 +164,7 @@ class Example implements EditorPlugin {
               model: 'claude-sonnet-4-5-20250929',
               properties: {
                 temperature: { default: 0.7 },
-                max_tokens: { default: 500 }
+                maxTokens: { default: 500 }
               }
             }) as any
           ]

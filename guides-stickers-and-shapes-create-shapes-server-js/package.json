@@ -5,9 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server-js.ts",
+    "dev:local": "CESDK_USE_LOCAL=true tsx server-js.ts",
     "prebuild": "npm run check:all",
     "build": "tsc --noEmit",
-    "check:syntax": "tsc --noEmit",
+    "build:local": "CESDK_USE_LOCAL=true tsc --noEmit",
+    "postinstall": "npm run tsconfig:local || true",
+    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json}\"",
     "check:lint": "eslint \"**/*.{ts,js}\"",
     "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
@@ -19,10 +23,12 @@
     "test:component": "exit 0",
     "test:e2e": "exit 0",
     "test:all": "npm run test:unit && npm run test:integration && npm run test:component && npm run test:e2e",
-    "qa": "npm run build && npm run test:all"
+    "qa": "npm run build && npm run test:all",
+    "qa:local": "npm run build:local && npm run test:all",
+    "ci": "npm run check:all && npm run qa:local"
   },
   "dependencies": {
-    "@cesdk/node": "next",
+    "@cesdk/node": "latest",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {

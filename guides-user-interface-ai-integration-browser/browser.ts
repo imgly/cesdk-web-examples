@@ -121,10 +121,10 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
 
     // Configure AI Apps dock position
@@ -261,35 +261,35 @@ class Example implements EditorPlugin {
 
     // Control AI features with Feature API
     // Disable specific quick actions
-    cesdk.feature.enable(
+    cesdk.feature.set(
       'ly.img.plugin-ai-image-generation-web.quickAction.editImage',
-      false
+      () => false
     );
-    cesdk.feature.enable(
+    cesdk.feature.set(
       'ly.img.plugin-ai-text-generation-web.quickAction.translate',
-      false
+      () => false
     );
 
     // Control input types for image/video generation
-    cesdk.feature.enable(
+    cesdk.feature.set(
       'ly.img.plugin-ai-image-generation-web.fromText',
-      true
+      () => true
     );
-    cesdk.feature.enable(
+    cesdk.feature.set(
       'ly.img.plugin-ai-image-generation-web.fromImage',
-      false
+      () => false
     );
 
     // Hide provider selection dropdowns
-    cesdk.feature.enable(
+    cesdk.feature.set(
       'ly.img.plugin-ai-image-generation-web.providerSelect',
-      false
+      () => false
     );
 
     // Control style groups for specific providers
-    cesdk.feature.enable(
+    cesdk.feature.set(
       'ly.img.plugin-ai-image-generation-web.fal-ai/recraft-v3.style.vector',
-      false
+      () => false
     );
 
     console.log('AI integration guide initialized.');

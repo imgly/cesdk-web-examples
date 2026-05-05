@@ -16,7 +16,7 @@ import {
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './design-editor/plugin';
-import type CreativeEngine from '@cesdk/cesdk-js/node_modules/@cesdk/engine';
+import type CreativeEngine from '@cesdk/engine';
 import packageJson from './package.json';
 
 class CustomFontsExample implements EditorPlugin {
@@ -33,7 +33,9 @@ class CustomFontsExample implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [

@@ -11,7 +11,7 @@ const corsHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  assetPrefix: baseURL,
+  ...(baseURL ? { assetPrefix: baseURL } : {}),
   async headers() {
     return [
       {

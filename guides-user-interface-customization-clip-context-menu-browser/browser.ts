@@ -80,7 +80,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    await cesdk.actions.run('scene.create', { mode: 'Video' });
+    await cesdk.actions.run('scene.create');
 
     // Retrieve the default clip menu order for background clips
     const clipOrder = cesdk.ui.getComponentOrder({

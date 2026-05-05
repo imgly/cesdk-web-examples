@@ -32,7 +32,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -52,7 +54,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TextComponentAssetSource());
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
-
 
     const engine = cesdk.engine;
 
@@ -115,39 +116,42 @@ class Example implements EditorPlugin {
     });
 
     // Add export dropdown to navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-png',
-          label: 'Export PNG',
-          icon: '@imgly/Save',
-          onClick: exportProgrammatically
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-png-action',
-          label: 'Export PNG (action)',
-          icon: '@imgly/Save',
-          onClick: triggerExportAction
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-png-compressed',
-          label: 'Export PNG (compressed)',
-          icon: '@imgly/Save',
-          onClick: exportWithCompression
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-png-hd',
-          label: 'Export PNG (HD)',
-          icon: '@imgly/Save',
-          onClick: exportWithDimensions
-        }
-      ]
-    });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-png',
+            label: 'Export PNG',
+            icon: '@imgly/Save',
+            onClick: exportProgrammatically
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-png-action',
+            label: 'Export PNG (action)',
+            icon: '@imgly/Save',
+            onClick: triggerExportAction
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-png-compressed',
+            label: 'Export PNG (compressed)',
+            icon: '@imgly/Save',
+            onClick: exportWithCompression
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-png-hd',
+            label: 'Export PNG (HD)',
+            icon: '@imgly/Save',
+            onClick: exportWithDimensions
+          }
+        ]
+      }
+    );
   }
 }
 
