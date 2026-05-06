@@ -15,23 +15,23 @@
  *
  * CE.SDK provides utilities for common operations that you can use in your actions:
  *
- * - `cesdk.utils.export(options)` - Export current design to various formats
- *   - Options: mimeType, targetWidth, targetHeight, jpegQuality, pngCompressionLevel
- *   - Returns: { blobs: Blob[], options: ExportOptions }
+ * - `cesdk.utils.export(options)` - Export current design to various formats.
+ * Options: mimeType, targetWidth, targetHeight, jpegQuality, pngCompressionLevel.
+ * Returns: { blobs: Blob[], options: ExportOptions }.
  *
- * - `cesdk.utils.downloadFile(data, mimeType, filename?)` - Trigger browser file download
- *   - data: Blob, string, or ArrayBuffer
- *   - mimeType: MIME type (e.g., 'image/png', 'application/json')
- *   - filename: Optional filename (auto-generated if not provided)
+ * - `cesdk.utils.downloadFile(data, mimeType, filename?)` - Trigger browser file download.
+ * data: Blob, string, or ArrayBuffer.
+ * mimeType: MIME type (e.g., 'image/png', 'application/json').
+ * filename: Optional filename (auto-generated if not provided).
  *
- * - `cesdk.utils.loadFile(options)` - Open browser file picker
- *   - Options: accept (file extensions), returnType ('text', 'arrayBuffer', 'objectURL')
- *   - Returns: Promise<string | ArrayBuffer | string> based on returnType
+ * - `cesdk.utils.loadFile(options)` - Open browser file picker.
+ * Options: accept (file extensions), returnType ('text', 'arrayBuffer', 'objectURL').
+ * Returns: Promise<string | ArrayBuffer | string> based on returnType.
  *
- * - `cesdk.utils.localUpload(file, context)` - Create local blob URL for uploads
- *   - file: File object from input or drag-drop
- *   - context: Upload context ('image', 'video', 'audio', etc.)
- *   - Returns: Promise<string> - Blob URL that can be used with engine
+ * - `cesdk.utils.localUpload(file, context)` - Create local blob URL for uploads.
+ * file: File object from input or drag-drop.
+ * context: Upload context ('image', 'video', 'audio', etc.).
+ * Returns: Promise<string> - Blob URL that can be used with engine.
  *
  * @see https://img.ly/docs/cesdk/js/actions-6ch24x
  * @see https://img.ly/docs/cesdk/js/export/
@@ -129,7 +129,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // #region Upload File Action
   // Handle local file uploads by creating blob URLs
   // This integrates with CE.SDK's upload asset sources
-  cesdk.actions.register('uploadFile', (file, onProgress, context) => {
+  cesdk.actions.register('uploadFile', (file, _onProgress, context) => {
     return cesdk.utils.localUpload(file, context);
   });
   // #endregion

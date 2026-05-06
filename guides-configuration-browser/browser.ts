@@ -1,20 +1,5 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import {
-  BlurAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
@@ -26,6 +11,8 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+
+    await cesdk.addPlugin(new DesignEditorConfig());
     const engine = cesdk.engine;
 
     // Create a Scene
@@ -110,18 +97,21 @@ class Example implements EditorPlugin {
     // Built-in Actions
     // ========================================
     // Add built-in export and import actions to the navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        'ly.img.saveScene.navigationBar',
-        'ly.img.exportImage.navigationBar',
-        'ly.img.exportPDF.navigationBar',
-        'ly.img.exportScene.navigationBar',
-        'ly.img.exportArchive.navigationBar',
-        'ly.img.importScene.navigationBar',
-        'ly.img.importArchive.navigationBar'
-      ]
-    });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          'ly.img.saveScene.navigationBar',
+          'ly.img.exportImage.navigationBar',
+          'ly.img.exportPDF.navigationBar',
+          'ly.img.exportScene.navigationBar',
+          'ly.img.exportArchive.navigationBar',
+          'ly.img.importScene.navigationBar',
+          'ly.img.importArchive.navigationBar'
+        ]
+      }
+    );
 
     // ========================================
     // Engine Settings

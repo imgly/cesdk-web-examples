@@ -46,7 +46,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -74,7 +76,6 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
     const pageWidth = engine.block.getWidth(page);
-    const pageHeight = engine.block.getHeight(page);
 
     // Document layout settings
     const margin = 40;

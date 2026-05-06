@@ -29,12 +29,12 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene - required for timeline-based editing
+  // Create a scene with a page
   const pageWidth = 1920;
   const pageHeight = 1080;
-  const scene = await engine.scene.createVideo();
+  const scene = engine.scene.create('DepthStack');
 
-  // Create a page for the video scene
+  // Create a page
   const page = engine.block.create('page');
   engine.block.appendChild(scene, page);
 
@@ -53,33 +53,58 @@ try {
   console.log('Loading video blocks...');
 
   console.log('  Loading video 1/5 (radial blur)...');
-  const radialVideo = await engine.block.addVideo(VIDEO_URL, pageWidth, pageHeight, {
-    timeline: { duration: SEGMENT_DURATION, timeOffset: 0 }
-  });
+  const radialVideo = await engine.block.addVideo(
+    VIDEO_URL,
+    pageWidth,
+    pageHeight,
+    {
+      timeline: { duration: SEGMENT_DURATION, timeOffset: 0 }
+    }
+  );
   engine.block.appendChild(track, radialVideo);
 
   console.log('  Loading video 2/5 (full-block blur)...');
-  const fullBlurVideo = await engine.block.addVideo(VIDEO_URL, pageWidth, pageHeight, {
-    timeline: { duration: SEGMENT_DURATION, timeOffset: SEGMENT_DURATION }
-  });
+  const fullBlurVideo = await engine.block.addVideo(
+    VIDEO_URL,
+    pageWidth,
+    pageHeight,
+    {
+      timeline: { duration: SEGMENT_DURATION, timeOffset: SEGMENT_DURATION }
+    }
+  );
   engine.block.appendChild(track, fullBlurVideo);
 
   console.log('  Loading video 3/5 (pixelization)...');
-  const pixelVideo = await engine.block.addVideo(VIDEO_URL, pageWidth, pageHeight, {
-    timeline: { duration: SEGMENT_DURATION, timeOffset: 2 * SEGMENT_DURATION }
-  });
+  const pixelVideo = await engine.block.addVideo(
+    VIDEO_URL,
+    pageWidth,
+    pageHeight,
+    {
+      timeline: { duration: SEGMENT_DURATION, timeOffset: 2 * SEGMENT_DURATION }
+    }
+  );
   engine.block.appendChild(track, pixelVideo);
 
   console.log('  Loading video 4/5 (solid overlay)...');
-  const overlayVideo = await engine.block.addVideo(VIDEO_URL, pageWidth, pageHeight, {
-    timeline: { duration: SEGMENT_DURATION, timeOffset: 3 * SEGMENT_DURATION }
-  });
+  const overlayVideo = await engine.block.addVideo(
+    VIDEO_URL,
+    pageWidth,
+    pageHeight,
+    {
+      timeline: { duration: SEGMENT_DURATION, timeOffset: 3 * SEGMENT_DURATION }
+    }
+  );
   engine.block.appendChild(track, overlayVideo);
 
   console.log('  Loading video 5/5 (time-based blur)...');
-  const timedVideo = await engine.block.addVideo(VIDEO_URL, pageWidth, pageHeight, {
-    timeline: { duration: SEGMENT_DURATION, timeOffset: 4 * SEGMENT_DURATION }
-  });
+  const timedVideo = await engine.block.addVideo(
+    VIDEO_URL,
+    pageWidth,
+    pageHeight,
+    {
+      timeline: { duration: SEGMENT_DURATION, timeOffset: 4 * SEGMENT_DURATION }
+    }
+  );
   engine.block.appendChild(track, timedVideo);
 
   console.log('All videos loaded.');
@@ -107,8 +132,16 @@ try {
   if (engine.block.supportsEffects(pixelVideo)) {
     // Create and apply pixelize effect
     const pixelizeEffect = engine.block.createEffect('pixelize');
-    engine.block.setInt(pixelizeEffect, 'effect/pixelize/horizontalPixelSize', 24);
-    engine.block.setInt(pixelizeEffect, 'effect/pixelize/verticalPixelSize', 24);
+    engine.block.setInt(
+      pixelizeEffect,
+      'effect/pixelize/horizontalPixelSize',
+      24
+    );
+    engine.block.setInt(
+      pixelizeEffect,
+      'effect/pixelize/verticalPixelSize',
+      24
+    );
     engine.block.appendEffect(pixelVideo, pixelizeEffect);
     engine.block.setEffectEnabled(pixelizeEffect, true);
   }

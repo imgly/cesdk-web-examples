@@ -3,7 +3,8 @@ import { defineConfig } from 'vite';
 // Conditionally import local dev plugin when CESDK_USE_LOCAL is set
 // This allows the example to work in both monorepo and standalone contexts
 export default defineConfig(async () => {
-  const plugins = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Vite's plugin type is too strict for optional local dev plugin; any[] is the pragmatic choice.
+  const plugins: any[] = [];
 
   if (process.env.CESDK_USE_LOCAL) {
     try {

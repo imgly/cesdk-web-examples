@@ -239,6 +239,12 @@ export function setupSettings(engine: CreativeEngine): void {
   // engine.editor.setSetting('features/transformEditsRetainCoverMode', true);
   // #endregion
 
+  // #region Grid Settings
+  // Uncomment to enable background grid and snap-to-grid for precise alignment
+  // engine.editor.setSettingBool('grid/enabled', true);
+  // engine.editor.setSettingBool('grid/snapEnabled', true);
+  // #endregion
+
   // ============================================================================
   // COLOR PICKER SETTINGS
   // Configure color picker behavior

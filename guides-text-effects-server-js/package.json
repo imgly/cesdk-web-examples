@@ -10,7 +10,7 @@
     "prebuild": "npm run check:all",
     "build": "tsc --noEmit",
     "build:local": "CESDK_USE_LOCAL=true vite build",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json}\"",
     "check:lint": "eslint \"**/*.{ts,js}\"",
     "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
@@ -24,7 +24,7 @@
     "test:all": "npm run test:unit && npm run test:integration && npm run test:component && npm run test:e2e",
     "qa": "npm run build && npm run test:all",
     "qa:local": "npm run build:local && npm run test:all",
-    "ci": "npm run qa:local",
+    "ci": "npm run check:all && npm run qa:local",
     "postinstall": "npm run tsconfig:local || true",
     "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs"
   },

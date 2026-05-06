@@ -83,9 +83,8 @@ function setupEventHandlers() {
 
     if (sources.length > 0) {
       document.getElementById('exportAudio').disabled = false;
-      document.getElementById(
-        'statusText'
-      ).textContent = `Found ${sources.length} audio sources`;
+      document.getElementById('statusText').textContent =
+        `Found ${sources.length} audio sources`;
     } else {
       document.getElementById('statusText').textContent =
         'No audio sources found';
@@ -149,9 +148,8 @@ function setupEventHandlers() {
         downloadAudioBlob(currentAudioBlob, 'cesdk-export.wav');
       }
     } catch (error) {
-      document.getElementById(
-        'statusText'
-      ).textContent = `Export failed: ${error.message}`;
+      document.getElementById('statusText').textContent =
+        `Export failed: ${error.message}`;
       console.error('Export error:', error);
     } finally {
       progressBar.style.display = 'none';
@@ -539,9 +537,8 @@ function displayAudioSources(sources) {
 
       // Enable export button
       document.getElementById('exportAudio').disabled = false;
-      document.getElementById(
-        'statusText'
-      ).textContent = `Selected: ${source.name}`;
+      document.getElementById('statusText').textContent =
+        `Selected: ${source.name}`;
     });
 
     // Auto-select first non-page item, or first item if page is the only source
