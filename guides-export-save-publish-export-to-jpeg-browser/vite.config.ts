@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig(async () => {
-  const plugins = [];
+  const plugins: any[] = [];
 
   if (process.env.CESDK_USE_LOCAL) {
     try {

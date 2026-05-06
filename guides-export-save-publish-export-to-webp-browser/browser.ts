@@ -40,7 +40,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -61,7 +63,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-
     const engine = cesdk.engine;
 
     // Load template and zoom to fit
@@ -74,68 +75,71 @@ class Example implements EditorPlugin {
     await engine.scene.zoomToBlock(page, { padding: 40 });
 
     // Three export buttons with different WebP settings
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'webp-lossy',
-          label: 'Lossy',
-          icon: '@imgly/Download',
-          onClick: async () => {
-            const p = engine.scene.getCurrentPage()!;
-            // Export with lossy compression
-            const blob = await engine.block.export(p, {
-              mimeType: 'image/webp',
-              webpQuality: 0.8
-            });
-            // Download using CE.SDK utils
-            await cesdk.utils.downloadFile(blob, 'image/webp');
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'webp-lossy',
+            label: 'Lossy',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              const p = engine.scene.getCurrentPage()!;
+              // Export with lossy compression
+              const blob = await engine.block.export(p, {
+                mimeType: 'image/webp',
+                webpQuality: 0.8
+              });
+              // Download using CE.SDK utils
+              await cesdk.utils.downloadFile(blob, 'image/webp');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'webp-lossless',
+            label: 'Lossless',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              const p = engine.scene.getCurrentPage()!;
+              const blob = await engine.block.export(p, {
+                mimeType: 'image/webp',
+                webpQuality: 1.0
+              });
+              await cesdk.utils.downloadFile(blob, 'image/webp');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'webp-social',
+            label: 'Social',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              const p = engine.scene.getCurrentPage()!;
+              // Export with target dimensions for social media
+              const blob = await engine.block.export(p, {
+                mimeType: 'image/webp',
+                webpQuality: 0.9,
+                targetWidth: 1200,
+                targetHeight: 630
+              });
+              await cesdk.utils.downloadFile(blob, 'image/webp');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-action',
+            label: 'Export',
+            icon: '@imgly/Download',
+            onClick: () => {
+              // Run built-in export with WebP format
+              cesdk.actions.run('exportDesign', { mimeType: 'image/webp' });
+            }
           }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'webp-lossless',
-          label: 'Lossless',
-          icon: '@imgly/Download',
-          onClick: async () => {
-            const p = engine.scene.getCurrentPage()!;
-            const blob = await engine.block.export(p, {
-              mimeType: 'image/webp',
-              webpQuality: 1.0
-            });
-            await cesdk.utils.downloadFile(blob, 'image/webp');
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'webp-social',
-          label: 'Social',
-          icon: '@imgly/Download',
-          onClick: async () => {
-            const p = engine.scene.getCurrentPage()!;
-            // Export with target dimensions for social media
-            const blob = await engine.block.export(p, {
-              mimeType: 'image/webp',
-              webpQuality: 0.9,
-              targetWidth: 1200,
-              targetHeight: 630
-            });
-            await cesdk.utils.downloadFile(blob, 'image/webp');
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-action',
-          label: 'Export',
-          icon: '@imgly/Download',
-          onClick: () => {
-            // Run built-in export with WebP format
-            cesdk.actions.run('exportDesign', { mimeType: 'image/webp' });
-          }
-        }
-      ]
-    });
+        ]
+      }
+    );
   }
 }
 

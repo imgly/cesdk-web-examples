@@ -1,5 +1,6 @@
 {
   "name": "cesdk_web_examples",
+  "private": true,
   "version": "1.1.1",
   "description": "CreativeEditor SDK for Web Examples",
   "keywords": [
@@ -10,9 +11,6 @@
     "vue",
     "electron"
   ],
-  "resolutions": {
-    "debug": "^4.0.0 <4.4.2 || >4.4.2"
-  },
   "scripts": {
     "deploy": "codesandbox deploy",
     "test:e2e": "cypress open",

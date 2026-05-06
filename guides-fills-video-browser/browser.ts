@@ -45,9 +45,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Video fills require Video mode and video features enabled
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.fill');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -57,7 +54,11 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -93,10 +94,11 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
+      layout: 'DepthStack',
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
     });
 
@@ -122,13 +124,6 @@ class Example implements EditorPlugin {
     // eslint-disable-next-line no-console
     console.log('Block supports fills:', supportsFills); // true for graphic blocks
 
-    // Verify we're in Video mode (required for video fills)
-    const sceneMode = engine.scene.getMode();
-    if (sceneMode !== 'Video') {
-      throw new Error('Video fills require Video mode.');
-    }
-    // eslint-disable-next-line no-console
-    console.log('Scene mode:', sceneMode); // "Video"
 
     // Pattern #1: Demonstrate Individual Before Combined
     // Create a basic video fill demonstration

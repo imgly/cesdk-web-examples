@@ -112,10 +112,10 @@ Local packages must be built before using them:
 
 ```bash
 # Build cesdk_web
-cd apps/cesdk_web && yarn build:release
+cd apps/cesdk_web && pnpm build:release
 
 # Build js_web (engine)
-cd bindings/wasm/js_web && yarn build:release
+cd bindings/wasm/js_web && pnpm build:release
 ```
 
 If you forget to build, the plugin will show a helpful error message with build instructions.
@@ -179,8 +179,8 @@ When CESDK_USE_LOCAL not set:
 **Solution**: Ensure local packages are built:
 
 ```bash
-cd apps/cesdk_web && yarn build:release
-cd bindings/wasm/js_web && yarn build:release
+cd apps/cesdk_web && pnpm build:release
+cd bindings/wasm/js_web && pnpm build:release
 ```
 
 ### Assets Not Loading

@@ -101,7 +101,7 @@ describe('validateBuildArtifacts', () => {
     validateBuildArtifacts(new Set(['cesdk']), '/fake/path');
 
     expect(mockExecFileSync).toHaveBeenCalledWith(
-      'yarn',
+      'pnpm',
       ['web:build:development'],
       expect.objectContaining({ cwd: '/fake/path', stdio: 'inherit' })
     );
@@ -115,7 +115,7 @@ describe('validateBuildArtifacts', () => {
     validateBuildArtifacts(new Set(['engine']), '/fake/path');
 
     expect(mockExecFileSync).toHaveBeenCalledWith(
-      'yarn',
+      'pnpm',
       ['web:build:development'],
       expect.objectContaining({ cwd: '/fake/path', stdio: 'inherit' })
     );
@@ -131,7 +131,7 @@ describe('validateBuildArtifacts', () => {
     // Should only call web:build:development once (not twice)
     expect(mockExecFileSync).toHaveBeenCalledTimes(1);
     expect(mockExecFileSync).toHaveBeenCalledWith(
-      'yarn',
+      'pnpm',
       ['web:build:development'],
       expect.objectContaining({ cwd: '/fake/path', stdio: 'inherit' })
     );
@@ -146,7 +146,7 @@ describe('validateBuildArtifacts', () => {
 
     // web:build:development includes js_node
     expect(mockExecFileSync).toHaveBeenCalledWith(
-      'yarn',
+      'pnpm',
       ['web:build:development'],
       expect.objectContaining({ cwd: '/fake/path', stdio: 'inherit' })
     );
@@ -392,7 +392,7 @@ describe('cesdkLocal plugin', () => {
     callConfigHook(plugin, {}, { command: 'serve', mode: 'development' });
 
     expect(mockExecFileSync).toHaveBeenCalledWith(
-      'yarn',
+      'pnpm',
       ['web:build:development'],
       expect.objectContaining({ stdio: 'inherit' })
     );

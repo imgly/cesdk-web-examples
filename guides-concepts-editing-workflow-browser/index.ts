@@ -5,7 +5,9 @@ const config = {
   // Uncomment to use your license key
   // license: import.meta.env.VITE_CESDK_LICENSE,
   userId: 'guides-user',
-  ...(import.meta.env.CESDK_USE_LOCAL && { baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL })
+  ...(import.meta.env.CESDK_USE_LOCAL && {
+    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
+  })
 };
 
 CreativeEditorSDK.create('#cesdk_container', config)

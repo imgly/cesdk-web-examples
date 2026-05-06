@@ -17,7 +17,7 @@ This example demonstrates how to use CE.SDK's Panel API to customize the user in
 ### Prerequisites
 
 - Node.js 18 or higher
-- npm or yarn
+- npm or pnpm
 
 ### Installation
 
