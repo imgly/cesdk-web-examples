@@ -28,4 +28,22 @@ module.exports = {
     node: true,
     es2022: true,
   },
+  overrides: [
+    {
+      files: ['*.js', '*.cjs', '*.mjs'],
+      parser: 'espree',
+      parserOptions: {
+        ecmaVersion: 2022,
+        sourceType: 'module',
+      },
+      env: {
+        node: true,
+        es2022: true,
+      },
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+        'deprecation/deprecation': 'off',
+      },
+    },
+  ],
 };

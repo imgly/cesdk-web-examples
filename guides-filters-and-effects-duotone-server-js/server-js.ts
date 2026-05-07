@@ -26,7 +26,9 @@ async function main(): Promise<void> {
     const defaultAssetsUrl = `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets/v4/`;
     let hasAssetSources = false;
     try {
-      await engine.asset.addLocalAssetSourceFromJSONURI(`${defaultAssetsUrl}ly.img.filter/content.json`);
+      await engine.asset.addLocalAssetSourceFromJSONURI(
+        `${defaultAssetsUrl}ly.img.filter/content.json`
+      );
       hasAssetSources = true;
     } catch {
       console.warn('Filter asset source not available, skipping presets');
