@@ -30,7 +30,7 @@ try {
 
   // ===== Demonstration 1: Union Operation =====
   engine.scene.create('VerticalStack', {
-    page: { size: { width: 400, height: 300 } },
+    page: { size: { width: 400, height: 300 } }
   });
   let page = engine.block.findByType('page')[0];
 
@@ -38,14 +38,14 @@ try {
   const unionCircle1 = engine.block.create('graphic');
   engine.block.setShape(
     unionCircle1,
-    engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+    engine.block.createShape('//ly.img.ubq/shape/ellipse')
   );
   const unionFill1 = engine.block.createFill('color');
   engine.block.setColor(unionFill1, 'fill/color/value', {
     r: 1.0,
     g: 0.4,
     b: 0.4,
-    a: 1.0,
+    a: 1.0
   });
   engine.block.setFill(unionCircle1, unionFill1);
   engine.block.setWidth(unionCircle1, 120);
@@ -57,14 +57,14 @@ try {
   const unionCircle2 = engine.block.create('graphic');
   engine.block.setShape(
     unionCircle2,
-    engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+    engine.block.createShape('//ly.img.ubq/shape/ellipse')
   );
   const unionFill2 = engine.block.createFill('color');
   engine.block.setColor(unionFill2, 'fill/color/value', {
     r: 0.4,
     g: 1.0,
     b: 0.4,
-    a: 1.0,
+    a: 1.0
   });
   engine.block.setFill(unionCircle2, unionFill2);
   engine.block.setWidth(unionCircle2, 120);
@@ -76,14 +76,14 @@ try {
   const unionCircle3 = engine.block.create('graphic');
   engine.block.setShape(
     unionCircle3,
-    engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+    engine.block.createShape('//ly.img.ubq/shape/ellipse')
   );
   const unionFill3 = engine.block.createFill('color');
   engine.block.setColor(unionFill3, 'fill/color/value', {
     r: 0.4,
     g: 0.4,
     b: 1.0,
-    a: 1.0,
+    a: 1.0
   });
   engine.block.setFill(unionCircle3, unionFill3);
   engine.block.setWidth(unionCircle3, 120);
@@ -96,15 +96,12 @@ try {
   const canCombineUnion = engine.block.isCombinable([
     unionCircle1,
     unionCircle2,
-    unionCircle3,
+    unionCircle3
   ]);
 
   // Merge three circles using Union operation
   if (canCombineUnion) {
-    engine.block.combine(
-      [unionCircle1, unionCircle2, unionCircle3],
-      'Union',
-    );
+    engine.block.combine([unionCircle1, unionCircle2, unionCircle3], 'Union');
   }
 
   // Export Union result
@@ -116,7 +113,7 @@ try {
 
   // ===== Demonstration 2: Difference Operation =====
   engine.scene.create('VerticalStack', {
-    page: { size: { width: 400, height: 300 } },
+    page: { size: { width: 400, height: 300 } }
   });
   page = engine.block.findByType('page')[0];
 
@@ -124,13 +121,13 @@ try {
   const imageBlock = engine.block.create('graphic');
   engine.block.setShape(
     imageBlock,
-    engine.block.createShape('//ly.img.ubq/shape/rect'),
+    engine.block.createShape('//ly.img.ubq/shape/rect')
   );
   const imageFill = engine.block.createFill('image');
   engine.block.setString(
     imageFill,
     'fill/image/imageFileURI',
-    'https://img.ly/static/ubq_samples/sample_1.jpg',
+    'https://img.ly/static/ubq_samples/sample_1.jpg'
   );
   engine.block.setFill(imageBlock, imageFill);
   engine.block.setWidth(imageBlock, 360);
@@ -162,12 +159,12 @@ try {
   writeFileSync(`${outputDir}/combine-difference-result.png`, buffer);
   // eslint-disable-next-line no-console
   console.log(
-    '✓ Exported Difference result to output/combine-difference-result.png',
+    '✓ Exported Difference result to output/combine-difference-result.png'
   );
 
   // ===== Demonstration 3: Intersection Operation =====
   engine.scene.create('VerticalStack', {
-    page: { size: { width: 400, height: 300 } },
+    page: { size: { width: 400, height: 300 } }
   });
   page = engine.block.findByType('page')[0];
 
@@ -175,14 +172,14 @@ try {
   const intersectCircle1 = engine.block.create('graphic');
   engine.block.setShape(
     intersectCircle1,
-    engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+    engine.block.createShape('//ly.img.ubq/shape/ellipse')
   );
   const intersectFill1 = engine.block.createFill('color');
   engine.block.setColor(intersectFill1, 'fill/color/value', {
     r: 1.0,
     g: 0.6,
     b: 0.2,
-    a: 1.0,
+    a: 1.0
   });
   engine.block.setFill(intersectCircle1, intersectFill1);
   engine.block.setWidth(intersectCircle1, 144);
@@ -194,14 +191,14 @@ try {
   const intersectCircle2 = engine.block.create('graphic');
   engine.block.setShape(
     intersectCircle2,
-    engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+    engine.block.createShape('//ly.img.ubq/shape/ellipse')
   );
   const intersectFill2 = engine.block.createFill('color');
   engine.block.setColor(intersectFill2, 'fill/color/value', {
     r: 1.0,
     g: 0.6,
     b: 0.2,
-    a: 1.0,
+    a: 1.0
   });
   engine.block.setFill(intersectCircle2, intersectFill2);
   engine.block.setWidth(intersectCircle2, 144);
@@ -212,7 +209,7 @@ try {
 
   const canCombineIntersect = engine.block.isCombinable([
     intersectCircle1,
-    intersectCircle2,
+    intersectCircle2
   ]);
 
   // Extract overlapping area using Intersection operation
@@ -225,12 +222,12 @@ try {
   writeFileSync(`${outputDir}/combine-intersection-result.png`, buffer);
   // eslint-disable-next-line no-console
   console.log(
-    '✓ Exported Intersection result to output/combine-intersection-result.png',
+    '✓ Exported Intersection result to output/combine-intersection-result.png'
   );
 
   // ===== Demonstration 4: XOR Operation =====
   engine.scene.create('VerticalStack', {
-    page: { size: { width: 400, height: 300 } },
+    page: { size: { width: 400, height: 300 } }
   });
   page = engine.block.findByType('page')[0];
 
@@ -238,14 +235,14 @@ try {
   const xorCircle1 = engine.block.create('graphic');
   engine.block.setShape(
     xorCircle1,
-    engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+    engine.block.createShape('//ly.img.ubq/shape/ellipse')
   );
   const xorFill1 = engine.block.createFill('color');
   engine.block.setColor(xorFill1, 'fill/color/value', {
     r: 1.0,
     g: 0.8,
     b: 0.2,
-    a: 1.0,
+    a: 1.0
   });
   engine.block.setFill(xorCircle1, xorFill1);
   engine.block.setWidth(xorCircle1, 140);
@@ -257,14 +254,14 @@ try {
   const xorCircle2 = engine.block.create('graphic');
   engine.block.setShape(
     xorCircle2,
-    engine.block.createShape('//ly.img.ubq/shape/ellipse'),
+    engine.block.createShape('//ly.img.ubq/shape/ellipse')
   );
   const xorFill2 = engine.block.createFill('color');
   engine.block.setColor(xorFill2, 'fill/color/value', {
     r: 0.6,
     g: 0.4,
     b: 1.0,
-    a: 1.0,
+    a: 1.0
   });
   engine.block.setFill(xorCircle2, xorFill2);
   engine.block.setWidth(xorCircle2, 140);

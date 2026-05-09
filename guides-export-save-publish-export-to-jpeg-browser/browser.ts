@@ -29,7 +29,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -50,7 +52,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-
     const engine = cesdk.engine;
 
     await engine.scene.loadFromURL(
@@ -61,79 +62,82 @@ class Example implements EditorPlugin {
     // Zoom to fit page in view
     await engine.scene.zoomToBlock(page);
 
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          onClick: async () => {
-            await cesdk.actions.run('exportDesign', {
-              mimeType: 'image/jpeg',
-              jpegQuality: 0.9
-            });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            onClick: async () => {
+              await cesdk.actions.run('exportDesign', {
+                mimeType: 'image/jpeg',
+                jpegQuality: 0.9
+              });
+            },
+            key: 'export-action',
+            label: 'Export',
+            icon: '@imgly/Download'
           },
-          key: 'export-action',
-          label: 'Export',
-          icon: '@imgly/Download',
-        },
 
-        {
-          id: 'ly.img.action.navigationBar',
-          onClick: async () => {
-            const currentPage = engine.scene.getCurrentPage()!;
-            const exported = await engine.block.export(currentPage, {
-              mimeType: 'image/jpeg',
-              jpegQuality: 0.9
-            });
-            await cesdk.utils.downloadFile(exported, 'image/jpeg');
-            cesdk.ui.showNotification({
-              message: `Standard (${(exported.size / 1024).toFixed(0)} KB)`,
-              type: 'success'
-            });
+          {
+            id: 'ly.img.action.navigationBar',
+            onClick: async () => {
+              const currentPage = engine.scene.getCurrentPage()!;
+              const exported = await engine.block.export(currentPage, {
+                mimeType: 'image/jpeg',
+                jpegQuality: 0.9
+              });
+              await cesdk.utils.downloadFile(exported, 'image/jpeg');
+              cesdk.ui.showNotification({
+                message: `Standard (${(exported.size / 1024).toFixed(0)} KB)`,
+                type: 'success'
+              });
+            },
+            key: 'export-standard',
+            label: 'Standard',
+            icon: '@imgly/Save'
           },
-          key: 'export-standard',
-          label: 'Standard',
-          icon: '@imgly/Save'
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          onClick: async () => {
-            const currentPage = engine.scene.getCurrentPage()!;
-            const exported = await engine.block.export(currentPage, {
-              mimeType: 'image/jpeg',
-              jpegQuality: 1.0
-            });
-            await cesdk.utils.downloadFile(exported, 'image/jpeg');
-            cesdk.ui.showNotification({
-              message: `High Quality (${(exported.size / 1024).toFixed(0)} KB)`,
-              type: 'success'
-            });
+          {
+            id: 'ly.img.action.navigationBar',
+            onClick: async () => {
+              const currentPage = engine.scene.getCurrentPage()!;
+              const exported = await engine.block.export(currentPage, {
+                mimeType: 'image/jpeg',
+                jpegQuality: 1.0
+              });
+              await cesdk.utils.downloadFile(exported, 'image/jpeg');
+              cesdk.ui.showNotification({
+                message: `High Quality (${(exported.size / 1024).toFixed(0)} KB)`,
+                type: 'success'
+              });
+            },
+            key: 'export-high',
+            label: 'High Quality',
+            icon: '@imgly/Save'
           },
-          key: 'export-high',
-          label: 'High Quality',
-          icon: '@imgly/Save'
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          onClick: async () => {
-            const currentPage = engine.scene.getCurrentPage()!;
-            const exported = await engine.block.export(currentPage, {
-              mimeType: 'image/jpeg',
-              targetWidth: 1920,
-              targetHeight: 1080
-            });
-            await cesdk.utils.downloadFile(exported, 'image/jpeg');
-            cesdk.ui.showNotification({
-              message: `1920×1080 (${(exported.size / 1024).toFixed(0)} KB)`,
-              type: 'success'
-            });
-          },
-          key: 'export-hd',
-          label: '1920×1080',
-          icon: '@imgly/Save'
-        }
-      ]
-    });
+          {
+            id: 'ly.img.action.navigationBar',
+            onClick: async () => {
+              const currentPage = engine.scene.getCurrentPage()!;
+              const exported = await engine.block.export(currentPage, {
+                mimeType: 'image/jpeg',
+                targetWidth: 1920,
+                targetHeight: 1080
+              });
+              await cesdk.utils.downloadFile(exported, 'image/jpeg');
+              cesdk.ui.showNotification({
+                message: `1920×1080 (${(exported.size / 1024).toFixed(0)} KB)`,
+                type: 'success'
+              });
+            },
+            key: 'export-hd',
+            label: '1920×1080',
+            icon: '@imgly/Save'
+          }
+        ]
+      }
+    );
 
     cesdk.actions.register('exportDesign', async () => {
       const currentPage = engine.scene.getCurrentPage()!;

@@ -58,7 +58,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -93,7 +95,7 @@ class Example implements EditorPlugin {
 
     // Load Getty Images proxy URL from environment
     // The proxy securely handles API authentication without exposing credentials in the frontend
-    const gettyProxyUrl = import.meta.env.VITE_GETTY_IMAGES_PROXY_URL;
+    const gettyProxyUrl = (undefined as string | undefined);
 
     if (!gettyProxyUrl) {
       console.warn(

@@ -13,8 +13,8 @@ import {
   TextComponentAssetSource,
   TypefaceAssetSource,
   UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
+  VectorShapeAssetSource,
+} from "@cesdk/cesdk-js/plugins";
 import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from "./package.json";
 
@@ -42,17 +42,19 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ["ly.img.image.upload"] }),
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
-          'ly.img.templates.blank.*',
-          'ly.img.templates.presentation.*',
-          'ly.img.templates.print.*',
-          'ly.img.templates.social.*',
-          'ly.img.image.*'
-        ]
-      })
+          "ly.img.templates.blank.*",
+          "ly.img.templates.presentation.*",
+          "ly.img.templates.print.*",
+          "ly.img.templates.social.*",
+          "ly.img.image.*",
+        ],
+      }),
     );
     await cesdk.addPlugin(new EffectsAssetSource());
     await cesdk.addPlugin(new FiltersAssetSource());
@@ -88,7 +90,7 @@ class Example implements EditorPlugin {
     // Read current letter spacing value
     const letterSpacing = engine.block.getFloat(
       textLetterSpacing,
-      "text/letterSpacing"
+      "text/letterSpacing",
     );
     console.log("Letter spacing:", letterSpacing);
 
@@ -101,7 +103,7 @@ class Example implements EditorPlugin {
     engine.block.setHeightMode(textLineHeight, "Auto");
     engine.block.replaceText(
       textLineHeight,
-      "Design your ideas\nBring them to life"
+      "Design your ideas\nBring them to life",
     );
     engine.block.setTextFontSize(textLineHeight, 48);
 
@@ -122,7 +124,7 @@ class Example implements EditorPlugin {
     engine.block.setHeightMode(textParagraphSpacing, "Auto");
     engine.block.replaceText(
       textParagraphSpacing,
-      "Start Creating\nJoin Today"
+      "Start Creating\nJoin Today",
     );
     engine.block.setTextFontSize(textParagraphSpacing, 48);
 
@@ -132,7 +134,7 @@ class Example implements EditorPlugin {
     // Read current paragraph spacing value
     const paragraphSpacing = engine.block.getFloat(
       textParagraphSpacing,
-      "text/paragraphSpacing"
+      "text/paragraphSpacing",
     );
     console.log("Paragraph spacing:", paragraphSpacing);
 

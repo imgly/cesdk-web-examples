@@ -4,7 +4,7 @@ import type {
   EditorPluginContext
 } from '@cesdk/cesdk-js';
 import type { BlockEvent } from '@cesdk/cesdk-js';
-import CreativeEditorSDK from '@cesdk/cesdk-js';
+import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   ColorPaletteAssetSource,
@@ -37,7 +37,9 @@ export default class CustomizeBehaviorExample implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [

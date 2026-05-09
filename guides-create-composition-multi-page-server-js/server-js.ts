@@ -15,7 +15,8 @@ config();
  * - Exporting multi-page designs
  */
 
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+});
 
 try {
   // Create a scene with HorizontalStack layout
