@@ -51,7 +51,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -239,9 +241,8 @@ class Example implements EditorPlugin {
     });
 
     // Create asset source from JSON string
-    const jsonSourceId = await engine.asset.addLocalAssetSourceFromJSONString(
-      filterConfigJSON
-    );
+    const jsonSourceId =
+      await engine.asset.addLocalAssetSourceFromJSONString(filterConfigJSON);
     // eslint-disable-next-line no-console
     console.log('Created JSON-based filter source:', jsonSourceId);
 

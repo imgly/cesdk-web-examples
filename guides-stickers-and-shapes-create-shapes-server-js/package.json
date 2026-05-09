@@ -7,7 +7,7 @@
     "dev": "tsx server-js.ts",
     "prebuild": "npm run check:all",
     "build": "tsc --noEmit",
-    "check:syntax": "tsc --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json}\"",
     "check:lint": "eslint \"**/*.{ts,js}\"",
     "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
@@ -19,10 +19,11 @@
     "test:component": "exit 0",
     "test:e2e": "exit 0",
     "test:all": "npm run test:unit && npm run test:integration && npm run test:component && npm run test:e2e",
-    "qa": "npm run build && npm run test:all"
+    "qa": "npm run build && npm run test:all",
+    "ci": "npm run check:all && npm run qa"
   },
   "dependencies": {
-    "@cesdk/node": "next",
+    "@cesdk/node": "^1.75.0-rc.5",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {

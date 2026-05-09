@@ -6,10 +6,7 @@ module.exports = {
     tsconfigRootDir: __dirname
   },
   plugins: ['@typescript-eslint', 'deprecation', 'jsdoc'],
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended'
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   rules: {
     'deprecation/deprecation': 'error',
     'no-console': 'warn',

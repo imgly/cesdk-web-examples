@@ -74,7 +74,7 @@ class Example implements EditorPlugin {
     cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', before: 'ly.img.actions.navigationBar' }, 'ly.img.separator');
 
     // Update a component's properties without changing its position
-    cesdk.ui.updateOrderComponent({ in: 'ly.img.dock', match: { id: 'ly.img.assetLibrary.dock' }, key: 'images' },
+    cesdk.ui.updateOrderComponent({ in: 'ly.img.dock', match: { id: 'ly.img.assetLibrary.dock', key: 'images' } },
       { label: 'Photos' });
 
     // Set a different canvas menu order for Text edit mode

@@ -162,11 +162,9 @@ class Example implements EditorPlugin {
       page: { width: 800, height: 600, unit: 'Pixel' }
     });
 
-    // Get the page and set dimensions
+    // Get the page so we can zoom to fit it
     const pages = engine.block.findByType('page');
     const page = pages[0];
-    if (page) {
-    }
 
     // Zoom to fit content
     if (page) {

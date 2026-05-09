@@ -56,7 +56,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -90,7 +92,7 @@ class Example implements EditorPlugin {
 
     // Create Unsplash API client with proxy URL
     // The proxy securely handles API authentication without exposing keys in the frontend
-    const unsplashProxyUrl = import.meta.env.VITE_UNSPLASH_PROXY_URL;
+    const unsplashProxyUrl = (undefined as string | undefined);
 
     if (!unsplashProxyUrl) {
       throw new Error(

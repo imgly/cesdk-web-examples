@@ -28,7 +28,10 @@ export function setupSettings(engine: CreativeEngine): void {
 
   // #region Video Features
   // Enable video captions functionality
-  engine.editor.setSetting('features/videoCaptionsEnabled' as any, true);
+  engine.editor.setSetting('features/videoCaptionsEnabled', true);
+
+  // Only show the active track in the timeline (hides inactive tracks)
+  engine.editor.setSetting('timeline/trackVisibility', 'active');
   // #endregion
 
   // ============================================================================
@@ -254,6 +257,12 @@ export function setupSettings(engine: CreativeEngine): void {
   // COLOR PICKER SETTINGS
   // Configure color picker behavior
   // ============================================================================
+
+  // #region Grid Settings
+  // Enable background grid and snap-to-grid for precise alignment
+  // engine.editor.setSettingBool('grid/enabled', true);
+  // engine.editor.setSettingBool('grid/snapEnabled', true);
+  // #endregion
 
   // #region Color Picker Settings
   // Restrict color picker to a specific color mode:
