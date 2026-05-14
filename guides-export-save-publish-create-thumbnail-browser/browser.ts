@@ -33,7 +33,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -53,7 +55,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TextComponentAssetSource());
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
-
 
     const engine = cesdk.engine;
 
@@ -75,85 +76,90 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Add thumbnail export buttons to navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-thumbnail-small',
-          label: 'Small Thumbnail',
-          icon: '@imgly/Save',
-          onClick: async () => {
-            const blob = await engine.block.export(page, {
-              mimeType: 'image/jpeg',
-              targetWidth: 150,
-              targetHeight: 150,
-              jpegQuality: 0.8
-            });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-thumbnail-small',
+            label: 'Small Thumbnail',
+            icon: '@imgly/Save',
+            onClick: async () => {
+              const blob = await engine.block.export(page, {
+                mimeType: 'image/jpeg',
+                targetWidth: 150,
+                targetHeight: 150,
+                jpegQuality: 0.8
+              });
 
-            await cesdk.utils.downloadFile(blob, 'image/jpeg');
-            console.log(
-              `✓ Small thumbnail: ${(blob.size / 1024).toFixed(1)} KB`
-            );
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-thumbnail-medium',
-          label: 'Medium Thumbnail',
-          icon: '@imgly/Save',
-          onClick: async () => {
-            const blob = await engine.block.export(page, {
-              mimeType: 'image/jpeg',
-              targetWidth: 400,
-              targetHeight: 300,
-              jpegQuality: 0.85
-            });
+              await cesdk.utils.downloadFile(blob, 'image/jpeg');
+              console.log(
+                `✓ Small thumbnail: ${(blob.size / 1024).toFixed(1)} KB`
+              );
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-thumbnail-medium',
+            label: 'Medium Thumbnail',
+            icon: '@imgly/Save',
+            onClick: async () => {
+              const blob = await engine.block.export(page, {
+                mimeType: 'image/jpeg',
+                targetWidth: 400,
+                targetHeight: 300,
+                jpegQuality: 0.85
+              });
 
-            await cesdk.utils.downloadFile(blob, 'image/jpeg');
-            console.log(
-              `✓ Medium thumbnail: ${(blob.size / 1024).toFixed(1)} KB`
-            );
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-thumbnail-png',
-          label: 'PNG Thumbnail',
-          icon: '@imgly/Save',
-          onClick: async () => {
-            const blob = await engine.block.export(page, {
-              mimeType: 'image/png',
-              targetWidth: 400,
-              targetHeight: 300,
-              pngCompressionLevel: 6
-            });
+              await cesdk.utils.downloadFile(blob, 'image/jpeg');
+              console.log(
+                `✓ Medium thumbnail: ${(blob.size / 1024).toFixed(1)} KB`
+              );
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-thumbnail-png',
+            label: 'PNG Thumbnail',
+            icon: '@imgly/Save',
+            onClick: async () => {
+              const blob = await engine.block.export(page, {
+                mimeType: 'image/png',
+                targetWidth: 400,
+                targetHeight: 300,
+                pngCompressionLevel: 6
+              });
 
-            await cesdk.utils.downloadFile(blob, 'image/png');
-            console.log(`✓ PNG thumbnail: ${(blob.size / 1024).toFixed(1)} KB`);
-          }
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'export-thumbnail-webp',
-          label: 'WebP Thumbnail',
-          icon: '@imgly/Save',
-          onClick: async () => {
-            const blob = await engine.block.export(page, {
-              mimeType: 'image/webp',
-              targetWidth: 400,
-              targetHeight: 300,
-              webpQuality: 0.8
-            });
+              await cesdk.utils.downloadFile(blob, 'image/png');
+              console.log(
+                `✓ PNG thumbnail: ${(blob.size / 1024).toFixed(1)} KB`
+              );
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-thumbnail-webp',
+            label: 'WebP Thumbnail',
+            icon: '@imgly/Save',
+            onClick: async () => {
+              const blob = await engine.block.export(page, {
+                mimeType: 'image/webp',
+                targetWidth: 400,
+                targetHeight: 300,
+                webpQuality: 0.8
+              });
 
-            await cesdk.utils.downloadFile(blob, 'image/webp');
-            console.log(
-              `✓ WebP thumbnail: ${(blob.size / 1024).toFixed(1)} KB`
-            );
+              await cesdk.utils.downloadFile(blob, 'image/webp');
+              console.log(
+                `✓ WebP thumbnail: ${(blob.size / 1024).toFixed(1)} KB`
+              );
+            }
           }
-        }
-      ]
-    });
+        ]
+      }
+    );
   }
 }
 

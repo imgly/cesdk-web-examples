@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "postinstall": "npm run tsconfig:local || true",
     "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:lint": "eslint *.ts",
     "capture:hero": "node scripts/capture-hero.mjs"
   },

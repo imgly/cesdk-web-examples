@@ -9,7 +9,7 @@
     "build": "vite build",
     "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:lint": "eslint \"**/*.{ts,js}\"",
     "check:format": "prettier --check \"**/*.{ts,js,json,html,css}\"",
     "fix:format": "prettier --write \"**/*.{ts,js,json,html,css}\"",

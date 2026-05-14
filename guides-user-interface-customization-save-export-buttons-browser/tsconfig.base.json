@@ -19,7 +19,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+
+    "types": ["vite/client"]
   },
   "include": ["src/**/*.ts", "*.ts"],
   "exclude": ["*.mjs", "*.config.ts", "node_modules", "dist", "../shared/**"]

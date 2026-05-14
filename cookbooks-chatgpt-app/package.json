@@ -10,7 +10,10 @@
     "test": "exit 0",
     "postinstall": "npm run tsconfig:local || true",
     "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
-    "ci": "exit 0"
+    "check:syntax": "tsc --noEmit",
+    "check:lint": "next lint",
+    "check:all": "npm run check:syntax && npm run check:lint",
+    "ci": "npm run check:all"
   },
   "dependencies": {
     "@cesdk/cesdk-js": "latest",

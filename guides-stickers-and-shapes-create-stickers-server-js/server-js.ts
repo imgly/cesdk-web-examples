@@ -23,7 +23,7 @@ const engine = await CreativeEngine.init({
 try {
   // Create a design scene with specific page dimensions
   engine.scene.create('VerticalStack', {
-    page: { size: { width: 450, height: 250 } },
+    page: { size: { width: 450, height: 250 } }
   });
   const page = engine.block.findByType('page')[0];
 
