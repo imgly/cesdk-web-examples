@@ -11,7 +11,7 @@
     "build:local": "CESDK_USE_LOCAL=true vite build",
     "postinstall": "npm run tsconfig:local || true",
     "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json}\"",
     "check:lint": "eslint \"**/*.{ts,js}\"",
     "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",

@@ -1,4 +1,9 @@
-export async function exportAudioFromBlock(cesdk, blockId) {
+import type CreativeEditorSDK from '@cesdk/cesdk-js';
+
+export async function exportAudioFromBlock(
+  cesdk: CreativeEditorSDK,
+  blockId: number
+): Promise<Blob> {
   const audioBlob = await cesdk.engine.block.exportAudio(blockId, {
     mimeType: 'audio/wav',
     sampleRate: 48000,
@@ -9,12 +14,16 @@ export async function exportAudioFromBlock(cesdk, blockId) {
   return audioBlob;
 }
 
-export async function exportAudioWithUI(cesdk, blockId, progressBar) {
+export async function exportAudioWithUI(
+  cesdk: CreativeEditorSDK,
+  blockId: number,
+  progressBar?: HTMLElement | null
+): Promise<Blob> {
   const audioBlob = await cesdk.engine.block.exportAudio(blockId, {
     mimeType: 'audio/wav',
     sampleRate: 48000,
     numberOfChannels: 2,
-    onProgress: (rendered, encoded, total) => {
+    onProgress: (rendered: number, encoded: number, total: number) => {
       const progress = total > 0 ? (rendered / total) * 100 : 0;
       if (progressBar) {
         progressBar.style.width = `${progress}%`;
@@ -25,7 +34,7 @@ export async function exportAudioWithUI(cesdk, blockId, progressBar) {
   return audioBlob;
 }
 
-export function downloadAudioBlob(audioBlob, filename = 'audio.wav') {
+export function downloadAudioBlob(audioBlob: Blob, filename = 'audio.wav') {
   const url = URL.createObjectURL(audioBlob);
   const link = document.createElement('a');
   link.href = url;

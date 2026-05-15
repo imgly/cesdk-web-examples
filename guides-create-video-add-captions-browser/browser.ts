@@ -39,10 +39,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable video editing features including captions
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins
@@ -52,7 +48,11 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -88,7 +88,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
+      layout: 'DepthStack',
       page: { width: 1920, height: 1080, unit: 'Pixel' }
     });
 
@@ -113,9 +113,8 @@ class Example implements EditorPlugin {
     // Import captions from SRT file
     // createCaptionsFromURI parses SRT/VTT and creates caption blocks with timing
     const captionSrtUrl = 'https://img.ly/static/examples/captions.srt';
-    const captionBlocks = await engine.block.createCaptionsFromURI(
-      captionSrtUrl
-    );
+    const captionBlocks =
+      await engine.block.createCaptionsFromURI(captionSrtUrl);
 
     // eslint-disable-next-line no-console
     console.log(`Imported ${captionBlocks.length} captions from SRT file`);

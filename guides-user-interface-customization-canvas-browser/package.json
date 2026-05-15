@@ -25,7 +25,7 @@
     "test:all": "npm run test:unit && npm run test:integration && npm run test:component && npm run test:e2e",
     "qa": "npm run build && npm run test:all",
     "qa:local": "npm run build:local && npm run test:all",
-    "ci": "npm run qa:local",
+    "ci": "npm run check:all && npm run qa:local",
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {

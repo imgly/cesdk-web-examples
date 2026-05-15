@@ -9,7 +9,7 @@
     "build": "vite build",
     "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:lint": "eslint .",
     "postinstall": "node scripts/generate-empty-tsconfig-local.mjs",
     "tsconfig:local": "sh ../../../scripts/examples/update-tsconfig-local.sh",

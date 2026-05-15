@@ -12,8 +12,10 @@ import {
   StickerAssetSource,
   TextAssetSource,
   TypefaceAssetSource,
+  UploadAssetSources,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
+import { DesignEditorConfig } from '../design-editor/plugin';
 
 class Example implements EditorPlugin {
   name = packageJson.name;
@@ -24,7 +26,9 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Load assets and create scene
+    await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Load asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
@@ -36,11 +40,19 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TextAssetSource());
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
-    await cesdk.addPlugin(new DemoAssetSources({
-      sceneMode: 'Design',
-      withUploadAssetSources: true
-    }));
-    await cesdk.actions.run('scene.create', { page: { width: 800, height: 600, unit: 'Pixel' } });
+    await cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload']
+      })
+    );
+    await cesdk.addPlugin(
+      new DemoAssetSources({
+        include: ['ly.img.image.*']
+      })
+    );
+    await cesdk.actions.run('scene.create', {
+      page: { width: 800, height: 600, unit: 'Pixel' }
+    });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];
@@ -58,10 +70,13 @@ class Example implements EditorPlugin {
     engine.block.setPositionY(imageBlock, 0);
 
     // Add export button to navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: ['ly.img.exportImage.navigationBar']
-    });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: ['ly.img.exportImage.navigationBar']
+      }
+    );
 
     // Override the built-in exportDesign action
     cesdk.actions.register('exportDesign', async () => {
@@ -114,7 +129,6 @@ class Example implements EditorPlugin {
     width: number,
     height: number
   ): Promise<void> {
-
     // Create canvas and render pixel data
     const canvas = document.createElement('canvas');
     canvas.width = width;
