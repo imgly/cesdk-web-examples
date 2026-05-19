@@ -3,6 +3,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -44,11 +45,16 @@ class Example implements EditorPlugin {
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -84,14 +90,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
+      layout: 'DepthStack',
       page: { width: 1280, height: 720, unit: 'Pixel' }
     });
-
-    // Enable video and audio features
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
 
     const engine = cesdk.engine;
     const scene = engine.scene.get()!;

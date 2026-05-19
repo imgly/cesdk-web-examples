@@ -15,13 +15,13 @@ export const DEFAULT_GRID_CONFIG: GridConfig = {
   cols: 3,
   rows: 3,
   spacing: 5,
-  margin: 5,
+  margin: 5
 };
 
 export function calculateGridLayout(
   pageWidth: number,
   pageHeight: number,
-  config: GridConfig = DEFAULT_GRID_CONFIG,
+  config: GridConfig = DEFAULT_GRID_CONFIG
 ): GridLayout {
   const availableWidth =
     pageWidth - 2 * config.margin - (config.cols - 1) * config.spacing;
@@ -34,7 +34,7 @@ export function calculateGridLayout(
     x: config.margin + (index % config.cols) * (blockWidth + config.spacing),
     y:
       config.margin +
-      Math.floor(index / config.cols) * (blockHeight + config.spacing),
+      Math.floor(index / config.cols) * (blockHeight + config.spacing)
   });
 
   return { blockWidth, blockHeight, getPosition };

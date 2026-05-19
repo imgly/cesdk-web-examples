@@ -9,7 +9,7 @@ export async function generateQRCodePath(url: string): Promise<string> {
   const svgString = await QRCode.toString(url, {
     type: 'svg',
     errorCorrectionLevel: 'M',
-    margin: 0,
+    margin: 0
   });
 
   // Extract path data from SVG
@@ -30,13 +30,13 @@ export async function generateQRCodeDataURL(
   options?: {
     width?: number;
     color?: { dark: string; light: string };
-  },
+  }
 ): Promise<string> {
   const dataUrl = await QRCode.toDataURL(url, {
     errorCorrectionLevel: 'M',
     margin: 1,
     width: options?.width ?? 256,
-    color: options?.color ?? { dark: '#000000', light: '#ffffff' },
+    color: options?.color ?? { dark: '#000000', light: '#ffffff' }
   });
 
   return dataUrl;

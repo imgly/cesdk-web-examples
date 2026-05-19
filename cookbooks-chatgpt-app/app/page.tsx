@@ -447,8 +447,8 @@ export default function Home() {
       result && typeof result.structuredContent === 'object'
         ? (result.structuredContent as Record<string, unknown>)
         : typeof root.structuredContent === 'object'
-        ? (root.structuredContent as Record<string, unknown>)
-        : undefined;
+          ? (root.structuredContent as Record<string, unknown>)
+          : undefined;
 
     if (!structured) {
       const maybeDirect = root;
@@ -474,8 +474,8 @@ export default function Home() {
     const nextWidgetId = isNonEmptyString(structuredRecord.widgetId)
       ? (structuredRecord.widgetId as string)
       : isNonEmptyString(root.widgetId)
-      ? (root.widgetId as string)
-      : undefined;
+        ? (root.widgetId as string)
+        : undefined;
 
     if (
       nextWidgetId &&
@@ -1015,10 +1015,9 @@ export default function Home() {
               // Register export action
               instance.actions.register(
                 'exportDesign',
-                async (exportOptions: any) => {
-                  const { blobs, options } = await instance.utils.export(
-                    exportOptions
-                  );
+                async (exportOptions) => {
+                  const { blobs, options } =
+                    await instance.utils.export(exportOptions);
                   await handleExport(blobs, options);
                 }
               );
@@ -1054,8 +1053,8 @@ export default function Home() {
               const latestEditorState = editorStateRef.current;
               const shouldRestore = Boolean(
                 pendingScene &&
-                  latestEditorState &&
-                  latestEditorState.template.id === activeTemplateIdRef.current
+                latestEditorState &&
+                latestEditorState.template.id === activeTemplateIdRef.current
               );
 
               void (async () => {

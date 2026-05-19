@@ -1,0 +1,21 @@
+{
+  "name": "cesdk-aws-lambda",
+  "version": "0.1.0",
+  "bin": {
+    "cesdk-aws-lambda": "bin/cesdk-aws-lambda.js"
+  },
+  "scripts": {
+    "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
+    "cdk": "cdk",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "aws-cdk": "2.46.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.46.0",
+    "constructs": "^10.0.0"
+  }
+}

@@ -7,7 +7,7 @@
     "start": "npx -y -S serve",
     "serve": "npx -y -S serve -l 8080",
     "assets": "true",
-    "test:e2e": "yarn run cypress open --project ./tests/e2e",
+    "test:e2e": "pnpm run cypress open --project ./tests/e2e",
     "deploy:imgly-static": "gsutil -m cp -R -z html,ts,md,txt,css,json,js,wasm,data,svg,ttf,woff,eot,xml,otf,ico index.html  gs://imgly-static-assets/static/examples/cesdk/web/1.0/"
   },
   "devDependencies": {

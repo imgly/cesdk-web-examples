@@ -157,7 +157,10 @@ try {
 
   // Re-center subtitle after final update
   const reUpdatedSubtitleWidth = engine.block.getFrameWidth(subtitleBlock);
-  engine.block.setPositionX(subtitleBlock, (pageWidth - reUpdatedSubtitleWidth) / 2);
+  engine.block.setPositionX(
+    subtitleBlock,
+    (pageWidth - reUpdatedSubtitleWidth) / 2
+  );
 
   // eslint-disable-next-line no-console
   console.log('Template updated in asset source');

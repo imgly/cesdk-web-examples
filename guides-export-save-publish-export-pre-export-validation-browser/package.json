@@ -5,18 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:local": "CESDK_USE_LOCAL=true vite",
     "build": "vite build",
-    "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
-    "postinstall": "npm run tsconfig:local || true",
-    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:lint": "eslint *.ts",
     "capture:hero": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "latest"
+    "@cesdk/cesdk-js": "^1.75.0",
+    "@cesdk/engine": "^1.75.0"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",
