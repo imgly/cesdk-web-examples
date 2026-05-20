@@ -2,6 +2,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -39,7 +40,7 @@ class Example implements EditorPlugin {
     }
 
     // Enable features to demonstrate various UI labels
-    cesdk.feature.enable('ly.img.fill');
+    cesdk.feature.enable(['ly.img.fill.color', 'ly.img.fill.image']);
     cesdk.feature.enable('ly.img.adjustment');
     cesdk.feature.enable('ly.img.layer');
     cesdk.feature.enable('ly.img.settings');
@@ -47,9 +48,12 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [

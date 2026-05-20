@@ -5,9 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:format": "prettier --check \"**/*.{ts,js,json,html}\"",
     "check:lint": "eslint \"**/*.{ts,js}\"",
     "check:all": "npm run check:syntax && npm run check:format && npm run check:lint",
@@ -17,11 +16,7 @@
     "prebuild": "npm run check:all",
     "test": "exit 0",
     "qa": "npm run build && npm run test",
-    "qa:local": "npm run build:local && npm run test",
-    "ci": "npm run qa:local",
-    "dev:local": "CESDK_USE_LOCAL=true vite",
-    "postinstall": "npm run tsconfig:local || true",
-    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs",
+    "ci": "npm run check:all && npm run qa",
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "devDependencies": {
@@ -32,9 +27,11 @@
     "@typescript-eslint/parser": "^6.0.0",
     "prettier": "^3.0.0",
     "playwright": "^1.40.0",
-    "sharp": "^0.33.0"
+    "sharp": "^0.33.0",
+    "@types/node": "^20.0.0"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "latest"
+    "@cesdk/cesdk-js": "^1.75.1-rc.0",
+    "@cesdk/engine": "^1.75.1-rc.0"
   }
 }

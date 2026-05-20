@@ -2,6 +2,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -28,6 +29,7 @@ class Example implements EditorPlugin {
 
     cesdk.addPlugin(new DesignEditorConfig());
 
+    cesdk.addPlugin(new ImageColorsAssetSource());
     cesdk.addPlugin(new ColorPaletteAssetSource());
     cesdk.addPlugin(new CropPresetsAssetSource());
     cesdk.addPlugin(new DemoAssetSources());

@@ -2,6 +2,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -31,9 +32,12 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -185,7 +189,9 @@ class Example implements EditorPlugin {
     engine.block.select(imageBlock);
 
     // Zoom to page for better visibility
-    cesdk.engine.scene.zoomToBlock(page, 0.5, 0.5, 0.9);
+    cesdk.engine.scene.zoomToBlock(page, {
+      padding: { left: 0.5, top: 0.5, right: 0.5, bottom: 0.9 }
+    });
   }
 }
 

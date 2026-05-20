@@ -5,6 +5,7 @@ import CreativeEditor from '@cesdk/cesdk-js/react';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   EffectsAssetSource,
@@ -32,6 +33,7 @@ export default function CreativeEditorWrapper({
         try {
           await cesdk.addPlugin(new BlurAssetSource());
           await cesdk.addPlugin(new CaptionPresetsAssetSource());
+          await cesdk.addPlugin(new ImageColorsAssetSource());
           await cesdk.addPlugin(new ColorPaletteAssetSource());
           await cesdk.addPlugin(new CropPresetsAssetSource());
           await cesdk.addPlugin(new EffectsAssetSource());
