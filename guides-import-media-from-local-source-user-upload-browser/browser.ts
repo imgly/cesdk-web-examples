@@ -8,6 +8,7 @@ import packageJson from './package.json';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -132,6 +133,7 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -162,11 +164,9 @@ class Example implements EditorPlugin {
       page: { width: 800, height: 600, unit: 'Pixel' }
     });
 
-    // Get the page and set dimensions
+    // Get the page so we can zoom to fit it
     const pages = engine.block.findByType('page');
     const page = pages[0];
-    if (page) {
-    }
 
     // Zoom to fit content
     if (page) {

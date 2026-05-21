@@ -39,7 +39,9 @@ async function main() {
     engine.block.appendChild(page, imageBlock);
 
     // Create a LUT filter effect
-    const lutEffect = engine.block.createEffect('//ly.img.ubq/effect/lut_filter');
+    const lutEffect = engine.block.createEffect(
+      '//ly.img.ubq/effect/lut_filter'
+    );
 
     // Configure the LUT file URI - this is a tiled PNG containing the color lookup table
     const lutUrl =

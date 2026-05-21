@@ -51,7 +51,9 @@ try {
   const titleHeight = engine.block.getFrameHeight(titleBlock);
 
   // eslint-disable-next-line no-console
-  console.log(`Title dimensions: ${titleWidth.toFixed(0)}x${titleHeight.toFixed(0)} pixels`);
+  console.log(
+    `Title dimensions: ${titleWidth.toFixed(0)}x${titleHeight.toFixed(0)} pixels`
+  );
 
   // Calculate centered position using frame dimensions
   const pageWidth = engine.block.getWidth(page);
@@ -68,7 +70,12 @@ try {
   const backgroundBlock = engine.block.create('graphic');
   engine.block.setShape(backgroundBlock, engine.block.createShape('rect'));
   const fill = engine.block.createFill('color');
-  engine.block.setColor(fill, 'fill/color/value', { r: 0.2, g: 0.4, b: 0.8, a: 0.3 });
+  engine.block.setColor(fill, 'fill/color/value', {
+    r: 0.2,
+    g: 0.4,
+    b: 0.8,
+    a: 0.3
+  });
   engine.block.setFill(backgroundBlock, fill);
 
   // Set to Percent mode - values are normalized (0-1)
@@ -84,7 +91,10 @@ try {
 
   // Create a subtitle with Auto mode
   const subtitleBlock = engine.block.create('text');
-  engine.block.replaceText(subtitleBlock, 'Text automatically sizes to fit content');
+  engine.block.replaceText(
+    subtitleBlock,
+    'Text automatically sizes to fit content'
+  );
   engine.block.setTextFontSize(subtitleBlock, 32);
   engine.block.setWidthMode(subtitleBlock, 'Auto');
   engine.block.setHeightMode(subtitleBlock, 'Auto');
@@ -103,7 +113,9 @@ try {
   const bgHeightMode = engine.block.getHeightMode(backgroundBlock);
 
   // eslint-disable-next-line no-console
-  console.log(`Title modes: width=${titleWidthMode}, height=${titleHeightMode}`);
+  console.log(
+    `Title modes: width=${titleWidthMode}, height=${titleHeightMode}`
+  );
   // eslint-disable-next-line no-console
   console.log(`Background modes: width=${bgWidthMode}, height=${bgHeightMode}`);
 

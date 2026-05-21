@@ -27,7 +27,8 @@ function prompt(question: string): Promise<string> {
 }
 
 // Initialize CE.SDK engine in headless mode
-const engine = await CreativeEngine.init();
+const engine = await CreativeEngine.init({
+});
 
 try {
   // Create a local asset source for templates

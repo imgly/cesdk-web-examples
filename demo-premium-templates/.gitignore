@@ -1,0 +1,30 @@
+# Environment variables
+.env.local
+.env
+
+# Build output
+dist/
+node_modules/
+
+# Lock files (use npm ci in CI)
+package-lock.json
+yarn.lock
+tsconfig.tsbuildinfo
+
+# Auto-generated TypeScript config for local development
+tsconfig.local.json
+
+# CI-generated release directory contents
+# Critical template files ARE tracked: index.html, src/index.tsx
+# Everything else is copied from src/ during CI release build
+release/src/index.css
+release/src/app/
+release/src/imgly/
+release/public/
+release/README.md
+release/LICENSE
+release/hero.webp
+release/.gitignore
+release/node_modules/
+release/dist/
+release/package-lock.json

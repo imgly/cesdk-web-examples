@@ -7,6 +7,7 @@ import packageJson from './package.json';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -119,9 +120,12 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -141,12 +145,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TextComponentAssetSource());
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
-
-    // Create a local asset source and add color assets to it
-    engine.asset.addLocalSource('my-brand-colors');
-    for (const color of colors) {
-      engine.asset.addAssetToSource('my-brand-colors', color);
-    }
 
     // Configure the color picker to show custom colors alongside the defaults
     cesdk.ui.updateAssetLibraryEntry('ly.img.colors', {

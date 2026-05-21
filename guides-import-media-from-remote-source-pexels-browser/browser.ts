@@ -10,6 +10,7 @@ import packageJson from './package.json';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -126,9 +127,12 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -161,7 +165,7 @@ class Example implements EditorPlugin {
     const layout = calculateGridLayout(pageWidth, pageHeight, 3);
 
     // Create Pexels API client
-    const pexelsApiKey = import.meta.env.VITE_PEXELS_API_KEY;
+    const pexelsApiKey = (undefined as string | undefined);
 
     if (!pexelsApiKey) {
       throw new Error('VITE_PEXELS_API_KEY environment variable is required');

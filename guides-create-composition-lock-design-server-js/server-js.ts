@@ -11,7 +11,7 @@ async function lockDesignExample() {
 
   try {
     // Create scene with page
-    const scene = engine.scene.create('VerticalStack', {
+    engine.scene.create('VerticalStack', {
       page: { size: { width: 800, height: 600 } }
     });
     const page = engine.block.findByType('page')[0]!;
@@ -95,7 +95,10 @@ async function lockDesignExample() {
 
     // Check if operations are permitted on blocks
     const canEditText = engine.block.isAllowedByScope(textBlock, 'text/edit');
-    const canMoveImage = engine.block.isAllowedByScope(imageBlock, 'layer/move');
+    const canMoveImage = engine.block.isAllowedByScope(
+      imageBlock,
+      'layer/move'
+    );
     const canReplacePlaceholder = engine.block.isAllowedByScope(
       placeholderBlock,
       'fill/change'
