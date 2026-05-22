@@ -123,9 +123,9 @@ function NextChatSDKBootstrap({ baseUrl }: { baseUrl: string }) {
                   }
                 } catch {
                   try {
-                    // @ts-ignore
+                    // @ts-expect-error -- window.oai is injected by ChatGPT app host at runtime
                     if (window.oai) {
-                      // @ts-ignore
+                      // @ts-expect-error -- window.oai is injected by ChatGPT app host at runtime
                       window.oai.openExternal({ href: a.href });
                       e.preventDefault();
                     }

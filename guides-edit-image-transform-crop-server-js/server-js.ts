@@ -60,6 +60,23 @@ try {
   // 'Cover' automatically scales and positions to fill the entire frame
   engine.block.setContentFillMode(imageBlock, 'Cover');
 
+  // Alignment only applies in 'Cover' and 'Contain' fill modes — it controls
+  // which part of the content stays visible (Cover) or where the letterboxed
+  // content sits (Contain). It is ignored in 'Crop' mode.
+  // Pin the content to the top-left corner instead of the default center
+  engine.block.setContentFillHorizontalAlignment(imageBlock, 'Left');
+  engine.block.setContentFillVerticalAlignment(imageBlock, 'Top');
+
+  // Read the current alignment values
+  const horizontalAlignment =
+    engine.block.getContentFillHorizontalAlignment(imageBlock);
+  const verticalAlignment =
+    engine.block.getContentFillVerticalAlignment(imageBlock);
+  console.log('Content fill alignment:', {
+    horizontalAlignment,
+    verticalAlignment
+  });
+
   // Create another image block to demonstrate crop scaling
   const scaleBlock = await engine.block.addImage(imageUri, {
     size: { width: 200, height: 200 }

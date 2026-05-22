@@ -2,6 +2,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -31,9 +32,12 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -88,6 +92,23 @@ class Example implements EditorPlugin {
     // Set content fill mode - options are 'Crop', 'Cover', 'Contain'
     // 'Cover' automatically scales and positions to fill the entire frame
     engine.block.setContentFillMode(imageBlock, 'Cover');
+
+    // Alignment only applies in 'Cover' and 'Contain' fill modes — it controls
+    // which part of the content stays visible (Cover) or where the letterboxed
+    // content sits (Contain). It is ignored in 'Crop' mode.
+    // Pin the content to the top-left corner instead of the default center
+    engine.block.setContentFillHorizontalAlignment(imageBlock, 'Left');
+    engine.block.setContentFillVerticalAlignment(imageBlock, 'Top');
+
+    // Read the current alignment values
+    const horizontalAlignment =
+      engine.block.getContentFillHorizontalAlignment(imageBlock);
+    const verticalAlignment =
+      engine.block.getContentFillVerticalAlignment(imageBlock);
+    console.log('Content fill alignment:', {
+      horizontalAlignment,
+      verticalAlignment
+    });
 
     // Create another image block to demonstrate crop scaling
     const scaleBlock = await engine.block.addImage(imageUri, {
@@ -185,7 +206,9 @@ class Example implements EditorPlugin {
     engine.block.select(imageBlock);
 
     // Zoom to page for better visibility
-    cesdk.engine.scene.zoomToBlock(page, 0.5, 0.5, 0.9);
+    cesdk.engine.scene.zoomToBlock(page, {
+      padding: { left: 0.5, top: 0.5, right: 0.5, bottom: 0.9 }
+    });
   }
 }
 

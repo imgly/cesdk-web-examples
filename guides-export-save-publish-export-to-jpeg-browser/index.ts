@@ -5,10 +5,6 @@ const container = document.getElementById('cesdk_container') as HTMLDivElement;
 
 CreativeEditorSDK.create(container, {
   // license: 'YOUR_CESDK_LICENSE_KEY',
-  // Use local assets when developing with local packages
-  ...(import.meta.env.CESDK_USE_LOCAL && {
-    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-  }),
 }).then(async (cesdk) => {
   // Expose for hero image capture
   (window as any).cesdk = cesdk;

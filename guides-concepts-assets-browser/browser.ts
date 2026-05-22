@@ -10,6 +10,7 @@ import packageJson from './package.json';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -46,9 +47,12 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -120,6 +124,25 @@ class Example implements EditorPlugin {
       perPage: 10
     });
     console.log('Found assets:', results.total);
+
+    // Narrow a query with structured predicates. The top-level array is
+    // an implicit AND of its entries.
+    const happyStickers = await engine.asset.findAssets('my-assets', {
+      page: 0,
+      perPage: 10,
+      filter: [
+        // Either tag matches (combinators nest arbitrarily).
+        {
+          or: [
+            { property: 'tags', equals: 'happy' },
+            { property: 'tags', equals: 'celebratory' }
+          ]
+        },
+        // Exclude archived items.
+        { not: { property: 'meta.kind', equals: 'archived' } }
+      ]
+    });
+    console.log('Filtered stickers:', happyStickers.total);
 
     // Apply an asset to create a block in the scene
     if (results.assets.length > 0) {

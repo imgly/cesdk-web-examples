@@ -20,7 +20,7 @@ async function selectExports(): Promise<string[]> {
   const options = [
     { key: '1', name: 'basic', label: 'Basic PNG export' },
     { key: '2', name: 'compressed', label: 'Compressed PNG (level 9)' },
-    { key: '3', name: 'dimensions', label: 'HD PNG (1920x1080)' },
+    { key: '3', name: 'dimensions', label: 'HD PNG (1920x1080)' }
   ];
 
   const rl = readline.createInterface({
@@ -56,7 +56,6 @@ async function selectExports(): Promise<string[]> {
 
 // Initialize CE.SDK engine with baseURL for asset loading
 const engine = await CreativeEngine.init({
-  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`
 });
 
 try {

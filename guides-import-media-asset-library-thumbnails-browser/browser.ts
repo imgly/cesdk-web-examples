@@ -3,6 +3,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -33,11 +34,16 @@ class Example implements EditorPlugin {
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -73,10 +79,10 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
       page: {
         sourceId: 'ly.img.page.presets',
-        assetId: 'ly.img.page.presets.instagram.story'
+        assetId: 'ly.img.page.presets.instagram.story',
+        color: { r: 0, g: 0, b: 0, a: 1 }
       }
     });
 

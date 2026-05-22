@@ -202,7 +202,9 @@ async function main() {
 
     if (choice === '3' || choice === '4') {
       // Export the template as a PNG image
-      const pngBlob = await engine.block.export(page, { mimeType: 'image/png' });
+      const pngBlob = await engine.block.export(page, {
+        mimeType: 'image/png'
+      });
       const pngBuffer = Buffer.from(await pngBlob.arrayBuffer());
       writeFileSync(`${outputDir}/template.png`, pngBuffer);
       console.log('Template exported to output/template.png');

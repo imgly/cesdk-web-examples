@@ -75,6 +75,25 @@ async function main(): Promise<void> {
     });
     console.log('Found assets:', results.total);
 
+    // Narrow a query with structured predicates. The top-level array is
+    // an implicit AND of its entries.
+    const happyStickers = await engine.asset.findAssets('my-assets', {
+      page: 0,
+      perPage: 10,
+      filter: [
+        // Either tag matches (combinators nest arbitrarily).
+        {
+          or: [
+            { property: 'tags', equals: 'happy' },
+            { property: 'tags', equals: 'celebratory' }
+          ]
+        },
+        // Exclude archived items.
+        { not: { property: 'meta.kind', equals: 'archived' } }
+      ]
+    });
+    console.log('Filtered stickers:', happyStickers.total);
+
     // Apply an asset to create a block in the scene
     if (results.assets.length > 0) {
       const blockId = await engine.asset.apply('my-assets', results.assets[0]);

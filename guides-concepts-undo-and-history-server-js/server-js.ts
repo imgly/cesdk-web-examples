@@ -15,8 +15,12 @@ try {
   });
   const page = engine.block.findByType('page')[0];
 
-  // Subscribe to history updates to track state changes
-  const unsubscribe = engine.editor.onHistoryUpdated(() => {
+  // Subscribe to history updates.
+  const unsubscribe = engine.editor.onHistoryUpdated((kind) => {
+    if (kind === 'Activated') {
+      console.log('Active history switched, scene unchanged.');
+      return;
+    }
     const canUndo = engine.editor.canUndo();
     const canRedo = engine.editor.canRedo();
     console.log('History updated:', { canUndo, canRedo });

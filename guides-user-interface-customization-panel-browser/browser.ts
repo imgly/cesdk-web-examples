@@ -1,12 +1,9 @@
-import type {
-  EditorPlugin,
-  EditorPluginContext,
-  PanelPosition
-} from '@cesdk/cesdk-js';
+import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import packageJson from './package.json';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -43,16 +40,19 @@ class Example implements EditorPlugin {
     }
 
     // Enable panel features through Feature API
-    cesdk.feature.enable('ly.img.inspector', () => true);
-    cesdk.feature.enable('ly.img.library.panel', () => true);
-    cesdk.feature.enable('ly.img.settings', () => true);
+    cesdk.feature.set('ly.img.inspector', () => true);
+    cesdk.feature.set('ly.img.library.panel', () => true);
+    cesdk.feature.set('ly.img.settings', () => true);
     await cesdk.addPlugin(new DesignEditorConfig());
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -86,12 +86,12 @@ class Example implements EditorPlugin {
     // Configure default panel positioning
     cesdk.ui.setPanelPosition(
       '//ly.img.panel/inspector',
-      'left' as PanelPosition
+      'left' as 'left' | 'right' | 'bottom'
     );
     cesdk.ui.setPanelFloating('//ly.img.panel/inspector', false);
     cesdk.ui.setPanelPosition(
       '//ly.img.panel/assetLibrary',
-      'left' as PanelPosition
+      'left' as 'left' | 'right' | 'bottom'
     );
 
     // Check if a panel is open before opening
@@ -128,7 +128,7 @@ class Example implements EditorPlugin {
       // Open replace library with custom options
       // This panel will float and be positioned on the right
       cesdk.ui.openPanel('//ly.img.panel/assetLibrary.replace', {
-        position: 'right' as PanelPosition,
+        position: 'right' as 'left' | 'right' | 'bottom',
         floating: true,
         closableByUser: true
       });
@@ -139,7 +139,7 @@ class Example implements EditorPlugin {
 
       // Find all panels on the left
       const leftPanels = cesdk.ui.findAllPanels({
-        position: 'left' as PanelPosition
+        position: 'left' as 'left' | 'right' | 'bottom'
       });
       console.log('Panels on the left:', leftPanels);
 
@@ -165,12 +165,12 @@ class Example implements EditorPlugin {
         if (!isNarrowViewport && window.innerWidth > 1200) {
           cesdk.ui.setPanelPosition(
             '//ly.img.panel/inspector',
-            'right' as PanelPosition
+            'right' as 'left' | 'right' | 'bottom'
           );
         } else if (!isNarrowViewport) {
           cesdk.ui.setPanelPosition(
             '//ly.img.panel/inspector',
-            'left' as PanelPosition
+            'left' as 'left' | 'right' | 'bottom'
           );
         }
       };

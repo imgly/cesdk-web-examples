@@ -1,5 +1,6 @@
 {
   "name": "cesdk_web_examples",
+  "private": true,
   "version": "1.1.1",
   "description": "CreativeEditor SDK for Web Examples",
   "keywords": [
@@ -10,16 +11,14 @@
     "vue",
     "electron"
   ],
-  "resolutions": {
-    "debug": "^4.0.0 <4.4.2 || >4.4.2"
-  },
   "scripts": {
     "deploy": "codesandbox deploy",
     "test:e2e": "cypress open",
     "qa": "node scripts/run-qa-all.js",
     "qa:local": "node scripts/run-qa-all.js --local",
     "ci": "node scripts/run-ci-all.js",
-    "fix:all": "node scripts/run-fix-all.js"
+    "fix:all": "node scripts/run-fix-all.js",
+    "audit:phantom-deps": "node scripts/audit-phantom-deps.mjs"
   },
   "author": "IMG.LY GmbH <contact@img.ly>",
   "license": "ISC",
@@ -28,6 +27,8 @@
     "codesandbox": "^2.2.3"
   },
   "devDependencies": {
-    "cypress": "^15.5.0"
+    "cypress": "^15.5.0",
+    "minimatch": "^9.0.3",
+    "yaml": "^2.7.1"
   }
 }

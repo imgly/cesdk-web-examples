@@ -3,17 +3,13 @@ import Example from './browser';
 
 const config = {
   userId: 'guides-user',
-  // Use local assets when developing with local packages
-  ...(import.meta.env.CESDK_USE_LOCAL && {
-    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-  }),
   featureFlags: {
     exportWorker: true
   }
 };
 
 CreativeEditorSDK.create('#cesdk_container', config)
-  .then(async (cesdk: CreativeEditorSDK) => {
+  .then(async (cesdk) => {
 
     // Expose cesdk for debugging and hero image capture
     (window as any).cesdk = cesdk;
