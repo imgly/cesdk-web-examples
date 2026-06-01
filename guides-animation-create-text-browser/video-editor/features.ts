@@ -45,6 +45,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.navigation.undoRedo', /* "Undo" and "Redo" buttons */
     // 'ly.img.navigation.zoom', /* Zoom controls */
     // 'ly.img.navigation.actions', /* Actions dropdown */
+    // 'ly.img.navigation.documentSettings', /* Document settings button */
     // #endregion
 
     // ============================================================================
@@ -58,9 +59,16 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.text.typeface', /* Typeface dropdown */
     // 'ly.img.text.fontSize', /* Font Size input */
     // 'ly.img.text.fontStyle', /* Bold and Italic toggles */
+    // 'ly.img.text.decoration', /* Underline and Strikethrough toggles */
     // 'ly.img.text.alignment', /* Text Horizontal Alignment */
+    // 'ly.img.text.list', /* List style (bullets/numbered) */
+    // 'ly.img.text.list.unordered', /* Bulleted list */
+    // 'ly.img.text.list.ordered', /* Numbered list */
     // 'ly.img.text.advanced', /* Advanced text controls */
     // 'ly.img.text.background', /* Text background controls */
+    // 'ly.img.text.background.picker', /* Color picker body (hue/saturation, hex, RGB/CMYK) */
+    // 'ly.img.text.background.picker.opacity', /* Alpha/opacity slider */
+    // 'ly.img.text.background.library', /* Swatch library */
     // #endregion
 
     // ============================================================================
@@ -74,6 +82,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.crop.rotation', /* Crop rotation controls */
     // 'ly.img.crop.flip', /* Crop flip controls */
     // 'ly.img.crop.fillMode', /* Crop fill mode controls */
+    // 'ly.img.crop.fillAlignment', /* Crop fill alignment controls */
     // 'ly.img.crop.scale', /* Crop scale controls */
     // 'ly.img.crop.position', /* Crop position controls */
     // 'ly.img.crop.panel.autoOpen', /* Auto-open crop panel on crop mode */
@@ -104,6 +113,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     'ly.img.blur' /* Blur button */,
     'ly.img.shadow' /* Shadow button */,
     // 'ly.img.shadow.color', /* Shadow color picker */
+    // 'ly.img.shadow.color.picker', /* Color picker body (hue/saturation, hex, RGB/CMYK) */
+    // 'ly.img.shadow.color.picker.opacity', /* Alpha/opacity slider */
+    // 'ly.img.shadow.color.library', /* Swatch library */
     // 'ly.img.shadow.offset', /* Shadow angle and distance */
     // 'ly.img.shadow.blur', /* Shadow blur radius */
     'ly.img.cutout' /* Cutout controls */,
@@ -156,9 +168,12 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // ============================================================================
 
     // #region Page Features
-    'ly.img.page.move' /* Move Up/Down/Left/Right buttons */,
-    'ly.img.page.add' /* Add Page button in Canvas Bar */,
+    // 'ly.img.page', /* Enables all page children below */
+    // 'ly.img.page.move', /* Move Up/Down/Left/Right buttons */
+    // 'ly.img.page.add', /* Add Page button in Canvas Bar */
     'ly.img.page.resize' /* Resize button and page formats */,
+    'ly.img.page.settings' /* Read-only page dimensions, unit, and resolution */,
+    // 'ly.img.page.bleedMargin', /* Bleed margin controls */
     'ly.img.page.clipContent' /* Clip content on/off toggle */,
     // #endregion
 
@@ -172,6 +187,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.scene.layout.horizontal', /* Horizontal layout toggle */
     // 'ly.img.scene.layout.vertical', /* Vertical layout toggle */
     // 'ly.img.scene.layout.free', /* Free layout toggle */
+    // 'ly.img.scene.fontSizeUnit', /* Font size unit selector in page resize panel */
     // #endregion
 
     // ============================================================================
@@ -182,17 +198,34 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // #region Styling Features
     'ly.img.fill' /* Fill button and Fill Panel */,
     // 'ly.img.fill.color', /* Solid and gradient fill controls */
+    // 'ly.img.fill.color.picker', /* Color picker body (hue/saturation, hex, RGB/CMYK) */
+    // 'ly.img.fill.color.picker.gradient', /* Gradient mode selector and stops editor */
+    // 'ly.img.fill.color.picker.opacity', /* Alpha/opacity slider */
+    // 'ly.img.fill.color.library', /* Swatch library */
     // 'ly.img.fill.image', /* Image fill controls and crop */
     // 'ly.img.fill.video', /* Video fill, trim, volume, speed */
     'ly.img.stroke' /* Stroke controls (Color, Width) */,
     // 'ly.img.stroke.color', /* Stroke color picker */
+    // 'ly.img.stroke.color.picker', /* Color picker body (hue/saturation, hex, RGB/CMYK) */
+    // 'ly.img.stroke.color.picker.opacity', /* Alpha/opacity slider */
+    // 'ly.img.stroke.color.library', /* Swatch library */
     // 'ly.img.stroke.width', /* Stroke width input */
     // 'ly.img.stroke.style', /* Stroke style (dash) selector */
     // 'ly.img.stroke.position', /* Inner/center/outer selector */
     // 'ly.img.stroke.cornerGeometry', /* Corner join geometry */
+    // 'ly.img.stroke.cap', /* Stroke end caps (start/end) */
+    // 'ly.img.stroke.dash', /* Custom dash pattern controls */
     'ly.img.opacity' /* Opacity controls */,
     'ly.img.blendMode' /* Blend mode controls */,
     'ly.img.shape.options' /* Shape Options dropdown */,
+    // 'ly.img.shape.edit', /* Edit Path button in Shape Options (advanced editors only) */
+    // 'ly.img.vectorEdit', /* Vector edit controls (parent) */
+    // 'ly.img.vectorEdit.moveMode', /* Move/select mode toggle */
+    // 'ly.img.vectorEdit.addMode', /* Add node mode toggle */
+    // 'ly.img.vectorEdit.deleteMode', /* Delete node mode toggle */
+    // 'ly.img.vectorEdit.bendMode', /* Bend mode toggle */
+    // 'ly.img.vectorEdit.mirrorMode', /* Handle mirror mode dropdown */
+    // 'ly.img.vectorEdit.done', /* Exit vector edit button */
     // 'ly.img.shape.options.cornerRadius', /* Corner radius (rect/polygon) */
     // 'ly.img.shape.options.points', /* Star point count */
     // 'ly.img.shape.options.innerDiameter', /* Star inner diameter */
@@ -240,17 +273,17 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     'ly.img.video' /* Enables all children below */,
     // 'ly.img.video.timeline', /* Video Timeline visibility */
     // 'ly.img.video.timeline.ruler', /* Timeline ruler/time scale */
-    // 'ly.img.video.clips', /* Clips track in timeline */
-    // 'ly.img.video.overlays', /* Overlays track in timeline */
-    // 'ly.img.video.audio', /* Audio track in timeline */
-    // 'ly.img.video.addClip', /* Add clips to timeline */
-    // 'ly.img.video.controls', /* Base video control UI */
-    // 'ly.img.video.controls.toggle', /* Timeline collapse/expand toggle */
-    // 'ly.img.video.controls.background', /* Background color controls */
-    // 'ly.img.video.controls.playback', /* Play/pause and timestamp */
-    // 'ly.img.video.controls.loop', /* Loop toggle */
-    // 'ly.img.video.controls.split', /* Split clip control */
-    // 'ly.img.video.controls.timelineZoom', /* Timeline zoom controls */
+    // 'ly.img.video.timeline.clips', /* Clips track in timeline */
+    // 'ly.img.video.timeline.overlays', /* Overlays track in timeline */
+    // 'ly.img.video.timeline.audio', /* Audio track in timeline */
+    // 'ly.img.video.timeline.addClip', /* Add clips to timeline */
+    // 'ly.img.video.timeline.controls', /* Base video control UI */
+    // 'ly.img.video.timeline.controls.toggle', /* Timeline collapse/expand toggle */
+    // 'ly.img.video.timeline.controls.background', /* Background color controls */
+    // 'ly.img.video.timeline.controls.playback', /* Play/pause and timestamp */
+    // 'ly.img.video.timeline.controls.loop', /* Loop toggle */
+    // 'ly.img.video.timeline.controls.split', /* Split clip control */
+    // 'ly.img.video.timeline.controls.timelineZoom', /* Timeline zoom controls */
     // 'ly.img.video.caption', /* Video captions */
     // #endregion
 
@@ -321,5 +354,20 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // #region Development Features
     // 'ly.img.settings', /* Quick settings menu for development */
     // #endregion
+
+    // ============================================================================
+    // GRID & RULERS
+    // ============================================================================
+
+    // 'ly.img.rulers', /* Grid overlay, snap-to-grid, and canvas rulers */
+  ]);
+
+  // ============================================================================
+  // DISABLED FEATURES
+  // Features explicitly turned off for the video editor
+  // ============================================================================
+
+  cesdk.feature.disable([
+    'ly.img.video.timeline.ruler' /* Hide the timeline ruler/time scale */
   ]);
 }

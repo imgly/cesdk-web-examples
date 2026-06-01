@@ -2,6 +2,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -22,7 +23,7 @@ import type {
   AssetsQueryResult
 } from '@cesdk/engine';
 import type { TypefaceResolver } from '@imgly/idml-importer';
-import { IDMLParser, addGoogleFontsAssetLibrary } from '@imgly/idml-importer';
+import { IDMLParser, addGfontsAssetLibrary } from '@imgly/idml-importer';
 import packageJson from './package.json';
 
 /**
@@ -104,9 +105,12 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -128,7 +132,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     // Register Google Fonts before parsing IDML files for best font matching
-    await addGoogleFontsAssetLibrary(engine);
+    await addGfontsAssetLibrary(engine);
 
     // Optional: Create a custom font resolver for advanced font mapping
     // Use this when you need to map InDesign fonts to specific alternatives,
@@ -202,14 +206,14 @@ class Example implements EditorPlugin {
       }
 
       // Parse the IDML file using the IDML importer
-      // The addGoogleFontsAssetLibrary() call above enables automatic font matching
+      // The addGfontsAssetLibrary() call above enables automatic font matching
       // For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
       const parser = await IDMLParser.fromFile(
         engine,
         buffer,
         (content: string) =>
-          new DOMParser().parseFromString(content, 'text/xml')
-        // Optional: customFontResolver for advanced font mapping
+          new DOMParser().parseFromString(content, 'text/xml'),
+        customFontResolver
       );
       await parser.parse();
 
@@ -234,7 +238,7 @@ class Example implements EditorPlugin {
       const uploadToBackend = async (data: Uint8Array): Promise<string> => {
         // In production, upload the data to your CDN/storage and return the permanent URL
         // For this example, we create a blob URL to demonstrate the workflow
-        const blob = new Blob([data], { type: 'image/png' });
+        const blob = new Blob([new Uint8Array(data)], { type: 'image/png' });
         return URL.createObjectURL(blob);
       };
 
@@ -246,6 +250,9 @@ class Example implements EditorPlugin {
         engine.editor.relocateResource(bufferUri, permanentUrl);
       }
       const sceneString = await engine.scene.saveToString();
+      console.log(
+        `Scene persisted with stable URLs (${sceneString.length} bytes)`
+      );
 
       // Load the archived scene into the editor
       await cesdk.engine.scene.loadFromArchiveURL(archiveUrl);

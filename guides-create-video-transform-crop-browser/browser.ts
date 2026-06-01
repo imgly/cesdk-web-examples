@@ -3,6 +3,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -33,11 +34,16 @@ class Example implements EditorPlugin {
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -73,7 +79,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     await cesdk.actions.run('scene.create', {
-      mode: 'Video',
+      layout: 'DepthStack',
       page: { width: 720, height: 1280, unit: 'Pixel' }
     });
 
@@ -160,7 +166,9 @@ class Example implements EditorPlugin {
     engine.block.setPlaybackTime(page, 2.0);
 
     // Zoom to the video block for better visibility of the crop effect
-    cesdk.engine.scene.zoomToBlock(videoBlock, 0.5, 0.5, 0.8);
+    cesdk.engine.scene.zoomToBlock(videoBlock, {
+      padding: { left: 0.5, top: 0.5, right: 0.5, bottom: 0.8 }
+    });
   }
 }
 

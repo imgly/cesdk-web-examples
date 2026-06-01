@@ -2,6 +2,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -24,7 +25,7 @@ import type {
 import type { TypefaceResolver } from '@imgly/psd-importer';
 import {
   PSDParser,
-  addGoogleFontsAssetLibrary,
+  addGfontsAssetLibrary,
   createWebEncodeBufferToPNG
 } from '@imgly/psd-importer';
 import packageJson from './package.json';
@@ -107,9 +108,12 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -131,7 +135,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     // Register Google Fonts before parsing PSD files for best font matching
-    await addGoogleFontsAssetLibrary(engine);
+    await addGfontsAssetLibrary(engine);
 
     // Optional: Create a custom font resolver for advanced font mapping
     // Use this when you need to map Photoshop fonts to specific alternatives,
@@ -205,13 +209,13 @@ class Example implements EditorPlugin {
       }
 
       // Parse the PSD file using the PSD importer
-      // The addGoogleFontsAssetLibrary() call above enables automatic font matching
+      // The addGfontsAssetLibrary() call above enables automatic font matching
       // For custom font mapping, pass fontResolver in options (see customFontResolver example)
       const parser = await PSDParser.fromFile(
         engine,
         buffer,
-        createWebEncodeBufferToPNG()
-        // Optional: { fontResolver: customFontResolver } for advanced font mapping
+        createWebEncodeBufferToPNG(),
+        { fontResolver: customFontResolver }
       );
       const result = await parser.parse();
 
@@ -243,7 +247,7 @@ class Example implements EditorPlugin {
       const uploadToBackend = async (data: Uint8Array): Promise<string> => {
         // In production, upload the data to your CDN/storage and return the permanent URL
         // For this example, we create a blob URL to demonstrate the workflow
-        const blob = new Blob([data], { type: 'image/png' });
+        const blob = new Blob([new Uint8Array(data)], { type: 'image/png' });
         return URL.createObjectURL(blob);
       };
 
@@ -255,6 +259,9 @@ class Example implements EditorPlugin {
         engine.editor.relocateResource(bufferUri, permanentUrl);
       }
       const sceneString = await engine.scene.saveToString();
+      console.log(
+        `Scene persisted with stable URLs (${sceneString.length} bytes)`
+      );
 
       // Load the archived scene into the editor
       await cesdk.engine.scene.loadFromArchiveURL(archiveUrl);

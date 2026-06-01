@@ -14,11 +14,12 @@ config();
  * - Combining looping with trim settings
  */
 
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+});
 
 try {
   // Create a scene with a page for audio content
-  engine.scene.create();
+  engine.scene.create('DepthStack');
   const page = engine.block.create('page');
   engine.block.setWidth(page, 1920);
   engine.block.setHeight(page, 1080);

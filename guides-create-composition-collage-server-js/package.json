@@ -5,14 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite-node server-js.ts",
-    "dev:local": "CESDK_USE_LOCAL=true vite-node server-js.ts",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
-    "check:lint": "eslint .",
-    "postinstall": "node scripts/generate-empty-tsconfig-local.mjs",
-    "tsconfig:local": "sh ../../../scripts/examples/update-tsconfig-local.sh"
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
+    "check:lint": "eslint ."
   },
   "dependencies": {
-    "@cesdk/node": "latest",
+    "@cesdk/node": "^1.76.0-rc.2",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {

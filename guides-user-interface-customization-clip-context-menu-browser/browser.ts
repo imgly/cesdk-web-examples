@@ -3,6 +3,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -37,6 +38,7 @@ class Example implements EditorPlugin {
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
@@ -80,7 +82,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    await cesdk.actions.run('scene.create', { mode: 'Video' });
+    await cesdk.actions.run('scene.create');
 
     // Retrieve the default clip menu order for background clips
     const clipOrder = cesdk.ui.getComponentOrder({

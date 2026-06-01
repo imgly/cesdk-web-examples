@@ -25,11 +25,12 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene with specific page dimensions
-  engine.scene.createVideo({
-    page: { size: { width: 800, height: 500 } }
-  });
-  const page = engine.block.findByType('page')[0];
+  // Create a scene with a page
+  const scene = engine.scene.create('DepthStack');
+  const page = engine.block.create('page');
+  engine.block.setWidth(page, 800);
+  engine.block.setHeight(page, 500);
+  engine.block.appendChild(scene, page);
 
   // Sample video URL for demonstrations
   const videoUri = 'https://img.ly/static/ubq_video_samples/bbb.mp4';

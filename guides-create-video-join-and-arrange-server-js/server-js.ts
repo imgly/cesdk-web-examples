@@ -21,10 +21,10 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene - required for timeline-based editing
-  await engine.scene.createVideo();
-
-  const page = engine.block.findByType('page')[0];
+  // Create a scene with a page
+  const scene = engine.scene.create('DepthStack');
+  const page = engine.block.create('page');
+  engine.block.appendChild(scene, page);
 
   // Set page to 16:9 landscape (1920x1080 is standard HD video resolution)
   engine.block.setWidth(page, 1920);
@@ -40,15 +40,15 @@ try {
   // Create video clips using the addVideo helper method
   // Each clip is sized to fill the canvas (1920x1080 is standard video resolution)
   const clipA = await engine.block.addVideo(videoUrl, 1920, 1080, {
-    timeline: { duration: 5, timeOffset: 0 },
+    timeline: { duration: 5, timeOffset: 0 }
   });
 
   const clipB = await engine.block.addVideo(videoUrl, 1920, 1080, {
-    timeline: { duration: 5, timeOffset: 5 },
+    timeline: { duration: 5, timeOffset: 5 }
   });
 
   const clipC = await engine.block.addVideo(videoUrl, 1920, 1080, {
-    timeline: { duration: 5, timeOffset: 10 },
+    timeline: { duration: 5, timeOffset: 10 }
   });
 
   // Create a track and add it to the page
@@ -97,7 +97,9 @@ try {
   finalClips.forEach((clipId, index) => {
     const offset = engine.block.getTimeOffset(clipId);
     const duration = engine.block.getDuration(clipId);
-    console.log(`  Clip ${index + 1}: offset=${offset}s, duration=${duration}s`);
+    console.log(
+      `  Clip ${index + 1}: offset=${offset}s, duration=${duration}s`
+    );
   });
 
   // Create a second track for layered compositions
@@ -106,9 +108,14 @@ try {
   engine.block.appendChild(page, overlayTrack);
 
   // Create an overlay clip for picture-in-picture effect (1/4 size)
-  const overlayClip = await engine.block.addVideo(videoUrl, 1920 / 4, 1080 / 4, {
-    timeline: { duration: 5, timeOffset: 2 },
-  });
+  const overlayClip = await engine.block.addVideo(
+    videoUrl,
+    1920 / 4,
+    1080 / 4,
+    {
+      timeline: { duration: 5, timeOffset: 2 }
+    }
+  );
   engine.block.appendChild(overlayTrack, overlayClip);
 
   // Position overlay in bottom-right corner with padding

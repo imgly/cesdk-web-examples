@@ -14,7 +14,8 @@ config();
  */
 
 // Initialize CE.SDK engine in headless mode
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+});
 
 try {
   // Create a design scene

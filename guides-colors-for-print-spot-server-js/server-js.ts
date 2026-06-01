@@ -35,7 +35,6 @@ config();
 // Initialize CE.SDK engine with baseURL for asset loading
 const engine = await CreativeEngine.init({
   // license: process.env.CESDK_LICENSE,
-  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`
 });
 
 try {
@@ -129,7 +128,11 @@ try {
     externalReference: ''
   };
   const { fill: lightTintFill } = createColorBlock(560, 50, 150, 150);
-  engine.block.setColor(lightTintFill, 'fill/color/value', brandAccentLightTint);
+  engine.block.setColor(
+    lightTintFill,
+    'fill/color/value',
+    brandAccentLightTint
+  );
 
   // Apply spot colors to strokes and shadows
   const { block: strokeBlock, fill: strokeBlockFill } = createColorBlock(

@@ -6,21 +6,18 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "dev:local": "VITE_CESDK_LOCAL=true vite",
     "build": "vite build",
-    "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:lint": "eslint \"**/*.{ts,js}\"",
     "check:format": "prettier --check \"**/*.{ts,js,json,html,css}\"",
     "fix:format": "prettier --write \"**/*.{ts,js,json,html,css}\"",
-    "postinstall": "node scripts/generate-empty-tsconfig-local.mjs",
-    "tsconfig:local": "node ../../../scripts/cesdk.ts.link.mjs guides-stickers-and-shapes-create-cutout-browser",
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "latest",
-    "@imgly/plugin-cutout-library-web": "latest"
+    "@cesdk/cesdk-js": "^1.76.0-rc.2",
+    "@cesdk/engine": "^1.76.0-rc.2",
+    "@imgly/plugin-cutout-library-web": "^1.76.0-rc.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.0.0",
@@ -31,6 +28,7 @@
     "prettier": "^3.0.0",
     "sharp": "^0.33.0",
     "typescript": "^5.0.0",
-    "vite": "^6.0.3"
+    "vite": "^6.0.3",
+    "@types/node": "^20.0.0"
   }
 }
