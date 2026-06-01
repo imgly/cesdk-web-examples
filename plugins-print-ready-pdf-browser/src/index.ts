@@ -1,9 +1,11 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
+type CreativeEditorSDK = InstanceType<typeof CreativeEditorSDK>;
 // @ts-expect-error - Plugin types will be available in future release
 import { convertToPDFX3 } from '@imgly/plugin-print-ready-pdfs-web';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -23,36 +25,40 @@ const config = {
   // Get a free trial license at https://img.ly/forms/free-trial to remove it.
   // Uncomment the line below and add your license key:
   // license: 'your-license-key-here',
-  // baseURL: `https://cdn.img.ly/packages/imgly/cesdk-js/${CreativeEditorSDK.version}/assets`,
-  // Use local assets when developing with local packages
-  ...((import.meta as any).env?.CESDK_USE_LOCAL && {
-    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-  })
 };
 
 async function init() {
   // Initialize CE.SDK
   cesdk = await CreativeEditorSDK.create('#cesdk-container', config);
 
-  cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-    id: 'ly.img.actions.navigationBar',
-    children: [
-      {
-        key: 'export-print-ready-pdf',
-        id: 'ly.img.action.navigationBar',
-        label: 'Export Print-Ready PDF',
-        iconName: '@imgly/Download',
-        onClick: async () => {
-          await exportPrintReadyPDF();
+  cesdk.ui.insertOrderComponent(
+    { in: 'ly.img.navigation.bar', position: 'end' },
+    {
+      id: 'ly.img.actions.navigationBar',
+      children: [
+        {
+          key: 'export-print-ready-pdf',
+          id: 'ly.img.action.navigationBar',
+          label: 'Export Print-Ready PDF',
+          iconName: '@imgly/Download',
+          onClick: async () => {
+            await exportPrintReadyPDF();
+          }
         }
-      }
-    ]
-  });
+      ]
+    }
+  );
 
   // Load default scene
-  await cesdk.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
+  await cesdk.actions.run('scene.create', {
+    page: {
+      sourceId: 'ly.img.page.presets',
+      assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+    }
+  });
   await cesdk.addPlugin(new BlurAssetSource());
   await cesdk.addPlugin(new CaptionPresetsAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
   await cesdk.addPlugin(new ColorPaletteAssetSource());
   await cesdk.addPlugin(new CropPresetsAssetSource());
   await cesdk.addPlugin(new EffectsAssetSource());

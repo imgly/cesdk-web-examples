@@ -66,12 +66,12 @@ async function main(): Promise<void> {
   });
 
   try {
-    // Create a video scene - required for audio blocks
-    await engine.scene.createVideo();
-
-    // Get the page (first container in video scenes)
-    const pages = engine.block.findByType('page');
-    const page = pages[0];
+    // Create a scene with a page
+    const scene = engine.scene.create();
+    const page = engine.block.create('page');
+    engine.block.setWidth(page, 1920);
+    engine.block.setHeight(page, 1080);
+    engine.block.appendChild(scene, page);
 
     // Create a buffer and get its URI
     const bufferUri = engine.editor.createBuffer();

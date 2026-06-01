@@ -1,6 +1,7 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -27,9 +28,12 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new DesignEditorConfig());
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -50,7 +54,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-
     const engine = cesdk.engine;
 
     await engine.scene.loadFromURL(
@@ -60,29 +63,32 @@ class Example implements EditorPlugin {
 
     await engine.scene.zoomToBlock(page);
 
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          onClick: async () => {
-            const currentPage = engine.scene.getCurrentPage()!;
-            const blob = await engine.block.export(currentPage, {
-              mimeType: 'image/png'
-            });
-            const base64 = await this.blobToBase64(blob);
-            await cesdk.utils.downloadFile(blob, 'image/png');
-            cesdk.ui.showNotification({
-              message: `Base64: ${(base64.length / 1024).toFixed(0)} KB`,
-              type: 'success'
-            });
-          },
-          key: 'export-base64',
-          label: 'To Base64',
-          icon: '@imgly/Save'
-        }
-      ]
-    });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            onClick: async () => {
+              const currentPage = engine.scene.getCurrentPage()!;
+              const blob = await engine.block.export(currentPage, {
+                mimeType: 'image/png'
+              });
+              const base64 = await this.blobToBase64(blob);
+              await cesdk.utils.downloadFile(blob, 'image/png');
+              cesdk.ui.showNotification({
+                message: `Base64: ${(base64.length / 1024).toFixed(0)} KB`,
+                type: 'success'
+              });
+            },
+            key: 'export-base64',
+            label: 'To Base64',
+            icon: '@imgly/Save'
+          }
+        ]
+      }
+    );
 
     cesdk.actions.register('exportDesign', async () => {
       const currentPage = engine.scene.getCurrentPage()!;
@@ -90,6 +96,7 @@ class Example implements EditorPlugin {
         mimeType: 'image/png'
       });
       const base64 = await this.blobToBase64(blob);
+      console.log(`Exported PNG as base64 (${base64.length} chars).`);
       await cesdk.utils.downloadFile(blob, 'image/png');
     });
   }

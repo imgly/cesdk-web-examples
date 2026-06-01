@@ -21,11 +21,12 @@ async function main() {
   });
 
   try {
-    // Create a video scene - required for animation support
-    engine.scene.createVideo({
-      page: { size: { width: 1920, height: 1080 } }
-    });
-    const page = engine.block.findByType('page')[0];
+    // Create a scene with a page
+    const scene = engine.scene.create('DepthStack');
+    const page = engine.block.create('page');
+    engine.block.setWidth(page, 1920);
+    engine.block.setHeight(page, 1080);
+    engine.block.appendChild(scene, page);
 
     // Set page duration to accommodate all animations
     engine.block.setDuration(page, 10);
@@ -181,7 +182,7 @@ async function main() {
     await mkdir('output', { recursive: true });
 
     // Export first frame as PNG to verify the scene setup
-    const blob = await engine.block.export(page, 'image/png');
+    const blob = await engine.block.export(page, { mimeType: 'image/png' });
     const buffer = Buffer.from(await blob.arrayBuffer());
     await writeFile('output/text-animations.png', buffer);
 

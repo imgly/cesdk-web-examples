@@ -2,25 +2,11 @@ import { copyFileSync, existsSync, mkdirSync, readdirSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { defineConfig, type ResolvedConfig } from 'vite';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Conditionally import local dev plugin when CESDK_USE_LOCAL is set
-// This allows the example to work in both monorepo and standalone contexts
 export default defineConfig(async () => {
-  const plugins = [];
-
-  if (process.env.CESDK_USE_LOCAL) {
-    try {
-      const { cesdkLocal } = await import(
-        '../shared/vite-config-cesdk-local.js'
-      );
-      plugins.push(cesdkLocal());
-    } catch {
-      // Silently fail in standalone repos where shared folder doesn't exist
-    }
-  }
+  const plugins: any[] = [];
 
   return {
     server: {
@@ -51,7 +37,7 @@ export default defineConfig(async () => {
               // Find the plugin dist folder (works with both npm and pnpm structures)
               let pluginPath: string | null = null;
 
-              // Try npm/yarn structure first
+              // Try npm/pnpm structure first
               const npmPath = join(
                 __dirname,
                 'node_modules/@imgly/plugin-print-ready-pdfs-web/dist'

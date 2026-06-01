@@ -5,17 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:local": "LOCAL_PACKAGE_PATH=../../.. vite",
     "build": "vite build",
-    "build:local": "CESDK_USE_LOCAL=true vite build",
     "preview": "vite preview",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
-    "check:lint": "eslint .",
-    "postinstall": "node scripts/generate-empty-tsconfig-local.mjs",
-    "tsconfig:local": "sh ../../../scripts/examples/update-tsconfig-local.sh"
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
+    "check:lint": "eslint ."
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "latest"
+    "@cesdk/cesdk-js": "^1.76.0-rc.1",
+    "@cesdk/engine": "^1.76.0-rc.1"
   },
   "devDependencies": {
     "@types/node": "^22.10.1",

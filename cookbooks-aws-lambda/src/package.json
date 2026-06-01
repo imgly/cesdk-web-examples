@@ -1,0 +1,21 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "CE.SDK lambda source code",
+  "main": "cesdk-handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1045.0",
+    "@aws-sdk/client-s3": "^3.1045.0",
+    "@aws-sdk/lib-dynamodb": "^3.1045.0",
+    "@aws-sdk/s3-request-presigner": "^3.1045.0",
+    "@cesdk/node": "^1.76.0-rc.1",
+    "@cesdk/node-native": "^1.75.0",
+    "node-fetch": "^3.2.10",
+    "uuid": "^9.0.0"
+  }
+}
