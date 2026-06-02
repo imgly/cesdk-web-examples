@@ -1,20 +1,5 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import {
-  BlurAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
@@ -26,6 +11,8 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+
+    await cesdk.addPlugin(new DesignEditorConfig());
     const engine = cesdk.engine;
 
     // Load an archive that contains embedded resources (images and fonts)
@@ -84,7 +71,9 @@ class Example implements EditorPlugin {
     // After relocation, the scene references blob: URLs instead of buffer:// URIs
     // Note: blob: URLs are still considered transient (runtime) resources
     // For permanent storage, upload to a CDN and relocate to https:// URLs
-    console.log(`Relocated ${transientResources.length} buffer:// URIs to blob: URLs`);
+    console.log(
+      `Relocated ${transientResources.length} buffer:// URIs to blob: URLs`
+    );
 
     // Zoom to fit the scene
     const pages = engine.block.findByType('page');

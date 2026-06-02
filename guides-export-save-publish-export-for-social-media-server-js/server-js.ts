@@ -16,7 +16,6 @@ config();
 
 // Initialize CE.SDK engine with baseURL for asset loading
 const engine = await CreativeEngine.init({
-  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`
 });
 
 try {

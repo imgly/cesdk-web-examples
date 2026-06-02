@@ -2,6 +2,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -74,7 +75,7 @@ class Example implements EditorPlugin {
     cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', before: 'ly.img.actions.navigationBar' }, 'ly.img.separator');
 
     // Update a component's properties without changing its position
-    cesdk.ui.updateOrderComponent({ in: 'ly.img.dock', match: { id: 'ly.img.assetLibrary.dock' }, key: 'images' },
+    cesdk.ui.updateOrderComponent({ in: 'ly.img.dock', match: { id: 'ly.img.assetLibrary.dock', key: 'images' } },
       { label: 'Photos' });
 
     // Set a different canvas menu order for Text edit mode
@@ -90,6 +91,7 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));

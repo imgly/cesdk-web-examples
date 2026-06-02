@@ -35,7 +35,6 @@ function showProgress(msg: string): () => void {
 }
 
 const engine = await CreativeEngine.init({
-  baseURL: `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`
 });
 
 try {

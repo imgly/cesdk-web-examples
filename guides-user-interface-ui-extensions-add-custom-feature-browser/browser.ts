@@ -2,6 +2,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -54,34 +55,37 @@ const CustomFeaturePlugin = (
       console.log('CustomFeaturePlugin initialized');
 
       // Load default assets and create a design scene
-    await cesdk.addPlugin(new DesignEditorConfig());
+      await cesdk.addPlugin(new DesignEditorConfig());
 
-    // Add asset source plugins
-    await cesdk.addPlugin(new BlurAssetSource());
-    await cesdk.addPlugin(new ColorPaletteAssetSource());
-    await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
-    await cesdk.addPlugin(
-      new DemoAssetSources({
-        include: [
-          'ly.img.templates.blank.*',
-          'ly.img.templates.presentation.*',
-          'ly.img.templates.print.*',
-          'ly.img.templates.social.*',
-          'ly.img.image.*'
-        ]
-      })
-    );
-    await cesdk.addPlugin(new EffectsAssetSource());
-    await cesdk.addPlugin(new FiltersAssetSource());
-    await cesdk.addPlugin(new PagePresetsAssetSource());
-    await cesdk.addPlugin(new StickerAssetSource());
-    await cesdk.addPlugin(new TextAssetSource());
-    await cesdk.addPlugin(new TextComponentAssetSource());
-    await cesdk.addPlugin(new TypefaceAssetSource());
-    await cesdk.addPlugin(new VectorShapeAssetSource());
+      // Add asset source plugins
+      await cesdk.addPlugin(new BlurAssetSource());
+      await cesdk.addPlugin(new ImageColorsAssetSource());
+      await cesdk.addPlugin(new ColorPaletteAssetSource());
+      await cesdk.addPlugin(new CropPresetsAssetSource());
+      await cesdk.addPlugin(
+        new UploadAssetSources({ include: ['ly.img.image.upload'] })
+      );
+      await cesdk.addPlugin(
+        new DemoAssetSources({
+          include: [
+            'ly.img.templates.blank.*',
+            'ly.img.templates.presentation.*',
+            'ly.img.templates.print.*',
+            'ly.img.templates.social.*',
+            'ly.img.image.*'
+          ]
+        })
+      );
+      await cesdk.addPlugin(new EffectsAssetSource());
+      await cesdk.addPlugin(new FiltersAssetSource());
+      await cesdk.addPlugin(new PagePresetsAssetSource());
+      await cesdk.addPlugin(new StickerAssetSource());
+      await cesdk.addPlugin(new TextAssetSource());
+      await cesdk.addPlugin(new TextComponentAssetSource());
+      await cesdk.addPlugin(new TypefaceAssetSource());
+      await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    await cesdk.actions.run('scene.create', {
+      await cesdk.actions.run('scene.create', {
         page: { width: 800, height: 600, unit: 'Pixel' }
       });
 

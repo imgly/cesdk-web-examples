@@ -19,9 +19,8 @@ const engine = await CreativeEngine.init({
 });
 
 try {
-  // Create a video scene with a page
-  // Audio blocks require a video scene mode
-  engine.scene.create();
+  // Create a scene with a page
+  engine.scene.create('DepthStack');
   const page = engine.block.create('page');
   engine.block.setWidth(page, 1920);
   engine.block.setHeight(page, 1080);
@@ -57,7 +56,9 @@ try {
   // Query current timeline position
   const timeOffset = engine.block.getTimeOffset(audioBlock);
   const duration = engine.block.getDuration(audioBlock);
-  console.log(`Timeline position: starts at ${timeOffset}s, duration ${duration.toFixed(2)}s`);
+  console.log(
+    `Timeline position: starts at ${timeOffset}s, duration ${duration.toFixed(2)}s`
+  );
 
   // Set audio volume (0.0 = silent, 1.0 = full volume)
   engine.block.setVolume(audioBlock, 0.8);

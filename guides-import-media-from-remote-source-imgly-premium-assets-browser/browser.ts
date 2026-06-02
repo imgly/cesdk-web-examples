@@ -7,6 +7,7 @@ import packageJson from './package.json';
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -54,9 +55,12 @@ class Example implements EditorPlugin {
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -86,7 +90,7 @@ class Example implements EditorPlugin {
 
     // Configure the base URL where premium assets are hosted
     // This points to IMG.LY's premium templates CDN
-    const baseURL = import.meta.env.VITE_CESDK_PREMIUM_TEMPLATES_URL;
+    const baseURL = (undefined as string | undefined);
 
     if (!baseURL) {
       throw new Error(

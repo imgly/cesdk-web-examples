@@ -1,20 +1,5 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import {
-  BlurAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
@@ -40,6 +25,7 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
+    await cesdk.addPlugin(new DesignEditorConfig());
     const engine = cesdk.engine;
 
     // Template layout constants for a promotional card
@@ -253,9 +239,18 @@ class Example implements EditorPlugin {
     });
 
     // Add role toggle and save buttons to the navigation bar
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, 'role.toggle');
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, 'save.string');
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, 'save.archive');
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      'role.toggle'
+    );
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      'save.string'
+    );
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      'save.archive'
+    );
 
     // Enable auto-fit zoom to continuously fit the page with padding
     engine.scene.enableZoomAutoFit(page, 'Both', 40, 40, 40, 40);

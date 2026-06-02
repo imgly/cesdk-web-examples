@@ -1,8 +1,9 @@
-import type CreativeEngine from '@cesdk/cesdk-js/cesdk-engine';
+import type CreativeEngine from '@cesdk/engine';
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -22,6 +23,7 @@ import packageJson from './package.json';
 // ===== Handle Different Video Sources =====
 // Helper function to create a scene from a blob (e.g., file upload)
 // This pattern is useful when users upload video files via <input type="file">
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Reference implementation for blob-based video sources; exposed as example pattern in docs.
 async function createSceneFromBlob(
   engine: CreativeEngine,
   blob: Blob
@@ -46,11 +48,16 @@ class Example implements EditorPlugin {
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
       new UploadAssetSources({
-        include: ['ly.img.image.upload', 'ly.img.video.upload', 'ly.img.audio.upload']
+        include: [
+          'ly.img.image.upload',
+          'ly.img.video.upload',
+          'ly.img.audio.upload'
+        ]
       })
     );
     await cesdk.addPlugin(
@@ -85,7 +92,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-
     const engine = cesdk.engine;
 
     // ===== Create a Scene from a Video URL =====
@@ -110,6 +116,7 @@ class Example implements EditorPlugin {
     // ===== Control Video Playback =====
     // Get the video duration
     const duration = engine.block.getDuration(scene);
+    console.log(`Video duration: ${duration}s`);
 
     // Set playback position to 2 seconds
     const page = engine.block.findByType('page')[0];
