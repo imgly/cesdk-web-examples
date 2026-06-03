@@ -183,7 +183,9 @@ try {
 
   // Save to file
   writeFileSync('output/distortion-effects.png', buffer);
-  console.log('✅ Exported distortion effects to output/distortion-effects.png');
+  console.log(
+    '✅ Exported distortion effects to output/distortion-effects.png'
+  );
 } finally {
   engine.dispose();
 }

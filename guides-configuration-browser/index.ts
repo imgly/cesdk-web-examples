@@ -24,16 +24,10 @@ const config = {
 
   // Location of core engine assets (WASM, data files)
   // Default: IMG.LY CDN. For production, host assets yourself.
-  // baseURL: 'https://your-cdn.com/cesdk-assets/',
-
-  // Use local assets when developing with local packages
-  ...(import.meta.env.CESDK_USE_LOCAL && {
-    baseURL: import.meta.env.VITE_CESDK_ASSETS_BASE_URL
-  })
 };
 
 CreativeEditorSDK.create('#cesdk_container', config)
-  .then(async (cesdk: CreativeEditorSDK) => {
+  .then(async (cesdk) => {
 
     // Expose cesdk for debugging and hero screenshot generation
     (window as any).cesdk = cesdk;

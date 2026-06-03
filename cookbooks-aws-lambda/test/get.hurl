@@ -1,0 +1,1 @@
+GET  https://<APP-ID>.execute-api.<REGION>.amazonaws.com/prod/images/<IMAGE_ID>

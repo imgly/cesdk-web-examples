@@ -11,11 +11,12 @@ async function main() {
   });
 
   try {
-    // Create a video scene (required for animations)
-    engine.scene.createVideo({
-      page: { size: { width: 1920, height: 1080 } }
-    });
-    const page = engine.block.findByType('page')[0];
+    // Create a scene with a page
+    const scene = engine.scene.create('DepthStack');
+    const page = engine.block.create('page');
+    engine.block.setWidth(page, 1920);
+    engine.block.setHeight(page, 1080);
+    engine.block.appendChild(scene, page);
 
     // Helper to create an image block
     const createImageBlock = (
@@ -133,7 +134,10 @@ async function main() {
     engine.block.setInAnimation(block5, slideFromTop);
     engine.block.setDuration(slideFromTop, 1.0);
 
-    // Set slide direction (in radians: 0=right, PI/2=bottom, PI=left, 3*PI/2=top)
+    // Set slide direction (radians describe the motion direction the block
+    // travels along; the block enters from the opposite side):
+    //   0=slides right (enters from left), PI/2=slides down (enters from top),
+    //   PI=slides left (enters from right), 3*PI/2=slides up (enters from bottom)
     engine.block.setFloat(
       slideFromTop,
       'animation/slide/direction',

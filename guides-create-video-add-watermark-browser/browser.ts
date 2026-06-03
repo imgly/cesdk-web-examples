@@ -1,21 +1,6 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import {
-  BlurAssetSource,
-  CaptionPresetsAssetSource,
-  ColorPaletteAssetSource,
-  CropPresetsAssetSource,
-  DemoAssetSources,
-  EffectsAssetSource,
-  FiltersAssetSource,
-  PagePresetsAssetSource,
-  StickerAssetSource,
-  TextAssetSource,
-  TextComponentAssetSource,
-  TypefaceAssetSource,
-  UploadAssetSources,
-  VectorShapeAssetSource
-} from '@cesdk/cesdk-js/plugins';
+import { CaptionPresetsAssetSource } from '@cesdk/cesdk-js/plugins';
 import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
@@ -89,7 +74,12 @@ class Example implements EditorPlugin {
 
     // Add drop shadow for visibility across different backgrounds
     engine.block.setDropShadowEnabled(textWatermark, true);
-    engine.block.setDropShadowColor(textWatermark, { r: 0, g: 0, b: 0, a: 0.8 });
+    engine.block.setDropShadowColor(textWatermark, {
+      r: 0,
+      g: 0,
+      b: 0,
+      a: 0.8
+    });
     engine.block.setDropShadowOffsetX(textWatermark, 2);
     engine.block.setDropShadowOffsetY(textWatermark, 2);
     engine.block.setDropShadowBlurRadiusX(textWatermark, 4);
@@ -128,7 +118,10 @@ class Example implements EditorPlugin {
     const logoPadding = 20;
     engine.block.setWidth(logoWatermark, logoSize);
     engine.block.setHeight(logoWatermark, logoSize);
-    engine.block.setPositionX(logoWatermark, pageWidth - logoSize - logoPadding);
+    engine.block.setPositionX(
+      logoWatermark,
+      pageWidth - logoSize - logoPadding
+    );
     engine.block.setPositionY(logoWatermark, logoPadding);
 
     // Set opacity for the logo watermark

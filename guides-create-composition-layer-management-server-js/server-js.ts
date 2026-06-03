@@ -16,7 +16,8 @@ config();
  * - Exporting the result
  */
 
-const engine = await CreativeEngine.init({});
+const engine = await CreativeEngine.init({
+});
 
 try {
   // Create a scene with a page

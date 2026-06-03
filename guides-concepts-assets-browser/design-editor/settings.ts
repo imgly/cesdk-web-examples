@@ -165,8 +165,19 @@ export function setupSettings(engine: CreativeEngine): void {
   // ============================================================================
 
   // #region Animation Settings
-  // Enable/disable block animations (in/out animations, loops)
-  // engine.editor.setSetting('blockAnimations/enabled', true);
+  // Disable block animations so revealed blocks render at their base transform.
+  engine.editor.setSetting('blockAnimations/enabled', false);
+  // #endregion
+
+  // ============================================================================
+  // PLAYBACK SETTINGS
+  // Present the scene statically regardless of playback time
+  // ============================================================================
+
+  // #region Playback Settings
+  // Keep every block visible regardless of the current playback time, so a former video scene is
+  // shown as a static design.
+  engine.editor.setSetting('playback/showAllBlocks', true);
   // #endregion
 
   // ============================================================================
@@ -237,6 +248,12 @@ export function setupSettings(engine: CreativeEngine): void {
 
   // Retain cover mode during transform edits
   // engine.editor.setSetting('features/transformEditsRetainCoverMode', true);
+  // #endregion
+
+  // #region Grid Settings
+  // Uncomment to enable background grid and snap-to-grid for precise alignment
+  // engine.editor.setSettingBool('grid/enabled', true);
+  // engine.editor.setSettingBool('grid/snapEnabled', true);
   // #endregion
 
   // ============================================================================

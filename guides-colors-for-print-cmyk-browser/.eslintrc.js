@@ -7,10 +7,7 @@ module.exports = {
     project: './tsconfig.json'
   },
   plugins: ['@typescript-eslint', 'deprecation', 'jsdoc'],
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended'
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   rules: {
     'deprecation/deprecation': 'error',
     '@typescript-eslint/no-explicit-any': 'off',

@@ -7,19 +7,16 @@
     "dev": "vite",
     "dev:local": "vite --config vite.local.config.ts",
     "build": "tsc && vite build",
-    "build:local": "CESDK_USE_LOCAL=true vite build",
-    "check:syntax": "tsc --project tsconfig.base.json --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit",
     "check:lint": "eslint . --ext .ts",
-    "capture:hero_image": "node scripts/capture-hero.mjs",
-    "postinstall": "npm run tsconfig:local || true",
-    "tsconfig:local": "node ../shared/scripts/generate-local-tsconfig.mjs || node scripts/generate-empty-tsconfig-local.mjs"
+    "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "latest"
+    "@cesdk/cesdk-js": "^1.76.0"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.52.0",
-    "@playwright/test": "^1.52.0",
+    "playwright": "^1.55.1",
     "@typescript-eslint/parser": "^8.32.0",
     "eslint": "^9.26.0",
     "eslint-config-prettier": "^10.1.5",

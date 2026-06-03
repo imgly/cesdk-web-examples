@@ -2,6 +2,7 @@ import type { EditorPlugin, EditorPluginContext, CreativeEngine } from '@cesdk/c
 
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,

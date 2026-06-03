@@ -1,6 +1,7 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import {
   BlurAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -38,9 +39,12 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new DesignEditorConfig());
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
+    await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -60,7 +64,6 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TextComponentAssetSource());
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
-
 
     const engine = cesdk.engine;
 
@@ -115,39 +118,42 @@ class Example implements EditorPlugin {
       }
     };
 
-    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
-      id: 'ly.img.actions.navigationBar',
-      children: [
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'save-scene',
-          label: 'Save Scene',
-          icon: '@imgly/Save',
-          onClick: handleSaveScene
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'save-archive',
-          label: 'Save Archive',
-          icon: '@imgly/Download',
-          onClick: handleSaveToArchive
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'load-scene',
-          label: 'Load Scene',
-          icon: '@imgly/Upload',
-          onClick: handleLoadScene
-        },
-        {
-          id: 'ly.img.action.navigationBar',
-          key: 'load-archive',
-          label: 'Load Archive',
-          icon: '@imgly/Upload',
-          onClick: handleLoadArchive
-        }
-      ]
-    });
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.navigation.bar', position: 'end' },
+      {
+        id: 'ly.img.actions.navigationBar',
+        children: [
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'save-scene',
+            label: 'Save Scene',
+            icon: '@imgly/Save',
+            onClick: handleSaveScene
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'save-archive',
+            label: 'Save Archive',
+            icon: '@imgly/Download',
+            onClick: handleSaveToArchive
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'load-scene',
+            label: 'Load Scene',
+            icon: '@imgly/Upload',
+            onClick: handleLoadScene
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'load-archive',
+            label: 'Load Archive',
+            icon: '@imgly/Upload',
+            onClick: handleLoadArchive
+          }
+        ]
+      }
+    );
   }
 }
 

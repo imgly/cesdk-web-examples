@@ -43,7 +43,7 @@ const ROBOTO_TYPEFACE = {
 
 // Initialize CE.SDK engine in headless mode
 const engine = await CreativeEngine.init({
-  license: process.env.CESDK_LICENSE
+  license: process.env.CESDK_LICENSE,
 });
 
 try {
