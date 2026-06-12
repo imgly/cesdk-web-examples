@@ -1,25 +1,43 @@
+// =============================================================================
+// NOT FOR AWS LAMBDA. Reference handler for non-Lambda Linux deployments.
+// =============================================================================
+//
+// `@cesdk/node-native` requires glibc ≥ 2.39 on Linux (see
+// `bindings/nodejs/scripts/check-glibc-floor.sh`). AWS Lambda's
+// Amazon Linux 2023 base image ships glibc 2.34, which is below the floor;
+// a Lambda that `require()`s this handler aborts at load with
+// `version 'GLIBC_2.38' not found`.
+//
+// Use this handler as a template for **other Linux runtimes** that *do*
+// satisfy glibc 2.39+: Kubernetes (Ubuntu 24.04 / Debian 13 nodes),
+// Cloud Run (Debian 13 base), EC2, on-prem VMs.
+//
+// For AWS Lambda, use the sibling `cesdk-handler.js`
+// (`@cesdk/node` WASM) — that handler is the one this cookbook deploys.
+//
 // Native variant of cesdk-handler.js that uses @cesdk/node-native instead of
 // @cesdk/node. Functionally equivalent but runs on native CPU bindings (no
-// WASM), which is faster on AWS Lambda for image-heavy workloads.
+// WASM), which is faster on image-heavy workloads.
 //
 // Migration deltas vs cesdk-handler.js:
 //
 //   1. `require('@cesdk/node-native')` instead of `require('@cesdk/node')`.
 //
-//   2. Pass `baseURL` to `CreativeEngine.init()`. Native cannot load engine
-//      assets from a relative `bundle://` path; it must be told where they
-//      live. Set `CESDK_BASE_URL` in the Lambda environment to the URL of
-//      your asset bucket (or `file://` the bundled assets directory).
+//   2. `baseURL` is optional. By default the loader resolves the engine
+//      resource bundle (fonts, ICU, icons, shaders) from the main
+//      `@cesdk/node-native/assets/` directory shipped in the npm
+//      package — no extra env wiring required. Pass `baseURL` only when
+//      hosting the bundle on S3 / CloudFront / a CDN.
 //
 //   3. `engine.block.export()` returns a `Blob` (matching @cesdk/node).
 //      Call `await blob.arrayBuffer()` before handing to `Buffer.from()`
 //      / S3.
 //
-//   4. AWS Lambda packaging: ship `node_modules/@cesdk/node-native-linux-x64`
-//      (or arm64) as a Layer rather than relying on `@cesdk/node`'s bundled
-//      WASM. Linux x64 binaries are produced via `bindings/nodejs/docker/
-//      Dockerfile.linux-x64-full`. Linux arm64 is not yet built upstream;
-//      use the linux-x64 image with the Lambda x86_64 architecture.
+//   4. Packaging: ship `node_modules/@cesdk/node-native` plus the relevant
+//      `@cesdk/node-native-<platform>` sibling (resolved automatically via
+//      `optionalDependencies`). Linux x64 binaries are produced via
+//      `bindings/nodejs/docker/Dockerfile.linux-x64-full`. Linux arm64 is
+//      not yet built upstream.
 
 const CreativeEngine = require("@cesdk/node-native");
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
