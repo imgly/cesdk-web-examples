@@ -1,5 +1,6 @@
 {
   "name": "cesdk-export-audio-browser",
+  "private": true,
   "version": "1.0.0",
   "description": "CE.SDK example demonstrating audio export and caption generation",
   "main": "src/index.ts",
@@ -22,12 +23,12 @@
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.76.0",
-    "@cesdk/engine": "^1.76.0"
+    "@cesdk/cesdk-js": "^1.77.0-rc.1",
+    "@cesdk/engine": "^1.77.0-rc.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
-    "@types/node": "^20.0.0",
+    "@types/node": "^22.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.50.0",

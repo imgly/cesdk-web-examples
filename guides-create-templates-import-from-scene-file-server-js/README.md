@@ -12,7 +12,7 @@ This example demonstrates how to load and import templates from scene files usin
 
 ## Prerequisites
 
-- Node.js 18+ installed
+- Node.js 22+ installed
 - CE.SDK license key (optional, works in trial mode without it)
 
 ## Installation

@@ -111,7 +111,6 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
       // Text Formatting
       // ============================
       'ly.img.text.typeFace.inspectorBar',
-      'ly.img.text.style.inspectorBar',
       'ly.img.text.bold.inspectorBar',
       'ly.img.text.italic.inspectorBar',
       'ly.img.text.fontSize.inspectorBar',

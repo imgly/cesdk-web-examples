@@ -1,6 +1,11 @@
 import CreativeEngine from '@cesdk/node';
 import type { TypefaceResolver } from '@imgly/idml-importer';
-import { IDMLParser, addGfontsAssetLibrary } from '@imgly/idml-importer';
+import {
+  IDMLParser,
+  addGfontsAssetLibrary,
+  createPdfEmbeddedImporter
+} from '@imgly/idml-importer';
+import { PDFParser } from '@imgly/pdf-importer';
 import { JSDOM } from 'jsdom';
 import { config } from 'dotenv';
 import { promises as fs } from 'fs';
@@ -72,10 +77,12 @@ async function convertIdml(
   // Read the IDML file
   const idmlBuffer = await fs.readFile(idmlPath);
 
-  // Parse the IDML file using JSDOM for XML parsing
-  // Server-side import requires JSDOM since DOMParser is browser-only
-  // The addGfontsAssetLibrary() call enables automatic font matching
-  // For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
+  // Parse the IDML file using JSDOM for XML parsing.
+  // Server-side import requires JSDOM since DOMParser is browser-only.
+  // The addGfontsAssetLibrary() call enables automatic font matching.
+  // Register the PDF embedded-importer adapter explicitly so any
+  // <PDF>/.ai content inside the IDML imports as editable CE.SDK blocks
+  // via @imgly/pdf-importer (rather than a placeholder image).
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const parser = await IDMLParser.fromFile(
     engine as any,
@@ -86,7 +93,10 @@ async function convertIdml(
         storageQuota: 10000000,
         url: 'http://localhost'
       }).window.document,
-    customFontResolver
+    {
+      fontResolver: customFontResolver,
+      embeddedImporters: [createPdfEmbeddedImporter(PDFParser)]
+    }
   );
   await parser.parse();
 

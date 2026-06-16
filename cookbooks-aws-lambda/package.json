@@ -1,5 +1,6 @@
 {
   "name": "cesdk-aws-lambda",
+  "private": true,
   "version": "0.1.0",
   "bin": {
     "cesdk-aws-lambda": "bin/cesdk-aws-lambda.js"
