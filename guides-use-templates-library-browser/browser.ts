@@ -46,7 +46,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
+    await cesdk.addPlugin(
+      new UploadAssetSources({ include: ['ly.img.image.upload'] })
+    );
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -67,21 +69,29 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-
-    await cesdk.actions.run('scene.create', { page: { sourceId: 'ly.img.page.presets', assetId: 'ly.img.page.presets.print.iso.a6.landscape' } });
+    await cesdk.actions.run('scene.create', {
+      page: {
+        sourceId: 'ly.img.page.presets',
+        assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+      }
+    });
 
     // Create a custom template source with an apply callback
     // The callback handles what happens when a user clicks a template
-    engine.asset.addLocalSource('my.custom.templates', undefined, async (asset) => {
-      const sceneUri = asset.meta?.uri;
-      const scene = engine.scene.get();
-      if (!sceneUri || scene == null) return undefined;
+    engine.asset.addLocalSource(
+      'my.custom.templates',
+      undefined,
+      async (asset) => {
+        const sceneUri = asset.meta?.uri;
+        const scene = engine.scene.get();
+        if (!sceneUri || scene == null) return undefined;
 
-      const sceneUrl = new URL(sceneUri, window.location.href);
-      await engine.scene.applyTemplateFromURL(sceneUrl.href);
+        const sceneUrl = new URL(sceneUri, window.location.href);
+        await engine.scene.applyTemplateFromURL(sceneUrl.href);
 
-      return scene;
-    });
+        return scene;
+      }
+    );
 
     // Add template assets to the source
     // Each asset needs meta.uri pointing to a .scene file

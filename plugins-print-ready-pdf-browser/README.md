@@ -1,13 +1,13 @@
 # Print Ready PDF Plugin Example
 
-This example demonstrates how to integrate the Print Ready PDF plugin with CE.SDK to export print-ready PDF/X-3 compliant files.
+This example demonstrates how to integrate the Print Ready PDF plugin with CE.SDK to export print-ready PDF/X compliant files (PDF/X-4 by default, PDF/X-3 available as an opt-in fallback).
 
 ## What This Example Shows
 
 - Adding custom export buttons to CE.SDK navigation
 - Exporting PDFs from CE.SDK engine
 - Converting RGB PDFs to CMYK with ICC profiles
-- Adding PDF/X-3:2003 compliance markers
+- Adding PDF/X-4 compliance markers (default; switch to PDF/X-3 via `outputStandard`)
 - Downloading print-ready files in the browser
 
 ## Quick Start
@@ -62,8 +62,8 @@ By default, this example runs with a CE.SDK watermark. To remove it:
 
 - RGB to CMYK color space conversion
 - FOGRA39 ICC profile embedding (European standard)
-- PDF/X-3:2003 compliance markers
-- Automatic transparency flattening
+- PDF/X-4 (ISO 15930-7) compliance markers by default
+- Live transparency preservation (no flattening on the default X-4 path)
 
 ### Browser Download
 
@@ -77,7 +77,7 @@ By default, this example runs with a CE.SDK watermark. To remove it:
 Change the output profile in `src/index.ts`:
 
 ```typescript
-const printReadyPDF = await convertToPDFX3(pdfBlob, {
+const printReadyPDF = await convertToPDFX(pdfBlob, {
   outputProfile: 'fogra39', // or 'gracol', 'srgb', 'custom'
   title: 'Print-Ready Export'
 });

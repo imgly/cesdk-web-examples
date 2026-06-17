@@ -24,14 +24,14 @@
     "ci": "npm run check:all && npm run qa"
   },
   "dependencies": {
-    "@cesdk/engine": "^1.76.1",
-    "@cesdk/node": "^1.76.1",
-    "@imgly/psd-importer": "0.2.1",
+    "@cesdk/engine": "^1.77.0-rc.2",
+    "@cesdk/node": "^1.77.0-rc.2",
+    "@imgly/psd-importer": "^0.2.1",
     "dotenv": "^16.0.0",
     "pngjs": "^7.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^22.0.0",
     "@types/pngjs": "^6.0.5",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
