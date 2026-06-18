@@ -66,13 +66,19 @@ class CustomFontsExample implements EditorPlugin {
 
     await engine.asset.addAssetToSource(sourceId, {
       id: 'orbitron',
+      groups: ['latin'],
       payload: {
         typeface: orbitronTypeface
       }
     });
 
+    // Give the custom source a readable name in the typeface library's source filter
+    cesdk.i18n.setTranslations({
+      en: { 'libraries.my-custom-typefaces.label': 'Custom Fonts' }
+    });
+
     cesdk.ui.updateAssetLibraryEntry('ly.img.typefaces', {
-      sourceIds: ['my-custom-typefaces']
+      sourceIds: ['ly.img.typeface', 'my-custom-typefaces']
     });
 
     await cesdk.actions.run('scene.create', {
@@ -144,7 +150,7 @@ interface Typeface {
  * Builds a full URL for a font file served from the public directory
  */
 function buildFontUri(filename: string): string {
-  return `${window.location.protocol}//${window.location.host}/${filename}`;
+  return `${window.location.origin}${import.meta.env.BASE_URL}${filename}`;
 }
 
 /**

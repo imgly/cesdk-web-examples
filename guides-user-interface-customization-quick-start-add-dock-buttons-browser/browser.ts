@@ -97,7 +97,7 @@ class Example implements EditorPlugin {
       {
         id: 'ly.img.assetLibrary.dock',
         key: 'text',
-        entries: ['ly.img.text'],
+        entries: ['ly.img.text.presets', 'ly.img.text'],
         label: 'Text',
         icon: '@imgly/Text'
       }

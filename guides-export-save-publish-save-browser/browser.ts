@@ -91,7 +91,9 @@ class Example implements EditorPlugin {
       });
       await cesdk.utils.downloadFile(sceneBlob, 'application/octet-stream');
       cesdk.ui.showNotification({
-        message: `Scene downloaded (${(sceneString.length / 1024).toFixed(1)} KB)`,
+        message: `Scene downloaded (${(sceneString.length / 1024).toFixed(
+          1
+        )} KB)`,
         type: 'success'
       });
     };
@@ -101,7 +103,9 @@ class Example implements EditorPlugin {
       const archiveBlob = await engine.scene.saveToArchive();
       await cesdk.utils.downloadFile(archiveBlob, 'application/zip');
       cesdk.ui.showNotification({
-        message: `Archive downloaded (${(archiveBlob.size / 1024).toFixed(1)} KB)`,
+        message: `Archive downloaded (${(archiveBlob.size / 1024).toFixed(
+          1
+        )} KB)`,
         type: 'success'
       });
     };

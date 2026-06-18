@@ -25,12 +25,12 @@
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.76.1",
-    "@cesdk/engine": "^1.76.1",
-    "@imgly/plugin-vectorizer-web": "^1.76.1"
+    "@cesdk/cesdk-js": "^1.77.0-rc.3",
+    "@cesdk/engine": "^1.77.0-rc.3",
+    "@imgly/plugin-vectorizer-web": "^1.77.0-rc.3"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^22.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.50.0",
