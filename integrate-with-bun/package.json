@@ -1,5 +1,6 @@
 {
   "name": "node-bun",
+  "private": true,
   "version": "0.0.0",
   "module": "index.ts",
   "type": "module",
@@ -13,13 +14,13 @@
     "typescript": "^5.0.0",
     "vite": "^6.0.3",
     "vite-node": "^2.0.0",
-    "@types/node": "^20.0.0"
+    "@types/node": "^22.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@cesdk/node": "^1.76.1"
+    "@cesdk/node": "^1.77.0-rc.4"
   },
   "scripts": {
     "check:syntax": "tsc --project tsconfig.json --noEmit",

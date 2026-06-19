@@ -14,7 +14,7 @@
     "ci": "npm run check:all"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.76.1",
+    "@cesdk/cesdk-js": "^1.77.0-rc.4",
     "@modelcontextprotocol/sdk": "^1.20.0",
     "mcp-handler": "^1.0.2",
     "next": "15.5.7",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

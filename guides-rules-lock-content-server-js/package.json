@@ -21,13 +21,13 @@
     "nodejs"
   ],
   "dependencies": {
-    "@cesdk/node": "^1.76.1"
+    "@cesdk/node": "^1.77.0-rc.4"
   },
   "devDependencies": {
     "prettier": "^3.0.0",
-    "@types/node": "^20.0.0"
+    "@types/node": "^22.0.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   }
 }

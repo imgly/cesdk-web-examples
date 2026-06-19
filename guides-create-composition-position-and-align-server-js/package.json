@@ -23,11 +23,11 @@
     "ci": "npm run check:all && npm run qa"
   },
   "dependencies": {
-    "@cesdk/node": "^1.76.1",
+    "@cesdk/node": "^1.77.0-rc.4",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^22.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.50.0",

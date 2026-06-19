@@ -23,9 +23,9 @@
     "ci": "npm run check:all && npm run qa"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.76.1",
-    "@imgly/plugin-print-ready-pdfs-web": "^1.76.1",
-    "@cesdk/engine": "^1.76.1"
+    "@cesdk/cesdk-js": "^1.77.0-rc.4",
+    "@imgly/plugin-print-ready-pdfs-web": "^1.77.0-rc.4",
+    "@cesdk/engine": "^1.77.0-rc.4"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -36,6 +36,6 @@
     "prettier": "^3.0.0",
     "typescript": "^5.0.0",
     "vite": "^6.0.3",
-    "@types/node": "^20.0.0"
+    "@types/node": "^22.0.0"
   }
 }

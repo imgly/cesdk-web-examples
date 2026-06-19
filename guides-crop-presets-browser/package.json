@@ -28,10 +28,10 @@
     "prettier": "^3.0.0",
     "playwright": "^1.40.0",
     "sharp": "^0.33.0",
-    "@types/node": "^20.0.0"
+    "@types/node": "^22.0.0"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.76.1",
-    "@cesdk/engine": "^1.76.1"
+    "@cesdk/cesdk-js": "^1.77.0-rc.4",
+    "@cesdk/engine": "^1.77.0-rc.4"
   }
 }

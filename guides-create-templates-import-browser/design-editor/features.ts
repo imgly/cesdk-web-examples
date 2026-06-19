@@ -69,6 +69,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.text.background.picker', /* Color picker body (hue/saturation, hex, RGB/CMYK) */
     // 'ly.img.text.background.picker.opacity', /* Alpha/opacity slider */
     // 'ly.img.text.background.library', /* Swatch library */
+    // 'ly.img.text.styles', /* Styles button (style presets) in Canvas Menu */
     // #endregion
 
     // ============================================================================
@@ -252,6 +253,15 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     'ly.img.notifications' /* Enables all children below */,
     // 'ly.img.notifications.undo', /* Undo notifications */
     // 'ly.img.notifications.redo', /* Redo notifications */
+    // #endregion
+
+    // ============================================================================
+    // KEYBOARD SHORTCUTS
+    // Configure the keyboard-shortcut system
+    // ============================================================================
+
+    // #region Keyboard Shortcuts
+    'ly.img.keyboard.shortcuts' /* Enable keyboard shortcuts */,
     // #endregion
 
     // ============================================================================

@@ -1,6 +1,5 @@
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
-import { CaptionPresetsAssetSource } from '@cesdk/cesdk-js/plugins';
 import { VideoEditorConfig } from './video-editor/plugin';
 import packageJson from './package.json';
 
