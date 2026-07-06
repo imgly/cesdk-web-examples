@@ -70,6 +70,12 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.text.background.picker.opacity', /* Alpha/opacity slider */
     // 'ly.img.text.background.library', /* Swatch library */
     // 'ly.img.text.styles', /* Styles button (style presets) in Canvas Menu */
+    // 'ly.img.text.path', /* Text on a path / circle */
+    // 'ly.img.text.path.curve', /* Curve picker (None/Circle/Arch/Wave/Elevate) */
+    // 'ly.img.text.path.position', /* Vertical position (Top/Center/Bottom) */
+    // 'ly.img.text.path.direction', /* Direction (Forward/Reversed) */
+    // 'ly.img.text.path.offset', /* Offset slider */
+    // 'ly.img.text.path.edit', /* Edit Path button (also requires ly.img.vectorEdit) */
     // #endregion
 
     // ============================================================================
