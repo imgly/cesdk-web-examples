@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.77.0"
+    "@cesdk/cesdk-js": "^1.77.1"
   },
   "devDependencies": {
     "playwright": "^1.55.1",

@@ -9,7 +9,7 @@
     "check:lint": "eslint ."
   },
   "dependencies": {
-    "@cesdk/node": "^1.77.0",
+    "@cesdk/node": "^1.77.1",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
