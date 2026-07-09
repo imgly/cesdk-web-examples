@@ -5,7 +5,7 @@
   "author": "contact@img.ly",
   "type": "module",
   "dependencies": {
-    "@cesdk/node": "^1.77.0"
+    "@cesdk/node": "^1.77.1-rc.0"
   },
   "scripts": {
     "check:syntax": "tsc --project tsconfig.json --noEmit",

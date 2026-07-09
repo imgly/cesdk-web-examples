@@ -23,8 +23,8 @@
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.77.0",
-    "@cesdk/engine": "^1.77.0"
+    "@cesdk/cesdk-js": "^1.77.1-rc.0",
+    "@cesdk/engine": "^1.77.1-rc.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",

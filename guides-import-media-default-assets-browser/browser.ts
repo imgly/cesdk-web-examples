@@ -24,8 +24,8 @@ class Example implements EditorPlugin {
     // Versioned CDN URLs using the SDK package (recommended)
     // For production, self-host these assets - see the Serve Assets guide
     const PACKAGE_BASE = `https://cdn.img.ly/packages/imgly/cesdk-js/${cesdk.version}/assets`;
-    const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/v4/`;
-    const DEMO_ASSETS_URL = `${PACKAGE_BASE}/demo/v3/`;
+    const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/`;
+    const DEMO_ASSETS_URL = `${PACKAGE_BASE}/`;
 
     // Load default asset sources (core editor components)
     await engine.asset.addLocalAssetSourceFromJSONURI(

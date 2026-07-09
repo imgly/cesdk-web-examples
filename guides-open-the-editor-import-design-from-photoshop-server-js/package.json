@@ -24,8 +24,8 @@
     "ci": "npm run check:all && npm run qa"
   },
   "dependencies": {
-    "@cesdk/engine": "^1.77.0",
-    "@cesdk/node": "^1.77.0",
+    "@cesdk/engine": "^1.77.1-rc.0",
+    "@cesdk/node": "^1.77.1-rc.0",
     "@imgly/psd-importer": "^0.2.1",
     "dotenv": "^16.0.0",
     "pngjs": "^7.0.0"
