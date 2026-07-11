@@ -10,8 +10,8 @@
     "check:lint": "eslint ."
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.77.1",
-    "@cesdk/engine": "^1.77.1"
+    "@cesdk/cesdk-js": "^1.78.0-rc.1",
+    "@cesdk/engine": "^1.78.0-rc.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",
