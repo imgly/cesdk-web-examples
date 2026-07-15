@@ -21,6 +21,7 @@
  * - `'ly.img.text.fontSize.inspectorBar'` - Font size control
  * - `'ly.img.text.alignHorizontal.inspectorBar'` - Text alignment
  * - `'ly.img.text.advanced.inspectorBar'` - Advanced text options
+ * - `'ly.img.text.path.inspectorBar'` - Text on a path / circle
  * - `'ly.img.text.background.inspectorBar'` - Text background color
  *
  * **Media:**
@@ -137,6 +138,8 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
       'ly.img.stroke.inspectorBar',
       'ly.img.separator',
       'ly.img.text.background.inspectorBar',
+      'ly.img.separator',
+      'ly.img.text.path.inspectorBar',
       'ly.img.separator',
 
       // ============================
