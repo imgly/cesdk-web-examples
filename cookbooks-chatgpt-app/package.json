@@ -14,7 +14,7 @@
     "ci": "npm run check:all"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.77.1",
+    "@cesdk/cesdk-js": "^1.78.0-rc.3",
     "@modelcontextprotocol/sdk": "^1.20.0",
     "mcp-handler": "^1.0.2",
     "next": "15.5.7",
