@@ -68,27 +68,44 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
 
   // #region Editing
   // Delete / Backspace: a vector node/point in Vector mode, else the selection.
-  ...['Delete', 'Backspace'].map(
-    (keys): KeyboardShortcut => ({
-      keys,
-      description: 'Delete selected vector node, point, or elements',
-      category: 'Editing',
-      scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
-      run: ({ cesdk }) =>
-        cesdk.engine.editor.getEditMode() === 'Vector' &&
+  {
+    keys: 'Delete',
+    description: 'Delete selected vector node, point, or elements',
+    category: 'Editing',
+    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    run: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Vector' &&
+      (cesdk.engine.editor.hasSelectedVectorNode() ||
+        cesdk.engine.editor.hasSelectedVectorControlPoint())
+        ? cesdk.actions.run('vectorPath.deleteNodeOrPoint')
+        : cesdk.actions.run('selection.delete'),
+    when: ({ cesdk }) =>
+      (cesdk.engine.editor.getEditMode() === 'Vector' &&
         (cesdk.engine.editor.hasSelectedVectorNode() ||
-          cesdk.engine.editor.hasSelectedVectorControlPoint())
-          ? cesdk.actions.run('vectorPath.deleteNodeOrPoint')
-          : cesdk.actions.run('selection.delete'),
-      when: ({ cesdk }) =>
-        (cesdk.engine.editor.getEditMode() === 'Vector' &&
-          (cesdk.engine.editor.hasSelectedVectorNode() ||
-            cesdk.engine.editor.hasSelectedVectorControlPoint())) ||
-        (cesdk.engine.editor.getEditMode() === 'Transform' &&
-          cesdk.engine.block.findAllSelected().length > 0 &&
-          cesdk.feature.isEnabled('ly.img.delete', { engine: cesdk.engine }))
-    })
-  ),
+          cesdk.engine.editor.hasSelectedVectorControlPoint())) ||
+      (cesdk.engine.editor.getEditMode() === 'Transform' &&
+        cesdk.engine.block.findAllSelected().length > 0 &&
+        cesdk.feature.isEnabled('ly.img.delete', { engine: cesdk.engine }))
+  },
+  {
+    keys: 'Backspace',
+    description: 'Delete selected vector node, point, or elements',
+    category: 'Editing',
+    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    run: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Vector' &&
+      (cesdk.engine.editor.hasSelectedVectorNode() ||
+        cesdk.engine.editor.hasSelectedVectorControlPoint())
+        ? cesdk.actions.run('vectorPath.deleteNodeOrPoint')
+        : cesdk.actions.run('selection.delete'),
+    when: ({ cesdk }) =>
+      (cesdk.engine.editor.getEditMode() === 'Vector' &&
+        (cesdk.engine.editor.hasSelectedVectorNode() ||
+          cesdk.engine.editor.hasSelectedVectorControlPoint())) ||
+      (cesdk.engine.editor.getEditMode() === 'Transform' &&
+        cesdk.engine.block.findAllSelected().length > 0 &&
+        cesdk.feature.isEnabled('ly.img.delete', { engine: cesdk.engine }))
+  },
   {
     keys: 'Mod+d',
     description: 'Duplicate selected elements',
@@ -305,7 +322,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     description: 'Nudge selection up',
     category: 'Movement',
     run: 'selection.nudgeUp',
-    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
       cesdk.engine.block.findAllSelected().length > 0
@@ -315,7 +332,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     description: 'Nudge selection down',
     category: 'Movement',
     run: 'selection.nudgeDown',
-    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
       cesdk.engine.block.findAllSelected().length > 0
@@ -325,7 +342,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     description: 'Nudge selection left',
     category: 'Movement',
     run: 'selection.nudgeLeft',
-    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
       cesdk.engine.block.findAllSelected().length > 0
@@ -335,7 +352,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     description: 'Nudge selection right',
     category: 'Movement',
     run: 'selection.nudgeRight',
-    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
       cesdk.engine.block.findAllSelected().length > 0
@@ -345,7 +362,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     description: 'Nudge selection up (extended step)',
     category: 'Movement',
     run: 'selection.nudgeUpExtended',
-    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
       cesdk.engine.block.findAllSelected().length > 0
@@ -355,7 +372,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     description: 'Nudge selection down (extended step)',
     category: 'Movement',
     run: 'selection.nudgeDownExtended',
-    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
       cesdk.engine.block.findAllSelected().length > 0
@@ -365,7 +382,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     description: 'Nudge selection left (extended step)',
     category: 'Movement',
     run: 'selection.nudgeLeftExtended',
-    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
       cesdk.engine.block.findAllSelected().length > 0
@@ -375,11 +392,656 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     description: 'Nudge selection right (extended step)',
     category: 'Movement',
     run: 'selection.nudgeRightExtended',
-    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
       cesdk.engine.block.findAllSelected().length > 0
   },
+  // Crop offset: nudge the image inside its crop frame while in Crop mode.
+  // Shares the arrow keys with selection nudge — edit modes are mutually
+  // exclusive, so the `when` gate routes to the right action.
+  {
+    keys: 'ArrowUp',
+    description: 'Move crop up',
+    category: 'Movement',
+    run: 'crop.nudgeDown',
+    scope: ['ly.img.scope.canvas', '//ly.img.panel/inspector/crop'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Crop' &&
+      cesdk.engine.block.findAllSelected().length === 1
+  },
+  {
+    keys: 'ArrowDown',
+    description: 'Move crop down',
+    category: 'Movement',
+    run: 'crop.nudgeUp',
+    scope: ['ly.img.scope.canvas', '//ly.img.panel/inspector/crop'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Crop' &&
+      cesdk.engine.block.findAllSelected().length === 1
+  },
+  {
+    keys: 'ArrowLeft',
+    description: 'Move crop left',
+    category: 'Movement',
+    run: 'crop.nudgeRight',
+    scope: ['ly.img.scope.canvas', '//ly.img.panel/inspector/crop'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Crop' &&
+      cesdk.engine.block.findAllSelected().length === 1
+  },
+  {
+    keys: 'ArrowRight',
+    description: 'Move crop right',
+    category: 'Movement',
+    run: 'crop.nudgeLeft',
+    scope: ['ly.img.scope.canvas', '//ly.img.panel/inspector/crop'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Crop' &&
+      cesdk.engine.block.findAllSelected().length === 1
+  },
+  {
+    keys: 'Shift+ArrowUp',
+    description: 'Move crop up (extended step)',
+    category: 'Movement',
+    run: 'crop.nudgeDownExtended',
+    scope: ['ly.img.scope.canvas', '//ly.img.panel/inspector/crop'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Crop' &&
+      cesdk.engine.block.findAllSelected().length === 1
+  },
+  {
+    keys: 'Shift+ArrowDown',
+    description: 'Move crop down (extended step)',
+    category: 'Movement',
+    run: 'crop.nudgeUpExtended',
+    scope: ['ly.img.scope.canvas', '//ly.img.panel/inspector/crop'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Crop' &&
+      cesdk.engine.block.findAllSelected().length === 1
+  },
+  {
+    keys: 'Shift+ArrowLeft',
+    description: 'Move crop left (extended step)',
+    category: 'Movement',
+    run: 'crop.nudgeRightExtended',
+    scope: ['ly.img.scope.canvas', '//ly.img.panel/inspector/crop'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Crop' &&
+      cesdk.engine.block.findAllSelected().length === 1
+  },
+  {
+    keys: 'Shift+ArrowRight',
+    description: 'Move crop right (extended step)',
+    category: 'Movement',
+    run: 'crop.nudgeLeftExtended',
+    scope: ['ly.img.scope.canvas', '//ly.img.panel/inspector/crop'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Crop' &&
+      cesdk.engine.block.findAllSelected().length === 1
+  },
+  // Rotate the selection: Alt+Left/Right by 1°, add Shift for 15°.
+  {
+    keys: 'Alt+ArrowLeft',
+    description: 'Rotate selection left',
+    category: 'Movement',
+    run: 'selection.rotateCCW',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/rotate')
+      );
+    }
+  },
+  {
+    keys: 'Alt+ArrowRight',
+    description: 'Rotate selection right',
+    category: 'Movement',
+    run: 'selection.rotateCW',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/rotate')
+      );
+    }
+  },
+  {
+    keys: 'Alt+Shift+ArrowLeft',
+    description: 'Rotate selection left (extended step)',
+    category: 'Movement',
+    run: 'selection.rotateCCWExtended',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/rotate')
+      );
+    }
+  },
+  {
+    keys: 'Alt+Shift+ArrowRight',
+    description: 'Rotate selection right (extended step)',
+    category: 'Movement',
+    run: 'selection.rotateCWExtended',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/rotate')
+      );
+    }
+  },
+  // Resize the selection: Mod+Arrow by 1 unit (Right/Down grow), add Shift
+  // for 10. Top-left anchored, like the dimensions inspector.
+  {
+    keys: 'Mod+ArrowRight',
+    description: 'Grow selection width',
+    category: 'Movement',
+    run: 'selection.resizeWidthGrow',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+ArrowLeft',
+    description: 'Shrink selection width',
+    category: 'Movement',
+    run: 'selection.resizeWidthShrink',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+ArrowDown',
+    description: 'Grow selection height',
+    category: 'Movement',
+    run: 'selection.resizeHeightGrow',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+ArrowUp',
+    description: 'Shrink selection height',
+    category: 'Movement',
+    run: 'selection.resizeHeightShrink',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Shift+ArrowRight',
+    description: 'Grow selection width (extended step)',
+    category: 'Movement',
+    run: 'selection.resizeWidthGrowExtended',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Shift+ArrowLeft',
+    description: 'Shrink selection width (extended step)',
+    category: 'Movement',
+    run: 'selection.resizeWidthShrinkExtended',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Shift+ArrowDown',
+    description: 'Grow selection height (extended step)',
+    category: 'Movement',
+    run: 'selection.resizeHeightGrowExtended',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Shift+ArrowUp',
+    description: 'Shrink selection height (extended step)',
+    category: 'Movement',
+    run: 'selection.resizeHeightShrinkExtended',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  // Opposite-anchored resize: Mod+Control+Arrow grows/shrinks from the left/top
+  // edge instead of the right/bottom, keeping the far edge fixed.
+  {
+    keys: 'Mod+Control+ArrowLeft',
+    description: 'Grow selection width from the left',
+    category: 'Movement',
+    run: 'selection.resizeWidthGrowFromLeft',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Control+ArrowRight',
+    description: 'Shrink selection width from the left',
+    category: 'Movement',
+    run: 'selection.resizeWidthShrinkFromLeft',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Control+ArrowUp',
+    description: 'Grow selection height from the top',
+    category: 'Movement',
+    run: 'selection.resizeHeightGrowFromTop',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Control+ArrowDown',
+    description: 'Shrink selection height from the top',
+    category: 'Movement',
+    run: 'selection.resizeHeightShrinkFromTop',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Control+Shift+ArrowLeft',
+    description: 'Grow selection width from the left (extended step)',
+    category: 'Movement',
+    run: 'selection.resizeWidthGrowFromLeftExtended',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Control+Shift+ArrowRight',
+    description: 'Shrink selection width from the left (extended step)',
+    category: 'Movement',
+    run: 'selection.resizeWidthShrinkFromLeftExtended',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Control+Shift+ArrowUp',
+    description: 'Grow selection height from the top (extended step)',
+    category: 'Movement',
+    run: 'selection.resizeHeightGrowFromTopExtended',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  {
+    keys: 'Mod+Control+Shift+ArrowDown',
+    description: 'Shrink selection height from the top (extended step)',
+    category: 'Movement',
+    run: 'selection.resizeHeightShrinkFromTopExtended',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      return selected.every((id) =>
+        cesdk.engine.block.isAllowedByScope(id, 'layer/resize')
+      );
+    }
+  },
+  // #endregion
+
+  // ========================================================================
+  // TIMELINE
+  // ========================================================================
+
+  // #region Timeline
+  // The keyboard alternative to dragging clips, trim handles, and the
+  // playhead. All timeline-scoped, so they never fire on the design canvas.
+  // Clip move/track, trim and skimming all act on the selected clip (a block
+  // with a duration) directly on the timeline — no Trim edit mode required,
+  // mirroring the drag/trim handles.
+  // Clip move (in time) and track moves. A clip (a block with a duration) must
+  // be selected. Move = Left/Right (0.1s), Shift for the 1s step; move to an
+  // existing track = Up/Down; move to a new track = Shift+Up/Down.
+  // {
+  // keys: 'ArrowLeft',
+  // description: 'Move clip earlier',
+  // category: 'Timeline',
+  // run: 'timeline.clip.moveEarlier',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'ArrowRight',
+  // description: 'Move clip later',
+  // category: 'Timeline',
+  // run: 'timeline.clip.moveLater',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'Shift+ArrowLeft',
+  // description: 'Move clip earlier (extended step)',
+  // category: 'Timeline',
+  // run: 'timeline.clip.moveEarlierExtended',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'Shift+ArrowRight',
+  // description: 'Move clip later (extended step)',
+  // category: 'Timeline',
+  // run: 'timeline.clip.moveLaterExtended',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'Mod+ArrowLeft',
+  // description: 'Insert clip earlier, pushing later clips',
+  // category: 'Timeline',
+  // run: 'timeline.clip.insertPushEarlier',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'Mod+ArrowRight',
+  // description: 'Insert clip later, pushing later clips',
+  // category: 'Timeline',
+  // run: 'timeline.clip.insertPushLater',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'ArrowUp',
+  // description: 'Move clip to the track above',
+  // category: 'Timeline',
+  // run: 'timeline.clip.moveToTrackAbove',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'ArrowDown',
+  // description: 'Move clip to the track below',
+  // category: 'Timeline',
+  // run: 'timeline.clip.moveToTrackBelow',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'Shift+ArrowUp',
+  // description: 'Move clip to a new track above',
+  // category: 'Timeline',
+  // run: 'timeline.clip.newTrackAbove',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'Shift+ArrowDown',
+  // description: 'Move clip to a new track below',
+  // category: 'Timeline',
+  // run: 'timeline.clip.newTrackBelow',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: ',',
+  // description: 'Move the playhead back',
+  // category: 'Timeline',
+  // run: 'timeline.skim.back',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) => cesdk.engine.scene.getCurrentPage() != null
+  // },
+  // {
+  // keys: '.',
+  // description: 'Move the playhead forward',
+  // category: 'Timeline',
+  // run: 'timeline.skim.forward',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) => cesdk.engine.scene.getCurrentPage() != null
+  // },
+  // {
+  // keys: 'Home',
+  // description: 'Move the playhead to the start',
+  // category: 'Timeline',
+  // run: 'timeline.skim.toStart',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) => cesdk.engine.scene.getCurrentPage() != null
+  // },
+  // {
+  // keys: 'End',
+  // description: 'Move the playhead to the end',
+  // category: 'Timeline',
+  // run: 'timeline.skim.toEnd',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) => cesdk.engine.scene.getCurrentPage() != null
+  // },
+  // {
+  // keys: 'Alt+ArrowRight',
+  // description: 'Extend the trim out point',
+  // category: 'Timeline',
+  // run: 'trim.moveOutLater',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'Alt+ArrowLeft',
+  // description: 'Pull in the trim out point',
+  // category: 'Timeline',
+  // run: 'trim.moveOutEarlier',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'Alt+Shift+ArrowRight',
+  // description: 'Push in the trim in point',
+  // category: 'Timeline',
+  // run: 'trim.moveInLater',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
+  // {
+  // keys: 'Alt+Shift+ArrowLeft',
+  // description: 'Pull back the trim in point',
+  // category: 'Timeline',
+  // run: 'trim.moveInEarlier',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  //   cesdk.engine.block
+  //     .findAllSelected()
+  //     .some(
+  //       (id) =>
+  //         cesdk.engine.block.isValid(id) &&
+  //         cesdk.engine.block.supportsDuration(id)
+  //     )
+  // },
   // #endregion
 
   // ========================================================================
@@ -426,15 +1088,15 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
   // ========================================================================
 
   // #region Playback
-  {
-    keys: 'Space',
-    description: 'Play / pause the current page',
-    category: 'Playback',
-    run: 'video.playPause',
-    scope: ['ly.img.scope.videoTimeline'],
-    when: ({ cesdk }) =>
-      cesdk.feature.isEnabled('ly.img.video.timeline.controls.playback')
-  },
+  // {
+  // keys: 'Space',
+  // description: 'Play / pause the current page',
+  // category: 'Playback',
+  // run: 'video.playPause',
+  // scope: ['ly.img.scope.videoTimeline'],
+  // when: ({ cesdk }) =>
+  // cesdk.feature.isEnabled('ly.img.video.timeline.controls.playback')
+  // },
   // #endregion
 
   // ========================================================================

@@ -66,7 +66,7 @@ class CustomFontsExample implements EditorPlugin {
 
     await engine.asset.addAssetToSource(sourceId, {
       id: 'orbitron',
-      groups: ['latin'],
+      meta: { languages: 'latin' },
       payload: {
         typeface: orbitronTypeface
       }
