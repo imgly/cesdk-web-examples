@@ -111,7 +111,16 @@ class Example implements EditorPlugin {
           assets: [stickerAsset],
           total: 1,
           currentPage: query.page,
-          nextPage: undefined
+          nextPage: undefined,
+          // Return distributions for the requested facet paths
+          facets: query.facets?.length
+            ? {
+                tags: [
+                  { value: 'emoji', count: 1 },
+                  { value: 'happy', count: 1 }
+                ]
+              }
+            : undefined
         };
       }
     };
@@ -143,6 +152,23 @@ class Example implements EditorPlugin {
       ]
     });
     console.log('Filtered stickers:', happyStickers.total);
+
+    // Request value distributions ("facets") alongside a page of assets—
+    // exactly what a filter dropdown needs.
+    const faceted = await engine.asset.findAssets('my-assets', {
+      page: 0,
+      perPage: 24,
+      facets: ['tags']
+    });
+    console.log('Tag distribution:', faceted.facets?.tags);
+
+    // Enumerate values without fetching assets (perPage: 0).
+    const { facets } = await engine.asset.findAssets('my-assets', {
+      page: 0,
+      perPage: 0,
+      facets: ['tags']
+    });
+    console.log('Available tags:', facets?.tags);
 
     // Apply an asset to create a block in the scene
     if (results.assets.length > 0) {
