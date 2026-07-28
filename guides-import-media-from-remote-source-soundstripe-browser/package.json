@@ -26,9 +26,9 @@
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.78.0",
-    "@cesdk/engine": "^1.78.0",
-    "@imgly/plugin-soundstripe-web": "^1.78.0"
+    "@cesdk/cesdk-js": "^1.79.0-rc.1",
+    "@cesdk/engine": "^1.79.0-rc.1",
+    "@imgly/plugin-soundstripe-web": "^1.79.0-rc.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

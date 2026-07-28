@@ -318,8 +318,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // Configure animation capabilities for video elements
     // ============================================================================
 
-    // #region Animations
-    'ly.img.animations' /* Animations button */
+    // #region Animations & Transitions
+    'ly.img.animations' /* Animations button */,
+    'ly.img.transitions' /* Transitions button */
     // #endregion
 
     // ============================================================================

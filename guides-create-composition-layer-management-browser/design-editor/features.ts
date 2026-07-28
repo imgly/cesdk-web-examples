@@ -343,6 +343,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.volume', /* Volume control (video mode) */
     // 'ly.img.playbackSpeed', /* Playback speed control */
     // 'ly.img.animations', /* Animations button (video mode) */
+    // 'ly.img.transitions', /* Transitions button (video mode) */
     // #endregion
 
     // ============================================================================
