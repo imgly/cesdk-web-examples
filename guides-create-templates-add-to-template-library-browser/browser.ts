@@ -96,7 +96,7 @@ class Example implements EditorPlugin {
     ]);
 
     // Load the first template
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 

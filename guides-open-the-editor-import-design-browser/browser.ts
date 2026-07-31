@@ -74,7 +74,7 @@ class Example implements EditorPlugin {
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
     // Load the scene from remote URL
-    // await engine.scene.loadFromURL(sceneUrl);
+    // await engine.scene.load(sceneUrl);
 
     // The scene is now loaded and ready for editing
     // All blocks and properties from the saved scene are restored
@@ -85,7 +85,7 @@ class Example implements EditorPlugin {
     const savedSceneString = '{ /* scene JSON content */ }';
 
     // Load the scene from string content
-    // await engine.scene.loadFromString(savedSceneString);
+    // await engine.scene.load(savedSceneString);
 
     // The scene is restored from the string representation
     // This is useful for offline storage or database persistence
@@ -93,10 +93,10 @@ class Example implements EditorPlugin {
     // ===== Method 3: Load from Archive URL =====
     // Archive URL from cloud storage, CDN, or user upload
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const archiveUrl = 'https://example.com/designs/project-bundle.zip';
+    const archiveUrl = 'https://example.com/designs/project-bundle.imgly';
 
-    // Load the archive using loadFromArchiveURL
-    // await engine.scene.loadFromArchiveURL(archiveUrl);
+    // Load the archive using engine.scene.load
+    // await engine.scene.load(archiveUrl);
 
     // Archives include all assets, making them portable across environments
     // No external asset URLs need to be accessible

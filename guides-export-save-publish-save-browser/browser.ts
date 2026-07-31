@@ -67,7 +67,7 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -89,7 +89,7 @@ class Example implements EditorPlugin {
       const sceneBlob = new Blob([sceneString], {
         type: 'application/octet-stream'
       });
-      await cesdk.utils.downloadFile(sceneBlob, 'application/octet-stream');
+      await cesdk.utils.downloadFile(sceneBlob, 'text/plain;charset=UTF-8');
       cesdk.ui.showNotification({
         message: `Scene downloaded (${(sceneString.length / 1024).toFixed(
           1

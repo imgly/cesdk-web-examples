@@ -139,8 +139,8 @@ async function splitVideoExample() {
       mkdirSync('./output', { recursive: true });
     }
 
-    writeFileSync('./output/split-video.zip', buffer);
-    console.log('Scene exported to ./output/split-video.zip');
+    writeFileSync('./output/split-video.imgly', buffer);
+    console.log('Scene exported to ./output/split-video.imgly');
 
   } finally {
     engine.dispose();

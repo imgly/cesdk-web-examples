@@ -8,8 +8,18 @@ import { CreativeEditor } from './CreativeEditor/CreativeEditor';
 import { DisclaimerSection } from './DisclaimerSection/DisclaimerSection';
 import { ExampleFileContainer } from './ExampleFileContainer/ExampleFileContainer';
 import { ResultScreen } from './ResultScreen/ResultScreen';
-import { resolveAssetPath } from './resolveAssetPath';
 import classes from './App.module.css';
+
+/**
+ * Demo assets for this example (template files, previews, icons, …) are
+ * loaded from the IMG.LY CDN by default. To host them yourself, copy this
+ * kit's asset folder to your own CDN or server and change this constant — or
+ * set it to `''` and place the files in this app's `public/` directory. No
+ * trailing slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.0/demo-illustrator-template-import';
 
 const EXAMPLE_FILES: ExampleFile[] = [
   'example-1',
@@ -17,22 +27,14 @@ const EXAMPLE_FILES: ExampleFile[] = [
   'example-3'
 ].map((file) => ({
   name: file,
-  psdFileUrl: resolveAssetPath(`/cases/ai-template-import/${file}/file.psd`),
-  aiFileUrl: resolveAssetPath(`/cases/ai-template-import/${file}/file.ai`),
-  aiPreviewUrl: resolveAssetPath(
-    `/cases/ai-template-import/${file}/preview_ai.png`
-  ),
-  psdPreviewUrl: resolveAssetPath(
-    `/cases/ai-template-import/${file}/preview_psd.png`
-  ),
-  cesdkPreviewUrl: resolveAssetPath(
-    `/cases/ai-template-import/${file}/preview_cesdk.png`
-  ),
-  coverBaseUrl: resolveAssetPath(`/cases/ai-template-import/${file}/thumbnail`),
+  psdFileUrl: `${DEMO_ASSETS_BASE_URL}/cases/ai-template-import/${file}/file.psd`,
+  aiFileUrl: `${DEMO_ASSETS_BASE_URL}/cases/ai-template-import/${file}/file.ai`,
+  aiPreviewUrl: `${DEMO_ASSETS_BASE_URL}/cases/ai-template-import/${file}/preview_ai.png`,
+  psdPreviewUrl: `${DEMO_ASSETS_BASE_URL}/cases/ai-template-import/${file}/preview_psd.png`,
+  cesdkPreviewUrl: `${DEMO_ASSETS_BASE_URL}/cases/ai-template-import/${file}/preview_cesdk.png`,
+  coverBaseUrl: `${DEMO_ASSETS_BASE_URL}/cases/ai-template-import/${file}/thumbnail`,
   alt: `${file} thumbnail`,
-  sceneArchiveUrl: resolveAssetPath(
-    `/cases/ai-template-import/${file}/scene.archive`
-  )
+  sceneArchiveUrl: `${DEMO_ASSETS_BASE_URL}/cases/ai-template-import/${file}/scene.archive`
 }));
 
 export function App({ editorConfig }: AppProps) {

@@ -103,8 +103,8 @@ async function run() {
 
     // Save the template for reuse
     const templateString = await engine.scene.saveToString();
-    writeFileSync('template.scene', templateString);
-    console.log('✓ Template saved to template.scene');
+    writeFileSync('template.imgly', templateString);
+    console.log('✓ Template saved to template.imgly');
 
     // Demonstrate batch processing: populate template with multiple data records
     const recipients = [

@@ -65,14 +65,15 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // ===== Method 1: Load Archive from URL =====
-    // Archives are self-contained ZIP files containing both the scene
-    // structure and all referenced assets (images, fonts, videos, etc.)
+    // Archives are self-contained `.imgly` files (zip archives) containing
+    // both the scene structure and all referenced assets
+    // (images, fonts, videos, etc.)
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _archiveUrl = 'https://example.com/designs/project-bundle.zip';
+    const _archiveUrl = 'https://example.com/designs/project-bundle.imgly';
 
-    // Load the archive using loadFromArchiveURL
-    // await engine.scene.loadFromArchiveURL(_archiveUrl);
+    // Load the archive using engine.scene.load
+    // await engine.scene.load(_archiveUrl);
 
     // The scene is now loaded with all bundled assets
 
@@ -84,7 +85,7 @@ class Example implements EditorPlugin {
       const userArchiveUrl = URL.createObjectURL(file);
 
       try {
-        await engine.scene.loadFromArchiveURL(userArchiveUrl);
+        await engine.scene.load(userArchiveUrl);
         console.log('User archive loaded successfully');
       } catch (error) {
         console.error('Failed to load user archive:', error);
@@ -97,7 +98,7 @@ class Example implements EditorPlugin {
     // In production, attach this to your UI button
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
-    fileInput.accept = '.zip';
+    fileInput.accept = '.imgly,.zip';
     fileInput.onchange = async (event) => {
       const file = (event.target as HTMLInputElement).files?.[0];
       if (file) {
@@ -114,7 +115,7 @@ class Example implements EditorPlugin {
       const blobUrl = URL.createObjectURL(archiveBlob);
 
       try {
-        await engine.scene.loadFromArchiveURL(blobUrl);
+        await engine.scene.load(blobUrl);
         console.log('Archive loaded from blob successfully');
       } catch (error) {
         console.error('Failed to load archive from blob:', error);

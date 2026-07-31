@@ -11,8 +11,8 @@
     "check:lint": "eslint ."
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.79.0",
-    "@cesdk/engine": "^1.79.0"
+    "@cesdk/cesdk-js": "^1.80.0-rc.0",
+    "@cesdk/engine": "^1.80.0-rc.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.1",

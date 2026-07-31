@@ -13,8 +13,8 @@
     "fix:format": "prettier --write \"**/*.{ts,js,json,html,css}\""
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.79.0",
-    "@cesdk/engine": "^1.79.0"
+    "@cesdk/cesdk-js": "^1.80.0-rc.0",
+    "@cesdk/engine": "^1.80.0-rc.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.0.0",

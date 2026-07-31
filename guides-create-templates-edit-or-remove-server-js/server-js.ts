@@ -186,7 +186,7 @@ try {
 
   // Load and export based on user choice
   if (choice === '1' || choice === '3') {
-    await engine.scene.loadFromString(originalContent);
+    await engine.scene.load(originalContent);
     const originalBlob = await engine.block.export(
       engine.block.findByType('page')[0],
       { mimeType: 'image/png' }
@@ -198,7 +198,7 @@ try {
   }
 
   if (choice === '2' || choice === '3') {
-    await engine.scene.loadFromString(reUpdatedContent);
+    await engine.scene.load(reUpdatedContent);
     const updatedBlob = await engine.block.export(
       engine.block.findByType('page')[0],
       { mimeType: 'image/png' }
@@ -212,7 +212,7 @@ try {
   if (choice !== '1' && choice !== '2' && choice !== '3') {
     // eslint-disable-next-line no-console
     console.log('Invalid choice. Exporting both templates by default.');
-    await engine.scene.loadFromString(originalContent);
+    await engine.scene.load(originalContent);
     const originalBlob = await engine.block.export(
       engine.block.findByType('page')[0],
       { mimeType: 'image/png' }
@@ -222,7 +222,7 @@ try {
       Buffer.from(await originalBlob.arrayBuffer())
     );
 
-    await engine.scene.loadFromString(reUpdatedContent);
+    await engine.scene.load(reUpdatedContent);
     const updatedBlob = await engine.block.export(
       engine.block.findByType('page')[0],
       { mimeType: 'image/png' }

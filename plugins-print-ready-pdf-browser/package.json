@@ -23,9 +23,9 @@
     "ci": "npm run check:all && npm run qa"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.79.0",
-    "@imgly/plugin-print-ready-pdfs-web": "^1.79.0",
-    "@cesdk/engine": "^1.79.0"
+    "@cesdk/cesdk-js": "^1.80.0-rc.0",
+    "@imgly/plugin-print-ready-pdfs-web": "^1.80.0-rc.0",
+    "@cesdk/engine": "^1.80.0-rc.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",

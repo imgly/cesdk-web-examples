@@ -61,7 +61,7 @@ export default function EditorModal({
 
       // Load the selected template
       if (template?.meta?.uri) {
-        await cesdk.loadFromArchiveURL(template.meta.uri);
+        await cesdk.load(template.meta.uri);
 
         // Set the scene name to display in the navigation bar title
         const scene = cesdk.engine.scene.get();

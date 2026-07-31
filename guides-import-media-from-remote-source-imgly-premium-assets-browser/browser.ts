@@ -116,7 +116,7 @@ class Example implements EditorPlugin {
     // Templates are archive files that need special loading
     engine.asset.addLocalSource(sourceId, [], async (asset) => {
       // Load the template from the archive URL
-      await engine.scene.loadFromArchiveURL(asset.meta.uri);
+      await engine.scene.load(asset.meta.uri);
       // Return the scene ID after loading
       return engine.scene.get()!;
     });

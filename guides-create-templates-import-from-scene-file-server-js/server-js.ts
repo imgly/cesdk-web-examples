@@ -2,8 +2,8 @@
  * CE.SDK Node.js Example: Import Templates from Scene Files
  *
  * This example demonstrates:
- * - Loading scenes from .scene file URLs
- * - Loading scenes from .archive (ZIP) URLs
+ * - Loading scenes from scene file URLs
+ * - Loading scenes from archive URLs
  * - Applying templates while preserving page dimensions
  * - Understanding the difference between loading and applying templates
  * - Working with scene files programmatically in a headless environment
@@ -29,9 +29,9 @@ async function main() {
     // This is the recommended approach for loading complete templates
     // with all their assets embedded in a ZIP file
 
-    // Load a complete template from an archive (ZIP) file
+    // Load a complete template from an archive file
     // This loads both the scene structure and all embedded assets
-    await engine.scene.loadFromArchiveURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/templates/starterkits/16-9-fashion-ad.zip'
     );
 
@@ -58,10 +58,10 @@ async function main() {
     writeFileSync('output-from-archive.png', buffer);
     console.log('Exported scene to output-from-archive.png');
 
-    // Alternative: Load scene from URL (.scene file)
+    // Alternative: Load scene from URL (plain scene file)
     // This loads only the scene structure - assets must be accessible via URLs
     // Uncomment to try:
-    // await engine.scene.loadFromURL(
+    // await engine.scene.load(
     //   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     // );
     //

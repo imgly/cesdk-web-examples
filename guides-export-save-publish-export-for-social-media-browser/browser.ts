@@ -127,7 +127,7 @@ class Example implements EditorPlugin {
         targetWidth: 1080,
         targetHeight: 1920,
         framerate: 30,
-        videoBitrate: 8_000_000, // 8 Mbps
+        videoBitrate: 'Auto', // Derives a bounded bitrate from the resolution/framerate. Pass a number (bits/sec) for an explicit bitrate.
         onProgress: (renderedFrames, encodedFrames, totalFrames) => {
           const percent = Math.round((encodedFrames / totalFrames) * 100);
           console.log(
