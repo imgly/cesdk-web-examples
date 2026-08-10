@@ -48,10 +48,10 @@ Load content into the editor using one of these methods:
 await cesdk.createDesignScene();
 
 // Load from a template archive
-await cesdk.loadFromArchiveURL('https://example.com/template.zip');
+await cesdk.load('https://example.com/template.zip');
 
 // Load from a scene file
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 
 // Load from an image
 await cesdk.createFromImage('https://example.com/image.jpg');
@@ -131,3 +131,32 @@ For complete integration guides and API reference, visit the [Design Editor Docu
 ---
 
 <p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=demo-illustrator-template-import">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=demo-illustrator-template-import">IMG.LY</a></p>
+
+## Demo Assets
+
+The demo assets for this starter kit load from the IMG.LY CDN by default —
+nothing to configure. If you want to own them — edit them, meet compliance
+requirements, or remove the CDN dependency for production — eject them
+(the archive contains only this kit's files):
+
+```bash
+# Download this starter kit's demo assets
+curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0-rc.1/demo-illustrator-template-import/demo-assets.zip
+unzip demo-assets.zip -d demo-assets
+rm demo-assets.zip
+```
+
+Upload the extracted files to your own server or CDN, then point the app
+at them via `.env`:
+
+```bash
+VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
+```
+
+The default URL is the `DEMO_ASSETS_BASE_URL` constant in `src/app/App.tsx` if you
+prefer changing it in code.
+
+The demo assets are intended for development and prototyping — replace
+them with your own content or licensed stock assets before shipping to
+production (see `DEMO-ASSETS-NOTICE.txt` in the download). This applies in
+particular to media such as music tracks and stock imagery.

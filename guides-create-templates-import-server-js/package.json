@@ -25,7 +25,7 @@
     "ci": "npm run check:all && npm run qa"
   },
   "dependencies": {
-    "@cesdk/node": "^1.79.0",
+    "@cesdk/node": "^1.80.0-rc.1",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {

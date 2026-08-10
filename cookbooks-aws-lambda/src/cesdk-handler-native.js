@@ -68,7 +68,7 @@ exports.main = async function (event) {
   try {
     const engine = await CreativeEngine.init(config);
     try {
-      await engine.scene.loadFromURL(templateURL);
+      await engine.scene.load(templateURL);
       for (const record of event.Records) {
         const item = record.dynamodb.NewImage;
         const filename = item.filename.S;

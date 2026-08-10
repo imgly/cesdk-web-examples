@@ -18,7 +18,7 @@ async function main(): Promise<void> {
 
   try {
     // Load a template scene - this will be our print design
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 

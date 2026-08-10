@@ -139,8 +139,8 @@ try {
   }
 
   // Save scene to file
-  writeFileSync('output/rotate-videos.scene', sceneString);
-  console.log('Saved to output/rotate-videos.scene');
+  writeFileSync('output/rotate-videos.imgly', sceneString);
+  console.log('Saved to output/rotate-videos.imgly');
 
   // Log final rotation values to verify
   console.log('Video rotations:');

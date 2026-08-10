@@ -98,5 +98,5 @@ export async function initPremiumTemplatesEditor(cesdk: CreativeEditorSDK) {
   );
 
   // Note: Scene loading is handled by the gallery - templates are loaded via
-  // engine.scene.loadFromArchiveURL() when the user selects a template
+  // engine.scene.load() when the user selects a template
 }

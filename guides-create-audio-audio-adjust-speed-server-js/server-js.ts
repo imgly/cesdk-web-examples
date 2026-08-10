@@ -73,8 +73,8 @@ try {
   // Export the scene to a .scene file
   const sceneContent = await engine.scene.saveToString();
   await mkdir('output', { recursive: true });
-  await writeFile('output/audio-speed-adjustment.scene', sceneContent);
-  console.log('Scene exported to output/audio-speed-adjustment.scene');
+  await writeFile('output/audio-speed-adjustment.imgly', sceneContent);
+  console.log('Scene exported to output/audio-speed-adjustment.imgly');
 
   console.log('Audio playback speed adjustment example complete');
 } finally {

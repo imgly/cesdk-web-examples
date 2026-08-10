@@ -45,7 +45,7 @@ export function CreativeEditor({
             const archiveBlobUrl = URL.createObjectURL(archiveBlob);
 
             // Load the scene from the blob URL
-            await cesdk.loadFromArchiveURL(archiveBlobUrl);
+            await cesdk.load(archiveBlobUrl);
 
             // Clean up the blob URL
             URL.revokeObjectURL(archiveBlobUrl);

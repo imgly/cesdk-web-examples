@@ -95,7 +95,7 @@ async function main() {
 
     // Demonstrate loading the scene from the saved string
     // This replaces the current scene with the saved version
-    await engine.scene.loadFromString(sceneString);
+    await engine.scene.load(sceneString);
     console.log('Scene loaded from saved string');
 
     // Export the first page to a PNG file

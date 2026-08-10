@@ -24,7 +24,7 @@ try {
   // Load an archive that contains embedded resources (images and fonts)
   const archiveUrl =
     'https://cdn.img.ly/assets/templates/starterkits/16-9-fashion-ad.zip';
-  await engine.scene.loadFromArchiveURL(archiveUrl);
+  await engine.scene.load(archiveUrl);
 
   // Find all transient resources (embedded media with buffer:// URIs)
   // This includes both images and fonts embedded in the archive
@@ -117,7 +117,7 @@ try {
 
     // Export the scene - it now references external URLs instead of buffer:// URIs
     const sceneString = await engine.scene.saveToString();
-    const sceneOutputPath = `${outputDir}/scene-relocated.scene`;
+    const sceneOutputPath = `${outputDir}/scene-relocated.imgly`;
     writeFileSync(sceneOutputPath, sceneString);
     console.log(`Saved relocated scene to: ${sceneOutputPath}`);
   }

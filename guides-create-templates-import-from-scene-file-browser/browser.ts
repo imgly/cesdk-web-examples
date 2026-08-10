@@ -71,16 +71,16 @@ class Example implements EditorPlugin {
     // This is the recommended approach for loading complete templates
     // with all their assets embedded in a ZIP file
 
-    // Load a complete template from an archive (ZIP) file
+    // Load a complete template from an archive file
     // This loads both the scene structure and all embedded assets
-    await engine.scene.loadFromArchiveURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/templates/starterkits/16-9-fashion-ad.zip'
     );
 
-    // Alternative: Load scene from URL (.scene file)
+    // Alternative: Load scene from URL (plain scene file)
     // This loads only the scene structure - assets must be accessible via URLs
     // Uncomment to try:
-    // await engine.scene.loadFromURL(
+    // await engine.scene.load(
     //   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     // );
 

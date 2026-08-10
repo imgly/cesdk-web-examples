@@ -28,7 +28,7 @@ class Example implements EditorPlugin {
     // Templates are scenes containing variable tokens and placeholder blocks
     const templateUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.loadFromURL(templateUrl);
+    await engine.scene.load(templateUrl);
 
     // Zoom to show the full page in the viewport
     const page = engine.scene.getCurrentPage();

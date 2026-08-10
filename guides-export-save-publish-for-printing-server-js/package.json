@@ -23,7 +23,7 @@
     "ci": "npm run check:all && npm run qa"
   },
   "dependencies": {
-    "@cesdk/node": "^1.79.0"
+    "@cesdk/node": "^1.80.0-rc.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
