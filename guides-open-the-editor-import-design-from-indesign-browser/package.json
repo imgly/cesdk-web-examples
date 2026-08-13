@@ -25,10 +25,10 @@
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.79.0",
-    "@cesdk/engine": "^1.79.0",
+    "@cesdk/cesdk-js": "^1.80.0",
+    "@cesdk/engine": "^1.80.0",
     "@imgly/idml-importer": "^1.5.3",
-    "@imgly/pdf-importer": "^0.2.1"
+    "@imgly/pdf-importer": "^0.2.2"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

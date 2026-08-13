@@ -98,7 +98,7 @@ export function ResultScreen({ currentFile, onOpenEditor }: ResultScreenProps) {
               onClick={() => {
                 const link = document.createElement('a');
                 link.href = currentFile.sceneArchiveUrl;
-                link.download = 'archive.zip';
+                link.download = 'archive.imgly';
                 link.click();
               }}
             >

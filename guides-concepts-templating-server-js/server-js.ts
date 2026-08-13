@@ -24,7 +24,7 @@ async function main() {
     // Templates are scenes containing variable tokens and placeholder blocks
     const templateUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.loadFromURL(templateUrl);
+    await engine.scene.load(templateUrl);
 
     // Discover what variables this template expects
     // Variables are named slots that can be populated with data

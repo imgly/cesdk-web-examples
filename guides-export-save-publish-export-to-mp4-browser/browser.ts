@@ -61,7 +61,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     cesdk.feature.enable('ly.img.video');
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.video.template/templates/milli-surf-school.scene'
     );
     const page = engine.scene.getCurrentPage();
@@ -109,6 +109,7 @@ class Example implements EditorPlugin {
               try {
                 const blob = await engine.block.exportVideo(page, {
                   mimeType: 'video/mp4',
+                  videoBitrate: 'Auto',
                   onProgress: (_, encoded, total) => {
                     dialog.updateProgress({ value: encoded, max: total });
                   }

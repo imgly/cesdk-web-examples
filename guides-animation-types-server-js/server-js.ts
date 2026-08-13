@@ -165,8 +165,8 @@ async function main() {
 
     // Save as scene file - preserves all animation data
     const sceneData = await engine.scene.saveToString();
-    writeFileSync(`${outputDir}/animation-types.scene`, sceneData);
-    console.log('Exported to output/animation-types.scene');
+    writeFileSync(`${outputDir}/animation-types.imgly`, sceneData);
+    console.log('Exported to output/animation-types.imgly');
 
     console.log('Animation Types example completed successfully');
   } finally {

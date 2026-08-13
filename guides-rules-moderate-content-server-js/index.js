@@ -281,7 +281,7 @@ async function main() {
   // In production, use your actual scene URL or template
   const templateURL =
     'https://cdn.img.ly/packages/imgly/cesdk-js/latest/assets/templates/cesdk_postcard_1.scene';
-  await engine.scene.loadFromURL(templateURL);
+  await engine.scene.load(templateURL);
   const page = engine.block.findByType('page')[0];
   console.log('✓ Scene loaded\n');
 

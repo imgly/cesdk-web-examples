@@ -29,7 +29,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new CaptionPresetsAssetSource());
 
     // Load a video template scene for demonstration
-    await cesdk.loadFromURL(
+    await cesdk.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.video.template/templates/milli-surf-school.scene'
     );
 

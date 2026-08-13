@@ -357,7 +357,7 @@ try {
   // Export the template as a scene file for later use
   const sceneBlob = await engine.scene.saveToArchive();
   const sceneBuffer = Buffer.from(await sceneBlob.arrayBuffer());
-  writeFileSync(`${outputDir}/placeholders-template.scene`, sceneBuffer);
+  writeFileSync(`${outputDir}/placeholders-template.imgly`, sceneBuffer);
 
   // Also export a visual preview
   const blob = await engine.block.export(page, { mimeType: 'image/png' });
@@ -365,7 +365,7 @@ try {
   writeFileSync(`${outputDir}/placeholders-result.png`, buffer);
 
   // eslint-disable-next-line no-console
-  console.log('\n✓ Exported template to output/placeholders-template.scene');
+  console.log('\n✓ Exported template to output/placeholders-template.imgly');
   // eslint-disable-next-line no-console
   console.log('✓ Exported preview to output/placeholders-result.png');
   // eslint-disable-next-line no-console

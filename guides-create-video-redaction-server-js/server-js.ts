@@ -201,8 +201,8 @@ try {
   // Save the scene to a file for later use or export
   await mkdir('output', { recursive: true });
   const sceneData = await engine.scene.saveToString();
-  await writeFile('output/redacted-video.scene', sceneData);
-  console.log('Scene saved to output/redacted-video.scene');
+  await writeFile('output/redacted-video.imgly', sceneData);
+  console.log('Scene saved to output/redacted-video.imgly');
 
   console.log('');
   console.log('Video redaction guide complete.');
