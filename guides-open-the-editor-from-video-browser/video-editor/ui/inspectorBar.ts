@@ -31,6 +31,7 @@
  * - `'ly.img.video.caption.inspectorBar'` - Video captions
  * - `'ly.img.audio.replace.inspectorBar'` - Replace audio
  * - `'ly.img.animations.inspectorBar'` - Animation controls
+ * - `'ly.img.transitions.inspectorBar'` - Transition controls
  *
  * **Effects:**
  * - `'ly.img.adjustment.inspectorBar'` - Color adjustments
@@ -146,6 +147,7 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
       // Animations
       // ============================
       'ly.img.animations.inspectorBar',
+      'ly.img.transitions.inspectorBar',
       'ly.img.separator',
 
       // ============================

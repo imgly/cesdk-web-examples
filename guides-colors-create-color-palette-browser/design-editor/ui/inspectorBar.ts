@@ -31,6 +31,7 @@
  * - `'ly.img.video.caption.inspectorBar'` - Video captions
  * - `'ly.img.audio.replace.inspectorBar'` - Replace audio
  * - `'ly.img.animations.inspectorBar'` - Animation controls
+ * - `'ly.img.transitions.inspectorBar'` - Transition controls
  *
  * **Effects:**
  * - `'ly.img.adjustment.inspectorBar'` - Color adjustments

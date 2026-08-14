@@ -24,14 +24,14 @@
     "ci": "npm run check:all && npm run qa"
   },
   "dependencies": {
-    "@cesdk/node": "^1.80.0",
+    "@cesdk/node": "^1.81.0-rc.0",
     "@imgly/idml-importer": "^1.5.3",
-    "@imgly/pdf-importer": "^0.2.2",
+    "@imgly/pdf-importer": "^0.2.3",
     "dotenv": "^16.0.0",
     "jsdom": "^24.0.0"
   },
   "devDependencies": {
-    "@cesdk/engine": "^1.80.0",
+    "@cesdk/engine": "^1.81.0-rc.0",
     "@types/jsdom": "^21.0.0",
     "@types/node": "^22.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
