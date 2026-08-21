@@ -20,7 +20,7 @@
     "nodejs"
   ],
   "dependencies": {
-    "@cesdk/node": "^1.80.0"
+    "@cesdk/node": "^1.81.0-rc.1"
   },
   "devDependencies": {
     "prettier": "^3.0.0",

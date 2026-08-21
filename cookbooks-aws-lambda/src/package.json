@@ -14,7 +14,7 @@
     "@aws-sdk/client-s3": "^3.1045.0",
     "@aws-sdk/lib-dynamodb": "^3.1045.0",
     "@aws-sdk/s3-request-presigner": "^3.1045.0",
-    "@cesdk/node": "^1.80.0",
+    "@cesdk/node": "^1.81.0-rc.1",
     "@cesdk/node-native": "^1.75.0",
     "node-fetch": "^3.2.10",
     "uuid": "^9.0.0"

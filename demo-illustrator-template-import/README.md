@@ -141,7 +141,7 @@ requirements, or remove the CDN dependency for production — eject them
 
 ```bash
 # Download this starter kit's demo assets
-curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.80.0/demo-illustrator-template-import/demo-assets.zip
+curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.0-rc.1/demo-illustrator-template-import/demo-assets.zip
 unzip demo-assets.zip -d demo-assets
 rm demo-assets.zip
 ```
