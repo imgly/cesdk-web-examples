@@ -20,7 +20,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@cesdk/node": "^1.80.0"
+    "@cesdk/node": "^1.81.0"
   },
   "scripts": {
     "check:syntax": "tsc --project tsconfig.json --noEmit",

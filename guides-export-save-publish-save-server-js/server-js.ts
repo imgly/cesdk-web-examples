@@ -97,6 +97,19 @@ try {
   if (saveArchive) {
     console.log('⏳ Saving to archive...');
     const archiveBlob = await engine.scene.saveToArchive();
+
+    // Compress the scene inside the archive. Bundled media is left as-is,
+    // because images, video and fonts already are compressed formats.
+    const compressedArchiveBlob = await engine.scene.saveToArchive({
+      compression: {
+        format: CompressionFormat.Zstd,
+        level: CompressionLevel.Default
+      }
+    });
+    writeFileSync(
+      `${outputDir}/scene-archive-compressed.imgly`,
+      Buffer.from(await compressedArchiveBlob.arrayBuffer())
+    );
     // Persist saved archives with the `.imgly` extension
     const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
     writeFileSync(`${outputDir}/scene-archive.imgly`, archiveBuffer);

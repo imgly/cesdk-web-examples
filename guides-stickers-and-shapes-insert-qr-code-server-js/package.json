@@ -24,7 +24,7 @@
     "ci": "npm run check:all && npm run qa"
   },
   "dependencies": {
-    "@cesdk/node": "^1.80.0",
+    "@cesdk/node": "^1.81.0",
     "dotenv": "^16.0.0",
     "qrcode": "^1.5.4"
   },
