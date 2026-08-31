@@ -32,6 +32,9 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  */
 export function setupFeatures(cesdk: CreativeEditorSDK): void {
   cesdk.feature.enable([
+    // #region Keyboard Shortcuts
+    'ly.img.keyboard.shortcuts' /* Enable keyboard shortcuts */,
+    // #endregion
     // ============================================================================
     // NAVIGATION FEATURES
     // Configure the top navigation bar visibility and controls
@@ -70,6 +73,12 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.text.background.picker.opacity', /* Alpha/opacity slider */
     // 'ly.img.text.background.library', /* Swatch library */
     // 'ly.img.text.styles', /* Styles button (style presets) in Canvas Menu */
+    // 'ly.img.text.path', /* Text on a path / circle */
+    // 'ly.img.text.path.curve', /* Curve picker */
+    // 'ly.img.text.path.position', /* Path Position control */
+    // 'ly.img.text.path.direction', /* Direction control */
+    // 'ly.img.text.path.offset', /* Offset slider */
+    // 'ly.img.text.path.edit', /* Edit Path button (requires ly.img.vectorEdit) */
     // #endregion
 
     // ============================================================================
@@ -188,6 +197,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.scene.layout.horizontal', /* Horizontal layout toggle */
     // 'ly.img.scene.layout.vertical', /* Vertical layout toggle */
     // 'ly.img.scene.layout.free', /* Free layout toggle */
+    // 'ly.img.scene.layout.spacing', /* Gap + screen-space toggle for stacked layouts */
     // 'ly.img.scene.fontSizeUnit', /* Font size unit selector in page resize panel */
     // #endregion
 
@@ -317,6 +327,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.video.timeline.overlays', /* Overlays track in timeline */
     // 'ly.img.video.timeline.audio', /* Audio track in timeline */
     // 'ly.img.video.timeline.addClip', /* Add clips to timeline */
+    // 'ly.img.video.timeline.clip.menu', /* Clip ellipsis button */
     // 'ly.img.video.timeline.controls', /* Base video control UI */
     // 'ly.img.video.timeline.controls.toggle', /* Timeline collapse/expand toggle */
     // 'ly.img.video.timeline.controls.background', /* Background color controls */

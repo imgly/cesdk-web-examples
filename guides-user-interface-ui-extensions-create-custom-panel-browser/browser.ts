@@ -70,6 +70,11 @@ export default class CreateCustomPanelExample implements EditorPlugin {
 
       const textState = state('text', 'Hello CE.SDK');
       const opacityState = state('opacity', 100);
+      const spacingState = state('spacing', 8);
+      const headlineState = state('headline', 'Product name');
+      const viewState = state('view', 'content');
+      const enabledState = state('enabled', true);
+      const shadowState = state('shadow', false);
 
       builder.Section('settings', {
         title: 'Settings',
@@ -87,10 +92,18 @@ export default class CreateCustomPanelExample implements EditorPlugin {
             ...opacityState
           });
 
+          builder.NumberInput('spacing', {
+            inputLabel: 'Spacing',
+            min: 0,
+            max: 64,
+            step: 4,
+            showStepper: true,
+            ...spacingState
+          });
+
           builder.Checkbox('enabled', {
             inputLabel: 'Enable feature',
-            value: true,
-            setValue: () => {}
+            ...enabledState
           });
 
           builder.Button('apply', {
@@ -106,6 +119,41 @@ export default class CreateCustomPanelExample implements EditorPlugin {
           if (selected.length > 0) {
             builder.Text('info', { content: `${selected.length} selected` });
           }
+        }
+      });
+
+      builder.Section('view', {
+        children: () => {
+          builder.Tabs('view-tabs', {
+            inputLabel: 'View',
+            inputLabelPosition: 'top',
+            ...viewState,
+            tabs: [
+              {
+                id: 'content',
+                label: 'Content',
+                icon: '@imgly/Text',
+                children: () => {
+                  builder.TextInput('headline', {
+                    inputLabel: 'Headline',
+                    ...headlineState
+                  });
+                }
+              },
+              {
+                id: 'style',
+                label: 'Style',
+                icon: '@imgly/Appearance',
+                isActive: opacityState.value < 100,
+                children: () => {
+                  builder.Checkbox('shadow', {
+                    inputLabel: 'Drop shadow',
+                    ...shadowState
+                  });
+                }
+              }
+            ]
+          });
         }
       });
     });

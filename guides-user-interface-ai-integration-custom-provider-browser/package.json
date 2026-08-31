@@ -25,10 +25,10 @@
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.81.1",
-    "@cesdk/engine": "^1.81.1",
-    "@imgly/plugin-ai-generation-web": "^1.81.1",
-    "@imgly/plugin-ai-image-generation-web": "^1.81.1"
+    "@cesdk/cesdk-js": "^1.82.0-rc.0",
+    "@cesdk/engine": "^1.82.0-rc.0",
+    "@imgly/plugin-ai-generation-web": "^1.82.0-rc.0",
+    "@imgly/plugin-ai-image-generation-web": "^1.82.0-rc.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

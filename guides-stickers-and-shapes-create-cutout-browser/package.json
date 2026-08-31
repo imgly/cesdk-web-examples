@@ -15,9 +15,9 @@
     "capture:hero_image": "node scripts/capture-hero.mjs"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.81.1",
-    "@cesdk/engine": "^1.81.1",
-    "@imgly/plugin-cutout-library-web": "^1.81.1"
+    "@cesdk/cesdk-js": "^1.82.0-rc.0",
+    "@cesdk/engine": "^1.82.0-rc.0",
+    "@imgly/plugin-cutout-library-web": "^1.82.0-rc.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.0.0",
