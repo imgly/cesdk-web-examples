@@ -22,6 +22,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { setupActions } from './actions';
+import { setupKeyboardShortcuts } from './keyboard/keyboard';
 import { setupFeatures } from './features';
 import { setupTranslations } from './i18n';
 import { setupSettings } from './settings';
@@ -79,6 +80,12 @@ export class DesignEditorConfig implements EditorPlugin {
       // Configure export, save, and share actions
       // See actions.ts for action configuration
       setupActions(cesdk);
+      // #endregion
+
+      // #region Keyboard Shortcuts Configuration
+      // Register default keyboard shortcuts
+      // See keyboard.ts for the full catalog and customisation examples
+      setupKeyboardShortcuts(cesdk);
       // #endregion
 
       // #region Translation Configuration

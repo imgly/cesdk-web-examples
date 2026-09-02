@@ -16,7 +16,7 @@
     "fix:all": "npm run fix:format && npm run fix:lint"
   },
   "dependencies": {
-    "@cesdk/node": "^1.81.1",
+    "@cesdk/node": "^1.82.0-rc.1",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {

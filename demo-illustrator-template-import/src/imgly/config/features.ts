@@ -33,6 +33,9 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  */
 export function setupFeatures(cesdk: CreativeEditorSDK): void {
   cesdk.feature.enable([
+    // #region Keyboard Shortcuts
+    'ly.img.keyboard.shortcuts' /* Enable keyboard shortcuts */,
+    // #endregion
     // ============================================================================
     // NAVIGATION FEATURES
     // Configure the top navigation bar visibility and controls
@@ -71,6 +74,12 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.text.background.picker.opacity', /* Alpha/opacity slider */
     // 'ly.img.text.background.library', /* Swatch library */
     // 'ly.img.text.styles', /* Styles button (style presets) in Canvas Menu */
+    // 'ly.img.text.path', /* Text on a path / circle */
+    // 'ly.img.text.path.curve', /* Curve picker */
+    // 'ly.img.text.path.position', /* Path Position control */
+    // 'ly.img.text.path.direction', /* Direction control */
+    // 'ly.img.text.path.offset', /* Offset slider */
+    // 'ly.img.text.path.edit', /* Edit Path button (requires ly.img.vectorEdit) */
     // #endregion
 
     // ============================================================================
@@ -182,6 +191,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.scene.layout.horizontal', /* Horizontal layout toggle */
     // 'ly.img.scene.layout.vertical', /* Vertical layout toggle */
     // 'ly.img.scene.layout.free', /* Free layout toggle in page layout controls */
+    // 'ly.img.scene.layout.spacing', /* Gap + screen-space toggle for stacked layouts */
     // 'ly.img.scene.fontSizeUnit', /* Font size unit selector in page resize panel */
     // #endregion
 
@@ -244,36 +254,36 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // ============================================================================
 
     // #region Placeholder Features
-    'ly.img.placeholder' /* Enables all children below */,
-    // 'ly.img.placeholder.general', /* General section (opacity, blend, etc.) */
-    // 'ly.img.placeholder.general.opacity', /* Opacity option */
-    // 'ly.img.placeholder.general.blendMode', /* Blend Mode option */
-    // 'ly.img.placeholder.general.duplicate', /* Duplicate option */
-    // 'ly.img.placeholder.general.delete', /* Delete option */
-    // 'ly.img.placeholder.arrange', /* Arrange section */
-    // 'ly.img.placeholder.arrange.move', /* Move option */
-    // 'ly.img.placeholder.arrange.resize', /* Resize option */
-    // 'ly.img.placeholder.arrange.rotate', /* Rotate option */
-    // 'ly.img.placeholder.arrange.flip', /* Flip option */
-    // 'ly.img.placeholder.fill', /* Fill section */
-    // 'ly.img.placeholder.fill.change', /* Change Fill option */
-    // 'ly.img.placeholder.fill.changeType', /* Change Fill Type option */
-    // 'ly.img.placeholder.fill.actAsPlaceholder', /* Act as Placeholder option */
-    // 'ly.img.placeholder.fill.crop', /* Crop option */
-    // 'ly.img.placeholder.shape', /* Shape section */
-    // 'ly.img.placeholder.shape.change', /* Change Shape option */
-    // 'ly.img.placeholder.stroke', /* Stroke section */
-    // 'ly.img.placeholder.stroke.change', /* Change Stroke option */
-    // 'ly.img.placeholder.text', /* Text section */
-    // 'ly.img.placeholder.text.edit', /* Edit Text option */
-    // 'ly.img.placeholder.text.actAsPlaceholder', /* Act as Placeholder option */
-    // 'ly.img.placeholder.text.character', /* Character option */
+    // 'ly.img.placeholder', /* Enables all children below */
+    'ly.img.placeholder.general' /* General section (opacity, blend, etc.) */,
+    'ly.img.placeholder.general.opacity' /* Opacity option */,
+    'ly.img.placeholder.general.blendMode' /* Blend Mode option */,
+    'ly.img.placeholder.general.duplicate' /* Duplicate option */,
+    'ly.img.placeholder.general.delete' /* Delete option */,
+    'ly.img.placeholder.arrange' /* Arrange section */,
+    'ly.img.placeholder.arrange.move' /* Move option */,
+    'ly.img.placeholder.arrange.resize' /* Resize option */,
+    'ly.img.placeholder.arrange.rotate' /* Rotate option */,
+    'ly.img.placeholder.arrange.flip' /* Flip option */,
+    'ly.img.placeholder.fill' /* Fill section */,
+    'ly.img.placeholder.fill.change' /* Change Fill option */,
+    'ly.img.placeholder.fill.changeType' /* Change Fill Type option */,
+    'ly.img.placeholder.fill.actAsPlaceholder' /* Act as Placeholder option */,
+    'ly.img.placeholder.fill.crop' /* Crop option */,
+    'ly.img.placeholder.shape' /* Shape section */,
+    'ly.img.placeholder.shape.change' /* Change Shape option */,
+    'ly.img.placeholder.stroke' /* Stroke section */,
+    'ly.img.placeholder.stroke.change' /* Change Stroke option */,
+    'ly.img.placeholder.text' /* Text section */,
+    'ly.img.placeholder.text.edit' /* Edit Text option */,
+    'ly.img.placeholder.text.actAsPlaceholder' /* Act as Placeholder option */,
+    'ly.img.placeholder.text.character' /* Character option */,
     // 'ly.img.placeholder.appearance', /* Appearance section */
-    // 'ly.img.placeholder.appearance.adjustments', /* Adjustments option */
-    // 'ly.img.placeholder.appearance.filter', /* Filter option */
-    // 'ly.img.placeholder.appearance.effect', /* Effect option */
-    // 'ly.img.placeholder.appearance.blur', /* Blur option */
-    // 'ly.img.placeholder.appearance.shadow', /* Shadow option */
+    'ly.img.placeholder.appearance.adjustments' /* Adjustments option */,
+    'ly.img.placeholder.appearance.filter' /* Filter option */,
+    'ly.img.placeholder.appearance.effect' /* Effect option */,
+    'ly.img.placeholder.appearance.blur' /* Blur option */,
+    'ly.img.placeholder.appearance.shadow' /* Shadow option */,
     // 'ly.img.placeholder.appearance.animations', /* Animations option */
     // 'ly.img.preview', /* Preview button (Creator role only) */
     // #endregion
@@ -311,6 +321,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.video.timeline.overlays', /* Overlays track in timeline */
     // 'ly.img.video.timeline.audio', /* Audio track in timeline */
     // 'ly.img.video.timeline.addClip', /* Add clips to timeline */
+    // 'ly.img.video.timeline.clip.menu', /* Clip ellipsis button */
     // 'ly.img.video.timeline.controls', /* Base video control UI */
     // 'ly.img.video.timeline.controls.toggle', /* Timeline collapse/expand toggle */
     // 'ly.img.video.timeline.controls.background', /* Background color controls */

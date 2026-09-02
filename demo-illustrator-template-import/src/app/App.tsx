@@ -19,7 +19,7 @@ import classes from './App.module.css';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.1/demo-illustrator-template-import';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0-rc.1/demo-illustrator-template-import';
 
 const EXAMPLE_FILES: ExampleFile[] = [
   'example-1',

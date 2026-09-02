@@ -148,8 +148,8 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
       // ============================
       // Animations
       // ============================
-      'ly.img.animations.inspectorBar',
-      'ly.img.separator',
+      // 'ly.img.animations.inspectorBar',
+      // 'ly.img.separator',
 
       // ============================
       // Effects
