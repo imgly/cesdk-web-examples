@@ -131,18 +131,21 @@ try {
   }
   engine.block.appendChild(page, logoBlock);
 
-  // Check feature support on different blocks
+  // Pages and graphic blocks support fills; text blocks do not
   const pageSupportsFill = engine.block.supportsFill(page);
-  const textSupportsBackground =
-    engine.block.supportsBackgroundColor(featuredText);
   const imageSupportsFill = engine.block.supportsFill(imageBlock);
 
   // eslint-disable-next-line no-console
   console.log('Page supports fill:', pageSupportsFill);
   // eslint-disable-next-line no-console
-  console.log('Text supports backgroundColor:', textSupportsBackground);
-  // eslint-disable-next-line no-console
   console.log('Image supports fill:', imageSupportsFill);
+
+  // Only text blocks support background colors
+  const textSupportsBackground =
+    engine.block.supportsBackgroundColor(featuredText);
+
+  // eslint-disable-next-line no-console
+  console.log('Text supports backgroundColor:', textSupportsBackground);
 
   // Export the result to PNG
   const outputDir = './output';

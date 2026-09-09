@@ -33,3 +33,6 @@ starterkit-*/release/.eslintrc.js
 starterkit-*/release/LICENSE
 starterkit-*/release/hero.webp
 starterkit-*/release/src/app/
+
+tests/demo-load/results/
+test-results/

@@ -180,15 +180,18 @@ class Example implements EditorPlugin {
     }
     engine.block.appendChild(page, logoBlock);
 
-    // Check feature support on different blocks
+    // Pages and graphic blocks support fills; text blocks do not
     const pageSupportsFill = engine.block.supportsFill(page);
-    const textSupportsBackground =
-      engine.block.supportsBackgroundColor(featuredText);
     const imageSupportsFill = engine.block.supportsFill(imageBlock);
 
     console.log('Page supports fill:', pageSupportsFill);
-    console.log('Text supports backgroundColor:', textSupportsBackground);
     console.log('Image supports fill:', imageSupportsFill);
+
+    // Only text blocks support background colors
+    const textSupportsBackground =
+      engine.block.supportsBackgroundColor(featuredText);
+
+    console.log('Text supports backgroundColor:', textSupportsBackground);
 
     // Zoom to fit the page
     await engine.scene.zoomToBlock(page, {

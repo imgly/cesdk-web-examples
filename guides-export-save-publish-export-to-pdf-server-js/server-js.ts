@@ -51,15 +51,25 @@ try {
 
   console.log('⏳ Exporting...\n');
 
+  // Report per-page progress as the PDF is written. The callback runs once per
+  // page; only PDF exports invoke it. On the server this is a natural place to
+  // update a job status or log line for long multi-page exports.
+  const onProgress = (exportedPages: number, totalPages: number) => {
+    console.log(`  Exported ${exportedPages} of ${totalPages} pages`);
+  };
+
   if (choice === '1' || choice === '5') {
     // Export scene as PDF (includes all pages)
     const blob = await engine.block.export(scene, {
-      mimeType: 'application/pdf'
+      mimeType: 'application/pdf',
+      onProgress
     });
     const buffer = Buffer.from(await blob.arrayBuffer());
     writeFileSync(`${outputDir}/design.pdf`, buffer);
     console.log(
-      `✓ Default PDF: ${outputDir}/design.pdf (${(blob.size / 1024).toFixed(1)} KB)`
+      `✓ Default PDF: ${outputDir}/design.pdf (${(blob.size / 1024).toFixed(
+        1
+      )} KB)`
     );
   }
 
@@ -67,12 +77,15 @@ try {
     // Enable high compatibility mode for consistent rendering across PDF viewers
     const blob = await engine.block.export(scene, {
       mimeType: 'application/pdf',
-      exportPdfWithHighCompatibility: true
+      exportPdfWithHighCompatibility: true,
+      onProgress
     });
     const buffer = Buffer.from(await blob.arrayBuffer());
     writeFileSync(`${outputDir}/design-high-compatibility.pdf`, buffer);
     console.log(
-      `✓ High Compatibility PDF: ${outputDir}/design-high-compatibility.pdf (${(blob.size / 1024).toFixed(1)} KB)`
+      `✓ High Compatibility PDF: ${outputDir}/design-high-compatibility.pdf (${(
+        blob.size / 1024
+      ).toFixed(1)} KB)`
     );
   }
 
@@ -85,12 +98,15 @@ try {
       exportPdfWithHighCompatibility: true,
       exportPdfWithUnderlayer: true,
       underlayerSpotColorName: 'RDG_WHITE',
-      underlayerOffset: -2.0
+      underlayerOffset: -2.0,
+      onProgress
     });
     const buffer = Buffer.from(await blob.arrayBuffer());
     writeFileSync(`${outputDir}/design-with-underlayer.pdf`, buffer);
     console.log(
-      `✓ PDF with Underlayer: ${outputDir}/design-with-underlayer.pdf (${(blob.size / 1024).toFixed(1)} KB)`
+      `✓ PDF with Underlayer: ${outputDir}/design-with-underlayer.pdf (${(
+        blob.size / 1024
+      ).toFixed(1)} KB)`
     );
   }
 
@@ -99,12 +115,15 @@ try {
     const blob = await engine.block.export(scene, {
       mimeType: 'application/pdf',
       targetWidth: 2480,
-      targetHeight: 3508
+      targetHeight: 3508,
+      onProgress
     });
     const buffer = Buffer.from(await blob.arrayBuffer());
     writeFileSync(`${outputDir}/design-a4.pdf`, buffer);
     console.log(
-      `✓ A4 PDF: ${outputDir}/design-a4.pdf (${(blob.size / 1024).toFixed(1)} KB)`
+      `✓ A4 PDF: ${outputDir}/design-a4.pdf (${(blob.size / 1024).toFixed(
+        1
+      )} KB)`
     );
   }
 
