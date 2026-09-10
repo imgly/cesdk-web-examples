@@ -2,8 +2,8 @@
  * CE.SDK Node.js Example: Import Templates
  *
  * Demonstrates loading templates from different sources:
- * - Archive URLs (.imgly files with bundled assets; legacy .zip still loads)
- * - Scene URLs (.imgly files; legacy .scene still loads)
+ * - Archive URLs (.zip files with bundled assets)
+ * - Scene URLs (.scene files)
  * - Serialized strings (file content)
  */
 
@@ -22,7 +22,7 @@ const fashionAdArchiveUrl =
 const postcardSceneUrl =
   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
-// For loading from a string: read the scene file content
+// For loadFromString: read the scene file content
 const businessCardSceneString = readFileSync(
   './assets/business-card.scene',
   'utf-8'
@@ -75,19 +75,19 @@ async function main() {
 
     if (method === 'archive') {
       // Load template from archive URL (bundled assets)
-      await engine.scene.load(fashionAdArchiveUrl);
+      await engine.scene.loadFromArchiveURL(fashionAdArchiveUrl);
       templateName = 'fashion-ad';
     }
 
     if (method === 'url') {
       // Load template from a scene URL
-      await engine.scene.load(postcardSceneUrl);
+      await engine.scene.loadFromURL(postcardSceneUrl);
       templateName = 'postcard';
     }
 
     if (method === 'string') {
       // Load template from serialized string
-      await engine.scene.load(businessCardSceneString);
+      await engine.scene.loadFromString(businessCardSceneString);
       templateName = 'business-card';
     }
 

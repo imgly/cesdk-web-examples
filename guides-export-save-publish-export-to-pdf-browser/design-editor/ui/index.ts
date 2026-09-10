@@ -12,7 +12,6 @@ import { setupDock } from './dock';
 import { setupInspectorBar } from './inspectorBar';
 import { setupNavigationBar } from './navigationBar';
 import { setupPanels } from './panel';
-// import { setupVideoTimeline } from './videoTimeline';
 
 /**
  * Set up all UI components for the design editor.
@@ -26,7 +25,6 @@ export function setupUI(cesdk: CreativeEditorSDK): void {
   setupCanvas(cesdk); // Canvas bar and context menu
   setupInspectorBar(cesdk); // Contextual toolbar
   setupDock(cesdk); // Left side asset panel
-  // setupVideoTimeline(cesdk); // Video timeline
 }
 
 // Re-export for selective use

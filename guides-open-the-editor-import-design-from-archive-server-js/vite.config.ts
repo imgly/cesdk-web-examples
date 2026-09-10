@@ -7,7 +7,7 @@ export default defineConfig(async () => {
     plugins,
     build: {
       ssr: true,
-      target: 'node22',
+      target: 'node18',
       rollupOptions: {
         input: 'server-js.ts',
         external: ['@cesdk/node']

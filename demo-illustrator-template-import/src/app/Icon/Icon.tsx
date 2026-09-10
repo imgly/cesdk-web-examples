@@ -2,7 +2,7 @@
  * Icon - Renders SVG icons from public/icons folder
  */
 import type { CSSProperties } from 'react';
-import { DEMO_ASSETS_BASE_URL } from '../App';
+import { resolveAssetPath } from '../resolveAssetPath';
 
 type IconName =
   | 'Ai2Psd'
@@ -23,7 +23,7 @@ interface IconProps {
 export function Icon({ name, className, style }: IconProps) {
   return (
     <img
-      src={`${DEMO_ASSETS_BASE_URL}/icons/${name}.svg`}
+      src={resolveAssetPath(`/icons/${name}.svg`)}
       alt=""
       className={className}
       style={style}

@@ -55,7 +55,7 @@ const engine = await CreativeEngine.init({
 try {
   console.log('⏳ Loading template scene...');
 
-  await engine.scene.load(
+  await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
@@ -74,10 +74,9 @@ try {
   if (saveString) {
     console.log('⏳ Saving to string...');
     const sceneString = await engine.scene.saveToString();
-    // Persist saved scenes with the `.imgly` extension
-    writeFileSync(`${outputDir}/scene.imgly`, sceneString);
+    writeFileSync(`${outputDir}/scene.scene`, sceneString);
     console.log(
-      `✅ Scene saved: output/scene.imgly (${(sceneString.length / 1024).toFixed(1)} KB)`
+      `✅ Scene saved: output/scene.scene (${(sceneString.length / 1024).toFixed(1)} KB)`
     );
 
     // Example: Save with compression (requires local build)
@@ -88,48 +87,34 @@ try {
         level: CompressionLevel.Default
       }
     });
-    writeFileSync(`${outputDir}/scene-compressed.imgly`, compressed);
+    writeFileSync(`${outputDir}/scene-compressed.scene`, compressed);
     console.log(
-      `✅ Compressed scene saved: output/scene-compressed.imgly (${(compressed.length / 1024).toFixed(1)} KB, ${((1 - compressed.length / sceneString.length) * 100).toFixed(1)}% smaller)`
+      `✅ Compressed scene saved: output/scene-compressed.scene (${(compressed.length / 1024).toFixed(1)} KB, ${((1 - compressed.length / sceneString.length) * 100).toFixed(1)}% smaller)`
     );
   }
 
   if (saveArchive) {
     console.log('⏳ Saving to archive...');
     const archiveBlob = await engine.scene.saveToArchive();
-
-    // Compress the scene inside the archive. Bundled media is left as-is,
-    // because images, video and fonts already are compressed formats.
-    const compressedArchiveBlob = await engine.scene.saveToArchive({
-      compression: {
-        format: CompressionFormat.Zstd,
-        level: CompressionLevel.Default
-      }
-    });
-    writeFileSync(
-      `${outputDir}/scene-archive-compressed.imgly`,
-      Buffer.from(await compressedArchiveBlob.arrayBuffer())
-    );
-    // Persist saved archives with the `.imgly` extension
     const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
-    writeFileSync(`${outputDir}/scene-archive.imgly`, archiveBuffer);
+    writeFileSync(`${outputDir}/scene.zip`, archiveBuffer);
     console.log(
-      `✅ Archive saved: output/scene-archive.imgly (${(archiveBuffer.length / 1024).toFixed(1)} KB)`
+      `✅ Archive saved: output/scene.zip (${(archiveBuffer.length / 1024).toFixed(1)} KB)`
     );
   }
 
   if (saveString) {
     console.log('\n⏳ Loading from saved scene file...');
-    const sceneString = readFileSync(`${outputDir}/scene.imgly`, 'utf-8');
-    await engine.scene.load(sceneString);
+    const sceneString = readFileSync(`${outputDir}/scene.scene`, 'utf-8');
+    await engine.scene.loadFromString(sceneString);
     console.log('✅ Scene loaded from file');
   }
 
   if (saveArchive) {
     console.log('⏳ Loading from saved archive...');
-    const archivePath = path.resolve(`${outputDir}/scene-archive.imgly`);
+    const archivePath = path.resolve(`${outputDir}/scene.zip`);
     const archiveFileUrl = `file://${archivePath}`;
-    await engine.scene.load(archiveFileUrl);
+    await engine.scene.loadFromArchiveURL(archiveFileUrl);
     console.log('✅ Scene loaded from archive');
   }
 

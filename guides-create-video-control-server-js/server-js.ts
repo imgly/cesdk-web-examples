@@ -209,8 +209,8 @@ try {
   }
 
   // Save to file
-  writeFileSync('output/video-control.imgly', sceneString);
-  console.log('Exported to output/video-control.imgly');
+  writeFileSync('output/video-control.scene', sceneString);
+  console.log('Exported to output/video-control.scene');
 
   console.log('');
   console.log('Audio and video control guide completed successfully.');

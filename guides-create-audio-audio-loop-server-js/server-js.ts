@@ -109,8 +109,8 @@ try {
   }
 
   // Save to file
-  writeFileSync('output/audio-looping.imgly', sceneString);
-  console.log('Exported to output/audio-looping.imgly');
+  writeFileSync('output/audio-looping.scene', sceneString);
+  console.log('Exported to output/audio-looping.scene');
 
   console.log('\nAudio looping example complete');
 } finally {

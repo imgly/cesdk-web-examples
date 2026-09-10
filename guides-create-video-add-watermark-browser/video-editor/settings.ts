@@ -32,10 +32,6 @@ export function setupSettings(engine: CreativeEngine): void {
 
   // Only show the active track in the timeline (hides inactive tracks)
   engine.editor.setSetting('timeline/trackVisibility', 'active');
-
-  // Always show the clip transition control (default reveals it on hover):
-  // engine.editor.setSetting('timeline/transitionControlVisibility', 'always');
-
   // #endregion
 
   // ============================================================================
@@ -53,16 +49,16 @@ export function setupSettings(engine: CreativeEngine): void {
   // engine.editor.setSetting('controlGizmo/showCropScaleHandles', true);
 
   // Move handles - Center handles for moving blocks
-  // engine.editor.setSetting('controlGizmo/moveHandleVisibility', 'auto');
+  // engine.editor.setSetting('controlGizmo/showMoveHandles', true);
 
   // Resize handles - Edge handles for non-proportional resizing
-  // engine.editor.setSetting('controlGizmo/resizeHandlesVisibility', 'auto');
+  // engine.editor.setSetting('controlGizmo/showResizeHandles', true);
 
   // Scale handles - Corner handles for proportional scaling
-  // engine.editor.setSetting('controlGizmo/scaleHandlesVisibility', 'auto');
+  // engine.editor.setSetting('controlGizmo/showScaleHandles', true);
 
   // Rotate handles - Handles for rotating blocks
-  // engine.editor.setSetting('controlGizmo/rotateHandlesVisibility', 'auto');
+  // engine.editor.setSetting('controlGizmo/showRotateHandles', true);
 
   // Minimum size (in screen pixels) when scaling down with gizmos or touch
   // Prevents blocks from becoming too small to interact with

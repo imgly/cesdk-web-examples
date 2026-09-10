@@ -8,7 +8,6 @@ import CreativeEditorComponent from '@cesdk/cesdk-js/react';
 import { initIllustratorTemplateImportEditor } from '../../imgly';
 import classes from './CreativeEditor.module.css';
 
-
 interface CreativeEditorProps {
   sceneArchiveUrl: string;
   editorConfig: Configuration;
@@ -46,7 +45,7 @@ export function CreativeEditor({
             const archiveBlobUrl = URL.createObjectURL(archiveBlob);
 
             // Load the scene from the blob URL
-            await cesdk.load(archiveBlobUrl);
+            await cesdk.loadFromArchiveURL(archiveBlobUrl);
 
             // Clean up the blob URL
             URL.revokeObjectURL(archiveBlobUrl);

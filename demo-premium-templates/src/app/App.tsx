@@ -16,7 +16,6 @@ import type { TemplateAsset } from './Gallery/Gallery.types';
 
 import styles from './App.module.css';
 
-
 // ============================================================================
 // Component
 // ============================================================================

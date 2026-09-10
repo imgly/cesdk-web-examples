@@ -62,7 +62,7 @@ const PREMIUM_TEMPLATES_BASE_URL =
 // Add a local asset source for templates
 engine.asset.addLocalSource('my.templates', [], async (asset) => {
   // Load the template archive when applied
-  await engine.scene.load(asset.meta.uri);
+  await engine.scene.loadFromArchiveURL(asset.meta.uri);
   return undefined;
 });
 
@@ -104,10 +104,10 @@ Load content into the editor using one of these methods:
 await cesdk.createDesignScene();
 
 // Load from a template archive
-await cesdk.load('https://example.com/template.zip');
+await cesdk.loadFromArchiveURL('https://example.com/template.zip');
 
 // Load from a scene file
-await cesdk.load('https://example.com/scene.json');
+await cesdk.loadFromURL('https://example.com/scene.json');
 
 // Load from an image
 await cesdk.createFromImage('https://example.com/image.jpg');
@@ -159,7 +159,7 @@ src/
 
 ## Prerequisites
 
-- **Node.js v22+** with npm – [Download](https://nodejs.org/)
+- **Node.js v20+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 
 ## Troubleshooting

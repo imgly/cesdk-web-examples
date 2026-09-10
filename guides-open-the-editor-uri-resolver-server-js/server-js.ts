@@ -93,8 +93,10 @@ try {
   // Section 3: Removing a Custom Resolver
   // ========================================
 
-  // Pass null to remove the custom resolver and restore default behavior
-  engine.editor.setURIResolver(null);
+  // Remove the custom resolver to restore default behavior
+  engine.editor.setURIResolver((uri, defaultURIResolver) =>
+    defaultURIResolver(uri)
+  );
   console.log('\n✓ Removed custom resolver - back to default behavior');
 
   console.log('\n✓ URI Resolver guide completed successfully!');

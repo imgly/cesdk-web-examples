@@ -71,7 +71,7 @@ try {
   });
 
   // Load the first template
-  await engine.scene.load(
+  await engine.scene.loadFromURL(
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
   );
 
@@ -86,14 +86,14 @@ try {
   if (choice === '1') {
     mkdirSync('output', { recursive: true });
     const templateString = await engine.scene.saveToString();
-    writeFileSync('output/saved-scene.imgly', templateString);
-    console.log('Template saved to output/saved-scene.imgly');
+    writeFileSync('output/saved-scene.scene', templateString);
+    console.log('Template saved to output/saved-scene.scene');
   } else if (choice === '2') {
     mkdirSync('output', { recursive: true });
     const templateBlob = await engine.scene.saveToArchive();
     const buffer = Buffer.from(await templateBlob.arrayBuffer());
-    writeFileSync('output/saved-scene-archive.imgly', buffer);
-    console.log('Template saved to output/saved-scene-archive.imgly');
+    writeFileSync('output/saved-scene.zip', buffer);
+    console.log('Template saved to output/saved-scene.zip');
   } else {
     console.log('Save operation cancelled.');
   }
