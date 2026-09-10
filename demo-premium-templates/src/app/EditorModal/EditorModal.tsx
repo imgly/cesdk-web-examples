@@ -15,6 +15,7 @@ import type { TemplateAsset } from '../Gallery/Gallery.types';
 
 import styles from './EditorModal.module.css';
 
+
 // ============================================================================
 // Types
 // ============================================================================

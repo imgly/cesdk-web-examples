@@ -65,6 +65,13 @@ export class AdvancedEditorConfig implements EditorPlugin {
       cesdk.resetEditor();
       // #endregion
 
+      // #region Compatibility
+      // The CE.SDK generation the calls below were written for. Pinned to a
+      // literal at publish time, so upgrading CE.SDK in a copy of this kit
+      // keeps the editor behaving as it did when the kit was taken.
+      cesdk.setEditorCompatibilityVersion('1.82.0');
+      // #endregion
+
       // #region Advanced View Mode
       // Set advanced view mode for professional editing capabilities
       // This enables all advanced features and UI elements

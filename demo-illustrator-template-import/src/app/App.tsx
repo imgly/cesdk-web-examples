@@ -10,6 +10,7 @@ import { ExampleFileContainer } from './ExampleFileContainer/ExampleFileContaine
 import { ResultScreen } from './ResultScreen/ResultScreen';
 import classes from './App.module.css';
 
+
 /**
  * Demo assets for this example (template files, previews, icons, …) are
  * loaded from the IMG.LY CDN by default. To host them yourself, copy this
@@ -19,7 +20,7 @@ import classes from './App.module.css';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.1/demo-illustrator-template-import';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0/demo-illustrator-template-import';
 
 const EXAMPLE_FILES: ExampleFile[] = [
   'example-1',
