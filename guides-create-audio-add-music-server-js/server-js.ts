@@ -118,9 +118,9 @@ try {
 
   // Save the scene as a .scene file for later use or rendering
   const sceneString = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/scene-with-audio.imgly`, sceneString);
+  writeFileSync(`${outputDir}/scene-with-audio.scene`, sceneString);
 
-  console.log('\nScene saved to output/scene-with-audio.imgly');
+  console.log('\nScene saved to output/scene-with-audio.scene');
   console.log(
     'The scene contains audio configuration that can be rendered using the CE.SDK Renderer.'
   );

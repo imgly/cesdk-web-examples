@@ -264,7 +264,7 @@ class Example implements EditorPlugin {
       );
 
       // Load the archived scene into the editor
-      await cesdk.engine.scene.load(archiveUrl);
+      await cesdk.engine.scene.loadFromArchiveURL(archiveUrl);
 
       // Verify scene loaded correctly
       const pages = engine.scene.getPages();
@@ -400,19 +400,19 @@ class Example implements EditorPlugin {
         } else if (format === 'scene') {
           // Handle standard .scene files
           const scene = await cesdk.utils.loadFile({
-            accept: '.imgly,.scene',
+            accept: '.scene',
             returnType: 'text'
           });
-          await cesdk.engine.scene.load(scene);
+          await cesdk.engine.scene.loadFromString(scene);
           await cesdk.actions.run('zoom.toPage', { page: 'first' });
         } else {
           // Handle archive files (.zip)
           const blobURL = await cesdk.utils.loadFile({
-            accept: '.imgly,.zip',
+            accept: '.zip',
             returnType: 'objectURL'
           });
           try {
-            await cesdk.engine.scene.load(blobURL);
+            await cesdk.engine.scene.loadFromArchiveURL(blobURL);
           } finally {
             URL.revokeObjectURL(blobURL);
           }

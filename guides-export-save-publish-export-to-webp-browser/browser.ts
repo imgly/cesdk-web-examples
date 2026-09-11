@@ -68,7 +68,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load template and zoom to fit
-    await engine.scene.load(
+    await engine.scene.loadFromURL(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
     const page = engine.scene.getCurrentPage();

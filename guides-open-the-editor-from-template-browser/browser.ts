@@ -18,7 +18,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
     const templateUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.load(templateUrl);
+    await engine.scene.loadFromURL(templateUrl);
 
     const textBlocks = engine.block.findByType('text');
     if (textBlocks.length > 0) {
@@ -43,7 +43,7 @@ class Example implements EditorPlugin {
             label: 'Load from String',
             iconName: '@imgly/icons/Essentials/Download',
             onClick: async () => {
-              await engine.scene.load(businessCardSceneString);
+              await engine.scene.loadFromString(businessCardSceneString);
               const scene = engine.scene.get();
               if (scene != null) {
                 await engine.scene.zoomToBlock(scene, { padding: 40 });

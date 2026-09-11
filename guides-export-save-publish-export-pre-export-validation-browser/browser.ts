@@ -58,9 +58,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new ImageColorsAssetSource());
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
-    await cesdk.addPlugin(
-      new UploadAssetSources({ include: ['ly.img.image.upload'] })
-    );
+    await cesdk.addPlugin(new UploadAssetSources({ include: ['ly.img.image.upload'] }));
     await cesdk.addPlugin(
       new DemoAssetSources({
         include: [
@@ -81,9 +79,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new TypefaceAssetSource());
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
-    await cesdk.actions.run('scene.create', {
-      page: { width: 800, height: 600, unit: 'Pixel' }
-    });
+    await cesdk.actions.run('scene.create', { page: { width: 800, height: 600, unit: 'Pixel' } });
 
     const engine = cesdk.engine;
 
@@ -408,10 +404,7 @@ class Example implements EditorPlugin {
 
     // Check image fill - empty URI means unfilled placeholder
     if (fillType === '//ly.img.ubq/fill/image') {
-      const imageUri = engine.block.getString(
-        fillId,
-        'fill/image/imageFileURI'
-      );
+      const imageUri = engine.block.getString(fillId, 'fill/image/imageFileURI');
       return imageUri !== '' && imageUri !== undefined;
     }
 
@@ -444,13 +437,10 @@ class Example implements EditorPlugin {
     cesdk: CreativeEditorSDK,
     engine: CreativeEngine
   ): void {
-    cesdk.ui.insertOrderComponent(
-      { in: 'ly.img.navigation.bar', position: 'end' },
-      {
-        id: 'ly.img.actions.navigationBar',
-        children: ['ly.img.exportImage.navigationBar']
-      }
-    );
+    cesdk.ui.insertOrderComponent({ in: 'ly.img.navigation.bar', position: 'end' }, {
+      id: 'ly.img.actions.navigationBar',
+      children: ['ly.img.exportImage.navigationBar']
+    });
 
     const exportDesign = cesdk.actions.get('exportDesign');
 

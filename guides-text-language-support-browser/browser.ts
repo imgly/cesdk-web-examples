@@ -1,8 +1,4 @@
-import type {
-  EditorPlugin,
-  EditorPluginContext,
-  CreativeEngine
-} from '@cesdk/cesdk-js';
+import type { EditorPlugin, EditorPluginContext, CreativeEngine } from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
@@ -14,6 +10,7 @@ import {
   FiltersAssetSource,
   PagePresetsAssetSource,
   StickerAssetSource,
+  TextAssetSource,
   TextComponentAssetSource,
   TypefaceAssetSource,
   UploadAssetSources,
@@ -39,9 +36,7 @@ const NOTO_NASKH_ARABIC = {
   name: 'Noto Naskh Arabic',
   fonts: [
     {
-      uri: `${window.location.origin}${
-        import.meta.env.BASE_URL
-      }NotoNaskhArabic-Regular.ttf`,
+      uri: `${window.location.origin}${import.meta.env.BASE_URL}NotoNaskhArabic-Regular.ttf`,
       subFamily: 'Regular',
       weight: 'normal' as const,
       style: 'normal' as const
@@ -53,9 +48,7 @@ const NOTO_SANS_KR = {
   name: 'Noto Sans KR',
   fonts: [
     {
-      uri: `${window.location.origin}${
-        import.meta.env.BASE_URL
-      }NotoSansKR-VariableFont_wght.ttf`,
+      uri: `${window.location.origin}${import.meta.env.BASE_URL}NotoSansKR-VariableFont_wght.ttf`,
       subFamily: 'Regular',
       weight: 'normal' as const,
       style: 'normal' as const
@@ -133,9 +126,7 @@ class Example implements EditorPlugin {
           name: 'Noto Naskh Arabic',
           fonts: [
             {
-              uri: `${window.location.origin}${
-                import.meta.env.BASE_URL
-              }NotoNaskhArabic-Regular.ttf`,
+              uri: `${window.location.origin}${import.meta.env.BASE_URL}NotoNaskhArabic-Regular.ttf`,
               subFamily: 'Regular',
               weight: 'normal',
               style: 'normal'
@@ -153,9 +144,7 @@ class Example implements EditorPlugin {
           name: 'Noto Sans KR',
           fonts: [
             {
-              uri: `${window.location.origin}${
-                import.meta.env.BASE_URL
-              }NotoSansKR-VariableFont_wght.ttf`,
+              uri: `${window.location.origin}${import.meta.env.BASE_URL}NotoSansKR-VariableFont_wght.ttf`,
               subFamily: 'Regular',
               weight: 'normal',
               style: 'normal'

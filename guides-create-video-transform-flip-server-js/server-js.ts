@@ -199,8 +199,8 @@ try {
     mkdirSync('output');
   }
 
-  writeFileSync('output/flip-videos.imgly', sceneString);
-  console.log('Exported to output/flip-videos.imgly');
+  writeFileSync('output/flip-videos.scene', sceneString);
+  console.log('Exported to output/flip-videos.scene');
 
   console.log('Video flip guide completed successfully.');
 } finally {

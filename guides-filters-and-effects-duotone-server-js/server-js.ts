@@ -23,7 +23,7 @@ async function main(): Promise<void> {
 
   try {
     // Load the filter asset source to access duotone presets
-    const defaultAssetsUrl = engine.getBaseURL();
+    const defaultAssetsUrl = `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets/v4/`;
     let hasAssetSources = false;
     try {
       await engine.asset.addLocalAssetSourceFromJSONURI(

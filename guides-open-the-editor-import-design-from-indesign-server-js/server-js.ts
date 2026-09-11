@@ -1,11 +1,6 @@
 import CreativeEngine from '@cesdk/node';
 import type { TypefaceResolver } from '@imgly/idml-importer';
-import {
-  IDMLParser,
-  addGfontsAssetLibrary,
-  createPdfEmbeddedImporter
-} from '@imgly/idml-importer';
-import { PDFParser } from '@imgly/pdf-importer';
+import { IDMLParser, addGfontsAssetLibrary } from '@imgly/idml-importer';
 import { JSDOM } from 'jsdom';
 import { config } from 'dotenv';
 import { promises as fs } from 'fs';
@@ -77,12 +72,10 @@ async function convertIdml(
   // Read the IDML file
   const idmlBuffer = await fs.readFile(idmlPath);
 
-  // Parse the IDML file using JSDOM for XML parsing.
-  // Server-side import requires JSDOM since DOMParser is browser-only.
-  // The addGfontsAssetLibrary() call enables automatic font matching.
-  // Register the PDF embedded-importer adapter explicitly so any
-  // <PDF>/.ai content inside the IDML imports as editable CE.SDK blocks
-  // via @imgly/pdf-importer (rather than a placeholder image).
+  // Parse the IDML file using JSDOM for XML parsing
+  // Server-side import requires JSDOM since DOMParser is browser-only
+  // The addGfontsAssetLibrary() call enables automatic font matching
+  // For custom font mapping, pass fontResolver as 4th parameter (see customFontResolver example)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const parser = await IDMLParser.fromFile(
     engine as any,
@@ -93,10 +86,7 @@ async function convertIdml(
         storageQuota: 10000000,
         url: 'http://localhost'
       }).window.document,
-    {
-      fontResolver: customFontResolver,
-      embeddedImporters: [createPdfEmbeddedImporter(PDFParser)]
-    }
+    customFontResolver
   );
   await parser.parse();
 
@@ -109,7 +99,7 @@ async function convertIdml(
 
   // Generate output filename from input filename
   const inputName = basename(idmlPath, '.idml');
-  const archivePath = join(outputDir, `${inputName}.imgly`);
+  const archivePath = join(outputDir, `${inputName}.cesdk`);
 
   // Save as scene archive
   const archive = await engine.scene.saveToArchive();
@@ -141,7 +131,7 @@ async function convertIdml(
 
   // Now save as scene string - all URLs are permanent
   const sceneString = await engine.scene.saveToString();
-  const sceneStringPath = join(outputDir, `${inputName}.imgly`);
+  const sceneStringPath = join(outputDir, `${inputName}.scene`);
   await fs.writeFile(sceneStringPath, sceneString);
 
   return { archivePath, sceneStringPath, pageCount: pages.length };
@@ -221,7 +211,7 @@ export async function validateArchive(archivePath: string): Promise<{
     const archiveBlob = new Blob([archiveBuffer]);
     const archiveUrl = URL.createObjectURL(archiveBlob);
 
-    await engine.scene.load(archiveUrl);
+    await engine.scene.loadFromArchiveURL(archiveUrl);
 
     // Get scene information
     const pages = engine.block.findByType('page');
@@ -287,9 +277,9 @@ async function main(): Promise<void> {
     await fs.mkdir('./output', { recursive: true });
     const archive = await engine.scene.saveToArchive();
     const archiveBuffer = Buffer.from(await archive.arrayBuffer());
-    await fs.writeFile('./output/sample.imgly', archiveBuffer);
+    await fs.writeFile('./output/sample.cesdk', archiveBuffer);
 
-    console.log('Sample archive created: ./output/sample.imgly');
+    console.log('Sample archive created: ./output/sample.cesdk');
     console.log('\nTo convert actual IDML files:');
     console.log('1. Place IDML files in an input directory');
     console.log('2. Call: await processDirectory("./input", "./output")');
