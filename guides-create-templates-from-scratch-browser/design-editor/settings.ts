@@ -165,19 +165,8 @@ export function setupSettings(engine: CreativeEngine): void {
   // ============================================================================
 
   // #region Animation Settings
-  // Disable block animations so revealed blocks render at their base transform.
-  engine.editor.setSetting('blockAnimations/enabled', false);
-  // #endregion
-
-  // ============================================================================
-  // PLAYBACK SETTINGS
-  // Present the scene statically regardless of playback time
-  // ============================================================================
-
-  // #region Playback Settings
-  // Keep every block visible regardless of the current playback time, so a former video scene is
-  // shown as a static design.
-  engine.editor.setSetting('playback/showAllBlocks', true);
+  // Enable/disable block animations (in/out animations, loops)
+  // engine.editor.setSetting('blockAnimations/enabled', true);
   // #endregion
 
   // ============================================================================

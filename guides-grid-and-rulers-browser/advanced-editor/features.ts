@@ -83,7 +83,6 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.crop.rotation', /* Crop rotation controls */
     // 'ly.img.crop.flip', /* Crop flip controls */
     // 'ly.img.crop.fillMode', /* Crop fill mode controls */
-    // 'ly.img.crop.fillAlignment', /* Crop fill alignment controls */
     // 'ly.img.crop.scale', /* Crop scale controls */
     // 'ly.img.crop.position', /* Crop position controls */
     // 'ly.img.crop.panel.autoOpen', /* Auto-open crop panel on crop mode */
@@ -181,7 +180,6 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.scene.layout.horizontal', /* Horizontal layout toggle */
     // 'ly.img.scene.layout.vertical', /* Vertical layout toggle */
     // 'ly.img.scene.layout.free', /* Free layout toggle in page layout controls */
-    // 'ly.img.scene.fontSizeUnit', /* Font size unit selector in page resize panel */
     // #endregion
 
     // ============================================================================
@@ -207,8 +205,6 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.stroke.style', /* Stroke style (dash) selector */
     // 'ly.img.stroke.position', /* Inner/center/outer selector */
     // 'ly.img.stroke.cornerGeometry', /* Corner join geometry */
-    // 'ly.img.stroke.cap', /* Stroke end caps (start/end) */
-    // 'ly.img.stroke.dash', /* Custom dash pattern controls */
     'ly.img.opacity' /* Opacity controls */,
     'ly.img.blendMode' /* Blend mode controls */,
     'ly.img.shape.options' /* Shape Options dropdown */,
