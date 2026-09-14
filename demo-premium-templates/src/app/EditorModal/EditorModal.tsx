@@ -15,7 +15,6 @@ import type { TemplateAsset } from '../Gallery/Gallery.types';
 
 import styles from './EditorModal.module.css';
 
-
 // ============================================================================
 // Types
 // ============================================================================
@@ -62,7 +61,7 @@ export default function EditorModal({
 
       // Load the selected template
       if (template?.meta?.uri) {
-        await cesdk.load(template.meta.uri);
+        await cesdk.loadFromArchiveURL(template.meta.uri);
 
         // Set the scene name to display in the navigation bar title
         const scene = cesdk.engine.scene.get();

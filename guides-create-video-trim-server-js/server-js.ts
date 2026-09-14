@@ -246,8 +246,8 @@ try {
   }
 
   // Save to file
-  writeFileSync('output/trimmed-video.imgly', sceneString);
-  console.log('Exported to output/trimmed-video.imgly');
+  writeFileSync('output/trimmed-video.scene', sceneString);
+  console.log('Exported to output/trimmed-video.scene');
 
   console.log('');
   console.log('Video trim guide completed successfully.');

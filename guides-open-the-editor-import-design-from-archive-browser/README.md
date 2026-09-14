@@ -1,6 +1,6 @@
 # Import Design from Archive - CE.SDK Guide
 
-This example demonstrates how to load self-contained CE.SDK archive files using `engine.scene.load()`.
+This example demonstrates how to load self-contained CE.SDK archive files using `engine.scene.loadFromArchiveURL()`.
 
 ## What You'll Learn
 

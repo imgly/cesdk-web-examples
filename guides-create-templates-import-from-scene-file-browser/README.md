@@ -4,26 +4,22 @@ This example demonstrates how to import and load templates from scene files in C
 
 ## What You'll Learn
 
-- Load scenes from scene file URLs
-- Load scenes from archive URLs
+- Load scenes from .scene file URLs
+- Load scenes from .archive (ZIP) URLs
 - Apply templates while preserving page dimensions
 - Understand the difference between scene formats
 - Query scene properties after loading
 
 ## Scene File Formats
 
-Both formats use the `.imgly` extension and load through the same
-`engine.scene.load()` call, which detects the kind automatically from the
-file content. Legacy `.scene` and `.zip` files continue to load.
-
-### Scene Format
+### .scene Format
 - JSON-based scene structure
 - References external assets via URLs
 - Lightweight text format
 - Assets must remain accessible
 
-### Archive Format
-- Self-contained zip-compressed package
+### .archive Format (ZIP)
+- Self-contained package
 - Scene file plus embedded assets
 - Portable and offline-capable
 - Recommended for template distribution
@@ -39,14 +35,14 @@ npm run dev
 
 ### Load from Archive (Recommended)
 ```typescript
-await engine.scene.load(
+await engine.scene.loadFromArchiveURL(
   'https://cdn.img.ly/assets/templates/starterkits/16-9-fashion-ad.zip'
 );
 ```
 
 ### Load from Scene URL
 ```typescript
-await engine.scene.load(
+await engine.scene.loadFromURL(
   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
 );
 ```
