@@ -134,10 +134,7 @@ async function main() {
     engine.block.setInAnimation(block5, slideFromTop);
     engine.block.setDuration(slideFromTop, 1.0);
 
-    // Set slide direction (radians describe the motion direction the block
-    // travels along; the block enters from the opposite side):
-    //   0=slides right (enters from left), PI/2=slides down (enters from top),
-    //   PI=slides left (enters from right), 3*PI/2=slides up (enters from bottom)
+    // Set slide direction (in radians: 0=right, PI/2=bottom, PI=left, 3*PI/2=top)
     engine.block.setFloat(
       slideFromTop,
       'animation/slide/direction',

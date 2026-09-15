@@ -117,43 +117,11 @@ class Example implements EditorPlugin {
     const lineHeight = engine.block.getFloat(textLineHeight, "text/lineHeight");
     console.log("Line height:", lineHeight);
 
-    // Text block 3: Per-Paragraph Line Height Demo
-    const textParaLineHeight = engine.block.create("text");
-    engine.block.appendChild(page, textParaLineHeight);
-    engine.block.setPositionX(textParaLineHeight, 50);
-    engine.block.setPositionY(textParaLineHeight, 350);
-    engine.block.setWidth(textParaLineHeight, 700);
-    engine.block.setHeightMode(textParaLineHeight, "Auto");
-    engine.block.replaceText(
-      textParaLineHeight,
-      "First paragraph\nSecond paragraph\nThird paragraph",
-    );
-    engine.block.setTextFontSize(textParaLineHeight, 36);
-
-    // Set the block-level line height (applies to all paragraphs by default)
-    engine.block.setFloat(textParaLineHeight, "text/lineHeight", 1.2);
-
-    // Override line height for paragraph 0 only
-    engine.block.setTextLineHeight(textParaLineHeight, 2.5, 0);
-
-    // Read the line height for each paragraph
-    // Returns the override for paragraph 0, block-level fallback for others
-    const para0LineHeight = engine.block.getTextLineHeight(textParaLineHeight, 0);
-    const para1LineHeight = engine.block.getTextLineHeight(textParaLineHeight, 1);
-    console.log("Para 0 line height:", para0LineHeight); // 2.5 (override)
-    console.log("Para 1 line height:", para1LineHeight); // 1.2 (block-level fallback)
-
-    // Clear the per-paragraph override — paragraph 0 reverts to block-level value
-    engine.block.setTextLineHeight(textParaLineHeight, null, 0);
-
-    // Set block-level line height and clear all paragraph overrides at once
-    engine.block.setTextLineHeight(textParaLineHeight, 1.8);
-
-    // Text block 4: Paragraph Spacing Demo
+    // Text block 3: Paragraph Spacing Demo
     const textParagraphSpacing = engine.block.create("text");
     engine.block.appendChild(page, textParagraphSpacing);
     engine.block.setPositionX(textParagraphSpacing, 50);
-    engine.block.setPositionY(textParagraphSpacing, 490);
+    engine.block.setPositionY(textParagraphSpacing, 350);
     engine.block.setWidth(textParagraphSpacing, 700);
     engine.block.setHeightMode(textParagraphSpacing, "Auto");
     engine.block.replaceText(

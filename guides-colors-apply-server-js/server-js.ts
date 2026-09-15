@@ -34,7 +34,7 @@ async function main() {
     const spotPink = {
       name: 'Pink-Flamingo',
       tint: 1.0,
-      externalReference: 'Brand-Colors'
+      externalReference: 'Pantone'
     };
 
     // Define spot colors with screen preview approximations
