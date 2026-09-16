@@ -31,14 +31,14 @@ async function main() {
   try {
     const templateUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.loadFromURL(templateUrl);
+    await engine.scene.load(templateUrl);
 
     console.log('Template loaded successfully.');
 
     // Load scene from string (file read)
     const sceneFilePath = join(__dirname, 'assets', 'business-card.scene');
     const sceneString = readFileSync(sceneFilePath, 'utf-8');
-    await engine.scene.loadFromString(sceneString);
+    await engine.scene.load(sceneString);
 
     console.log('Scene loaded from string.');
 

@@ -70,7 +70,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load a template scene and zoom to fit
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
     const page = engine.scene.getCurrentPage();
@@ -170,6 +170,51 @@ class Example implements EditorPlugin {
                 targetHeight: 3508 // A4 at 300 DPI (297mm)
               });
               await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-progress',
+            label: 'With Progress',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Report per-page progress as the PDF is written.
+              // The callback runs once per page; only PDF exports invoke it.
+              const pdfBlob = await engine.block.export(scene, {
+                mimeType: 'application/pdf',
+                onProgress: (exportedPages, totalPages) => {
+                  console.log(
+                    `Exported ${exportedPages} of ${totalPages} pages`
+                  );
+                }
+              });
+              await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-cancel',
+            label: 'Cancellable',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Abort a running export. Wire `controller.abort()` to your own
+              // Cancel button; the timeout here only keeps the example short.
+              const controller = new AbortController();
+              setTimeout(() => controller.abort(), 500);
+              try {
+                const pdfBlob = await engine.block.export(scene, {
+                  mimeType: 'application/pdf',
+                  abortSignal: controller.signal
+                });
+                await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+              } catch (error) {
+                // A cancelled export produces no file.
+                console.log('Export cancelled', error);
+              }
             }
           },
           {

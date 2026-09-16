@@ -21,6 +21,7 @@
  * - `'ly.img.text.fontSize.inspectorBar'` - Font size control
  * - `'ly.img.text.alignHorizontal.inspectorBar'` - Text alignment
  * - `'ly.img.text.advanced.inspectorBar'` - Advanced text options
+ * - `'ly.img.text.path.inspectorBar'` - Text on a path / circle
  * - `'ly.img.text.background.inspectorBar'` - Text background color
  *
  * **Media:**
@@ -30,6 +31,7 @@
  * - `'ly.img.video.caption.inspectorBar'` - Video captions
  * - `'ly.img.audio.replace.inspectorBar'` - Replace audio
  * - `'ly.img.animations.inspectorBar'` - Animation controls
+ * - `'ly.img.transitions.inspectorBar'` - Transition controls
  *
  * **Effects:**
  * - `'ly.img.adjustment.inspectorBar'` - Color adjustments
@@ -120,7 +122,6 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
       // Text Formatting
       // ============================
       'ly.img.text.typeFace.inspectorBar',
-      'ly.img.text.style.inspectorBar',
       'ly.img.text.bold.inspectorBar',
       'ly.img.text.italic.inspectorBar',
       'ly.img.text.fontSize.inspectorBar',
@@ -141,12 +142,14 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
       'ly.img.separator',
       'ly.img.text.background.inspectorBar',
       'ly.img.separator',
+      'ly.img.text.path.inspectorBar',
+      'ly.img.separator',
 
       // ============================
       // Animations
       // ============================
-      'ly.img.animations.inspectorBar',
-      'ly.img.separator',
+      // 'ly.img.animations.inspectorBar',
+      // 'ly.img.separator',
 
       // ============================
       // Effects

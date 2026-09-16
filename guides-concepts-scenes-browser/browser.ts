@@ -120,7 +120,7 @@ class Example implements EditorPlugin {
 
     // Demonstrate loading the scene from the saved string
     // This replaces the current scene with the saved version
-    await engine.scene.loadFromString(sceneString);
+    await engine.scene.load(sceneString);
     // eslint-disable-next-line no-console
     console.log('Scene loaded from saved string');
 

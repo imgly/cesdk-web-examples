@@ -350,10 +350,10 @@ try {
   // Save scene archive with all audio buffers embedded
   const archiveBlob = await engine.scene.saveToArchive();
   const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
-  writeFileSync('output/sound-effects.zip', archiveBuffer);
+  writeFileSync('output/sound-effects.imgly', archiveBuffer);
 
   console.log('');
-  console.log('Exported scene archive to output/sound-effects.zip');
+  console.log('Exported scene archive to output/sound-effects.imgly');
   console.log('Scene contains:');
   console.log('  - Scene structure with audio timeline');
   console.log('  - 3 embedded sound effect audio files');

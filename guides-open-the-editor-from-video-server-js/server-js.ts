@@ -74,14 +74,14 @@ try {
   // ========================================
   // Save the scene to a string for storage or transfer
   const sceneString = await engine.scene.saveToString();
-  writeFileSync('output/video-scene.scene', sceneString);
-  console.log('📄 Saved scene to: output/video-scene.scene');
+  writeFileSync('output/video-scene.imgly', sceneString);
+  console.log('📄 Saved scene to: output/video-scene.imgly');
 
   // Or save as an archive with embedded assets
   const archiveBlob = await engine.scene.saveToArchive();
   const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
-  writeFileSync('output/video-scene.zip', archiveBuffer);
-  console.log('📦 Saved archive to: output/video-scene.zip');
+  writeFileSync('output/video-scene-archive.imgly', archiveBuffer);
+  console.log('📦 Saved archive to: output/video-scene-archive.imgly');
 
   console.log('\n✓ Create From Video guide completed successfully!');
   console.log(

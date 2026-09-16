@@ -18,7 +18,7 @@ import {
 import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
-// Import scene file as string for loadFromString demonstration
+// Import scene file as string for the load-from-string demonstration
 import businessCardSceneString from './assets/business-card.scene?raw';
 
 // Template sources
@@ -32,8 +32,8 @@ const postcardSceneUrl =
  * CE.SDK Plugin: Import Templates
  *
  * Demonstrates loading templates from different sources:
- * - Archive URLs (.zip files with bundled assets)
- * - Scene URLs (.scene files)
+ * - Archive URLs (.imgly files with bundled assets; legacy .zip still loads)
+ * - Scene URLs (.imgly files; legacy .scene still loads)
  * - Serialized strings (imported scene content)
  */
 class Example implements EditorPlugin {
@@ -77,7 +77,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load template from a scene file URL
-    await engine.scene.loadFromURL(postcardSceneUrl);
+    await engine.scene.load(postcardSceneUrl);
 
     // Zoom viewport to fit the loaded scene
     const scene = engine.scene.get();
@@ -105,7 +105,7 @@ class Example implements EditorPlugin {
         variant: 'regular',
         onClick: async () => {
           // Load template from archive URL (bundled assets)
-          await engine.scene.loadFromArchiveURL(fashionAdArchiveUrl);
+          await engine.scene.load(fashionAdArchiveUrl);
           const s = engine.scene.get();
           if (s != null) {
             await engine.scene.zoomToBlock(s, { padding: 40 });
@@ -120,7 +120,7 @@ class Example implements EditorPlugin {
         variant: 'regular',
         onClick: async () => {
           // Load template from scene URL
-          await engine.scene.loadFromURL(postcardSceneUrl);
+          await engine.scene.load(postcardSceneUrl);
           const s = engine.scene.get();
           if (s != null) {
             await engine.scene.zoomToBlock(s, { padding: 40 });
@@ -135,7 +135,7 @@ class Example implements EditorPlugin {
         variant: 'regular',
         onClick: async () => {
           // Load template from serialized string
-          await engine.scene.loadFromString(businessCardSceneString);
+          await engine.scene.load(businessCardSceneString);
           const s = engine.scene.get();
           if (s != null) {
             await engine.scene.zoomToBlock(s, { padding: 40 });

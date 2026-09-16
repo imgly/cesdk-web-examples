@@ -22,6 +22,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { setupActions } from './actions';
+import { setupKeyboardShortcuts } from './keyboard/keyboard';
 import { setupFeatures } from './features';
 import { setupTranslations } from './i18n';
 import { setupSettings } from './settings';
@@ -63,6 +64,13 @@ export class DesignEditorConfig implements EditorPlugin {
       cesdk.resetEditor();
       // #endregion
 
+      // #region Compatibility
+      // The CE.SDK generation the calls below were written for. Pinned to a
+      // literal at publish time, so upgrading CE.SDK in a copy of this kit
+      // keeps the editor behaving as it did when the kit was taken.
+      cesdk.setEditorCompatibilityVersion('1.82.1-rc.0');
+      // #endregion
+
       // #region Feature Configuration
       // Configure which features are available in the editor
       // See features.ts for all available feature options
@@ -79,6 +87,12 @@ export class DesignEditorConfig implements EditorPlugin {
       // Configure export, save, and share actions
       // See actions.ts for action configuration
       setupActions(cesdk);
+      // #endregion
+
+      // #region Keyboard Shortcuts Configuration
+      // Register default keyboard shortcuts
+      // See keyboard.ts for the full catalog and customisation examples
+      setupKeyboardShortcuts(cesdk);
       // #endregion
 
       // #region Translation Configuration

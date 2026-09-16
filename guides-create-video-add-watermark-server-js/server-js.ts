@@ -134,11 +134,11 @@ try {
   }
 
   const sceneString = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/watermarked-video.scene`, sceneString);
+  writeFileSync(`${outputDir}/watermarked-video.imgly`, sceneString);
 
   console.log('');
   console.log(
-    'Watermarked video scene saved to output/watermarked-video.scene'
+    'Watermarked video scene saved to output/watermarked-video.imgly'
   );
   console.log('');
   console.log('Scene contains:');
