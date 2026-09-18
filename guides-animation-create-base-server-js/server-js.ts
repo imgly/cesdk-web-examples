@@ -200,8 +200,8 @@ async function main() {
     }
 
     const sceneString = await engine.scene.saveToString();
-    writeFileSync(`${outputDir}/base-animations.scene`, sceneString);
-    console.log('Saved scene to output/base-animations.scene');
+    writeFileSync(`${outputDir}/base-animations.imgly`, sceneString);
+    console.log('Saved scene to output/base-animations.imgly');
 
     console.log('Base Animations example completed successfully');
   } finally {

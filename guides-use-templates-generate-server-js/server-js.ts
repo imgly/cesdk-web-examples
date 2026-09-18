@@ -24,7 +24,7 @@ async function main() {
   try {
 
     // Load a template from URL - this template has visible {{variable}} placeholders
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_2.scene'
     );
     console.log('Template loaded from URL');
@@ -124,7 +124,7 @@ async function main() {
       const record = dataRecords[i];
 
       // Reload template for each record
-      await engine.scene.loadFromString(templateString);
+      await engine.scene.load(templateString);
 
       // Populate with record data
       engine.variable.setString('first_name', record.firstName);

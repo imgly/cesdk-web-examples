@@ -27,7 +27,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load a template from URL - this template has visible {{variable}} placeholders
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_2.scene'
     );
     console.log(
@@ -131,7 +131,7 @@ class Example implements EditorPlugin {
 
     for (const record of dataRecords) {
       // Reload template for each record
-      await engine.scene.loadFromString(templateString);
+      await engine.scene.load(templateString);
 
       // Populate with record data
       engine.variable.setString('first_name', record.firstName);
@@ -149,7 +149,7 @@ class Example implements EditorPlugin {
     console.log(`Batch processed ${dataRecords.length} records`);
 
     // Reload the original template for display
-    await engine.scene.loadFromString(templateString);
+    await engine.scene.load(templateString);
     engine.variable.setString('first_name', 'Alice');
     engine.variable.setString('last_name', 'Smith');
     engine.variable.setString('city', 'Paris');

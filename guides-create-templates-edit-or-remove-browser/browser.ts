@@ -93,7 +93,7 @@ class Example implements EditorPlugin {
       if (!uri) return undefined;
       const base64Content = uri.split(',')[1];
       if (!base64Content) return undefined;
-      await engine.scene.loadFromString(base64Content);
+      await engine.scene.load(base64Content);
       return engine.scene.get() ?? undefined;
     });
 
@@ -238,7 +238,7 @@ class Example implements EditorPlugin {
     console.log('Template updated in asset source');
 
     // Apply the original template to show the starting point
-    await engine.scene.loadFromString(originalContent);
+    await engine.scene.load(originalContent);
     // eslint-disable-next-line no-console
     console.log(
       'Original template applied - browse "My Templates" in the dock'

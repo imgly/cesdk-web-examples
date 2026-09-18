@@ -59,44 +59,46 @@ export async function initPremiumTemplatesEditor(cesdk: CreativeEditorSDK) {
   // Asset Source Plugins
   // ============================================================================
 
-  await cesdk.addPlugin(new BlurAssetSource());
-  await cesdk.addPlugin(new ImageColorsAssetSource());
-  await cesdk.addPlugin(new ColorPaletteAssetSource());
-  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await Promise.all([
+    cesdk.addPlugin(new BlurAssetSource()),
+    cesdk.addPlugin(new ImageColorsAssetSource()),
+    cesdk.addPlugin(new ColorPaletteAssetSource()),
+    cesdk.addPlugin(new CropPresetsAssetSource()),
 
-  await cesdk.addPlugin(
-    new UploadAssetSources({
-      include: ['ly.img.image.upload']
-    })
-  );
+    cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload']
+      })
+    ),
 
-  // Include demo templates so premium templates can be added alongside them
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      include: ['ly.img.image.*']
-    })
-  );
+    // Include demo templates so premium templates can be added alongside them
+    cesdk.addPlugin(
+      new DemoAssetSources({
+        include: ['ly.img.image.*']
+      })
+    ),
 
-  await cesdk.addPlugin(new EffectsAssetSource());
-  await cesdk.addPlugin(new FiltersAssetSource());
-  await cesdk.addPlugin(new PagePresetsAssetSource());
-  await cesdk.addPlugin(new StickerAssetSource());
-  await cesdk.addPlugin(new TextAssetSource());
-  await cesdk.addPlugin(new TextComponentAssetSource());
-  await cesdk.addPlugin(new TypefaceAssetSource());
-  await cesdk.addPlugin(new VectorShapeAssetSource());
+    cesdk.addPlugin(new EffectsAssetSource()),
+    cesdk.addPlugin(new FiltersAssetSource()),
+    cesdk.addPlugin(new PagePresetsAssetSource()),
+    cesdk.addPlugin(new StickerAssetSource()),
+    cesdk.addPlugin(new TextAssetSource()),
+    cesdk.addPlugin(new TextComponentAssetSource()),
+    cesdk.addPlugin(new TypefaceAssetSource()),
+    cesdk.addPlugin(new VectorShapeAssetSource()),
 
-  // ============================================================================
-  // Premium Templates
-  // ============================================================================
+    // ============================================================================
+    // Premium Templates
+    // ============================================================================
 
-  // Add premium templates
-  await cesdk.addPlugin(
-    new PremiumTemplatesAssetSource({
-      include: ['ly.img.templates.premium.*']
-    })
-  );
+    // Add premium templates
+    cesdk.addPlugin(
+      new PremiumTemplatesAssetSource({
+        include: ['ly.img.templates.premium.*']
+      })
+    )
+  ]);
 
   // Note: Scene loading is handled by the gallery - templates are loaded via
-  // engine.scene.loadFromArchiveURL() when the user selects a template
+  // engine.scene.load() when the user selects a template
 }

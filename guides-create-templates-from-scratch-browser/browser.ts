@@ -207,7 +207,7 @@ class Example implements EditorPlugin {
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'template.scene';
+          link.download = 'template.imgly';
           link.click();
           URL.revokeObjectURL(url);
         }
@@ -231,7 +231,7 @@ class Example implements EditorPlugin {
           const url = URL.createObjectURL(templateArchive);
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'template.zip';
+          link.download = 'template-archive.imgly';
           link.click();
           URL.revokeObjectURL(url);
         }
