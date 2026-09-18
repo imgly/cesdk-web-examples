@@ -5,19 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite-node server-js.ts",
-    "check:syntax": "tsc --project tsconfig.json --noEmit",
-    "check:lint": "eslint ."
+    "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/node": "^1.76.2",
+    "@cesdk/node": "^1.83.0-rc.0",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/node": "^22.10.1",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-deprecation": "^3.0.0",
     "typescript": "~5.6.2",
     "vite": "^6.0.1",
     "vite-node": "^2.1.8"

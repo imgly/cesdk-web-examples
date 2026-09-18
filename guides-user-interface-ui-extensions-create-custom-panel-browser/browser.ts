@@ -70,6 +70,16 @@ export default class CreateCustomPanelExample implements EditorPlugin {
 
       const textState = state('text', 'Hello CE.SDK');
       const opacityState = state('opacity', 100);
+      const spacingState = state('spacing', 8);
+      const headlineState = state('headline', 'Product name');
+      const viewState = state('view', 'content');
+      const enabledState = state('enabled', true);
+      const shadowState = state('shadow', false);
+      const promptState = state('prompt', '');
+      const referencesState = state<string[]>('references', []);
+      const sampleImages = [1, 2, 3].map(
+        (index) => `https://img.ly/static/ubq_samples/sample_${index}.jpg`
+      );
 
       builder.Section('settings', {
         title: 'Settings',
@@ -87,10 +97,47 @@ export default class CreateCustomPanelExample implements EditorPlugin {
             ...opacityState
           });
 
+          builder.NumberInput('spacing', {
+            inputLabel: 'Spacing',
+            min: 0,
+            max: 64,
+            step: 4,
+            showStepper: true,
+            ...spacingState
+          });
+
           builder.Checkbox('enabled', {
             inputLabel: 'Enable feature',
-            value: true,
-            setValue: () => {}
+            ...enabledState
+          });
+
+          builder.PromptInput('prompt', {
+            inputLabel: 'Prompt',
+            placeholder: 'Describe the change',
+            ...promptState,
+            attachments: {
+              label: 'Reference images',
+              addLabel: 'Add image',
+              maxCount: 3,
+              onAdd: () => {
+                const next = sampleImages.find(
+                  (uri) => !referencesState.value.includes(uri)
+                );
+                if (next == null) return;
+                referencesState.setValue([...referencesState.value, next]);
+              },
+              items: referencesState.value.map((uri) => ({
+                id: uri,
+                thumbnailUri: uri,
+                label: 'Reference image',
+                removeLabel: 'Remove image',
+                onRemove: () => {
+                  referencesState.setValue(
+                    referencesState.value.filter((item) => item !== uri)
+                  );
+                }
+              }))
+            }
           });
 
           builder.Button('apply', {
@@ -106,6 +153,41 @@ export default class CreateCustomPanelExample implements EditorPlugin {
           if (selected.length > 0) {
             builder.Text('info', { content: `${selected.length} selected` });
           }
+        }
+      });
+
+      builder.Section('view', {
+        children: () => {
+          builder.Tabs('view-tabs', {
+            inputLabel: 'View',
+            inputLabelPosition: 'top',
+            ...viewState,
+            tabs: [
+              {
+                id: 'content',
+                label: 'Content',
+                icon: '@imgly/Text',
+                children: () => {
+                  builder.TextInput('headline', {
+                    inputLabel: 'Headline',
+                    ...headlineState
+                  });
+                }
+              },
+              {
+                id: 'style',
+                label: 'Style',
+                icon: '@imgly/Appearance',
+                isActive: opacityState.value < 100,
+                children: () => {
+                  builder.Checkbox('shadow', {
+                    inputLabel: 'Drop shadow',
+                    ...shadowState
+                  });
+                }
+              }
+            ]
+          });
         }
       });
     });

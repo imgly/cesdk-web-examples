@@ -23,6 +23,7 @@ import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { setupActions } from './actions';
+import { setupKeyboardShortcuts } from './keyboard/keyboard';
 import { setupFeatures } from './features';
 import { setupTranslations } from './i18n';
 import { setupSettings } from './settings';
@@ -64,6 +65,13 @@ export class AdvancedEditorConfig implements EditorPlugin {
       cesdk.resetEditor();
       // #endregion
 
+      // #region Compatibility
+      // The CE.SDK generation the calls below were written for. Pinned to a
+      // literal at publish time, so upgrading CE.SDK in a copy of this kit
+      // keeps the editor behaving as it did when the kit was taken.
+      cesdk.setEditorCompatibilityVersion('1.83.0-rc.0');
+      // #endregion
+
       // #region Advanced View Mode
       // Set advanced view mode for professional editing capabilities
       // This enables all advanced features and UI elements
@@ -88,6 +96,12 @@ export class AdvancedEditorConfig implements EditorPlugin {
       setupActions(cesdk);
       // #endregion
 
+      // #region Keyboard Shortcuts Configuration
+      // Register default keyboard shortcuts
+      // See keyboard.ts for the full catalog and customisation examples
+      setupKeyboardShortcuts(cesdk);
+      // #endregion
+
       // #region Translation Configuration
       // Set custom translations and labels for the UI
       // See i18n.ts for translation configuration
@@ -104,6 +118,7 @@ export class AdvancedEditorConfig implements EditorPlugin {
       // ui.elements.*, locale, i18n) that were cleared by resetEditor() above.
       // If you have already migrated to the respective API calls, you can
       // safely remove this line.
+      // eslint-disable-next-line -- Intentional backward-compat shim for pre-migration user configurations. Remove once all deprecated configuration paths are dropped.
       cesdk.reapplyLegacyUserConfiguration();
     }
   }

@@ -7,11 +7,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js",
-    "check:format": "prettier --check \"**/*.{js,json}\"",
-    "check:all": "npm run check:format",
-    "fix:format": "prettier --write \"**/*.{js,json}\"",
-    "fix:all": "npm run fix:format"
+    "dev": "node --watch index.js"
   },
   "keywords": [
     "cesdk",
@@ -21,13 +17,12 @@
     "nodejs"
   ],
   "dependencies": {
-    "@cesdk/node": "^1.76.2"
+    "@cesdk/node": "^1.83.0-rc.0"
   },
   "devDependencies": {
-    "prettier": "^3.0.0",
-    "@types/node": "^20.0.0"
+    "@types/node": "^22.0.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   }
 }

@@ -27,7 +27,7 @@ async function main() {
   try {
     const sceneUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.loadFromURL(sceneUrl);
+    await engine.scene.load(sceneUrl);
 
     console.log('Scene loaded successfully from URL.');
 

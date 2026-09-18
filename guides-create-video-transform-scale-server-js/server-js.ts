@@ -150,8 +150,8 @@ try {
   }
 
   // Save scene to .scene file
-  writeFileSync('output/scale-videos.scene', sceneString);
-  console.log('✓ Scene saved to output/scale-videos.scene');
+  writeFileSync('output/scale-videos.imgly', sceneString);
+  console.log('✓ Scene saved to output/scale-videos.imgly');
 
   // Log scale information to verify
   console.log('\n📊 Video scaling results:');

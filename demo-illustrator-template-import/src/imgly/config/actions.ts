@@ -57,9 +57,8 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  * await cesdk.actions.run('zoom.toPage', { page: 'current' });
  *
  * // Run custom actions with options
- * await cesdk.actions.run('exportImage'); // PNG export
- * await cesdk.actions.run('exportScene', { format: 'archive' }); // .cesdk export
- * await cesdk.actions.run('importScene', { format: 'scene' }); // Import .scene file
+ * await cesdk.actions.run('exportScene', { format: 'archive' }); // .imgly archive export
+ * await cesdk.actions.run('importScene'); // Import a scene or archive file
  * ```
  *
  * @example Customizing actions for backend integration
@@ -99,19 +98,6 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   });
   // #endregion
 
-  // #region Export Image Action
-  // Quick export action for PNG images at standard size
-  // Pre-configured for common social media dimensions (1080x1080)
-  cesdk.actions.register('exportImage', async () => {
-    const { blobs, options } = await cesdk.utils.export({
-      mimeType: 'image/png',
-      targetWidth: 1080,
-      targetHeight: 1080
-    });
-    await cesdk.utils.downloadFile(blobs[0], options.mimeType);
-  });
-  // #endregion
-
   // #region Export Scene Action
   // Export scene in two formats:
   // - 'scene': .scene JSON file (text format, no assets)
@@ -132,32 +118,21 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // ============================================================================
 
   // #region Import Scene Action
-  // Import a scene from file system in two formats:
-  // - 'scene': .scene JSON file (references external assets)
-  // - 'archive': .cesdk ZIP archive (includes embedded assets)
-  cesdk.actions.register('importScene', async ({ format = 'scene' }) => {
-    if (format === 'scene') {
-      // Import .scene file (JSON text)
-      const scene = await cesdk.utils.loadFile({
-        accept: '.scene',
-        returnType: 'text'
-      });
-      await cesdk.engine.scene.loadFromString(scene);
-    } else {
-      // Import .cesdk archive file (ZIP)
-      const blobURL = await cesdk.utils.loadFile({
-        accept: '.zip',
-        returnType: 'objectURL'
-      });
-      try {
-        await cesdk.engine.scene.loadFromArchiveURL(blobURL);
-      } finally {
-        // Clean up temporary blob URL
-        URL.revokeObjectURL(blobURL);
-      }
+  // A single Import action. The engine inspects the file's content to tell a
+  // scene from an archive, so one picker handles .imgly files as well as the
+  // legacy .scene and .zip formats.
+  cesdk.actions.register('importScene', async () => {
+    const blobURL = await cesdk.utils.loadFile({
+      accept: '.imgly,.scene,.zip',
+      returnType: 'objectURL'
+    });
+    try {
+      await cesdk.engine.scene.load(blobURL);
+    } finally {
+      URL.revokeObjectURL(blobURL);
     }
 
-    // Zoom to fit the imported scene
+    // Reset zoom to show the first page after import
     await cesdk.actions.run('zoom.toPage', { page: 'first' });
   });
   // #endregion

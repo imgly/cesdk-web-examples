@@ -11,15 +11,18 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app. The build ste
 - `cdk diff` compare deployed stack with current state
 - `cdk synth` emits the synthesized CloudFormation template
 
-## Choosing between `@cesdk/node` (WASM) and `@cesdk/node-native` (native)
+## Use `@cesdk/node` (WASM) on AWS Lambda
 
-This cookbook ships two parallel handler files:
+This cookbook is built around `@cesdk/node` (WASM). The Lambda runtimes
+(`nodejs22.x` on Amazon Linux 2023) ships glibc 2.34, which
+is below the **glibc ≥ 2.39 floor** that `@cesdk/node-native`'s Linux
+binary requires; a Lambda function that does
+`require('@cesdk/node-native')` fails at load with
+`version 'GLIBC_2.38' not found`. There is no Lambda base image today
+with a new enough glibc.
 
-- `src/cesdk-handler.js` — uses `@cesdk/node` (WASM). Works out of the box on
-  any Lambda x86_64 / arm64 runtime; no native binaries to ship.
-- `src/cesdk-handler-native.js` — uses `@cesdk/node-native`. Faster on
-  image-heavy workloads but requires a Linux x64 native binary shipped as a
-  Lambda Layer and a `CESDK_BASE_URL` env var pointing at engine assets.
-
-Pick `node-native` when export throughput matters and `node` (WASM) when you
-want zero-config deployment.
+The repo also includes `src/cesdk-handler-native.js` as a **reference for
+non-Lambda Linux deployments** — Kubernetes / Cloud Run / EC2 running
+Ubuntu 24.04+ or Debian 13+. It is documented as not-for-Lambda at the
+top of the file. The active handler in this cookbook is
+`src/cesdk-handler.js`.

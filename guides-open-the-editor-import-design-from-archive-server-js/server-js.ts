@@ -39,11 +39,12 @@ try {
   const demoArchiveBlob = await engine.scene.saveToArchive();
 
   // Save the archive to filesystem for demonstration
+  // Use the `.imgly` extension when persisting saved files
   const archiveBuffer = Buffer.from(await demoArchiveBlob.arrayBuffer());
-  const archivePath = path.resolve('output/demo-archive.zip');
+  const archivePath = path.resolve('output/demo-archive.imgly');
   writeFileSync(archivePath, archiveBuffer);
 
-  console.log('✓ Created demo archive: output/demo-archive.zip');
+  console.log('✓ Created demo archive: output/demo-archive.imgly');
 
   // ========================================
   // Demonstration 1: Load Archive from Filesystem
@@ -56,7 +57,7 @@ try {
   const archiveFileUrl = `file://${archivePath}`;
 
   // Load the archive using the file URL
-  await engine.scene.loadFromArchiveURL(archiveFileUrl);
+  await engine.scene.load(archiveFileUrl);
 
   console.log('✓ Archive loaded from filesystem successfully');
 
@@ -69,7 +70,7 @@ try {
 
   const loadArchiveFromUrl = async (url: string): Promise<void> => {
     try {
-      await engine.scene.loadFromArchiveURL(url);
+      await engine.scene.load(url);
       console.log('✓ Archive loaded from URL successfully');
     } catch (error) {
       console.error('Failed to load archive from URL:', error);
@@ -134,9 +135,9 @@ try {
   // Save the modified scene as a new archive
   const newArchiveBlob = await engine.scene.saveToArchive();
   const newArchiveBuffer = Buffer.from(await newArchiveBlob.arrayBuffer());
-  writeFileSync('output/modified-archive.zip', newArchiveBuffer);
+  writeFileSync('output/modified-archive.imgly', newArchiveBuffer);
 
-  console.log('✓ New archive saved to: output/modified-archive.zip');
+  console.log('✓ New archive saved to: output/modified-archive.imgly');
 
   // Archives are perfect for:
   // - Sharing designs between systems

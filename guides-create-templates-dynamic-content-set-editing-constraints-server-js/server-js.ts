@@ -307,10 +307,10 @@ try {
 
   // Save scene to file
   const sceneData = await engine.scene.saveToString();
-  writeFileSync(`${outputDir}/constrained-scene.scene`, sceneData);
+  writeFileSync(`${outputDir}/constrained-scene.imgly`, sceneData);
 
   // eslint-disable-next-line no-console
-  console.log('✓ Scene saved to output/constrained-scene.scene');
+  console.log('✓ Scene saved to output/constrained-scene.imgly');
   // eslint-disable-next-line no-console
   console.log('  All scope constraints are preserved in the scene file');
 
@@ -340,7 +340,7 @@ Bottom row:
 Note: Global scopes are set to 'Defer' to respect block-level settings.
 
 Files created:
-- output/constrained-scene.scene (scene with constraints)
+- output/constrained-scene.imgly (scene with constraints)
 - output/editing-constraints-result.png (visual result)
   `);
 } finally {

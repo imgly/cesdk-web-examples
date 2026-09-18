@@ -69,7 +69,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
 
     // Load a template scene - this will be our print design
-    await engine.scene.loadFromURL(
+    await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene'
     );
 
@@ -86,6 +86,14 @@ class Example implements EditorPlugin {
     // Set print resolution (DPI) on the scene
     // 300 DPI is standard for high-quality print output
     engine.block.setFloat(scene, 'scene/dpi', 300);
+
+    // The bleed is four values, one per side, in the scene's design unit. A cut that
+    // drifts still lands on artwork rather than on paper.
+    engine.block.setFloat(page, 'page/margin/top', 3);
+    engine.block.setFloat(page, 'page/margin/right', 3);
+    engine.block.setFloat(page, 'page/margin/bottom', 3);
+    engine.block.setFloat(page, 'page/margin/left', 3);
+    engine.block.setBool(page, 'page/marginEnabled', true);
 
     // Helper function to download blob
     const downloadBlob = (blob: Blob, filename: string) => {
@@ -108,7 +116,9 @@ class Example implements EditorPlugin {
 
       downloadBlob(pdfBlob, 'print-high-compatibility.pdf');
       cesdk.ui.showNotification({
-        message: `PDF exported with high compatibility (${(pdfBlob.size / 1024).toFixed(1)} KB)`,
+        message: `PDF exported with high compatibility (${(
+          pdfBlob.size / 1024
+        ).toFixed(1)} KB)`,
         type: 'success'
       });
     };
@@ -124,7 +134,9 @@ class Example implements EditorPlugin {
 
       downloadBlob(pdfBlob, 'print-standard.pdf');
       cesdk.ui.showNotification({
-        message: `Standard PDF exported (${(pdfBlob.size / 1024).toFixed(1)} KB)`,
+        message: `Standard PDF exported (${(pdfBlob.size / 1024).toFixed(
+          1
+        )} KB)`,
         type: 'success'
       });
     };
@@ -149,7 +161,9 @@ class Example implements EditorPlugin {
 
       downloadBlob(pdfBlob, 'print-with-underlayer.pdf');
       cesdk.ui.showNotification({
-        message: `PDF exported with underlayer (${(pdfBlob.size / 1024).toFixed(1)} KB)`,
+        message: `PDF exported with underlayer (${(pdfBlob.size / 1024).toFixed(
+          1
+        )} KB)`,
         type: 'success'
       });
     };

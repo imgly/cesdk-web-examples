@@ -14,7 +14,7 @@ This example demonstrates how to implement automated content moderation in CE.SD
 
 ## Prerequisites
 
-- Node.js 18+ installed
+- Node.js 22+ installed
 - CE.SDK license key ([get a free trial](https://img.ly/forms/free-trial))
 
 ## Installation

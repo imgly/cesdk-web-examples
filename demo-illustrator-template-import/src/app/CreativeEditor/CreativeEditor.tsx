@@ -8,6 +8,7 @@ import CreativeEditorComponent from '@cesdk/cesdk-js/react';
 import { initIllustratorTemplateImportEditor } from '../../imgly';
 import classes from './CreativeEditor.module.css';
 
+
 interface CreativeEditorProps {
   sceneArchiveUrl: string;
   editorConfig: Configuration;
@@ -25,9 +26,7 @@ export function CreativeEditor({
         <CreativeEditorComponent
           config={editorConfig}
           init={async (cesdk: CreativeEditorSDK) => {
-            // Debug access (remove in production)
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (window as any).cesdk = cesdk;
 
             // Initialize the editor with Illustrator template import configuration
             await initIllustratorTemplateImportEditor(cesdk);
@@ -45,7 +44,7 @@ export function CreativeEditor({
             const archiveBlobUrl = URL.createObjectURL(archiveBlob);
 
             // Load the scene from the blob URL
-            await cesdk.loadFromArchiveURL(archiveBlobUrl);
+            await cesdk.load(archiveBlobUrl);
 
             // Clean up the blob URL
             URL.revokeObjectURL(archiveBlobUrl);

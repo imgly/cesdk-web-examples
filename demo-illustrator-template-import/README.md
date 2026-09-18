@@ -48,10 +48,10 @@ Load content into the editor using one of these methods:
 await cesdk.createDesignScene();
 
 // Load from a template archive
-await cesdk.loadFromArchiveURL('https://example.com/template.zip');
+await cesdk.load('https://example.com/template.zip');
 
 // Load from a scene file
-await cesdk.loadFromURL('https://example.com/scene.json');
+await cesdk.load('https://example.com/scene.json');
 
 // Load from an image
 await cesdk.createFromImage('https://example.com/image.jpg');
@@ -113,7 +113,7 @@ src/
 
 ## Prerequisites
 
-- **Node.js v20+** with npm – [Download](https://nodejs.org/)
+- **Node.js v22+** with npm – [Download](https://nodejs.org/)
 - **Supported browsers** – Chrome 114+, Edge 114+, Firefox 115+, Safari 15.6+
 
 ## Troubleshooting
@@ -131,3 +131,19 @@ For complete integration guides and API reference, visit the [Design Editor Docu
 ---
 
 <p align="center">Built with <a href="https://img.ly/creative-sdk?utm_source=github&utm_medium=project&utm_campaign=demo-illustrator-template-import">CE.SDK</a> by <a href="https://img.ly?utm_source=github&utm_medium=project&utm_campaign=demo-illustrator-template-import">IMG.LY</a></p>
+
+## Demo Assets
+
+The demo assets for this starter kit load from the IMG.LY CDN by default, and
+`.env.example` links a zip with them. To host them yourself, upload the
+extracted files to your own server or CDN and set `VITE_DEMO_ASSETS_BASE_URL`
+in `.env`:
+
+```bash
+VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
+```
+
+The demo assets are intended for development and prototyping — replace
+them with your own content or licensed stock assets before shipping to
+production (see `DEMO-ASSETS-NOTICE.txt` in the download). This applies in
+particular to media such as music tracks and stock imagery.

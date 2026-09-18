@@ -1,22 +1,20 @@
 {
   "name": "guides-filters-and-effects-blur-browser",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "capture:hero_image": "node scripts/capture-hero.mjs"
+    "build": "tsc && vite build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.76.2"
+    "@cesdk/cesdk-js": "^1.83.0-rc.0"
   },
   "devDependencies": {
-    "playwright": "^1.55.1",
-    "sharp": "^0.33.5",
     "typescript": "^5.3.3",
     "vite": "~5.4.11"
   }

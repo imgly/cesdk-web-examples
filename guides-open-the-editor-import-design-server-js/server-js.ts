@@ -62,7 +62,7 @@ try {
   const savedSceneString = sceneString;
 
   // Load the scene from string content
-  await engine.scene.loadFromString(savedSceneString);
+  await engine.scene.load(savedSceneString);
 
   // The scene is restored from the string representation
 
@@ -75,17 +75,17 @@ try {
 
   const archiveBlob = await engine.scene.saveToArchive();
   const archiveBuffer = Buffer.from(await archiveBlob.arrayBuffer());
-  writeFileSync('output/temp-archive.zip', archiveBuffer);
+  writeFileSync('output/temp-archive.imgly', archiveBuffer);
 
   // In server environments, load archives using file:// URLs
   // This works the same as loading from HTTP/HTTPS URLs
 
   // Convert filesystem path to file:// URL
-  const archivePath = path.resolve('output/temp-archive.zip');
+  const archivePath = path.resolve('output/temp-archive.imgly');
   const archiveFileUrl = `file://${archivePath}`;
 
-  // Load the archive using loadFromArchiveURL
-  await engine.scene.loadFromArchiveURL(archiveFileUrl);
+  // Load the archive using engine.scene.load
+  await engine.scene.load(archiveFileUrl);
 
   // Archives include all assets, making them portable across environments
   // No external asset URLs need to be accessible
@@ -101,7 +101,7 @@ try {
     'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
 
   // Load the scene from remote URL
-  await engine.scene.loadFromURL(sceneUrl);
+  await engine.scene.load(sceneUrl);
 
   // The scene is now loaded and ready for editing
   // All blocks and properties from the saved scene are restored

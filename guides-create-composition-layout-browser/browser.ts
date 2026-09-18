@@ -153,6 +153,11 @@ class Example implements EditorPlugin {
     const updatedSpacing = engine.block.getFloat(stack, 'stack/spacing');
     console.log('Updated spacing:', updatedSpacing);
 
+    // Choose what the value means. When true, the spacing is a screen-pixel
+    // distance that stays constant as the user zooms. When false, it is a
+    // distance in design units. Exports always read design units.
+    engine.block.setBool(stack, 'stack/spacingInScreenspace', false);
+
     // Zoom to show all pages in the stack
     await engine.scene.zoomToBlock(stack, { padding: 50 });
   }
