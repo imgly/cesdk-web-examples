@@ -199,7 +199,7 @@ class Example implements EditorPlugin {
       undefined,
       async (asset) => {
         if (asset.meta?.uri) {
-          await engine.scene.loadFromURL(asset.meta.uri as string);
+          await engine.scene.load(asset.meta.uri as string);
         }
         return undefined;
       }

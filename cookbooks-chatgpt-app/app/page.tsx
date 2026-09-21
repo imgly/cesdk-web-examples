@@ -934,7 +934,7 @@ export default function Home() {
           templateChanged ||
           (!shouldRestore && editorState.shouldResetScene)
         ) {
-          await engine.scene.loadFromArchiveURL(editorState.template.sceneUrl);
+          await engine.scene.load(editorState.template.sceneUrl);
           activeTemplateIdRef.current = editorState.template.id;
           pendingSceneRef.current = null;
           restoredFromPendingRef.current = false;
@@ -1060,7 +1060,7 @@ export default function Home() {
               void (async () => {
                 try {
                   if (shouldRestore && pendingScene) {
-                    await instance.engine.scene.loadFromString(
+                    await instance.engine.scene.load(
                       pendingScene,
                       true
                     );

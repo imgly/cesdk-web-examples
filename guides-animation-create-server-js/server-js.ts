@@ -209,8 +209,8 @@ async function main(): Promise<void> {
     // Save the scene to a .scene file
     mkdirSync('output', { recursive: true });
     const sceneString = await engine.scene.saveToString();
-    writeFileSync('output/animated-scene.scene', sceneString);
-    console.log('Scene saved to output/animated-scene.scene');
+    writeFileSync('output/animated-scene.imgly', sceneString);
+    console.log('Scene saved to output/animated-scene.imgly');
 
   } finally {
     // Always dispose of the engine to free resources

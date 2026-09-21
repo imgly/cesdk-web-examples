@@ -17,11 +17,9 @@ async function main(): Promise<void> {
   });
 
   try {
-    // Versioned CDN URLs using the SDK package (recommended)
-    // For production, self-host these assets - see the Serve Assets guide
-    const PACKAGE_BASE = `https://cdn.img.ly/packages/imgly/cesdk-node/${CreativeEngine.version}/assets`;
-    const DEFAULT_ASSETS_URL = `${PACKAGE_BASE}/v4/`;
-    const DEMO_ASSETS_URL = `${PACKAGE_BASE}/demo/v3/`;
+    // Resolve asset sources from the engine's self-hosted baseURL.
+    const DEFAULT_ASSETS_URL = engine.getBaseURL();
+    const DEMO_ASSETS_URL = engine.getBaseURL();
 
     // Load default asset sources (core editor components)
     await engine.asset.addLocalAssetSourceFromJSONURI(

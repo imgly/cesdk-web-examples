@@ -47,7 +47,7 @@ class Example implements EditorPlugin {
     const engine = cesdk.engine;
     const sceneUrl =
       'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1.scene';
-    await engine.scene.loadFromURL(sceneUrl);
+    await engine.scene.load(sceneUrl);
 
     const textBlocks = engine.block.findByType('text');
     if (textBlocks.length > 0) {

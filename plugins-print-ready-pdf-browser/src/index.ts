@@ -1,7 +1,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 type CreativeEditorSDK = InstanceType<typeof CreativeEditorSDK>;
 // @ts-expect-error - Plugin types will be available in future release
-import { convertToPDFX3 } from '@imgly/plugin-print-ready-pdfs-web';
+import { convertToPDFX } from '@imgly/plugin-print-ready-pdfs-web';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
@@ -97,8 +97,9 @@ async function exportPrintReadyPDF() {
       mimeType: 'application/pdf'
     });
 
-    // Convert to print-ready PDF/X-3 format
-    const printReadyPDF = await convertToPDFX3(pdfBlob, {
+    // Convert to print-ready PDF/X-4 (default). Pass
+    // `outputStandard: 'PDF/X-3'` to fall back to the older standard.
+    const printReadyPDF = await convertToPDFX(pdfBlob, {
       outputProfile: 'fogra39', // European printing standard
       title: 'Print-Ready Export'
     });

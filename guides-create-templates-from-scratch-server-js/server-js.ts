@@ -188,16 +188,16 @@ async function main() {
     if (choice === '1' || choice === '4') {
       // Save the template as a string (for CDN-hosted assets)
       const templateString = await engine.scene.saveToString();
-      writeFileSync(`${outputDir}/template.scene`, templateString);
-      console.log('Template saved to output/template.scene');
+      writeFileSync(`${outputDir}/template.imgly`, templateString);
+      console.log('Template saved to output/template.imgly');
     }
 
     if (choice === '2' || choice === '4') {
       // Save the template as a self-contained archive
       const templateArchive = await engine.scene.saveToArchive();
       const archiveBuffer = Buffer.from(await templateArchive.arrayBuffer());
-      writeFileSync(`${outputDir}/template.zip`, archiveBuffer);
-      console.log('Template archive saved to output/template.zip');
+      writeFileSync(`${outputDir}/template-archive.imgly`, archiveBuffer);
+      console.log('Template archive saved to output/template-archive.imgly');
     }
 
     if (choice === '3' || choice === '4') {

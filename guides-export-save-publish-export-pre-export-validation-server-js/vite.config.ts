@@ -6,7 +6,7 @@ export default defineConfig(async () => {
     plugins,
     build: {
       ssr: true,
-      target: 'node18'
+      target: 'node22'
     }
   };
 });
