@@ -39,7 +39,6 @@ export default function EditorModal({
 }: EditorModalProps) {
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      (window as any).cesdk = cesdk;
 
       // Register close callback using Order API
       cesdk.ui.registerComponent(
@@ -64,11 +63,19 @@ export default function EditorModal({
       if (template?.meta?.uri) {
         await cesdk.load(template.meta.uri);
 
-        // Set the scene name to display in the navigation bar title
+        // Name the scene and title the navigation bar after the template
+        // The scene is often block id 0, which a truthiness check would drop.
         const scene = cesdk.engine.scene.get();
-        if (scene) {
+        if (scene != null) {
           cesdk.engine.block.setName(scene, template.label.en);
         }
+        cesdk.ui.updateOrderComponent(
+          {
+            in: 'ly.img.navigation.bar',
+            match: { id: 'ly.img.title.navigationBar' }
+          },
+          { title: template.label.en }
+        );
 
         // Deselect any selected blocks
         cesdk.engine.block.findAllSelected().forEach((block) => {

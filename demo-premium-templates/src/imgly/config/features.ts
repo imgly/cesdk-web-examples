@@ -66,6 +66,9 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
 
     'ly.img.dock' /* Dock visibility */,
 
+    // 'ly.img.dragAndDrop', /* Enables all children below */
+    'ly.img.dragAndDrop.asset' /* Drag assets from the library onto blocks/pages */,
+
     'ly.img.duplicate' /* Duplicate button and copy/paste */,
 
     'ly.img.effect' /* Effect button */,
@@ -93,6 +96,19 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
 
     'ly.img.keyboard.shortcuts' /* Enable keyboard shortcuts */,
 
+    // 'ly.img.layerList', /* Enables all children below */
+    'ly.img.layerList.canvasFollow' /* Picking a row scrolls the canvas to it */,
+    // 'ly.img.layerList.combined', /* One tree of every page and its layers */
+    'ly.img.layerList.layers' /* Layers section */,
+    'ly.img.layerList.lock' /* Lock toggle on a row */,
+    'ly.img.layerList.menu' /* Ellipsis menu on a row */,
+    'ly.img.layerList.pages' /* Pages section */,
+    'ly.img.layerList.panel' /* Layer & Page List panel and its dock button */,
+    'ly.img.layerList.rename' /* Inline rename on a row */,
+    'ly.img.layerList.reorder' /* Drag a row to reorder */,
+    // 'ly.img.layerList.thumbnails', /* Thumbnail on every row */
+    'ly.img.layerList.visibility' /* Hide/show toggle on a layer row */,
+
     'ly.img.library.panel' /* Asset Library panel */,
 
     // 'ly.img.navigation', /* Enables all children below */
@@ -113,8 +129,14 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     // 'ly.img.page', /* Enables all page children below */
     'ly.img.page.add' /* Add Page button in Canvas Bar */,
     'ly.img.page.bleedMargin' /* Bleed margin controls */,
+    // 'ly.img.page.bleedColor', /* Bleed band color */
     'ly.img.page.clipContent' /* Clip content on/off toggle */,
+    // 'ly.img.page.printMarks.exclusionArea', /* Exclusion area controls */
+    // 'ly.img.page.printMarks.safetyMargin', /* Safety margin controls */
     'ly.img.page.move' /* Move Up/Down/Left/Right buttons */,
+    // 'ly.img.page.printMarks', /* Enables all children below */
+    // 'ly.img.page.printMarks.crop', /* Crop marks */
+    // 'ly.img.page.printMarks.registration', /* Registration marks */
     'ly.img.page.resize' /* Resize button and page formats */,
     'ly.img.page.settings' /* Read-only page dimensions, unit, and resolution */,
 

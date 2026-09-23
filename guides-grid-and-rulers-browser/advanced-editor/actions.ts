@@ -57,7 +57,6 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  * await cesdk.actions.run('zoom.toPage', { page: 'current' });
  *
  * // Run custom actions with options
- * await cesdk.actions.run('exportImage'); // PNG export
  * await cesdk.actions.run('exportScene', { format: 'archive' }); // .imgly archive export
  * await cesdk.actions.run('importScene'); // Import a scene or archive file
  * ```
@@ -95,19 +94,6 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // Accepts exportOptions parameter to control format, dimensions, quality, etc.
   cesdk.actions.register('exportDesign', async (exportOptions) => {
     const { blobs, options } = await cesdk.utils.export(exportOptions);
-    await cesdk.utils.downloadFile(blobs[0], options.mimeType);
-  });
-  // #endregion
-
-  // #region Export Image Action
-  // Quick export action for PNG images at standard size
-  // Pre-configured for common social media dimensions (1080x1080)
-  cesdk.actions.register('exportImage', async () => {
-    const { blobs, options } = await cesdk.utils.export({
-      mimeType: 'image/png',
-      targetWidth: 1080,
-      targetHeight: 1080
-    });
     await cesdk.utils.downloadFile(blobs[0], options.mimeType);
   });
   // #endregion
