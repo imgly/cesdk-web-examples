@@ -124,6 +124,37 @@ export function setupDock(cesdk: CreativeEditorSDK): void {
       icon: '@imgly/Sticker',
       label: 'libraries.ly.img.sticker.label',
       entries: ['ly.img.sticker']
+    },
+
+    // ============================
+    // Layers & Pages
+    // ============================
+    // The spacer takes the leftover room, so this entry sits at the bottom of
+    // the dock. It is the last one the config declares, so anything added
+    // afterwards -- a plugin's own dock button -- lands below it unless that
+    // caller says where it goes: `insertOrderComponent` takes a `before`.
+    {
+      id: 'ly.img.spacer',
+      key: 'ly.img.spacer'
+    },
+    {
+      id: 'ly.img.separator',
+      key: 'ly.img.separator.layers'
+    },
+    {
+      id: 'ly.img.assetLibrary.dock',
+      key: 'ly.img.layerList',
+      icon: '@imgly/Layers',
+      label: 'component.layerList',
+      entries: [],
+      isSelected: () => cesdk.ui.isPanelOpen('//ly.img.panel/layers'),
+      onClick: () => {
+        if (cesdk.ui.isPanelOpen('//ly.img.panel/layers')) {
+          cesdk.ui.closePanel('//ly.img.panel/layers');
+        } else {
+          cesdk.ui.openPanel('//ly.img.panel/layers');
+        }
+      }
     }
   ]);
   // #endregion

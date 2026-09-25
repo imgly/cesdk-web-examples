@@ -26,6 +26,15 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  * ```
  */
 export function setupTranslations(cesdk: CreativeEditorSDK): void {
+  cesdk.i18n.setTranslations({
+    en: {
+      'libraries.ly.img.exclusionArea.label': 'Exclusion Areas'
+    },
+    de: {
+      'libraries.ly.img.exclusionArea.label': 'Ausschlussbereiche'
+    }
+  });
+
   // Example: Override built-in labels with custom text
   // cesdk.i18n.setTranslations({
   //   en: {

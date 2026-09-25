@@ -24,7 +24,22 @@
  * @see https://img.ly/docs/cesdk/js/user-interface/keyboard/
  */
 
+import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import { type KeyboardShortcut } from '@cesdk/cesdk-js';
+
+/**
+ * Whether a block's transform is held, by its own lock or a group's. The chain
+ * stops at the page: every block sits on one, so a locked page would freeze the
+ * whole design. `isTransformLocked` reads one block's own flag.
+ */
+function isTransformHeld(cesdk: CreativeEditorSDK, block: number): boolean {
+  let at: number | null = block;
+  while (at != null && cesdk.engine.block.getType(at) !== '//ly.img.ubq/page') {
+    if (cesdk.engine.block.isTransformLocked(at)) return true;
+    at = cesdk.engine.block.getParent(at);
+  }
+  return false;
+}
 
 /**
  * The default US-ANSI keyboard shortcut catalog.
@@ -232,6 +247,125 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
       cesdk.feature.isEnabled('ly.img.video.timeline.controls.split', {
         engine: cesdk.engine
       })
+  },
+  // #endregion
+
+  // ========================================================================
+  // ARRANGE
+  // ========================================================================
+
+  // #region Arrange
+  // The bracket pair every design tool binds these to. Also live inside the
+  // layer and page list, where moving a row through the stacking order is the
+  // point of the panel.
+  //
+  // Front and back are the bare brackets, as in Figma. The `Mod+Shift` pair
+  // every desktop tool uses is unusable on the web: macOS Chrome and Safari
+  // switch tabs on it and never dispatch the keydown, so the page cannot
+  // cancel it. A bare key would fire while renaming a layer, because a
+  // panel-scoped rule owns its own focused input, so those two stay on the
+  // canvas and the timeline -- the surfaces with no text entry, like `s`.
+  {
+    keys: 'Mod+]',
+    description: 'Move the selection one step towards the front',
+    category: 'Arrange',
+    run: 'selection.bringForward',
+    scope: [
+      'ly.img.scope.canvas',
+      'ly.img.scope.videoTimeline',
+      '//ly.img.panel/layers',
+      '//ly.img.panel/inspector'
+    ],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      if (
+        !cesdk.feature.isEnabled('ly.img.position.arrange', {
+          engine: cesdk.engine
+        })
+      )
+        return false;
+      return selected.every(
+        (id) =>
+          !isTransformHeld(cesdk, id) &&
+          cesdk.engine.block.isAllowedByScope(id, 'layer/move')
+      );
+    }
+  },
+  {
+    keys: 'Mod+[',
+    description: 'Move the selection one step towards the back',
+    category: 'Arrange',
+    run: 'selection.sendBackward',
+    scope: [
+      'ly.img.scope.canvas',
+      'ly.img.scope.videoTimeline',
+      '//ly.img.panel/layers',
+      '//ly.img.panel/inspector'
+    ],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      if (
+        !cesdk.feature.isEnabled('ly.img.position.arrange', {
+          engine: cesdk.engine
+        })
+      )
+        return false;
+      return selected.every(
+        (id) =>
+          !isTransformHeld(cesdk, id) &&
+          cesdk.engine.block.isAllowedByScope(id, 'layer/move')
+      );
+    }
+  },
+  {
+    keys: ']',
+    description: 'Move the selection in front of every sibling',
+    category: 'Arrange',
+    run: 'selection.bringToFront',
+    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      if (
+        !cesdk.feature.isEnabled('ly.img.position.arrange', {
+          engine: cesdk.engine
+        })
+      )
+        return false;
+      return selected.every(
+        (id) =>
+          !isTransformHeld(cesdk, id) &&
+          cesdk.engine.block.isAllowedByScope(id, 'layer/move')
+      );
+    }
+  },
+  {
+    keys: '[',
+    description: 'Move the selection behind every sibling',
+    category: 'Arrange',
+    run: 'selection.sendToBack',
+    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    when: ({ cesdk }) => {
+      if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
+      const selected = cesdk.engine.block.findAllSelected();
+      if (selected.length === 0) return false;
+      if (
+        !cesdk.feature.isEnabled('ly.img.position.arrange', {
+          engine: cesdk.engine
+        })
+      )
+        return false;
+      return selected.every(
+        (id) =>
+          !isTransformHeld(cesdk, id) &&
+          cesdk.engine.block.isAllowedByScope(id, 'layer/move')
+      );
+    }
   },
   // #endregion
 

@@ -134,27 +134,14 @@ For complete integration guides and API reference, visit the [Design Editor Docu
 
 ## Demo Assets
 
-The demo assets for this starter kit load from the IMG.LY CDN by default —
-nothing to configure. If you want to own them — edit them, meet compliance
-requirements, or remove the CDN dependency for production — eject them
-(the archive contains only this kit's files):
-
-```bash
-# Download this starter kit's demo assets
-curl -O https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1/demo-illustrator-template-import/demo-assets.zip
-unzip demo-assets.zip -d demo-assets
-rm demo-assets.zip
-```
-
-Upload the extracted files to your own server or CDN, then point the app
-at them via `.env`:
+The demo assets for this starter kit load from the IMG.LY CDN by default, and
+`.env.example` links a zip with them. To host them yourself, upload the
+extracted files to your own server or CDN and set `VITE_DEMO_ASSETS_BASE_URL`
+in `.env`:
 
 ```bash
 VITE_DEMO_ASSETS_BASE_URL=https://cdn.yourdomain.com/demo-assets
 ```
-
-The default URL is the `DEMO_ASSETS_BASE_URL` constant in `src/app/App.tsx` if you
-prefer changing it in code.
 
 The demo assets are intended for development and prototyping — replace
 them with your own content or licensed stock assets before shipping to

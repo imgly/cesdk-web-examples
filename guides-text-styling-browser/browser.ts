@@ -104,6 +104,28 @@ class Example implements EditorPlugin {
     // Apply different color to a specific range (characters 0-2)
     engine.block.setTextColor(text, { r: 0.2, g: 0.6, b: 1.0, a: 1.0 }, 0, 2); // Blue
 
+    // Apply a background color to a specific range (characters 0-2)
+    engine.block.setTextBackgroundColor(
+      text,
+      { r: 1.0, g: 0.9, b: 0.3, a: 1.0 }, // Yellow
+      0,
+      2,
+    );
+
+    // A fully transparent color removes the background again:
+    // engine.block.setTextBackgroundColor(text, { r: 0, g: 0, b: 0, a: 0 }, 0, 2);
+
+    // Query the unique background colors in the text
+    const backgroundColors = engine.block.getTextBackgroundColors(text);
+    console.log("Text background colors:", backgroundColors);
+
+    // Grow the background around the text and round its corners
+    engine.block.setFloat(text, "text/backgroundPadding/left", 4);
+    engine.block.setFloat(text, "text/backgroundPadding/right", 4);
+    engine.block.setFloat(text, "text/backgroundPadding/top", 2);
+    engine.block.setFloat(text, "text/backgroundPadding/bottom", 2);
+    engine.block.setFloat(text, "text/backgroundCornerRadius", 4);
+
     // Enable and configure text background
     engine.block.setBool(text, "backgroundColor/enabled", true);
 

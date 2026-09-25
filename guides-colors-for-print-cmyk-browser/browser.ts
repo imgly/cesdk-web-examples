@@ -245,6 +245,10 @@ class Example implements EditorPlugin {
       );
     }
 
+    // Converting CMYK to sRGB reads the document CMYK profile, which is a resource. Load it
+    // once first, so the conversion does not have to handle COLOR.PROFILE_NOT_LOADED.
+    await engine.editor.loadCMYKProfile();
+
     // Example 9: Convert RGB to CMYK
     const rgbBlue: RGBAColor = { r: 0.2, g: 0.4, b: 0.9, a: 1.0 };
     const convertedCmyk = engine.editor.convertColorToColorSpace(
