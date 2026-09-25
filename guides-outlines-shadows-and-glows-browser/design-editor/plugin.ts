@@ -68,7 +68,7 @@ export class DesignEditorConfig implements EditorPlugin {
       // The CE.SDK generation the calls below were written for. Pinned to a
       // literal at publish time, so upgrading CE.SDK in a copy of this kit
       // keeps the editor behaving as it did when the kit was taken.
-      cesdk.setEditorCompatibilityVersion('1.82.1');
+      cesdk.setEditorCompatibilityVersion('1.82.2-rc.0');
       // #endregion
 
       // #region Feature Configuration
