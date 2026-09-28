@@ -87,6 +87,14 @@ class Example implements EditorPlugin {
     // 300 DPI is standard for high-quality print output
     engine.block.setFloat(scene, 'scene/dpi', 300);
 
+    // The bleed is four values, one per side, in the scene's design unit. A cut that
+    // drifts still lands on artwork rather than on paper.
+    engine.block.setFloat(page, 'page/margin/top', 3);
+    engine.block.setFloat(page, 'page/margin/right', 3);
+    engine.block.setFloat(page, 'page/margin/bottom', 3);
+    engine.block.setFloat(page, 'page/margin/left', 3);
+    engine.block.setBool(page, 'page/marginEnabled', true);
+
     // Helper function to download blob
     const downloadBlob = (blob: Blob, filename: string) => {
       const url = URL.createObjectURL(blob);
