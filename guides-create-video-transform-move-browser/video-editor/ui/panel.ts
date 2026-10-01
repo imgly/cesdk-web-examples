@@ -7,8 +7,7 @@
  * ## Panel IDs
  *
  * - `'//ly.img.panel/inspector'` - Inspector panel (block properties)
- * - `'//ly.img.panel/assets'` - Asset library panel
- * - `'//ly.img.panel/assetLibrary'` - Alternative asset library panel ID
+ * - `'//ly.img.panel/assetLibrary'` - Asset library panel
  *
  * ## Panel Options
  *
@@ -46,9 +45,9 @@ export function setupPanels(cesdk: CreativeEditorSDK): void {
 
   // #region Assets Panel
   // Position: 'left' | 'right'
-  cesdk.ui.setPanelPosition('//ly.img.panel/assets', 'left');
+  cesdk.ui.setPanelPosition('//ly.img.panel/assetLibrary', 'left');
 
   // Floating: true (float over canvas) | false (push canvas)
-  cesdk.ui.setPanelFloating('//ly.img.panel/assets', false);
+  cesdk.ui.setPanelFloating('//ly.img.panel/assetLibrary', false);
   // #endregion
 }

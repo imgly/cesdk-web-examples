@@ -44,6 +44,34 @@ git lfs pull -X '' -I "packages/cesdk-web-examples-data/data/**"
 baked URL matches the data package version. See the data package's README
 for the full deployment/dev workflow.
 
+## How starter kit tests run in CI (internal note)
+
+Each `starterkit-*` and `demo-*` example owns its tests under `tests/` and
+exposes them through one npm script, `ci` (`check:all && test:all`). CI runs
+`pnpm nx run-many -t ci`; the nx plugin tags an example `tests:enabled` when it
+has a `tests/playwright.config.ts`, and only tagged examples are selected.
+
+**Pull requests, `examples-web-deploy.yml`.** `scripts/changed-kits.mjs` lists
+the kits the PR touched; only those are linted and tested, so a PR that changes
+one kit runs one suite. A change to `kit-test-harness/`, `scripts/` or
+`nx-plugin/` runs every kit, and so do pushes and manual runs. The kits run in
+static mode: the built bundles are copied to `dist/test/`, rewritten with the
+localhost test license, `/assets/` and the repo's demo data, and served on
+`http://localhost:4173`. Two kits at a time, no coverage. A failing kit does not
+block the preview deploy; the job turns red afterwards.
+
+**Nightly, `examples-web-test.yml`.** Every kit, one at a time, each on its
+own vite dev server with coverage on. Merging enforces each kit's
+`tests/coverage-thresholds.merged.json`.
+
+**Release.** `scripts/check-published-builds.mjs` installs and builds every
+kit and every `demo-*` example in its published shape before it is pushed.
+
+Test output goes to `apps/cesdk_web_examples/.test-output/<kit>/`, outside the
+kit so the dev server's watcher does not restart mid-run. Both workflows upload
+it as artifacts. Chrome and xvfb come from the runner image; neither workflow
+runs `playwright install`.
+
 ## License
 
 The CreativeEditor SDK is a commercial product. To use it you need to unlock the SDK with a license file. You can purchase a license at https://img.ly/pricing.

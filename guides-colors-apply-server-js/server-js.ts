@@ -61,6 +61,7 @@ async function main() {
     engine.block.setColor(block, 'dropShadow/color', spotPink);
 
     // Convert colors between color spaces
+    await engine.editor.loadCMYKProfile();
     const cmykFromRgb = engine.editor.convertColorToColorSpace(
       rgbaBlue,
       'CMYK'

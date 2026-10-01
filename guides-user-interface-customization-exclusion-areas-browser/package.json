@@ -1,0 +1,22 @@
+{
+  "name": "@imgly/guides-user-interface-customization-exclusion-areas-browser",
+  "version": "1.43.0",
+  "description": "CE.SDK Guide: Exclusion Areas (Browser)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check:syntax": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "^1.83.0",
+    "@cesdk/engine": "^1.83.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^6.0.3"
+  }
+}

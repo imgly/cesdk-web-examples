@@ -9,7 +9,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 
 import { CATEGORIES, PREMIUM_TEMPLATES_BASE_URL } from './Gallery.const';
-import type { TemplateAsset, TemplateSourceData } from './Gallery.types';
+import type {
+  Category,
+  TemplateAsset,
+  TemplateSourceData
+} from './Gallery.types';
 
 import styles from './Gallery.module.css';
 
@@ -62,16 +66,12 @@ export default function Gallery({ onSelectTemplate }: GalleryProps) {
 
   // Get templates for a specific category
   const getTemplatesForCategory = useCallback(
-    (categoryId: string): TemplateAsset[] => {
-      const category = CATEGORIES.find((c) => c.id === categoryId);
-      if (!category) return [];
-
-      return templates.filter((template) =>
+    (category: Category): TemplateAsset[] =>
+      templates.filter((template) =>
         template.groups.some((group) =>
           group.toLowerCase().includes(category.groupPattern.toLowerCase())
         )
-      );
-    },
+      ),
     [templates]
   );
 
@@ -131,7 +131,7 @@ export default function Gallery({ onSelectTemplate }: GalleryProps) {
       <div className={styles.galleryContent} ref={contentRef}>
         <div className={styles.galleryInner}>
           {CATEGORIES.map((category) => {
-            const categoryTemplates = getTemplatesForCategory(category.id);
+            const categoryTemplates = getTemplatesForCategory(category);
             if (categoryTemplates.length === 0) return null;
 
             return (
@@ -143,27 +143,29 @@ export default function Gallery({ onSelectTemplate }: GalleryProps) {
                 <h2 className={styles.categoryTitle}>{category.label}</h2>
                 <div className={styles.templateGrid}>
                   {categoryTemplates.map((template) => (
-                    <div
+                    <button
                       key={template.id}
+                      type="button"
+                      aria-label={template.label.en}
                       className={`${styles.templateCard} template-card`}
                       onClick={() => handleTemplateClick(template)}
                     >
-                      <div className={styles.templateThumbnail}>
+                      <span className={styles.templateThumbnail}>
                         <img
                           src={template.meta.thumbUri}
                           alt={template.label.en}
                           loading="lazy"
                         />
-                        <div className={styles.templateOverlay}>
+                        <span className={styles.templateOverlay}>
                           <span className={styles.useTemplateBtn}>
                             Open &gt;
                           </span>
-                        </div>
-                      </div>
-                      <div className={styles.templateLabel}>
+                        </span>
+                      </span>
+                      <span className={styles.templateLabel}>
                         {template.label.en}
-                      </div>
-                    </div>
+                      </span>
+                    </button>
                   ))}
                 </div>
               </section>

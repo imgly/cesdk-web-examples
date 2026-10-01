@@ -26,9 +26,7 @@ export function CreativeEditor({
         <CreativeEditorComponent
           config={editorConfig}
           init={async (cesdk: CreativeEditorSDK) => {
-            // Debug access (remove in production)
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (window as any).cesdk = cesdk;
 
             // Initialize the editor with Illustrator template import configuration
             await initIllustratorTemplateImportEditor(cesdk);

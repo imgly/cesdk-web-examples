@@ -64,6 +64,9 @@ export function setupSettings(engine: CreativeEngine): void {
   // - 'Direct': Select the exact element clicked
   // - 'Hierarchical': Traverse up/down the hierarchy on each click
   engine.editor.setSetting('doubleClickSelectionMode', 'Hierarchical');
+
+  // Press and hold an image, then drag it onto another image to exchange the two.
+  engine.editor.setSetting('dragToSwapFills/enabled', true);
   // #endregion
 
   // ============================================================================

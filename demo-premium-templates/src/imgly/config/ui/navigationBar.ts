@@ -77,19 +77,4 @@ export function setupNavigationBar(cesdk: CreativeEditorSDK): void {
     'ly.img.preview.navigationBar'
   ]);
   // #endregion
-
-  // #region Custom Title Component
-  // Register a custom title component that displays the scene name.
-  // This enables dynamic titles based on the selected template.
-  cesdk.ui.registerComponent('ly.img.title.navigationBar', ({ builder }) => {
-    const scene = cesdk.engine.scene.get();
-    const title = scene ? cesdk.engine.block.getName(scene) : '';
-
-    if (title) {
-      builder.Heading('ly.img.title.navigationBar', {
-        content: title
-      });
-    }
-  });
-  // #endregion
 }
