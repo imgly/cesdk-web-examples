@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <path fill="#eef4f3" d="M0 0h200v200H0z"/>
+  <path fill="#fff" stroke="#29746a" stroke-width="3" d="M56 30h61l27 27v113H56z"/>
+  <path fill="none" stroke="#29746a" stroke-width="3" d="M117 30v27h27M72 131h56m-56 12h40"/>
+  <text x="100" y="105" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="700" fill="#205d55">EPS</text>
+</svg>

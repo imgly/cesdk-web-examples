@@ -9,7 +9,7 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/node": "^1.83.0",
+    "@cesdk/node": "^1.84.0-rc.0",
     "@imgly/background-removal-node": "latest",
     "dotenv": "^16.0.0"
   },

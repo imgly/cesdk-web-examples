@@ -88,9 +88,10 @@ class Example implements EditorPlugin {
 
     console.log('Template applied from URL');
 
-    // Verify that page dimensions are preserved after applying template
-    const width = engine.block.getWidth(page);
-    const height = engine.block.getHeight(page);
+    // Applying a template replaces the page, so read the page again
+    const appliedPage = engine.scene.getPages()[0];
+    const width = engine.block.getWidth(appliedPage);
+    const height = engine.block.getHeight(appliedPage);
     console.log(`Page dimensions preserved: ${width}x${height}`);
 
     // Demonstrate template switching - apply a different template

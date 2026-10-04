@@ -5,15 +5,11 @@
  * Users can browse templates by category and click to open them in the editor.
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import type { AssetResult } from '@cesdk/cesdk-js';
 import classNames from 'classnames';
 
-import { CATEGORIES, PREMIUM_TEMPLATES_BASE_URL } from './Gallery.const';
-import type {
-  Category,
-  TemplateAsset,
-  TemplateSourceData
-} from './Gallery.types';
+import { CATEGORIES } from './Gallery.const';
 
 import styles from './Gallery.module.css';
 
@@ -22,58 +18,23 @@ import styles from './Gallery.module.css';
 // ============================================================================
 
 interface GalleryProps {
-  onSelectTemplate: (template: TemplateAsset) => void;
+  /**
+   * The templates of each category, in the order of CATEGORIES. `null` while
+   * they are listed, which shows placeholder cards.
+   */
+  templates: AssetResult[][] | null;
+  onSelectTemplate: (template: AssetResult) => void;
 }
+
+const PLACEHOLDER_CARDS = 5;
 
 // ============================================================================
 // Component
 // ============================================================================
 
-export default function Gallery({ onSelectTemplate }: GalleryProps) {
-  const [templates, setTemplates] = useState<TemplateAsset[]>([]);
+export default function Gallery({ templates, onSelectTemplate }: GalleryProps) {
   const [selectedCategory, setSelectedCategory] = useState('e-commerce');
-  const [isLoading, setIsLoading] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  // Fetch templates on mount
-  useEffect(() => {
-    async function fetchTemplates() {
-      try {
-        const response = await fetch(
-          `${PREMIUM_TEMPLATES_BASE_URL}/dist/templates/content.json`
-        );
-        const data: TemplateSourceData = await response.json();
-
-        // Replace {{base_url}} placeholders with actual CDN URL
-        const jsonString = JSON.stringify(data);
-        const replacedString = jsonString.replace(
-          /\{\{base_url\}\}/g,
-          `${PREMIUM_TEMPLATES_BASE_URL}/dist`
-        );
-        const modifiedData: TemplateSourceData = JSON.parse(replacedString);
-
-        setTemplates(modifiedData.assets || []);
-      } catch (error) {
-        console.error('Failed to fetch templates:', error);
-        setTemplates([]);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchTemplates();
-  }, []);
-
-  // Get templates for a specific category
-  const getTemplatesForCategory = useCallback(
-    (category: Category): TemplateAsset[] =>
-      templates.filter((template) =>
-        template.groups.some((group) =>
-          group.toLowerCase().includes(category.groupPattern.toLowerCase())
-        )
-      ),
-    [templates]
-  );
 
   // Handle category tab click
   const handleCategoryClick = useCallback((categoryId: string) => {
@@ -87,26 +48,6 @@ export default function Gallery({ onSelectTemplate }: GalleryProps) {
       container.scrollTo({ top: sectionTop, behavior: 'smooth' });
     }
   }, []);
-
-  // Handle template card click
-  const handleTemplateClick = useCallback(
-    (template: TemplateAsset) => {
-      onSelectTemplate(template);
-    },
-    [onSelectTemplate]
-  );
-
-  // Render loading state
-  if (isLoading) {
-    return (
-      <div className={styles.galleryContainer}>
-        <div className={styles.galleryLoading}>
-          <div className={styles.loadingSpinner} />
-          <p>Loading templates...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className={styles.galleryContainer}>
@@ -130,9 +71,11 @@ export default function Gallery({ onSelectTemplate }: GalleryProps) {
       {/* Gallery content with all categories */}
       <div className={styles.galleryContent} ref={contentRef}>
         <div className={styles.galleryInner}>
-          {CATEGORIES.map((category) => {
-            const categoryTemplates = getTemplatesForCategory(category);
-            if (categoryTemplates.length === 0) return null;
+          {CATEGORIES.map((category, index) => {
+            const categoryTemplates = templates?.[index] ?? [];
+            if (templates != null && categoryTemplates.length === 0) {
+              return null;
+            }
 
             return (
               <section
@@ -142,31 +85,45 @@ export default function Gallery({ onSelectTemplate }: GalleryProps) {
               >
                 <h2 className={styles.categoryTitle}>{category.label}</h2>
                 <div className={styles.templateGrid}>
-                  {categoryTemplates.map((template) => (
-                    <button
-                      key={template.id}
-                      type="button"
-                      aria-label={template.label.en}
-                      className={`${styles.templateCard} template-card`}
-                      onClick={() => handleTemplateClick(template)}
-                    >
-                      <span className={styles.templateThumbnail}>
-                        <img
-                          src={template.meta.thumbUri}
-                          alt={template.label.en}
-                          loading="lazy"
-                        />
-                        <span className={styles.templateOverlay}>
-                          <span className={styles.useTemplateBtn}>
-                            Open &gt;
-                          </span>
-                        </span>
-                      </span>
-                      <span className={styles.templateLabel}>
-                        {template.label.en}
-                      </span>
-                    </button>
-                  ))}
+                  {templates == null
+                    ? Array.from({ length: PLACEHOLDER_CARDS }, (_, card) => (
+                        <div
+                          key={card}
+                          className={styles.placeholderCard}
+                          aria-hidden="true"
+                        >
+                          <span className={styles.placeholderThumbnail} />
+                          <span className={styles.placeholderLabel} />
+                        </div>
+                      ))
+                    : categoryTemplates.map((template) => {
+                        const label = template.label ?? template.id;
+                        return (
+                          <button
+                            key={template.id}
+                            type="button"
+                            aria-label={label}
+                            className={`${styles.templateCard} template-card`}
+                            onClick={() => onSelectTemplate(template)}
+                          >
+                            <span className={styles.templateThumbnail}>
+                              <img
+                                src={template.meta?.thumbUri}
+                                alt={label}
+                                loading="lazy"
+                              />
+                              <span className={styles.templateOverlay}>
+                                <span className={styles.useTemplateBtn}>
+                                  Open &gt;
+                                </span>
+                              </span>
+                            </span>
+                            <span className={styles.templateLabel}>
+                              {label}
+                            </span>
+                          </button>
+                        );
+                      })}
                 </div>
               </section>
             );

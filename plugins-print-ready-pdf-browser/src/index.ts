@@ -1,7 +1,7 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 type CreativeEditorSDK = InstanceType<typeof CreativeEditorSDK>;
-// @ts-expect-error - Plugin types will be available in future release
 import { convertToPDFX } from '@imgly/plugin-print-ready-pdfs-web';
+import { createConversionRuntime } from '@imgly/pdf-conversion-utils';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
@@ -22,7 +22,7 @@ let cesdk: CreativeEditorSDK;
 
 const config = {
   // By default, CE.SDK runs with a watermark.
-  // Get a free trial license at https://img.ly/forms/free-trial to remove it.
+  // Request a license at https://img.ly/forms/contact-sales/ to remove it.
   // Uncomment the line below and add your license key:
   // license: 'your-license-key-here',
 };
@@ -99,10 +99,17 @@ async function exportPrintReadyPDF() {
 
     // Convert to print-ready PDF/X-4 (default). Pass
     // `outputStandard: 'PDF/X-3'` to fall back to the older standard.
+    const runtime = createConversionRuntime({
+      assetBaseURL: new URL(
+        `${import.meta.env.BASE_URL}pdf-conversion/`,
+        globalThis.location.href
+      )
+    });
     const printReadyPDF = await convertToPDFX(pdfBlob, {
+      runtime,
       outputProfile: 'fogra39', // European printing standard
       title: 'Print-Ready Export'
-    });
+    }).finally(() => runtime.dispose());
 
     // Download the print-ready PDF
     const url = URL.createObjectURL(printReadyPDF);

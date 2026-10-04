@@ -53,5 +53,5 @@ export function setupVideoTimeline(cesdk: CreativeEditorSDK): void {
   // #endregion
 
   // Set a fixed timeline height
-  // cesdk.actions.run('timeline.setHeight', 320);
+  // cesdk.actions.run('timeline.setHeight', { height: 320 });
 }

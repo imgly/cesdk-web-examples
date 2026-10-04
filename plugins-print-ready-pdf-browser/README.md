@@ -27,7 +27,7 @@ npm run build
 
 By default, this example runs with a CE.SDK watermark. To remove it:
 
-1. Get your free trial license at: https://img.ly/forms/free-trial
+1. Request a license at https://img.ly/forms/contact-sales/
 2. Open `src/index.ts` and uncomment the license line:
    ```typescript
    const config = {

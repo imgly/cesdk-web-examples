@@ -29,7 +29,7 @@ export async function initialize(cesdk: CreativeEditorSDK) {
   cesdk.engine.block.appendChild(page, text);
 
   // You can verify the current theme and scale settings
-  const currentTheme = cesdk.ui.getTheme(); // 'light' or 'dark'
+  const currentTheme = cesdk.ui.getTheme(); // e.g. 'light' or 'dark-high-contrast'
   const currentScale = cesdk.ui.getScale(); // 'normal', 'large', or 'modern'
   console.log('Current theme:', currentTheme);
   console.log('Current scale:', currentScale);

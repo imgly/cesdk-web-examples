@@ -125,6 +125,20 @@ async function main(): Promise<void> {
     const pagesByType = engine.block.findByType('page');
     console.log('Pages found by type:', pagesByType);
 
+    // Enable single page mode and show only the second page
+    engine.editor.setSetting('features/singlePageModeEnabled', true);
+    engine.scene.setCurrentPages([secondPage]);
+
+    // Or show more pages. Two pages form a facing pair
+    engine.scene.setCurrentPages([firstPage, secondPage]);
+
+    // Read the shown pages. The list is empty while the mode is disabled
+    const currentPages = engine.scene.getCurrentPages();
+    console.log('Current pages:', currentPages);
+
+    // Turn the mode off to show every page again
+    engine.editor.setSetting('features/singlePageModeEnabled', false);
+
     // Export each page to demonstrate the result
     const outputDir = './output';
     if (!existsSync(outputDir)) {
