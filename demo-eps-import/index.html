@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EPS Artwork Gallery — CE.SDK Showcase</title>
+  </head>
+  <body>
+    <main class="workspace">
+      <aside class="import-panel" aria-label="EPS import controls">
+        <header>
+          <p class="eyebrow">CE.SDK / Artwork workflow</p>
+          <h1>
+            EPS Artwork<br />
+            Gallery
+          </h1>
+          <p class="intro">
+            Add EPS files to the editor Gallery. Select artwork to place it,
+            edit its objects, and export a PDF.
+          </p>
+        </header>
+
+        <fieldset id="destination" disabled>
+          <legend>1. Choose a destination</legend>
+          <label class="choice"
+            ><input type="radio" name="destination" value="place" checked />
+            Place on this page</label
+          >
+          <label class="choice"
+            ><input
+              id="replace-mode"
+              type="radio"
+              name="destination"
+              value="replace"
+            />
+            Replace “Artwork” placeholder</label
+          >
+          <button id="select-placeholder" class="text-button" type="button">
+            Show placeholder
+          </button>
+        </fieldset>
+
+        <section aria-labelledby="upload-heading">
+          <h2 id="upload-heading">2. Build your EPS Gallery</h2>
+          <div id="drop-zone" class="drop-zone">
+            <p>Drop an EPS file here</p>
+            <span class="muted">or choose one from your device</span>
+            <button id="upload" class="primary" type="button" disabled>
+              Add EPS to Gallery
+            </button>
+            <input
+              id="file-input"
+              type="file"
+              accept=".eps,.epsf,.epsi,application/postscript"
+              hidden
+            />
+          </div>
+          <button id="sample" class="sample-button" type="button" disabled>
+            <svg viewBox="0 0 60 40" width="60" height="40" aria-hidden="true">
+              <path fill="#161617" d="M0 0h60v40H0z" />
+              <circle cx="20" cy="20" r="14" fill="#00aeef" />
+              <path fill="#fff" d="M14 13h29v5H14zm0 10h22v5H14z" />
+            </svg>
+            <span
+              ><strong>Open EPS Gallery</strong
+              ><span class="muted"
+                >Sample artwork &amp; your uploads</span
+              ></span
+            >
+            <span aria-hidden="true">↗</span>
+          </button>
+        </section>
+
+        <section
+          id="status-region"
+          class="status-region"
+          aria-label="Import status"
+          aria-busy="true"
+        >
+          <progress id="progress" aria-label="Import in progress"></progress>
+          <p id="status" role="status" aria-live="polite">
+            Opening the editor…
+          </p>
+          <div class="status-actions">
+            <button id="cancel" class="text-button" type="button" hidden>
+              Cancel import
+            </button>
+            <button id="retry" class="text-button" type="button" hidden>
+              Retry import
+            </button>
+          </div>
+          <details id="diagnostics" hidden>
+            <summary>Import details</summary>
+            <ul id="diagnostics-list"></ul>
+          </details>
+        </section>
+
+        <footer>
+          <p>
+            Double-click artwork to edit its objects, or select them in Layers.
+            Change colors, outlines and opacity, then arrange or duplicate them.
+          </p>
+          <p>
+            Click an EPS card in the Gallery to insert it. Uploads stay in this
+            browser session; reload to start fresh.
+          </p>
+          <button id="export" class="secondary" type="button" disabled>
+            Download PDF <span aria-hidden="true">↓</span>
+          </button>
+        </footer>
+      </aside>
+      <section class="editor-pane" aria-label="Design editor">
+        <div id="cesdk-container"></div>
+      </section>
+    </main>
+    <script type="module" src="/src/index.ts"></script>
+  </body>
+</html>

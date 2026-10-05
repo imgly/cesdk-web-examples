@@ -84,9 +84,14 @@ class Example implements EditorPlugin {
     });
 
     // Get the current active theme
-    const currentTheme = cesdk.ui.getTheme(); // Returns 'light' or 'dark'
+    const currentTheme = cesdk.ui.getTheme(); // e.g. 'light' or 'dark-high-contrast'
     // eslint-disable-next-line no-console
     console.log('Current theme:', currentTheme);
+
+    // Match the high-contrast themes too when branching on light or dark
+    const isDark = currentTheme.startsWith('dark');
+    // eslint-disable-next-line no-console
+    console.log('Dark appearance:', isDark);
 
     // Get the current scale setting
     const currentScale = cesdk.ui.getScale(); // Returns scale or callback function

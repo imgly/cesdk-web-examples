@@ -1,0 +1,23 @@
+{
+  "name": "guides-performance-server-js",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite-node server-js.ts",
+    "build": "tsc --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@cesdk/node": "^1.84.0-rc.1",
+    "dotenv": "^16.0.0",
+    "undici": "^8.10.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^6.0.3",
+    "vite-node": "^2.0.0"
+  }
+}

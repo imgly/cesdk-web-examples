@@ -5,7 +5,7 @@
  *
  * Theme Structure:
  * - .ubq-public: Root class that scopes all CE.SDK UI
- * - [data-ubq-theme]: Attribute for theme variant (light/dark)
+ * - [data-ubq-theme]: Attribute for theme variant (light, dark, light-high-contrast, dark-high-contrast)
  * - [data-ubq-scale]: Attribute for scale mode (normal/large/modern)
  *
  * Theme Variables:

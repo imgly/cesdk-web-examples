@@ -134,6 +134,20 @@ class Example implements EditorPlugin {
     const pagesByType = engine.block.findByType('page');
     console.log('Pages found by type:', pagesByType);
 
+    // Enable single page mode and show only the second page
+    engine.editor.setSetting('features/singlePageModeEnabled', true);
+    engine.scene.setCurrentPages([secondPage]);
+
+    // Or show more pages. Two pages form a facing pair
+    engine.scene.setCurrentPages([firstPage, secondPage]);
+
+    // Read the shown pages. The list is empty while the mode is disabled
+    const currentPages = engine.scene.getCurrentPages();
+    console.log('Current pages:', currentPages);
+
+    // Turn the mode off to show every page again
+    engine.editor.setSetting('features/singlePageModeEnabled', false);
+
     // Select the first page and zoom to fit
     engine.block.select(firstPage);
     engine.scene.enableZoomAutoFit(firstPage, 'Both');

@@ -3,7 +3,7 @@ import Example from './browser';
 
 const config = {
   // License key removes watermarks from exports
-  // Get a free trial at https://img.ly/forms/free-trial
+  // Request a license at https://img.ly/forms/contact-sales/
   // license: 'YOUR_CESDK_LICENSE_KEY',
 
   // User ID for accurate MAU tracking across devices

@@ -16,7 +16,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@cesdk/node": "^1.83.0"
+    "@cesdk/node": "^1.84.0-rc.1"
   },
   "scripts": {
     "check:syntax": "tsc --project tsconfig.json --noEmit",

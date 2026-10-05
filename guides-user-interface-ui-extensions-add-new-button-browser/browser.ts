@@ -119,7 +119,7 @@ class Example implements EditorPlugin {
     }
 
     cesdk.ui.registerComponent('theme.toggle', ({ builder }) => {
-      const isDark = cesdk.ui.getTheme() === 'dark';
+      const isDark = cesdk.ui.getTheme().startsWith('dark');
 
       builder.Button('toggle-theme', {
         label: 'Dark Mode',

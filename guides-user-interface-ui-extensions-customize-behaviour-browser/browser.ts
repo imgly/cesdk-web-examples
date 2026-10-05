@@ -228,7 +228,7 @@ export default class CustomizeBehaviorExample implements EditorPlugin {
 
     // Toggle theme after delay
     setTimeout(() => {
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const newTheme = currentTheme.startsWith('dark') ? 'light' : 'dark';
       cesdk.ui.setTheme(newTheme);
       // eslint-disable-next-line no-console
       console.log('Theme changed to:', newTheme);

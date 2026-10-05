@@ -100,7 +100,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // This action is called by the "Export Video" button in the navigation bar
   cesdk.actions.register('exportDesign', async (exportOptions) => {
     // Export video using cesdk.utils.export
-    // Supports options: mimeType, videoCodec, videoBitrate, targetHeight, targetWidth, frameRate
+    // Supports options: mimeType, videoBitrate, targetHeight, targetWidth, framerate
     // videoBitrate accepts a number (bits/sec), 'Auto' (bounded default, recommended) or 'System' (platform default).
     const { blobs, options } = await cesdk.utils.export({
       videoBitrate: 'Auto',
@@ -122,7 +122,6 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // cesdk.actions.register('exportVideo', async () => {
   //   const { blobs, options } = await cesdk.utils.export({
   //     mimeType: 'video/mp4',
-  //     videoCodec: 'h264',
   //     videoBitrate: 'Auto', // or a number in bits/sec
   //     targetHeight: 1080
   //   });
@@ -191,10 +190,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
   // cesdk.actions.register('addAudioTrack', async () => {
   //   cesdk.ui.openPanel('//ly.img.panel/assetLibrary', {
   //     payload: {
-  //       entries: ['ly.img.audio'],
-  //       applyAssetContext: {
-  //         clipType: 'audio'
-  //       }
+  //       entries: ['ly.img.audio']
   //     }
   //   });
   // });

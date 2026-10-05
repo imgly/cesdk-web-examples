@@ -9,14 +9,14 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/node": "^1.83.0",
-    "@imgly/idml-importer": "^1.5.4",
-    "@imgly/pdf-importer": "^0.2.4",
+    "@cesdk/node": "^1.84.0-rc.1",
+    "@imgly/idml-importer": "^2.0.0",
+    "@imgly/pdf-importer": "^0.3.0",
     "dotenv": "^16.0.0",
     "jsdom": "^24.0.0"
   },
   "devDependencies": {
-    "@cesdk/engine": "^1.83.0",
+    "@cesdk/engine": "^1.84.0-rc.1",
     "@types/jsdom": "^21.0.0",
     "@types/node": "^22.0.0",
     "tsx": "^4.0.0",

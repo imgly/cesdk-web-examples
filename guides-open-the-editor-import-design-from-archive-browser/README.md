@@ -32,7 +32,7 @@ cp .env.example .env
 # Edit .env and add your license key
 ```
 
-Get a free trial license at: https://img.ly/forms/free-trial
+Request a license at https://img.ly/forms/contact-sales/
 
 ## Related Documentation
 

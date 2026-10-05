@@ -38,4 +38,4 @@ npm run build
 ## License
 
 License key is optional. Without a license, a watermark is shown on exports.
-To remove the watermark, get a free trial license at https://img.ly/forms/free-trial
+To remove the watermark, request a license at https://img.ly/forms/contact-sales/

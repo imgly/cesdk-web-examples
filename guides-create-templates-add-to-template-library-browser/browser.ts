@@ -60,9 +60,9 @@ class Example implements EditorPlugin {
       id: 'template-social-media',
       label: { en: 'Social Media Post' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_post_1.scene',
+        uri: 'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_instagram_photo_1.scene',
         thumbUri:
-          'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_instagram_post_1.jpg'
+          'https://cdn.img.ly/assets/demo/v3/ly.img.template/thumbnails/cesdk_instagram_photo_1.jpg'
       }
     });
 

@@ -146,9 +146,9 @@ async function main(): Promise<void> {
       id: 'uploaded-1',
       label: { en: 'Heart Sticker' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/v3/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_love.svg',
+        uri: 'https://cdn.img.ly/assets/v3/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_loving.svg',
         thumbUri:
-          'https://cdn.img.ly/assets/v3/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_love.svg',
+          'https://cdn.img.ly/assets/v3/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_loving.svg',
         blockType: '//ly.img.ubq/graphic',
         fillType: '//ly.img.ubq/fill/image',
         mimeType: 'image/svg+xml'
