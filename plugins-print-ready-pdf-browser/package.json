@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@cesdk/cesdk-js": "^1.83.0",
-    "@imgly/plugin-print-ready-pdfs-web": "^1.83.0",
-    "@cesdk/engine": "^1.83.0"
+    "@cesdk/engine": "^1.83.0",
+    "@imgly/pdfx-exporter": "^0.1.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
