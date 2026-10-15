@@ -1,0 +1,25 @@
+{
+  "name": "guides-import-media-from-eps-browser",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check:syntax": "tsc --project tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "^1.84.0",
+    "@imgly/eps-importer": "^0.1.0",
+    "@imgly/pdf-conversion-utils": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^6.0.3",
+    "@imgly/pdf-importer": "^0.3.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,8 +1,8 @@
 /**
  * CE.SDK Premium Templates Editor - Initialization Module
  *
- * This module demonstrates how to add premium templates in the design editor
- * using the PremiumTemplatesAssetSource plugin.
+ * This module configures the design editor the premium templates open in.
+ * The premium templates themselves are added in `premium-templates.ts`.
  *
  * @see https://img.ly/docs/cesdk/js/getting-started/
  */
@@ -18,7 +18,6 @@ import {
   EffectsAssetSource,
   FiltersAssetSource,
   PagePresetsAssetSource,
-  PremiumTemplatesAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TextComponentAssetSource,
@@ -42,7 +41,6 @@ export { DesignEditorConfig } from './config/plugin';
  *
  * This function configures a CE.SDK instance with:
  * - Design editor UI configuration
- * - Premium templates asset source
  * - Standard asset source plugins
  *
  * @param cesdk - The CreativeEditorSDK instance to configure
@@ -85,20 +83,6 @@ export async function initPremiumTemplatesEditor(cesdk: CreativeEditorSDK) {
     cesdk.addPlugin(new TextAssetSource()),
     cesdk.addPlugin(new TextComponentAssetSource()),
     cesdk.addPlugin(new TypefaceAssetSource()),
-    cesdk.addPlugin(new VectorShapeAssetSource()),
-
-    // ============================================================================
-    // Premium Templates
-    // ============================================================================
-
-    // Add premium templates
-    cesdk.addPlugin(
-      new PremiumTemplatesAssetSource({
-        include: ['ly.img.templates.premium.*']
-      })
-    )
+    cesdk.addPlugin(new VectorShapeAssetSource())
   ]);
-
-  // Note: Scene loading is handled by the gallery - templates are loaded via
-  // engine.scene.load() when the user selects a template
 }

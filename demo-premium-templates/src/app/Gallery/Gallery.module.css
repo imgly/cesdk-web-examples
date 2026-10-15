@@ -252,29 +252,36 @@
   letter-spacing: 0.28px;
 }
 
-/* Loading State */
-.galleryLoading {
+/* Placeholder cards while the templates are listed */
+.placeholderCard {
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  width: 160px;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  gap: 16px;
-  color: #666;
 }
 
-.loadingSpinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid #ddd;
-  border-top-color: #333;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+.placeholderThumbnail,
+.placeholderLabel {
+  border-radius: 8px;
+  background: rgba(46, 46, 47, 0.08);
+  animation: pulse 1.2s ease-in-out infinite;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+.placeholderThumbnail {
+  width: 136px;
+  height: 136px;
+  margin: 12px;
+}
+
+.placeholderLabel {
+  width: 112px;
+  height: 20px;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
   }
 }
 

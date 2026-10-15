@@ -10,7 +10,7 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/engine": "^1.83.0"
+    "@cesdk/engine": "^1.84.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

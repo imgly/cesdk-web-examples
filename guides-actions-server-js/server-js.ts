@@ -46,7 +46,10 @@ async function main() {
     const audit = await engine.actions.run('myCompany.audit', 'export');
     console.log('Audit result:', audit); // { event: 'export', selectedBlocks: 1 }
 
-    // Override an engine default: hide instead of destroy
+    // Keep the engine's delete to put it back later
+    const deleteSelection = engine.actions.get('selection.delete')!;
+
+    // Replace it: hide instead of destroy
     engine.actions.register('selection.delete', () => {
       const selected = engine.block.findAllSelected();
       selected.forEach((id) => engine.block.setVisible(id, false));
@@ -56,8 +59,8 @@ async function main() {
     const hidden = await engine.actions.run('selection.delete');
     console.log('Hidden blocks:', hidden); // 1
 
-    // Unregistering an overridden engine default restores the built-in behavior
-    engine.actions.unregister('selection.delete');
+    // Register the engine's delete again to restore it
+    engine.actions.register('selection.delete', deleteSelection);
 
     // Discover registered actions, optionally filtered by a glob matcher
     const all = engine.actions.list();
@@ -77,8 +80,9 @@ async function main() {
       console.log('Sync call:', auditFn('archive'));
     }
 
-    // ... and undefined for engine-default native actions - use run() for those
-    console.log('Get nudge:', engine.actions.get('nudge')); // undefined
+    // ... and an async function for the actions the engine registered
+    const nudge = engine.actions.get('nudge');
+    console.log('Get nudge:', typeof nudge); // function
 
     // Remove a custom action entirely
     engine.actions.unregister('myCompany.audit');

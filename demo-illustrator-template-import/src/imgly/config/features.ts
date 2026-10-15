@@ -134,6 +134,7 @@ export function setupFeatures(cesdk: CreativeEditorSDK): void {
     'ly.img.page.clipContent' /* Clip content on/off toggle */,
     // 'ly.img.page.printMarks.exclusionArea', /* Exclusion area controls */
     // 'ly.img.page.printMarks.safetyMargin', /* Safety margin controls */
+    // 'ly.img.page.printMarks.safetyMargin.color', /* Safety margin color */
     'ly.img.page.move' /* Move Up/Down/Left/Right buttons */,
     // 'ly.img.page.printMarks', /* Enables all children below */
     // 'ly.img.page.printMarks.crop', /* Crop marks */

@@ -19,4 +19,4 @@ npm run dev
 
 ## License
 
-This example requires a CE.SDK license. Get a free trial at https://img.ly/forms/free-trial
+This example requires a CE.SDK license. Request a license at https://img.ly/forms/contact-sales/

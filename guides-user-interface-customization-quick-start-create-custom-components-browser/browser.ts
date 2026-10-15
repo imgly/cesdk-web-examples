@@ -66,13 +66,13 @@ class Example implements EditorPlugin {
 
     // Register a custom theme toggle button
     cesdk.ui.registerComponent('my.themeToggle', ({ builder }) => {
-      const currentTheme = cesdk.ui.getTheme();
+      const isDark = cesdk.ui.getTheme().startsWith('dark');
       builder.Button('my.themeToggle.button', {
-        label: currentTheme === 'light' ? 'Dark Mode' : 'Light Mode',
+        label: isDark ? 'Light Mode' : 'Dark Mode',
         icon: '@imgly/Adjustments',
         variant: 'regular',
         onClick: () => {
-          cesdk.ui.setTheme(currentTheme === 'light' ? 'dark' : 'light');
+          cesdk.ui.setTheme(isDark ? 'light' : 'dark');
         }
       });
     });
