@@ -64,9 +64,6 @@ class Example implements EditorPlugin {
       }
     });
 
-    // Enable the settings feature so the settings button can be displayed.
-    cesdk.feature.enable('ly.img.settings');
-
     // Hide the canvas bar
     cesdk.feature.disable('ly.img.canvas.bar');
 
@@ -86,10 +83,15 @@ class Example implements EditorPlugin {
       'ly.img.page.add.canvasBar'
     ]);
 
-    // Show only the settings button at the bottom while editing text.
+    // Set a text formatting toolbar for Text edit mode at the top position
     cesdk.ui.setComponentOrder(
-      { in: 'ly.img.canvas.bar', at: 'bottom', when: { editMode: 'Text' } },
-      ['ly.img.settings.canvasBar']
+      { in: 'ly.img.canvas.bar', at: 'top', when: { editMode: 'Text' } },
+      [
+        'ly.img.text.bold.canvasBar',
+        'ly.img.text.italic.canvasBar',
+        'ly.img.separator',
+        'ly.img.settings.canvasBar'
+      ]
     );
 
     // Use spacers and separators to control layout

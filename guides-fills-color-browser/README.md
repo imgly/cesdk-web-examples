@@ -26,4 +26,4 @@ For comprehensive documentation, see the [Color Fills Guide](https://img.ly/docs
 
 ## License
 
-Request a CE.SDK license at [https://img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/)
+Get your free CE.SDK license at [https://img.ly/forms/free-trial](https://img.ly/forms/free-trial)

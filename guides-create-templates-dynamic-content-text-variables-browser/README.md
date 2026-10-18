@@ -69,4 +69,4 @@ CE.SDK automatically resolves variable tokens at render time. Changes to variabl
 
 ## License
 
-This example requires a valid CE.SDK license. Request a license at [https://img.ly/forms/contact-sales/](https://img.ly/forms/contact-sales/).
+This example requires a valid CE.SDK license. Get your free trial at [https://img.ly/forms/free-trial](https://img.ly/forms/free-trial).

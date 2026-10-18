@@ -75,11 +75,6 @@ export default class CreateCustomPanelExample implements EditorPlugin {
       const viewState = state('view', 'content');
       const enabledState = state('enabled', true);
       const shadowState = state('shadow', false);
-      const promptState = state('prompt', '');
-      const referencesState = state<string[]>('references', []);
-      const sampleImages = [1, 2, 3].map(
-        (index) => `https://img.ly/static/ubq_samples/sample_${index}.jpg`
-      );
 
       builder.Section('settings', {
         title: 'Settings',
@@ -109,35 +104,6 @@ export default class CreateCustomPanelExample implements EditorPlugin {
           builder.Checkbox('enabled', {
             inputLabel: 'Enable feature',
             ...enabledState
-          });
-
-          builder.PromptInput('prompt', {
-            inputLabel: 'Prompt',
-            placeholder: 'Describe the change',
-            ...promptState,
-            attachments: {
-              label: 'Reference images',
-              addLabel: 'Add image',
-              maxCount: 3,
-              onAdd: () => {
-                const next = sampleImages.find(
-                  (uri) => !referencesState.value.includes(uri)
-                );
-                if (next == null) return;
-                referencesState.setValue([...referencesState.value, next]);
-              },
-              items: referencesState.value.map((uri) => ({
-                id: uri,
-                thumbnailUri: uri,
-                label: 'Reference image',
-                removeLabel: 'Remove image',
-                onRemove: () => {
-                  referencesState.setValue(
-                    referencesState.value.filter((item) => item !== uri)
-                  );
-                }
-              }))
-            }
           });
 
           builder.Button('apply', {

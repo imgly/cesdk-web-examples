@@ -1,45 +1,95 @@
-# PDF/X Exporter Browser Example
+# Print Ready PDF Plugin Example
 
-Export every page of a CE.SDK design as PDF/X-1a, PDF/X-3 or PDF/X-4 with
-`@imgly/pdfx-exporter`. The example uses a FOGRA39 printer profile, preserves
-3 mm page bleed and checks conformance before downloading each PDF.
+This example demonstrates how to integrate the Print Ready PDF plugin with CE.SDK to export print-ready PDF/X compliant files (PDF/X-4 by default, PDF/X-3 available as an opt-in fallback).
 
-## Run
+## What This Example Shows
 
-Requires Node.js 22+ for development and a browser with WebAssembly SIMD
-(Chrome, Edge, Firefox or Safari 16.4+).
+- Adding custom export buttons to CE.SDK navigation
+- Exporting PDFs from CE.SDK engine
+- Converting RGB PDFs to CMYK with ICC profiles
+- Adding PDF/X-4 compliance markers (default; switch to PDF/X-3 via `outputStandard`)
+- Downloading print-ready files in the browser
+
+## Quick Start
 
 ```bash
+# Install dependencies
 npm install
+
+# Start development server (runs with watermark)
 npm run dev
-```
 
-Edit the postcard and choose **Export PDF/X-4**, **Export PDF/X-3** or
-**Export PDF/X-1a**. PDF/X-4 preserves live transparency; X-1a and X-3 flatten
-transparency. Failed exports and conformance findings appear in the editor.
-
-The editor runs with a watermark. Set the commented `license` option in
-`src/index.ts` to remove it with a [CE.SDK license](https://img.ly/forms/contact-sales/).
-
-## Build and deploy
-
-```bash
+# Build for production
 npm run build
-npm run preview
 ```
 
-Deploy the complete `dist/` directory. The Vite plugin serves and copies the
-exporter's `dist/` and `wasm/` directories as siblings under `pdfx-exporter/`.
-Keep that tree intact: the loader resolves WASM and its JavaScript glue relative
-to the exporter modules. `LICENSE.md` and `ICC-PROFILE-LICENSES.md` are included.
-The exporter version is independent of the CE.SDK version.
+### Removing the Watermark
 
-`exportPDFX` handles engine export, page selection and bleed. Use
-`convertToPDFX` for PDF Blobs you already have. `checkPDFX` returns a list of
-conformance findings; an empty list means the checker found no violations.
-The `convertExistingPDF` function demonstrates the existing-PDF path.
+By default, this example runs with a CE.SDK watermark. To remove it:
 
-FOGRA39 and GRACoL are printer profiles. sRGB is a display profile and its output
-is not PDF/X compliant. `nonPrinterProfile: 'reject'` refuses such profiles.
+1. Get your free trial license at: https://img.ly/forms/free-trial
+2. Open `src/index.ts` and uncomment the license line:
+   ```typescript
+   const config = {
+     license: 'your-license-key-here', // Add your license key here
+     ui: {
+       // ...
+     }
+   };
+   ```
 
-See the [PDF/X documentation](https://img.ly/docs/cesdk/js/plugins/print-ready-pdf-iroalu/).
+## Usage
+
+1. Open the example in your browser
+2. Create or edit a design in CE.SDK
+3. Click "Export Print-Ready PDF" in the navigation bar
+4. The file downloads automatically as `design-print-ready.pdf`
+
+## Features Demonstrated
+
+### Custom UI Actions
+
+- Custom button added to CE.SDK navigation bar
+- Uses built-in CE.SDK icons
+- Async callback for export workflow
+
+### PDF Export
+
+- Single-page export using `engine.block.export()`
+- Standard PDF generation from CE.SDK
+
+### Print-Ready Conversion
+
+- RGB to CMYK color space conversion
+- FOGRA39 ICC profile embedding (European standard)
+- PDF/X-4 (ISO 15930-7) compliance markers by default
+- Live transparency preservation (no flattening on the default X-4 path)
+
+### Browser Download
+
+- Object URL creation for Blob downloads
+- Proper memory cleanup with `revokeObjectURL()`
+
+## Configuration
+
+### Color Profiles
+
+Change the output profile in `src/index.ts`:
+
+```typescript
+const printReadyPDF = await convertToPDFX(pdfBlob, {
+  outputProfile: 'fogra39', // or 'gracol', 'srgb', 'custom'
+  title: 'Print-Ready Export'
+});
+```
+
+Available profiles:
+
+- `fogra39`: European offset printing (ISO Coated v2)
+- `gracol`: USA commercial printing (GRACoL 2013)
+- `srgb`: Digital distribution
+- `custom`: Use your own ICC profile
+
+## Documentation
+
+See the complete guide at: [Print Ready PDF Plugin Documentation](http://img.ly/docs/cesdk/js/plugins/print-ready-pdf+iroalu)

@@ -23,4 +23,4 @@ For the complete guide, see: [Moderate Content](https://img.ly/docs/cesdk/web/gu
 
 ## License
 
-This example requires a valid CE.SDK license. Request a license at https://img.ly/forms/contact-sales/
+This example requires a valid CE.SDK license. Get a free trial at: https://img.ly/forms/free-trial

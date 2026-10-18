@@ -36,4 +36,4 @@ This example demonstrates how to export CE.SDK designs to raw pixel data (RGBA f
 
 ## License
 
-This example requires a valid CE.SDK license. Request a license at https://img.ly/forms/contact-sales/
+This example requires a valid CE.SDK license. Get a free trial at https://img.ly/forms/free-trial

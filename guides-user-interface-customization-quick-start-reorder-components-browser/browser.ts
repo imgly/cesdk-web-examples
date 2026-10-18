@@ -74,7 +74,7 @@ class Example implements EditorPlugin {
     cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
       'ly.img.back.navigationBar',
       'ly.img.spacer',
-      { id: 'ly.img.title.navigationBar', title: 'Reorder Demo' },
+      'ly.img.title.navigationBar',
       'ly.img.spacer',
       'ly.img.undoRedo.navigationBar',
       'ly.img.actions.navigationBar'
@@ -88,13 +88,11 @@ class Example implements EditorPlugin {
     });
     console.log('Canvas bar (top) order:', canvasBarOrder);
 
-    // Enable the settings feature so the settings button can be displayed.
-    cesdk.feature.enable('ly.img.settings');
     // Set a custom canvas bar order
     cesdk.ui.setComponentOrder({ in: 'ly.img.canvas.bar', at: 'top' }, [
       'ly.img.page.add.canvasBar',
       'ly.img.spacer',
-      'ly.img.settings.canvasBar'
+      'ly.img.zoom.canvasBar'
     ]);
 
     // Use component objects for inline configuration

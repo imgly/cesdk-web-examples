@@ -36,7 +36,7 @@ async function main() {
   try {
     // Video URL for demonstration
     const videoUrl =
-      'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-drone-footage-of-a-surfer-barrelling-a-wave-12715991.mp4';
+      'https://cdn.img.ly/assets/demo/v3/ly.img.video/videos/pexels-drone-footage-of-a-surfer-702788.mp4';
 
     // Using the convenience API - creates a graphic block with video fill automatically
     // Creates a graphic block with video fill automatically

@@ -34,8 +34,5 @@ starterkit-*/release/LICENSE
 starterkit-*/release/hero.webp
 starterkit-*/release/src/app/
 
-# Starter kit test output (Playwright reports, traces, coverage dumps).
-# Outside each kit so its Vite dev server does not watch what the tests write.
-.test-output/
 tests/demo-load/results/
 test-results/

@@ -306,9 +306,15 @@ class Example implements EditorPlugin {
     const loadedBlocks = await engine.block.loadFromString(savedString);
     console.log('Loaded blocks from string:', loadedBlocks.length);
 
+    // Alternatively, blocks can also be loaded from an archive
+    // const loadedBlocks = await engine.block.loadFromArchiveURL(
+    //   'https://cdn.img.ly/assets/demo/v3/ly.img.template/templates/cesdk_postcard_1_blocks.zip'
+    // );
+    // console.log('Loaded blocks from archive URL:', loadedBlocks.length);
+
     // Alternatively, blocks can be loaded from an extracted zip file created with block.saveToArchive
     // const loadedBlocks = await engine.block.loadFromURL(
-    //   'https://cdn.img.ly/assets/v6/ly.img.text.components/data/Box.blocks'
+    //   'https://cdn.img.ly/assets/v6/ly.img.text.components/box/blocks.blocks'
     // );
     // console.log('Loaded blocks from URL:', loadedBlocks.length);
 

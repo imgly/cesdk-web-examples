@@ -31,13 +31,13 @@ export function setupTranslations(cesdk: CreativeEditorSDK): void {
   //   en: {
   //     'libraries.ly.img.templates.label': 'Templates',
   //     'libraries.ly.img.image.label': 'Photos',
-  //     'component.fileOperation.exportImage': 'Download',
+  //     'component.fileOperation.export': 'Download',
   //     'common.done': 'Finish',
   //   },
   //   de: {
   //     'libraries.ly.img.templates.label': 'Vorlagen',
   //     'libraries.ly.img.image.label': 'Fotos',
-  //     'component.fileOperation.exportImage': 'Herunterladen',
+  //     'component.fileOperation.export': 'Herunterladen',
   //     'common.done': 'Fertig',
   //   }
   // });

@@ -26,27 +26,18 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  * ```
  */
 export function setupTranslations(cesdk: CreativeEditorSDK): void {
-  cesdk.i18n.setTranslations({
-    en: {
-      'libraries.ly.img.exclusionArea.label': 'Exclusion Areas'
-    },
-    de: {
-      'libraries.ly.img.exclusionArea.label': 'Ausschlussbereiche'
-    }
-  });
-
   // Example: Override built-in labels with custom text
   // cesdk.i18n.setTranslations({
   //   en: {
   //     'libraries.ly.img.templates.label': 'Templates',
   //     'libraries.ly.img.image.label': 'Photos',
-  //     'component.fileOperation.exportImage': 'Download',
+  //     'component.fileOperation.export': 'Download',
   //     'common.done': 'Finish',
   //   },
   //   de: {
   //     'libraries.ly.img.templates.label': 'Vorlagen',
   //     'libraries.ly.img.image.label': 'Fotos',
-  //     'component.fileOperation.exportImage': 'Herunterladen',
+  //     'component.fileOperation.export': 'Herunterladen',
   //     'common.done': 'Fertig',
   //   }
   // });
