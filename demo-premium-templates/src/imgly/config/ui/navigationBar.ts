@@ -19,11 +19,16 @@
  *
  * **Actions (top-level or as children of actions dropdown):**
  * - `'ly.img.actions.navigationBar'` - Actions dropdown container
- * - `'ly.img.action.navigationBar'` - Custom action button (requires `key`, `label` and `onClick`)
+ * - `'ly.img.save.navigationBar'` - Save action
  * - `'ly.img.saveScene.navigationBar'` - Save scene action
+ * - `'ly.img.load.navigationBar'` - Load action
+ * - `'ly.img.loadArchive.navigationBar'` - Load archive action
+ * - `'ly.img.download.navigationBar'` - Download action
+ * - `'ly.img.share.navigationBar'` - Share action
  * - `'ly.img.shareScene.navigationBar'` - Share scene action
  *
  * **Export:**
+ * - `'ly.img.export.navigationBar'` - Generic export
  * - `'ly.img.exportImage.navigationBar'` - Export as image
  * - `'ly.img.exportVideo.navigationBar'` - Export as video
  * - `'ly.img.exportPDF.navigationBar'` - Export as PDF
@@ -71,5 +76,20 @@ export function setupNavigationBar(cesdk: CreativeEditorSDK): void {
     'ly.img.zoom.navigationBar',
     'ly.img.preview.navigationBar'
   ]);
+  // #endregion
+
+  // #region Custom Title Component
+  // Register a custom title component that displays the scene name.
+  // This enables dynamic titles based on the selected template.
+  cesdk.ui.registerComponent('ly.img.title.navigationBar', ({ builder }) => {
+    const scene = cesdk.engine.scene.get();
+    const title = scene ? cesdk.engine.block.getName(scene) : '';
+
+    if (title) {
+      builder.Heading('ly.img.title.navigationBar', {
+        content: title
+      });
+    }
+  });
   // #endregion
 }

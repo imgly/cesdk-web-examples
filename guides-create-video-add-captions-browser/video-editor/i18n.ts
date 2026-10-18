@@ -31,13 +31,13 @@ export function setupTranslations(cesdk: CreativeEditorSDK): void {
   //   en: {
   //     'libraries.ly.img.video.label': 'Videos',
   //     'libraries.ly.img.audio.label': 'Audio',
-  //     'component.fileOperation.exportVideo': 'Export Video',
+  //     'component.fileOperation.export': 'Export Video',
   //     'common.done': 'Finish',
   //   },
   //   de: {
   //     'libraries.ly.img.video.label': 'Videos',
   //     'libraries.ly.img.audio.label': 'Audio',
-  //     'component.fileOperation.exportVideo': 'Video exportieren',
+  //     'component.fileOperation.export': 'Video exportieren',
   //     'common.done': 'Fertig',
   //   }
   // });

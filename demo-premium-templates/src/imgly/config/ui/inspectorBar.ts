@@ -61,7 +61,6 @@
  * - `'ly.img.pageResize.inspectorBar'` - Page resize button
  *
  * **Special Controls:**
- * - `'ly.img.placeholder.inspectorBar'` - Open placeholder settings
  * - `'ly.img.inspectorToggle.inspectorBar'` - Toggle inspector panel
  * - `'ly.img.trimControls.inspectorBar'` - Trim mode controls
  * - `'ly.img.cropControls.inspectorBar'` - Crop mode controls
@@ -91,12 +90,6 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
     { in: 'ly.img.inspector.bar', when: { editMode: 'Transform' } },
     [
       'ly.img.spacer',
-
-      // ============================
-      // Placeholder
-      // ============================
-      // 'ly.img.placeholder.inspectorBar',
-      // 'ly.img.separator',
 
       // ============================
       // Page Resize
@@ -167,11 +160,11 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
           'ly.img.adjustment.inspectorBar',
           'ly.img.filter.inspectorBar',
           'ly.img.effect.inspectorBar',
-          'ly.img.blur.inspectorBar',
-          'ly.img.separator',
-          'ly.img.shadow.inspectorBar'
+          'ly.img.blur.inspectorBar'
         ]
       },
+      'ly.img.separator',
+      'ly.img.shadow.inspectorBar',
       'ly.img.separator',
 
       // ============================

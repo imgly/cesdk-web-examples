@@ -109,7 +109,9 @@ class Example implements EditorPlugin {
         total: 3,
         currentPage: 1,
         nextPage: undefined
-      })
+      }),
+      applyAsset: async (assetResult) =>
+        cesdk.engine.asset.defaultApplyAsset(assetResult)
     });
 
     // Layer 2: Asset Library Entry - connects sources to display settings

@@ -1,156 +1,125 @@
 import CreativeEditorSDK from '@cesdk/cesdk-js';
-import { checkPDFX, convertToPDFX, exportPDFX } from '@imgly/pdfx-exporter';
-import type { PDFXStandard } from '@imgly/pdfx-exporter';
+type CreativeEditorSDK = InstanceType<typeof CreativeEditorSDK>;
+// @ts-expect-error - Plugin types will be available in future release
+import { convertToPDFX } from '@imgly/plugin-print-ready-pdfs-web';
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
   EffectsAssetSource,
   FiltersAssetSource,
-  ImageColorsAssetSource,
   PagePresetsAssetSource,
   StickerAssetSource,
   TextAssetSource,
   TypefaceAssetSource,
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
-import { DesignEditorConfig } from '../design-editor/plugin';
 
-type Editor = InstanceType<typeof CreativeEditorSDK>;
+let cesdk: CreativeEditorSDK;
+
+const config = {
+  // By default, CE.SDK runs with a watermark.
+  // Get a free trial license at https://img.ly/forms/free-trial to remove it.
+  // Uncomment the line below and add your license key:
+  // license: 'your-license-key-here',
+};
 
 async function init() {
-  const cesdk = await CreativeEditorSDK.create('#cesdk-container', {
-    // license: 'YOUR_CESDK_LICENSE_KEY',
-  });
-  await cesdk.addPlugin(new DesignEditorConfig());
-  await cesdk.addPlugin(new BlurAssetSource());
-  await cesdk.addPlugin(new CaptionPresetsAssetSource());
-  await cesdk.addPlugin(new ColorPaletteAssetSource());
-  await cesdk.addPlugin(new CropPresetsAssetSource());
-  await cesdk.addPlugin(new EffectsAssetSource());
-  await cesdk.addPlugin(new FiltersAssetSource());
-  await cesdk.addPlugin(new ImageColorsAssetSource());
-  await cesdk.addPlugin(new StickerAssetSource());
-  await cesdk.addPlugin(new TextAssetSource());
-  await cesdk.addPlugin(new VectorShapeAssetSource());
-  await cesdk.addPlugin(new TypefaceAssetSource());
-  await cesdk.addPlugin(new DemoAssetSources());
-  await cesdk.addPlugin(new PagePresetsAssetSource());
-  await cesdk.actions.run('scene.create', { mode: 'Design' });
-
-  const engine = cesdk.engine;
-  const scene = engine.scene.get();
-  const page = engine.scene.getCurrentPage();
-  if (scene == null || page == null) {
-    throw new Error('No design page available');
-  }
-
-  engine.scene.setDesignUnit('Millimeter');
-  engine.block.setFloat(scene, 'scene/dpi', 300);
-  engine.block.setWidth(page, 148);
-  engine.block.setHeight(page, 105);
-  engine.block.setBool(page, 'page/marginEnabled', true);
-  for (const side of ['top', 'bottom', 'left', 'right']) {
-    engine.block.setFloat(page, `page/margin/${side}`, 3);
-  }
-
-  engine.block.setColor(page, 'fill/solid/color', {
-    r: 0.08,
-    g: 0.2,
-    b: 0.4,
-    a: 1
-  });
-  await engine.block.addImage(
-    'https://img.ly/static/ubq_samples/sample_1.jpg',
-    {
-      size: { width: 82, height: 111 },
-      x: -3,
-      y: -3
-    }
-  );
-  const text = engine.block.create('text');
-  engine.block.appendChild(page, text);
-  engine.block.replaceText(text, 'READY\nFOR PRINT');
-  engine.block.setPositionX(text, 86);
-  engine.block.setPositionY(text, 22);
-  engine.block.setWidth(text, 58);
-  engine.block.setHeight(text, 60);
-  engine.block.setTextFontSize(text, 22);
-  engine.block.setColor(text, 'fill/solid/color', { r: 1, g: 1, b: 1, a: 1 });
-  await engine.scene.zoomToBlock(page);
+  // Initialize CE.SDK
+  cesdk = await CreativeEditorSDK.create('#cesdk-container', config);
 
   cesdk.ui.insertOrderComponent(
     { in: 'ly.img.navigation.bar', position: 'end' },
     {
       id: 'ly.img.actions.navigationBar',
-      children: (['PDF/X-4', 'PDF/X-3', 'PDF/X-1a'] as const).map(
-        (standard) => ({
-          key: `export-${standard}`,
+      children: [
+        {
+          key: 'export-print-ready-pdf',
           id: 'ly.img.action.navigationBar',
-          label: `Export ${standard}`,
+          label: 'Export Print-Ready PDF',
           iconName: '@imgly/Download',
-          onClick: () => exportPrintReadyPDF(cesdk, standard)
-        })
-      )
+          onClick: async () => {
+            await exportPrintReadyPDF();
+          }
+        }
+      ]
     }
   );
-  (window as Window & { cesdk?: Editor }).cesdk = cesdk;
+
+  // Load default scene
+  await cesdk.actions.run('scene.create', {
+    page: {
+      sourceId: 'ly.img.page.presets',
+      assetId: 'ly.img.page.presets.print.iso.a6.landscape'
+    }
+  });
+  await cesdk.addPlugin(new BlurAssetSource());
+  await cesdk.addPlugin(new CaptionPresetsAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
+  await cesdk.addPlugin(new ColorPaletteAssetSource());
+  await cesdk.addPlugin(new CropPresetsAssetSource());
+  await cesdk.addPlugin(new EffectsAssetSource());
+  await cesdk.addPlugin(new FiltersAssetSource());
+  await cesdk.addPlugin(new PagePresetsAssetSource());
+  await cesdk.addPlugin(new StickerAssetSource());
+  await cesdk.addPlugin(new TextAssetSource());
+  await cesdk.addPlugin(new TypefaceAssetSource());
+  await cesdk.addPlugin(new VectorShapeAssetSource());
+  await cesdk.addPlugin(new DemoAssetSources());
 }
 
-async function exportPrintReadyPDF(cesdk: Editor, standard: PDFXStandard) {
-  const dialog = cesdk.ui.showDialog({
-    type: 'loading',
-    content: 'Exporting PDF/X',
-    actions: []
-  });
+async function exportPrintReadyPDF() {
   try {
-    const printReadyPDF = await exportPDFX(cesdk.engine, {
-      outputStandard: standard,
-      outputProfile: 'fogra39',
-      nonPrinterProfile: 'reject',
+    // Check if CE.SDK is initialized
+    if (!cesdk) {
+      throw new Error('CE.SDK not initialized');
+    }
+
+    // Get current scene ID
+    const scene = cesdk.engine.scene.get();
+
+    if (scene == null) {
+      throw new Error('No scene loaded');
+    }
+
+    // Get all pages in the scene
+    const pages = cesdk.engine.block.findByType('page');
+
+    if (pages.length === 0) {
+      throw new Error('No pages found in scene');
+    }
+
+    // Export first page as PDF
+    const pdfBlob = await cesdk.engine.block.export(pages[0], {
+      mimeType: 'application/pdf'
+    });
+
+    // Convert to print-ready PDF/X-4 (default). Pass
+    // `outputStandard: 'PDF/X-3'` to fall back to the older standard.
+    const printReadyPDF = await convertToPDFX(pdfBlob, {
+      outputProfile: 'fogra39', // European printing standard
       title: 'Print-Ready Export'
     });
 
-    const findings = await checkPDFX(printReadyPDF, standard);
-    if (findings.length > 0) {
-      throw new Error(
-        findings.map(({ rule, message }) => `${rule}: ${message}`).join('\n')
-      );
-    }
-
+    // Download the print-ready PDF
     const url = URL.createObjectURL(printReadyPDF);
-    try {
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `design-${standard.replace('/', '-')}.pdf`;
-      link.click();
-    } finally {
-      URL.revokeObjectURL(url);
-    }
-    cesdk.ui.showNotification({
-      message: `${standard} exported`,
-      type: 'success'
-    });
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'design-print-ready.pdf';
+    link.click();
+    URL.revokeObjectURL(url);
+
+    console.log('Print-ready PDF exported successfully!');
   } catch (error) {
-    cesdk.ui.showNotification({
-      message: error instanceof Error ? error.message : 'PDF/X export failed',
-      type: 'error'
-    });
-  } finally {
-    cesdk.ui.closeDialog(dialog);
+    console.error('Export failed:', error);
+    alert('Failed to export print-ready PDF. Please try again.');
   }
 }
 
-export async function convertExistingPDF(pdfBlob: Blob) {
-  return convertToPDFX(pdfBlob, {
-    outputStandard: 'PDF/X-4',
-    outputProfile: 'fogra39',
-    nonPrinterProfile: 'reject'
-  });
-}
-
+// Initialize when page loads
 init().catch((error) => {
   console.error('Failed to initialize CE.SDK:', error);
 });

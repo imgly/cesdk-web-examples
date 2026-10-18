@@ -9,10 +9,10 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.84.0",
-    "@cesdk/engine": "^1.84.0",
-    "@imgly/plugin-ai-apps-web": "^1.84.0",
-    "@imgly/plugin-ai-image-generation-web": "^1.84.0"
+    "@cesdk/cesdk-js": "^1.82.3-rc.0",
+    "@cesdk/engine": "^1.82.3-rc.0",
+    "@imgly/plugin-ai-apps-web": "^1.82.3-rc.0",
+    "@imgly/plugin-ai-image-generation-web": "^1.82.3-rc.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

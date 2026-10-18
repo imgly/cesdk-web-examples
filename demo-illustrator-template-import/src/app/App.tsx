@@ -9,8 +9,18 @@ import { DisclaimerSection } from './DisclaimerSection/DisclaimerSection';
 import { ExampleFileContainer } from './ExampleFileContainer/ExampleFileContainer';
 import { ResultScreen } from './ResultScreen/ResultScreen';
 import classes from './App.module.css';
-import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
 
+
+/**
+ * Demo assets for this example (template files, previews, icons, …) are
+ * loaded from the IMG.LY CDN by default. To host them yourself, copy this
+ * kit's asset folder to your own CDN or server and change this constant — or
+ * set it to `''` and place the files in this app's `public/` directory. No
+ * trailing slash.
+ */
+export const DEMO_ASSETS_BASE_URL: string =
+  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.3-rc.0/demo-illustrator-template-import';
 
 const EXAMPLE_FILES: ExampleFile[] = [
   'example-1',

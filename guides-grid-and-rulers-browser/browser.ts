@@ -89,9 +89,10 @@ class Example implements EditorPlugin {
       a: 0.3
     });
 
-    // Make the rulers control available in the panel.
-    // Rulers stay hidden until the user checks "Show Rulers".
-    cesdk.feature.enable('ly.img.rulers');
+    // Rulers are controlled through the editor's UI store.
+    // The AdvancedEditorConfig plugin enables the 'ly.img.rulers'
+    // feature flag, which makes rulers available in the UI.
+    // Rulers are visible by default when the feature flag is enabled.
 
     // Add a sample block so the grid and rulers are visible in context
     const page = engine.block.findByType('page')[0];

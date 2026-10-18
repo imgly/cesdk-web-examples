@@ -11,8 +11,8 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.84.0",
-    "@cesdk/engine": "^1.84.0",
+    "@cesdk/cesdk-js": "^1.82.3-rc.0",
+    "@cesdk/engine": "^1.82.3-rc.0",
     "qrcode": "^1.5.4"
   },
   "devDependencies": {

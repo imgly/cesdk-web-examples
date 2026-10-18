@@ -188,14 +188,10 @@ class Example implements EditorPlugin {
       engine.block.getTimeOffset(lastClip) + engine.block.getDuration(lastClip)
     );
 
-    // Park the playhead just before the first blend starts. The cross-fade
-    // overlaps the last second of clip A, which ends at 4s.
-    engine.block.setPlaybackTime(page, 2.9);
-
-    // Select the first seam's outgoing clip: the transitions panel reads the
-    // selection to find the seam it edits.
+    // Park the playhead inside the first overlap window so the
+    // cross-fade blend is visible on load
+    engine.block.setPlaybackTime(page, 3.5);
     engine.block.select(clipA);
-    cesdk.ui.openPanel('//ly.img.panel/inspector/transition');
 
     // eslint-disable-next-line no-console
     console.log(

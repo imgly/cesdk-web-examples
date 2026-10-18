@@ -66,20 +66,6 @@ try {
   // Remove "Hello " to get "CE.SDK Guide!" (positions 0-6)
   engine.block.removeText(text, 0, 6);
 
-  // A tab character moves the text after it to the next tab stop.
-  // Tabs align the two columns of this second text block.
-  const table = engine.block.create("text");
-  engine.block.appendChild(page, table);
-  engine.block.setPositionX(table, 50);
-  engine.block.setPositionY(table, 380);
-  engine.block.setWidthMode(table, "Auto");
-  engine.block.setHeightMode(table, "Auto");
-  engine.block.setTextFontSize(table, 60);
-  engine.block.replaceText(table, "Name:\tCE.SDK\nSize:\tA4");
-
-  // Tab stops repeat every `tabStopInterval` multiples of the base font size.
-  engine.editor.setSettingFloat("tabStopInterval", 3.0);
-
   // Apply bold formatting to "CE.SDK" (positions 0-6)
   engine.block.setTextFontWeight(text, "bold", 0, 6);
 

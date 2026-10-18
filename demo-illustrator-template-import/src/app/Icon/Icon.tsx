@@ -2,7 +2,7 @@
  * Icon - Renders SVG icons from public/icons folder
  */
 import type { CSSProperties } from 'react';
-import { DEMO_ASSETS_BASE_URL } from '../../imgly/demo-assets';
+import { DEMO_ASSETS_BASE_URL } from '../App';
 
 type IconName =
   | 'Ai2Psd'

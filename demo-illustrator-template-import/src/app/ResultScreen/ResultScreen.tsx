@@ -4,7 +4,6 @@
 import type { ExampleFile } from '../types';
 import { Icon } from '../Icon/Icon';
 import classes from './ResultScreen.module.css';
-import { downloadFile } from '../download';
 
 interface ResultScreenProps {
   currentFile: ExampleFile;
@@ -33,9 +32,12 @@ export function ResultScreen({ currentFile, onOpenEditor }: ResultScreenProps) {
         <div className={classes.actions}>
           <button
             className="btn btn-secondary btn-small"
-            onClick={() =>
-              downloadFile(currentFile.aiFileUrl, `${currentFile.name}.ai`)
-            }
+            onClick={() => {
+              const link = document.createElement('a');
+              link.href = currentFile.aiFileUrl;
+              link.download = `${currentFile.name}.ai`;
+              link.click();
+            }}
           >
             <Icon name="Download" /> <span>Download AI File</span>
           </button>
@@ -58,9 +60,12 @@ export function ResultScreen({ currentFile, onOpenEditor }: ResultScreenProps) {
         <div className={classes.actions}>
           <button
             className="btn btn-secondary btn-small"
-            onClick={() =>
-              downloadFile(currentFile.psdFileUrl, `${currentFile.name}.psd`)
-            }
+            onClick={() => {
+              const link = document.createElement('a');
+              link.href = currentFile.psdFileUrl;
+              link.download = `${currentFile.name}.psd`;
+              link.click();
+            }}
           >
             <Icon name="Download" /> <span>Download PSD File</span>
           </button>
@@ -90,10 +95,12 @@ export function ResultScreen({ currentFile, onOpenEditor }: ResultScreenProps) {
             </button>
             <button
               className="btn btn-secondary btn-small"
-              aria-label="Download CE.SDK Archive"
-              onClick={() =>
-                downloadFile(currentFile.sceneArchiveUrl, 'archive.imgly')
-              }
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = currentFile.sceneArchiveUrl;
+                link.download = 'archive.imgly';
+                link.click();
+              }}
             >
               <Icon name="Download" />
             </button>

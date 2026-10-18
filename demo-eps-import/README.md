@@ -93,14 +93,13 @@ Frame values use the scene's design unit. This demo uses pixels at 72 DPI, so it
 
 The Vite plugin serves `worker.browser.js`, `gs.js`, and `gs.wasm` from `@imgly/pdf-conversion-utils` under `pdf-conversion/` during development and copies those files, `COPYING.AGPL-3.0`, `LICENSE.md`, `PROVENANCE.md` and `THIRD_PARTY_NOTICES.md` into the build output. Retain these documents with the deployed runtime; they include its full license, third-party notices and matching Ghostscript and wrapper source links. It also copies PDF.js standard fonts beside the emitted importer chunk. Serve the entire output directory, including those folders. A deployment below a URL prefix must set Vite's `base`; asset URLs then remain relative to the demo. `VITE_CONVERSION_ASSETS_URL` can point to a separately hosted conversion asset directory.
 
-The showcase is registered in the web demo Gallery and documented in the published [EPS Artwork Gallery guide](https://img.ly/docs/cesdk/js/starterkits/eps-artwork-gallery-epsgal/). The source publisher materializes the demo and Browser/Node guides with registry dependency versions and standalone editor configuration. `private: true` prevents publishing the example itself as an npm package; it does not prevent public source or CDN distribution.
+The showcase is registered in the web demo Gallery and documented in the published EPS Artwork Gallery guide. The source publisher materializes the demo and Browser/Node guides with registry dependency versions and standalone editor configuration. `private: true` prevents publishing the example itself as an npm package; it does not prevent public source or CDN distribution.
 
 ## Verification
 
 ```sh
 pnpm --filter demo-eps-import check:all
-pnpm --filter demo-eps-import test:unit
-EPS_DEMO_URL=http://127.0.0.1:5173 pnpm --filter demo-eps-import test:e2e
+EPS_DEMO_URL=http://127.0.0.1:5173 pnpm --filter demo-eps-import test:smoke
 ```
 
 The browser smoke test requires a running demo server and an installed Playwright Chromium browser. Set `PLAYWRIGHT_CHANNEL=chrome` to use an installed Google Chrome instead. It checks lazy loading, Gallery selection, uploads without immediate insertion, repeated native placement, group scaling, placeholder replacement, undo/redo, cancellation, retry after invalid EPS input, PDF download, and editable native objects after saving and reloading a scene archive. It does not start another server. Screenshots and exported PDFs are written to `output/playwright/`.

@@ -49,14 +49,13 @@ async function run() {
     await engine.scene.applyTemplateFromURL(templateUrl);
     console.log('✓ Template applied from URL');
 
-    // Applying a template replaces the page, so read the page again
-    const appliedPage = engine.scene.getPages()[0];
-    const width = engine.block.getWidth(appliedPage);
-    const height = engine.block.getHeight(appliedPage);
+    // Verify that page dimensions are preserved after applying template
+    const width = engine.block.getWidth(page);
+    const height = engine.block.getHeight(page);
     console.log(`✓ Page dimensions preserved: ${width}x${height}`);
 
     // Export the result with consistent dimensions
-    const blob = await engine.block.export(appliedPage, {
+    const blob = await engine.block.export(page, {
       mimeType: 'image/png',
       targetWidth: 1080,
       targetHeight: 1920
@@ -74,13 +73,12 @@ async function run() {
     console.log('✓ Switched to alternative template');
 
     // Verify dimensions remain the same
-    const switchedPage = engine.scene.getPages()[0];
-    const newWidth = engine.block.getWidth(switchedPage);
-    const newHeight = engine.block.getHeight(switchedPage);
+    const newWidth = engine.block.getWidth(page);
+    const newHeight = engine.block.getHeight(page);
     console.log(`✓ Dimensions after switch: ${newWidth}x${newHeight}`);
 
     // Export the alternative template
-    const blob2 = await engine.block.export(switchedPage, {
+    const blob2 = await engine.block.export(page, {
       mimeType: 'image/png',
       targetWidth: 1080,
       targetHeight: 1920

@@ -197,9 +197,9 @@ class Example implements EditorPlugin {
       id: 'uploaded-1',
       label: { en: 'Heart Sticker' },
       meta: {
-        uri: 'https://cdn.img.ly/assets/v3/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_loving.svg',
+        uri: 'https://cdn.img.ly/assets/v3/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_love.svg',
         thumbUri:
-          'https://cdn.img.ly/assets/v3/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_loving.svg',
+          'https://cdn.img.ly/assets/v3/ly.img.sticker/images/emoticons/imgly_sticker_emoticons_love.svg',
         blockType: '//ly.img.ubq/graphic',
         fillType: '//ly.img.ubq/fill/image',
         mimeType: 'image/svg+xml'

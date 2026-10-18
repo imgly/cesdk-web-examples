@@ -1,6 +1,6 @@
 # Premium Templates Editor Demo
 
-Add custom premium templates as an asset source in CE.SDK's design editor. The templates ship with the CE.SDK assets and are listed in a gallery and in the templates dock, ready for users to apply with a single click. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
+Add custom premium templates as an asset source in CE.SDK's design editor. Templates are fetched from a CDN and displayed in the templates dock, ready for users to apply with a single click. Built with [CE.SDK](https://img.ly/creative-sdk) by [IMG.LY](https://img.ly), runs entirely in the browser with no server dependencies.
 
 ![Premium Templates Editor starter kit showing template selection](./hero.webp)
 
@@ -39,36 +39,22 @@ Open `http://localhost:5173` in your browser.
 
 ## Adding Premium Templates
 
-The key feature of this demo is adding premium templates as an asset source. One editor is created when the page loads and kept for the whole visit: the gallery lists the templates from its `PremiumTemplatesAssetSource`, and every template opens in it. The gallery and the editor therefore share one catalogue and one loader, and the engine loads only once.
+The key feature of this demo is adding custom templates as an asset source. Templates are fetched from a CDN and integrated into the templates dock.
 
 ### Template Configuration
 
 ```typescript
-import { PremiumTemplatesAssetSource } from '@cesdk/cesdk-js/plugins';
-
-// In the editor's init: add the premium templates and list one category
-await cesdk.addPlugin(
-  new PremiumTemplatesAssetSource({ include: ['ly.img.templates.premium.*'] })
-);
-const { assets } = await cesdk.engine.asset.findAssets(
-  'ly.img.templates.premium',
-  { groups: ['e-commerce'], page: 0, perPage: 9999 }
-);
-
-// When the visitor picks a template: open it through the same asset source
-await cesdk.engine.asset.apply('ly.img.templates.premium', assets[0]);
+// Configure your templates CDN URL
+const PREMIUM_TEMPLATES_BASE_URL =
+  'https://staticimgly.com/imgly/premium-templates/1.0.0';
 ```
-
-The plugin reads `ly.img.templates.premium/content.json` under your `baseURL`, or from the IMG.LY CDN when no `baseURL` is set.
 
 ### How It Works
 
-1. **Start the Editor** - `App.tsx` mounts one editor and hides it while the gallery shows
-2. **List Templates** - The editor adds the premium templates plugin and lists each category for the gallery; the templates also appear in its templates dock
-3. **Open a Template** - `openPremiumTemplate` closes the panels the last template left open, then applies the template through the asset source, which loads its scene archive with a fresh undo history
-4. **Close** - The close button hides the editor again; the next template replaces the scene
-
-If the editor cannot start, the templates cannot be listed, or a template cannot be opened, the demo says so instead of showing an empty gallery.
+1. **Fetch Templates** - Template metadata is loaded from `content.json` on your CDN
+2. **Register Asset Source** - Templates are registered with the engine's asset system
+3. **Display in Dock** - Templates appear in the templates dock with thumbnails
+4. **Apply Templates** - Clicking a template loads its archive into the editor
 
 ### Adding Templates Programmatically
 
@@ -157,8 +143,7 @@ src/
 │   │       ├── inspectorBar.ts           # Inspector bar layout
 │   │       ├── navigationBar.ts          # Navigation bar layout
 │   │       └── panel.ts                  # Panel configuration
-│   ├── index.ts                  # Editor initialization function
-│   └── premium-templates.ts      # List and open the premium templates
+│   └── index.ts                  # Editor initialization function
 └── index.tsx                 # Application entry point
 ```
 
@@ -179,11 +164,11 @@ src/
 
 ## Troubleshooting
 
-| Issue                               | Solution                                                                     |
-| ----------------------------------- | ---------------------------------------------------------------------------- |
-| "The editor could not start"        | Verify assets are accessible at `baseURL` and the license key is valid       |
-| "The templates could not be loaded" | Check that `ly.img.templates.premium/content.json` is served under `baseURL` |
-| Watermark appears                   | Add your license key                                                         |
+| Issue                  | Solution                                           |
+| ---------------------- | -------------------------------------------------- |
+| Editor doesn't load    | Verify assets are accessible at `baseURL`          |
+| Templates don't appear | Check CDN URL is accessible and returns valid JSON |
+| Watermark appears      | Add your license key                               |
 
 ## Documentation
 

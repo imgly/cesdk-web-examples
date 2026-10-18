@@ -18,7 +18,7 @@ export function setupPanels(cesdk: CreativeEditorSDK): void {
   // #endregion
 
   // #region Assets Panel
-  cesdk.ui.setPanelPosition('//ly.img.panel/assetLibrary', 'left');
-  cesdk.ui.setPanelFloating('//ly.img.panel/assetLibrary', false);
+  cesdk.ui.setPanelPosition('//ly.img.panel/assets', 'left');
+  cesdk.ui.setPanelFloating('//ly.img.panel/assets', false);
   // #endregion
 }

@@ -197,10 +197,6 @@ class Example implements EditorPlugin {
     const cmykColor = engine.block.getColor(cmykFill, 'fill/color/value');
     const spotColor = engine.block.getColor(spotFill, 'fill/color/value');
 
-    // A CMYK conversion reads the document CMYK profile, which is a resource. Load it once so
-    // the conversions below do not have to handle COLOR.PROFILE_NOT_LOADED.
-    await engine.editor.loadCMYKProfile();
-
     // Convert CMYK to sRGB
     const cmykToRgba = engine.editor.convertColorToColorSpace(
       cmykColor,

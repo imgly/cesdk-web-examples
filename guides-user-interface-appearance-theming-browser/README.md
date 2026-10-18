@@ -71,10 +71,10 @@ While CE.SDK provides built-in light and dark themes that are optimized and prod
 
 ```typescript
 // Set theme
-cesdk.ui.setTheme('light' | 'dark' | 'light-high-contrast' | 'dark-high-contrast' | 'system');
+cesdk.ui.setTheme('light' | 'dark' | 'system');
 
 // Get current theme
-const theme = cesdk.ui.getTheme(); // e.g. 'light' or 'dark-high-contrast'
+const theme = cesdk.ui.getTheme(); // Returns 'light' or 'dark'
 
 // Set fixed scale
 cesdk.ui.setScale('normal' | 'large' | 'modern');

@@ -10,11 +10,12 @@ import { createRoot } from 'react-dom/client';
 
 import App from './app/App';
 
-export const config: Configuration = {
+const config: Configuration = {
   userId: 'demo-premium-templates-editor-user',
   role: 'Adopter',
 
   // Local assets for development
+  
 
 };
 

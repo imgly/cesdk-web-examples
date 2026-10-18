@@ -16,7 +16,7 @@ function createLogger(prefix: string) {
 }
 
 // License key removes watermarks from exports
-// Request a license at https://img.ly/forms/contact-sales/
+// Get a free trial at https://img.ly/forms/free-trial
 const license = process.env.CESDK_LICENSE ?? '';
 
 // Location of core engine assets (WASM, data files)
