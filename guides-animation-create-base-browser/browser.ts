@@ -101,7 +101,10 @@ class Example implements EditorPlugin {
     const page = pages.length > 0 ? pages[0] : scene;
 
     // Set white background color
-    if (!engine.block.supportsFill(page) || !engine.block.getFill(page)) {
+    if (
+      !engine.block.supportsFill(page) ||
+      !engine.block.isValid(engine.block.getFill(page))
+    ) {
       const fill = engine.block.createFill('color');
       engine.block.setFill(page, fill);
     }
@@ -237,7 +240,7 @@ class Example implements EditorPlugin {
     );
 
     // Replace in animation (destroy old one first to avoid memory leaks)
-    if (currentIn !== 0) {
+    if (engine.block.isValid(currentIn)) {
       engine.block.destroy(currentIn);
     }
     const newInAnimation = engine.block.createAnimation('wipe');

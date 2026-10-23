@@ -80,6 +80,35 @@ try {
       `✅ Scene saved: output/scene.imgly (${(sceneString.length / 1024).toFixed(1)} KB)`
     );
 
+    // An image fill with a data: URI, as an inline upload produces
+    const inlineImage = engine.block.create('graphic');
+    engine.block.setShape(inlineImage, engine.block.createShape('rect'));
+    const inlineFill = engine.block.createFill('image');
+    engine.block.setString(
+      inlineFill,
+      'fill/image/imageFileURI',
+      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9InJlZCIvPjwvc3ZnPg=='
+    );
+    engine.block.setFill(inlineImage, inlineFill);
+    engine.block.appendChild(page, inlineImage);
+
+    // The default schemes have no 'data', so a data: URI fails the save.
+    // Add 'data' to keep data: URIs in the string.
+    const sceneWithDataURIs = await engine.scene.saveToString({
+      allowedResourceSchemes: [
+        'blob',
+        'bundle',
+        'data',
+        'file',
+        'http',
+        'https'
+      ]
+    });
+    console.log(
+      `✅ Scene with a data: URI saved (${(sceneWithDataURIs.length / 1024).toFixed(1)} KB)`
+    );
+    engine.block.destroy(inlineImage);
+
     // Example: Save with compression (requires local build)
     // To run with compression: npm run dev:local
     const compressed = await engine.scene.saveToString({

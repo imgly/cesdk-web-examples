@@ -12,6 +12,8 @@ import { calculateGridLayout } from './utils';
  * - Applying shifter (chromatic aberration)
  * - Applying radial pixel effect
  * - Applying TV glitch effect
+ * - Applying corner pin, bulge, wave warp and displacement map effects
+ * - Setting and reading the source of a displacement map
  * - Managing effects (enable/disable/remove)
  */
 
@@ -31,7 +33,7 @@ try {
   const pageHeight = engine.block.getHeight(page);
 
   // Calculate responsive grid layout based on page dimensions
-  const layout = calculateGridLayout(pageWidth, pageHeight, 6);
+  const layout = calculateGridLayout(pageWidth, pageHeight, 10);
   const { blockWidth, blockHeight, getPosition } = layout;
 
   // Use a sample image URL
@@ -111,6 +113,128 @@ try {
   engine.block.setFloat(tvGlitchEffect, 'effect/tv_glitch/rollSpeed', 0.1);
   engine.block.appendEffect(tvGlitchBlock, tvGlitchEffect);
 
+  // Create an image block for corner pin demonstration
+  const cornerPinBlock = await engine.block.addImage(imageUri, {
+    size: blockSize
+  });
+  engine.block.appendChild(page, cornerPinBlock);
+
+  // Move the two upper corners inward; positions are relative to the block size
+  const cornerPinEffect = engine.block.createEffect('corner_pin');
+  engine.block.setFloat(cornerPinEffect, 'effect/corner_pin/upperLeftX', 0.25);
+  engine.block.setFloat(cornerPinEffect, 'effect/corner_pin/upperLeftY', 0.2);
+  engine.block.setFloat(cornerPinEffect, 'effect/corner_pin/upperRightX', 0.75);
+  engine.block.setFloat(cornerPinEffect, 'effect/corner_pin/upperRightY', 0.2);
+  engine.block.appendEffect(cornerPinBlock, cornerPinEffect);
+
+  // Create an image block for bulge demonstration
+  const bulgeBlock = await engine.block.addImage(imageUri, {
+    size: blockSize
+  });
+  engine.block.appendChild(page, bulgeBlock);
+
+  // Magnify an ellipse in the center; the radii are in design units
+  const bulgeEffect = engine.block.createEffect('bulge');
+  engine.block.setFloat(bulgeEffect, 'effect/bulge/centerX', 0.5);
+  engine.block.setFloat(bulgeEffect, 'effect/bulge/centerY', 0.5);
+  engine.block.setFloat(
+    bulgeEffect,
+    'effect/bulge/horizontalRadius',
+    blockWidth * 0.4
+  );
+  engine.block.setFloat(
+    bulgeEffect,
+    'effect/bulge/verticalRadius',
+    blockHeight * 0.4
+  );
+  engine.block.setFloat(bulgeEffect, 'effect/bulge/height', 1.5);
+  engine.block.appendEffect(bulgeBlock, bulgeEffect);
+
+  // Create an image block for wave warp demonstration
+  const waveWarpBlock = await engine.block.addImage(imageUri, {
+    size: blockSize
+  });
+  engine.block.appendChild(page, waveWarpBlock);
+
+  // Height and width are in design units, so derive them from the block size
+  const waveWarpEffect = engine.block.createEffect('wave_warp');
+  engine.block.setEnum(waveWarpEffect, 'effect/wave_warp/waveType', 'Sine');
+  engine.block.setFloat(
+    waveWarpEffect,
+    'effect/wave_warp/height',
+    blockHeight * 0.05
+  );
+  engine.block.setFloat(
+    waveWarpEffect,
+    'effect/wave_warp/width',
+    blockWidth * 0.25
+  );
+  engine.block.appendEffect(waveWarpBlock, waveWarpEffect);
+
+  // Create an image block for displacement map demonstration
+  const displacedBlock = await engine.block.addImage(imageUri, {
+    size: blockSize
+  });
+  engine.block.appendChild(page, displacedBlock);
+
+  // The map is a hidden image block. The effect still reads it.
+  const mapBlock = await engine.block.addImage(imageUri, {
+    size: blockSize
+  });
+  engine.block.appendChild(page, mapBlock);
+  engine.block.setVisible(mapBlock, false);
+
+  const displacementMapEffect = engine.block.createEffect('displacement_map');
+  engine.block.setEnum(
+    displacementMapEffect,
+    'effect/displacement_map/horizontalChannel',
+    'Luminance'
+  );
+  engine.block.setFloat(
+    displacementMapEffect,
+    'effect/displacement_map/maxHorizontal',
+    blockWidth * 0.08
+  );
+  engine.block.setEnum(
+    displacementMapEffect,
+    'effect/displacement_map/verticalChannel',
+    'Luminance'
+  );
+  engine.block.setFloat(
+    displacementMapEffect,
+    'effect/displacement_map/maxVertical',
+    blockHeight * 0.08
+  );
+  engine.block.setEnum(
+    displacementMapEffect,
+    'effect/displacement_map/mapBehavior',
+    'Stretch'
+  );
+  engine.block.appendEffect(displacedBlock, displacementMapEffect);
+
+  // Set the map block as the source of the effect
+  engine.block.setEffectSource(displacementMapEffect, mapBlock);
+
+  const effectSource = engine.block.getEffectSource(displacementMapEffect);
+  console.log('Effect source is the map block:', effectSource === mapBlock);
+
+  try {
+    // Only the displacement map effect reads a source
+    engine.block.setEffectSource(liquidEffect, mapBlock);
+  } catch (error) {
+    // Engine errors carry a stable catalog id in `code`
+    const { code } = error as { code?: string };
+    console.log(code); // 'BLOCK.EFFECT_SOURCE_UNSUPPORTED'
+  }
+
+  try {
+    // A page cannot be a source
+    engine.block.setEffectSource(displacementMapEffect, page);
+  } catch (error) {
+    const { code } = error as { code?: string };
+    console.log(code); // 'BLOCK.EFFECT_SOURCE_INVALID'
+  }
+
   // Get all effects applied to a block
   const effects = engine.block.getEffects(tvGlitchBlock);
   console.log('Applied effects:', effects);
@@ -163,7 +287,11 @@ try {
     mirrorBlock,
     shifterBlock,
     radialPixelBlock,
-    tvGlitchBlock
+    tvGlitchBlock,
+    cornerPinBlock,
+    bulgeBlock,
+    waveWarpBlock,
+    displacedBlock
   ];
 
   blocks.forEach((block, index) => {

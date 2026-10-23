@@ -66,13 +66,22 @@ async function main() {
     const outAnimation = engine.block.getOutAnimation(block1);
     const loopAnimation = engine.block.getLoopAnimation(block1);
 
-    // Check if animations exist (0 means no animation)
-    console.log('In animation:', inAnimation !== 0 ? 'exists' : 'none');
-    console.log('Out animation:', outAnimation !== 0 ? 'exists' : 'none');
-    console.log('Loop animation:', loopAnimation !== 0 ? 'exists' : 'none');
+    // An empty slot returns an invalid block
+    console.log(
+      'In animation:',
+      engine.block.isValid(inAnimation) ? 'exists' : 'none'
+    );
+    console.log(
+      'Out animation:',
+      engine.block.isValid(outAnimation) ? 'exists' : 'none'
+    );
+    console.log(
+      'Loop animation:',
+      engine.block.isValid(loopAnimation) ? 'exists' : 'none'
+    );
 
     // Get animation type if it exists
-    if (inAnimation !== 0) {
+    if (engine.block.isValid(inAnimation)) {
       const animationType = engine.block.getType(inAnimation);
       console.log('Animation type:', animationType);
     }
@@ -82,7 +91,7 @@ async function main() {
 
     // Read animation properties
     const animation2 = engine.block.getInAnimation(block2);
-    if (animation2 !== 0) {
+    if (engine.block.isValid(animation2)) {
       // Get current duration
       const duration = engine.block.getDuration(animation2);
       console.log('Duration:', duration, 'seconds');
@@ -101,7 +110,7 @@ async function main() {
 
     // Modify animation duration
     const animation3 = engine.block.getInAnimation(block3);
-    if (animation3 !== 0) {
+    if (engine.block.isValid(animation3)) {
       // Change duration to 1.5 seconds
       engine.block.setDuration(animation3, 1.5);
 
@@ -115,7 +124,7 @@ async function main() {
 
     // Change animation easing
     const animation4 = engine.block.getInAnimation(block4);
-    if (animation4 !== 0) {
+    if (engine.block.isValid(animation4)) {
       // Query available easing options
       const easingOptions = engine.block.getEnumValues('animationEasing');
       console.log('Available easing options:', easingOptions);
@@ -129,7 +138,7 @@ async function main() {
 
     // Adjust animation-specific properties
     const animation5 = engine.block.getInAnimation(block5);
-    if (animation5 !== 0) {
+    if (engine.block.isValid(animation5)) {
       // Get current direction (for slide animations)
       const currentDirection = engine.block.getFloat(
         animation5,
@@ -137,7 +146,7 @@ async function main() {
       );
       console.log('Current direction (radians):', currentDirection);
 
-      // Change direction to slide from top (3*PI/2 radians)
+      // Move the block up, so it enters from the bottom (3*PI/2 radians)
       engine.block.setFloat(
         animation5,
         'animation/slide/direction',
@@ -150,7 +159,7 @@ async function main() {
 
     // Replace an existing animation
     const oldAnimation = engine.block.getInAnimation(block6);
-    if (oldAnimation !== 0) {
+    if (engine.block.isValid(oldAnimation)) {
       // Destroy the old animation to prevent memory leaks
       engine.block.destroy(oldAnimation);
     }
@@ -168,13 +177,13 @@ async function main() {
 
     // Remove the loop animation by destroying it
     const currentLoop = engine.block.getLoopAnimation(block6);
-    if (currentLoop !== 0) {
+    if (engine.block.isValid(currentLoop)) {
       engine.block.destroy(currentLoop);
-      // Verify removal - should now return 0
+      // Verify removal: the empty slot returns an invalid block
       const verifyLoop = engine.block.getLoopAnimation(block6);
       console.log(
         'Loop animation after removal:',
-        verifyLoop === 0 ? 'none' : 'exists'
+        engine.block.isValid(verifyLoop) ? 'exists' : 'none'
       );
     }
 

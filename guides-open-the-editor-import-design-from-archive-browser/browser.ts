@@ -128,6 +128,28 @@ class Example implements EditorPlugin {
     // In production, this blob would come from your API or storage
     // await _loadArchiveFromBlob(archiveBlob);
 
+    // ===== Track the Progress of a Large Archive =====
+    // For an archive, `loadFile` returns an `opfs://` URL when the browser
+    // supports it. The engine streams such an archive and reports progress.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _importArchiveWithProgress = async (): Promise<void> => {
+      const archiveUrl = await cesdk.utils.loadFile({
+        accept: '.imgly,.zip',
+        returnType: 'objectURL'
+      });
+
+      try {
+        await engine.scene.load(archiveUrl, {
+          onProgress: (percent) => {
+            console.log(`Archive read: ${percent}%`);
+          }
+        });
+      } finally {
+        // Frees a blob URL. An `opfs://` URL needs no cleanup.
+        URL.revokeObjectURL(archiveUrl);
+      }
+    };
+
     // ===== Method 4: Modify Loaded Archive =====
     // After loading an archive, the scene is immediately editable
     // All blocks and assets from the archive are available

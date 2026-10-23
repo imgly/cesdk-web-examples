@@ -1,3 +1,4 @@
+import { ColorRenderingIntent } from '@cesdk/cesdk-js';
 import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
 
 import {
@@ -17,6 +18,7 @@ import {
   VectorShapeAssetSource
 } from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './design-editor/plugin';
+import profileUrl from './assets/ISOcoated_v2_eci.icc?url';
 import packageJson from './package.json';
 
 class Example implements EditorPlugin {
@@ -77,9 +79,6 @@ class Example implements EditorPlugin {
     const blockWidth = availableWidth / 3;
     const blockHeight = pageHeight - 2 * margin - 80; // Leave space for labels
 
-    // Define a spot color with RGB approximation for screen preview
-    engine.editor.setSpotColorRGB('MyBrand Red', 0.95, 0.25, 0.21);
-
     // Create three blocks to demonstrate each color space
 
     // Block 1: sRGB color (for screen display)
@@ -108,7 +107,7 @@ class Example implements EditorPlugin {
       engine.block.createShape('//ly.img.ubq/shape/rect')
     );
     const cmykFill = engine.block.createFill('//ly.img.ubq/fill/color');
-    // Set fill color using CMYKColor object (values 0.0-1.0, tint controls opacity)
+    // Set fill color using CMYKColor object (values 0.0-1.0, tint scales ink)
     engine.block.setColor(cmykFill, 'fill/color/value', {
       c: 0.0,
       m: 0.8,
@@ -120,6 +119,9 @@ class Example implements EditorPlugin {
     engine.block.setWidth(cmykBlock, blockWidth);
     engine.block.setHeight(cmykBlock, blockHeight);
     engine.block.appendChild(page, cmykBlock);
+
+    // Define a spot color with RGB approximation for screen preview
+    engine.editor.setSpotColorRGB('MyBrand Red', 0.95, 0.25, 0.21);
 
     // Block 3: Spot color (for specialized printing)
     const spotBlock = engine.block.create('//ly.img.ubq/graphic');
@@ -212,6 +214,54 @@ class Example implements EditorPlugin {
     console.log('sRGB Color:', srgbColor);
     console.log('CMYK Color:', cmykColor);
     console.log('Spot Color:', spotColor);
+
+    const swatches = [
+      { label: 'sRGB', color: srgbColor },
+      { label: 'CMYK', color: cmykColor },
+      { label: 'Spot Color', color: spotColor }
+    ];
+
+    await engine.editor.loadCMYKProfile();
+
+    const logConversions = (step: string) => {
+      const values = swatches.map(({ label, color }) => {
+        const { r, g, b } = engine.editor.convertColorToColorSpace(
+          color,
+          'sRGB'
+        );
+        return { label, r: +r.toFixed(3), g: +g.toFixed(3), b: +b.toFixed(3) };
+      });
+      console.log(step);
+      console.table(values);
+    };
+
+    logConversions('Bundled default profile');
+
+    await engine.scene.setCMYKProfile(
+      new URL(profileUrl, document.baseURI).href
+    );
+    const { contentHash } = engine.scene.getCMYKProfileInfo();
+    console.log('Document profile hash:', contentHash);
+    logConversions('ISOcoated_v2_eci.icc');
+
+    engine.scene.setColorRenderingIntent(ColorRenderingIntent.Perceptual);
+    engine.scene.setBlackPointCompensationEnabled(false);
+    logConversions('Perceptual intent, black point compensation off');
+
+    const scene = engine.scene.get()!;
+    const mode = engine.block.getEnum(scene, 'scene/colorConversionMode');
+    console.log('Color conversion mode:', mode);
+
+    engine.block.setEnum(scene, 'scene/colorConversionMode', 'Legacy');
+    logConversions('Legacy mode');
+    engine.block.setEnum(scene, 'scene/colorConversionMode', 'Managed');
+
+    const png = await engine.block.export(page, { mimeType: 'image/png' });
+    const pdf = await engine.block.export(page, {
+      mimeType: 'application/pdf',
+      exportPdfWithDeviceCMYK: true
+    });
+    console.log('PNG bytes:', png.size, 'PDF bytes:', pdf.size);
 
     console.log('Color Basics example loaded successfully');
   }

@@ -182,7 +182,7 @@ async function main(): Promise<void> {
     // ===== Animation Properties Demo =====
     // Create slide animation and configure direction for title
     const titleInAnim = engine.block.getInAnimation(titleBlock);
-    if (titleInAnim !== 0) {
+    if (engine.block.isValid(titleInAnim)) {
       // Discover all available properties for this animation
       const properties = engine.block.findAllProperties(titleInAnim);
       console.log('Slide animation properties:', properties);

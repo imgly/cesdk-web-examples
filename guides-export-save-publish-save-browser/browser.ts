@@ -77,6 +77,21 @@ class Example implements EditorPlugin {
     }
     engine.scene.zoomToBlock(page, { padding: 40 });
 
+    // The default schemes have no 'data', so a data: URI fails the save.
+    // Add 'data' to keep data: URIs in the string.
+    const sceneWithDataURIs = await engine.scene.saveToString({
+      allowedResourceSchemes: [
+        'blob',
+        'bundle',
+        'data',
+        'file',
+        'http',
+        'https',
+        'opfs'
+      ]
+    });
+    console.log('Saved with data: URIs:', sceneWithDataURIs.length, 'bytes');
+
     cesdk.actions.register('saveScene', async () => {
       const sceneString = await engine.scene.saveToString();
       // Send to your backend API

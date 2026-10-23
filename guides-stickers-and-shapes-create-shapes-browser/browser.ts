@@ -225,6 +225,40 @@ class Example implements EditorPlugin {
     engine.block.appendChild(page, roundedRectGraphic);
     engine.block.setPositionX(roundedRectGraphic, 154);
     engine.block.setPositionY(roundedRectGraphic, 82);
+
+    const roundStarGraphic = engine.block.create('graphic');
+    const roundStarShape = engine.block.createShape('star');
+    engine.block.setShape(roundStarGraphic, roundStarShape);
+
+    // Radii are fractions of half the frame size. Roundness goes from 0 to 1.
+    engine.block.setFloat(roundStarShape, 'shape/star/outerRadius', 0.9);
+    engine.block.setFloat(roundStarShape, 'shape/star/innerRadius', 0.45);
+    engine.block.setFloat(roundStarShape, 'shape/star/outerRoundness', 0.3);
+    engine.block.setFloat(roundStarShape, 'shape/star/innerRoundness', 0.2);
+    // Clockwise, in degrees. At 36 degrees a five-point star points down.
+    engine.block.setFloat(roundStarShape, 'shape/star/rotation', 36);
+
+    // innerDiameter reports the ratio of the inner to the outer radius: 0.5
+    const innerDiameter = engine.block.getFloat(
+      roundStarShape,
+      'shape/star/innerDiameter',
+    );
+    console.log(innerDiameter);
+
+    const pinkFill = engine.block.createFill('color');
+    engine.block.setColor(pinkFill, 'fill/color/value', {
+      r: 0.95,
+      g: 0.3,
+      b: 0.6,
+      a: 1.0,
+    });
+    engine.block.setFill(roundStarGraphic, pinkFill);
+
+    engine.block.setWidth(roundStarGraphic, 64);
+    engine.block.setHeight(roundStarGraphic, 64);
+    engine.block.appendChild(page, roundStarGraphic);
+    engine.block.setPositionX(roundStarGraphic, 226);
+    engine.block.setPositionY(roundStarGraphic, 82);
   }
 }
 

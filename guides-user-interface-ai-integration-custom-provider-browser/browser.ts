@@ -18,8 +18,10 @@ import {
 } from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './design-editor/plugin';
 import {
+  CommonProperties,
   CommonProviderConfiguration,
   ImageOutput,
+  PanelInputSchema,
   Provider,
   loggingMiddleware,
   uploadMiddleware
@@ -38,9 +40,18 @@ interface MyProviderInput {
   image_url?: string; // For image-to-image operations
 }
 
+// JSON imports widen literal values such as `type: 'object'` to `string`.
+// Restore the document type expected by the schema-driven panel.
+const openApiDocument = apiSchema as PanelInputSchema<
+  'image',
+  MyProviderInput
+>['document'];
+
 // Define provider configuration interface extending CommonProviderConfiguration
-interface MyProviderConfiguration
-  extends CommonProviderConfiguration<MyProviderInput, ImageOutput> {
+interface MyProviderConfiguration extends CommonProviderConfiguration<
+  MyProviderInput,
+  ImageOutput
+> {
   // Add any provider-specific configuration here
   customApiKey?: string;
 }
@@ -48,7 +59,7 @@ interface MyProviderConfiguration
 // Mock API function that simulates image generation
 // In production, this would be replaced with actual API calls
 async function mockGenerateImage(
-  input: MyProviderInput,
+  input: { prompt?: string; style?: string },
   _abortSignal?: AbortSignal
 ): Promise<{ imageUrl: string }> {
   // Simulate network delay
@@ -97,7 +108,7 @@ export function MyImageProvider(
       input: {
         panel: {
           type: 'schema',
-          document: apiSchema, // Your OpenAPI schema
+          document: openApiDocument, // Your OpenAPI schema
           inputReference: '#/components/schemas/GenerationInput', // Reference to your input schema
           userFlow: 'placeholder', // Creates a block first, then updates it with the generated content
           orderExtensionKeyword: 'x-order-properties', // Used to control property display order
@@ -230,6 +241,102 @@ export function MyImageProvider(
   };
 }
 
+// The image-to-image schema takes a source image instead of a size and style
+interface MyImageToImageInput {
+  prompt: string;
+  image_url?: string;
+}
+
+// Read the size of the selected image, so the generated block matches it.
+// An asset source can hand out a `buffer://` URI for a resource the engine
+// holds in memory, which the browser cannot load, so resolve those first.
+async function getImageDimensions(
+  url: string,
+  cesdk: CreativeEditorSDK
+): Promise<{ width: number; height: number }> {
+  let objectURL: string | undefined;
+
+  if (url.startsWith('buffer:')) {
+    const mimeType = await cesdk.engine.editor.getMimeType(url);
+    const length = cesdk.engine.editor.getBufferLength(url);
+    const data = cesdk.engine.editor.getBufferData(url, 0, length);
+    const bytes = new Uint8Array(data.byteLength);
+    bytes.set(data);
+    objectURL = URL.createObjectURL(new Blob([bytes], { type: mimeType }));
+  }
+
+  try {
+    return await new Promise<{ width: number; height: number }>(
+      (resolve, reject) => {
+        const image = new Image();
+        image.onload = () =>
+          resolve({ width: image.naturalWidth, height: image.naturalHeight });
+        image.onerror = () => reject(new Error(`Could not load image: ${url}`));
+        image.src = objectURL ?? url;
+      }
+    );
+  } finally {
+    if (objectURL != null) {
+      URL.revokeObjectURL(objectURL);
+    }
+  }
+}
+
+// An image-to-image provider starts from an image the user picks
+export function MyImageToImageProvider(
+  _config: CommonProviderConfiguration<MyImageToImageInput, ImageOutput>
+): (context: {
+  cesdk: CreativeEditorSDK;
+}) => Promise<Provider<'image', MyImageToImageInput, ImageOutput>> {
+  const providerId = 'my-image-to-image-provider';
+
+  return async ({ cesdk }) => {
+    const provider: Provider<'image', MyImageToImageInput, ImageOutput> = {
+      id: providerId,
+      kind: 'image',
+
+      input: {
+        panel: {
+          type: 'schema',
+          document: openApiDocument,
+          inputReference: '#/components/schemas/ImageToImageInput',
+          userFlow: 'placeholder',
+          orderExtensionKeyword: 'x-order-properties',
+
+          // Render `prompt` with a row for the source image, and `image_url`
+          // from that row. Custom renderers take precedence over the schema.
+          renderCustomProperty: CommonProperties.ImageUrl(providerId, {
+            cesdk
+          }),
+
+          // Derive the block size from the selected image
+          getBlockInput: async (input) => {
+            // The selector reports no image as an empty string, not undefined.
+            const imageUrl = input.image_url;
+            if (!imageUrl) {
+              throw new Error('Select a source image before generating.');
+            }
+
+            const { width, height } = await getImageDimensions(imageUrl, cesdk);
+            return { image: { width, height, label: `AI: ${input.prompt}` } };
+          }
+        }
+      },
+
+      output: {
+        abortable: true,
+        history: '@imgly/indexedDB',
+        generate: async (input, { abortSignal }) => {
+          const data = await mockGenerateImage(input, abortSignal);
+          return { kind: 'image', url: data.imageUrl };
+        }
+      }
+    };
+
+    return provider;
+  };
+}
+
 class Example implements EditorPlugin {
   name = packageJson.name;
   version = packageJson.version;
@@ -283,7 +390,7 @@ class Example implements EditorPlugin {
       }
     });
 
-    // Add your image generation provider
+    // Add your image generation providers
     await cesdk.addPlugin(
       ImageGeneration({
         providers: {
@@ -293,6 +400,9 @@ class Example implements EditorPlugin {
               'x-client-version': '1.0.0',
               'x-request-source': 'cesdk-tutorial'
             }
+          }),
+          image2image: MyImageToImageProvider({
+            proxyUrl: 'https://your-proxy-server.com/api/proxy'
           })
         },
         debug: true

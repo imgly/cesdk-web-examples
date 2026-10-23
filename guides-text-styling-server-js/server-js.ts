@@ -147,6 +147,11 @@ try {
     engine.block.toggleItalicFont(text, 0, 2);
   }
 
+  // Raise the last character, the exclamation mark, 100 design units
+  const length = engine.block.getString(text, "text/text").length;
+  engine.block.setTextBaselineShift(text, 100, length - 1, length);
+  console.log(engine.block.getTextBaselineShifts(text)); // [0, 100]
+
   // Zoom to show the text block
   engine.scene.zoomToBlock(text, { padding: 40 });
 

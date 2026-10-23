@@ -116,6 +116,25 @@ class BlurPlugin implements EditorPlugin {
     const nowEnabled = engine.block.isBlurEnabled(imageBlock);
     console.log('Blur now enabled:', nowEnabled);
     engine.block.setBlurEnabled(imageBlock, true);
+
+    // A uniform blur in Block mode blurs the whole block, its stroke included,
+    // and spreads past its frame
+    const badge = engine.block.create('graphic');
+    engine.block.setShape(badge, engine.block.createShape('rect'));
+    engine.block.setFill(badge, engine.block.createFill('color'));
+    engine.block.setWidth(badge, 160);
+    engine.block.setHeight(badge, 100);
+    engine.block.setPositionX(badge, 40);
+    engine.block.setPositionY(badge, 40);
+    engine.block.setStrokeEnabled(badge, true);
+    engine.block.setStrokeWidth(badge, 8);
+    engine.block.appendChild(page, badge);
+
+    const badgeBlur = engine.block.createBlur('//ly.img.ubq/blur/uniform');
+    engine.block.setFloat(badgeBlur, 'blur/uniform/intensity', 0.3);
+    engine.block.setEnum(badgeBlur, 'blur/uniform/mode', 'Block');
+    engine.block.setBlur(badge, badgeBlur);
+    engine.block.setBlurEnabled(badge, true);
   }
 }
 

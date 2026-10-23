@@ -10,7 +10,7 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.84.0"
+    "@cesdk/cesdk-js": "^1.85.0-rc.1"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.52.0",

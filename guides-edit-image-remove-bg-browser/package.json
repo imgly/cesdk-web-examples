@@ -9,9 +9,9 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.84.0",
-    "@cesdk/engine": "^1.84.0",
-    "@imgly/plugin-background-removal-web": "^1.84.0",
+    "@cesdk/cesdk-js": "^1.85.0-rc.1",
+    "@cesdk/engine": "^1.85.0-rc.1",
+    "@imgly/plugin-background-removal-web": "^1.85.0-rc.1",
     "onnxruntime-web": "1.21.0"
   },
   "devDependencies": {

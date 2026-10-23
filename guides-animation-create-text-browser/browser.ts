@@ -101,7 +101,10 @@ class Example implements EditorPlugin {
 
     // Set white background color for the page
     // First check if page supports fill, if not or doesn't have one, create one
-    if (!engine.block.supportsFill(page) || !engine.block.getFill(page)) {
+    if (
+      !engine.block.supportsFill(page) ||
+      !engine.block.isValid(engine.block.getFill(page))
+    ) {
       const fill = engine.block.createFill('color');
       engine.block.setFill(page, fill);
     }
