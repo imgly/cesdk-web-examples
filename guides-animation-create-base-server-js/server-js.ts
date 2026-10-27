@@ -182,7 +182,7 @@ async function main() {
     );
 
     // Replace in animation (destroy old one first to avoid memory leaks)
-    if (currentIn !== 0) {
+    if (engine.block.isValid(currentIn)) {
       engine.block.destroy(currentIn);
     }
     const newInAnimation = engine.block.createAnimation('wipe');

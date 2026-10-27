@@ -164,6 +164,11 @@ async function main(): Promise<void> {
     const blendMode = engine.block.getEnum(graphic, 'blend/mode');
     console.log('Graphic blend mode:', blendMode);
 
+    // Vec2 properties hold two coordinates, such as the position of a block
+    engine.block.setVec2(graphic, 'position', { x: 200, y: 100 });
+    const position = engine.block.getVec2(graphic, 'position');
+    console.log('Graphic position:', position.x, position.y); // 200 100
+
     // Each block has a stable UUID across save/load cycles
     const graphicUUID = engine.block.getUUID(graphic);
     console.log('Graphic UUID:', graphicUUID);
@@ -207,6 +212,14 @@ async function main(): Promise<void> {
     // Query block state - indicates loading status
     const graphicState = engine.block.getState(graphic);
     console.log('Graphic state:', graphicState.type); // 'Ready', 'Pending', or 'Error'
+
+    // An error state carries the engine error behind it when the engine knows it
+    if (graphicState.type === 'Error' && graphicState.engineError) {
+      console.log(
+        graphicState.engineError.code,
+        graphicState.engineError.message
+      );
+    }
 
     // Save blocks to a string for persistence
     // Include 'bundle' scheme to allow serialization of blocks with bundled fonts

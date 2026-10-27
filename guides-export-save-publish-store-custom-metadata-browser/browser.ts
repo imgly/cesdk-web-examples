@@ -86,11 +86,32 @@ class Example implements EditorPlugin {
     engine.block.setPositionX(imageBlock, 200);
     engine.block.setPositionY(imageBlock, 150);
 
+    // Create a text block below the image to display the metadata on the canvas
+    const metadataDisplay = engine.block.create('text');
+    engine.block.appendChild(page, metadataDisplay);
+    engine.block.setPositionX(metadataDisplay, 40);
+    engine.block.setPositionY(metadataDisplay, 470);
+    engine.block.setWidthMode(metadataDisplay, 'Absolute');
+    engine.block.setWidth(metadataDisplay, 720);
+    engine.block.setHeightMode(metadataDisplay, 'Auto');
+    engine.block.setFloat(metadataDisplay, 'text/fontSize', 18);
+
+    // Read the metadata back and render it into the text block
+    const showMetadata = () => {
+      const lines = ['Metadata on the image block:'];
+      for (const key of engine.block.findAllMetadata(imageBlock)) {
+        lines.push(`${key}: ${engine.block.getMetadata(imageBlock, key)}`);
+      }
+      engine.block.replaceText(metadataDisplay, lines.join('\n'));
+    };
+
     // Set metadata key-value pairs on the block
     engine.block.setMetadata(imageBlock, 'externalId', 'asset-12345');
     engine.block.setMetadata(imageBlock, 'source', 'user-upload');
     engine.block.setMetadata(imageBlock, 'uploadedBy', 'user@example.com');
-    console.log('Set metadata: externalId, source, uploadedBy');
+
+    // Refresh the on-canvas display with the current metadata
+    showMetadata();
 
     // Retrieve a metadata value by key
     if (engine.block.hasMetadata(imageBlock, 'externalId')) {
@@ -128,6 +149,9 @@ class Example implements EditorPlugin {
     const parsedInfo = JSON.parse(retrievedJson);
     console.log('Parsed generation info:', parsedInfo);
 
+    // Refresh again: the serialized JSON is now one of the entries
+    showMetadata();
+
     // Remove a metadata key
     engine.block.removeMetadata(imageBlock, 'uploadedBy');
     console.log('Removed metadata key: uploadedBy');
@@ -140,11 +164,14 @@ class Example implements EditorPlugin {
     const remainingKeys = engine.block.findAllMetadata(imageBlock);
     console.log('Remaining metadata keys:', remainingKeys);
 
+    // Refresh a final time: uploadedBy is gone from the canvas
+    showMetadata();
+
     // Select the image block to show it in focus
     engine.block.select(imageBlock);
 
     console.log(
-      'Metadata guide initialized. Check the console for metadata operations.'
+      'Metadata guide initialized. The canvas shows the block metadata.'
     );
   }
 }

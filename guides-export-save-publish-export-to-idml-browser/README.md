@@ -6,7 +6,7 @@ Open the **Export** dropdown and choose **IDML (InDesign)** or **PSD (Photoshop)
 
 This example uses `@imgly/idml-exporter`, which is released independently of CE.SDK. Its minimum peer version is an API compatibility requirement; export quality also depends on the installed CE.SDK runtime and the design's content.
 
-In the monorepo, run this example through its Nx `dev` target after the SDK artifacts are available. The exporter is pinned to its independent npm release 0.1.0. The distributed example uses `npm install` and `npm run dev`. To use a license, copy `.env.example` to `.env` and uncomment the license line in `index.ts`.
+In the monorepo, run this example through its Nx `dev` target after the SDK and exporter artifacts are available. The distributed example uses `npm install` and `npm run dev`. To use a license, copy `.env.example` to `.env` and uncomment the license line in `index.ts`.
 
 This example uses the published 0.1.0 exporter. Representative validation covered SDK 1.83, CoDesign, and opening, editing, saving, and reopening in Adobe.
 

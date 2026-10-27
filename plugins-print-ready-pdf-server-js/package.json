@@ -9,7 +9,7 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/node": "^1.84.0",
+    "@cesdk/node": "^1.85.0",
     "@imgly/pdfx-exporter": "^0.1.0",
     "dotenv": "^16.0.0"
   },

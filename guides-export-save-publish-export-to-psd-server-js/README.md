@@ -6,6 +6,6 @@ The generated files are `page-1.psd`, `page-2.psd`, and so on, plus `page-1-sour
 
 Supported layers and text remain editable. Some effects and text styles, including warped text, need raster fallback. Available fonts and the installed CE.SDK runtime affect the result. The exporter package is released independently of CE.SDK; its minimum peer version is an API compatibility requirement.
 
-In the monorepo, run this example through its Nx `dev` target after the SDK artifacts are available. The exporter is pinned to its independent npm release 0.1.0. The distributed example uses `npm install` and `npm run dev`. To use a license, copy `.env.example` to `.env` and uncomment the license line in `server-js.ts`.
+In the monorepo, run this example through its Nx `dev` target after the SDK and exporter artifacts are available. The distributed example uses `npm install` and `npm run dev`. To use a license, copy `.env.example` to `.env` and uncomment the license line in `server-js.ts`.
 
 This example uses the published 0.1.0 exporter. Representative validation covered SDK 1.83, CoDesign, and opening, editing, saving, and reopening in Adobe.

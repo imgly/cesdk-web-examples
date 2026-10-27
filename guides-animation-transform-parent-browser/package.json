@@ -1,0 +1,20 @@
+{
+  "name": "guides-animation-transform-parent-browser",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check:syntax": "tsc --project tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "^1.85.0",
+    "@cesdk/engine": "^1.85.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^6.0.3"
+  }
+}

@@ -92,6 +92,18 @@ class Example implements EditorPlugin {
     console.log('Scene layout:', layout);
 
 
+    // The preview motion blur and video exports without a framerate option use this rate
+    const sceneBlock = engine.scene.get()!;
+    engine.block.setFloat(sceneBlock, 'scene/frameRate', 25);
+
+    // Markers name points or spans on the scene timeline
+    engine.scene.addMarker('intro', 0, 2.5);
+    engine.scene.addMarker('beat', 4);
+    engine.scene.removeMarker(1);
+    // eslint-disable-next-line no-console
+    console.log('Markers:', engine.scene.getMarkers());
+    // [{ name: 'intro', time: 0, duration: 2.5 }]
+
     // Access pages within the scene
     const pages = engine.scene.getPages();
     // eslint-disable-next-line no-console

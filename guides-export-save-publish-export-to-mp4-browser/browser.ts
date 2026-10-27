@@ -110,6 +110,8 @@ class Example implements EditorPlugin {
                 const blob = await engine.block.exportVideo(page, {
                   mimeType: 'video/mp4',
                   videoBitrate: 'Auto',
+                  // Override current playback with a cover from the exported video start.
+                  coverTimeOffset: 0,
                   onProgress: (_, encoded, total) => {
                     dialog.updateProgress({ value: encoded, max: total });
                   }

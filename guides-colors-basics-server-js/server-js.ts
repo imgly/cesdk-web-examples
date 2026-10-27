@@ -1,5 +1,5 @@
-import CreativeEngine from '@cesdk/node';
-import { writeFileSync, mkdirSync, existsSync } from 'fs';
+import CreativeEngine, { ColorRenderingIntent } from '@cesdk/node';
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { config } from 'dotenv';
 
 // Load environment variables
@@ -26,9 +26,6 @@ async function main() {
     const availableWidth = pageWidth - 2 * margin - 2 * spacing;
     const blockWidth = availableWidth / 3;
     const blockHeight = pageHeight - 2 * margin;
-
-    // Define a spot color with RGB approximation for screen preview
-    engine.editor.setSpotColorRGB('MyBrand Red', 0.95, 0.25, 0.21);
 
     // Create three blocks to demonstrate each color space
 
@@ -58,7 +55,7 @@ async function main() {
       engine.block.createShape('//ly.img.ubq/shape/rect')
     );
     const cmykFill = engine.block.createFill('//ly.img.ubq/fill/color');
-    // Set fill color using CMYKColor object (values 0.0-1.0, tint controls opacity)
+    // Set fill color using CMYKColor object (values 0.0-1.0, tint scales ink)
     engine.block.setColor(cmykFill, 'fill/color/value', {
       c: 0.0,
       m: 0.8,
@@ -70,6 +67,9 @@ async function main() {
     engine.block.setWidth(cmykBlock, blockWidth);
     engine.block.setHeight(cmykBlock, blockHeight);
     engine.block.appendChild(page, cmykBlock);
+
+    // Define a spot color with RGB approximation for screen preview
+    engine.editor.setSpotColorRGB('MyBrand Red', 0.95, 0.25, 0.21);
 
     // Block 3: Spot color (for specialized printing)
     const spotBlock = engine.block.create('//ly.img.ubq/graphic');
@@ -136,16 +136,73 @@ async function main() {
     console.log('CMYK Color:', cmykColor);
     console.log('Spot Color:', spotColor);
 
-    // Export the scene to a PNG file
-    const outputDir = './output';
-    if (!existsSync(outputDir)) {
-      mkdirSync(outputDir, { recursive: true });
-    }
+    const swatches = [
+      { label: 'sRGB', color: srgbColor },
+      { label: 'CMYK', color: cmykColor },
+      { label: 'Spot Color', color: spotColor }
+    ];
 
-    const blob = await engine.block.export(page, { mimeType: 'image/png' });
-    const buffer = Buffer.from(await blob.arrayBuffer());
-    writeFileSync(`${outputDir}/color-basics.png`, buffer);
-    console.log('Exported to output/color-basics.png');
+    await engine.editor.loadCMYKProfile();
+
+    const logConversions = (step: string) => {
+      const values = swatches.map(({ label, color }) => {
+        const { r, g, b } = engine.editor.convertColorToColorSpace(
+          color,
+          'sRGB'
+        );
+        return { label, r: +r.toFixed(3), g: +g.toFixed(3), b: +b.toFixed(3) };
+      });
+      console.log(step);
+      console.table(values);
+    };
+
+    logConversions('Bundled default profile');
+
+    const profileUrl = new URL(
+      './assets/ISOcoated_v2_eci.icc',
+      import.meta.url
+    );
+    await engine.scene.setCMYKProfile(profileUrl.href);
+    const { contentHash } = engine.scene.getCMYKProfileInfo();
+    console.log('Document profile hash:', contentHash);
+    logConversions('ISOcoated_v2_eci.icc');
+
+    const profileBytes = new Uint8Array(readFileSync(profileUrl));
+    engine.scene.setCMYKProfileFromData(profileBytes);
+    console.log(
+      'Same profile:',
+      engine.scene.getCMYKProfileInfo().contentHash === contentHash
+    );
+
+    engine.scene.setColorRenderingIntent(ColorRenderingIntent.Perceptual);
+    engine.scene.setBlackPointCompensationEnabled(false);
+    logConversions('Perceptual intent, black point compensation off');
+
+    const scene = engine.scene.get()!;
+    const mode = engine.block.getEnum(scene, 'scene/colorConversionMode');
+    console.log('Color conversion mode:', mode);
+
+    engine.block.setEnum(scene, 'scene/colorConversionMode', 'Legacy');
+    logConversions('Legacy mode');
+    engine.block.setEnum(scene, 'scene/colorConversionMode', 'Managed');
+
+    mkdirSync('output', { recursive: true });
+
+    const png = await engine.block.export(page, { mimeType: 'image/png' });
+    writeFileSync(
+      'output/color-basics.png',
+      Buffer.from(await png.arrayBuffer())
+    );
+
+    const pdf = await engine.block.export(page, {
+      mimeType: 'application/pdf',
+      exportPdfWithDeviceCMYK: true
+    });
+    writeFileSync(
+      'output/color-basics.pdf',
+      Buffer.from(await pdf.arrayBuffer())
+    );
+    console.log('Exported output/color-basics.png and .pdf');
 
     console.log('Color Basics example completed successfully');
   } finally {

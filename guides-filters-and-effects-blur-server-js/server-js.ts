@@ -82,6 +82,13 @@ try {
   engine.block.setBlur(uniformBlock, uniformBlur);
   engine.block.setBlurEnabled(uniformBlock, true);
 
+  // Blur the whole block, its stroke included. The blur spreads past the frame.
+  engine.block.setStrokeEnabled(uniformBlock, true);
+  engine.block.setStrokeWidth(uniformBlock, 8);
+  engine.block.setStrokeColor(uniformBlock, { r: 1, g: 1, b: 1, a: 1 });
+  engine.block.setEnum(uniformBlur, 'blur/uniform/mode', 'Block');
+  console.log(engine.block.getEnum(uniformBlur, 'blur/uniform/mode')); // 'Block'
+
   // Create a linear blur for gradient effect
   const linearBlock = await engine.block.addImage(imageUri, {
     size: { width: 300, height: 225 }

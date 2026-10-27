@@ -20,7 +20,10 @@ async function main() {
     engine.block.setDuration(page, 10);
 
     // Set white background
-    if (!engine.block.supportsFill(page) || !engine.block.getFill(page)) {
+    if (
+      !engine.block.supportsFill(page) ||
+      !engine.block.isValid(engine.block.getFill(page))
+    ) {
       const fill = engine.block.createFill('color');
       engine.block.setFill(page, fill);
     }
@@ -76,11 +79,11 @@ async function main() {
     // Block 1: Slide entrance animation with direction
     const block1 = createImageBlock(0, imageUrls[0]);
 
-    // Create a slide animation that enters from the left
+    // Create a slide animation that enters from the right
     const slideAnimation = engine.block.createAnimation('slide');
     engine.block.setInAnimation(block1, slideAnimation);
     engine.block.setDuration(slideAnimation, 1.0);
-    // Direction in radians: 0=right, PI/2=bottom, PI=left, 3*PI/2=top
+    // Direction of travel in radians: 0=right, PI/2=down, PI=left, 3*PI/2=up
     engine.block.setFloat(slideAnimation, 'animation/slide/direction', Math.PI);
     engine.block.setEnum(slideAnimation, 'animationEasing', 'EaseOut');
 

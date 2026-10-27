@@ -4,6 +4,7 @@
     "title": "My Image Generator API",
     "version": "1.0.0"
   },
+  "paths": {},
   "components": {
     "schemas": {
       "GenerationInput": {
@@ -47,6 +48,23 @@
           }
         },
         "x-order-properties": ["prompt", "width", "height", "style"]
+      },
+      "ImageToImageInput": {
+        "type": "object",
+        "required": ["image_url", "prompt"],
+        "properties": {
+          "image_url": {
+            "type": "string",
+            "title": "Source Image",
+            "description": "The image the generation starts from"
+          },
+          "prompt": {
+            "type": "string",
+            "title": "Description",
+            "description": "Describe how the source image should change"
+          }
+        },
+        "x-order-properties": ["image_url", "prompt"]
       }
     }
   }

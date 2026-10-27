@@ -14,7 +14,8 @@ config();
  * - Setting stroke color and width
  * - Applying stroke styles (solid, dashed, dotted)
  * - Controlling stroke position relative to block edges
- * - Adjusting stroke corner geometry
+ * - Adjusting stroke corner geometry and the miter limit
+ * - Painting a stroke with a gradient fill
  * - Exporting the result
  */
 async function main() {
@@ -151,6 +152,34 @@ async function main() {
     engine.block.setStrokeStyle(graphic3, 'Solid');
     engine.block.setStrokePosition(graphic3, 'Center');
     engine.block.setStrokeCornerGeometry(graphic3, 'Bevel');
+
+    // Create a star with a stroke to show sharp corners and a gradient stroke
+    const star = engine.block.create('graphic');
+    engine.block.setShape(star, engine.block.createShape('star'));
+    engine.block.setWidth(star, 150);
+    engine.block.setHeight(star, 150);
+    engine.block.setPositionX(star, 325);
+    engine.block.setPositionY(star, 430);
+    engine.block.appendChild(page, star);
+    engine.block.setFillEnabled(star, false);
+    engine.block.setStrokeEnabled(star, true);
+    engine.block.setStrokeWidth(star, 10);
+
+    // Bevel each corner whose miter is longer than 1.5 times the stroke width
+    engine.block.setStrokeCornerGeometry(star, 'Miter');
+    engine.block.setFloat(star, 'stroke/miterLimit', 1.5);
+    const miterLimit = engine.block.getFloat(star, 'stroke/miterLimit');
+    console.log('Stroke miter limit:', miterLimit);
+
+    // Paint the stroke with a linear gradient instead of the stroke color
+    const strokeGradient = engine.block.createFill('gradient/linear');
+    engine.block.setGradientColorStops(strokeGradient, 'fill/gradient/colors', [
+      { color: { r: 0.2, g: 0.4, b: 0.9, a: 1.0 }, stop: 0 },
+      { color: { r: 0.9, g: 0.2, b: 0.5, a: 1.0 }, stop: 1 }
+    ]);
+    engine.block.setStrokeFill(star, strokeGradient);
+    const strokeFill = engine.block.getStrokeFill(star);
+    console.log('Stroke fill:', strokeFill);
 
     // Export the result to a file
     const outputDir = './output';

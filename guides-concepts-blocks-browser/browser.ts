@@ -217,6 +217,11 @@ class Example implements EditorPlugin {
     const blendMode = engine.block.getEnum(graphic, 'blend/mode');
     console.log('Graphic blend mode:', blendMode);
 
+    // Vec2 properties hold two coordinates, such as the position of a block
+    engine.block.setVec2(graphic, 'position', { x: 200, y: 100 });
+    const position = engine.block.getVec2(graphic, 'position');
+    console.log('Graphic position:', position.x, position.y); // 200 100
+
     // Each block has a stable UUID across save/load cycles
     const graphicUUID = engine.block.getUUID(graphic);
     console.log('Graphic UUID:', graphicUUID);
@@ -270,6 +275,14 @@ class Example implements EditorPlugin {
     // Query block state - indicates loading status
     const graphicState = engine.block.getState(graphic);
     console.log('Graphic state:', graphicState.type); // 'Ready', 'Pending', or 'Error'
+
+    // An error state carries the engine error behind it when the engine knows it
+    if (graphicState.type === 'Error' && graphicState.engineError) {
+      console.log(
+        graphicState.engineError.code,
+        graphicState.engineError.message
+      );
+    }
 
     // Subscribe to state changes (useful for loading indicators)
     const unsubscribeState = engine.block.onStateChanged(

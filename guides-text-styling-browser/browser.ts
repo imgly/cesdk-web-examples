@@ -48,7 +48,7 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new ColorPaletteAssetSource());
     await cesdk.addPlugin(new CropPresetsAssetSource());
     await cesdk.addPlugin(
-      new UploadAssetSources({ include: ["ly.img.image.upload"] })
+      new UploadAssetSources({ include: ["ly.img.image.upload"] }),
     );
     await cesdk.addPlugin(
       new DemoAssetSources({
@@ -59,7 +59,7 @@ class Example implements EditorPlugin {
           "ly.img.templates.social.*",
           "ly.img.image.*",
         ],
-      })
+      }),
     );
     await cesdk.addPlugin(new EffectsAssetSource());
     await cesdk.addPlugin(new FiltersAssetSource());
@@ -195,6 +195,11 @@ class Example implements EditorPlugin {
     if (engine.block.canToggleItalicFont(text, 0, 2)) {
       engine.block.toggleItalicFont(text, 0, 2);
     }
+
+    // Raise the last character, the exclamation mark, 100 design units
+    const length = engine.block.getString(text, "text/text").length;
+    engine.block.setTextBaselineShift(text, 100, length - 1, length);
+    console.log(engine.block.getTextBaselineShifts(text)); // [0, 100]
 
     // Zoom to show the text block
     engine.scene.zoomToBlock(text, { padding: 40 });

@@ -181,6 +181,32 @@ try {
   engine.block.setFloat(radialCentered, 'fill/gradient/radial/radius', 0.8);
 
   // =============================================================================
+  // Example 5b: Radial Gradient (Focal Point)
+  // =============================================================================
+  const { block: radialFocalBlock, fill: radialFocal } =
+    createShapeWithFill('gradient/radial');
+  engine.block.setGradientColorStops(radialFocal, 'fill/gradient/colors', [
+    { color: { r: 1.0, g: 1.0, b: 1.0, a: 1.0 }, stop: 0 },
+    { color: { r: 0.2, g: 0.4, b: 0.8, a: 1.0 }, stop: 1 }
+  ]);
+  engine.block.setFloat(radialFocal, 'fill/gradient/radial/centerPointX', 0.5);
+  engine.block.setFloat(radialFocal, 'fill/gradient/radial/centerPointY', 0.5);
+  engine.block.setFloat(radialFocal, 'fill/gradient/radial/radius', 0.8);
+
+  // Move the first color stop up and to the left of the center
+  engine.block.setFloat(radialFocal, 'fill/gradient/radial/focalX', -0.2);
+  engine.block.setFloat(radialFocal, 'fill/gradient/radial/focalY', -0.2);
+  const focalX = engine.block.getFloat(
+    radialFocal,
+    'fill/gradient/radial/focalX'
+  );
+  const focalY = engine.block.getFloat(
+    radialFocal,
+    'fill/gradient/radial/focalY'
+  );
+  console.log('Radial focal offset:', { focalX, focalY });
+
+  // =============================================================================
   // Example 6: Radial Gradient (Top-Left Highlight)
   // =============================================================================
   const { block: radialHighlightBlock, fill: radialHighlight } =
@@ -457,7 +483,8 @@ try {
     overlayGradientBlock, // Position 11
     duotoneGradientBlock, // Position 12
     block1, // Position 13 (top half)
-    inspectGradientBlock // Position 14
+    inspectGradientBlock, // Position 14
+    radialFocalBlock // Position 15
   ];
 
   // Calculate grid layout

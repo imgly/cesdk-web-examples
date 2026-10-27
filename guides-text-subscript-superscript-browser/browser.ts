@@ -26,7 +26,7 @@ import packageJson from './package.json';
  * - Applying superscript and subscript to character ranges
  * - Querying the script styles of a range
  * - Reading the script style of each text run
- * - Resetting text to the normal baseline
+ * - Resetting text back to normal
  */
 class Example implements EditorPlugin {
   name = packageJson.name;
@@ -86,14 +86,14 @@ class Example implements EditorPlugin {
     engine.block.setFloat(text, 'text/fontSize', 64);
     engine.block.replaceText(text, '$1999 H2O E=mc2');
 
-    // Raise the cents of the price above the baseline using UTF-16 indices.
+    // Raise the cents of the price above the rest of the line, using UTF-16 indices.
     // Superscript text is scaled down and raised automatically.
     engine.block.setTextScriptStyle(text, 'Superscript', 3, 5);
 
     // Raise the exponent of the formula
     engine.block.setTextScriptStyle(text, 'Superscript', 14, 15);
 
-    // Lower the "2" of the water formula below the baseline
+    // Lower the "2" of the water formula below the rest of the line
     engine.block.setTextScriptStyle(text, 'Subscript', 7, 8);
 
     // Query the unique script styles in a range, in document order
@@ -116,7 +116,7 @@ class Example implements EditorPlugin {
     engine.block.setFloat(text, 'text/subscriptFontScale', 0.65);
     engine.block.setFloat(text, 'text/subscriptVerticalShift', 0.25);
 
-    // Reset a range back to the normal baseline
+    // Reset a range back to regular text
     engine.block.setTextScriptStyle(text, 'Superscript', 0, 1);
     engine.block.setTextScriptStyle(text, 'Normal', 0, 1);
 

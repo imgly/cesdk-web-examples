@@ -9,10 +9,10 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.84.0",
-    "@cesdk/engine": "^1.84.0",
-    "@imgly/idml-importer": "^2.0.0",
-    "@imgly/pdf-importer": "^0.3.0"
+    "@cesdk/cesdk-js": "^1.85.0",
+    "@cesdk/engine": "^1.85.0",
+    "@imgly/idml-importer": "^2.0.1",
+    "@imgly/pdf-importer": "^0.3.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
