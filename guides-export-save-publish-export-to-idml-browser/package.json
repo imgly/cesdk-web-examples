@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.85.0",
-    "@cesdk/engine": "^1.85.0",
+    "@cesdk/cesdk-js": "^1.85.1",
+    "@cesdk/engine": "^1.85.1",
     "@imgly/idml-exporter": "^0.1.0"
   },
   "devDependencies": {

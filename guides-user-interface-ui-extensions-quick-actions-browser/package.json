@@ -9,12 +9,12 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.85.0",
-    "@cesdk/engine": "^1.85.0",
-    "@imgly/plugin-background-removal-web": "^1.85.0",
-    "@imgly/plugin-cutout-library-web": "^1.85.0",
-    "@imgly/plugin-qr-code-web": "^1.85.0",
-    "@imgly/plugin-vectorizer-web": "^1.85.0",
+    "@cesdk/cesdk-js": "^1.85.1",
+    "@cesdk/engine": "^1.85.1",
+    "@imgly/plugin-background-removal-web": "^1.85.1",
+    "@imgly/plugin-cutout-library-web": "^1.85.1",
+    "@imgly/plugin-qr-code-web": "^1.85.1",
+    "@imgly/plugin-vectorizer-web": "^1.85.1",
     "onnxruntime-web": "1.21.0"
   },
   "devDependencies": {

@@ -15,7 +15,7 @@
     "@types/node": "^22.0.0"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.85.0",
-    "@cesdk/engine": "^1.85.0"
+    "@cesdk/cesdk-js": "^1.85.1",
+    "@cesdk/engine": "^1.85.1"
   }
 }

@@ -16,7 +16,7 @@
     "nodejs"
   ],
   "dependencies": {
-    "@cesdk/node": "^1.85.0"
+    "@cesdk/node": "^1.85.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0"

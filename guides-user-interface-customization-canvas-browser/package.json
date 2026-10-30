@@ -9,8 +9,8 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.85.0",
-    "@cesdk/engine": "^1.85.0"
+    "@cesdk/cesdk-js": "^1.85.1",
+    "@cesdk/engine": "^1.85.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
