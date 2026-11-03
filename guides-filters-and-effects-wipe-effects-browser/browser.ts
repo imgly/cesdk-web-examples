@@ -115,7 +115,7 @@ class Example implements EditorPlugin {
 
     // Hide the left half of the block with a soft edge of 40 design units
     const linearWipe = engine.block.createEffect('linear_wipe');
-    engine.block.setFloat(linearWipe, 'effect/linear_wipe/angle', 90);
+    engine.block.setFloat(linearWipe, 'effect/linear_wipe/angle', Math.PI / 2);
     engine.block.setFloat(linearWipe, 'effect/linear_wipe/completion', 0.5);
     engine.block.setFloat(linearWipe, 'effect/linear_wipe/feather', 40);
     engine.block.appendEffect(linearBlock, linearWipe);
@@ -137,7 +137,11 @@ class Example implements EditorPlugin {
     // Diagonal stripes 60 design units wide, each half hidden
     const blinds = engine.block.createEffect('venetian_blinds');
     engine.block.setFloat(blinds, 'effect/venetian_blinds/completion', 0.5);
-    engine.block.setFloat(blinds, 'effect/venetian_blinds/direction', 45);
+    engine.block.setFloat(
+      blinds,
+      'effect/venetian_blinds/direction',
+      Math.PI / 4
+    );
     engine.block.setFloat(blinds, 'effect/venetian_blinds/width', 60);
     engine.block.setFloat(blinds, 'effect/venetian_blinds/feather', 2);
     engine.block.appendEffect(blindsBlock, blinds);
@@ -145,7 +149,7 @@ class Example implements EditorPlugin {
     // Reveal the block from the right during its 2 seconds
     engine.block.setDuration(revealBlock, 2);
     const reveal = engine.block.createEffect('linear_wipe');
-    engine.block.setFloat(reveal, 'effect/linear_wipe/angle', 90);
+    engine.block.setFloat(reveal, 'effect/linear_wipe/angle', Math.PI / 2);
     engine.block.appendEffect(revealBlock, reveal);
 
     // Keyframe times are relative to the block's duration, from 0 to 1

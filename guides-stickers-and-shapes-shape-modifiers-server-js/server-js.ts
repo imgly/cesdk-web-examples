@@ -99,7 +99,7 @@ async function main() {
     // Each copy turns 30 degrees further about the anchor and does not move
     engine.block.setFloat(repeater, 'modifier/repeater/anchorX', 20);
     engine.block.setFloat(repeater, 'modifier/repeater/anchorY', 220);
-    engine.block.setFloat(repeater, 'modifier/repeater/rotation', 30);
+    engine.block.setFloat(repeater, 'modifier/repeater/rotation', Math.PI / 6);
     engine.block.setFloat(repeater, 'modifier/repeater/positionX', 0);
     engine.block.setFloat(repeater, 'modifier/repeater/positionY', 0);
     // The copies fade from full opacity towards 10%
@@ -150,7 +150,7 @@ async function main() {
 
     // Turn the path 45 degrees at the center of the block, less towards the edge
     const twist = engine.block.createModifier('twist');
-    engine.block.setFloat(twist, 'modifier/twist/angle', 45);
+    engine.block.setFloat(twist, 'modifier/twist/angle', Math.PI / 4);
     engine.block.setFloat(twist, 'modifier/twist/centerX', 180);
     engine.block.setFloat(twist, 'modifier/twist/centerY', 180);
     engine.block.appendModifier(flowerShape, twist);

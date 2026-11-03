@@ -64,7 +64,7 @@ async function main() {
       b: 0.1,
       a: 1
     });
-    engine.block.setFloat(sign, 'transform/skew', 20);
+    engine.block.setFloat(sign, 'transform/skew', Math.PI / 9); // 20 degrees
     engine.block.setFloat(sign, 'transform/skewAxis', 0);
 
     // The anchor sits at the bottom center, so the base of the blade stays put
@@ -77,9 +77,9 @@ async function main() {
     engine.block.setFloat(blade, 'transform/anchor/x', 20);
     engine.block.setFloat(blade, 'transform/anchor/y', 300);
     engine.block.setKeyframes(blade, 'transform/skew', [
-      { time: 0, value: { type: 'Float', value: -20 } },
-      { time: 0.5, value: { type: 'Float', value: 20 } },
-      { time: 1, value: { type: 'Float', value: -20 } }
+      { time: 0, value: { type: 'Float', value: -Math.PI / 9 } },
+      { time: 0.5, value: { type: 'Float', value: Math.PI / 9 } },
+      { time: 1, value: { type: 'Float', value: -Math.PI / 9 } }
     ]);
 
     const arrow = createRect(engine, page, 300, 800, 160, 40, {

@@ -63,7 +63,7 @@ async function main() {
     engine.block.setFloat(diamond, 'shape/anchor/y', 20);
     engine.block.setFloat(diamond, 'shape/position/x', 50);
     engine.block.setFloat(diamond, 'shape/position/y', 50);
-    engine.block.setFloat(diamond, 'shape/rotation', 45);
+    engine.block.setFloat(diamond, 'shape/rotation', Math.PI / 4);
 
     // Cut every later subshape out of the base circle
     engine.block.setEnum(compound, 'shape/compound/mode', 'Subtract');

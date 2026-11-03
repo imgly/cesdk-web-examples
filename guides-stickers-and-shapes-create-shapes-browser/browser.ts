@@ -235,8 +235,8 @@ class Example implements EditorPlugin {
     engine.block.setFloat(roundStarShape, 'shape/star/innerRadius', 0.45);
     engine.block.setFloat(roundStarShape, 'shape/star/outerRoundness', 0.3);
     engine.block.setFloat(roundStarShape, 'shape/star/innerRoundness', 0.2);
-    // Clockwise, in degrees. At 36 degrees a five-point star points down.
-    engine.block.setFloat(roundStarShape, 'shape/star/rotation', 36);
+    // Clockwise, in radians. At π / 5 (36°) a five-point star points down.
+    engine.block.setFloat(roundStarShape, 'shape/star/rotation', Math.PI / 5);
 
     // innerDiameter reports the ratio of the inner to the outer radius: 0.5
     const innerDiameter = engine.block.getFloat(

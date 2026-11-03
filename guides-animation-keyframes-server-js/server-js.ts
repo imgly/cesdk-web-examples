@@ -168,7 +168,7 @@ async function main() {
     engine.block.setDuration(bar, 5);
     engine.block.setFloat(bar, 'transform/anchor/x', 160);
     engine.block.setFloat(bar, 'transform/anchor/y', 40);
-    engine.block.setFloat(bar, 'transform/skew', 20);
+    engine.block.setFloat(bar, 'transform/skew', Math.PI / 9);
     engine.block.setKeyframes(bar, 'rotation', [
       { time: 0, value: { type: 'Float', value: 0 } },
       { time: 1, value: { type: 'Float', value: Math.PI } }
