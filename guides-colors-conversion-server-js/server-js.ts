@@ -121,7 +121,7 @@ async function main() {
     const spotColor = engine.block.getColor(spotFill, 'fill/color/value');
 
     // Convert CMYK to sRGB
-    await engine.editor.loadCMYKProfile();
+    await engine.editor.loadColorProfiles();
     const cmykToRgba = engine.editor.convertColorToColorSpace(
       cmykColor,
       'sRGB'

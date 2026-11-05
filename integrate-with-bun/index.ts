@@ -1,8 +1,6 @@
 import CreativeEngine from '@cesdk/node';
 import { writeFile } from 'fs/promises';
 
-const { MimeType } = CreativeEngine as any;
-
 // Configuration for the engine
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY',
@@ -23,7 +21,7 @@ CreativeEngine.init(config).then(async (engine) => {
     const [page] = engine.block.findByType('page');
 
     // Export the scene as a PNG image
-    const blob = await engine.block.export(page, MimeType.Png);
+    const blob = await engine.block.export(page, { mimeType: 'image/png' });
     const arrayBuffer = await blob.arrayBuffer();
 
     // Save the exported image to the file system

@@ -3,7 +3,7 @@
     "target": "ES2020",
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "types": ["vite/client"],
+    "types": ["node"],
     "moduleResolution": "bundler",
     "skipLibCheck": true,
     "noImplicitAny": false,
@@ -13,8 +13,10 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": true
   },
-  "include": ["*.ts"],
+  "include": ["*.js"],
   "exclude": ["*.mjs", "node_modules", "dist"]
 }

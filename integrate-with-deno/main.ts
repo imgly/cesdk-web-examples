@@ -3,9 +3,6 @@ import { Buffer } from 'node:buffer';
 import { writeFile } from 'node:fs/promises';
 import CreativeEngine from 'npm:@cesdk/node';
 
-// Fix for TypeScript type resolution in Deno
-const { MimeType } = CreativeEngine as any;
-
 // CE.SDK configuration
 const config = {
   // license: 'YOUR_CESDK_LICENSE_KEY',
@@ -22,7 +19,7 @@ CreativeEngine.init(config).then(async (engine) => {
 
     const [page] = engine.block.findByType('page');
 
-    const blob = await engine.block.export(page, MimeType.Png);
+    const blob = await engine.block.export(page, { mimeType: 'image/png' });
     const arrayBuffer = await blob.arrayBuffer();
 
     await writeFile('./example-output.png', Buffer.from(arrayBuffer));

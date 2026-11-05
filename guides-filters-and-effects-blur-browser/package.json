@@ -12,10 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.85.2"
+    "@cesdk/cesdk-js": "^1.86.0-rc.0"
   },
   "devDependencies": {
     "typescript": "^5.3.3",
-    "vite": "~5.4.11"
+    "vite": "^8.3.4"
   }
 }

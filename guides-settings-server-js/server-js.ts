@@ -56,6 +56,9 @@ async function main() {
     console.log(engine.editor.getSetting('features/fontLineGapEnabled')); // true
     engine.editor.setSetting('features/fontLineGapEnabled', false);
 
+    // Clicks, taps, hover and marquee selection pass over a block with a locked transform.
+    engine.editor.setSetting('features/transformLockedClickThroughEnabled', true);
+
     const unsubscribeSettings = engine.editor.onSettingsChanged(() => {
       console.log('Editor settings have changed');
     });

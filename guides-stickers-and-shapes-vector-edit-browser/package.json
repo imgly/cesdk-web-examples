@@ -10,12 +10,12 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.85.2",
-    "@cesdk/engine": "^1.85.2"
+    "@cesdk/cesdk-js": "^1.86.0-rc.0",
+    "@cesdk/engine": "^1.86.0-rc.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
-    "vite": "^6.0.3",
+    "vite": "^8.3.4",
     "@types/node": "^22.0.0"
   }
 }

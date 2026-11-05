@@ -6,8 +6,7 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  ignorePatterns: ['vite.config.js'],
-  plugins: ['@typescript-eslint', 'deprecation', 'jsdoc'],
+    plugins: ['@typescript-eslint', 'deprecation', 'jsdoc'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',

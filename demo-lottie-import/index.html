@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lottie Animation Import — CE.SDK Showcase</title>
+  </head>
+  <body>
+    <main class="workspace">
+      <aside class="import-panel" aria-label="Lottie import controls">
+        <header>
+          <p class="eyebrow">CE.SDK / Animation</p>
+          <h1>Make your<br />animation editable.</h1>
+          <p class="intro">
+            Bring a Lottie animation into the editor. Select its layers, change
+            their appearance, and play the result in the timeline.
+          </p>
+          <span class="experimental">Experimental</span>
+        </header>
+
+        <section aria-labelledby="upload-heading">
+          <h2 id="upload-heading">Import your animation</h2>
+          <div id="drop-zone" class="drop-zone">
+            <span class="upload-icon" aria-hidden="true">↑</span>
+            <p>Drop a Lottie file here</p>
+            <span class="muted">.json or .lottie</span>
+            <button id="upload" class="primary" type="button" disabled>
+              Choose a file
+            </button>
+            <input id="file-input" type="file" accept=".json,.lottie" hidden />
+          </div>
+        </section>
+
+        <section aria-labelledby="samples-heading">
+          <h2 id="samples-heading">Or try a sample</h2>
+          <div class="samples">
+            <button
+              class="sample"
+              type="button"
+              data-sample="badge.json"
+              disabled
+            >
+              <span class="sample-mark" aria-hidden="true">✳</span>
+              <span
+                ><strong>Animated badge</strong><small>Lottie JSON</small></span
+              >
+              <span aria-hidden="true">↗</span>
+            </button>
+            <button
+              class="sample"
+              type="button"
+              data-sample="badge.lottie"
+              disabled
+            >
+              <span class="sample-mark archive" aria-hidden="true">◈</span>
+              <span
+                ><strong>Packaged badge</strong
+                ><small>dotLottie archive</small></span
+              >
+              <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </section>
+
+        <section
+          id="status-region"
+          class="status-region"
+          aria-label="Import status"
+          aria-busy="true"
+          data-state="importing"
+        >
+          <span class="status-indicator" aria-hidden="true"></span>
+          <p id="status" role="status" aria-live="polite">
+            Opening the editor…
+          </p>
+        </section>
+
+        <section
+          id="report"
+          class="report"
+          aria-labelledby="report-heading"
+          hidden
+        >
+          <h2 id="report-heading">About this import</h2>
+          <p id="fallback-summary"></p>
+          <ul id="fallback-layers"></ul>
+          <p id="archive-note" class="muted"></p>
+        </section>
+
+        <footer>
+          <p>
+            Each import adds one group. Double-click to select a layer, or use
+            the timeline. Undo removes the import.
+          </p>
+          <a
+            href="https://img.ly/docs/cesdk/js/import-media/lottie-6bb9ab/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Read the integration guide <span aria-hidden="true">↗</span></a
+          >
+        </footer>
+      </aside>
+      <section class="editor-pane" aria-label="Animation editor">
+        <div id="cesdk-container"></div>
+      </section>
+    </main>
+    <script type="module" src="/src/index.ts"></script>
+  </body>
+</html>

@@ -158,6 +158,18 @@ class Example implements EditorPlugin {
                 `✓ WebP thumbnail: ${(blob.size / 1024).toFixed(1)} KB`
               );
             }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
+            key: 'export-preview',
+            label: 'Preview',
+            icon: '@imgly/Save',
+            onClick: async () => {
+              const blob = await engine.block.exportPreview(page);
+
+              await cesdk.utils.downloadFile(blob, 'image/webp');
+              console.log(`✓ Preview: ${(blob.size / 1024).toFixed(1)} KB`);
+            }
           }
         ]
       }

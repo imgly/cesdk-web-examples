@@ -1,6 +1,7 @@
 {
   "name": "guides-open-the-editor-import-design-from-archive-browser",
   "version": "1.0.0",
+  "type": "module",
   "description": "CE.SDK guide: Import design from archive",
   "private": true,
   "scripts": {
@@ -10,12 +11,12 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.85.2",
-    "@cesdk/engine": "^1.85.2"
+    "@cesdk/cesdk-js": "^1.86.0-rc.0",
+    "@cesdk/engine": "^1.86.0-rc.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "typescript": "^5.0.0",
-    "vite": "^6.0.3"
+    "vite": "^8.3.4"
   }
 }

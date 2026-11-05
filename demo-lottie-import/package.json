@@ -1,0 +1,23 @@
+{
+  "name": "demo-lottie-import",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Import Lottie and dotLottie animations as editable CE.SDK blocks",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check:syntax": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cesdk/cesdk-js": "^1.86.0-rc.0",
+    "@cesdk/engine": "^1.86.0-rc.0",
+    "@imgly/lottie-importer": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^8.3.4"
+  }
+}

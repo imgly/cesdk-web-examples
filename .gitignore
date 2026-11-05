@@ -29,7 +29,7 @@ starterkit-*/release/public/
 starterkit-*/release/README.md
 starterkit-*/release/.gitignore
 starterkit-*/release/.env.example
-starterkit-*/release/.eslintrc.js
+starterkit-*/release/.eslintrc.cjs
 starterkit-*/release/LICENSE
 starterkit-*/release/hero.webp
 starterkit-*/release/src/app/
