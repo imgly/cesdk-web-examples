@@ -8,7 +8,7 @@ export default defineConfig(async () => {
       port: 5173
     },
     build: {
-      rollupOptions: {
+      rolldownOptions: {
         input: {
           main: './index.html'
         }

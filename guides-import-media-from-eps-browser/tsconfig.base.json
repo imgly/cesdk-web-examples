@@ -12,7 +12,9 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowJs": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
   "include": ["*.ts", "*.js"],
   "exclude": ["node_modules", "dist", "build"]

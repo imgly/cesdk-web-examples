@@ -319,6 +319,7 @@ function setupEventHandlers() {
           cesdk.engine.block.setPositionY(audioBlock, yOffset);
           cesdk.engine.block.setWidth(audioBlock, pageWidth * 0.8);
         });
+        cesdk.engine.editor.addUndoStep();
 
         statusText.textContent = `Created ${audioBlocks.length} audio block${
           audioBlocks.length !== 1 ? 's' : ''

@@ -40,8 +40,12 @@ try {
     limits: { maxInputBytes: 20 * 1024 * 1024, timeoutMs: 30_000 }
   });
 
-  for (const diagnostic of result.diagnostics) {
-    console.info(`[${diagnostic.stage}] ${diagnostic.message}`);
+  // Info diagnostics include the Ghostscript banner.
+  const warnings = result.diagnostics.filter(
+    (diagnostic) => diagnostic.severity !== 'info'
+  );
+  for (const diagnostic of warnings) {
+    console.warn(`[${diagnostic.stage}] ${diagnostic.message}`);
   }
   console.info(
     `Imported native group ${result.group}: ${result.width} × ${result.height}`

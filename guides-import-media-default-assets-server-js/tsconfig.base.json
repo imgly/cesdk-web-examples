@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["vite/client"],
+    "types": ["node"],
     "target": "ES2022",
     "module": "ES2022",
     "lib": ["ES2022"],

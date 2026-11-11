@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["vite/client"],
+    "types": ["node"],
     "target": "ES2022",
     "module": "ES2022",
     "lib": ["ES2022"],
@@ -17,5 +17,5 @@
     "noImplicitReturns": true
   },
   "include": ["server-js.ts"],
-  "exclude": ["node_modules", "output", "vite.config.ts"]
+  "exclude": ["node_modules", "output"]
 }
