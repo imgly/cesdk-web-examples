@@ -11,9 +11,9 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.86.0",
-    "@cesdk/engine": "^1.86.0",
-    "@imgly/plugin-cutout-library-web": "^1.86.0"
+    "@cesdk/cesdk-js": "^1.86.1",
+    "@cesdk/engine": "^1.86.1",
+    "@imgly/plugin-cutout-library-web": "^1.86.1"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

@@ -10,7 +10,7 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.86.0",
+    "@cesdk/cesdk-js": "^1.86.1",
     "@imgly/eps-importer": "^0.1.0",
     "@imgly/pdf-conversion-utils": "^0.1.0"
   },
