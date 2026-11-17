@@ -76,7 +76,7 @@ class Example implements EditorPlugin {
     const page = engine.block.findByType('page')[0];
 
     // Enable duotone filters in the inspector panel
-    cesdk.feature.enable('ly.img.filter');
+    cesdk.features.configure({ 'ly.img.filter': { enabled: true } });
 
     // Use a sample image URL
     const imageUri = 'https://img.ly/static/ubq_samples/sample_1.jpg';

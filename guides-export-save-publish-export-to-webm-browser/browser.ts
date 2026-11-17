@@ -61,7 +61,7 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    cesdk.feature.enable('ly.img.video');
+    cesdk.features.configure({ 'ly.img.video.timeline': { enabled: true } });
     await engine.scene.load(
       'https://cdn.img.ly/assets/demo/v3/ly.img.video.template/templates/milli-surf-school.scene'
     );
@@ -109,8 +109,8 @@ class Example implements EditorPlugin {
             key: 'export-builtin',
             label: 'Export Video',
             icon: '@imgly/Save',
-            onClick: () => {
-              cesdk.actions.run('exportDesign', { mimeType: 'video/webm' });
+            onClick: async () => {
+              await cesdk.actions.run('exportDesign', { mimeType: 'video/webm' });
             }
           },
           {

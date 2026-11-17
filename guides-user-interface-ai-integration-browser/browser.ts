@@ -261,38 +261,24 @@ class Example implements EditorPlugin {
       })
     );
 
-    // Control AI features with Feature API
-    // Disable specific quick actions
-    cesdk.feature.set(
-      'ly.img.plugin-ai-image-generation-web.quickAction.editImage',
-      () => false
-    );
-    cesdk.feature.set(
-      'ly.img.plugin-ai-text-generation-web.quickAction.translate',
-      () => false
-    );
-
-    // Control input types for image/video generation
-    cesdk.feature.set(
-      'ly.img.plugin-ai-image-generation-web.fromText',
-      () => true
-    );
-    cesdk.feature.set(
-      'ly.img.plugin-ai-image-generation-web.fromImage',
-      () => false
-    );
-
-    // Hide provider selection dropdowns
-    cesdk.feature.set(
-      'ly.img.plugin-ai-image-generation-web.providerSelect',
-      () => false
-    );
-
-    // Control style groups for specific providers
-    cesdk.feature.set(
-      'ly.img.plugin-ai-image-generation-web.fal-ai/recraft-v3.style.vector',
-      () => false
-    );
+    // Control AI features with cesdk.features
+    cesdk.features.configure({
+      'ly.img.plugin-ai-image-generation-web': {
+        // Offer text-to-image only
+        inputs: ['fromText'],
+        // Offer vector styles only for Recraft V3
+        recraftV3Styles: ['vector'],
+        options: {
+          // Hide the provider selection dropdown
+          providerSelect: { enabled: false },
+          // Hide a quick action
+          editImage: { enabled: false }
+        }
+      },
+      'ly.img.plugin-ai-text-generation-web': {
+        options: { translate: { enabled: false } }
+      }
+    });
 
     console.log('AI integration guide initialized.');
   }

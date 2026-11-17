@@ -22,14 +22,6 @@ export async function initializeCESDK(
 ): Promise<CreativeEditorSDK> {
   const cesdk = await CreativeEditorSDK.create(container, {
     userId: 'guides-user',
-    // Configure UI for timeline and audio features
-    ui: {
-      elements: {
-        panels: {
-          settings: true
-        }
-      }
-    },
     // Configure for video/audio processing
     featureFlags: {
       exportWorker: true, // Enable background audio export
@@ -38,6 +30,8 @@ export async function initializeCESDK(
   });
 
   await cesdk.addPlugin(new VideoEditorConfig());
+  // Show the settings panel
+  cesdk.features.configure({ 'ly.img.settings': { enabled: true } });
 
   // Load asset source plugins
   await cesdk.addPlugin(new BlurAssetSource());

@@ -72,6 +72,42 @@ try {
   // Set font size (80pt for visibility)
   engine.block.setTextFontSize(titleBlock, fontSize);
 
+  const sourceId = 'brand-typefaces';
+  const assetId = 'brand-bold';
+  engine.asset.addLocalSource(sourceId);
+  await engine.asset.addAssetToSource(sourceId, {
+    id: assetId,
+    payload: { typeface }
+  });
+
+  const font = typeface.fonts[0];
+  engine.block.setFontRequest(titleBlock, {
+    family: typeface.name,
+    subFamily: font.subFamily,
+    weight: font.weight,
+    style: font.style,
+    assetSourceId: sourceId,
+    assetId
+  });
+  await engine.block.forceLoadResources([titleBlock]);
+  console.log('Stored requests:', engine.block.getFontRequests(titleBlock));
+
+  const unsubscribe = engine.block.onStateChanged([titleBlock], (blocks) => {
+    for (const block of blocks) {
+      console.log('Font resource state:', engine.block.getState(block));
+    }
+  });
+  engine.editor.setTypefaceResolver(async (request) => {
+    if (request.family !== typeface.name) return undefined;
+    return { typeface, font };
+  });
+  try {
+    await engine.block.forceLoadResources([titleBlock]);
+  } finally {
+    engine.editor.setTypefaceResolver(undefined);
+    unsubscribe();
+  }
+
   // Create a text block with rich text styling (multiple colors and weights)
   const richTextBlock = engine.block.create('text');
   engine.block.appendChild(page, richTextBlock);
@@ -234,6 +270,29 @@ try {
 
   // Adjust letter spacing (0.05 = 5% of font size)
   engine.block.setFloat(alignedBlock, 'text/letterSpacing', 0.05);
+
+  await engine.block.forceLoadResources([titleBlock]);
+  const diagnostics = engine.block.getTextRenderDiagnostics(titleBlock);
+  const substitutedRuns = diagnostics.fontUsage.runs.filter(
+    (run) => run.status === 'substituted'
+  );
+  if (diagnostics.layout) {
+    console.log({
+      substitutedRuns,
+      missingGlyphRanges: diagnostics.missingGlyphRanges,
+      overshoot: diagnostics.layout.overshoot,
+      totalLineCount: diagnostics.layout.totalLineCount,
+      visibleLineCount: diagnostics.layout.visibleLineCount,
+      clippedLineCount: diagnostics.layout.clippedLineCount,
+      requiredHeight: diagnostics.layout.requiredHeight,
+      fontScale: diagnostics.layout.fontScale,
+      effectiveFontSizes: diagnostics.fontUsage.runs.map(
+        (run) => run.effectiveFontSize
+      )
+    });
+  } else {
+    console.log('Layout unavailable', diagnostics.fontUsage.state);
+  }
 
   // Export the scene to PNG
   const blob = await engine.block.export(page, { mimeType: 'image/png' });

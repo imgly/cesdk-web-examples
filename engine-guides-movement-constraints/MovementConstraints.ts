@@ -32,7 +32,7 @@ async function movementConstraints() {
     engine.editor.setMovementConstraint({ overshoot: 0, block });
 
     // Read the resolved constraint, walking the priority chain:
-    // block > parent page > blockType > scene-wide.
+    // block > page slice > parent page > blockType > scene-wide.
     const active = engine.editor.getMovementConstraint(block);
 
     // Clear a scope by passing the matching descriptor. Use no argument to

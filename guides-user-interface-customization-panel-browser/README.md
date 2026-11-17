@@ -81,7 +81,7 @@ CE.SDK provides several built-in panels:
 
 - [CE.SDK Documentation](https://img.ly/docs/cesdk/)
 - [Panel Customization Guide](https://img.ly/docs/cesdk/guides/user-interface/customization/panel/)
-- [Feature API](https://img.ly/docs/cesdk/api/feature/)
+- [Disable or Enable Features](https://img.ly/docs/cesdk/js/user-interface/customization/disable-or-enable-f058e2/)
 
 ## License
 

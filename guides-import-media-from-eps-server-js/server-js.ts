@@ -55,7 +55,7 @@ try {
   await mkdir(outputDirectory, { recursive: true });
   const pdf = await engine.block.export(page, {
     mimeType: 'application/pdf',
-    exportPdfWithDeviceCMYK: true
+    outputColorSpace: 'CMYK'
   });
   await writeFile(
     new URL('eps-artwork.pdf', outputDirectory),

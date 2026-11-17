@@ -199,13 +199,28 @@ async function main() {
 
     const pdf = await engine.block.export(page, {
       mimeType: 'application/pdf',
-      exportPdfWithDeviceCMYK: true
+      outputColorSpace: 'CMYK'
     });
     writeFileSync(
       'output/color-basics.pdf',
       Buffer.from(await pdf.arrayBuffer())
     );
     console.log('Exported output/color-basics.png and .pdf');
+
+    const outputCMYK = { role: 'Output', space: 'CMYK' } as const;
+    await engine.scene.setDocumentColorProfile(outputCMYK, profileUrl.href);
+    const printPdf = await engine.block.export(page, {
+      mimeType: 'application/pdf',
+      outputColorSpace: 'CMYK',
+      outputProfileMode: 'Convert',
+      embedProfiles: true,
+      preserveBlack: true
+    });
+    writeFileSync(
+      'output/color-basics-print.pdf',
+      Buffer.from(await printPdf.arrayBuffer())
+    );
+    console.log('Exported output/color-basics-print.pdf');
 
     console.log('Color Basics example completed successfully');
   } finally {

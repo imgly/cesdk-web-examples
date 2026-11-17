@@ -116,12 +116,6 @@ class Example implements EditorPlugin {
     if (gl) {
       const maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
       console.log('GPU Max Texture Size:', maxTextureSize);
-      console.log(
-        'Safe export dimensions: up to',
-        maxTextureSize,
-        '×',
-        maxTextureSize
-      );
 
       // Most modern GPUs support 4096×4096 to 16384×16384
       // Safe baseline is 4096×4096 for universal compatibility
@@ -148,24 +142,31 @@ class Example implements EditorPlugin {
 
     console.log('Export dimensions:', exportWidth, '×', exportHeight);
 
-    if (gl) {
-      const maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
-      // Use conservative limit (50% of max) for actual VRAM availability
-      const safeTextureSize = Math.floor(maxTextureSize * 0.5);
+    // A PNG, JPEG, WebP, TGA or raw export renders in strips, so only the side
+    // limit of its format bounds it. PNG and raw pixels have no side limit.
+    const formatSideLimits: Record<string, number> = {
+      'image/jpeg': 65500,
+      'image/webp': 16383,
+      'image/x-tga': 65535
+    };
+    const exportMimeType: string = 'image/jpeg';
+    const maxSide = formatSideLimits[exportMimeType];
 
-      if (exportWidth > safeTextureSize || exportHeight > safeTextureSize) {
-        cesdk.ui.showNotification({
-          type: 'warning',
-          message: `Export dimensions (${Math.round(exportWidth)}×${Math.round(
-            exportHeight
-          )}) exceed safe GPU limit (${safeTextureSize}×${safeTextureSize})`
-        });
-      } else {
-        cesdk.ui.showNotification({
-          type: 'success',
-          message: 'Export dimensions are within safe limits'
-        });
-      }
+    if (
+      maxSide !== undefined &&
+      (exportWidth > maxSide || exportHeight > maxSide)
+    ) {
+      cesdk.ui.showNotification({
+        type: 'warning',
+        message: `Export dimensions (${Math.round(exportWidth)}×${Math.round(
+          exportHeight
+        )}) exceed the ${exportMimeType} side limit of ${maxSide} px`
+      });
+    } else {
+      cesdk.ui.showNotification({
+        type: 'success',
+        message: `Export dimensions are within the ${exportMimeType} limits`
+      });
     }
 
     // ===== Section 6: Handling Export Errors =====

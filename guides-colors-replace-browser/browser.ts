@@ -80,8 +80,8 @@ class Example implements EditorPlugin {
     const pageWidth = engine.block.getWidth(page);
     const pageHeight = engine.block.getHeight(page);
 
-    // Enable effects in the inspector panel using the Feature API
-    cesdk.feature.enable('ly.img.effect');
+    // Enable effects in the inspector panel with cesdk.features
+    cesdk.features.configure({ 'ly.img.effect': { enabled: true } });
 
     // Calculate responsive grid layout for 6 examples
     const layout = calculateGridLayout(pageWidth, pageHeight, 6);

@@ -33,9 +33,14 @@ class Example implements EditorPlugin {
     // Load the video editor config (provides the timeline, playback, and full UI)
     await cesdk.addPlugin(new VideoEditorConfig());
 
-    // The timeline and its parts are gated by the Feature API. Enable the whole
-    // family with a glob, or enable individual features for finer control.
-    cesdk.feature.enable('ly.img.video.timeline.*');
+    // The timeline is one feature with an option per part. The video editor
+    // config switches it on; switch an option off to hide just that part.
+    cesdk.features.configure({
+      'ly.img.video.timeline': {
+        enabled: true,
+        options: { overlays: { enabled: true } }
+      }
+    });
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
@@ -122,19 +127,20 @@ class Example implements EditorPlugin {
 
     // Show every track in the timeline. 'active' collapses the timeline to a
     // single row showing only the selected track's clips.
-    cesdk.engine.editor.setSetting('timeline/trackVisibility', 'all');
+    cesdk.features.configure({
+      'ly.img.video.timeline': { trackVisibility: 'all' }
+    });
 
     // Keep the transition control between adjacent clips permanently visible
     // instead of revealing it only on hover.
-    cesdk.engine.editor.setSetting(
-      'timeline/transitionControlVisibility',
-      'always'
-    );
+    cesdk.features.configure({
+      'ly.img.transitions': { controlVisibility: 'always' }
+    });
 
     // Give the timeline a fixed 320px height. Pass { height: 'auto' } to
     // restore the content-hugging default, or add maxHeight to cap how tall
     // the auto-growing timeline may get.
-    cesdk.actions.run('timeline.setHeight', { height: 320 });
+    await cesdk.actions.run('timeline.setHeight', { height: 320 });
 
     // Register a custom Rewind button that jumps playback back to the start.
     cesdk.ui.registerComponent(
@@ -163,9 +169,13 @@ class Example implements EditorPlugin {
     });
 
     // The "Add Clip" button below the tracks runs the built-in `addClip`
-    // action. Toggle the button with its feature, or register your own action
+    // action. Toggle the button with its option, or register your own action
     // to change what the button does.
-    cesdk.feature.enable('ly.img.video.timeline.addClip');
+    cesdk.features.configure({
+      'ly.img.video.timeline': {
+        options: { clips: { options: { addClip: { enabled: true } } } }
+      }
+    });
 
     cesdk.actions.register('addClip', () => {
       cesdk.ui.openPanel('//ly.img.panel/assetLibrary', {

@@ -71,8 +71,9 @@ class Example implements EditorPlugin {
     // Fill features are enabled by default in CE.SDK
     // You can check and control fill feature availability:
     const engine = cesdk.engine;
-    const isFillEnabled = cesdk.feature.isEnabled('ly.img.fill', { engine });
+    const isFillEnabled = cesdk.features.get('ly.img.fill').enabled;
     console.log('Fill feature enabled:', isFillEnabled);
+    cesdk.features.configure({ 'ly.img.fill': { enabled: true } });
 
     // Create a design scene using CE.SDK cesdk method
     await cesdk.actions.run('scene.create', {

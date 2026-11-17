@@ -120,7 +120,7 @@ class Example implements EditorPlugin {
     const exportPDF = async () => {
       const pdf = await engine.block.export(page, {
         mimeType: 'application/pdf',
-        exportPdfWithDeviceCMYK: true
+        outputColorSpace: 'CMYK'
       });
       const url = URL.createObjectURL(pdf);
       const link = document.createElement('a');

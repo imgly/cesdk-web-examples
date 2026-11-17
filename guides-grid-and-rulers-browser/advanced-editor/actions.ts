@@ -19,7 +19,7 @@
  *
  * - `cesdk.utils.export(options)` - Export current design to various formats
  *   - Options: mimeType, targetWidth, targetHeight, jpegQuality, pngCompressionLevel
- *   - Returns: { blobs: Blob[], options: ExportOptions }
+ *   - Returns: { blobs: [Blob, ...Blob[]], options: ExportOptions }
  *
  * - `cesdk.utils.downloadFile(data, mimeType, filename?)` - Trigger browser file download
  *   - data: Blob, string, or ArrayBuffer
@@ -75,6 +75,26 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
  * ```
  */
 export function setupActions(cesdk: CreativeEditorSDK): void {
+  // ============================================================================
+  // INSPECTOR ACTIONS
+  // ============================================================================
+
+  // #region Inspector Close Action
+  // Closing the inspector also deselects, so selecting an element opens it again.
+  cesdk.actions.register('inspector.close', () => {
+    cesdk.ui.closePanel('//ly.img.panel/inspector');
+    const selected = cesdk.engine.block.findAllSelected();
+    // A 'pageTitle' block is the page name above the canvas, selected while it is edited.
+    // Keep it selected, so closing the inspector does not end the edit.
+    if (
+      selected.length === 1 &&
+      cesdk.engine.block.getKind(selected[0]) === 'pageTitle'
+    )
+      return;
+    selected.forEach((block) => cesdk.engine.block.setSelected(block, false));
+  });
+  // #endregion
+
   // ============================================================================
   // SAVE & EXPORT ACTIONS
   // Actions for persisting and exporting user designs

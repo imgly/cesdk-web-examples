@@ -72,6 +72,12 @@ class CustomFontsExample implements EditorPlugin {
       }
     });
 
+    await addFontFileToSource(
+      engine,
+      sourceId,
+      'https://fonts.gstatic.com/s/codystar/v19/FwZY7-Q1xVk-40qxOt6A.ttf'
+    );
+
     // Give the custom source a readable name in the typeface library's source filter
     cesdk.i18n.setTranslations({
       en: { 'libraries.my-custom-typefaces.label': 'Custom Fonts' }
@@ -88,7 +94,6 @@ class CustomFontsExample implements EditorPlugin {
       }
     });
 
-    // Create a text block and apply the custom font
     const page = engine.block.findByType('page')[0];
     if (page) {
       const textBlock = engine.block.create('text');
@@ -113,6 +118,47 @@ class CustomFontsExample implements EditorPlugin {
 
       // Select the text block
       engine.block.select(textBlock);
+
+      const font = orbitronTypeface.fonts[0];
+      engine.editor.setTypefaceResolver(async (request) => {
+        if (request.family !== orbitronTypeface.name) return undefined;
+        return { typeface: orbitronTypeface, font };
+      });
+      engine.block.setFontRequest(textBlock, {
+        family: orbitronTypeface.name,
+        subFamily: font.subFamily,
+        weight: font.weight,
+        style: font.style,
+        assetSourceId: sourceId,
+        assetId: 'orbitron'
+      });
+      await engine.block.forceLoadResources([textBlock]);
+      console.log('Stored requests:', engine.block.getFontRequests(textBlock));
+      // Restore resolution through registered typeface asset sources.
+      engine.editor.setTypefaceResolver(undefined);
+
+      await engine.block.forceLoadResources([textBlock]);
+      const diagnostics = engine.block.getTextRenderDiagnostics(textBlock);
+      const substitutedRuns = diagnostics.fontUsage.runs.filter(
+        (run) => run.status === 'substituted'
+      );
+      if (diagnostics.layout) {
+        console.log({
+          substitutedRuns,
+          missingGlyphRanges: diagnostics.missingGlyphRanges,
+          overshoot: diagnostics.layout.overshoot,
+          totalLineCount: diagnostics.layout.totalLineCount,
+          visibleLineCount: diagnostics.layout.visibleLineCount,
+          clippedLineCount: diagnostics.layout.clippedLineCount,
+          requiredHeight: diagnostics.layout.requiredHeight,
+          fontScale: diagnostics.layout.fontScale,
+          effectiveFontSizes: diagnostics.fontUsage.runs.map(
+            (run) => run.effectiveFontSize
+          )
+        });
+      } else {
+        console.log('Layout unavailable', diagnostics.fontUsage.state);
+      }
     }
   }
 }
@@ -144,6 +190,32 @@ interface TypefaceFont {
 interface Typeface {
   name: string;
   fonts: TypefaceFont[];
+}
+
+async function addFontFileToSource(
+  engine: CreativeEngine,
+  sourceId: string,
+  fontUri: string
+): Promise<void> {
+  const info = await engine.editor.getFontInfo(fontUri);
+
+  await engine.asset.addAssetToSource(sourceId, {
+    id: fontUri,
+    meta: { languages: 'latin' },
+    payload: {
+      typeface: {
+        name: info.family,
+        fonts: [
+          {
+            uri: fontUri,
+            subFamily: info.subFamily,
+            weight: info.fontWeight,
+            style: info.style
+          }
+        ]
+      }
+    }
+  });
 }
 
 /**

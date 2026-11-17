@@ -25,9 +25,7 @@ class Example implements EditorPlugin {
     }
 
     // Enable video editing features in CE.SDK
-    cesdk.feature.enable('ly.img.video');
-    cesdk.feature.enable('ly.img.timeline');
-    cesdk.feature.enable('ly.img.playback');
+    cesdk.features.configure({ 'ly.img.video.timeline': { enabled: true } });
     // Create a video scene from a sample video
     const videoUrl = 'https://img.ly/static/ubq_video_samples/bbb.mp4';
     await cesdk.engine.scene.createFromVideo(videoUrl);

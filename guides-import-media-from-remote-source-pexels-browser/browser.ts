@@ -165,7 +165,7 @@ class Example implements EditorPlugin {
     const layout = calculateGridLayout(pageWidth, pageHeight, 3);
 
     // Create Pexels API client
-    const pexelsApiKey = (undefined as string | undefined);
+    const pexelsApiKey = import.meta.env.VITE_PEXELS_API_KEY;
 
     if (!pexelsApiKey) {
       throw new Error('VITE_PEXELS_API_KEY environment variable is required');

@@ -100,11 +100,6 @@ class Example implements EditorPlugin {
       .forEach((block) => engine.block.setSelected(block, false));
     engine.block.select(titleText);
 
-    // Switch between default and advanced view modes
-    // 'default' shows the inspector bar above the canvas
-    // 'advanced' shows the full inspector panel to the side
-    cesdk.ui.setView('default');
-
     // Set a custom inspector bar order for Text edit mode
     cesdk.ui.setComponentOrder(
       { in: 'ly.img.inspector.bar', when: { editMode: 'Text' } },

@@ -11,18 +11,26 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app. The build ste
 - `cdk diff` compare deployed stack with current state
 - `cdk synth` emits the synthesized CloudFormation template
 
-## Use `@cesdk/node` (WASM) on AWS Lambda
+## `@cesdk/node` on AWS Lambda
 
-This cookbook is built around `@cesdk/node` (WASM). The Lambda runtimes
-(`nodejs22.x` on Amazon Linux 2023) ships glibc 2.34, which
-is below the **glibc ≥ 2.39 floor** that `@cesdk/node-native`'s Linux
-binary requires; a Lambda function that does
-`require('@cesdk/node-native')` fails at load with
-`version 'GLIBC_2.38' not found`. There is no Lambda base image today
-with a new enough glibc.
+The handler is `src/cesdk-handler.js`. The Lambda runtime (`nodejs22.x` on
+Amazon Linux 2023) ships glibc 2.34, which is below the **glibc ≥ 2.39 floor**
+of the native Linux engine. So on Lambda, `@cesdk/node` starts its WASM engine.
+On a Linux host with glibc 2.39 or later, the same handler runs the native
+engine. Examples are Kubernetes, Cloud Run, or EC2 on Ubuntu 24.04+ or Debian
+13+. That host needs the runtime libraries that the `@cesdk/node` README lists.
 
-The repo also includes `src/cesdk-handler-native.js` as a **reference for
-non-Lambda Linux deployments** — Kubernetes / Cloud Run / EC2 running
-Ubuntu 24.04+ or Debian 13+. It is documented as not-for-Lambda at the
-top of the file. The active handler in this cookbook is
-`src/cesdk-handler.js`.
+`cdk deploy` uploads `src/` with its `node_modules/`. Install the dependencies
+there without the optional packages:
+
+```bash
+cd src
+npm install --omit=optional
+```
+
+Without the flag, npm adds the `@cesdk/node` platform package of the machine
+that runs the install, 40 to 60 MB. Lambda never loads it, but it counts
+against the 250 MB limit of an unzipped function. With the flag, the function
+has about the size of earlier `@cesdk/node` versions. On Lambda, the engine logs
+at `Info` that this host has no native engine, with or without the flag. Do not
+use the flag for a host that runs the native engine.

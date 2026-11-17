@@ -292,6 +292,13 @@ class Example implements EditorPlugin {
       { color: { c: 0.0, m: 0.0, y: 1.0, k: 0.0, tint: 1.0 }, stop: 1 }
     ]);
 
+    engine.editor.setSoftProofColorSpace('CMYK');
+    engine.editor.setSoftProofEnabled(true);
+
+    engine.editor.setSoftProofColorSpace('RGB');
+
+    engine.editor.setSoftProofEnabled(false);
+
     // Zoom to fit all content
     await engine.scene.zoomToBlock(page, {
       padding: {

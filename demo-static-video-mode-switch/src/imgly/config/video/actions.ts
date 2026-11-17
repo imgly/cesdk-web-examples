@@ -203,7 +203,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
 
   // #region Upload File Action
   // Override to handle file uploads with custom logic (e.g., upload to your backend)
-  // cesdk.actions.register('uploadFile', (file, onProgress, context) => {
+  // cesdk.actions.register('uploadFile', (file, _onProgress, context) => {
   //   return cesdk.utils.localUpload(file, context);
   // });
   // #endregion
