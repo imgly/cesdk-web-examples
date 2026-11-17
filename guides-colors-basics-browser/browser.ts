@@ -221,7 +221,7 @@ class Example implements EditorPlugin {
       { label: 'Spot Color', color: spotColor }
     ];
 
-    await engine.editor.loadColorProfiles();
+    await engine.editor.loadCMYKProfile();
 
     const logConversions = (step: string) => {
       const values = swatches.map(({ label, color }) => {
@@ -237,13 +237,10 @@ class Example implements EditorPlugin {
 
     logConversions('Bundled default profile');
 
-    const defaultCMYK = { role: 'Default', space: 'CMYK' } as const;
-    await engine.scene.setDocumentColorProfile(
-      defaultCMYK,
+    await engine.scene.setCMYKProfile(
       new URL(profileUrl, document.baseURI).href
     );
-    const { contentHash } =
-      engine.scene.getDocumentColorProfileInfo(defaultCMYK);
+    const { contentHash } = engine.scene.getCMYKProfileInfo();
     console.log('Document profile hash:', contentHash);
     logConversions('ISOcoated_v2_eci.icc');
 

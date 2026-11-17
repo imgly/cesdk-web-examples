@@ -28,5 +28,5 @@ module.exports = {
     node: true,
     es2022: true,
   },
-  ignorePatterns: ['scripts/**'],
+  ignorePatterns: ['vite.config.js', 'scripts/**'],
 };

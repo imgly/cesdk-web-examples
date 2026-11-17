@@ -1,7 +1,6 @@
 {
   "name": "demo-eps-import",
   "version": "1.0.0",
-  "type": "module",
   "private": true,
   "description": "Import EPS artwork into an existing CE.SDK design",
   "scripts": {
@@ -11,15 +10,15 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.86.2",
-    "@cesdk/engine": "^1.86.2",
+    "@cesdk/cesdk-js": "^1.85.4",
+    "@cesdk/engine": "^1.85.4",
     "@imgly/eps-importer": "^0.1.0",
     "@imgly/pdf-conversion-utils": "^0.1.0"
   },
   "devDependencies": {
-    "@imgly/pdf-importer": "^0.3.2",
+    "@imgly/pdf-importer": "^0.3.1",
     "@types/node": "^22.0.0",
     "typescript": "^5.0.0",
-    "vite": "^8.3.4"
+    "vite": "^6.0.3"
   }
 }

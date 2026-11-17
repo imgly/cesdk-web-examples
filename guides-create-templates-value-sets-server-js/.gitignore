@@ -1,6 +1,0 @@
-node_modules/
-dist/
-output/
-.env
-*.local
-tsconfig.local.json

@@ -1,7 +1,6 @@
 {
   "name": "demo-static-video-mode-switch",
   "version": "1.0.0",
-  "type": "module",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -10,8 +9,8 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.86.2",
-    "@cesdk/engine": "^1.86.2",
+    "@cesdk/cesdk-js": "^1.85.4",
+    "@cesdk/engine": "^1.85.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -19,8 +18,8 @@
     "@types/node": "^22.0.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^6.1.2",
+    "@vitejs/plugin-react": "^4.3.4",
     "typescript": "^5.0.0",
-    "vite": "^8.3.4"
+    "vite": "^6.0.3"
   }
 }

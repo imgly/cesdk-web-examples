@@ -26,10 +26,9 @@ console.log('1. Small thumbnail (150×150 JPEG)');
 console.log('2. Medium thumbnail (400×300 JPEG)');
 console.log('3. PNG thumbnail (400×300)');
 console.log('4. WebP thumbnail (400×300)');
-console.log('5. Preview (WebP, not counted as an export)');
-console.log('6. All formats\n');
+console.log('5. All formats\n');
 
-const choice = (await prompt('Select thumbnail option (1-6): ')) || '6';
+const choice = (await prompt('Select thumbnail option (1-5): ')) || '5';
 
 console.log('\n⏳ Initializing engine...');
 
@@ -51,7 +50,7 @@ try {
 
   console.log('⏳ Generating thumbnails...\n');
 
-  if (choice === '1' || choice === '6') {
+  if (choice === '1' || choice === '5') {
     const blob = await engine.block.export(page, {
       mimeType: 'image/jpeg',
       targetWidth: 150,
@@ -65,7 +64,7 @@ try {
     );
   }
 
-  if (choice === '2' || choice === '6') {
+  if (choice === '2' || choice === '5') {
     const blob = await engine.block.export(page, {
       mimeType: 'image/jpeg',
       targetWidth: 400,
@@ -79,7 +78,7 @@ try {
     );
   }
 
-  if (choice === '3' || choice === '6') {
+  if (choice === '3' || choice === '5') {
     const blob = await engine.block.export(page, {
       mimeType: 'image/png',
       targetWidth: 400,
@@ -93,7 +92,7 @@ try {
     );
   }
 
-  if (choice === '4' || choice === '6') {
+  if (choice === '4' || choice === '5') {
     const blob = await engine.block.export(page, {
       mimeType: 'image/webp',
       targetWidth: 400,
@@ -104,15 +103,6 @@ try {
     writeFileSync(`${outputDir}/thumbnail.webp`, buffer);
     console.log(
       `✓ WebP thumbnail: ${outputDir}/thumbnail.webp (${(blob.size / 1024).toFixed(1)} KB)`
-    );
-  }
-
-  if (choice === '5' || choice === '6') {
-    const blob = await engine.block.exportPreview(page);
-    const buffer = Buffer.from(await blob.arrayBuffer());
-    writeFileSync(`${outputDir}/preview.webp`, buffer);
-    console.log(
-      `✓ Preview: ${outputDir}/preview.webp (${(blob.size / 1024).toFixed(1)} KB)`
     );
   }
 

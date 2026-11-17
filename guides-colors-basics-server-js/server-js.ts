@@ -142,7 +142,7 @@ async function main() {
       { label: 'Spot Color', color: spotColor }
     ];
 
-    await engine.editor.loadColorProfiles();
+    await engine.editor.loadCMYKProfile();
 
     const logConversions = (step: string) => {
       const values = swatches.map(({ label, color }) => {
@@ -162,19 +162,16 @@ async function main() {
       './assets/ISOcoated_v2_eci.icc',
       import.meta.url
     );
-    const defaultCMYK = { role: 'Default', space: 'CMYK' } as const;
-    await engine.scene.setDocumentColorProfile(defaultCMYK, profileUrl.href);
-    const { contentHash } =
-      engine.scene.getDocumentColorProfileInfo(defaultCMYK);
+    await engine.scene.setCMYKProfile(profileUrl.href);
+    const { contentHash } = engine.scene.getCMYKProfileInfo();
     console.log('Document profile hash:', contentHash);
     logConversions('ISOcoated_v2_eci.icc');
 
     const profileBytes = new Uint8Array(readFileSync(profileUrl));
-    engine.scene.setDocumentColorProfileFromData(defaultCMYK, profileBytes);
+    engine.scene.setCMYKProfileFromData(profileBytes);
     console.log(
       'Same profile:',
-      engine.scene.getDocumentColorProfileInfo(defaultCMYK).contentHash ===
-        contentHash
+      engine.scene.getCMYKProfileInfo().contentHash === contentHash
     );
 
     engine.scene.setColorRenderingIntent(ColorRenderingIntent.Perceptual);

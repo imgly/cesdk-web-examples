@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["node"],
+    "types": ["vite/client"],
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",

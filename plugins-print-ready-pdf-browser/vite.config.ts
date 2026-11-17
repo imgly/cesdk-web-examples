@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { pdfxAssets } from './pdfx-assets.ts';
+import { pdfxAssets } from './pdfx-assets';
 
 export default defineConfig(async () => {
   return {

@@ -28,7 +28,7 @@ class Example implements EditorPlugin {
     if (!templateResponse.ok) throw new Error('Could not load the template');
     await engine.scene.loadFromString(await templateResponse.text());
     let page = engine.block.findByType('page')[0];
-    await cesdk.actions.run('zoom.toPage', { autoFit: true });
+    engine.scene.enableZoomAutoFit(page, 'Both', 40, 100, 40, 100);
 
     const runtime = createConversionRuntime({
       assetBaseURL: new URL(
@@ -48,19 +48,10 @@ class Example implements EditorPlugin {
         const matches = engine.block.findByName('Artwork');
         if (replace && matches.length !== 1) {
           throw new Error(
-            'The template must contain exactly one Artwork placeholder.'
+            'The template must contain exactly one Artwork placeholder. Undo the replacement to try again.'
           );
         }
         const target = matches[0];
-        // The imported group keeps the name, so a second replace finds a group.
-        if (
-          replace &&
-          engine.block.getType(target) !== '//ly.img.ubq/graphic'
-        ) {
-          throw new Error(
-            'The Artwork placeholder was already replaced. Undo the replacement to try again.'
-          );
-        }
         if (replace) {
           let ancestor: number | null = target;
           while (
@@ -89,17 +80,12 @@ class Example implements EditorPlugin {
           : await placeEPS(engine, bytes, {
               ...options,
               parent: page,
-              // The free band between the header and the placeholder.
-              frame: { x: 54, y: 110, width: 360, height: 60 }
+              frame: { x: 54, y: 180, width: 360, height: 240 }
             });
         engine.block.select(result.group);
 
-        // Info diagnostics include the Ghostscript banner.
-        const warnings = result.diagnostics.filter(
-          (diagnostic) => diagnostic.severity !== 'info'
-        );
-        for (const diagnostic of warnings) {
-          console.warn(`[${diagnostic.stage}] ${diagnostic.message}`);
+        for (const diagnostic of result.diagnostics) {
+          console.info(`[${diagnostic.stage}] ${diagnostic.message}`);
         }
         cesdk.ui.showNotification('EPS artwork imported as one movable group.');
       } catch (error) {

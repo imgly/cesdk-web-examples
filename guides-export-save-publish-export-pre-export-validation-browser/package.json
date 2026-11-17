@@ -10,14 +10,14 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.86.2",
-    "@cesdk/engine": "^1.86.2"
+    "@cesdk/cesdk-js": "^1.85.4",
+    "@cesdk/engine": "^1.85.4"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "typescript": "^5.5.4",
-    "vite": "^8.3.4"
+    "vite": "^5.4.2"
   }
 }

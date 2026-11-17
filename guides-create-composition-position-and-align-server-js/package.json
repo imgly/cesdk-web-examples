@@ -4,17 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "tsx server-js.ts",
+    "dev": "npx vite-node server-js.ts",
     "build": "npm run dev",
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/node": "^1.86.2",
+    "@cesdk/node": "^1.85.4",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "tsx": "^4.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vite": "^6.0.3",
+    "vite-node": "^3.2.3"
   }
 }

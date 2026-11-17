@@ -1,7 +1,6 @@
 {
   "name": "guides-edit-image-vectorize-browser",
   "version": "1.0.0",
-  "type": "module",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -10,13 +9,13 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.86.2",
-    "@cesdk/engine": "^1.86.2",
-    "@imgly/plugin-vectorizer-web": "^1.86.2"
+    "@cesdk/cesdk-js": "^1.85.4",
+    "@cesdk/engine": "^1.85.4",
+    "@imgly/plugin-vectorizer-web": "^1.85.4"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "typescript": "^5.0.0",
-    "vite": "^8.3.4"
+    "vite": "^6.0.3"
   }
 }

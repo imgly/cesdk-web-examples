@@ -1,7 +1,6 @@
 {
   "name": "guides-crop-presets-browser",
   "version": "1.0.0",
-  "type": "module",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -11,12 +10,12 @@
     "test": "exit 0"
   },
   "devDependencies": {
-    "vite": "^8.3.4",
+    "vite": "^6.0.3",
     "typescript": "^5.0.0",
     "@types/node": "^22.0.0"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "^1.86.2",
-    "@cesdk/engine": "^1.86.2"
+    "@cesdk/cesdk-js": "^1.85.4",
+    "@cesdk/engine": "^1.85.4"
   }
 }
