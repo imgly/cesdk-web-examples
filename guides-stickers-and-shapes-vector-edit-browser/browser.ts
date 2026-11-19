@@ -57,7 +57,9 @@ class Example implements EditorPlugin {
     await cesdk.addPlugin(new VectorShapeAssetSource());
 
     // Enable vector path editing feature
-    cesdk.feature.enable('ly.img.shape.edit');
+    cesdk.features.configure({
+      'ly.img.shape': { enabled: true, options: { edit: { enabled: true } } }
+    });
 
     await cesdk.actions.run('scene.create', {
       page: { width: 100, height: 100, unit: 'Pixel' }

@@ -101,8 +101,9 @@ class Example implements EditorPlugin {
     engine.block.select(page);
 
     // Configure dock to use large icons and hide text labels
-    cesdk.engine.editor.setSetting('dock/iconSize', 'large');
-    cesdk.engine.editor.setSetting('dock/hideLabels', true);
+    cesdk.features.configure({
+      'ly.img.dock': { iconSize: 'large', hideLabels: true }
+    });
 
     // Set a simplified dock for Text edit mode
     cesdk.ui.setComponentOrder(

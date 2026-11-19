@@ -24,7 +24,7 @@ npm install
 CE.SDK requires engine assets (fonts, icons, UI elements) served from your `public/` directory.
 
 ```bash
-curl -O https://cdn.img.ly/packages/imgly/cesdk-js/$UBQ_VERSION$/imgly-assets.zip
+curl -O https://cdn.img.ly/packages/imgly/cesdk-js/1.87.0-rc.2/imgly-assets.zip
 unzip imgly-assets.zip -d public/
 rm imgly-assets.zip
 ```

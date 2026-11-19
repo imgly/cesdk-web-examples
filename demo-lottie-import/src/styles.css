@@ -76,15 +76,6 @@ h1 {
   font-size: 13px;
   color: var(--muted);
 }
-.experimental {
-  display: inline-block;
-  padding: 2px 7px;
-  margin-top: 14px;
-  border-radius: 4px;
-  color: #625130;
-  background: #f5efdf;
-  font-size: 10px;
-}
 h2 {
   margin-bottom: 12px;
   font-size: 13px;

@@ -147,6 +147,35 @@ class Example implements EditorPlugin {
     console.log("Font weights:", weights);
     console.log("Font sizes:", sizes);
 
+    // Montserrat has digits of different widths by default, so prices in
+    // one column do not line up. `tnum` gives every digit the same width.
+    const montserratUri =
+      "https://cdn.img.ly/assets/v2/ly.img.typeface/fonts/Montserrat/Montserrat-Regular.ttf";
+    const prices = engine.block.create("text");
+    engine.block.appendChild(page, prices);
+    engine.block.setPositionX(prices, 50);
+    engine.block.setPositionY(prices, 10);
+    engine.block.setWidthMode(prices, "Auto");
+    engine.block.setHeightMode(prices, "Auto");
+    engine.block.setFont(prices, montserratUri, {
+      name: "Montserrat",
+      fonts: [{ uri: montserratUri, subFamily: "Regular" }],
+    });
+    engine.block.setTextFontSize(prices, 40);
+    engine.block.replaceText(prices, "$11.11\n$88.88");
+
+    engine.block.setTextOpenTypeFeatures(prices, [{ tag: "tnum", value: 1 }]);
+
+    const features = engine.block.getTextOpenTypeFeatures(prices);
+    console.log("OpenType features:", features); // [[{ tag: 'tnum', value: 1 }]]
+
+    // List the OpenType features that a font file supports
+    const montserratInfo = await engine.editor.getFontInfo(montserratUri);
+    console.log(
+      "Supports tnum:",
+      montserratInfo.openTypeFeatures.includes("tnum")
+    ); // true
+
     // Query line information
     const lineCount = engine.block.getTextVisibleLineCount(text);
     console.log("Line count:", lineCount);

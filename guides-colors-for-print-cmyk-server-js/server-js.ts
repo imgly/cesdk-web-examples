@@ -219,6 +219,11 @@ try {
     { color: { c: 0.0, m: 0.0, y: 1.0, k: 0.0, tint: 1.0 }, stop: 1 }
   ]);
 
+  engine.editor.setSoftProofColorSpace('CMYK');
+  engine.editor.setSoftProofEnabled(true);
+
+  engine.editor.setSoftProofColorSpace('RGB');
+
   // Export the design
   const outputDir = './output';
   if (!existsSync(outputDir)) {

@@ -41,6 +41,21 @@ function isTransformHeld(cesdk: CreativeEditorSDK, block: number): boolean {
   return false;
 }
 
+/** Whether `option` of the transform feature is available for every selected block. */
+function canTransform(
+  cesdk: CreativeEditorSDK,
+  option: 'position' | 'rotation' | 'size'
+): boolean {
+  return cesdk.engine.block
+    .findAllSelected()
+    .every(
+      (id) =>
+        cesdk.features.evaluate('ly.img.transform', { blockId: id }).options[
+          option
+        ].status === 'available'
+    );
+}
+
 /**
  * The default US-ANSI keyboard shortcut catalog.
  */
@@ -60,16 +75,57 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
   },
   {
     keys: 'Enter',
-    description: 'Enter or exit the selected group',
+    description: 'Select inside the selected group or frame',
     category: 'Selection',
     run: 'group.enterOrExit',
-    scope: ['ly.img.scope.canvas']
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) => {
+      const block = cesdk.engine.block;
+      const [selected] = block.findAllSelected();
+      if (selected == null) return false;
+      const type = block.getType(selected);
+      if (type === '//ly.img.ubq/group') {
+        return (
+          cesdk.features.evaluate('ly.img.group').options.enter.status ===
+          'available'
+        );
+      }
+      const parent = block.getParent(selected);
+      return (
+        type === '//ly.img.ubq/page' &&
+        cesdk.features.evaluate('ly.img.group').options.enter.status ===
+          'available' &&
+        parent != null &&
+        !['//ly.img.ubq/scene', '//ly.img.ubq/stack'].includes(
+          block.getType(parent)
+        )
+      );
+    }
+  },
+  {
+    keys: 'Shift+Enter',
+    description: 'Select the parent group or frame',
+    category: 'Selection',
+    run: 'selection.parentOrDeselect',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Transform' &&
+      cesdk.engine.block.findAllSelected().length > 0
   },
   {
     keys: 'Escape',
-    description: 'Select parent group or deselect',
+    description: 'Select parent group or frame, or deselect',
     category: 'Selection',
-    run: 'selection.parentOrDeselect',
+    run: ({ cesdk }) => {
+      const [block] = cesdk.engine.block.findAllSelected();
+      const parent = cesdk.engine.block.getParent(block);
+      return parent != null &&
+        cesdk.engine.block.getType(parent) === '//ly.img.ubq/group' &&
+        cesdk.features.evaluate('ly.img.group').options.select.status !==
+          'available'
+        ? cesdk.actions.run('selection.deselect')
+        : cesdk.actions.run('selection.parentOrDeselect');
+    },
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
@@ -100,7 +156,13 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
           cesdk.engine.editor.hasSelectedVectorControlPoint())) ||
       (cesdk.engine.editor.getEditMode() === 'Transform' &&
         cesdk.engine.block.findAllSelected().length > 0 &&
-        cesdk.feature.isEnabled('ly.img.delete', { engine: cesdk.engine }))
+        cesdk.engine.block
+          .findAllSelected()
+          .every(
+            (id) =>
+              cesdk.features.evaluate('ly.img.delete', { blockId: id })
+                .status === 'available'
+          ))
   },
   {
     keys: 'Backspace',
@@ -119,7 +181,13 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
           cesdk.engine.editor.hasSelectedVectorControlPoint())) ||
       (cesdk.engine.editor.getEditMode() === 'Transform' &&
         cesdk.engine.block.findAllSelected().length > 0 &&
-        cesdk.feature.isEnabled('ly.img.delete', { engine: cesdk.engine }))
+        cesdk.engine.block
+          .findAllSelected()
+          .every(
+            (id) =>
+              cesdk.features.evaluate('ly.img.delete', { blockId: id })
+                .status === 'available'
+          ))
   },
   {
     keys: 'Mod+d',
@@ -132,13 +200,58 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
       if (
-        !cesdk.feature.isEnabled('ly.img.duplicate', { engine: cesdk.engine })
+        !selected.every(
+          (id) =>
+            cesdk.features.evaluate('ly.img.duplicate', { blockId: id })
+              .status === 'available'
+        )
       )
         return false;
       return selected.every((id) =>
         cesdk.engine.block.isAllowedByScope(id, 'lifecycle/duplicate')
       );
     }
+  },
+  {
+    keys: 'Mod+Alt+g',
+    description: 'Put the selected elements in a frame',
+    category: 'Editing',
+    run: 'selection.frame',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Transform' &&
+      cesdk.engine.block.findAllSelected().length > 0
+  },
+  {
+    keys: 'Mod+Shift+a',
+    description: 'Select the other blocks at the same level',
+    category: 'Editing',
+    run: 'selection.inverse',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Transform' &&
+      cesdk.engine.block.findAllSelected().length > 0
+  },
+  {
+    keys: 'Mod+Alt+Shift+r',
+    description: 'Resize the selected frame to fit its children',
+    category: 'Editing',
+    run: 'selection.resizeToFit',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Transform' &&
+      cesdk.engine.block.findAllSelected().length > 0 &&
+      canTransform(cesdk, 'size')
+  },
+  {
+    keys: 'Shift+a',
+    description: 'Add auto layout to the selection',
+    category: 'Editing',
+    run: 'selection.autoLayout',
+    scope: ['ly.img.scope.canvas'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Transform' &&
+      cesdk.engine.block.findAllSelected().length > 0
   },
   {
     keys: 'Mod+g',
@@ -149,10 +262,9 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
       cesdk.engine.block.findAllSelected().length > 1 &&
-      cesdk.feature.isEnabled('ly.img.group', { engine: cesdk.engine }) &&
-      cesdk.feature.isEnabled('ly.img.group.create', {
-        engine: cesdk.engine
-      })
+      cesdk.features.evaluate('ly.img.group').status === 'available' &&
+      cesdk.features.evaluate('ly.img.group').options.create.status ===
+        'available'
   },
   {
     keys: 'Mod+Shift+g',
@@ -162,10 +274,9 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
     when: ({ cesdk }) => {
       if (
-        !cesdk.feature.isEnabled('ly.img.group', { engine: cesdk.engine }) ||
-        !cesdk.feature.isEnabled('ly.img.group.ungroup', {
-          engine: cesdk.engine
-        })
+        cesdk.features.evaluate('ly.img.group').status !== 'available' ||
+        cesdk.features.evaluate('ly.img.group').options.ungroup.status !==
+          'available'
       )
         return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
@@ -196,7 +307,11 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
       if (!pageInSelection) return true;
       return (
         cesdk.engine.editor.getRole() === 'Creator' &&
-        cesdk.feature.isEnabled('ly.img.duplicate')
+        selected.every(
+          (id) =>
+            cesdk.features.evaluate('ly.img.duplicate', { blockId: id })
+              .status === 'available'
+        )
       );
     }
   },
@@ -222,7 +337,11 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
       if (!pageInSelection) return true;
       return (
         cesdk.engine.editor.getRole() === 'Creator' &&
-        cesdk.feature.isEnabled('ly.img.duplicate')
+        selected.every(
+          (id) =>
+            cesdk.features.evaluate('ly.img.duplicate', { blockId: id })
+              .status === 'available'
+        )
       );
     }
   },
@@ -232,7 +351,29 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     category: 'Editing',
     run: 'paste',
     scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
-    when: ({ cesdk }) => cesdk.engine.editor.getEditMode() === 'Transform'
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Transform' &&
+      cesdk.features.get('ly.img.duplicate').enabled
+  },
+  {
+    keys: 'Mod+Shift+v',
+    description: 'Paste over the selection',
+    category: 'Editing',
+    run: 'pasteOverSelection',
+    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Transform' &&
+      cesdk.features.get('ly.img.duplicate').enabled
+  },
+  {
+    keys: 'Mod+Shift+r',
+    description: 'Replace the selection with the clipboard',
+    category: 'Editing',
+    run: 'pasteToReplace',
+    scope: ['ly.img.scope.canvas', 'ly.img.scope.videoTimeline'],
+    when: ({ cesdk }) =>
+      cesdk.engine.editor.getEditMode() === 'Transform' &&
+      cesdk.features.get('ly.img.duplicate').enabled
   },
   {
     keys: 's',
@@ -244,9 +385,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
       (cesdk.engine.editor.getEditMode() === 'Transform' ||
         cesdk.engine.editor.getEditMode() === 'Playback') &&
       cesdk.engine.block.findAllSelected().length > 0 &&
-      cesdk.feature.isEnabled('ly.img.video.timeline.controls.split', {
-        engine: cesdk.engine
-      })
+      cesdk.features.evaluate('ly.img.video.timeline').options.clip.options
+        .split.status === 'available'
   },
   // #endregion
 
@@ -281,9 +421,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
       if (
-        !cesdk.feature.isEnabled('ly.img.position.arrange', {
-          engine: cesdk.engine
-        })
+        cesdk.features.evaluate('ly.img.position').options.arrange.status !==
+        'available'
       )
         return false;
       return selected.every(
@@ -309,9 +448,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
       if (
-        !cesdk.feature.isEnabled('ly.img.position.arrange', {
-          engine: cesdk.engine
-        })
+        cesdk.features.evaluate('ly.img.position').options.arrange.status !==
+        'available'
       )
         return false;
       return selected.every(
@@ -332,9 +470,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
       if (
-        !cesdk.feature.isEnabled('ly.img.position.arrange', {
-          engine: cesdk.engine
-        })
+        cesdk.features.evaluate('ly.img.position').options.arrange.status !==
+        'available'
       )
         return false;
       return selected.every(
@@ -355,9 +492,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
       if (
-        !cesdk.feature.isEnabled('ly.img.position.arrange', {
-          engine: cesdk.engine
-        })
+        cesdk.features.evaluate('ly.img.position').options.arrange.status !==
+        'available'
       )
         return false;
       return selected.every(
@@ -383,10 +519,12 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     when: ({ cesdk }) =>
       cesdk.engine.block
         .findAllSelected()
-        .some((id) => cesdk.engine.block.getType(id) === '//ly.img.ubq/text') &&
-      cesdk.feature.isEnabled('ly.img.text.fontStyle', {
-        engine: cesdk.engine
-      })
+        .some(
+          (id) =>
+            cesdk.engine.block.getType(id) === '//ly.img.ubq/text' &&
+            cesdk.features.evaluate('ly.img.text', { blockId: id }).options
+              .fontStyle.status === 'available'
+        )
   },
   {
     keys: 'Mod+i',
@@ -397,10 +535,12 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     when: ({ cesdk }) =>
       cesdk.engine.block
         .findAllSelected()
-        .some((id) => cesdk.engine.block.getType(id) === '//ly.img.ubq/text') &&
-      cesdk.feature.isEnabled('ly.img.text.fontStyle', {
-        engine: cesdk.engine
-      })
+        .some(
+          (id) =>
+            cesdk.engine.block.getType(id) === '//ly.img.ubq/text' &&
+            cesdk.features.evaluate('ly.img.text', { blockId: id }).options
+              .fontStyle.status === 'available'
+        )
   },
   {
     keys: 'Mod+u',
@@ -411,10 +551,12 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     when: ({ cesdk }) =>
       cesdk.engine.block
         .findAllSelected()
-        .some((id) => cesdk.engine.block.getType(id) === '//ly.img.ubq/text') &&
-      cesdk.feature.isEnabled('ly.img.text.decoration', {
-        engine: cesdk.engine
-      })
+        .some(
+          (id) =>
+            cesdk.engine.block.getType(id) === '//ly.img.ubq/text' &&
+            cesdk.features.evaluate('ly.img.text', { blockId: id }).options
+              .decoration.status === 'available'
+        )
   },
   {
     keys: 'Mod+Shift+x',
@@ -425,10 +567,12 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     when: ({ cesdk }) =>
       cesdk.engine.block
         .findAllSelected()
-        .some((id) => cesdk.engine.block.getType(id) === '//ly.img.ubq/text') &&
-      cesdk.feature.isEnabled('ly.img.text.decoration', {
-        engine: cesdk.engine
-      })
+        .some(
+          (id) =>
+            cesdk.engine.block.getType(id) === '//ly.img.ubq/text' &&
+            cesdk.features.evaluate('ly.img.text', { blockId: id }).options
+              .decoration.status === 'available'
+        )
   },
   {
     keys: 'Alt+Shift+5',
@@ -439,10 +583,12 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     when: ({ cesdk }) =>
       cesdk.engine.block
         .findAllSelected()
-        .some((id) => cesdk.engine.block.getType(id) === '//ly.img.ubq/text') &&
-      cesdk.feature.isEnabled('ly.img.text.decoration', {
-        engine: cesdk.engine
-      })
+        .some(
+          (id) =>
+            cesdk.engine.block.getType(id) === '//ly.img.ubq/text' &&
+            cesdk.features.evaluate('ly.img.text', { blockId: id }).options
+              .decoration.status === 'available'
+        )
   },
   // #endregion
 
@@ -459,7 +605,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
-      cesdk.engine.block.findAllSelected().length > 0
+      cesdk.engine.block.findAllSelected().length > 0 &&
+      canTransform(cesdk, 'position')
   },
   {
     keys: 'ArrowDown',
@@ -469,7 +616,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
-      cesdk.engine.block.findAllSelected().length > 0
+      cesdk.engine.block.findAllSelected().length > 0 &&
+      canTransform(cesdk, 'position')
   },
   {
     keys: 'ArrowLeft',
@@ -479,7 +627,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
-      cesdk.engine.block.findAllSelected().length > 0
+      cesdk.engine.block.findAllSelected().length > 0 &&
+      canTransform(cesdk, 'position')
   },
   {
     keys: 'ArrowRight',
@@ -489,7 +638,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
-      cesdk.engine.block.findAllSelected().length > 0
+      cesdk.engine.block.findAllSelected().length > 0 &&
+      canTransform(cesdk, 'position')
   },
   {
     keys: 'Shift+ArrowUp',
@@ -499,7 +649,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
-      cesdk.engine.block.findAllSelected().length > 0
+      cesdk.engine.block.findAllSelected().length > 0 &&
+      canTransform(cesdk, 'position')
   },
   {
     keys: 'Shift+ArrowDown',
@@ -509,7 +660,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
-      cesdk.engine.block.findAllSelected().length > 0
+      cesdk.engine.block.findAllSelected().length > 0 &&
+      canTransform(cesdk, 'position')
   },
   {
     keys: 'Shift+ArrowLeft',
@@ -519,7 +671,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
-      cesdk.engine.block.findAllSelected().length > 0
+      cesdk.engine.block.findAllSelected().length > 0 &&
+      canTransform(cesdk, 'position')
   },
   {
     keys: 'Shift+ArrowRight',
@@ -529,7 +682,8 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) =>
       cesdk.engine.editor.getEditMode() === 'Transform' &&
-      cesdk.engine.block.findAllSelected().length > 0
+      cesdk.engine.block.findAllSelected().length > 0 &&
+      canTransform(cesdk, 'position')
   },
   // Crop offset: nudge the image inside its crop frame while in Crop mode.
   // Shares the arrow keys with selection nudge — edit modes are mutually
@@ -622,6 +776,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.rotateCCW',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'rotation')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -637,6 +792,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.rotateCW',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'rotation')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -652,6 +808,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.rotateCCWExtended',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'rotation')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -667,6 +824,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.rotateCWExtended',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'rotation')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -684,6 +842,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeWidthGrow',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -699,6 +858,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeWidthShrink',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -714,6 +874,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeHeightGrow',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -729,6 +890,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeHeightShrink',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -744,6 +906,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeWidthGrowExtended',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -759,6 +922,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeWidthShrinkExtended',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -774,6 +938,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeHeightGrowExtended',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -789,6 +954,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeHeightShrinkExtended',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -806,6 +972,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeWidthGrowFromLeft',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -821,6 +988,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeWidthShrinkFromLeft',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -836,6 +1004,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeHeightGrowFromTop',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -851,6 +1020,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeHeightShrinkFromTop',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -866,6 +1036,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeWidthGrowFromLeftExtended',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -881,6 +1052,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeWidthShrinkFromLeftExtended',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -896,6 +1068,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeHeightGrowFromTopExtended',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -911,6 +1084,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
     run: 'selection.resizeHeightShrinkFromTopExtended',
     scope: ['ly.img.scope.canvas'],
     when: ({ cesdk }) => {
+      if (!canTransform(cesdk, 'size')) return false;
       if (cesdk.engine.editor.getEditMode() !== 'Transform') return false;
       const selected = cesdk.engine.block.findAllSelected();
       if (selected.length === 0) return false;
@@ -1229,7 +1403,7 @@ export const usAnsiCatalog: KeyboardShortcut[] = [
   // run: 'video.playPause',
   // scope: ['ly.img.scope.videoTimeline'],
   // when: ({ cesdk }) =>
-  // cesdk.feature.isEnabled('ly.img.video.timeline.controls.playback')
+  // cesdk.features.evaluate('ly.img.video.timeline').options.playback.status === 'available'
   // },
   // #endregion
 

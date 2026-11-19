@@ -76,8 +76,10 @@ class Example implements EditorPlugin {
 
 
     // Enable effects and filters in the inspector panel
-    cesdk.feature.enable('ly.img.effect');
-    cesdk.feature.enable('ly.img.filter');
+    cesdk.features.configure({
+      'ly.img.effect': { enabled: true },
+      'ly.img.filter': { enabled: true }
+    });
 
     // Create a beautiful gradient background
     const gradientFill = engine.block.createFill('gradient/linear');

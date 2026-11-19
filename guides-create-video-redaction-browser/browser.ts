@@ -66,9 +66,12 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    cesdk.feature.enable('ly.img.blur');
-    cesdk.feature.enable('ly.img.effect');
     await cesdk.addPlugin(new VideoEditorConfig());
+
+    cesdk.features.configure({
+      'ly.img.blur': { enabled: true },
+      'ly.img.effect': { enabled: true }
+    });
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());

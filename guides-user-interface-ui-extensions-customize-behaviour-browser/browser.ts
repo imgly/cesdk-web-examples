@@ -246,21 +246,25 @@ export default class CustomizeBehaviorExample implements EditorPlugin {
   }
 
   private demonstrateFeatureManagement(cesdk: any): void {
-    // Check if feature is enabled
-    const isUndoEnabled = cesdk.feature.isEnabled('ly.img.undo');
+    // Check if feature is switched on
+    const isDuplicateEnabled = cesdk.features.get('ly.img.duplicate').enabled;
     // eslint-disable-next-line no-console
-    console.log('Undo feature enabled:', isUndoEnabled);
+    console.log('Duplicate feature enabled:', isDuplicateEnabled);
 
-    // Disable feature conditionally
+    // Switch a feature off conditionally
     setTimeout(() => {
-      // Example: Disable undo for demonstration
-      // cesdk.feature.disable('ly.img.undo');
+      // Example: switch off duplicate for demonstration
+      // cesdk.features.configure({ 'ly.img.duplicate': { enabled: false } });
       // eslint-disable-next-line no-console
-      console.log('Feature management demonstrated (undo not disabled)');
+      console.log(
+        'Feature management demonstrated (duplicate not switched off)'
+      );
     }, 6000);
 
-    // List features matching pattern
-    const allFeatures = cesdk.feature.list({ matcher: 'ly.img.*' });
+    // List every defined feature
+    const allFeatures = cesdk.features
+      .list()
+      .map((feature: { id?: string }) => feature.id);
     // eslint-disable-next-line no-console
     console.log('Available features:', allFeatures.slice(0, 10));
   }

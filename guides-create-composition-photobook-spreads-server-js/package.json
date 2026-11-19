@@ -1,0 +1,20 @@
+{
+  "name": "guides-create-composition-photobook-spreads-server-js",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server-js.ts",
+    "build": "tsc --noEmit",
+    "check:syntax": "tsc --project tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@cesdk/node": "^1.87.0-rc.2",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

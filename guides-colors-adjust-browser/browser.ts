@@ -74,7 +74,7 @@ class Example implements EditorPlugin {
     });
 
     // Enable adjustments in the inspector panel
-    cesdk.feature.enable('ly.img.adjustment');
+    cesdk.features.configure({ 'ly.img.adjustment': { enabled: true } });
 
     const engine = cesdk.engine;
     const page = engine.block.findByType('page')[0];

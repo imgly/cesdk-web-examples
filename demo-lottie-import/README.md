@@ -10,7 +10,7 @@ Use Node.js 22 or newer. Install dependencies and set the `license` property in 
 
 `npm run build` builds the showcase; `npm run preview` serves that build. In the monorepo, use the root package manager (`pnpm --filter demo-lottie-import dev`) and the workspace build runner.
 
-The importer requires CE.SDK 1.85.0 or later. Importing dotLottie archives needs Safari 16.4 or newer. Its APIs are experimental.
+The importer requires CE.SDK 1.85.0 or later. Importing dotLottie archives needs Safari 16.4 or newer.
 
 ## Integration
 

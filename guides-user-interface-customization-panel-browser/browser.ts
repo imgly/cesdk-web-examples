@@ -39,11 +39,13 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable panel features through Feature API
-    cesdk.feature.set('ly.img.inspector', () => true);
-    cesdk.feature.set('ly.img.library.panel', () => true);
-    cesdk.feature.set('ly.img.settings', () => true);
     await cesdk.addPlugin(new DesignEditorConfig());
+
+    // Switch the panel features on with cesdk.features
+    cesdk.features.configure({
+      'ly.img.inspector': { enabled: true },
+      'ly.img.library': { enabled: true }
+    });
 
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());

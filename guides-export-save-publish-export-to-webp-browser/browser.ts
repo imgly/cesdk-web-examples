@@ -134,9 +134,9 @@ class Example implements EditorPlugin {
             key: 'export-action',
             label: 'Export',
             icon: '@imgly/Download',
-            onClick: () => {
+            onClick: async () => {
               // Run built-in export with WebP format
-              cesdk.actions.run('exportDesign', { mimeType: 'image/webp' });
+              await cesdk.actions.run('exportDesign', { mimeType: 'image/webp' });
             }
           }
         ]

@@ -17,7 +17,7 @@
  *
  * - `cesdk.utils.export(options)` - Export current design to various formats.
  * Options: mimeType, targetWidth, targetHeight, jpegQuality, pngCompressionLevel.
- * Returns: { blobs: Blob[], options: ExportOptions }.
+ * Returns: { blobs: [Blob, ...Blob[]], options: ExportOptions }.
  *
  * - `cesdk.utils.downloadFile(data, mimeType, filename?)` - Trigger browser file download.
  * data: Blob, string, or ArrayBuffer.

@@ -39,11 +39,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable features to demonstrate various UI labels
-    cesdk.feature.enable(['ly.img.fill.color', 'ly.img.fill.image']);
-    cesdk.feature.enable('ly.img.adjustment');
-    cesdk.feature.enable('ly.img.layer');
-    cesdk.feature.enable('ly.img.settings');
     await cesdk.addPlugin(new DesignEditorConfig());
 
     // Add asset source plugins

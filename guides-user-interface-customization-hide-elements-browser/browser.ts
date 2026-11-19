@@ -28,15 +28,20 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
+    await cesdk.addPlugin(new DesignEditorConfig());
+
     // ===== Hide Elements Examples =====
     // Configure UI visibility before loading assets and creating scene
     // Show only navigation bar and inspector bar, hide everything else
 
-    // Hide canvas bar and canvas menu using Feature API
-    cesdk.feature.disable(['ly.img.canvas.bar', 'ly.img.canvas.menu']);
+    // Hide canvas bar and canvas menu with cesdk.features
+    cesdk.features.configure({
+      'ly.img.canvas.bar': { enabled: false },
+      'ly.img.canvas.menu': { enabled: false }
+    });
 
-    // Hide the entire dock using Feature API
-    cesdk.feature.disable('ly.img.dock');
+    // Hide the entire dock with cesdk.features
+    cesdk.features.configure({ 'ly.img.dock': { enabled: false } });
 
     // Hide UI elements using ordering APIs (alternative method)
     // Setting empty array removes all components
@@ -56,30 +61,33 @@ class Example implements EditorPlugin {
     const allPanels = cesdk.ui.findAllPanels();
     console.log('All panels:', allPanels);
 
-    // Using glob patterns to control multiple features
-    const navigationFeatures = cesdk.feature.list({
-      matcher: 'ly.img.navigation.*'
-    });
-    console.log('Navigation features:', navigationFeatures);
+    // List every feature with its options and settings
+    const features = cesdk.features.list();
+    console.log(
+      'Features:',
+      features.map((feature) => feature.id)
+    );
 
-    // Disable all navigation features at once using wildcard pattern
-    // cesdk.feature.disable('ly.img.navigation.*');
+    // Name the features to switch off together
+    // cesdk.features.configure({
+    //   'ly.img.dock': { enabled: false },
+    //   'ly.img.navigation.bar': { enabled: false }
+    // });
 
-    // Check if features are enabled
-    const isDockEnabled = cesdk.feature.isEnabled('ly.img.dock');
-    const isNavBarEnabled = cesdk.feature.isEnabled('ly.img.navigation.bar');
+    // Check if features are switched on
+    const isDockEnabled = cesdk.features.get('ly.img.dock').enabled;
+    const isNavBarEnabled = cesdk.features.get('ly.img.navigation.bar').enabled;
     console.log('Dock enabled:', isDockEnabled);
     console.log('Navigation bar enabled:', isNavBarEnabled);
 
     // Hide notification toasts
-    cesdk.feature.disable('ly.img.notifications');
+    cesdk.features.configure({ 'ly.img.notifications': { enabled: false } });
     // Or hide specific notification types:
-    // cesdk.feature.disable('ly.img.notifications.undo');
-    // cesdk.feature.disable('ly.img.notifications.redo');
+    // cesdk.features.configure({
+    //   'ly.img.notifications': { undo: false, redo: false }
+    // });
 
     // ===== Load Assets and Create Scene =====
-    await cesdk.addPlugin(new DesignEditorConfig());
-
     // Add asset source plugins
     await cesdk.addPlugin(new BlurAssetSource());
     await cesdk.addPlugin(new ImageColorsAssetSource());

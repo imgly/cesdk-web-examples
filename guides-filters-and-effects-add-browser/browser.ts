@@ -84,8 +84,8 @@ class Example implements EditorPlugin {
     const page = engine.block.findByType('page')[0];
 
 
-    // Enable filters in the inspector panel using the Feature API
-    cesdk.feature.enable('ly.img.filter');
+    // Enable filters in the inspector panel with cesdk.features
+    cesdk.features.configure({ 'ly.img.filter': { enabled: true } });
 
     // Add a custom filter to the built-in LUT filter source
     // The ID must follow the format //ly.img.cesdk.filters.lut/{name}
@@ -243,9 +243,8 @@ class Example implements EditorPlugin {
     });
 
     // Create asset source from JSON string
-    const jsonSourceId = await engine.asset.addLocalAssetSourceFromJSONString(
-      filterConfigJSON
-    );
+    const jsonSourceId =
+      await engine.asset.addLocalAssetSourceFromJSONString(filterConfigJSON);
     // eslint-disable-next-line no-console
     console.log('Created JSON-based filter source:', jsonSourceId);
 
