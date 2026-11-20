@@ -26,9 +26,10 @@ console.log('1. Default PDF');
 console.log('2. High Compatibility PDF');
 console.log('3. PDF with Underlayer');
 console.log('4. A4 @ 300 DPI PDF');
-console.log('5. All formats\n');
+console.log('5. PDF at a Cover Time');
+console.log('6. All formats\n');
 
-const choice = (await prompt('Select export option (1-5): ')) || '5';
+const choice = (await prompt('Select export option (1-6): ')) || '6';
 
 console.log('\n⏳ Initializing engine...');
 
@@ -58,7 +59,7 @@ try {
     console.log(`  Exported ${exportedPages} of ${totalPages} pages`);
   };
 
-  if (choice === '1' || choice === '5') {
+  if (choice === '1' || choice === '6') {
     // Export scene as PDF (includes all pages)
     const blob = await engine.block.export(scene, {
       mimeType: 'application/pdf',
@@ -73,7 +74,7 @@ try {
     );
   }
 
-  if (choice === '2' || choice === '5') {
+  if (choice === '2' || choice === '6') {
     // Enable high compatibility mode for consistent rendering across PDF viewers
     const blob = await engine.block.export(scene, {
       mimeType: 'application/pdf',
@@ -89,7 +90,7 @@ try {
     );
   }
 
-  if (choice === '3' || choice === '5') {
+  if (choice === '3' || choice === '6') {
     engine.editor.setSpotColorRGB('RDG_WHITE', 0.8, 0.8, 0.8);
 
     // Export with underlayer for special media printing
@@ -110,7 +111,7 @@ try {
     );
   }
 
-  if (choice === '4' || choice === '5') {
+  if (choice === '4' || choice === '6') {
     // Export with specific dimensions for print output
     const blob = await engine.block.export(scene, {
       mimeType: 'application/pdf',
@@ -124,6 +125,26 @@ try {
       `✓ A4 PDF: ${outputDir}/design-a4.pdf (${(blob.size / 1024).toFixed(
         1
       )} KB)`
+    );
+  }
+
+  if (choice === '5' || choice === '6') {
+    // Show each page at 2 seconds, whatever its playback time is.
+    // The scene keeps the cover times, so later exports use them too.
+    for (const page of engine.block.findByType('page')) {
+      engine.block.setDouble(page, 'playback/coverTime', 2);
+      engine.block.setBool(page, 'playback/coverTimeEnabled', true);
+    }
+    const blob = await engine.block.export(scene, {
+      mimeType: 'application/pdf',
+      onProgress
+    });
+    const buffer = Buffer.from(await blob.arrayBuffer());
+    writeFileSync(`${outputDir}/design-cover-time.pdf`, buffer);
+    console.log(
+      `✓ Cover Time PDF: ${outputDir}/design-cover-time.pdf (${(
+        blob.size / 1024
+      ).toFixed(1)} KB)`
     );
   }
 

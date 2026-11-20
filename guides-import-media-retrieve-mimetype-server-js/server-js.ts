@@ -34,6 +34,13 @@ try {
   if (transientResources.length === 0) {
     console.log('No transient resources found in the loaded archive');
   } else {
+    const formats = engine.editor.getFileFormats();
+    console.log('Media formats:', formats);
+    for (const resource of transientResources) {
+      const support = await engine.editor.checkFileSupport(resource.URL);
+      console.log(resource.URL, support.inspection, support.uses);
+    }
+
     // Get MIME types for all resources to see what's included
     const resourcesByType: Record<string, number> = {};
     for (const resource of transientResources) {

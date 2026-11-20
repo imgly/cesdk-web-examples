@@ -30,9 +30,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable video editing features
-    cesdk.feature.enable('ly.img.video.*');
-
     await cesdk.addPlugin(new VideoEditorConfig());
 
     // Add asset source plugins

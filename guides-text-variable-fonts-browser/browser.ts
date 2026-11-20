@@ -163,6 +163,23 @@ class Example implements EditorPlugin {
     const currentWeights = engine.block.getTextFontWeights(headline);
     console.log('Headline font weights:', currentWeights); // ['extraBold']
 
+    // Set an axis value directly. A `wght` value can lie between the named
+    // weights, such as 450 between Regular (400) and Medium (500).
+    engine.block.setTextVariationAxes(
+      headline,
+      [{ tag: 'wght', value: 450 }],
+      0,
+      8 // "Variable"
+    );
+
+    const headlineAxes = engine.block.getTextVariationAxes(headline);
+    console.log('Headline axes:', headlineAxes); // [[{ tag: 'wght', value: 450 }], []]
+
+    // Read the axes of the font file and the range of each axis
+    const fontInfo = await engine.editor.getFontInfo(fontFileURI);
+    console.log('Font axes:', fontInfo.variationAxes);
+    // [{ tag: 'wght', minValue: 100, defaultValue: 400, maxValue: 900 }]
+
     // Select the headline so the inspector shows the font style dropdown
     engine.block.select(headline);
   }

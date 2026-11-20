@@ -86,6 +86,8 @@ class Example implements EditorPlugin {
     });
 
     const engine = cesdk.engine;
+    // This guide demonstrates overlap-enabled transitions.
+    engine.editor.setSetting('clip/defaultTransitionOverlapEnabled', true);
     const page = engine.block.findByType('page')[0];
 
     // Build a sequence of four clips on a single track
@@ -111,9 +113,9 @@ class Example implements EditorPlugin {
 
     const [clipA, clipB, clipC] = clips;
 
-    // Individual clips placed directly in a video track support transitions,
-    // regardless of content (video, image, shape, sticker, or text).
-    // Audio, group, caption, and cutout blocks report false.
+    // Clips placed directly in a video track support transitions, regardless
+    // of content (video, image, shape, sticker, text, or a group of blocks).
+    // Audio, caption, and cutout blocks report false.
     const canTransition =
       engine.block.supportsTransition(clipA) &&
       engine.block.supportsTransition(clipB);

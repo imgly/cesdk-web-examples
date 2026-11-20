@@ -38,9 +38,8 @@ class Example implements EditorPlugin {
 
     const engine = cesdk.engine;
 
-    // The zone controls sit behind this key. Enabling `ly.img.page` switches on
-    // every page child, including this one.
-    cesdk.feature.enable(['ly.img.page.printMarks.exclusionArea']);
+    // The zone controls sit behind this feature
+    cesdk.features.configure({ 'ly.img.exclusionArea': { enabled: true } });
 
     cesdk.i18n.setTranslations({
       en: {

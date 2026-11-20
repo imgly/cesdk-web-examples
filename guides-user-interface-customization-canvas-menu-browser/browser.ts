@@ -108,10 +108,10 @@ class Example implements EditorPlugin {
     engine.block.select(rect);
 
     // Hide the canvas menu
-    cesdk.feature.disable('ly.img.canvas.menu');
+    cesdk.features.configure({ 'ly.img.canvas.menu': { enabled: false } });
 
     // Show the canvas menu (default)
-    cesdk.feature.enable('ly.img.canvas.menu');
+    cesdk.features.configure({ 'ly.img.canvas.menu': { enabled: true } });
 
     // Set a custom canvas menu for Text edit mode
     cesdk.ui.setComponentOrder(

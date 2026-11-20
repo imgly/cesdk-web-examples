@@ -37,11 +37,14 @@ export function setupDock(cesdk: CreativeEditorSDK): void {
   // ============================================================================
 
   // #region Dock Appearance
-  // Show text labels under dock icons
-  cesdk.engine.editor.setSetting('dock/hideLabels', false);
-
-  // Icon size: 'normal' or 'large'
-  cesdk.engine.editor.setSetting('dock/iconSize', 'large');
+  cesdk.features.configure({
+    'ly.img.dock': {
+      // Show text labels under dock icons
+      hideLabels: false,
+      // Icon size: 'normal' or 'large'
+      iconSize: 'large'
+    }
+  });
   // #endregion
 
   // ============================================================================

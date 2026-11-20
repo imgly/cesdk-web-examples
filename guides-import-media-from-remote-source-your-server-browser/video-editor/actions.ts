@@ -17,7 +17,7 @@
  *
  * - `cesdk.utils.export(options)` - Export current design to various formats
  *   - Options: mimeType, targetWidth, targetHeight, jpegQuality, pngCompressionLevel
- *   - Returns: { blobs: Blob[], options: ExportOptions }
+ *   - Returns: { blobs: [Blob, ...Blob[]], options: ExportOptions }
  *
  * - `cesdk.utils.downloadFile(data, mimeType, filename?)` - Trigger browser file download
  *   - data: Blob, string, or ArrayBuffer
@@ -203,7 +203,7 @@ export function setupActions(cesdk: CreativeEditorSDK): void {
 
   // #region Upload File Action
   // Override to handle file uploads with custom logic (e.g., upload to your backend)
-  // cesdk.actions.register('uploadFile', (file, onProgress, context) => {
+  // cesdk.actions.register('uploadFile', (file, _onProgress, context) => {
   //   return cesdk.utils.localUpload(file, context);
   // });
   // #endregion

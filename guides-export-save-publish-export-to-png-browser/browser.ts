@@ -101,7 +101,9 @@ class Example implements EditorPlugin {
             key: 'export-design',
             label: 'Export PNG (default)',
             icon: '@imgly/Save',
-            onClick: () => cesdk.actions.run('exportDesign')
+            onClick: async () => {
+              await cesdk.actions.run('exportDesign');
+            }
           },
           {
             id: 'ly.img.action.navigationBar',

@@ -100,8 +100,11 @@ class Example implements EditorPlugin {
       .forEach((block) => engine.block.setSelected(block, false));
     engine.block.select(page);
 
-    // Hide undo/redo using the Feature API
-    cesdk.feature.disable('ly.img.navigation.undoRedo');
+    // Hide undo/redo by removing its button from the navigation bar order
+    cesdk.ui.removeOrderComponent({
+      in: 'ly.img.navigation.bar',
+      match: 'ly.img.undoRedo.navigationBar'
+    });
 
     // Insert a back button at the start of the navigation bar
     cesdk.ui.insertOrderComponent(

@@ -13,7 +13,7 @@ Open your browser to the URL shown in the terminal (usually http://localhost:517
 
 ## What This Example Shows
 
-- Hiding elements with the Feature API
+- Hiding elements with `cesdk.features`
 - Hiding the navigation bar and individual buttons
 - Hiding canvas elements (bar and menu)
 - Hiding inspector elements
@@ -21,15 +21,15 @@ Open your browser to the URL shown in the terminal (usually http://localhost:517
 - Using ordering APIs to hide components
 - Managing panel visibility dynamically
 - Creating a minimal UI (canvas-only view)
-- Using glob patterns to control multiple features
+- Using glob patterns to close several panels at once
 - Dynamic visibility control based on context
 
 ## Key Concepts
 
-- **Feature API** - Primary method for enabling/disabling UI features
+- **`cesdk.features`** - Primary method for switching UI features on and off
 - **Ordering APIs** - Control what appears in ordered component lists
 - **Panel Management** - Control panel open/closed state
-- **Glob Patterns** - Use wildcards to match multiple feature IDs
+- **Glob Patterns** - Use wildcards to match several panel IDs
 
 ## Related Guides
 

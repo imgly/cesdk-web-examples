@@ -64,14 +64,11 @@ class Example implements EditorPlugin {
       }
     });
 
-    // Enable the settings feature so the settings button can be displayed.
-    cesdk.feature.enable('ly.img.settings');
-
     // Hide the canvas bar
-    cesdk.feature.disable('ly.img.canvas.bar');
+    cesdk.features.configure({ 'ly.img.canvas.bar': { enabled: false } });
 
     // Show the canvas bar (default)
-    cesdk.feature.enable('ly.img.canvas.bar');
+    cesdk.features.configure({ 'ly.img.canvas.bar': { enabled: true } });
 
     // Configure the top position with settings and add page
     cesdk.ui.setComponentOrder({ in: 'ly.img.canvas.bar', at: 'top' }, [

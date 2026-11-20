@@ -30,8 +30,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable spot color feature for the UI
-    cesdk.feature.enable('ly.img.spotColor');
     await cesdk.addPlugin(new DesignEditorConfig());
 
     // Add asset source plugins
@@ -262,9 +260,23 @@ class Example implements EditorPlugin {
     const png = await engine.block.export(page, { mimeType: 'image/png' });
     const pdf = await engine.block.export(page, {
       mimeType: 'application/pdf',
-      exportPdfWithDeviceCMYK: true
+      outputColorSpace: 'CMYK'
     });
     console.log('PNG bytes:', png.size, 'PDF bytes:', pdf.size);
+
+    const outputCMYK = { role: 'Output', space: 'CMYK' } as const;
+    await engine.scene.setDocumentColorProfile(
+      outputCMYK,
+      new URL(profileUrl, document.baseURI).href
+    );
+    const printPdf = await engine.block.export(page, {
+      mimeType: 'application/pdf',
+      outputColorSpace: 'CMYK',
+      outputProfileMode: 'Convert',
+      embedProfiles: true,
+      preserveBlack: true
+    });
+    console.log('Print PDF bytes:', printPdf.size);
 
     console.log('Color Basics example loaded successfully');
   }

@@ -214,19 +214,6 @@ export function setupSettings(engine: CreativeEngine): void {
   // #endregion
 
   // ============================================================================
-  // DOCK SETTINGS
-  // Configure the asset dock appearance
-  // ============================================================================
-
-  // #region Dock Settings
-  // Hide text labels on dock icons (icon-only mode)
-  // engine.editor.setSetting('dock/hideLabels', false);
-
-  // Dock icon size: 'normal' or 'large'
-  // engine.editor.setSetting('dock/iconSize', 'large');
-  // #endregion
-
-  // ============================================================================
   // FEATURE FLAGS
   // Enable/disable specific engine capabilities
   // ============================================================================
@@ -249,19 +236,6 @@ export function setupSettings(engine: CreativeEngine): void {
   // Uncomment to enable background grid and snap-to-grid for precise alignment
   // engine.editor.setSettingBool('grid/enabled', true);
   // engine.editor.setSettingBool('grid/snapEnabled', true);
-  // #endregion
-
-  // ============================================================================
-  // COLOR PICKER SETTINGS
-  // Configure color picker behavior
-  // ============================================================================
-
-  // #region Color Picker Settings
-  // Restrict color picker to a specific color mode:
-  // - 'Any': Allow both RGB and CMYK (default)
-  // - 'RGB': Restrict to RGB colors only
-  // - 'CMYK': Restrict to CMYK colors only
-  engine.editor.setSetting('colorPicker/colorMode', 'Any');
   // #endregion
 
   // ============================================================================

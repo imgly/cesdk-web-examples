@@ -32,9 +32,7 @@ class Example implements EditorPlugin {
 
     // Fill features are enabled by default in CE.SDK
     // You can check and control fill feature availability:
-    const isFillEnabled = cesdk.feature.isEnabled('ly.img.fill', {
-      engine: cesdk.engine
-    });
+    const isFillEnabled = cesdk.features.get('ly.img.fill').enabled;
     console.log('Fill feature enabled:', isFillEnabled);
     await cesdk.addPlugin(new DesignEditorConfig());
 

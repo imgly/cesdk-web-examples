@@ -147,10 +147,9 @@ class Example implements EditorPlugin {
     // RecraftV3 supports both raster (realistic_image) and vector output
     // To restrict to vector only:
     /*
-    cesdk.feature.enable(
-      'ly.img.plugin-ai-image-generation-web.fal-ai/recraft-v3.style.image',
-      false
-    );
+    cesdk.features.configure({
+      'ly.img.plugin-ai-image-generation-web': { recraftV3Styles: ['vector'] }
+    });
     */
 
     // Configure artistic styles for different visual outputs
@@ -174,13 +173,13 @@ class Example implements EditorPlugin {
     // Control which features are visible in the UI
     /*
     // Hide provider selection when using single provider
-    cesdk.feature.enable('ly.img.plugin-ai-image-generation-web.providerSelect', false);
-
-    // Disable specific style groups
-    cesdk.feature.enable(
-      'ly.img.plugin-ai-image-generation-web.fal-ai/recraft-v3.style.vector',
-      false
-    );
+    cesdk.features.configure({
+      'ly.img.plugin-ai-image-generation-web': {
+        options: { providerSelect: { enabled: false } },
+        // Offer only the raster style for Recraft V3
+        recraftV3Styles: ['image']
+      }
+    });
     */
 
     // Customize UI labels and translations

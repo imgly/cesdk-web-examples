@@ -11,6 +11,7 @@ import packageJson from './package.json';
  * - Adding and configuring pages
  * - Scene layout types (HorizontalStack)
  * - Stack spacing between pages
+ * - Page spreads through the editor's actions
  */
 class Example implements EditorPlugin {
   name = packageJson.name;
@@ -63,6 +64,15 @@ class Example implements EditorPlugin {
     engine.block.setPositionX(imageBlock2, 250);
     engine.block.setPositionY(imageBlock2, 200);
     engine.block.appendChild(secondPage, imageBlock2);
+
+    // Add a spread of two pages after the last page
+    const spread = await cesdk.actions.run('page.addSpread');
+
+    // Add a third page at the end of the spread
+    await cesdk.actions.run('spread.appendPage', { spread });
+
+    // Put the pages of the spread in a column
+    await cesdk.actions.run('spread.setLayout', { spread, layout: 'Vertical' });
 
     engine.block.select(firstPage);
     engine.scene.enableZoomAutoFit(firstPage, 'Both');

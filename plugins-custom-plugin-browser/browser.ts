@@ -92,8 +92,8 @@ class CustomFeaturePlugin implements EditorPlugin {
         builder.Button('customFeature.dock.export', {
           label: 'Custom Export',
           icon: '@imgly/Download',
-          onClick: () => {
-            cesdk.actions.run('exportDesign');
+          onClick: async () => {
+            await cesdk.actions.run('exportDesign');
           }
         });
       });
