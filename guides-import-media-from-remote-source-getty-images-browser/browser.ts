@@ -97,7 +97,7 @@ class Example implements EditorPlugin {
 
     // Load Getty Images proxy URL from environment
     // The proxy securely handles API authentication without exposing credentials in the frontend
-    const gettyProxyUrl = (undefined as string | undefined);
+    const gettyProxyUrl = import.meta.env.VITE_GETTY_IMAGES_PROXY_URL;
 
     if (!gettyProxyUrl) {
       console.warn(

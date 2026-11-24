@@ -219,12 +219,36 @@ class Example implements EditorPlugin {
           },
           {
             id: 'ly.img.action.navigationBar',
+            key: 'export-cover-time',
+            label: 'Cover Frames',
+            icon: '@imgly/Download',
+            onClick: async () => {
+              // Export scene to include all pages in the PDF
+              const scene = engine.scene.get()!;
+              // Show each page at 2 seconds, whatever its playback time is.
+              // The scene keeps the cover times, so later exports use them too.
+              for (const coverPage of engine.block.findByType('page')) {
+                engine.block.setDouble(coverPage, 'playback/coverTime', 2);
+                engine.block.setBool(
+                  coverPage,
+                  'playback/coverTimeEnabled',
+                  true
+                );
+              }
+              const pdfBlob = await engine.block.export(scene, {
+                mimeType: 'application/pdf'
+              });
+              await cesdk.utils.downloadFile(pdfBlob, 'application/pdf');
+            }
+          },
+          {
+            id: 'ly.img.action.navigationBar',
             key: 'export-action',
             label: 'Export',
             icon: '@imgly/Download',
-            onClick: () => {
+            onClick: async () => {
               // Run built-in export with PDF format
-              cesdk.actions.run('exportDesign', {
+              await cesdk.actions.run('exportDesign', {
                 mimeType: 'application/pdf'
               });
             }

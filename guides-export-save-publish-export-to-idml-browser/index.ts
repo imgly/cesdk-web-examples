@@ -7,11 +7,13 @@ declare global {
   }
 }
 
-CreativeEditorSDK.create('#cesdk_container', {
+const config = {
   userId: 'guides-user',
-})
+};
+
+CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    await cesdk.addPlugin(new Example());
+    await cesdk.addPlugin(new Example(config));
     window.cesdk = cesdk;
   })
   .catch((error) => {

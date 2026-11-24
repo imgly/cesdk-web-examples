@@ -47,8 +47,6 @@ class Example implements EditorPlugin {
       throw new Error('CE.SDK instance is required for this plugin');
     }
 
-    // Enable spot color feature for the UI
-    cesdk.feature.enable('ly.img.spotColor');
     await cesdk.addPlugin(new DesignEditorConfig());
 
     // Add asset source plugins

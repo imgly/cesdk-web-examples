@@ -9,9 +9,9 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/node": "^1.86.2",
+    "@cesdk/node": "^1.87.0",
     "dotenv": "^16.0.0",
-    "@imgly/figma-importer": "0.1.1"
+    "@imgly/figma-importer": "^0.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

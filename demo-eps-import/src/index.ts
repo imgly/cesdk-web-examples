@@ -220,7 +220,7 @@ exportButton.addEventListener('click', () => {
   void cesdk.engine.block
     .export(page, {
       mimeType: 'application/pdf',
-      exportPdfWithDeviceCMYK: true
+      outputColorSpace: 'CMYK'
     })
     .then((blob) => {
       const url = URL.createObjectURL(blob);

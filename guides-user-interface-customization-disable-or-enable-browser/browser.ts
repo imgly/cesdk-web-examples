@@ -1,4 +1,9 @@
-import type { EditorPlugin, EditorPluginContext } from '@cesdk/cesdk-js';
+import type {
+  EditorPlugin,
+  EditorPluginContext,
+  FeatureDefinition,
+  FeatureShapeOf
+} from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
@@ -19,15 +24,35 @@ import {
 import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
 
+// Declare the feature once. Settings are JSON Schema with a default.
+const stampFeature = {
+  id: 'my.guide.stamp',
+  title: 'Stamp',
+  description: 'Stamping a block with a label.',
+  requires: ({ engine, blockId }) =>
+    blockId != null && engine.block.supportsFill(blockId),
+  labels: {
+    type: 'array',
+    items: { enum: ['Draft', 'Approved', 'Rejected'] },
+    default: ['Draft', 'Approved', 'Rejected']
+  }
+} as const satisfies FeatureDefinition;
+
+// TypeScript accepts only registered ids, so add the feature to the registry.
+declare module '@cesdk/cesdk-js' {
+  interface FeatureRegistry {
+    'my.guide.stamp': FeatureShapeOf<typeof stampFeature>;
+  }
+}
+
 /**
  * Disable or Enable Features Example
  *
- * This example demonstrates how to use CE.SDK's Feature API to:
- * - Enable and disable features with simple toggles
- * - Use glob patterns for bulk operations
- * - Create custom predicates based on selection
- * - Extend default predicates with additional conditions
- * - Check feature status and discover available features
+ * This example demonstrates how to use CE.SDK's `cesdk.features` API to:
+ * - Switch features on and options off
+ * - Change settings and narrow or extend where a feature shows
+ * - Read, explain and inspect features
+ * - Define a feature for a custom component
  */
 class Example implements EditorPlugin {
   name = packageJson.name;
@@ -37,6 +62,8 @@ class Example implements EditorPlugin {
     if (!cesdk) {
       throw new Error('CE.SDK instance is required for this plugin');
     }
+
+    // The editor starts empty. The editor configuration switches on what it offers.
     await cesdk.addPlugin(new DesignEditorConfig());
 
     // Add asset source plugins
@@ -75,123 +102,6 @@ class Example implements EditorPlugin {
     });
 
     const engine = cesdk.engine;
-
-    // Enable delete feature with default predicate
-    cesdk.feature.enable('ly.img.delete');
-
-    // Enable multiple features at once
-    cesdk.feature.enable(['ly.img.duplicate', 'ly.img.group']);
-
-    // Disable crop feature
-    cesdk.feature.disable('ly.img.crop');
-
-    // Disable multiple features at once
-    cesdk.feature.disable(['ly.img.notifications', 'ly.img.preview']);
-
-    // Disable all transform features using glob pattern
-    cesdk.feature.disable('ly.img.transform*');
-
-    // Enable all video features using glob pattern
-    cesdk.feature.enable('ly.img.video*');
-
-    // Set feature with boolean (terminal predicate)
-    cesdk.feature.set('ly.img.fill', true);
-
-    // Set feature with custom predicate based on selection
-    cesdk.feature.set('ly.img.duplicate', ({ engine }) => {
-      return engine.block.findAllSelected().length > 0;
-    });
-
-    // Extend default predicate with additional condition
-    cesdk.feature.set('ly.img.delete', ({ defaultPredicate, engine }) => {
-      // Only allow delete when a block is selected
-      return defaultPredicate() && engine.block.findAllSelected().length > 0;
-    });
-
-    // Chain multiple predicates using isPreviousEnable
-    cesdk.feature.set('ly.img.replace', ({ isPreviousEnable, engine }) => {
-      const previousResult = isPreviousEnable();
-      const hasSelection = engine.block.findAllSelected().length > 0;
-      return previousResult && hasSelection;
-    });
-
-    // Check if a feature is enabled
-    const isDeleteEnabled = cesdk.feature.isEnabled('ly.img.delete');
-    console.log('Delete feature enabled:', isDeleteEnabled);
-
-    // Check if all video features are enabled (returns true only if ALL match)
-    const allVideoEnabled = cesdk.feature.isEnabled('ly.img.video*');
-    console.log('All video features enabled:', allVideoEnabled);
-
-    // List all registered feature IDs
-    const allFeatures = cesdk.feature.list();
-    console.log('All features:', allFeatures.slice(0, 10), '...');
-
-    // List features matching a pattern
-    const navigationFeatures = cesdk.feature.list({
-      matcher: 'ly.img.navigation*'
-    });
-    console.log('Navigation features:', navigationFeatures);
-
-    cesdk.ui.insertOrderComponent(
-      { in: 'ly.img.navigation.bar', position: 'end' },
-      {
-        id: 'ly.img.actions.navigationBar',
-        children: [
-          {
-            id: 'ly.img.action.navigationBar',
-            key: 'toggle-dock',
-            label: 'Toggle Dock',
-            onClick: () => {
-              const enabled = cesdk.feature.isEnabled('ly.img.dock');
-              if (enabled) {
-                cesdk.feature.disable('ly.img.dock');
-                console.log('Dock feature disabled');
-              } else {
-                cesdk.feature.enable('ly.img.dock');
-                console.log('Dock feature enabled');
-              }
-            }
-          },
-          {
-            id: 'ly.img.action.navigationBar',
-            key: 'toggle-crop',
-            label: 'Toggle Crop Features',
-            icon: '@imgly/Crop',
-            onClick: () => {
-              const enabled = cesdk.feature.isEnabled('ly.img.crop');
-              if (enabled) {
-                cesdk.feature.disable('ly.img.crop*');
-                console.log('All crop features disabled');
-              } else {
-                cesdk.feature.enable('ly.img.crop*');
-                console.log('All crop features enabled');
-              }
-            }
-          },
-          {
-            id: 'ly.img.action.navigationBar',
-            key: 'log-status',
-            label: 'Log Feature Status',
-            icon: '@imgly/Info',
-            onClick: () => {
-              console.log('=== Feature Status ===');
-              console.log('Dock:', cesdk.feature.isEnabled('ly.img.dock'));
-              console.log(
-                'Duplicate:',
-                cesdk.feature.isEnabled('ly.img.duplicate')
-              );
-              console.log('Crop:', cesdk.feature.isEnabled('ly.img.crop'));
-              console.log('Fill:', cesdk.feature.isEnabled('ly.img.fill'));
-              console.log(
-                'Navigation features:',
-                cesdk.feature.list({ matcher: 'ly.img.navigation*' })
-              );
-            }
-          }
-        ]
-      }
-    );
 
     const page = engine.block.findByType('page')[0];
     const pageWidth = engine.block.getWidth(page);
@@ -235,7 +145,125 @@ class Example implements EditorPlugin {
     engine.block.setPositionX(subtitleBlock, pageWidth * 0.1);
     engine.block.setPositionY(subtitleBlock, pageHeight * 0.52);
 
-    engine.block.setSelected(titleBlock, true);
+    // Built-in features start off. Switch on the ones this editor offers.
+    cesdk.features.configure({
+      'ly.img.preview': { enabled: true },
+      'ly.img.rulers': { enabled: true }
+    });
+
+    // Options start on. Switch off the ones the editor should not offer.
+    cesdk.features.configure({
+      'ly.img.text': {
+        options: {
+          decoration: { enabled: false },
+          path: { enabled: false }
+        }
+      }
+    });
+
+    // A setting takes a value, or a function that gets the value before it.
+    cesdk.features.configure({
+      'ly.img.crop': { open: 'manual' },
+      'ly.img.text': {
+        options: {
+          fontSize: { presets: [12, 14, 18, 24, 36] },
+          alignment: {
+            alignments: ({ previous }) =>
+              previous.filter((alignment) => alignment !== 'Auto')
+          }
+        }
+      }
+    });
+
+    // A rule replaces the built-in one. Opacity is for creators, on a single block.
+    cesdk.features.configure({
+      'ly.img.opacity': {
+        when: ({ engine, selection }) =>
+          selection.length === 1 && engine.editor.getRole() === 'Creator'
+      }
+    });
+
+    // A narrow adds a condition that must hold. Locked blocks cannot be deleted.
+    engine.block.setMetadata(subtitleBlock, 'locked', 'true');
+    cesdk.features.configure({
+      'ly.img.delete': {
+        when: {
+          narrow: ({ engine, blockId }) =>
+            blockId == null || !engine.block.hasMetadata(blockId, 'locked')
+        }
+      }
+    });
+
+    // An extend adds a place where the feature shows. Fill now also shows for stickers.
+    cesdk.features.configure({
+      'ly.img.fill': {
+        when: {
+          extend: ({ engine, blockId, selection }) =>
+            selection.length === 1 &&
+            blockId != null &&
+            engine.block.getKind(blockId) === 'sticker'
+        }
+      }
+    });
+
+    // evaluate works a feature out for a block: a status per level and the final settings.
+    const text = cesdk.features.evaluate('ly.img.text', {
+      blockId: titleBlock
+    });
+    console.log('Text:', text.status);
+    console.log('Decoration:', text.options.decoration.status);
+    console.log('Font sizes:', text.options.fontSize.presets);
+
+    // explain says why a level is not available, and who decided it.
+    const reason = cesdk.features.explain('ly.img.delete', {
+      blockId: subtitleBlock
+    });
+    console.log('Delete:', reason.status, reason.reason, reason.rule);
+
+    // get returns the feature as configured, list returns all of them. No rule runs.
+    const crop = cesdk.features.get('ly.img.crop');
+    console.log('Crop switched on:', crop.enabled);
+    console.log('Crop opens:', crop.open.value);
+    console.log(
+      'All features:',
+      cesdk.features.list().map((feature) => feature.id)
+    );
+
+    // Define the feature before anything configures it.
+    cesdk.features.define(stampFeature);
+    cesdk.features.configure({
+      'my.guide.stamp': {
+        enabled: true,
+        labels: ['Draft', 'Approved']
+      }
+    });
+
+    // The component re-renders when the feature changes.
+    cesdk.ui.registerComponent(
+      'my.guide.stamp.canvasMenu',
+      ({ builder, engine }) => {
+        const [blockId] = engine.block.findAllSelected();
+        const stamp = cesdk.features.evaluate('my.guide.stamp', { blockId });
+        if (stamp.status !== 'available') return;
+
+        builder.ButtonGroup('stamp-labels', {
+          children: () => {
+            stamp.labels.forEach((label) => {
+              builder.Button(`stamp-${label}`, {
+                label,
+                onClick: () => engine.block.setName(blockId, label)
+              });
+            });
+          }
+        });
+      }
+    );
+    cesdk.ui.insertOrderComponent(
+      { in: 'ly.img.canvas.menu', position: 'end' },
+      'my.guide.stamp.canvasMenu'
+    );
+
+    engine.block.select(titleBlock);
 
     console.log('Disable or Enable Features example loaded successfully!');
   }

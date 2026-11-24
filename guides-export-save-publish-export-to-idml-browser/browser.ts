@@ -17,14 +17,19 @@ import {
 } from '@cesdk/cesdk-js/plugins';
 import { DesignEditorConfig } from './design-editor/plugin';
 import packageJson from './package.json';
-import { exportPsdArchive } from './psd-export';
 
 import { exportIdmlPackage } from '@imgly/idml-exporter';
+
+import CreativeEngine, { type Configuration } from '@cesdk/engine';
+import { exportPsd } from '@imgly/psd-exporter';
+import JSZip from 'jszip';
 
 class Example implements EditorPlugin {
   name = packageJson.name;
 
   version = packageJson.version;
+
+  constructor(private readonly engineConfig: Partial<Configuration>) {}
 
   async initialize({ cesdk }: EditorPluginContext): Promise<void> {
     if (!cesdk) {
@@ -68,8 +73,6 @@ class Example implements EditorPlugin {
     const page = engine.scene.getCurrentPage();
     if (page === null) throw new Error('The design has no page');
     await engine.scene.zoomToBlock(page, { padding: 40 });
-
-    const psdExportUrl = import.meta.env.VITE_PSD_EXPORT_URL?.trim();
 
     cesdk.ui.registerComponent(
       'ly.img.idml-export.navigationBar',
@@ -138,43 +141,51 @@ class Example implements EditorPlugin {
             });
 
             builder.Button('download-psd-package', {
-              label: psdExportUrl
-                ? 'PSD (Photoshop)'
-                : 'PSD export unavailable',
-              tooltip: psdExportUrl
-                ? 'Download all pages as Photoshop documents'
-                : 'PSD export is temporarily unavailable.',
+              label: 'PSD (Photoshop)',
+              tooltip: 'Download all pages as Photoshop documents',
               variant: 'plain',
-              isDisabled: exporting.value || !psdExportUrl,
+              isDisabled: exporting.value,
               onClick: async () => {
-                if (exporting.value || !psdExportUrl) {
-                  return;
-                }
+                if (exporting.value) return;
                 close();
                 activeFormat.setValue('psd');
                 exporting.setValue(true);
                 try {
-                  const archive = await engine.scene.saveToArchive();
-                  const { zip, warningCount } = await exportPsdArchive(
-                    archive,
-                    psdExportUrl
+                  const { psds, logger } = await exportPsdFromCopy(
+                    engine,
+                    this.engineConfig
                   );
-                  downloadFile(zip, 'design-psd.zip');
+
+                  const messages = logger.getMessages();
+                  const needsReview = messages.some(
+                    (message) => message.type !== 'info'
+                  );
+                  if (needsReview) {
+                    console.warn('PSD export needs review:', messages);
+                  }
+
+                  const zip = new JSZip();
+                  psds.forEach(({ psd }, index) => {
+                    zip.file(`page-${index + 1}.psd`, psd);
+                  });
+                  downloadFile(
+                    await zip.generateAsync({ type: 'blob' }),
+                    'design-psd.zip'
+                  );
+
                   cesdk.ui.showNotification({
-                    type: warningCount > 0 ? 'warning' : 'success',
-                    message:
-                      warningCount > 0
-                        ? 'Download ready. Some content needs review. Check the documents in Photoshop.'
-                        : 'Download ready. Unzip the package and open the documents in Photoshop.',
-                    duration: warningCount > 0 ? 'infinite' : 'medium'
+                    type: needsReview ? 'warning' : 'success',
+                    message: needsReview
+                      ? 'Download ready. Some content needs review. Check the documents in Photoshop.'
+                      : 'Download ready. Unzip the package and open the documents in Photoshop.',
+                    duration: needsReview ? 'infinite' : 'medium'
                   });
                 } catch (error) {
+                  console.error('PSD export failed:', error);
                   cesdk.ui.showNotification({
                     type: 'error',
                     message:
-                      error instanceof Error && error.name === 'TimeoutError'
-                        ? 'PSD export took too long. Please try again.'
-                        : 'The design could not be exported to PSD. Please try again.'
+                      'The design could not be exported to PSD. Please try again.'
                   });
                 } finally {
                   exporting.setValue(false);
@@ -191,6 +202,25 @@ class Example implements EditorPlugin {
       'ly.img.zoom.navigationBar',
       'ly.img.idml-export.navigationBar'
     ]);
+  }
+}
+
+// The export changes the scene while it runs, so it works on a copy in a second engine.
+async function exportPsdFromCopy(
+  engine: CreativeEngine,
+  engineConfig: Partial<Configuration>
+) {
+  const archiveUrl = URL.createObjectURL(await engine.scene.saveToArchive());
+  try {
+    const exportEngine = await CreativeEngine.init(engineConfig);
+    try {
+      await exportEngine.scene.loadFromArchiveURL(archiveUrl);
+      return await exportPsd(exportEngine);
+    } finally {
+      exportEngine.dispose();
+    }
+  } finally {
+    URL.revokeObjectURL(archiveUrl);
   }
 }
 

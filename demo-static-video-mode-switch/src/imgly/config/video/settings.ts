@@ -22,22 +22,6 @@ import type { CreativeEngine } from '@cesdk/cesdk-js';
  */
 export function setupSettings(engine: CreativeEngine): void {
   // ============================================================================
-  // VIDEO FEATURE FLAGS
-  // Enable video-specific capabilities
-  // ============================================================================
-
-  // #region Video Features
-  // Show every track in the timeline, not just the active one. Set explicitly
-  // rather than left to the default, because switching back from static mode
-  // re-applies this config and must not inherit the previous mode's state.
-  engine.editor.setSetting('timeline/trackVisibility', 'all');
-
-  // Always show the clip transition control (default reveals it on hover):
-  // engine.editor.setSetting('timeline/transitionControlVisibility', 'always');
-
-  // #endregion
-
-  // ============================================================================
   // CONTROL GIZMO SETTINGS
   // Configure the visual handles that appear when blocks are selected
   // ============================================================================
@@ -241,19 +225,6 @@ export function setupSettings(engine: CreativeEngine): void {
   // #endregion
 
   // ============================================================================
-  // DOCK SETTINGS
-  // Configure the asset dock appearance
-  // ============================================================================
-
-  // #region Dock Settings
-  // Hide text labels on dock icons (icon-only mode)
-  // engine.editor.setSetting('dock/hideLabels', false);
-
-  // Dock icon size: 'normal' or 'large'
-  // engine.editor.setSetting('dock/iconSize', 'large');
-  // #endregion
-
-  // ============================================================================
   // FEATURE FLAGS
   // Enable/disable specific engine capabilities
   // ============================================================================
@@ -273,22 +244,14 @@ export function setupSettings(engine: CreativeEngine): void {
   // #endregion
 
   // ============================================================================
-  // COLOR PICKER SETTINGS
-  // Configure color picker behavior
+  // GRID SETTINGS
+  // Configure the background grid
   // ============================================================================
 
   // #region Grid Settings
   // Enable background grid and snap-to-grid for precise alignment
   // engine.editor.setSettingBool('grid/enabled', true);
   // engine.editor.setSettingBool('grid/snapEnabled', true);
-  // #endregion
-
-  // #region Color Picker Settings
-  // Restrict color picker to a specific color mode:
-  // - 'Any': Allow both RGB and CMYK (default)
-  // - 'RGB': Restrict to RGB colors only (used for video editing)
-  // - 'CMYK': Restrict to CMYK colors only
-  engine.editor.setSetting('colorPicker/colorMode', 'RGB');
   // #endregion
 
   // ============================================================================

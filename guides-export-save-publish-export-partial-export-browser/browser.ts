@@ -25,6 +25,7 @@ import { calculateGridLayout } from './utils';
  * This example demonstrates:
  * - Exporting individual design blocks
  * - Exporting grouped elements
+ * - Exporting an area of a page
  * - Exporting with different formats and options
  * - Understanding block hierarchy in exports
  */
@@ -387,6 +388,40 @@ class Example implements EditorPlugin {
       );
     };
 
+    // Helper function: Export an area of the current page
+    const exportPageArea = async () => {
+      const exportDialog = cesdk.utils.showLoadingDialog({
+        title: 'Exporting Area',
+        message: 'Processing export...',
+        progress: 'indeterminate'
+      });
+
+      // Export the top-left quarter of the page at twice its size
+      const areaWidth = pageWidth / 2;
+      const areaHeight = pageHeight / 2;
+      const areaBlob = await engine.block.export(page, {
+        mimeType: 'image/png',
+        exportArea: { x: 0, y: 0, width: areaWidth, height: areaHeight },
+        targetWidth: areaWidth * 2,
+        targetHeight: areaHeight * 2
+      });
+
+      // eslint-disable-next-line no-console
+      console.log(
+        `✅ Page area exported - size: ${(areaBlob.size / 1024).toFixed(2)} KB`
+      );
+
+      exportDialog.close();
+
+      // Download the exported area
+      await downloadWithNotification(
+        areaBlob,
+        'page-area-export.png',
+        'image/png',
+        'Area'
+      );
+    };
+
     // Configure navigation bar layout
     cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
       'ly.img.undoRedo.navigationBar',
@@ -397,6 +432,15 @@ class Example implements EditorPlugin {
         key: 'export-page',
         label: 'Export Page',
         icon: '@imgly/Save',
+        variant: 'plain',
+        color: 'accent'
+      },
+      {
+        id: 'ly.img.action.navigationBar',
+        onClick: async () => await exportPageArea(),
+        key: 'export-area',
+        label: 'Export Area',
+        icon: '@imgly/Crop',
         variant: 'plain',
         color: 'accent'
       },
@@ -422,7 +466,7 @@ class Example implements EditorPlugin {
     // Show notification to guide users
     cesdk.ui.showNotification({
       message:
-        'Use the export buttons on the right to try different export options (Export Page, Export Group, Export Block)',
+        'Use the export buttons on the right to try different export options (Export Page, Export Area, Export Group, Export Block)',
       type: 'info',
       duration: 'infinite'
     });

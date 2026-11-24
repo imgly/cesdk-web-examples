@@ -244,6 +244,10 @@ async function main() {
 
     console.log(engine.block.getKeyframeMode(block, 'position/x')); // 'Relative'
 
+    // At 50% of the duration, after the fade-in ends at 40%
+    console.log(engine.block.getAnimatedValue(block, 'opacity', 0.5));
+    // { type: 'Float', value: 1 }
+
     // Changes the static value only. The absolute opacity track still replaces it.
     engine.block.setOpacity(block, 0.5);
     console.log(engine.block.getKeyframes(block, 'opacity').length); // 2

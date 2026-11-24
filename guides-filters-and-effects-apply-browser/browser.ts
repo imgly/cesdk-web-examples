@@ -81,11 +81,13 @@ class Example implements EditorPlugin {
     const pageWidth = engine.block.getWidth(page);
     const pageHeight = engine.block.getHeight(page);
 
-    // Enable effects and filters in the inspector panel using the Feature API
-    cesdk.feature.enable('ly.img.effect'); // Enable all effects
-    cesdk.feature.enable('ly.img.filter'); // Enable all filters
-    cesdk.feature.enable('ly.img.blur'); // Enable blur effect
-    cesdk.feature.enable('ly.img.adjustment'); // Enable adjustments
+    // Enable effects and filters in the inspector panel with cesdk.features
+    cesdk.features.configure({
+      'ly.img.effect': { enabled: true },
+      'ly.img.filter': { enabled: true },
+      'ly.img.blur': { enabled: true },
+      'ly.img.adjustment': { enabled: true }
+    });
 
     // Calculate responsive grid layout based on page dimensions
     const layout = calculateGridLayout(pageWidth, pageHeight, 9);

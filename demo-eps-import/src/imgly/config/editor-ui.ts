@@ -2,32 +2,42 @@ import type CreativeEditorSDK from '@cesdk/cesdk-js';
 
 export function configureEditor(cesdk: CreativeEditorSDK) {
   cesdk.ui.setTheme('light');
-  cesdk.ui.setView('default');
   cesdk.ui.closePanel('*');
-  cesdk.feature.enable([
-    'ly.img.dock',
-    'ly.img.library.panel',
-    'ly.img.navigation.bar',
-    'ly.img.navigation.undoRedo',
-    'ly.img.navigation.zoom',
-    'ly.img.inspector.bar',
-    'ly.img.canvas.menu',
-    'ly.img.keyboard.shortcuts',
-    'ly.img.delete',
-    'ly.img.duplicate',
-    'ly.img.group.*',
-    'ly.img.position.*',
-    'ly.img.transform.*',
-    'ly.img.fill.color.*',
-    'ly.img.stroke.*',
-    'ly.img.opacity',
-    'ly.img.blendMode',
-    'ly.img.text.edit',
-    'ly.img.text.fontSize',
-    'ly.img.text.alignment',
-    'ly.img.text.advanced',
-    'ly.img.text.decoration'
-  ]);
+  cesdk.features.configure({
+    'ly.img.blendMode': { enabled: true },
+    'ly.img.canvas.menu': { enabled: true },
+    'ly.img.delete': { enabled: true },
+    'ly.img.dock': { enabled: true },
+    'ly.img.duplicate': { enabled: true },
+    'ly.img.fill': {
+      enabled: true,
+      options: { image: { enabled: false }, video: { enabled: false } }
+    },
+    'ly.img.group': { enabled: true },
+    'ly.img.inspector': { enabled: true },
+    'ly.img.inspector.bar': { enabled: true },
+    'ly.img.keyboard.shortcuts': { enabled: true },
+    'ly.img.library': {
+      enabled: true,
+      options: { dragAndDrop: { enabled: false } }
+    },
+    'ly.img.navigation.bar': { enabled: true },
+    'ly.img.opacity': { enabled: true },
+    'ly.img.position': { enabled: true },
+    'ly.img.stroke': { enabled: true },
+    'ly.img.text': {
+      enabled: true,
+      options: {
+        typeface: { enabled: false },
+        fontStyle: { enabled: false },
+        list: { enabled: false },
+        path: { enabled: false },
+        background: { enabled: false },
+        styles: { enabled: false }
+      }
+    },
+    'ly.img.transform': { enabled: true }
+  });
   registerLayersPanel(cesdk);
   cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
     'ly.img.undoRedo.navigationBar',

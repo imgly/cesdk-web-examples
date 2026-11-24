@@ -43,6 +43,7 @@
  * **Styling:**
  * - `'ly.img.fill.inspectorBar'` - Fill color
  * - `'ly.img.stroke.inspectorBar'` - Stroke/border
+ * - `'ly.img.timing.inspectorBar'` - Timing button (start and duration)
  * - `'ly.img.opacityOptions.inspectorBar'` - Opacity and blend mode
  *
  * **Layout:**
@@ -99,6 +100,7 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
       // Page Resize
       // ============================
       'ly.img.pageResize.inspectorBar',
+      'ly.img.spread.inspectorBar',
       'ly.img.separator',
 
       // ============================
@@ -176,6 +178,8 @@ export function setupInspectorBar(cesdk: CreativeEditorSDK): void {
       // ============================
       // Properties
       // ============================
+      'ly.img.timing.inspectorBar',
+      'ly.img.separator',
       'ly.img.opacityOptions.inspectorBar',
       'ly.img.separator',
       'ly.img.position.inspectorBar',

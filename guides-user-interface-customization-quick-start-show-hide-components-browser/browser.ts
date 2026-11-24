@@ -64,9 +64,8 @@ class Example implements EditorPlugin {
       }
     });
 
-    // Hide components using Feature API (disables both UI and functionality)
-    // This hides the page resize controls from the navigation bar
-    cesdk.feature.disable('ly.img.navigation.pageResize');
+    // Hide the dock by switching its feature off
+    cesdk.features.configure({ 'ly.img.dock': { enabled: false } });
 
     // Hide specific components using Component Order API
     // This removes the preview button but keeps preview functionality (keyboard shortcut still works)

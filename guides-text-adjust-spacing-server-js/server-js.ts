@@ -89,7 +89,7 @@ try {
   console.log("Paragraph spacing:", paragraphSpacing);
 
   // Zoom to show all text blocks
-  engine.scene.zoomToBlock(page, { padding: 40 });
+  await engine.scene.zoomToBlock(page, { padding: 40 });
 
   // Export the scene to PNG
   const blob = await engine.block.export(page, { mimeType: "image/png" });

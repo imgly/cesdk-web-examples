@@ -13,6 +13,7 @@ config();
  * - Exporting individual design blocks
  * - Exporting grouped elements
  * - Exporting specific pages
+ * - Exporting an area of a page
  * - Export format selection and options
  * - Understanding block hierarchy in exports
  */
@@ -180,6 +181,20 @@ try {
   writeFileSync(`${outputDir}/page-export.png`, pageBuffer);
   // eslint-disable-next-line no-console
   console.log('✓ Exported current page to output/page-export.png');
+
+  // Export the top-left quarter of the page at twice its size
+  const areaWidth = pageWidth / 2;
+  const areaHeight = pageHeight / 2;
+  const areaBlob = await engine.block.export(page, {
+    mimeType: 'image/png',
+    exportArea: { x: 0, y: 0, width: areaWidth, height: areaHeight },
+    targetWidth: areaWidth * 2,
+    targetHeight: areaHeight * 2,
+  });
+  const areaBuffer = Buffer.from(await areaBlob.arrayBuffer());
+  writeFileSync(`${outputDir}/page-area-export.png`, areaBuffer);
+  // eslint-disable-next-line no-console
+  console.log('✓ Exported page area to output/page-area-export.png');
 
   // Export all pages individually (for multi-page documents)
   const pages = engine.scene.getPages();

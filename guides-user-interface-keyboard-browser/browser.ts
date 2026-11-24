@@ -69,14 +69,14 @@ class KeyboardExample implements EditorPlugin {
     await cesdk.actions.run('scene.create');
 
     // Inspect the current state of the shortcut subsystem
-    const enabled = cesdk.feature.isEnabled('ly.img.keyboard.shortcuts');
+    const enabled = cesdk.features.get('ly.img.keyboard.shortcuts').enabled;
     console.log('Keyboard shortcuts enabled:', enabled);
 
     // Disable shortcuts at runtime — the runtime detaches its listener
     // immediately. Re-enable later to restore everything without
     // re-registering the catalog.
-    // cesdk.feature.enable('ly.img.keyboard.shortcuts', false);
-    // cesdk.feature.enable('ly.img.keyboard.shortcuts', true);
+    // cesdk.features.configure({ 'ly.img.keyboard.shortcuts': { enabled: false } });
+    // cesdk.features.configure({ 'ly.img.keyboard.shortcuts': { enabled: true } });
 
     // Add a chord shortcut. `Mod` resolves to Cmd on macOS and Ctrl
     // elsewhere, so one registration covers both platforms. Press

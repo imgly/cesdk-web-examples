@@ -424,20 +424,13 @@ class Example implements EditorPlugin {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Reference implementation exported as example snippet in docs.
 function configureFeatures(cesdk: CreativeEditorSDK) {
   // Hide the provider dropdown if you only have one provider
-  cesdk.feature.set(
-    'ly.img.plugin-ai-image-generation-web.providerSelect',
-    () => false
-  );
-  // Enable text-to-image generation
-  cesdk.feature.set(
-    'ly.img.plugin-ai-image-generation-web.fromText',
-    () => true
-  );
-  // Disable image-to-image generation
-  cesdk.feature.set(
-    'ly.img.plugin-ai-image-generation-web.fromImage',
-    () => false
-  );
+  cesdk.features.configure({
+    'ly.img.plugin-ai-image-generation-web': {
+      // Offer text-to-image only, no image-to-image
+      inputs: ['fromText'],
+      options: { providerSelect: { enabled: false } }
+    }
+  });
 }
 
 export default Example;

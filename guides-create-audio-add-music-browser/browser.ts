@@ -104,9 +104,15 @@ class Example implements EditorPlugin {
     engine.block.setDuration(page, 30);
 
     // Enable audio and timeline features for the UI
-    cesdk.feature.enable('ly.img.video.timeline');
-    cesdk.feature.enable('ly.img.video.timeline.audio');
-    cesdk.feature.enable('ly.img.video.timeline.controls.playback');
+    cesdk.features.configure({
+      'ly.img.video.timeline': {
+        enabled: true,
+        options: {
+          audio: { enabled: true },
+          playback: { enabled: true }
+        }
+      }
+    });
 
     // Create an audio block for background music
     const audioBlock = engine.block.create('audio');

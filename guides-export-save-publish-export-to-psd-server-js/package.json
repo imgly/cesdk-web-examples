@@ -8,8 +8,8 @@
     "check:syntax": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@cesdk/node": "^1.86.2",
-    "@imgly/psd-exporter": "^0.1.0",
+    "@cesdk/node": "^1.87.0",
+    "@imgly/psd-exporter": "^0.2.0",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {

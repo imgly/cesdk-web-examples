@@ -69,20 +69,76 @@ class Example implements EditorPlugin {
     // The list is a panel like any other, so the Panel API opens it.
     cesdk.ui.openPanel('//ly.img.panel/layers');
 
+    // Cap the Pages section at 200 pixels. Dragging the line under it still
+    // resizes it until the page reloads.
+    await cesdk.actions.run('layerList.pagesSection.setHeight', {
+      height: 'auto',
+      maxHeight: 200
+    });
+
     // Place it beside the canvas rather than floating over it.
     cesdk.ui.setPanelPosition('//ly.img.panel/layers', 'left');
     cesdk.ui.setPanelFloating('//ly.img.panel/layers', false);
 
     // The pages sit above the current page's layers. `combined` would replace
     // both with one tree of every page and its layers.
-    cesdk.feature.enable('ly.img.layerList.pages');
-    cesdk.feature.enable('ly.img.layerList.layers');
-    // cesdk.feature.enable('ly.img.layerList.combined');
+    cesdk.features.configure({
+      'ly.img.layerList': {
+        enabled: true,
+        options: { pages: { enabled: true }, layers: { enabled: true } }
+        // combined: true
+      }
+    });
+
+    // The page list shows a strip of page pictures once the scene holds a page
+    // spread, and a row per page until then. Each page is captioned by its name.
+    cesdk.features.configure({
+      'ly.img.layerList': {
+        options: {
+          pages: {
+            layout: ({ engine }) =>
+              engine.scene
+                .getPages()
+                .some((page) =>
+                  engine.block
+                    .getChildren(page)
+                    .some(
+                      (child) =>
+                        engine.block.getType(child) === '//ly.img.ubq/pageSlice'
+                    )
+                )
+                ? 'strip'
+                : 'list',
+            labels: 'pages',
+            pageTitle: 'name'
+          }
+        }
+      }
+    });
+
+    // Tall page rows with pictures in the page's own shape, beside compact
+    // layer rows.
+    cesdk.features.configure({
+      'ly.img.layerList': {
+        thumbnails: true,
+        options: {
+          pages: { rowSize: 120, thumbnailShape: 'original' },
+          layers: { rowSize: 32 }
+        }
+      }
+    });
+
+    // The type icon in front of each name, on page rows and on layer rows.
+    cesdk.features.configure({
+      'ly.img.layerList': {
+        options: { pages: { icons: true }, layers: { icons: true } }
+      }
+    });
 
     // By default picking a page row scrolls the canvas to it and picking a
-    // layer row leaves the canvas alone. `true` follows every row; `disable`
+    // layer row leaves the canvas alone. `'all'` follows every row; `'none'`
     // follows none.
-    cesdk.feature.set('ly.img.layerList.canvasFollow', true);
+    cesdk.features.configure({ 'ly.img.layerList': { canvasFollow: 'all' } });
 
     // Without a `when` clause the layer row order is returned.
     const layerMenu = cesdk.ui.getComponentOrder({
@@ -138,9 +194,11 @@ class Example implements EditorPlugin {
       'ly.img.layerList.menu.copyName'
     );
 
-    // Each row control has its own key, so turning one off leaves the rest of
+    // Each row control is an option, so turning one off leaves the rest of
     // the list working.
-    cesdk.feature.disable('ly.img.layerList.lock');
+    cesdk.features.configure({
+      'ly.img.layerList': { options: { lock: { enabled: false } } }
+    });
   }
 
   /** Gives the Layers section a group and a couple of leaf rows to show. */

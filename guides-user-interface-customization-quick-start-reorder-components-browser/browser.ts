@@ -88,8 +88,6 @@ class Example implements EditorPlugin {
     });
     console.log('Canvas bar (top) order:', canvasBarOrder);
 
-    // Enable the settings feature so the settings button can be displayed.
-    cesdk.feature.enable('ly.img.settings');
     // Set a custom canvas bar order
     cesdk.ui.setComponentOrder({ in: 'ly.img.canvas.bar', at: 'top' }, [
       'ly.img.page.add.canvasBar',

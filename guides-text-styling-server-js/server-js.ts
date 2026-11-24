@@ -153,7 +153,7 @@ try {
   console.log(engine.block.getTextBaselineShifts(text)); // [0, 100]
 
   // Zoom to show the text block
-  engine.scene.zoomToBlock(text, { padding: 40 });
+  await engine.scene.zoomToBlock(text, { padding: 40 });
 
   // Export the scene to PNG
   const blob = await engine.block.export(page, { mimeType: "image/png" });

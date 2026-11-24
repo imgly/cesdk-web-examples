@@ -154,8 +154,8 @@ class Example implements EditorPlugin {
         label: 'Export',
         icon: '@imgly/Download',
         variant: 'regular',
-        onClick: () => {
-          cesdk.actions.run('exportDesign');
+        onClick: async () => {
+          await cesdk.actions.run('exportDesign');
         }
       });
     });
